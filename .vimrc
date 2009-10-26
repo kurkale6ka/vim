@@ -116,17 +116,17 @@ set mouseshape=i-r:beam,s:updown,sd:udsizing,vs:leftright,vd:lrsizing,m:no,
 if !has('win32')
 
     " Monospaced fonts are better used by Vim        (shortcut: gfn   )
-    set guifont=Nimbus\ Mono\ L\ 16,
+    set guifont=DejaVu\ Sans\ Mono\ 16,
+                \Nimbus\ Mono\ L\ 16,
                 \Andale\ Mono\ 16,
-                \DejaVu\ Sans\ Mono\ 16,
                 \Liberation\ Mono\ 16,
                 \Monospace\ 16
 
 else
 
-    set guifont=Nimbus_Mono_L:h12,
+    set guifont=DejaVu_Sans_Mono:h12,
+                \Nimbus_Mono_L:h12,
                 \Andale_Mono:h12,
-                \DejaVu_Sans_Mono:h12,
                 \Liberation_Mono:h12,
                 \Monospace:h12
 
