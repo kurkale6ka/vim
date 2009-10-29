@@ -5,11 +5,7 @@ set iskeyword+=-
 "
 "     h1, span, div, a { white-space : normal ; width : auto }
 "
-"     h1, span, div, a
-"     { white-space : normal ; width : auto }
-"
-"     h1, span, div, a {
-"     white-space : normal ; width : auto }
+"     Note: to be used on the first line of the pattern
 "
 " Result:
 "
@@ -22,4 +18,4 @@ set iskeyword+=-
 "         width       : auto
 "     }
 
-let @r="^d0:s/\\s*\\(,\\)\\s*/\\1\\r/ge\<cr>:s/\\_s*\\ze{/\\r/ge\<cr>:s/\\_s*{\\_[^{]\\{-}\\zs\\s*\\ze}/\\r/ge\<cr>=`[w:s/[{;]\\%(\\s*$\\)\\@!\\zs\\s*/\\r/ge\<cr>=iBw:Tabularize css\<cr>]}/\\S\<cr>:nohlsearch\<cr>"
+let @r="^d0/}\<cr>v``:j\<cr>:s/\\s*\\(,\\)\\s*/\\1\\r/ge\<cr>:s/\\s*\\ze{/\\r\<cr>:s/\\_s*{[^{]\\{-}\\zs\\s*\\ze}/\\r\<cr>-:s/\\%({\\|;\\%(\\s*$\\)\\@!\\)\\zs\\s*/\\r/g\<cr>=iB:Tabularize css\<cr>]}/\\S\<cr>:nohlsearch\<cr>-+"
