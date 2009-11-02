@@ -18,4 +18,4 @@ set iskeyword+=-
 "         width       : auto
 "     }
 
-let @r="^d0/}\<cr>v``:j\<cr>:s/\\s*\\(,\\)\\s*/\\1\\r/ge\<cr>:s/\\s*\\ze{/\\r\<cr>:s/\\_s*{[^{]\\{-}\\zs\\s*\\ze}/\\r\<cr>-:s/\\%({\\|;\\%(\\s*$\\)\\@!\\)\\zs\\s*/\\r/g\<cr>=iB:Tabularize css\<cr>]}/\\S\<cr>:nohlsearch\<cr>-+"
+let @r="^d0/}\<cr>v``:j\<cr>:s/\\s*\\(,\\)\\s*/\\1\\r/ge\<cr>:s/\\s*\\ze{/\\r\<cr>:s/\\_.\\{-}\\zs\\s*\\ze}/\\r\<cr>-:s/\\%({\\|;\\%(\\s*$\\)\\@!\\)\\zs\\s*/\\r/g\<cr>=iB:Tabularize css\<cr>]}/\\S\<cr>:nohlsearch\<cr>-+"
