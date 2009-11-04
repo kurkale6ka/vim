@@ -18,6 +18,8 @@ if has('win32')
 
 endif
 
+nmap <expr> gm '^' . ((virtcol('$') + virtcol('.') - 1)/2) . '<bar>'
+
 syntax on                       " sy
 filetype plugin indent on       " filet
 
