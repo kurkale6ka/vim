@@ -18,7 +18,17 @@ if has('win32')
 
 endif
 
-nmap <expr> gm '^' . ((virtcol('$') + virtcol('.') - 1)/2) . '<bar>'
+nmap <expr> gm Gm() . '<bar>'
+
+function! Gm()
+
+    exe "norm ^"
+    let b:first_col = virtcol('.')
+    let b:last_col  = virtcol('$') - 1
+
+    ec (b:first_col + b:last_col) / 2
+
+endfunction
 
 syntax on                       " sy
 filetype plugin indent on       " filet
