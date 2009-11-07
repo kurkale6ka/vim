@@ -3,20 +3,28 @@
 "
 " Notes:
 "     - Use zR to unfold everything, then read :help folding
-"
-"     - A .vimrc is better than a vimrc because it prevents the
-"       sourcing of a .exrc
-" -------------------------------------------------------------
+" ----------------------------------------------------------
 
 " Options {{{1
 
 " Common util {{{2
 if has('win32')
 
-    behave xterm                                                                           " be
-    se runtimepath=$HOME/vim,$VIM/vimfiles,$VIMRUNTIME,$VIM/vimfiles/after,$HOME/vim/after " rtp
+    set runtimepath=
+                \$HOME/vim,
+                \$VIM/vimfiles,
+                \$VIMRUNTIME,
+                \$VIM/vimfiles/after,
+                \$HOME/vim/after
+
+    behave xterm
 
 endif
+
+let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+
+set exrc
 
 nmap <expr> gm Gm() . '<bar>'
 
@@ -26,91 +34,88 @@ function! Gm()
     let b:first_col = virtcol('.')
     let b:last_col  = virtcol('$') - 1
 
-    ec (b:first_col + b:last_col) / 2
+    echo (b:first_col + b:last_col) / 2
 
 endfunction
 
-syntax on                       " sy
-filetype plugin indent on       " filet
+syntax on sy
+filetype plugin indent on
 
-set nocompatible                " cp
+set nocompatible
 
-set backspace=indent,eol,start  " bs
-set whichwrap=b,s,<,>,[,]       " ww (<left> & <right> also wrap around lines in normal and insert mode)
-set fileformats=unix,mac,dos    " ffs
-set viminfo='20,<50,s10,h,!     " vi
+set backspace=indent,eol,start
+set whichwrap=b,s,<,>,[,]       " <left> & <right> also wrap around lines in normal and insert mode
+set fileformats=unix,mac,dos
+set viminfo='20,<50,s10,h,!
 
 " C, server side includes, HTML
-set include=^\\s*#\\s*include\\\|--\\s*#\\s*include\\s*virtual=\\\|href= " inc
-set includeexpr=substitute(v:fname,'^/','','')                           " inex
+set include=^\\s*#\\s*include\\\|--\\s*#\\s*include\\s*virtual=\\\|href=
+set includeexpr=substitute(v:fname,'^/','','')
 
-set wildmenu                    " wmnu (menu completion in command mode on <tab>)
-set wildcharm=<c-z>             " wcm (cmdline: <c-z> in a mapping acts like <tab>)
+set wildmenu                    " menu completion in command mode on <tab>
+set wildcharm=<c-z>             " cmdline: <c-z> in a mapping acts like <tab>
 
 if has('folding')
 
-    set foldmethod=marker       " fdm
-    set foldmarker=~\\~,~/~     " fmr
+    set foldmethod=marker
+    set foldmarker=~\\~,~/~
 
 endif
 
-set modeline                    " ml
-set modelines=5                 " mls
+set modeline
+set modelines=5
 
-set fileencodings+=cp1251       " fencs
+set fileencodings+=cp1251
 
-if has('multi_byte')         " If multibyte support is available and
+if has('multi_byte')                      " If multibyte support is available and
 
-    if &enc !~? 'utf-\=8'    " the current encoding is not Unicode,
+    if &encoding !~? 'utf-\=8'            " the current encoding is not Unicode,
 
-        if empty(&tenc)      " default to
-            let &tenc = &enc " using the current encoding for terminal output
-        endif                " unless another terminal encoding was already set
-        set enc=utf-8        " but use utf-8 for all data internally
+        if empty(&termencoding)           " default to
+            let &termencoding = &encoding " using the current encoding for terminal output
+        endif                             " unless another terminal encoding was already set
+        set encoding=utf-8                " but use utf-8 for all data internally
 
     endif
 
 endif
 
-if &enc =~ '^u\(tf\|cs\)' " When running in a Unicode environment
-
-  set list&
+if &encoding =~ '^u\(tf\|cs\)' " When running in a Unicode environment
 
   " tabs = arrow + dots (▷⋅⋅⋅⋅⋅⋅⋅)
   let s:arr = nr2char(9655) " use U+25B7 for an arrow (▷) and
   let s:dot = nr2char(8901) " use U+22C5 for a  dot   (⋅)
 
-  " lcs
   exe "set listchars=tab:"    . s:arr . s:dot
   exe "set listchars+=trail:" . s:dot
   exe "set listchars+=nbsp:"  . s:dot
 
-  " sbr: arrow+space (↪ ) at the beginning of wrapped lines
+  " arrow+space (↪ ) at the beginning of wrapped lines
   let &showbreak=nr2char(8618).' '
 
 endif
 
 " Alerts and visual feedback {{{2
-set linebreak                   " lbr
-set number                      " nu
-set numberwidth=3               " nuw
-set showmatch                   " sm (parens)
-set showcmd                     " sc
-set visualbell t_vb=            " vb (visual bell instead of beeping + disable the visual effect = no flashing at all)
-set confirm                     " cf
+set linebreak
+set number
+set numberwidth=3
+set showmatch                   " parens
+set showcmd
+set visualbell t_vb=            " visual bell instead of beeping + disable the visual effect = no flashing at all
+set confirm
 set report=0                    " Commands always print changed line count
-set laststatus=2                " ls
-set lazyredraw                  " lz
-set display+=lastline           " dy
-set scrolloff=3                 " so
-set virtualedit=all             " ve
+set laststatus=2
+set lazyredraw
+set display+=lastline
+set scrolloff=3
+set virtualedit=all
 
-" Statusline                    " stl
+" Statusline
 set statusline=%<Buf\ %n:\ %t\ %y%m%r\ %L\ lines%=%-14.(L:%l,\ C:%v%)\ %P
 
 if has('syntax')
 
-    set cursorline              " cul
+    set cursorline
 
 endif
 
@@ -120,14 +125,14 @@ if has('mouse_xterm')
 
 endif
 
-" I like my cursor pointing left when selecting text (shortcut: mouses)
+" I like my cursor pointing left when selecting text
 set mouseshape=i-r:beam,s:updown,sd:udsizing,vs:leftright,vd:lrsizing,m:no,
             \ml:up-arrow,
             \v:arrow
 
 if !has('win32')
 
-    " Monospaced fonts are better used by Vim        (shortcut: gfn   )
+    " Monospaced fonts are better used by Vim
     set guifont=DejaVu\ Sans\ Mono\ 16,
                 \Nimbus\ Mono\ L\ 16,
                 \Andale\ Mono\ 16,
@@ -145,21 +150,21 @@ else
 endif
 
 " backups {{{2
-set backup                      " bk - Don't delete backup file after a succesful write.
+set backup                      " Don't delete backup file after a succesful write.
 
 if has('win32')
 
-    set directory+=$LOCALAPPDATA\Temp " dir  - swap   files
-    set backupdir+=$LOCALAPPDATA\Temp " bdir - backup files
+    set directory+=$LOCALAPPDATA\Temp " swap   files
+    set backupdir+=$LOCALAPPDATA\Temp " backup files
 
 endif
 
 " Search {{{2
-set incsearch                   " is
-set ignorecase                  " ic
-set smartcase                   " scs
-set infercase                   " inf (try to adjust insert completions for case)
-set hlsearch                    " hls
+set incsearch
+set ignorecase
+set smartcase
+set infercase                   " try to adjust insert completions for case
+set hlsearch
 
 " Text formating {{{2
 
@@ -167,27 +172,27 @@ set hlsearch                    " hls
 " r - automatically insert the current comment leader after hitting <Enter>
 " o - automatically insert the current comment leader after hitting 'o' or 'O'
 " q - allow formatting of comments with "gq"
-" n - when formatting text, recognize numbered lists (ai must be enabled)
-set formatoptions=croqn         " fo
+" n - when formatting text, recognize numbered lists (autoindent must be enabled)
+set formatoptions=croqn
 
 " Spaces and tabs {{{2
-set softtabstop=4               " sts
-set shiftwidth=4                " sw
-set expandtab                   " et
+set softtabstop=4
+set shiftwidth=4
+set expandtab
 
 " Tags {{{2
-set completeopt-=preview        " cot
+set completeopt-=preview
 set showfulltag                 " Show more information while completing tags
 
 " Windows and buffers {{{2
-set hidden                      " hid
-set diffopt+=vertical           " dip
+set hidden
+set diffopt+=vertical
 
 " A split/quickfix command will switch to the right
 " window/tab if the buffer is already open there)
 if version < 700
 
-    set switchbuf=useopen       " swb
+    set switchbuf=useopen
 
 else
 
@@ -197,8 +202,8 @@ endif
 
 if has('gui_running')
 
-    winpos 0 0                  " winp
-    set sessionoptions+=resize  " ssop
+    winpos 0 0
+    set sessionoptions+=resize
 
 endif
 " }}}2
@@ -412,7 +417,7 @@ imap <c-s>a <c-o>:wa<cr>
 " } {{{2
 " In vblock-mode: } selects only the current column
 " these mappings work correctly if 'nosol is set
-set nostartofline " nosol
+set nostartofline
 
 vnoremap <expr> } mode() == nr2char(22) ? line("'}") - 1 . 'G' : '}'
 vnoremap <expr> { mode() == nr2char(22) ? line("'{") + 1 . 'G' : '{'
@@ -489,7 +494,7 @@ nmap <leader>' :s/"/'/g<cr>``
 " Man
 if !has('win32')
 
-    runtime! ftplugin/man.vim " ru
+    runtime! ftplugin/man.vim
 
 endif
 
@@ -539,7 +544,7 @@ let loaded_spellfile_plugin  = 1
 " Show the short version of an :ex command
 if !exists(':HelpEx')
 
-    com -nargs=1 -complete=command HelpEx
+    command -nargs=1 -complete=command HelpEx
                 \ :h <args>|norm k/[^:]\[<cr>
                 \l"*y0
                 \:noh|q|redr|ec "<c-r>*"<cr>
@@ -568,11 +573,9 @@ if has("autocmd")
         au BufEnter * if &ft != 'help' | silent! cd %:p:h | endif
 
         " Wrap automatically at 80 chars for plain text files
-        " textwidth     (tw)
-        " formatoptions (fo)
-        " autoindent    (ai) - copy indent from current line when starting a new line
-        " smartindent   (si) - limited C-like autoindenting
-        au FileType text,svn setlocal tw=80 fo+=t ai si
+        " autoindent  - copy indent from current line when starting a new line
+        " smartindent - limited C-like autoindenting
+        au FileType text,svn setlocal textwidth=80 formatoptions+=t autoindent smartindent
 
         " Useful for class aware omnicompletion with php
         au FileType php,phtml let @v="\<esc>yiwO/* @var $\<esc>pa Zend_ */\<left>\<left>\<left>"
