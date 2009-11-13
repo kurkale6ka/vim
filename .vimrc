@@ -198,15 +198,16 @@ endif
 " gm improved {{{2
 function! Gm()
 
-    execute "normal ^"
+    execute 'normal ^'
+
     let b:first_col = virtcol('.')
     let b:last_col  = virtcol('$') - 1
 
-    echo (b:first_col + b:last_col) / 2
+    execute 'normal ' . (b:first_col + b:last_col) / 2 . '|'
 
 endfunction
 
-nmap <expr> gm Gm() . '<bar>'
+nmap gm :call Gm()<cr>
 
 " `A...`Z {{{2
 " Jump to file on last change position
@@ -526,7 +527,7 @@ let loaded_spellfile_plugin  = 1
 
 " There seems not to be a way to disable tohtml.vim
 
-" Commands - :HelpEx, :WriteSudo {{{1
+" Commands {{{1
 
 " Show the short version of an :ex command
 if !exists(':HelpEx')
