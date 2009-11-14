@@ -1,7 +1,7 @@
-" Author: Dimitar Dimitrov (mitkofr@yahoo.fr), kurkale6ka
+" Author: Dimitar Dimitrov: mitkofr@yahoo.fr, kurkale6ka
 "
 "   Note: zR to unfold everything, then :help folding
-" -------------------------------------------------------
+" ------------------------------------------------------
 
 " Options {{{1
 
@@ -57,7 +57,7 @@ if has('multi_byte')
             let &termencoding = &encoding " use the current encoding for terminal output
         endif
 
-        set encoding=utf-8                " use utf-8 for all data internally
+        set encoding=utf-8 " use utf-8 for all data internally
 
     endif
 
@@ -73,7 +73,7 @@ if &encoding =~ '^u\(tf\|cs\)' " When running in a Unicode environment
     execute "set listchars+=trail:" . s:dot
     execute "set listchars+=nbsp:"  . s:dot
 
-    " arrow+space (↪ ) at the beginning of wrapped lines
+    " arrow + space (↪ ) at the beginning of wrapped lines
     let &showbreak=nr2char(8618).' '
 
 endif
@@ -528,16 +528,6 @@ let loaded_spellfile_plugin  = 1
 " There seems not to be a way to disable tohtml.vim
 
 " Commands {{{1
-
-" Show the short version of an :ex command
-if !exists(':HelpEx')
-
-    command -nargs=1 -complete=command HelpEx
-                \ help <args>|normal k/[^:]\[<cr>
-                \l"*y0
-                \:nohlsearch|quit|redraw|echo "<c-r>*"<cr>
-
-endif
 
 command! WriteSudo write !sudo tee % > /dev/null
 
