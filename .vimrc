@@ -184,13 +184,6 @@ else
     set switchbuf=useopen,usetab
 
 endif
-
-if has('gui_running')
-
-    winpos 0 0
-    set sessionoptions+=resize
-
-endif
 " }}}2
 
 " Mappings {{{1
@@ -252,7 +245,7 @@ nnoremap <bs> "_X
 
 " s-f1 {{{2
 " Help on current word
-nmap <s-f1> :help <c-r><c-w><cr>
+nmap <s-f1> :help    <c-r><c-w><cr>
 vmap <s-f1> "*y:help <c-r>*<cr>
 
 " alt-i {{{2
@@ -277,10 +270,10 @@ nmap <c-g> :pwd<cr>
 cnoremap <c-a> <home>
 
 imap <c-up> <c-o>{
-map <c-up> {
+map  <c-up>      {
 
 imap <c-down> <c-o>}
-map <c-down> }
+map  <c-down>      }
 
 " Deletion (Insert and Command-line mode)
 map! <c-bs> <c-w>
@@ -289,26 +282,26 @@ imap <c-del> <c-o>de
 cmap <c-del> <c-f>de<c-c>
 
 " Visual selection {{{2
-nmap <s-up> Vk
+nmap <s-up>      Vk
 imap <s-up> <c-o>Vk
-vmap <s-up> k
+vmap <s-up>       k
 
-nmap <s-down> Vj
+nmap <s-down>      Vj
 imap <s-down> <c-o>Vj
-vmap <s-down> j
+vmap <s-down>       j
 
 nnoremap <s-right> v<s-right>
-nnoremap <s-left> v<s-left>
+nnoremap <s-left>  v<s-left>
 
 inoremap <s-right> <c-o>v<s-right>
-inoremap <s-left> <c-o>v<s-left>
+inoremap <s-left>  <c-o>v<s-left>
 
 " Increase font size {{{2
 nmap <c-mousedown> :set guifont=<c-z><c-f>:substitute/\d\+/\=submatch(0)+1/g<cr><cr>
-nmap <c-mouseup> :set guifont=<c-z><c-f>:substitute/\d\+/\=submatch(0)-1/g<cr><cr>
+nmap <c-mouseup>   :set guifont=<c-z><c-f>:substitute/\d\+/\=submatch(0)-1/g<cr><cr>
 
 imap <c-mousedown> <c-o>:set guifont=<c-z><c-f>:substitute/\d\+/\=submatch(0)+1/g<cr><cr>
-imap <c-mouseup> <c-o>:set guifont=<c-z><c-f>:substitute/\d\+/\=submatch(0)-1/g<cr><cr>
+imap <c-mouseup>   <c-o>:set guifont=<c-z><c-f>:substitute/\d\+/\=submatch(0)-1/g<cr><cr>
 
 let g:gfn_bak = &guifont
 nmap <M-0> :let &guifont = g:gfn_bak<cr>
@@ -330,24 +323,23 @@ nmap Q gqap
 nmap <f5> :update<bar>make<cr>
 
 nmap <f8> :cprevious<cr>
-
 nmap <f9> :cnext<cr>
 
 " F6, F7, s-F7 {{{2
 " Spell check
-nmap <f7> ]s
+nmap <f7>   ]s
 nmap <s-f7> [s
-nmap <f6> 1z=
+nmap <f6>   1z=
 
 " F4 {{{2
 " Toggle between completeopt+=preview and completeopt-=preview
 " mnemo - 'same' behaviour as F4 used in Dolphin KDE
-nmap <f4> :call Toggle_Longest_Preview('f4')<cr>
+nmap <f4>      :call Toggle_Longest_Preview('f4')<cr>
 imap <f4> <c-o>:call Toggle_Longest_Preview('f4')<cr>
 
 " F12 {{{2
 " Toggle between completeopt+=longest and completeopt-=longest
-nmap <f12> :call Toggle_Longest_Preview('f12')<cr>
+nmap <f12>      :call Toggle_Longest_Preview('f12')<cr>
 imap <f12> <c-o>:call Toggle_Longest_Preview('f12')<cr>
 
 function! Toggle_Longest_Preview(key)
@@ -356,12 +348,12 @@ function! Toggle_Longest_Preview(key)
 
         if &completeopt =~ 'longest'
 
-            set completeopt-=longest
+            set   completeopt-=longest
             echo 'completeopt - longest (Zend_Acl)'
 
         else
 
-            set completeopt+=longest
+            set   completeopt+=longest
             echo 'completeopt + longest (Zend_)'
 
         endif
@@ -370,12 +362,12 @@ function! Toggle_Longest_Preview(key)
 
         if &completeopt =~ 'preview'
 
-            set completeopt-=preview
+            set   completeopt-=preview
             echo 'completeopt - preview'
 
         else
 
-            set completeopt+=preview
+            set   completeopt+=preview
             echo 'completeopt + preview window'
 
         endif
@@ -392,14 +384,14 @@ nmap <c-space> :b<space>
 " Saving:
 
 " write this file
-nmap <c-s> :update<cr>
+nmap <c-s>      :update<cr>
 imap <c-s> <c-o>:update<cr>
 
 " write all files
-nmap <c-s><c-a> :wall<cr>
+nmap <c-s><c-a>      :wall<cr>
 imap <c-s><c-a> <c-o>:wall<cr>
 
-nmap <c-s>a :wall<cr>
+nmap <c-s>a      :wall<cr>
 imap <c-s>a <c-o>:wall<cr>
 
 " } {{{2
@@ -413,10 +405,10 @@ vnoremap <expr> { mode() == nr2char(22) ? line("'{") + 1 . 'G' : '{'
 " [[, ]] {{{2
 " work even if the { is not in the first column
 nnoremap <silent> [[ :call search('^\S\@=.*{$', 'besW')<CR>
-nnoremap <silent> ]] :call search('^\S\@=.*{$', 'esW')<CR>
+nnoremap <silent> ]] :call search('^\S\@=.*{$',  'esW')<CR>
 onoremap <expr> [[ (search('^\S\@=.*{$', 'ebsW') && (setpos("''", getpos('.'))
             \ <bar><bar> 1) ? "''" : "\<ESC>")
-onoremap <expr> ]] (search('^\S\@=.*{$', 'esW') && (setpos("''", getpos('.'))
+onoremap <expr> ]] (search('^\S\@=.*{$',  'esW') && (setpos("''", getpos('.'))
             \ <bar><bar> 1) ? "''" : "\<ESC>")
 
 " "" instead of ci" and ci' {{{2
@@ -486,11 +478,7 @@ if !has('win32')
 
 endif
 
-if has('gui_running')
-
-    let g:CSApprox_loaded = 1
-
-else
+if !has('gui_running')
 
     if &term == 'xterm'
 
@@ -569,5 +557,10 @@ if has("autocmd")
 endif
 
 " Abbreviations {{{1
+
+iabbrev fu function
+iabbrev sw switch(
+iabbrev ec echo
+iabbrev ar array(
 
 " vim: se fdm=marker fmr& fenc=utf-8 cul hls ic is scs nu et sts=4 sw=4 lbr:
