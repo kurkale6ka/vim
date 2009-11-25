@@ -128,11 +128,11 @@ if !has('win32')
 
 else
 
-    set guifont=DejaVu_Sans_Mono:h12,
-                \Nimbus_Mono_L:h12,
-                \Andale_Mono:h12,
-                \Liberation_Mono:h12,
-                \Monospace:h12
+    set guifont=DejaVu_Sans_Mono:h13,
+                \Nimbus_Mono_L:h13,
+                \Andale_Mono:h13,
+                \Liberation_Mono:h13,
+                \Monospace:h13
 
 endif
 
