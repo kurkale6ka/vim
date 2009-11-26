@@ -13,7 +13,7 @@
 "
 " Notes {{{1
 "
-" Author: Dimitar Dimitrov (mitkofr@yahoo.fr), kurkale6ka
+" Author: Dimitar Dimitrov: mitkofr@yahoo.fr, kurkale6ka
 "
 " Note: Start with :se ft=html for any text where you want to use these
 "       macros. The indenting will be done better
@@ -29,8 +29,8 @@
 "
 "       myTabularMaps.vim must at least contain these two lines:
 "
-"       AddTabularPipeline! html /\%(<[^<>?!]*>.\{-}\)\@<!<[^<>?!]*>/ tabular#TabularizeStrings(a:lines, '\%(<[^<>?!]*>.\{-}\)\@<!<[^<>?!]*>'  , 'l1')
-"       \ | tabular#TabularizeStrings(a:lines, '<\/\a\+>\%(.\{-}<\/\a\+>\)\@!', 'l1')
+"       AddTabularPipeline! html  /\%(<[^<>?!]*>.\{-}\)\@<!<[^<>?!]*>/ tabular#TabularizeStrings(a:lines, '\%(<[^<>?!]*>.\{-}\)\@<!<[^<>?!]*>'  , 'l1')
+"       \ | tabular#TabularizeStrings(a:lines, '<\/[A-Za-z:]\+>\%(.\{-}<\/[A-Za-z:]\+>\)\@!', 'l1')
 "
 " Note: \g, \r, \x and \m don't work on nested
 "       <!-- --> and <?php  ?>
@@ -87,8 +87,6 @@
 " | <noscript> |  @n  |        \n         |
 " | <var>      |  @v  |        \v         |
 " +------------+------+-------------------+
-"
-" TODO: <meta> @m
 "
 " 3. Insert an image {{{1
 " -----------------------
