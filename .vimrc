@@ -47,8 +47,6 @@ endif
 set modeline
 set modelines=5
 
-set fileencodings+=cp1251
-
 if has('multi_byte')
 
     if &encoding !~? 'utf-\=8'
@@ -77,6 +75,8 @@ if &encoding =~ '^u\(tf\|cs\)' " When running in a Unicode environment
     let &showbreak=nr2char(8618).' '
 
 endif
+
+set spelllang=bg,en,es,fr
 
 " Alerts and visual feedback {{{2
 set linebreak
