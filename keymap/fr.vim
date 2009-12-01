@@ -8,3 +8,6 @@ lmap <buffer> :i ï
 lmap <buffer> :I Ï
 lmap <buffer> :y ÿ
 lmap <buffer> :Y Ÿ
+
+" For spanish
+lmap <buffer> /? ¿
