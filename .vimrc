@@ -9,11 +9,11 @@
 if has('win32')
 
     set runtimepath=
-                \$HOME/vim,
+                \$HOME/vimfiles,
                 \$VIM/vimfiles,
                 \$VIMRUNTIME,
                 \$VIM/vimfiles/after,
-                \$HOME/vim/after
+                \$HOME/vimfiles/after
 
     behave xterm
 
@@ -76,7 +76,7 @@ if &encoding =~ '^u\(tf\|cs\)' " When running in a Unicode environment
 
 endif
 
-set spelllang=bg,en,es,fr
+set spelllang+=bg,es,fr
 
 " Alerts and visual feedback {{{2
 set linebreak
