@@ -174,6 +174,7 @@ set showfulltag
 " Windows and buffers {{{2
 set hidden
 set diffopt+=vertical
+set splitright
 
 if version < 700
 
