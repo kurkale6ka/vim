@@ -76,8 +76,6 @@ if &encoding =~ '^u\(tf\|cs\)' " When running in a Unicode environment
 
 endif
 
-set spelllang+=bg,es,fr
-
 " Alerts and visual feedback {{{2
 set linebreak
 set number
@@ -558,6 +556,11 @@ if has("autocmd")
 endif
 
 " Abbreviations {{{1
+
+cabbrev kmp&    keymap&\|set spelllang&
+cabbrev keymap& keymap&\|set spelllang&
+cabbrev kmp=    keymap&\|set spelllang&
+cabbrev keymap= keymap&\|set spelllang&
 
 iabbrev fu function
 iabbrev sw switch(

@@ -1,5 +1,7 @@
 source $VIMRUNTIME/keymap/bulgarian.vim
 
+set spelllang=bg
+
 let b:keymap_name = "бг"
 
 lmap <buffer> y  у
