@@ -21,6 +21,7 @@ if has('win32')
 
 endif
 
+" Keep these lines after runtimepath!
 syntax on
 filetype plugin indent on
 
@@ -47,17 +48,17 @@ if has('folding')
 endif
 
 set modeline
-set modelines=5
+set modelines=3
 
 if has('multi_byte')
 
     if &encoding !~? 'utf-\=8'
 
         if empty(&termencoding)
-            let &termencoding = &encoding " use the current encoding for terminal output
+            let &termencoding = &encoding
         endif
 
-        set encoding=utf-8 " use utf-8 for all data internally
+        set encoding=utf-8
 
     endif
 
@@ -154,12 +155,6 @@ set infercase
 set hlsearch
 
 " Text formating {{{2
-
-" c - auto-wrap comments using textwidth
-" r - automatically insert the current comment leader after hitting <Enter>
-" o - automatically insert the current comment leader after hitting 'o' or 'O'
-" q - allow formatting of comments with "gq"
-" n - when formatting text, recognize numbered lists (autoindent must be enabled)
 set formatoptions=croqn
 
 " Spaces and tabs {{{2
@@ -499,9 +494,6 @@ endif
 let php_folding = 3
 
 let php_large_file = 0
-
-" Netrw: don't display files starting with dot
-let g:netrw_list_hide = '^\.[^.]'
 
 " Disable all those plugins!
 
