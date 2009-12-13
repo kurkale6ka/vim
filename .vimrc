@@ -30,6 +30,7 @@ set nocompatible
 set exrc
 set backspace=indent,eol,start
 set whichwrap=b,s,<,>,[,]
+set matchpairs+=<:>
 set fileformats=unix,mac,dos
 set viminfo='20,<50,s10,h,!
 
