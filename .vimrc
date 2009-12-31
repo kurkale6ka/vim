@@ -81,9 +81,6 @@ if &encoding =~ '^u\(tf\|cs\)' " When running in a Unicode environment
 endif
 
 " Alerts and visual feedback {{{2
-set go-=m
-set go-=T
-set go+=a
 set linebreak
 set number
 set numberwidth=3
