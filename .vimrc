@@ -97,7 +97,7 @@ set scrolloff=3
 set virtualedit=all
 
 " Statusline
-set statusline=%<Buf\ %n:\ %t\ %y%m%r\ %L\ lines%{empty(&keymap)?'':'\ <'.b:keymap_name.'>'}%=%-14.(L:%l,\ C:%v%)\ %P
+set statusline=%<buf\ %n:\ %t\ %y%m%r\ %L\ lines%{empty(&keymap)?'':'\ <'.b:keymap_name.'>'}%=%-14.(L:%l,\ C:%v%)\ %P
 
 if has('syntax')
 
