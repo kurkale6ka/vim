@@ -512,7 +512,7 @@ let loaded_spellfile_plugin  = 1
 " Commands {{{1
 
 command! WriteSudo write !sudo tee % > /dev/null
-command! DiffOrig vnew | set buftype=nofile | read# | 0delete_ | diffthis | wincmd p | diffthis
+command! DiffOrig vnew | set buftype=nofile | read# | silent 0delete_ | diffthis | wincmd p | diffthis
 
 " Autocommands {{{1
 
