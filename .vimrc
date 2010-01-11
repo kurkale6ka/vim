@@ -346,11 +346,13 @@ function! Toggle_Longest_Preview(key)
         if &completeopt =~ 'longest'
 
             set   completeopt-=longest
+            set   showfulltag
             echo 'completeopt - longest (Zend_Acl)'
 
         else
 
             set   completeopt+=longest
+            set   noshowfulltag
             echo 'completeopt + longest (Zend_)'
 
         endif
