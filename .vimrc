@@ -164,6 +164,8 @@ set shiftwidth=4
 set expandtab
 
 " Tags {{{2
+set complete-=t
+set complete-=]
 set completeopt-=preview
 set showfulltag
 
