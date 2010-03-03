@@ -557,7 +557,7 @@ endif
 
 " Abbreviations {{{1
 
-cabbrev bs s:\\:/g
+cabbrev bs s:\\:/:g
 
 cabbrev kmp&    keymap&\|set spelllang&
 cabbrev keymap& keymap&\|set spelllang&
