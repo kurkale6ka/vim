@@ -533,8 +533,4 @@ nnoremap <buffer> \£m ?\_.\=<!--\<bar>\_.\=<\?php<cr>/-->\<bar>?><cr>O<esc>+v?<
 
 nnoremap <buffer> \m @='\£m'<cr>
 
-" Html specific abbreviations
-cabbrev <> s/>\zs\ze</\r/g
-cabbrev >< s/>\zs\ze</\r/g
-
 " vim: se fdm=marker fmr& fenc=utf-8 cul hls ic is scs nu et sts=4 sw=4 lbr:
