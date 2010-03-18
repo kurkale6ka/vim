@@ -81,6 +81,7 @@ if &encoding =~ '^u\(tf\|cs\)' " When running in a Unicode environment
 endif
 
 " Alerts and visual feedback {{{2
+set list
 set linebreak
 set number
 set numberwidth=3
@@ -557,6 +558,7 @@ endif
 
 " Abbreviations {{{1
 
+cabbrev vsb vertical sbuffer
 cabbrev bs s:\\:/:g
 
 cabbrev kmp&    keymap&\|set spelllang&
