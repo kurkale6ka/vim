@@ -1,4 +1,4 @@
-AddTabularPipeline! alias /\s.*=/ tabular#TabularizeStrings(a:lines, '\s.*=', 'l0r0l0')
+AddTabularPipeline! alias /\S\+=/ tabular#TabularizeStrings(a:lines, '\S\+=', 'l1r0l0')
 
 AddTabularPipeline! arrow /=>/ tabular#TabularizeStrings(a:lines, '=>', 'l1')
 
