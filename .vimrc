@@ -559,6 +559,7 @@ endif
 " Abbreviations {{{1
 
 cabbrev vsb vertical sbuffer
+cabbrev svb vertical sbuffer
 cabbrev bs s:\\:/:g
 
 cabbrev kmp&    keymap&\|set spelllang&
