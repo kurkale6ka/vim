@@ -39,6 +39,7 @@ set include=^\\s*#\\s*include\\\|--\\s*#\\s*include\\s*virtual=\\\|href=
 set includeexpr=substitute(v:fname,'^/','','')
 
 set wildmenu
+set wildignore+=*~
 set wildcharm=<c-z> " cmdline: <c-z> in a mapping acts like <tab>
 
 if has('folding')
