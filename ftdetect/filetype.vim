@@ -7,6 +7,7 @@ augroup filetypedetect
     autocmd BufRead,BufNewFile *.phtml   set filetype=html
     autocmd BufRead,BufNewFile *.ssi     set filetype=html
     autocmd BufRead,BufNewFile *.sssi    set filetype=html
+    autocmd BufRead,BufNewFile *.ftl     set filetype=xml
     autocmd BufRead,BufNewFile *.feature set filetype=ruby
 
 augroup END
