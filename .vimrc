@@ -159,6 +159,7 @@ set hlsearch
 
 " Text formating {{{2
 set formatoptions=croqn
+set nojoinspaces
 
 " Spaces and tabs {{{2
 set softtabstop=4
