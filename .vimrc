@@ -563,6 +563,8 @@ endif
 cabbrev vsb vertical sbuffer
 cabbrev svb vertical sbuffer
 cabbrev bs s:\\:/:g
+cabbrev <> s/>\zs\ze</\r/g
+cabbrev >< s/>\zs\ze</\r/g
 
 cabbrev kmp&    keymap&\|set spelllang&
 cabbrev keymap& keymap&\|set spelllang&
