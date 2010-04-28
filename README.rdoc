@@ -1,0 +1,9 @@
+= Vim configuration files
+
+http://www.vim.org/
+
+== Author:
+
+Dimitar Dimitrov: kurkale6ka
+
+mailto:mitkofr@yahoo.fr
