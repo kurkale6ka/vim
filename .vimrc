@@ -162,9 +162,10 @@ set formatoptions=croqn
 set nojoinspaces
 
 " Spaces and tabs {{{2
-set softtabstop=4
-set shiftwidth=4
 set expandtab
+set shiftround
+set shiftwidth=4
+set softtabstop=4
 
 " Tags {{{2
 set complete-=t
