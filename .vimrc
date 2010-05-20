@@ -123,9 +123,12 @@ set mouseshape=i-r:beam,s:updown,sd:udsizing,vs:leftright,vd:lrsizing,m:no,
             \ml:up-arrow,
             \v:arrow
 
-" For konsole
-let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+if 'konsole' == $TERM
+
+    let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+    let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+
+endif
 
 if !has('win32')
 
@@ -478,6 +481,12 @@ nmap <leader>sq :vglobal/\S/,/\S/-j<bar>noh<cr>``
 " Replace all " by '
 nmap <leader>' :substitute/"/'/g<cr>``
 " }}}2
+
+map \p :set invpaste paste?<cr>
+map \\ :s:\\:/:g<cr>
+map \/ :s:\\:/:g<cr>
+map \< :s/>\zs\s*\ze</\r/g<cr>
+map \> :s/>\zs\s*\ze</\r/g<cr>
 
 " Plugin settings {{{1
 
