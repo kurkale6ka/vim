@@ -566,6 +566,7 @@ cabbrev svb vertical sbuffer
 cabbrev bs s:\\:/:g
 cabbrev <> s/>\zs\s*\ze</\r/g
 cabbrev >< s/>\zs\s*\ze</\r/g
+cabbrev ft set filetype=
 
 cabbrev kmp&    keymap&\|set spelllang&
 cabbrev keymap& keymap&\|set spelllang&
