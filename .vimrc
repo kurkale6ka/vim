@@ -49,8 +49,13 @@ if has('folding')
 
 endif
 
-set modeline
-set modelines=3
+if 'root' != $USER
+
+    set modeline
+    set modelines=3
+else
+    set nomodeline
+endif
 
 if has('multi_byte')
 
@@ -561,12 +566,20 @@ endif
 
 " Abbreviations {{{1
 
+function! EatChar(pat)
+
+    let c = nr2char(getchar(0))
+    return (c =~ a:pat) ? '' : c
+
+endfunc
+
 cabbrev vsb vertical sbuffer
 cabbrev svb vertical sbuffer
-cabbrev bs s:\\:/:g
+cabbrev \\ s:\\:/:g
+cabbrev // s:\\:/:g
 cabbrev <> s/>\zs\s*\ze</\r/g
 cabbrev >< s/>\zs\s*\ze</\r/g
-cabbrev ft set filetype=
+cabbrev ft set filetype=<c-r>=EatChar('\s')<cr>
 
 cabbrev kmp&    keymap&\|set spelllang&
 cabbrev keymap& keymap&\|set spelllang&
