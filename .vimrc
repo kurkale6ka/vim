@@ -27,7 +27,6 @@ filetype plugin indent on
 
 set nocompatible
 
-set exrc
 set backspace=indent,eol,start
 set whichwrap=b,s,<,>,[,]
 set matchpairs+=<:>
@@ -49,8 +48,10 @@ if has('folding')
 
 endif
 
+" Security restrictions
 if 'root' != $USER
 
+    set exrc
     set modeline
     set modelines=3
 else
@@ -93,7 +94,8 @@ set number
 set numberwidth=3
 set showmatch
 set showcmd
-" visual bell instead of beeping + disable the visual effect = no flashing at all
+" visual bell instead of beeping + disable the visual effect
+" = no flashing at all
 set visualbell t_vb=
 set confirm
 set report=0
@@ -104,7 +106,9 @@ set scrolloff=3
 set virtualedit=all
 
 " Statusline
-set statusline=%<buf\ %n:\ %t\ %y%m%r\ %L\ lines%{empty(&keymap)?'':'\ <'.b:keymap_name.'>'}%=%-14.(L:%l,\ C:%v%)\ %P
+set statusline=%<buf\ %n:\ %t\ %y%m%r\ %L\ lines
+            \%{empty(&keymap)?'':'\ <'.b:keymap_name.'>'}
+            \%=%-14.(L:%l,\ C:%v%)\ %P
 
 if has('syntax')
 
@@ -286,7 +290,7 @@ map  <c-up>      {
 imap <c-down> <c-o>}
 map  <c-down>      }
 
-" Deletion (Insert and Command-line mode)
+" Deletion (Insert and Command-line mode) {{{2
 map! <c-bs> <c-w>
 
 imap <c-del> <c-o>de
@@ -308,11 +312,15 @@ inoremap <s-right> <c-o>v<s-right>
 inoremap <s-left>  <c-o>v<s-left>
 
 " Increase font size {{{2
-nmap <c-mousedown> :set guifont=<c-z><c-f>:substitute/\d\+/\=submatch(0)+1/g<cr><cr>
-nmap <c-mouseup>   :set guifont=<c-z><c-f>:substitute/\d\+/\=submatch(0)-1/g<cr><cr>
+nmap <c-mousedown> :set guifont=<c-z><c-f>
+            \:substitute/\d\+/\=submatch(0)+1/g<cr><cr>
+nmap <c-mouseup>   :set guifont=<c-z><c-f>
+            \:substitute/\d\+/\=submatch(0)-1/g<cr><cr>
 
-imap <c-mousedown> <c-o>:set guifont=<c-z><c-f>:substitute/\d\+/\=submatch(0)+1/g<cr><cr>
-imap <c-mouseup>   <c-o>:set guifont=<c-z><c-f>:substitute/\d\+/\=submatch(0)-1/g<cr><cr>
+imap <c-mousedown> <c-o>:set guifont=<c-z><c-f>
+            \:substitute/\d\+/\=submatch(0)+1/g<cr><cr>
+imap <c-mouseup>   <c-o>:set guifont=<c-z><c-f>
+            \:substitute/\d\+/\=submatch(0)-1/g<cr><cr>
 
 let g:gfn_bak = &guifont
 nmap <M-0> :let &guifont = g:gfn_bak<cr>
@@ -534,7 +542,8 @@ let loaded_spellfile_plugin  = 1
 " Commands {{{1
 
 command! WriteSudo write !sudo tee % > /dev/null
-command! DiffOrig vnew | set buftype=nofile | read# | silent 0delete_ | diffthis | wincmd p | diffthis
+command! DiffOrig vnew | set buftype=nofile | read# | silent 0delete_ |
+            \ diffthis | wincmd p | diffthis
 
 " Autocommands {{{1
 
@@ -544,18 +553,20 @@ if has("autocmd")
 
         autocmd!
 
-        " Try to jump to the last spot the cursor was at in a file when reading it
+        " Jump to the last spot the cursor was at in a file when reading it
         autocmd BufReadPost *
                     \ if line("'\"") > 0 && line("'\"") <= line("$") |
                     \ execute "normal g`\"" |
                     \ endif
 
-        " When reading a file, :cd to its parent directory unless it's a help file
-        " It reproduces the behaviour of autochdir which doesn't work properly
+        " When reading a file, :cd to its parent directory unless it's a help
+        " file. It reproduces the behaviour of autochdir which doesn't work
+        " properly
         autocmd BufEnter * if &filetype != 'help' | silent! cd %:p:h | endif
 
         " Wrap automatically at 80 chars for plain text files
-        autocmd FileType text,svn setlocal textwidth=80 formatoptions+=t autoindent smartindent
+        autocmd FileType text,svn setlocal textwidth=80
+                    \ formatoptions+=t autoindent smartindent
 
         " Useful for class aware omnicompletion with php
         autocmd FileType php,phtml let @v="\<esc>yiwO/* @var $\<esc>pa Zend_ */\<left>\<left>\<left>"
@@ -563,10 +574,12 @@ if has("autocmd")
         " Use :make to check a script {{{2
 
         " Perl (to be improved)
-        autocmd FileType perl set makeprg=perl\ -c\ %\ $* errorformat=%m\ at\ %f\ line\ %l.
+        autocmd FileType perl set makeprg=perl\ -c\ %\ $*
+                    \ errorformat=%m\ at\ %f\ line\ %l.
 
         " PHP
-        autocmd FileType php set makeprg=php\ -l\ %\ $* errorformat=%E%m\ in\ %f\ on\ line\ %l,%Z%m
+        autocmd FileType php set makeprg=php\ -l\ %\ $*
+                    \ errorformat=%E%m\ in\ %f\ on\ line\ %l,%Z%m
         " }}}2
 
     augroup END
