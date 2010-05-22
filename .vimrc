@@ -130,8 +130,8 @@ set mouseshape=i-r:beam,s:updown,sd:udsizing,vs:leftright,vd:lrsizing,m:no,
 
 if 'konsole' == $TERM
 
-    let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-    let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+    let &t_SI = "\<esc>]50;CursorShape=1\x7"
+    let &t_EI = "\<esc>]50;CursorShape=0\x7"
 endif
 
 if !has('win32')
@@ -292,6 +292,8 @@ nmap <c-g> :pwd<cr>
 cnoremap <c-a>  <home>
 cnoremap <esc>b <s-left>
 cnoremap <esc>f <s-right>
+cnoremap <m-b>  <s-left>
+cnoremap <m-f>  <s-right>
 
 imap <c-up> <c-o>{
 map  <c-up>      {
@@ -302,10 +304,12 @@ map  <c-down>      }
 " Deletion
 map!     <c-bs>    <c-w>
 cnoremap <esc><bs> <c-w>
+cnoremap <m-bs>    <c-w>
 
 imap     <c-del>    <c-o>de
 cmap     <c-del>    <c-f>de<c-c>
 cnoremap <esc><del> <c-f>de<c-c>
+cnoremap <m-del>    <c-f>de<c-c>
 
 " Visual selection {{{2
 nmap <s-up>      Vk
@@ -432,9 +436,9 @@ vnoremap <expr> { mode() == nr2char(22) ? line("'{") + 1 . 'G' : '{'
 nnoremap <silent> [[ :call search('^\S\@=.*{$', 'besW')<CR>
 nnoremap <silent> ]] :call search('^\S\@=.*{$',  'esW')<CR>
 onoremap <expr> [[ (search('^\S\@=.*{$', 'ebsW') && (setpos("''", getpos('.'))
-            \ <bar><bar> 1) ? "''" : "\<ESC>")
+            \ <bar><bar> 1) ? "''" : "\<esc>")
 onoremap <expr> ]] (search('^\S\@=.*{$',  'esW') && (setpos("''", getpos('.'))
-            \ <bar><bar> 1) ? "''" : "\<ESC>")
+            \ <bar><bar> 1) ? "''" : "\<esc>")
 
 " "" instead of ci" and ci' {{{2
 nmap <silent> "" :call CI_quotes()<cr>
