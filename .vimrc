@@ -18,7 +18,6 @@ if has('win32')
     set viewdir=~/vimfiles/view
 
     behave xterm
-
 endif
 
 " Keep these lines after runtimepath!
@@ -37,15 +36,10 @@ set viminfo='20,<50,s10,h,!
 set include=^\\s*#\\s*include\\\|--\\s*#\\s*include\\s*virtual=\\\|href=
 set includeexpr=substitute(v:fname,'^/','','')
 
-set wildmenu
-set wildignore+=*~
-set wildcharm=<c-z> " cmdline: <c-z> in a mapping acts like <tab>
-
 if has('folding')
 
     set foldmethod=marker
     set foldmarker=~\\~,~/~
-
 endif
 
 " Security restrictions
@@ -63,13 +57,12 @@ if has('multi_byte')
     if &encoding !~? 'utf-\=8'
 
         if empty(&termencoding)
+
             let &termencoding = &encoding
         endif
 
         set encoding=utf-8
-
     endif
-
 endif
 
 if &encoding =~ '^u\(tf\|cs\)' " When running in a Unicode environment
@@ -84,7 +77,6 @@ if &encoding =~ '^u\(tf\|cs\)' " When running in a Unicode environment
 
     " arrow + space (↪ ) at the beginning of wrapped lines
     let &showbreak=nr2char(8618).' '
-
 endif
 
 " Alerts and visual feedback {{{2
@@ -93,7 +85,10 @@ set linebreak
 set number
 set numberwidth=3
 set showmatch
+set matchtime=2
 set showcmd
+set shortmess=flmnrxoOtT
+set ruler
 " visual bell instead of beeping + disable the visual effect
 " = no flashing at all
 set visualbell t_vb=
@@ -113,13 +108,19 @@ set statusline=%<buf\ %n:\ %t\ %y%m%r\ %L\ lines
 if has('syntax')
 
     set cursorline
-
 endif
 
+" Mouse
 if has('mouse_xterm')
 
     set mouse=a
+    set ttymouse=xterm2
+    set timeoutlen=2000
+    set ttimeoutlen=100
+    set ttyscroll=3
 
+    " Vim bug: Only t_te, not t_op, gets sent when leaving an alt screen
+    exe "set t_te=" . &t_te . &t_op
 endif
 
 " I like my cursor pointing left when selecting text
@@ -131,7 +132,6 @@ if 'konsole' == $TERM
 
     let &t_SI = "\<Esc>]50;CursorShape=1\x7"
     let &t_EI = "\<Esc>]50;CursorShape=0\x7"
-
 endif
 
 if !has('win32')
@@ -141,25 +141,27 @@ if !has('win32')
                 \Andale\ Mono\ 16,
                 \Liberation\ Mono\ 16,
                 \Monospace\ 16
-
 else
-
     set guifont=DejaVu_Sans_Mono:h13,
                 \Nimbus_Mono_L:h13,
                 \Andale_Mono:h13,
                 \Liberation_Mono:h13,
                 \Monospace:h13
-
 endif
 
 " backups {{{2
+set noautowrite
+set noautowriteall
+set noautoread
+set writebackup
 set backup
+set backupskip=
+set backupext=~
 
 if has('win32')
 
     set directory+=$LOCALAPPDATA\Temp " swap files
     set backupdir+=$LOCALAPPDATA\Temp
-
 endif
 
 " Search {{{2
@@ -173,11 +175,12 @@ set hlsearch
 set formatoptions=croqn
 set nojoinspaces
 
-" Spaces and tabs {{{2
-set expandtab
+" Tabs and shifting {{{2
 set shiftround
 set shiftwidth=4
 set softtabstop=4
+set tabstop=8
+set expandtab
 
 " Tags {{{2
 set complete-=t
@@ -193,12 +196,16 @@ set splitright
 if version < 700
 
     set switchbuf=useopen
-
 else
-
     set switchbuf=useopen,usetab
-
 endif
+
+" Command line {{{2
+set wildmenu
+set wildmode=full
+set wildignore+=*~
+set wildcharm=<c-z> " cmdline: <c-z> in a mapping acts like <tab>
+set history=1000
 " }}}2
 
 " Mappings {{{1
@@ -279,10 +286,12 @@ nnoremap <c-tab> <c-^>
 " Print the working directory
 nmap <c-g> :pwd<cr>
 
-" Emacs bindings {{{2
+" Moving and deletion {{{2
 
 " Moving
-cnoremap <c-a> <home>
+cnoremap <c-a>  <home>
+cnoremap <esc>b <s-left>
+cnoremap <esc>f <s-right>
 
 imap <c-up> <c-o>{
 map  <c-up>      {
@@ -290,11 +299,13 @@ map  <c-up>      {
 imap <c-down> <c-o>}
 map  <c-down>      }
 
-" Deletion (Insert and Command-line mode) {{{2
-map! <c-bs> <c-w>
+" Deletion
+map!     <c-bs>    <c-w>
+cnoremap <esc><bs> <c-w>
 
-imap <c-del> <c-o>de
-cmap <c-del> <c-f>de<c-c>
+imap     <c-del>    <c-o>de
+cmap     <c-del>    <c-f>de<c-c>
+cnoremap <esc><del> <c-f>de<c-c>
 
 " Visual selection {{{2
 nmap <s-up>      Vk
@@ -370,13 +381,10 @@ function! Toggle_Longest_Preview(key)
             set   completeopt-=longest
             set   showfulltag
             echo 'completeopt - longest (Zend_Acl)'
-
         else
-
             set   completeopt+=longest
             set   noshowfulltag
             echo 'completeopt + longest (Zend_)'
-
         endif
 
     elseif a:key == 'f4'
@@ -385,16 +393,12 @@ function! Toggle_Longest_Preview(key)
 
             set   completeopt-=preview
             echo 'completeopt - preview'
-
         else
 
             set   completeopt+=preview
             echo 'completeopt + preview window'
-
         endif
-
     endif
-
 endfunction
 
 " c-space {{{2
@@ -449,26 +453,19 @@ function! CI_quotes()
             if qq_col < q_col
 
                 normal ci"
-
             else
-
                 normal ci'
-
             endif
 
         elseif qq_line == curr_line
 
             normal ci"
-
         else
-
             normal ci'
-
         endif
 
         normal l
         startinsert
-
     endif
 
 endfunction
@@ -488,6 +485,9 @@ nmap <leader>sq :vglobal/\S/,/\S/-j<bar>noh<cr>``
 " \' {{{2
 " Replace all " by '
 nmap <leader>' :substitute/"/'/g<cr>``
+
+" Windows {{{2
+nnoremap <c-w><c-w> :winc p<cr>
 " }}}2
 
 map \p :set invpaste paste?<cr>
@@ -502,7 +502,6 @@ map \> :s/>\zs\s*\ze</\r/g<cr>
 if !has('win32')
 
     runtime! ftplugin/man.vim
-
 endif
 
 if !has('gui_running')
@@ -512,9 +511,7 @@ if !has('gui_running')
         " Note: konsole has 256 color support
         set t_Co=256
         let g:CSApprox_konsole = 1
-
     endif
-
 endif
 
 " PHP syntax folding
@@ -534,7 +531,6 @@ let g:loaded_zipPlugin       = 1
 let g:loaded_vimballPlugin   = 1
 let g:loaded_tarPlugin       = 1
 let g:loaded_getscriptPlugin = 1
-let loaded_gzip              = 1
 let loaded_spellfile_plugin  = 1
 
 " There seems not to be a way to disable tohtml.vim
@@ -583,7 +579,6 @@ if has("autocmd")
         " }}}2
 
     augroup END
-
 endif
 
 " Abbreviations {{{1
@@ -592,7 +587,6 @@ function! EatChar(pat)
 
     let c = nr2char(getchar(0))
     return (c =~ a:pat) ? '' : c
-
 endfunc
 
 cabbrev vsb vertical sbuffer
@@ -608,6 +602,7 @@ cabbrev keymap& keymap&\|set spelllang&
 cabbrev kmp=    keymap&\|set spelllang&
 cabbrev keymap= keymap&\|set spelllang&
 
+iabbrev _t <c-r>=strftime("%d %B %Y, %H:%M %Z (%A)")<cr><c-r>=EatChar('\s')<cr>
 iabbrev fu function
 iabbrev sw switch(
 iabbrev ec echo
