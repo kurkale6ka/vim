@@ -492,6 +492,9 @@ nmap <leader>' :substitute/"/'/g<cr>``
 
 " Windows {{{2
 nnoremap <c-w><c-w> :winc p<cr>
+
+" q= {{{2
+nmap q= :<c-r>=<c-f><cr>
 " }}}2
 
 map \p :set invpaste paste?<cr>
