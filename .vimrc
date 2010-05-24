@@ -43,7 +43,7 @@ if has('folding')
 endif
 
 " Security restrictions
-if 'root' != $USER
+if 'root' != $USER && 'admin' !~? $USER
 
     set exrc
     set modeline
