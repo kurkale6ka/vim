@@ -135,7 +135,7 @@ function MyTabLine()
 
     " right-align the label to close the current tab page
     if tabpagenr('$') > 1
-        let s .= '%=%#TabLine#%999XClose(X)'
+        let s .= '%=%#TabLine#%999XClose[X]'
     endif
 
     return s
