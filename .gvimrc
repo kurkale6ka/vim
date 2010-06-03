@@ -21,7 +21,14 @@ function GuiTabLabel()
     endfor
 
     " Append the buffer name
-    let label .= fnamemodify(bufname(bufnrlist[tabpagewinnr(v:lnum) - 1]), ':t')
+    let fname = fnamemodify(bufname(bufnrlist[tabpagewinnr(v:lnum) - 1]), ':t')
+
+    if fname != ''
+
+        let label .= fname
+    else
+        let label .= '[No Name]'
+    endif
 
     " Append the number of windows in the tab page if more than one
     let wincount = tabpagewinnr(v:lnum, '$')
