@@ -18,4 +18,17 @@ set iskeyword+=-
 "         width       : auto
 "     }
 
-let @r="^d0/}\<cr>v``:j\<cr>:s/\\s*\\(,\\)\\s*/\\1\\r/ge\<cr>:s/\\s*\\ze{/\\r\<cr>:s/\\_.\\{-}\\zs\\s*\\ze}/\\r\<cr>-:s/\\%({\\|;\\%(\\s*$\\)\\@!\\)\\zs\\s*/\\r/g\<cr>=iB:Tabularize css\<cr>]}/\\S\<cr>:nohlsearch\<cr>-+"
+"let @r="^d0/}\<cr>v``:j\<cr>:s/\\s*\\(,\\)\\s*/\\1\\r/ge\<cr>:s/\\s*\\ze{/\\r\<cr>:s/\\_.\\{-}\\zs\\s*\\ze}/\\r\<cr>-:s/\\%({\\|;\\%(\\s*$\\)\\@!\\)\\zs\\s*/\\r/g\<cr>=iB:Tabularize css\<cr>]}/\\S\<cr>:nohlsearch\<cr>-+"
+
+" Version without vertical alignment
+let @r="^d0/}\<cr>v``:j\<cr>:s/\\s*\\(,\\)\\s*/\\1\\r/ge\<cr>:s/\\_.\\{-}\\zs\\s*\\ze}/\\r\<cr>-:s/\\%({\\|;\\%(\\s*$\\)\\@!\\)\\zs\\s*/\\r/g\<cr>=iB]}/\\S\<cr>:nohlsearch\<cr>-+"
+
+" Result:
+"
+"     h1,
+"     span,
+"     div,
+"     a {
+"         white-space:normal;
+"         width:auto
+"     }
