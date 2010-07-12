@@ -570,11 +570,11 @@ nnoremap <c-w><c-w> :winc p<cr>
 nmap q= @=<c-f>
 " }}}2
 
-map \p :set invpaste paste?<cr>
-map \\ :s:\\:/:g<cr>
-map \/ :s:\\:/:g<cr>
-map \< :s/>\zs\s*\ze</\r/g<cr>
-map \> :s/>\zs\s*\ze</\r/g<cr>
+map \pp :set invpaste paste?<cr>
+map \\  :s:\\:/:g<cr>
+map \/  :s:\\:/:g<cr>
+map \<  :s/>\zs\s*\ze</\r/g<cr>
+map \>  :s/>\zs\s*\ze</\r/g<cr>
 
 " Plugin settings {{{1
 
@@ -675,7 +675,10 @@ cabbrev \\ s:\\:/:g
 cabbrev // s:\\:/:g
 cabbrev <> s/>\zs\s*\ze</\r/g
 cabbrev >< s/>\zs\s*\ze</\r/g
-cabbrev ft set filetype=<c-r>=EatChar('\s')<cr>
+
+cabbrev ftt set filetype=<c-r>=EatChar('\s')<cr>
+cabbrev fft set filetype=<c-r>=EatChar('\s')<cr>
+cabbrev tt  set filetype=<c-r>=EatChar('\s')<cr>
 
 cabbrev kmp&    keymap&\|set spelllang&
 cabbrev keymap& keymap&\|set spelllang&
