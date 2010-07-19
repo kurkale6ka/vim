@@ -49,6 +49,7 @@ if 'root' != $USER && 'admin' !~? $USER
     set modeline
     set modelines=3
 else
+    set noexrc
     set nomodeline
 endif
 
