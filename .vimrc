@@ -571,6 +571,7 @@ nnoremap <c-w><c-w> :winc p<cr>
 nmap q= @=<c-f>
 " }}}2
 
+map \ss :set spell! spell?<cr>
 map \pp :set invpaste paste?<cr>
 map \\  :s:\\:/:g<cr>
 map \/  :s:\\:/:g<cr>
