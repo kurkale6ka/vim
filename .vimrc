@@ -571,6 +571,28 @@ nnoremap <c-w><c-w> :winc p<cr>
 nmap q= @=<c-f>
 " }}}2
 
+if version >= 703
+
+    function! Toggle_number()
+
+        if !&relativenumber
+
+            set relativenumber
+        else
+            set number
+        endif
+
+    endfunction
+
+    map \n :call Toggle_number()<cr>
+
+    " set cryptmethod = blowfish
+    set cryptmethod = 1
+
+    set colorcolumn=81
+
+endif
+
 map \ss :set spell! spell?<cr>
 map \pp :set invpaste paste?<cr>
 map \\  :s:\\:/:g<cr>
