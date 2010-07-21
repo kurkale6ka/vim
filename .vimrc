@@ -586,6 +586,8 @@ if version >= 703
 
     map \n :call Toggle_number()<cr>
 
+    set relativenumber
+
     " set cryptmethod=blowfish
     set cryptmethod=1
 
