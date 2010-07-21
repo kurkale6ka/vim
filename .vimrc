@@ -591,6 +591,8 @@ if version >= 703
 
     set colorcolumn=81
 
+    set undofile
+
 endif
 
 map \ss :set spell! spell?<cr>
