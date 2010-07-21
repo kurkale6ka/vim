@@ -586,8 +586,8 @@ if version >= 703
 
     map \n :call Toggle_number()<cr>
 
-    " set cryptmethod = blowfish
-    set cryptmethod = 1
+    " set cryptmethod=blowfish
+    set cryptmethod=1
 
     set colorcolumn=81
 
