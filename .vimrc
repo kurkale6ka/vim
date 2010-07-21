@@ -577,9 +577,9 @@ if version >= 703
 
         if !&relativenumber
 
-            set relativenumber
+            set relativenumber relativenumber?
         else
-            set number
+            set number number?
         endif
 
     endfunction
