@@ -588,8 +588,7 @@ if version >= 703
 
     set relativenumber
 
-    " set cryptmethod=blowfish
-    set cryptmethod=1
+    set cryptmethod=blowfish
 
     set colorcolumn=81
 
