@@ -698,8 +698,6 @@ endfunc
 
 cabbrev vsb vertical sbuffer
 cabbrev svb vertical sbuffer
-cabbrev \\ s:\\:/:g
-cabbrev // s:\\:/:g
 cabbrev <> s/>\zs\s*\ze</\r/g
 cabbrev >< s/>\zs\s*\ze</\r/g
 
