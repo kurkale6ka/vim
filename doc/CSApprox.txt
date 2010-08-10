@@ -1,1 +1,0 @@
-/root/vimfiles/plugins/csapprox/doc/CSApprox.txt

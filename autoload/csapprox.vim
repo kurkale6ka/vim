@@ -1,1 +1,0 @@
-/root/vimfiles/plugins/csapprox/autoload/csapprox.vim
