@@ -1,1 +1,1 @@
-csapprox/plugin/CSApprox.vim
+/root/vimfiles/plugins/csapprox/plugin/CSApprox.vim
