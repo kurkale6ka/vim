@@ -1,0 +1,12 @@
+autoload/*
+
+after/*
+!after/plugin/myTabularMaps.vim
+
+plugins/
+
+plugin/*.vim
+!plugin/TabularMaps.vim
+!plugin/syntaxcomplete.vim
+
+doc/*
