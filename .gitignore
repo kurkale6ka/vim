@@ -1,4 +1,5 @@
 autoload/*
+!autoload/csapprox
 
 after/*
 !after/plugin/myTabularMaps.vim
