@@ -1,10 +1,9 @@
 autoload/*
-!autoload/csapprox
 
 after/*
 !after/plugin/myTabularMaps.vim
 
-plugins/
+plugins/*
 
 plugin/*.vim
 !plugin/TabularMaps.vim
