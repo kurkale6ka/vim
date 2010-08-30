@@ -556,6 +556,8 @@ nmap <leader>eol :%substitute/\s\+$<cr>``
 " Highlight text beyond the 80th column (\gq)
 nmap <leader>gq /\%81v.*<cr>``
 
+" set colorcolumn=81
+
 " \sq {{{2
 " Squeeze empty lines (\sq)
 nmap <leader>sq :vglobal/\S/,/\S/-j<bar>noh<cr>``
@@ -589,8 +591,6 @@ if version >= 703
     set relativenumber
 
     set cryptmethod=blowfish
-
-    set colorcolumn=81
 
     set undofile
 
@@ -711,9 +711,5 @@ cabbrev kmp=    keymap&\|set spelllang&
 cabbrev keymap= keymap&\|set spelllang&
 
 iabbrev _t <c-r>=strftime("%d %B %Y, %H:%M %Z (%A)")<cr><c-r>=EatChar('\s')<cr>
-iabbrev fu function
-iabbrev sw switch(
-iabbrev ec echo
-iabbrev ar array(
 
-" vim: se fdm=marker fmr& fenc=utf-8 cul hls ic is scs nu et sts=4 sw=4 lbr:
+" vim: set foldmarker& fileencoding=utf-8:
