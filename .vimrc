@@ -277,7 +277,7 @@ endif
 " Command line {{{2
 set wildmenu
 set wildmode=full
-set wildignore+=*~
+set wildignore+=*~,*.swp
 set wildcharm=<c-z> " cmdline: <c-z> in a mapping acts like <tab>
 set history=1000
 " }}}2
@@ -567,11 +567,20 @@ nmap <leader>sq :vglobal/\S/,/\S/-j<bar>noh<cr>``
 nmap <leader>' :substitute/"/'/g<cr>``
 
 " Windows {{{2
-nnoremap <c-w><c-w> :winc p<cr>
+nmap <c-w><c-w> :wincmd p<cr>
 
 " q= {{{2
 nmap q= @=<c-f>
 " }}}2
+
+map \ss :set spell! spell?<cr>
+map \pp :set invpaste paste?<cr>
+map \\  :s:\\:/:g<cr>
+map \/  :s:\\:/:g<cr>
+map \<  :s/>\zs\s*\ze</\r/g<cr>
+map \>  :s/>\zs\s*\ze</\r/g<cr>
+
+vmap [p "0p
 
 if version >= 703
 
@@ -595,15 +604,6 @@ if version >= 703
     set undofile
 
 endif
-
-map \ss :set spell! spell?<cr>
-map \pp :set invpaste paste?<cr>
-map \\  :s:\\:/:g<cr>
-map \/  :s:\\:/:g<cr>
-map \<  :s/>\zs\s*\ze</\r/g<cr>
-map \>  :s/>\zs\s*\ze</\r/g<cr>
-
-vmap [p "0p
 
 " Plugin settings {{{1
 
@@ -694,8 +694,8 @@ endif
 
 function! EatChar(pat)
 
-    let c = nr2char(getchar(0))
-    return (c =~ a:pat) ? '' : c
+    let char = nr2char(getchar(0))
+    return (char =~ a:pat) ? '' : char
 endfunc
 
 cabbrev vsb vertical sbuffer
