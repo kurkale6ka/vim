@@ -110,7 +110,7 @@ set showtabline=1
 
 set tabline=%!MyTabLine()
 
-function MyTabLine()
+function! MyTabLine()
 
     let s = ''
 
@@ -143,7 +143,7 @@ function MyTabLine()
 
 endfunction
 
-function MyTabLabel(n)
+function! MyTabLabel(n)
 
     let label = ''
 
@@ -602,6 +602,8 @@ map \\  :s:\\:/:g<cr>
 map \/  :s:\\:/:g<cr>
 map \<  :s/>\zs\s*\ze</\r/g<cr>
 map \>  :s/>\zs\s*\ze</\r/g<cr>
+
+vmap [p "0p
 
 " Plugin settings {{{1
 
