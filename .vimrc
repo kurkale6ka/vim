@@ -9,13 +9,13 @@
 if has('win32')
 
     set runtimepath=
-                \~/vimfiles,
+                \$HOME/vimfiles,
                 \$VIM/vimfiles,
                 \$VIMRUNTIME,
                 \$VIM/vimfiles/after,
-                \~/vimfiles/after
+                \$HOME/vimfiles/after
 
-    set viewdir=~/vimfiles/view
+    set viewdir=$HOME/vimfiles/view
 
     behave xterm
 endif
