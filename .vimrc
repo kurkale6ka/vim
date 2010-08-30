@@ -714,4 +714,4 @@ cabbrev keymap= keymap&\|set spelllang&
 
 iabbrev _t <c-r>=strftime("%d %B %Y, %H:%M %Z (%A)")<cr><c-r>=EatChar('\s')<cr>
 
-" vim: set foldmarker& fileencoding=utf-8:
+" vim: set foldmarker&:
