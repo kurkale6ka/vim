@@ -632,6 +632,10 @@ let php_folding = 3
 
 let php_large_file = 0
 
+function! YRRunAfterMaps()
+    nnoremap Y :YRYankCount 'y$'<cr>
+endfunction
+
 " Disable all those plugins!
 
 let g:loaded_netrwPlugin     = 1
