@@ -554,9 +554,21 @@ nmap <leader>eol :%substitute/\s\+$<cr>``
 
 " \gq {{{2
 " Highlight text beyond the 80th column (\gq)
-nmap <leader>gq /\%81v.*<cr>``
+nmap <leader>gq :call Toggle_colorcolumn()<cr>
 
-" set colorcolumn=81
+function! Toggle_colorcolumn ()
+
+    if &colorcolumn == ''
+
+        set colorcolumn=81
+        normal /\%81v.*<cr>
+        normal ``
+    else
+        set colorcolumn&
+        nohlsearch
+    endif
+
+endfunction
 
 " \sq {{{2
 " Squeeze empty lines (\sq)
