@@ -72,9 +72,9 @@ if &encoding =~ '^u\(tf\|cs\)' " When running in a Unicode environment
     let s:arr = nr2char(9655) " use U+25B7 for an arrow (▷) and
     let s:dot = nr2char(8901) " use U+22C5 for a  dot   (⋅)
 
-    execute "set listchars=tab:"    . s:arr . s:dot
-    execute "set listchars+=trail:" . s:dot
-    execute "set listchars+=nbsp:"  . s:dot
+    execute 'set listchars=tab:'    . s:arr . s:dot
+    execute 'set listchars+=trail:' . s:dot
+    execute 'set listchars+=nbsp:'  . s:dot
 
     " arrow + space (↪ ) at the beginning of wrapped lines
     let &showbreak=nr2char(8618).' '
@@ -151,7 +151,7 @@ function! MyTabLabel(n)
 
     " Add '+' if one of the buffers in the tab page is modified
     for bufnr in buflist
-        if getbufvar(bufnr, "&modified")
+        if getbufvar(bufnr, '&modified')
             let label = '+ '
             break
         endif
@@ -193,7 +193,7 @@ if has('mouse_xterm')
     set ttyscroll=3
 
     " Vim bug: Only t_te, not t_op, gets sent when leaving an alt screen
-    exe "set t_te=" . &t_te . &t_op
+    exe 'set t_te=' . &t_te . &t_op
 endif
 
 " I like my cursor pointing left when selecting text
@@ -660,7 +660,7 @@ command! DiffOrig vnew | set buftype=nofile | read# | silent 0delete_ |
 
 " Autocommands {{{1
 
-if has("autocmd")
+if has('autocmd')
 
     augroup vimrcGrp
 
@@ -668,8 +668,8 @@ if has("autocmd")
 
         " Jump to the last spot the cursor was at in a file when reading it
         autocmd BufReadPost *
-                    \ if line("'\"") > 0 && line("'\"") <= line("$") |
-                    \ execute "normal g`\"" |
+                    \ if line("'\"") > 0 && line("'\"") <= line('$') |
+                    \ execute 'normal g`"' |
                     \ endif
 
         " When reading a file, :cd to its parent directory unless it's a help
@@ -720,6 +720,6 @@ cabbrev keymap& keymap&\|set spelllang&
 cabbrev kmp=    keymap&\|set spelllang&
 cabbrev keymap= keymap&\|set spelllang&
 
-iabbrev _t <c-r>=strftime("%d %B %Y, %H:%M %Z (%A)")<cr><c-r>=EatChar('\s')<cr>
+iabbrev _t <c-r>=strftime('%d %B %Y, %H:%M %Z (%A)')<cr><c-r>=EatChar('\s')<cr>
 
 " vim: set foldmarker&:
