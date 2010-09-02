@@ -638,12 +638,16 @@ endfunction
 
 " Disable all those plugins!
 
+if version < 702
+    let g:space_loaded = 1
+endif
+
 let g:loaded_netrwPlugin     = 1
-let loaded_rrhelper          = 1
 let g:loaded_zipPlugin       = 1
 let g:loaded_vimballPlugin   = 1
 let g:loaded_tarPlugin       = 1
 let g:loaded_getscriptPlugin = 1
+let loaded_rrhelper          = 1
 let loaded_spellfile_plugin  = 1
 
 " There seems not to be a way to disable tohtml.vim
