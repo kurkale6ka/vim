@@ -648,6 +648,11 @@ function! YRRunAfterMaps()
     nnoremap Y :YRYankCount 'y$'<cr>
 endfunction
 
+map tt <plug>(smarttill-t)
+map TT <plug>(smarttill-T)
+map ff <plug>(smarttill-f)
+map FF <plug>(smarttill-F)
+
 " Disable all those plugins!
 
 if version < 702
