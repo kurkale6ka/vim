@@ -102,7 +102,15 @@ set scrolloff=3
 set virtualedit=all
 
 " Statusline & tabline
-set statusline=%<buf\ %n:\ %t\ %y%m%r\ %L\ lines
+function! SlSpace()
+    if exists('*GetSpaceMovement')
+        let s:mov = GetSpaceMovement()
+        return '' != s:mov ? ' (' . s:mov . ') ' : ''
+    else
+        return ''
+    endif
+endfunc
+set statusline=%<%n:\ %t\ %y%m%r\ %L\ lines%{SlSpace()}
             \%{empty(&keymap)?'':'\ <'.b:keymap_name.'>'}
             \%=%-14.(L:%l,\ C:%v%)\ %P
 
@@ -558,14 +566,13 @@ nmap <leader>gq :call Toggle_colorcolumn()<cr>
 
 function! Toggle_colorcolumn ()
 
-    if &colorcolumn == ''
+    if ! &colorcolumn
 
         set colorcolumn=81
-        normal /\%81v.*<cr>
-        normal ``
+        let @/ = '\%81v.*'
     else
-        set colorcolumn&
-        nohlsearch
+        set colorcolumn=
+        let @/ = ''
     endif
 
 endfunction
