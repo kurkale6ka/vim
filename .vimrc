@@ -339,9 +339,9 @@ nnoremap <silent> `Z :silent! normal! `Z`.<cr>
 " copies to the EOL
 nmap Y y$
 
-" \v {{{2
+" <leader>v {{{2
 " selects to the EOL excluded
-nmap \v v$h
+nmap <leader>v v$h
 
 " Backspace {{{2
 " deletes leftwards
@@ -556,12 +556,12 @@ function! CI_quotes()
 
 endfunction
 
-" \eol {{{2
-" Remove superfluous white spaces towards the EOL (\eol)
+" <leader>eol {{{2
+" Remove superfluous white spaces towards the EOL (<leader>eol)
 nmap <leader>eol :%substitute/\s\+$<cr>``
 
-" \gq {{{2
-" Highlight text beyond the 80th column (\gq)
+" <leader>gq {{{2
+" Highlight text beyond the 80th column (<leader>gq)
 nmap <leader>gq :call Toggle_colorcolumn()<cr>
 
 function! Toggle_colorcolumn ()
@@ -577,11 +577,11 @@ function! Toggle_colorcolumn ()
 
 endfunction
 
-" \sq {{{2
-" Squeeze empty lines (\sq)
+" <leader>sq {{{2
+" Squeeze empty lines (<leader>sq)
 nmap <leader>sq :vglobal/\S/,/\S/-j<bar>noh<cr>``
 
-" \' {{{2
+" <leader>' {{{2
 " Replace all " by '
 nmap <leader>' :substitute/"/'/g<cr>``
 
@@ -592,12 +592,12 @@ nmap <c-w><c-w> :wincmd p<cr>
 nmap q= @=<c-f>
 " }}}2
 
-map \ss :set spell! spell?<cr>
-map \pp :set invpaste paste?<cr>
-map \\  :s:\\:/:g<cr>
-map \/  :s:\\:/:g<cr>
-map \<  :s/>\zs\s*\ze</\r/g<cr>
-map \>  :s/>\zs\s*\ze</\r/g<cr>
+map <leader>ss :set spell! spell?<cr>
+map <leader>pp :set invpaste paste?<cr>
+map <leader>\  :s:\\:/:g<cr>
+map <leader>/  :s:\\:/:g<cr>
+map <leader><  :s/>\zs\s*\ze</\r/g<cr>
+map <leader>>  :s/>\zs\s*\ze</\r/g<cr>
 
 vmap [p "0p
 
@@ -614,7 +614,7 @@ if version >= 703
 
     endfunction
 
-    map \n :call Toggle_number()<cr>
+    map <leader>n :call Toggle_number()<cr>
 
     set relativenumber
 
