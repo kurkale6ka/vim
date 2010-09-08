@@ -556,13 +556,13 @@ function! CI_quotes()
 
 endfunction
 
-" <leader>eol {{{2
-" Remove superfluous white spaces towards the EOL (<leader>eol)
-nmap <leader>eol :%substitute/\s\+$<cr>``
+" <leader>l {{{2
+" Remove superfluous white spaces towards the EOL (<leader>l)
+nmap <leader>l :%substitute/\s\+$<cr>``
 
-" <leader>gq {{{2
-" Highlight text beyond the 80th column (<leader>gq)
-nmap <leader>gq :call Toggle_colorcolumn()<cr>
+" <leader>c {{{2
+" Highlight text beyond the 80th column (<leader>c)
+nmap <leader>c :call Toggle_colorcolumn()<cr>
 
 function! Toggle_colorcolumn ()
 
@@ -592,12 +592,14 @@ nmap <c-w><c-w> :wincmd p<cr>
 nmap q= @=<c-f>
 " }}}2
 
-map <leader>ss :set spell! spell?<cr>
-map <leader>pp :set invpaste paste?<cr>
-map <leader>\  :s:\\:/:g<cr>
-map <leader>/  :s:\\:/:g<cr>
-map <leader><  :s/>\zs\s*\ze</\r/g<cr>
-map <leader>>  :s/>\zs\s*\ze</\r/g<cr>
+map <leader>a :ls<cr>
+map <leader>b :ls<cr>
+map <leader>s :set spell! spell?<cr>
+map <leader>p :set invpaste paste?<cr>
+map <leader>\ :s:\\:/:g<cr>
+map <leader>/ :s:\\:/:g<cr>
+map <leader>< :s/>\zs\s*\ze</\r/g<cr>
+map <leader>> :s/>\zs\s*\ze</\r/g<cr>
 
 vmap [p "0p
 
