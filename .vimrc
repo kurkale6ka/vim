@@ -253,6 +253,7 @@ set infercase
 set hlsearch
 
 " Text formating {{{2
+set textwidth=80
 set formatoptions=croqn
 set nojoinspaces
 
@@ -568,7 +569,7 @@ function! Toggle_colorcolumn ()
 
     if ! &colorcolumn
 
-        set colorcolumn=81
+        set colorcolumn=+1
         let @/ = '\%81v.*'
     else
         set colorcolumn=
@@ -704,8 +705,8 @@ if has('autocmd')
         autocmd BufEnter * if &filetype != 'help' | silent! cd %:p:h | endif
 
         " Wrap automatically at 80 chars for plain text files
-        autocmd FileType text,svn setlocal textwidth=80
-                    \ formatoptions+=t autoindent smartindent
+        autocmd FileType text,svn setlocal formatoptions+=t
+                    \ autoindent smartindent
 
         " Useful for class aware omnicompletion with php
         autocmd FileType php,phtml let @v="\<esc>yiwO/* @var $\<esc>pa Zend_ */\<left>\<left>\<left>"
