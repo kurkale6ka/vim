@@ -578,6 +578,16 @@ function! Toggle_colorcolumn ()
 
 endfunction
 
+function! VisualBlockText (operation)
+
+    if 'ctrl-v' != mode()
+
+        normal <ctrl-v>
+    endif
+
+    normal $A
+endfunction
+
 " <leader>sq {{{2
 " Squeeze empty lines (<leader>sq)
 nmap <leader>sq :vglobal/\S/,/\S/-j<bar>noh<cr>``
