@@ -567,7 +567,7 @@ nmap <leader>c :call Toggle_colorcolumn()<cr>
 
 function! Toggle_colorcolumn ()
 
-    if ! &colorcolumn
+    if empty(&colorcolumn)
 
         set colorcolumn=+1
         let @/ = '\%81v.*'
