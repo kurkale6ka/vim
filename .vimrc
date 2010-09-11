@@ -578,15 +578,52 @@ function! Toggle_colorcolumn ()
 
 endfunction
 
-function! VisualBlockText (operation)
+function! TextLimitLines (operation) range
 
-    if 'ctrl-v' != mode()
+    let text = input('Enter text: ')
 
-        normal <ctrl-v>
+    if !empty(text)
+
+        if 'aa' == a:operation
+
+            let operation = v:count1 . 'A' . text . "\<esc>"
+
+        elseif 'ii' == a:operation
+
+            let operation = v:count1 . 'I' . text . "\<esc>"
+
+        elseif 'aq' == a:operation
+
+            let operation = v:count1 . '$' . text . "\<esc>"
+
+        elseif 'iq' == a:operation
+
+            let operation = v:count1 . '^' . text . "\<esc>"
+        endif
+
+    elseif 'aa' == a:operation
+
+        set virtualedit=onemore
+
+        let operation = '$l' . v:count1 . 'X'
+
+    elseif 'ii' == a:operation
+
+        let operation = '^' . v:count1 . 'x'
     endif
 
-    normal $A
+    for i in range(a:firstline, a:lastline)
+
+        execute 'normal ' . operation . 'j'
+    endfor
+
 endfunction
+
+" command! Insert call TextLimitLines ('aa')
+vmap ii :call TextLimitLines ('ii')<cr>
+vmap aa :call TextLimitLines ('aa')<cr>
+vmap iq :call TextLimitLines ('iq')<cr>
+vmap aq :call TextLimitLines ('aq')<cr>
 
 " <leader>sq {{{2
 " Squeeze empty lines (<leader>sq)
