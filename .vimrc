@@ -578,9 +578,14 @@ function! Toggle_colorcolumn ()
 
 endfunction
 
-function! TextLimitLines (operation) range
+function! TextLimitLines (operation, text) range
 
-    let text = input('Enter text: ')
+    if !empty(a:text)
+
+        let text = a:text
+    else
+        let text = input('Enter text: ')
+    endif
 
     if !empty(text)
 
@@ -612,18 +617,51 @@ function! TextLimitLines (operation) range
         let operation = '^' . v:count1 . 'x'
     endif
 
-    for i in range(a:firstline, a:lastline)
+    if a:firstline == a:lastline
+
+        '{
+
+        " at BOF
+        " todo: take into account paragraph macros
+        if getline('.') =~ '[^[:space:]]'
+
+            let start = 1
+        else
+            +
+            let start = line('.')
+        endif
+
+        if getline("'}") =~ '[^[:space:]]'
+
+            let end = line('$')
+        else
+            let end = line("'}") - 1
+        endif
+
+    else
+        let start = a:firstline
+        let end   = a:lastline
+    endif
+
+    for i in range(start, end)
 
         execute 'normal ' . operation . 'j'
     endfor
 
 endfunction
 
-" command! Insert call TextLimitLines ('aa')
-vmap ii :call TextLimitLines ('ii')<cr>
-vmap aa :call TextLimitLines ('aa')<cr>
-vmap iq :call TextLimitLines ('iq')<cr>
-vmap aq :call TextLimitLines ('aq')<cr>
+command! -nargs=* -range Insert <line1>,<line2>call TextLimitLines ('ii', <q-args>)
+command! -nargs=* -range Append <line1>,<line2>call TextLimitLines ('aa', <q-args>)
+
+vmap \i :call TextLimitLines ('ii', '')<cr>
+vmap \a :call TextLimitLines ('aa', '')<cr>
+vmap iq :call TextLimitLines ('iq', '')<cr>
+vmap aq :call TextLimitLines ('aq', '')<cr>
+
+nmap \i  :<c-u>call TextLimitLines ('ii', '')<cr>
+nmap \a  :<c-u>call TextLimitLines ('aa', '')<cr>
+nmap \iq :<c-u>call TextLimitLines ('iq', '')<cr>
+nmap \aq :<c-u>call TextLimitLines ('aq', '')<cr>
 
 " <leader>sq {{{2
 " Squeeze empty lines (<leader>sq)
@@ -640,7 +678,6 @@ nmap <c-w><c-w> :wincmd p<cr>
 nmap q= @=<c-f>
 " }}}2
 
-map <leader>a :ls<cr>
 map <leader>b :ls<cr>
 map <leader>s :set spell! spell?<cr>
 map <leader>p :set invpaste paste?<cr>
