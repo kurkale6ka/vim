@@ -578,91 +578,6 @@ function! Toggle_colorcolumn ()
 
 endfunction
 
-function! TextLimitLines (operation, text) range
-
-    if !empty(a:text)
-
-        let text = a:text
-    else
-        let text = input('Enter text: ')
-    endif
-
-    if !empty(text)
-
-        if 'aa' == a:operation
-
-            let operation = v:count1 . 'A' . text . "\<esc>"
-
-        elseif 'ii' == a:operation
-
-            let operation = v:count1 . 'I' . text . "\<esc>"
-
-        elseif 'aq' == a:operation
-
-            let operation = v:count1 . '$' . text . "\<esc>"
-
-        elseif 'iq' == a:operation
-
-            let operation = v:count1 . '^' . text . "\<esc>"
-        endif
-
-    elseif 'aa' == a:operation
-
-        set virtualedit=onemore
-
-        let operation = '$l' . v:count1 . 'X'
-
-    elseif 'ii' == a:operation
-
-        let operation = '^' . v:count1 . 'x'
-    endif
-
-    if a:firstline == a:lastline
-
-        '{
-
-        " at BOF
-        " todo: take into account paragraph macros
-        if getline('.') =~ '[^[:space:]]'
-
-            let start = 1
-        else
-            +
-            let start = line('.')
-        endif
-
-        if getline("'}") =~ '[^[:space:]]'
-
-            let end = line('$')
-        else
-            let end = line("'}") - 1
-        endif
-
-    else
-        let start = a:firstline
-        let end   = a:lastline
-    endif
-
-    for i in range(start, end)
-
-        execute 'normal ' . operation . 'j'
-    endfor
-
-endfunction
-
-command! -nargs=* -range Insert <line1>,<line2>call TextLimitLines ('ii', <q-args>)
-command! -nargs=* -range Append <line1>,<line2>call TextLimitLines ('aa', <q-args>)
-
-vmap \i :call TextLimitLines ('ii', '')<cr>
-vmap \a :call TextLimitLines ('aa', '')<cr>
-vmap iq :call TextLimitLines ('iq', '')<cr>
-vmap aq :call TextLimitLines ('aq', '')<cr>
-
-nmap \i  :<c-u>call TextLimitLines ('ii', '')<cr>
-nmap \a  :<c-u>call TextLimitLines ('aa', '')<cr>
-nmap \iq :<c-u>call TextLimitLines ('iq', '')<cr>
-nmap \aq :<c-u>call TextLimitLines ('aq', '')<cr>
-
 " <leader>sq {{{2
 " Squeeze empty lines (<leader>sq)
 nmap <leader>sq :vglobal/\S/,/\S/-j<bar>noh<cr>``
@@ -746,6 +661,22 @@ map tt <plug>(smarttill-t)
 map TT <plug>(smarttill-T)
 map ff <plug>(smarttill-f)
 map FF <plug>(smarttill-F)
+
+vmap <leader>i  <plug>blockinsert-i
+vmap <leader>a  <plug>blockinsert-a
+vmap <leader>qi <plug>blockinsert-qi
+vmap <leader>qa <plug>blockinsert-qa
+
+nmap <leader>i  <plug>blockinsert-i
+nmap <leader>a  <plug>blockinsert-a
+nmap <leader>qi <plug>blockinsert-qi
+nmap <leader>qa <plug>blockinsert-qa
+
+vmap <leader>[]  <plug>blockinsert-b
+vmap <leader>q[] <plug>blockinsert-qb
+
+nmap <leader>[]  <plug>blockinsert-b
+nmap <leader>q[] <plug>blockinsert-qb
 
 " Disable all those plugins!
 

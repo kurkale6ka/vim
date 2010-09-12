@@ -23,7 +23,7 @@
 "       ln -s ~/.vim/ftplugin/html.vim phtml.vim
 "       ln -s ~/.vim/ftplugin/html.vim   xml.vim
 "
-" Note: @u, @o, <leader>uu and <leader>oo make use of
+" Note: @u, @o, <leader>hu and <leader>ho make use of
 "       Tabular.vim and myTabularMaps.vim
 "       http://github.com/godlygeek/tabular/tree/master
 "
@@ -32,11 +32,11 @@
 "       AddTabularPipeline! html  /\%(<[^<>?!]*>.\{-}\)\@<!<[^<>?!]*>/ tabular#TabularizeStrings(a:lines, '\%(<[^<>?!]*>.\{-}\)\@<!<[^<>?!]*>'  , 'l1')
 "       \ | tabular#TabularizeStrings(a:lines, '<\/[A-Za-z:]\+>\%(.\{-}<\/[A-Za-z:]\+>\)\@!', 'l1')
 "
-" Note: <leader>gg, <leader>rr, <leader>xx and <leader>mm don't work on nested
+" Note: <leader>hg, <leader>hr, <leader>hx and <leader>hm don't work on nested
 "       <!-- --> and <?php  ?>
 "       and can't be used while positioned on the first char in the file
 "
-" Note: If you must use @u, @o, @p, @d or <leader>uu, <leader>oo till the eof,
+" Note: If you must use @u, @o, @p, @d or <leader>hu, <leader>ho till the eof,
 "       be 'careful' to add an empty line at the eof
 "
 " Note: 7@p won't work if one of the paragraphs starts with a one letter word
@@ -56,13 +56,13 @@
 "         +-----------+-------------------+
 "         | paragraph | WORD or selection |
 " +-------+-----------+-------------------+
-" | <ul>  |    @u     |    <leader>uu     |
-" | <ol>  |    @o     |    <leader>oo     |
-" | <p>   |    @p     |    <leader>pp     |
-" | <div> |    @d     |    <leader>dd     |
+" | <ul>  |    @u     |    <leader>hu     |
+" | <ol>  |    @o     |    <leader>ho     |
+" | <p>   |    @p     |    <leader>hp     |
+" | <div> |    @d     |    <leader>hd     |
 " +-------+-----------+-------------------+
 "
-" Note: <leader>uu and <leader>oo work on fully selected lines only
+" Note: <leader>hu and <leader>ho work on fully selected lines only
 "
 " Note: mnemo for paragraphs and lines: wrap @ll
 "
@@ -71,21 +71,21 @@
 "              +------+-------------------+
 "              | line | WORD or selection |
 " +------------+------+-------------------+
-" | <td>       |  @t  |    <leader>tt     |
-" | <a>        |  @a  |    <leader>aa     |
-" | <span>     |  @s  |    <leader>ss     |
+" | <td>       |  @t  |    <leader>ht     |
+" | <a>        |  @a  |    <leader>ha     |
+" | <span>     |  @s  |    <leader>hs     |
 " | <h1>       |  @h  |    <leader>hh     |
-" | <li>       |  @l  |    <leader>ll     |
-" | <!-- -->   |  @c  |    <leader>cc     |
-" | <em>       |  @e  |    <leader>ee     |
-" | <strong>   |  @b  |    <leader>bb     |
+" | <li>       |  @l  |    <leader>hl     |
+" | <!-- -->   |  @c  |    <leader>hc     |
+" | <em>       |  @e  |    <leader>he     |
+" | <strong>   |  @b  |    <leader>hb     |
 "
 "   TODO:
 "
-" | <fieldset> |  @f  |    <leader>ff     |
-" | <kbd>      |  @k  |    <leader>kk     |
-" | <noscript> |  @n  |    <leader>nn     |
-" | <var>      |  @v  |    <leader>vv     |
+" | <fieldset> |  @f  |    <leader>hf     |
+" | <kbd>      |  @k  |    <leader>hk     |
+" | <noscript> |  @n  |    <leader>hn     |
+" | <var>      |  @v  |    <leader>hv     |
 " +------------+------+-------------------+
 "
 " 3. Insert an image {{{1
@@ -119,25 +119,25 @@
 " --------------------------------
 "
 "     @g for standard tags
-"     <leader>gg for <!-- --> or <?php ?>
+"     <leader>hg for <!-- --> or <?php ?>
 "
 " 7. Rearrange <tag> content </tag> vertically {{{1
 " -------------------------------------------------
 "
 "     @r for standard tags
-"     <leader>rr for <!-- --> or <?php ?>
+"     <leader>hr for <!-- --> or <?php ?>
 "
 " 8. Strip outer tags {{{1
 " ------------------------
 "
 "     @x for standard tags
-"     <leader>xx for <!-- --> or <?php ?>
+"     <leader>hx for <!-- --> or <?php ?>
 "
 " 9. 'Space' vertically the content of a pair of tags {{{1
 " --------------------------------------------------------
 "
 "     @m for standard tags (mnemo: )
-"     <leader>mm for <!-- --> or <?php ?>
+"     <leader>hm for <!-- --> or <?php ?>
 " }}}1
 
 " Code {{{1
@@ -216,7 +216,7 @@ function! Init_ul()
 
     let @u="dipO<ul" . b:ul_class . ">\<cr>\<cr>\<cr></ul>\<esc>kP0\<c-v>']I<li>\<esc>gv$A</li>\<esc>gv:Tabularize html\<cr>-=at']+EB"
     nnoremap <buffer> \#u ciW<ul<esc>:exe 'norm a' . b:ul_class . "> <li>   </li> </ul>\eB2hvitholp3EB"<cr>
-    vnoremap <buffer> <silent> <leader>uu <c-v>^I<li><esc>gv$A</li><esc>gv:Tabularize html<cr>d']O<ul<esc>:exe 'norm a' . b:ul_class . ">\r\r\r</ul>\ekP-=at']+EB"<cr>
+    vnoremap <buffer> <silent> <leader>hu <c-v>^I<li><esc>gv$A</li><esc>gv:Tabularize html<cr>d']O<ul<esc>:exe 'norm a' . b:ul_class . ">\r\r\r</ul>\ekP-=at']+EB"<cr>
 
 endfunction
 
@@ -224,7 +224,7 @@ function! Init_ol()
 
     let @o="dipO<ol" . b:ol_class . ">\<cr>\<cr>\<cr></ol>\<esc>kP0\<c-v>']I<li>\<esc>gv$A</li>\<esc>gv:Tabularize html\<cr>-=at']+EB"
     nnoremap <buffer> \#o ciW<ol<esc>:exe 'norm a' . b:ol_class . "> <li>   </li> </ol>\eB2hvitholp3EB"<cr>
-    vnoremap <buffer> <silent> <leader>oo <c-v>^I<li><esc>gv$A</li><esc>gv:Tabularize html<cr>d']O<ol<esc>:exe 'norm a' . b:ol_class . ">\r\r\r</ol>\ekP-=at']+EB"<cr>
+    vnoremap <buffer> <silent> <leader>ho <c-v>^I<li><esc>gv$A</li><esc>gv:Tabularize html<cr>d']O<ol<esc>:exe 'norm a' . b:ol_class . ">\r\r\r</ol>\ekP-=at']+EB"<cr>
 
 endfunction
 
@@ -232,7 +232,7 @@ function! Init_p()
 
     let @p="dipO<p" . b:p_class . ">\<cr>\<cr>\<c-r>\"\<cr></p>\<esc>=at']+EB"
     nnoremap <buffer> \#p ciW<p<esc>:exe 'norm a' . b:p_class . ">   </p>\evitholp2EB"<cr>
-    vnoremap <buffer> <silent> <leader>pp c<p<esc>:exe 'norm a' . b:p_class . ">   </p>\evitholgpvatov:s/\\s\\+$//ge\r=atvatv"<cr>
+    vnoremap <buffer> <silent> <leader>hp c<p<esc>:exe 'norm a' . b:p_class . ">   </p>\evitholgpvatov:s/\\s\\+$//ge\r=atvatv"<cr>
 
 endfunction
 
@@ -240,7 +240,7 @@ function! Init_div()
 
     let @d="dipO<div" . b:div_class . ">\<cr>\<cr>\<c-r>\"\<cr></div>\<esc>=at']+EB"
     nnoremap <buffer> \#d ciW<div<esc>:exe 'norm a' . b:div_class . ">   </div>\evitholp2EB"<cr>
-    vnoremap <buffer> <silent> <leader>dd c<div<esc>:exe 'norm a' . b:div_class . ">   </div>\evitholgpvatov:s/\\s\\+$//ge\r=atvatv"<cr>
+    vnoremap <buffer> <silent> <leader>hd c<div<esc>:exe 'norm a' . b:div_class . ">   </div>\evitholgpvatov:s/\\s\\+$//ge\r=atvatv"<cr>
 
 endfunction
 
@@ -248,7 +248,7 @@ function! Init_td()
 
     let @t="I<td" . b:td_class . "> \<end> </td>\<esc>+EB"
     nnoremap <buffer> \#t ciW<td<esc>:exe 'norm a' . b:td_class . ">   </td>\evitholp2EB"<cr>
-    vnoremap <buffer> <silent> <leader>tt c<td<esc>:exe 'norm a' . b:td_class . ">   </td>\evitholgpvatov:s/\\s\\+$//ge\r=atvatv"<cr>
+    vnoremap <buffer> <silent> <leader>ht c<td<esc>:exe 'norm a' . b:td_class . ">   </td>\evitholgpvatov:s/\\s\\+$//ge\r=atvatv"<cr>
 
 endfunction
 
@@ -256,7 +256,7 @@ function! Init_a()
 
     let @a="^y$i<a href='\<esc>pa'" . b:a_class . "> \<end> </a>\<esc>+EB"
     nnoremap <buffer> \#a ciW<a href=''<esc>gP:exe 'norm a' . b:a_class . ">   </a>\evitholp2EB"<cr>
-    vnoremap <buffer> <silent> <leader>aa c<a href=''<esc>gP:exe 'norm a' . b:a_class . ">   </a>\evitholgpvatov:s/\\s\\+$//ge\r=atvatv"<cr>
+    vnoremap <buffer> <silent> <leader>ha c<a href=''<esc>gP:exe 'norm a' . b:a_class . ">   </a>\evitholgpvatov:s/\\s\\+$//ge\r=atvatv"<cr>
 
 endfunction
 
@@ -264,7 +264,7 @@ function! Init_span()
 
     let @s="I<span" . b:span_class . "> \<end> </span>\<esc>+EB"
     nnoremap <buffer> \#s ciW<span<esc>:exe 'norm a' . b:span_class . ">   </span>\evitholp2EB"<cr>
-    vnoremap <buffer> <silent> <leader>ss c<span<esc>:exe 'norm a' . b:span_class . ">   </span>\evitholgpvatov:s/\\s\\+$//ge\r=atvatv"<cr>
+    vnoremap <buffer> <silent> <leader>hs c<span<esc>:exe 'norm a' . b:span_class . ">   </span>\evitholgpvatov:s/\\s\\+$//ge\r=atvatv"<cr>
 
 endfunction
 
@@ -286,7 +286,7 @@ function! Init_em()
 
     let @e="I<em" . b:em_class . "> \<end> </em>\<esc>+EB"
     nnoremap <buffer> \#e ciW<em<esc>:exe 'norm a' . b:em_class . ">   </em>\evitholp2EB"<cr>
-    vnoremap <buffer> <silent> <leader>ee c<em<esc>:exe 'norm a' . b:em_class . ">   </em>\evitholgpvatov:s/\\s\\+$//ge\r=atvatv"<cr>
+    vnoremap <buffer> <silent> <leader>he c<em<esc>:exe 'norm a' . b:em_class . ">   </em>\evitholgpvatov:s/\\s\\+$//ge\r=atvatv"<cr>
 
 endfunction
 
@@ -294,7 +294,7 @@ function! Init_b()
 
     let @b="I<strong" . b:b_class . "> \<end> </strong>\<esc>+EB"
     nnoremap <buffer> \#b ciW<strong<esc>:exe 'norm a' . b:b_class . ">   </strong>\evitholp2EB"<cr>
-    vnoremap <buffer> <silent> <leader>bb c<strong<esc>:exe 'norm a' . b:b_class . ">   </strong>\evitholgpvatov:s/\\s\\+$//ge\r=atvatv"<cr>
+    vnoremap <buffer> <silent> <leader>hb c<strong<esc>:exe 'norm a' . b:b_class . ">   </strong>\evitholgpvatov:s/\\s\\+$//ge\r=atvatv"<cr>
 
 endfunction
 
@@ -302,7 +302,7 @@ function! Init_li()
 
     let @l="I<li" . b:li_class . "> \<end> </li>\<esc>+EB"
     nnoremap <buffer> \#l ciW<li<esc>:exe 'norm a' . b:li_class . ">   </li>\evitholp2EB"<cr>
-    vnoremap <buffer> <silent> <leader>ll c<li<esc>:exe 'norm a' . b:li_class . ">   </li>\evitholgpvatov:s/\\s\\+$//ge\r=atvatv"<cr>
+    vnoremap <buffer> <silent> <leader>hl c<li<esc>:exe 'norm a' . b:li_class . ">   </li>\evitholgpvatov:s/\\s\\+$//ge\r=atvatv"<cr>
 
 endfunction
 
@@ -474,23 +474,23 @@ inoremap <buffer> <? <?php  ?><left><left><left>
 
 let @c="I<!-- \<end> -->\<esc>+EB"
 nnoremap <buffer> \#c ciW<!-- <c-r>- --><esc>EB
-vnoremap <buffer> <leader>cc c<!--   --><esc>B2hvgpv?<!--<cr>:s/\s\+$//ge<cr>gv=`>:call search('->', 'e')<cr>
+vnoremap <buffer> <leader>hc c<!--   --><esc>B2hvgpv?<!--<cr>:s/\s\+$//ge<cr>gv=`>:call search('->', 'e')<cr>
 
 " Allow count for wrapping a single WORD or a selection {{{2
 " ----------------------------------------------------------
 
-nnoremap <buffer> <leader>uu @='\#u'<cr>
-nnoremap <buffer> <leader>oo @='\#o'<cr>
-nnoremap <buffer> <leader>pp @='\#p'<cr>
-nnoremap <buffer> <leader>dd @='\#d'<cr>
-nnoremap <buffer> <leader>tt @='\#t'<cr>
-nnoremap <buffer> <leader>aa @='\#a'<cr>
-nnoremap <buffer> <leader>ss @='\#s'<cr>
+nnoremap <buffer> <leader>hu @='\#u'<cr>
+nnoremap <buffer> <leader>ho @='\#o'<cr>
+nnoremap <buffer> <leader>hp @='\#p'<cr>
+nnoremap <buffer> <leader>hd @='\#d'<cr>
+nnoremap <buffer> <leader>ht @='\#t'<cr>
+nnoremap <buffer> <leader>ha @='\#a'<cr>
+nnoremap <buffer> <leader>hs @='\#s'<cr>
 nnoremap <buffer> <leader>hh @='\#h'<cr>
-nnoremap <buffer> <leader>ee @='\#e'<cr>
-nnoremap <buffer> <leader>bb @='\#b'<cr>
-nnoremap <buffer> <leader>ll @='\#l'<cr>
-nnoremap <buffer> <leader>cc @='\#c'<cr>
+nnoremap <buffer> <leader>he @='\#e'<cr>
+nnoremap <buffer> <leader>hb @='\#b'<cr>
+nnoremap <buffer> <leader>hl @='\#l'<cr>
+nnoremap <buffer> <leader>hc @='\#c'<cr>
 
 " <hn -> <hn+1 {{{2
 " -----------------
@@ -504,7 +504,7 @@ let @g="=atvitgeowgq+e+EB"
 
 nnoremap <buffer> \#g ?\_.\=<!--\<bar>\_.\=<\?php<cr>/-->\<bar>?><cr>v?<!--\<bar><\?php<cr>=gvwo-gq`>2+EB:noh<cr>
 
-nnoremap <buffer> <leader>gg @='\#g'<cr>
+nnoremap <buffer> <leader>hg @='\#g'<cr>
 
 " Rearrange <tag> content </tag> vertically {{{2
 " ----------------------------------------------
@@ -513,7 +513,7 @@ let @r="cit\<cr>\<esc>:pu!\<cr>:s/\\s\\+$//ge\<cr>+=atjgqqjo\<esc>EB"
 
 nnoremap <buffer> \#r ?\_.\=<!--\<bar>\_.\=<\?php<cr>/-->\<bar>?>/s-1<cr>v?<!--\<bar><\?php?e+1<cr>c<cr><esc>:pu!<cr>:s/\s\+$//ge<cr>?<!--\<bar><\?php<cr>v/-->\<bar>?><cr>=jgqqjo<esc>EB:noh<cr>
 
-nnoremap <buffer> <leader>rr @='\#r'<cr>
+nnoremap <buffer> <leader>hr @='\#r'<cr>
 
 " Strip outer tags {{{2
 " ---------------------
@@ -522,7 +522,7 @@ let @x="vitdvatpgv:s/\\s\\+$//ge\<cr>gv=`>EB"
 
 nnoremap <buffer> \#x ?\_.\=<!--\<bar>\_.\=<\?php<cr>/-->\<bar>?>/s-1<cr>v?<!--\<bar><\?php?e+1<cr>d?<!--\<bar><\?php<cr>v/-->\<bar>?>/e<cr>pgv=`>EB:noh<cr>
 
-nnoremap <buffer> <leader>xx @='\#x'<cr>
+nnoremap <buffer> <leader>hx @='\#x'<cr>
 
 " 'Space' content of a pair of tags {{{2
 " --------------------------------------
@@ -531,6 +531,6 @@ let @m="vitgeowVc\<cr>\<esc>P-=at']+EB"
 
 nnoremap <buffer> \#m ?\_.\=<!--\<bar>\_.\=<\?php<cr>/-->\<bar>?><cr>O<esc>+v?<!--\<bar><\?php<cr>=o<esc>`>+EB:noh<cr>
 
-nnoremap <buffer> <leader>mm @='\#m'<cr>
+nnoremap <buffer> <leader>hm @='\#m'<cr>
 
 " vim: set foldmethod=marker foldmarker&:
