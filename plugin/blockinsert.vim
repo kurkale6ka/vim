@@ -2,6 +2,9 @@
 "
 " Author: Dimitar Dimitrov (mitkofr@yahoo.fr), kurkale6ka
 "
+" Latest version at:
+" http://github.com/kurkale6ka/vimfiles/blob/master/plugin/blockinsert.vim
+"
 " todo: make :Both and :QBoth accept two arguments,
 "       use text2 and <f-args> (<f-args>[0]?) ...
 "
