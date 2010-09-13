@@ -140,6 +140,11 @@
 "     <leader>hm for <!-- --> or <?php ?>
 " }}}1
 
+if exists('g:loaded_html')
+    finish
+endif
+let g:loaded_html = 1
+
 " Code {{{1
 
 " Tag classes = '' {{{2
