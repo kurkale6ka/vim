@@ -269,7 +269,6 @@ set complete-=t
 set complete-=]
 set completeopt-=preview
 set showfulltag
-set tags+=$HOME/vimfiles/tags_vim
 
 " Windows and buffers {{{2
 set hidden
