@@ -1,0 +1,39 @@
+*blockinsert.txt* For Vim version 7               Last change: 13 September 2010
+
+
+                   Easy Insert/Append to a paragraph of text~
+
+
+                              By Dimitar Dimitrov
+                                   kurkale6ka
+                                mitkofr@yahoo.fr
+
+                                Reference Manual~
+
+
+
+1. Normal mode                                               |blockinsert-normal|
+2. Visual mode                                               |blockinsert-visual|
+3. Commands                                                |blockinsert-commands|
+4. Mappings                                                |blockinsert-mappings|
+
+The functionality mentioned here is a plugin, see |add-plugin|.
+You can avoid loading this plugin by setting the blockinsert global variable in
+your |vimrc| file:
+>
+    :let g:loaded_blockinsert = 1
+<
+================================================================================
+1. Normal mode                                               *blockinsert-normal*
+
+================================================================================
+2. Visual mode                                               *blockinsert-visual*
+
+================================================================================
+3. Commands                                                *blockinsert-commands*
+
+================================================================================
+4. Mappings                                                *blockinsert-mappings*
+
+================================================================================
+ vim: textwidth=80 tabstop=8 filetype=help
