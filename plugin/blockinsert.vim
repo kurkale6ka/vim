@@ -136,10 +136,10 @@ nmap <plug>blockinsert-qa :<c-u>call blockinsert#do ('qa', '', '', '', '')<cr>
 
 " Both Insert & Append
 vmap <plug>blockinsert-b :call blockinsert#do ('i', '', '', '', '')<bar>
-            \call blockinsert#do ('a', '', '', '', '')<cr>
+            \*call blockinsert#do ('a', '', '', '', '')<cr>
 
 vmap <plug>blockinsert-qb :call blockinsert#do ('qi', '', '', '', '')<bar>
-            \call blockinsert#do ('qa', '', '', '', '')<cr>
+            \*call blockinsert#do ('qa', '', '', '', '')<cr>
 
 nmap <plug>blockinsert-b :<c-u>call blockinsert#do ('i', '', '', '', '')<bar>
             \call blockinsert#do ('a', '', '', '', '')<cr>

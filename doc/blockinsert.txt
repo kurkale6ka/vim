@@ -26,6 +26,42 @@ your |vimrc| file:
 ================================================================================
 1. Normal mode                                               *blockinsert-normal*
 
+Blockinsert can take a range but if no such is given it will act upon the
+current paragraph.
+>
+        First line of code
+            Another line of code
+    Yet another one
+        Last line of code
+<
+[count] \i - will transform the above into: (count 3 used)
+>
+        ---First line of code
+            ---Another line of code
+    ---Yet another one
+        ---Last line of code
+<
+[count] \a > will transform the above into: (count 2 used)
+>
+        ---First line of code>>
+            ---Another line of code>>
+    ---Yet another one>>
+        ---Last line of code>>
+<
+[count] \i or \a without any text will delete as many characters: (3\i used)
+>
+        First line of code>>
+            Another line of code>>
+    Yet another one>>
+        Last line of code>>
+<
+[count] \[] will use both \i and \a: (
+>
+        First line of code>>
+            Another line of code>>
+    Yet another one>>
+        Last line of code>>
+<
 ================================================================================
 2. Visual mode                                               *blockinsert-visual*
 
