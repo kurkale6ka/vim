@@ -580,7 +580,7 @@ endfunction
 
 " <leader>sq {{{2
 " Squeeze empty lines (<leader>sq)
-nmap <leader>sq :vglobal/\S/,/\S/-j<bar>noh<cr>``
+nmap <leader>sq :global/^\%([[:space:]]*$\n\)\{2,}/d
 
 " <leader>' {{{2
 " Replace all " by '
