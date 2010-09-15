@@ -653,6 +653,8 @@ let php_folding = 3
 
 let php_large_file = 0
 
+let g:SuperTabDefaultCompletionType = "context"
+
 function! YRRunAfterMaps()
     nnoremap Y :YRYankCount 'y$'<cr>
 endfunction
