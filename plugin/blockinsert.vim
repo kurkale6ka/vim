@@ -47,7 +47,7 @@ function! blockinsert#do_exe (operation, text, start, end)
             let _count = v:count1 - 1
             let operation = '$' . _count . 'hD'
         else
-            let operation = '$D'
+            let operation = '$x'
         endif
 
     elseif 'i' == a:operation
