@@ -33,11 +33,11 @@ function! blockinsert#do_exe (operation, text, start, end)
 
         elseif 'qa' == a:operation
 
-            let operation = v:count1 . '$' . a:text . "\<esc>"
+            let operation = '$' . v:count1 . a:text . "\<esc>"
 
         elseif 'qi' == a:operation
 
-            let operation = v:count1 . '^' . a:text . "\<esc>"
+            let operation = '^' . v:count1 . a:text . "\<esc>"
         endif
 
     elseif 'a' == a:operation
@@ -64,10 +64,7 @@ function! blockinsert#do_exe (operation, text, start, end)
         +
     endfor
 
-    if empty(a:text) && 'a' == a:operation
-
-        let &virtualedit = virtualedit_bak
-    endif
+    let &virtualedit = virtualedit_bak
 
 endfunction
 
