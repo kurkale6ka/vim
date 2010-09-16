@@ -174,11 +174,12 @@ function! blockinsert#do (mode, operation1, operation2, start, end, text1, text2
     endif
 
     silent! call repeat#set(":\<c-u>call blockinsert#do ('" .
-                \         a:operation1 .
+                \         a:mode       .
+                \"', '" . a:operation1 .
                 \"', '" . a:operation2 .
-                \"', "  . _start       .
-                \", "   . _end         .
-                \", '"  . text1        .
+                \"',  " . _start       .
+                \" ,  " . _end         .
+                \" , '" . text1        .
                 \"', '" . text2        .
                 \"')\<cr>"
                 \)
