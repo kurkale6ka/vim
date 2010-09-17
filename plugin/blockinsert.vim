@@ -17,24 +17,15 @@ let g:loaded_blockinsert = 1
 
 function! blockinsert#do_exe (mode, operation, col1, col2, row1, row2, text)
 
-    if 'v' != a:mode
+    if empty(a:col1)
 
-        if empty(a:col1)
-
-            let go_start = '^'
-            let go_end   = '$'
-        else
-            let go_start = a:col1 . '|w'
-            let go_end   = a:col2 . '|ge'
-        endif
+        let go_start = '^'
+        let go_end   = '$'
     else
-        if "\<c-v>" == visualmode()
+        let go_start = a:col1 . '|w'
+        let go_end   = a:col2 . '|ge'
 
-            let go_start = a:col1 . '|w'
-            let go_end   = a:col2 . '|ge'
-
-            let block = 1
-        endif
+        let block = 1
     endif
 
     if !empty(a:text)
@@ -98,31 +89,6 @@ function! blockinsert#do (mode, ope1, ope2, col1, col2, row1, row2, text1, text2
     let virtualedit_bak = &virtualedit
     set virtualedit=
 
-    if 'v' != a:mode
-
-        if !empty(a:col1)
-
-            let col1 = virtcol('.')           - 1
-            let col2 = col1 + a:col2 - a:col1 + 2
-        endif
-    else
-        if "\<c-v>" == visualmode()
-
-            let col1 = virtcol("'<") - 1
-            let col2 = virtcol("'>") + 1
-        endif
-    endif
-
-    if !exists('col1')
-
-        let col1 = 0
-    endif
-
-    if !exists('col2')
-
-        let col2 = 0
-    endif
-
     if !empty(a:text1) || empty(a:ope1)
 
         let text1 = a:text1
@@ -137,6 +103,29 @@ function! blockinsert#do (mode, ope1, ope2, col1, col2, row1, row2, text1, text2
         let text2 = input('Enter text: ')
     endif
 
+    " edge case: \q[] or \[] in visual block mode
+    if 'v' == a:mode
+
+        if "\<c-v>" == visualmode()
+
+            let col1 = virtcol("'<") - 1
+            let col2 = virtcol("'>") + 1 + len(text1)
+        endif
+
+        if !empty(a:col1)
+
+            let col1 = virtcol('.') - 1
+            let col2 = col1 + a:col2 - a:col1 - 1 + len(text1)
+        endif
+    endif
+
+    if !exists('col1')
+
+        let col1 = 0
+        let col2 = 0
+    endif
+
+    " no range given or current line selected (pointless)
     if a:firstline == a:lastline && empty(a:row1)
 
         '{
@@ -158,6 +147,10 @@ function! blockinsert#do (mode, ope1, ope2, col1, col2, row1, row2, text1, text2
             let row2 = line("'}") - 1
         endif
 
+        let _row1 = 0
+        let _row2 = 0
+
+    " use previous range
     elseif !empty(a:row1)
 
         let  row1 = a:row1
@@ -169,16 +162,6 @@ function! blockinsert#do (mode, ope1, ope2, col1, col2, row1, row2, text1, text2
         let  row2 = a:lastline
         let _row1 = a:firstline
         let _row2 = a:lastline
-    endif
-
-    if !exists('_row1')
-
-        let _row1 = 0
-    endif
-
-    if !exists('_row2')
-
-        let _row2 = 0
     endif
 
     if !empty(a:ope1) && !empty(a:ope2)
