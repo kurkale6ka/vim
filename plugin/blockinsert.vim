@@ -85,7 +85,7 @@ function! blockinsert#do_exe (mode, operation, col1, col2, row1, row2, text)
 
         for i in range(0, a:row2 - a:row1)
 
-            if strpart(getline('.'), _col1 - 1, _col2 - _col1 + 1) !~ '^[[:space:]]*$'
+            if strpart(getline('.'), _col1 - 1, _col2 - _col1 + 1) =~ '[^[:space:]]\+'
 
                 execute 'normal ' . operation
             endif
@@ -281,10 +281,10 @@ nmap <plug>blockinsert-qa :<c-u>call blockinsert#do ('n', '', 'qa', 0, 0, 0, 0, 
 " Both Insert & Append
 vmap <plug>blockinsert-b   :call blockinsert#do ('v', 'i',   'a',   0, 0, 0, 0, '', '')<cr>
 vmap <plug>blockinsert-qb  :call blockinsert#do ('v', 'qi',  'qa',  0, 0, 0, 0, '', '')<cr>
-vmap <plug>blockinsert-bu  :call blockinsert#do ('v', 'iu',  'au',  0, 0, 0, 0, '', '')<cr>
-vmap <plug>blockinsert-qbu :call blockinsert#do ('v', 'qiu', 'qau', 0, 0, 0, 0, '', '')<cr>
+vmap <plug>blockinsert-ub  :call blockinsert#do ('v', 'iu',  'au',  0, 0, 0, 0, '', '')<cr>
+vmap <plug>blockinsert-uqb :call blockinsert#do ('v', 'qiu', 'qau', 0, 0, 0, 0, '', '')<cr>
 
 nmap <plug>blockinsert-b   :<c-u>call blockinsert#do ('n', 'i',   'a',   0, 0, 0, 0, '', '')<cr>
 nmap <plug>blockinsert-qb  :<c-u>call blockinsert#do ('n', 'qi',  'qa',  0, 0, 0, 0, '', '')<cr>
-nmap <plug>blockinsert-bu  :<c-u>call blockinsert#do ('n', 'iu',  'au',  0, 0, 0, 0, '', '')<cr>
-nmap <plug>blockinsert-qbu :<c-u>call blockinsert#do ('n', 'qiu', 'qau', 0, 0, 0, 0, '', '')<cr>
+nmap <plug>blockinsert-ub  :<c-u>call blockinsert#do ('n', 'iu',  'au',  0, 0, 0, 0, '', '')<cr>
+nmap <plug>blockinsert-uqb :<c-u>call blockinsert#do ('n', 'qiu', 'qau', 0, 0, 0, 0, '', '')<cr>
