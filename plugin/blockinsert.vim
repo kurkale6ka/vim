@@ -72,16 +72,35 @@ function! blockinsert#do_exe (mode, operation, col1, col2, row1, row2, text)
         let operation = go_start . v:count1 . 'x'
     endif
 
-    for i in range(0, a:row2 - a:row1)
+    if !empty(a:col1)
 
-        " todo: in visual block mode, the check should be on the portion between
-        "       col1 and col2 only
-        if getline('.') !~ '^[[:space:]]*$'
+        if col("'<") < col("'>")
 
-            execute 'normal ' . operation
+            let _col1 = col("'<")
+            let _col2 = col("'>")
+        else
+            let _col1 = col("'>")
+            let _col2 = col("'<")
         endif
-        +
-    endfor
+
+        for i in range(0, a:row2 - a:row1)
+
+            if strpart(getline('.'), _col1 - 1, _col2 - _col1 + 1) !~ '^[[:space:]]*$'
+
+                execute 'normal ' . operation
+            endif
+            +
+        endfor
+    else
+        for i in range(0, a:row2 - a:row1)
+
+            if getline('.') !~ '^[[:space:]]*$'
+
+                execute 'normal ' . operation
+            endif
+            +
+        endfor
+    endif
 
 endfunction
 
