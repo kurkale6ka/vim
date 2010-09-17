@@ -74,6 +74,8 @@ function! blockinsert#do_exe (mode, operation, col1, col2, row1, row2, text)
 
     for i in range(0, a:row2 - a:row1)
 
+        " todo: in visual block mode, the check should be on the portion between
+        "       col1 and col2 only
         if getline('.') !~ '^[[:space:]]*$'
 
             execute 'normal ' . operation
@@ -89,18 +91,38 @@ function! blockinsert#do (mode, ope1, ope2, col1, col2, row1, row2, text1, text2
     let virtualedit_bak = &virtualedit
     set virtualedit=
 
-    if !empty(a:text1) || empty(a:ope1)
+    let ope1 = a:ope1
+    let ope2 = a:ope2
 
-        let text1 = a:text1
+    if !empty(ope1)
+
+        if !empty(a:text1)
+
+            let text1 = a:text1
+        else
+            let text1 = input('Enter text: ')
+        endif
     else
-        let text1 = input('Enter text: ')
+        let text1 = ''
     endif
 
-    if !empty(a:text2) || empty(a:ope2)
+    if !empty(ope2) && ope2 !~ 'u'
 
-        let text2 = a:text2
+        if !empty(a:text2)
+
+            let text2 = a:text2
+        else
+            let text2 = input('Enter text: ')
+        endif
+
+    elseif ope2 =~ 'u'
+
+        let text2 = text1
+
+        let ope1 = substitute(ope1, 'u', '', '')
+        let ope2 = substitute(ope2, 'u', '', '')
     else
-        let text2 = input('Enter text: ')
+        let text2 = ''
     endif
 
     " edge case: \q[] or \[] in visual block mode
@@ -156,7 +178,7 @@ function! blockinsert#do (mode, ope1, ope2, col1, col2, row1, row2, text1, text2
         let _row1 = 0
         let _row2 = 0
 
-    " use previous range
+        " use previous range
     elseif !empty(a:row1)
 
         let  row1 = a:row1
@@ -170,30 +192,30 @@ function! blockinsert#do (mode, ope1, ope2, col1, col2, row1, row2, text1, text2
         let _row2 = a:lastline
     endif
 
-    if !empty(a:ope1) && !empty(a:ope2)
+    if !empty(ope1) && !empty(ope2)
 
         let line_bak = line('.')
     endif
 
-    if !empty(a:ope1)
+    if !empty(ope1)
 
-        call blockinsert#do_exe (a:mode, a:ope1, col1, col2, row1, row2, text1)
+        call blockinsert#do_exe (a:mode, ope1, col1, col2, row1, row2, text1)
 
-        if !empty(a:ope2)
+        if !empty(ope2)
 
             execute line_bak
         endif
     endif
 
-    if !empty(a:ope2)
+    if !empty(ope2)
 
-        call blockinsert#do_exe (a:mode, a:ope2, col1, col2, row1, row2, text2)
+        call blockinsert#do_exe (a:mode, ope2, col1, col2, row1, row2, text2)
     endif
 
     silent! call repeat#set(":\<c-u>call blockinsert#do ('" .
                 \         a:mode .
-                \"', '" . a:ope1 .
-                \"', '" . a:ope2 .
+                \"', '" .   ope1 .
+                \"', '" .   ope2 .
                 \"',  " .   col1 .
                 \" ,  " .   col2 .
                 \" ,  " .  _row1 .
@@ -238,8 +260,12 @@ nmap <plug>blockinsert-qi :<c-u>call blockinsert#do ('n', '', 'qi', 0, 0, 0, 0, 
 nmap <plug>blockinsert-qa :<c-u>call blockinsert#do ('n', '', 'qa', 0, 0, 0, 0, '', '')<cr>
 
 " Both Insert & Append
-vmap <plug>blockinsert-b  :call blockinsert#do ('v', 'i',  'a',  0, 0, 0, 0, '', '')<cr>
-vmap <plug>blockinsert-qb :call blockinsert#do ('v', 'qi', 'qa', 0, 0, 0, 0, '', '')<cr>
+vmap <plug>blockinsert-b   :call blockinsert#do ('v', 'i',   'a',   0, 0, 0, 0, '', '')<cr>
+vmap <plug>blockinsert-qb  :call blockinsert#do ('v', 'qi',  'qa',  0, 0, 0, 0, '', '')<cr>
+vmap <plug>blockinsert-bu  :call blockinsert#do ('v', 'iu',  'au',  0, 0, 0, 0, '', '')<cr>
+vmap <plug>blockinsert-qbu :call blockinsert#do ('v', 'qiu', 'qau', 0, 0, 0, 0, '', '')<cr>
 
-nmap <plug>blockinsert-b  :<c-u>call blockinsert#do ('n', 'i',  'a',  0, 0, 0, 0, '', '')<cr>
-nmap <plug>blockinsert-qb :<c-u>call blockinsert#do ('n', 'qi', 'qa', 0, 0, 0, 0, '', '')<cr>
+nmap <plug>blockinsert-b   :<c-u>call blockinsert#do ('n', 'i',   'a',   0, 0, 0, 0, '', '')<cr>
+nmap <plug>blockinsert-qb  :<c-u>call blockinsert#do ('n', 'qi',  'qa',  0, 0, 0, 0, '', '')<cr>
+nmap <plug>blockinsert-bu  :<c-u>call blockinsert#do ('n', 'iu',  'au',  0, 0, 0, 0, '', '')<cr>
+nmap <plug>blockinsert-qbu :<c-u>call blockinsert#do ('n', 'qiu', 'qau', 0, 0, 0, 0, '', '')<cr>

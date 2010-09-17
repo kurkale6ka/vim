@@ -676,9 +676,17 @@ nmap <leader>qa <plug>blockinsert-qa
 
 vmap <leader>[]  <plug>blockinsert-b
 vmap <leader>q[] <plug>blockinsert-qb
+vmap <leader>[[  <plug>blockinsert-bu
+vmap <leader>q[[ <plug>blockinsert-qbu
+vmap <leader>]]  <plug>blockinsert-bu
+vmap <leader>q]] <plug>blockinsert-qbu
 
 nmap <leader>[]  <plug>blockinsert-b
 nmap <leader>q[] <plug>blockinsert-qb
+nmap <leader>[[  <plug>blockinsert-bu
+nmap <leader>q[[ <plug>blockinsert-qbu
+nmap <leader>]]  <plug>blockinsert-bu
+nmap <leader>q]] <plug>blockinsert-qbu
 
 " Disable all those plugins!
 
