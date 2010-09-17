@@ -22,8 +22,8 @@ function! blockinsert#do_exe (mode, operation, col1, col2, row1, row2, text)
         let go_start = '^'
         let go_end   = '$'
     else
-        let go_start = a:col1 . '|w'
-        let go_end   = a:col2 . '|ge'
+        let go_start = a:col1 . "|:call search('[^[:space:]]', 'c')\<cr>"
+        let go_end   = a:col2 . "|:call search('[^[:space:]]', 'cb')\<cr>"
 
         let block = 1
     endif
@@ -108,14 +108,14 @@ function! blockinsert#do (mode, ope1, ope2, col1, col2, row1, row2, text1, text2
 
         if "\<c-v>" == visualmode()
 
-            let col1 = virtcol("'<") - 1
-            let col2 = virtcol("'>") + 1 + len(text1)
+            let col1 = virtcol("'<")
+            let col2 = virtcol("'>") + len(text1)
         endif
 
         if !empty(a:col1)
 
-            let col1 = virtcol('.') - 1
-            let col2 = col1 + a:col2 - a:col1 - 1 + len(text1)
+            let col1 = virtcol('.')
+            let col2 = col1 + a:col2 - a:col1 + len(text1)
         endif
     endif
 
