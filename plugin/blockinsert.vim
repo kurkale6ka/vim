@@ -108,14 +108,20 @@ function! blockinsert#do (mode, ope1, ope2, col1, col2, row1, row2, text1, text2
 
         if "\<c-v>" == visualmode()
 
-            let col1 = virtcol("'<")
-            let col2 = virtcol("'>") + len(text1)
+            if virtcol("'<") < virtcol("'>")
+
+                let col1 = virtcol("'<")
+                let col2 = virtcol("'>") + v:count1 * len(text1)
+            else
+                let col1 = virtcol("'>")
+                let col2 = virtcol("'<") + v:count1 * len(text1)
+            endif
         endif
 
         if !empty(a:col1)
 
             let col1 = virtcol('.')
-            let col2 = col1 + a:col2 - a:col1 + len(text1)
+            let col2 = col1 + a:col2 - a:col1 + v:count1 * len(text1)
         endif
     endif
 
