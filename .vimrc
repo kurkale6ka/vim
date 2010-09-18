@@ -580,7 +580,7 @@ endfunction
 
 " <leader>sq {{{2
 " Squeeze empty lines (<leader>sq)
-nmap <leader>sq :global/^\%([[:space:]]*$\n\)\{2,}/delete<cr>``
+nmap <leader>z :global/^\%([[:space:]]*$\n\)\{2,}/delete<cr>``
 
 " <leader>' {{{2
 " Replace all " by '
@@ -675,17 +675,17 @@ nmap <leader>qi <plug>blockinsert-qi
 nmap <leader>qa <plug>blockinsert-qa
 
 vmap <leader>[]  <plug>blockinsert-b
-vmap <leader>q[] <plug>blockinsert-qb
 vmap <leader>[[  <plug>blockinsert-ub
-vmap <leader>q[[ <plug>blockinsert-uqb
 vmap <leader>]]  <plug>blockinsert-ub
+vmap <leader>q[] <plug>blockinsert-qb
+vmap <leader>q[[ <plug>blockinsert-uqb
 vmap <leader>q]] <plug>blockinsert-uqb
 
 nmap <leader>[]  <plug>blockinsert-b
-nmap <leader>q[] <plug>blockinsert-qb
 nmap <leader>[[  <plug>blockinsert-ub
-nmap <leader>q[[ <plug>blockinsert-uqb
 nmap <leader>]]  <plug>blockinsert-ub
+nmap <leader>q[] <plug>blockinsert-qb
+nmap <leader>q[[ <plug>blockinsert-uqb
 nmap <leader>q]] <plug>blockinsert-uqb
 
 " Disable all those plugins!

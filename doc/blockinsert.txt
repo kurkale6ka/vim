@@ -86,13 +86,12 @@ current paragraph.
 <
 1.5 Act on both ends using the same text     *blockinsert-both-same*
 
-[count] \[[ will use both \i and \a and the same text:
-        (| and visual block mode used)
+[count] \[[ will use both \i and \a and the same text: (| used)
 >
-        **First line of code>>****
-            **Another line of code>>****
-    **Yet another one>>****
-        **Last line of code>>****
+        |**First line of code>>****|
+            |**Another line of code>>****|
+    |**Yet another one>>****|
+        |**Last line of code>>****|
 <
 1.6 Record                                   *blockinsert-record*
 
@@ -100,10 +99,10 @@ current paragraph.
 
 Example with \qa gUaW:
 >
-        **First line of CODE>>****
-            **Another line of CODE>>****
-    **Yet another ONE>>****
-        **Last line of CODE>>****
+        |**First line of CODE>>****|
+            |**Another line of CODE>>****|
+    |**Yet another ONE>>****|
+        |**Last line of CODE>>****|
 <
 1.7 Repeat                                   *blockinsert-repeat*
 
@@ -143,12 +142,14 @@ and your text will become:
 The following commands are also available, meant as an alternative to the
 normal and visual mappings:
 
-Insert     Write your text here
-Append     Write your text here
-QInsert    Define your actions here
-QAppend    Define your actions here
-Both       Write your text here
-QBoth      Define your actions here
+BlockInsert       text
+BlockAppend       text
+BlockQInsert      actions
+BlockQAppend      actions
+BlockBoth         text1 text2
+BlockBothSame     text
+BlockQBoth        actions1 actions2
+BlockQBothSame    actions
 
 The commands are disabled by default. Put this line in your |vimrc| if you want
 them enabled:
@@ -173,12 +174,21 @@ nmap <leader>qi <plug>blockinsert-qi
 nmap <leader>qa <plug>blockinsert-qa
 
 vmap <leader>[]  <plug>blockinsert-b
+vmap <leader>[[  <plug>blockinsert-ub
+vmap <leader>]]  <plug>blockinsert-ub
 vmap <leader>q[] <plug>blockinsert-qb
+vmap <leader>q[[ <plug>blockinsert-uqb
+vmap <leader>q]] <plug>blockinsert-uqb
 
 nmap <leader>[]  <plug>blockinsert-b
+nmap <leader>[[  <plug>blockinsert-ub
+nmap <leader>]]  <plug>blockinsert-ub
 nmap <leader>q[] <plug>blockinsert-qb
+nmap <leader>q[[ <plug>blockinsert-uqb
+nmap <leader>q]] <plug>blockinsert-uqb
 
-Note: You can replace \i, \a, \qi, \qa, \[], \q[] with whatever you like.
+Note: You can replace \i, \a, \qi, \qa, \[], \[[, \]], \q[], \q[[, \q]]
+      with whatever you like.
 
 ================================================================================
  vim: textwidth=80 tabstop=8 filetype=help

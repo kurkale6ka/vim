@@ -6,8 +6,10 @@
 " http://github.com/kurkale6ka/vimfiles/blob/master/plugin/blockinsert.vim
 "
 " todo: make the :commands accept a count as their first argument
+"
 " todo: :Both, :QBoth -> how to give them an empty arg in input:
 "       :Both '' Second\ Argument
+"
 " todo: When hitting <esc> after 'Enter text:', it should abort, not delete
 
 if exists('g:loaded_blockinsert')
@@ -167,10 +169,6 @@ endfunction
 
 function! blockinsert#do (mode, ope1, ope2, col1, col2, row1, row2, text1, text2) range
 
-    " When enabled (my case :), it is causing problems
-    let virtualedit_bak = &virtualedit
-    set virtualedit=
-
     if !empty(a:ope1)
 
         let text1 = blockinsert#get_text (a:ope1, a:text1, '')
@@ -194,7 +192,6 @@ function! blockinsert#do (mode, ope1, ope2, col1, col2, row1, row2, text1, text2
         let ope2 = substitute(a:ope2, 'u', '', '')
     endif
 
-    " edge case: \q[] or \[] in visual block mode
     if 'v' == a:mode
 
         if "\<c-v>" == visualmode()
@@ -247,7 +244,7 @@ function! blockinsert#do (mode, ope1, ope2, col1, col2, row1, row2, text1, text2
         let _row1 = 0
         let _row2 = 0
 
-        " use previous range
+    " use previous range
     elseif !empty(a:row1)
 
         let  row1 = a:row1
@@ -281,6 +278,10 @@ function! blockinsert#do (mode, ope1, ope2, col1, col2, row1, row2, text1, text2
         call blockinsert#do_exe (a:mode, ope1, col1, col2, row1, row2, text1)
     endif
 
+    " When enabled (my case :), it is causing problems
+    let virtualedit_bak = &virtualedit
+    set virtualedit=
+
     silent! call repeat#set(":\<c-u>call blockinsert#do ('" .
                 \         a:mode .
                 \"', '" .   ope1 .
@@ -300,23 +301,29 @@ endfunction
 
 if exists('g:blockinsert_commands') && g:blockinsert_commands == 1
 
-    command! -nargs=* -range Insert
+    command! -nargs=* -range BlockInsert
                 \ <line1>,<line2>call blockinsert#do ('c', '', 'i',  0, 0, 0, 0, '', <q-args>)
 
-    command! -nargs=* -range Append
+    command! -nargs=* -range BlockAppend
                 \ <line1>,<line2>call blockinsert#do ('c', '', 'a',  0, 0, 0, 0, '', <q-args>)
 
-    command! -nargs=* -range QInsert
+    command! -nargs=* -range BlockQInsert
                 \ <line1>,<line2>call blockinsert#do ('c', '', 'qi', 0, 0, 0, 0, '', <q-args>)
 
-    command! -nargs=* -range QAppend
+    command! -nargs=* -range BlockQAppend
                 \ <line1>,<line2>call blockinsert#do ('c', '', 'qa', 0, 0, 0, 0, '', <q-args>)
 
-    command! -nargs=* -range Both
+    command! -nargs=* -range BlockBoth
                 \ <line1>,<line2>call blockinsert#do ('c', 'i',  'a',  0, 0, 0, 0, <f-args>)
 
-    command! -nargs=* -range QBoth
+    command! -nargs=* -range BlockBothSame
+                \ <line1>,<line2>call blockinsert#do ('c', 'iu',  'au',  0, 0, 0, 0, <q-args>, '')
+
+    command! -nargs=* -range BlockQBoth
                 \ <line1>,<line2>call blockinsert#do ('c', 'qi', 'qa', 0, 0, 0, 0, <f-args>)
+
+    command! -nargs=* -range BlockQBothSame
+                \ <line1>,<line2>call blockinsert#do ('c', 'qiu', 'qau', 0, 0, 0, 0, <q-args>, '')
 endif
 
 " Insert / Append
@@ -333,11 +340,11 @@ nmap <plug>blockinsert-qa :<c-u>call blockinsert#do ('n', '', 'qa', 0, 0, 0, 0, 
 
 " Both Insert & Append
 vmap <plug>blockinsert-b   :call blockinsert#do ('v', 'i',   'a',   0, 0, 0, 0, '', '')<cr>
-vmap <plug>blockinsert-qb  :call blockinsert#do ('v', 'qi',  'qa',  0, 0, 0, 0, '', '')<cr>
 vmap <plug>blockinsert-ub  :call blockinsert#do ('v', 'iu',  'au',  0, 0, 0, 0, '', '')<cr>
+vmap <plug>blockinsert-qb  :call blockinsert#do ('v', 'qi',  'qa',  0, 0, 0, 0, '', '')<cr>
 vmap <plug>blockinsert-uqb :call blockinsert#do ('v', 'qiu', 'qau', 0, 0, 0, 0, '', '')<cr>
 
 nmap <plug>blockinsert-b   :<c-u>call blockinsert#do ('n', 'i',   'a',   0, 0, 0, 0, '', '')<cr>
-nmap <plug>blockinsert-qb  :<c-u>call blockinsert#do ('n', 'qi',  'qa',  0, 0, 0, 0, '', '')<cr>
 nmap <plug>blockinsert-ub  :<c-u>call blockinsert#do ('n', 'iu',  'au',  0, 0, 0, 0, '', '')<cr>
+nmap <plug>blockinsert-qb  :<c-u>call blockinsert#do ('n', 'qi',  'qa',  0, 0, 0, 0, '', '')<cr>
 nmap <plug>blockinsert-uqb :<c-u>call blockinsert#do ('n', 'qiu', 'qau', 0, 0, 0, 0, '', '')<cr>
