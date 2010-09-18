@@ -84,14 +84,16 @@ function! blockinsert#do_exe (mode, operation, col1, col2, row1, row2, text)
 
     if !empty(a:col1)
 
-        if col("'<") < col("'>")
+        let current_line = getline('.')
 
-            let _col1 = col("'<")
-            let _col2 = col("'>")
-        else
-            let _col1 = col("'>")
-            let _col2 = col("'<")
-        endif
+        let _col1 = a:col1 + 1
+        let _col2 = a:col2 + 1
+
+        let str_to_col1 = substitute(current_line, '\%' . _col1 . 'v.*', '', '')
+        let str_to_col2 = substitute(current_line, '\%' . _col2 . 'v.*', '', '')
+
+        let _col1 = strlen(str_to_col1)
+        let _col2 = strlen(str_to_col2)
 
         for i in range(0, a:row2 - a:row1)
 
