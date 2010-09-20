@@ -97,7 +97,7 @@ function! blockinsert#do_exe (mode, operation, col1, col2, row1, row2, text)
         let _col1 = strlen(str_to_col1)
         let _col2 = strlen(str_to_col2)
 
-        for i in range(0, a:row2 - a:row1)
+        for i in range(1, a:row2 - a:row1 + 1)
 
             if strpart(getline('.'), _col1 - 1, _col2 - _col1 + 1) =~ '[^[:space:]]\+'
 
@@ -106,7 +106,7 @@ function! blockinsert#do_exe (mode, operation, col1, col2, row1, row2, text)
             +
         endfor
     else
-        for i in range(0, a:row2 - a:row1)
+        for i in range(1, a:row2 - a:row1 + 1)
 
             if getline('.') !~ '^[[:space:]]*$'
 
@@ -219,8 +219,8 @@ function! blockinsert#do (mode, ope1, ope2, col1, col2, row1, row2, text1, text2
         let col2 = 0
     endif
 
-    " no range given or current line selected (pointless)
-    if a:firstline == a:lastline && empty(a:row1)
+    " no range given
+    if empty(a:row1) && 'n' == a:mode
 
         '{
 
