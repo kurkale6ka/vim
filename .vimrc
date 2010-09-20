@@ -593,7 +593,7 @@ function! Toggle_quotes () range
 
     for i in range(1, endline)
 
-        if match(getline('.'), '"')
+        if -1 != match(getline('.'), '"')
 
             substitute/"/'/ge
         else
