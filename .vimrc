@@ -582,9 +582,39 @@ endfunction
 " Squeeze empty lines (<leader>sq)
 nmap <leader>z :global/^\%([[:space:]]*$\n\)\{2,}/delete<cr>``
 
+function! Toggle_quotes () range
+
+    if a:firstline != a:lastline
+
+        let endline = a:lastline - a:firstline + 1
+    else
+        let endline = v:count1
+    endif
+
+    for i in range(1, endline)
+
+        if match(getline('.'), '"')
+
+            substitute/"/'/ge
+        else
+            substitute/'/"/ge
+        endif
+        +
+    endfor
+
+    let virtualedit_bak = &virtualedit
+    set virtualedit=
+
+    silent! call repeat#set(":call Toggle_quotes()\<cr>")
+
+    let &virtualedit = virtualedit_bak
+
+endfunction
+
 " <leader>' {{{2
 " Replace all " by '
-nmap <leader>' :substitute/"/'/g<cr>``
+nmap <leader>' :call Toggle_quotes()<cr>
+vmap <leader>' :call Toggle_quotes()<cr>
 
 " Windows {{{2
 nmap <c-w><c-w> :wincmd p<cr>

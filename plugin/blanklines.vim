@@ -2,18 +2,24 @@ function! BlankLines() range
 
     let operation = 'normal 0Dj'
 
-    if a:firstline == a:lastline
+    if a:firstline != a:lastline
 
-        for i in range(1, v:count1)
-
-            execute operation
-        endfor
+        let endline = a:lastline - a:firstline + 1
     else
-        for i in range(0, a:lastline - a:firstline)
-
-            execute operation
-        endfor
+        let endline = v:count1
     endif
+
+    for i in range(1, endline)
+
+        execute operation
+    endfor
+
+    let virtualedit_bak = &virtualedit
+    set virtualedit=
+
+    silent! call repeat#set(":call BlankLines()\<cr>")
+
+    let &virtualedit = virtualedit_bak
 
 endfunction
 
