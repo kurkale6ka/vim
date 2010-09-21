@@ -683,6 +683,8 @@ let php_folding = 3
 
 let php_large_file = 0
 
+let vim_indent_cont=4
+
 let g:SuperTabDefaultCompletionType = "context"
 
 function! YRRunAfterMaps()
