@@ -1,39 +1,40 @@
 " \%V should restrict the operation to the visual area only!
 " :s actually operates from '< to EOL!
+"
+" This is why I had to add the column matching (\% . col_end . c)
 
-function! Swap_comparison()
+function! Swap_comparison_operands()
 
     if col("'<") < col("'>")
 
         let col_start = col("'<")
-        let col_end   = col("'>")
+        let col_end   = col("'>") + 1
     else
         let col_start = col("'>")
-        let col_end   = col("'<")
+        let col_end   = col("'<") + 1
     endif
 
     let operators = '\(===\|!==\|<>\|\%(=[=~]\|![=~]\|>=\|>\|<=\|<\)[#?]\?\)'
 
     execute '*substitute/\%V\([[:space:]]*\)\(.\{-1,}\)[[:space:]]*' .
         \operators .
-        \'[[:space:]]*\(.\+\)[[:space:]]*' .
+        \'[[:space:]]*\(.\{-1,}\)[[:space:]]*' .
         \'\%' . col_end . 'c/\=' .
-        \'Swap_operators(submatch(1), submatch(2), submatch(3), submatch(4), col_start, col_end)'
+        \'Swap_operands(' .
+        \'strlen(submatch(1) . submatch(2) . submatch(3) . submatch(4)) + 2,' .
+        \'submatch(2), submatch(3), submatch(4), col_start, col_end)'
 
 endfunction
 
-function! Swap_operators(spaces, l, ops, r, c1, c2)
+function! Swap_operands(left_length, l_operand, op, r_operand, col1, col2)
 
-    let left_length  = strlen(a:spaces . a:l . a:ops . a:r) + 2
-    let right_length = a:c2 - a:c1 - left_length
+    let right_length = a:col2 - a:col1 - a:left_length
 
-    let res  = printf('%' . left_length . 's%-' . right_length . 's', a:r . ' ' . a:ops . ' ' . a:l, ' ')
+    let res  = printf('%' . a:left_length . 's%-' . right_length . 's',
+        \a:r_operand . ' ' . a:op . ' ' . a:l_operand, ' ')
 
     return res
 
 endfunction
 
-vmap <leader>= :<c-u>call Swap_comparison()<cr>
-
-" This should work!
-" vmap <leader>= :substitute/\%V\([[:space:]]*\)\(.\{-1,}\)[[:space:]]*\(===\<bar>!==\<bar><>\<bar>\%(=[=~]\<bar>![=~]\<bar>>=\<bar>>\<bar><=\<bar><\)[#?]\?\)[[:space:]]*\(.\+\)\([[:space:]]*\)/\1 \4 \3 \2 \5<cr>
+vmap <leader>= :<c-u>call Swap_comparison_operands()<cr>
