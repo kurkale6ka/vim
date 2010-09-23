@@ -3,13 +3,10 @@
 " There will be a shift of one character to the right for the cases:
 " a ==b or a== b
 "
-" Note: \%V should restrict the operation to the visual area only!
-"       :s actually operates from '< to EOL!
-"       This is why I had to add the column matching (\% . col_end . c)
-"
 " Todo: rightleft
 " Todo: repeat.vim
 " Todo: add the possibility to define custom 'operators'
+" Todo: Change [&& 'V' !=# visualmode()] to something better (see line 47)
 
 if exists('g:loaded_swap')
     finish

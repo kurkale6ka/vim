@@ -1,0 +1,103 @@
+*swap.txt* For Vim version 7                      Last change: 23 September 2010
+
+
+                             Easy swapping of text~
+
+
+                              By Dimitar Dimitrov
+                                   kurkale6ka
+                                mitkofr@yahoo.fr
+
+                                Reference Manual~
+
+
+Latest version at:
+http://github.com/kurkale6ka/vimfiles/blob/master/doc/swap.txt
+
+
+
+1. Visual mode                                                      |swap-visual|
+2. Normal mode                                                      |swap-normal|
+3. Comparison operators                                          |swap-operators|
+
+The functionality mentioned here is a plugin, see |add-plugin|. You can avoid
+loading this plugin by setting the swap global variable in your |vimrc| file:
+>
+    :let g:loaded_swap = 1
+<
+================================================================================
+1. Visual mode                                                      *swap-visual*
+
+    1.1 \=~
+
+    First select some text ([] represents the highlighted area). Then press \=
+>
+    [a == 123] [  a == 123 ] [a==123] [a== 123]
+         |           |           |        |
+         V           V           V        V
+     123 == a     123 == a    123==a   123 == a
+<
+    Note: Your selection can be loose and include white spaces at both ends.
+
+    1.2 \\=~
+
+    By default the plugin acts on comparison operators |comparison_operators|
+    You are however allowed to specify any pivot for the swapping.
+
+    First select some text. Then press \\=
+    You will be asked to give a pattern (,\s used here)
+>
+    function! ([first, second])
+                 |
+                 V
+    function! (second, first)
+<
+    1.3~
+
+    You can also use V, v or ^v to select several lines (v used), then press \=
+>
+    a == [123
+    user !~ unknown
+    0]!=#1
+        |
+        V
+    123 == a
+    unknown !~ user
+    1!=#0
+<
+================================================================================
+2. Normal mode                                                      *swap-normal*
+
+    2.1 \=~
+
+    X indicates the cursor position in the examples below.
+>
+    zero onXe two three ...
+             |
+             V
+    zero two one three ...
+<
+    2.2 \l=~
+>
+    zero one twXo three ...
+             |
+             V
+    zero two one three ...
+<
+    Note: Word swapping support is very limited for now. It won't work if used
+          on the last or previous to last Word in a sentence.
+
+================================================================================
+3. Supported comparison operators                                *swap-operators*
+
+==             ==#             ==?             ===
+!=             !=#             !=?             !==
+>              >#              >?              <>
+>=             >=#             >=?
+<              <#              <?
+<=             <=#             <=?
+=~             =~#             =~?
+!~             !~#             !~?
+
+================================================================================
+ vim: textwidth=80 tabstop=8 filetype=help
