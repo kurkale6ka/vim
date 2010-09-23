@@ -9,19 +9,21 @@
 "
 " Todo: rightleft + '.' + check if loaded
 
-function! Swap_comparison_operands()
+function! Swap_comparison_operands(mode)
+
+    if 'v' == a:mode
 
     let operators = '\(===\|!==\|<>\|\%(=[=~]\|![=~]\|>=\|>\|<=\|<\)[#?]\?\)'
 
     "if 'V' == visualmode()
 
-        "let col_start = col('^')
+        "let col_start = 1
         "let col_end   = col('$') + 1
 
         "execute '*substitute/\([[:space:]]*\)\(.\{-1,}\)\([[:space:]]*\)' .
             "\operators .
             "\'\([[:space:]]*\)\(.\{-1,}\)[[:space:]]*' .
-            "\'/\=' .
+            "\'$/\=' .
             "\'Swap_operands(' .
             "\'strlen(submatch(1) . submatch(2) . submatch(4) . submatch(6)),' .
             "\'submatch(2),' .
@@ -55,6 +57,14 @@ function! Swap_comparison_operands()
             \'col_start,'   .
             \'col_end)'
     "endif
+    elseif 'nr' == a:mode
+
+        normal daWWP
+
+    elseif 'nl' == a:mode
+
+        normal daWBP
+    endif
 
 endfunction
 
@@ -97,4 +107,6 @@ function! Swap_operands(left_length, l_ope, sp1, op, sp2, r_ope, col1, col2)
 
 endfunction
 
-vmap <leader>= :<c-u>call Swap_comparison_operands()<cr>
+vmap <leader>=  :<c-u>call Swap_comparison_operands('v')<cr>
+nmap <leader>=  :     call Swap_comparison_operands('nr')<cr>
+nmap <leader>l= :     call Swap_comparison_operands('nl')<cr>
