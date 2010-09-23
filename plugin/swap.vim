@@ -13,6 +13,7 @@ function! Swap_comparison_operands(mode) range
 
     if a:mode =~ 'v'
 
+        " visual interactive :)
         if 'vi' == a:mode
 
             let operators = input('Pivot: ')
