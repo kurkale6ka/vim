@@ -21,9 +21,9 @@ function! Swap_comparison_operands(mode) range
         if 'vi' == a:mode
 
             let operators = input('Pivot: ')
-            let operators = '\(' . operators . '\)'
+            let operators = '\%(' . operators . '\)'
         else
-            let operators = '\(===\|!==\|<>\|\%(=[=~]\|![=~]\|>=\|>\|<=\|<\)[#?]\?\)'
+            let operators = '\%(===\|!==\|<>\|\%(=[=~]\|![=~]\|>=\|>\|<=\|<\)[#?]\?\)'
         endif
 
         if col("'<") < col("'>")
@@ -46,68 +46,21 @@ function! Swap_comparison_operands(mode) range
                 let col_end   = col('$')
             endif
 
-            execute 'silent substitute/\%' . col_start . 'c\([[:space:]]*\)\(.\{-1,}\)\([[:space:]]*\)' .
+            execute 'silent substitute/\%' . col_start . 'c[[:space:]]*\zs\(.\{-1,}\)\([[:space:]]*' .
                 \operators .
-                \'\([[:space:]]*\)\(.\{-1,}\)[[:space:]]*' .
-                \'\%' . col_end . 'c/\=' .
-                \'Swap_operands(' .
-                \'strlen(submatch(1) . submatch(2) . submatch(4) . submatch(6)),' .
-                \'submatch(2),' .
-                \'submatch(3),' .
-                \'submatch(4),' .
-                \'submatch(5),' .
-                \'submatch(6),' .
-                \col_start. ',' .
-                \col_end  . ')/e'
+                \'[[:space:]]*\)\(.\{-1,}\)\ze[[:space:]]*' .
+                \'\%' . col_end . 'c/\3\2\1/e'
         endfor
 
     elseif 'nr' == a:mode
 
-        normal daWWP
+        "let word = 
+        execute "substitute/\(\<c-r>\<c-a>\)\([[:space:]]\+\|\_[[:space:]]*\)\(\[^[:space:]]\+\)/\3\2\1/e"
 
     elseif 'nl' == a:mode
 
-        normal daWBP
+        execute "substitute/\(\[^[:space:]]\+\)\([[:space:]]\+\|\_[[:space:]]*\)\(\<c-r>\<c-a>\)/\3\2\1/e"
     endif
-
-endfunction
-
-function! Swap_operands(left_length, l_ope, sp1, op, sp2, r_ope, col1, col2)
-
-    let right_length = a:col2 - a:col1 - a:left_length
-
-    " a==b
-    " ->
-    " b==a
-    if a:sp1 !~ '[[:space:]]' && a:sp2 !~ '[[:space:]]'
-
-        if right_length > 0 && 'V' !=# visualmode()
-
-            let res  = printf('%' . a:left_length . 's%-' . right_length . 's',
-                \a:r_ope . a:op . a:l_ope, ' ')
-        else
-            let res  = printf('%' . a:left_length . 's',
-                \a:r_ope . a:op . a:l_ope)
-        endif
-
-    " a == b or a ==b or a== b
-    " ->
-    " b == a
-    else
-        let _left_length = a:left_length + 2
-        let _right_length = right_length - 2
-
-        if right_length > 2 && 'V' !=# visualmode()
-
-            let res  = printf('%' . _left_length . 's%-' . _right_length . 's',
-                \a:r_ope . ' ' . a:op . ' ' . a:l_ope, ' ')
-        else
-            let res  = printf('%' . _left_length . 's',
-                \a:r_ope . ' ' . a:op . ' ' . a:l_ope)
-        endif
-    endif
-
-    return res
 
 endfunction
 
