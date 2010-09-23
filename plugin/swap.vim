@@ -7,7 +7,14 @@
 "       :s actually operates from '< to EOL!
 "       This is why I had to add the column matching (\% . col_end . c)
 "
-" Todo: rightleft + '.' + check if loaded
+" Todo: rightleft
+" Todo: repeat.vim
+" Todo: add the possibility to define custom 'operators'
+
+if exists('g:loaded_swap')
+    finish
+endif
+let g:loaded_swap = 1
 
 function! Swap_comparison_operands(mode) range
 
