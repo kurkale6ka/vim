@@ -9,7 +9,7 @@
 " Todo: Change [&& 'V' !=# visualmode()] to something better (see line 47)
 
 "if exists('g:loaded_swap')
-    "finish
+"finish
 "endif
 "let g:loaded_swap = 1
 
@@ -52,16 +52,15 @@ function! Swap_comparison_operands(mode) range
                 \'\%' . col_end . 'c/\3\2\1/e'
         endfor
 
-    elseif 'nr' == a:mode
+    elseif a:mode =~ 'n'
 
-        let word = matchstr(getline('.'), '\S*\%' . col('.') . 'c\S*')
-        execute 'substitute/\(' . word . '\)\([[:space:]]\+\|\_[[:space:]]*\)\([^[:space:]]\+\)/\3\2\1/e'
+        if 'nl' == a:mode
 
-    elseif 'nl' == a:mode
+            call search('[^[:space:]]\+\%([[:space:]]\+\|\_[[:space:]]\+\)[^[:space:]]*\%' . col('.') . 'c', 'b')
+        endif
 
-        call search('[^[:space:]]\+\%([[:space:]]\+\|\_[[:space:]]*\)\S*\%' . col('.') . 'c', 'b')
-        let word = matchstr(getline('.'), '\S*\%' . col('.') . 'c\S*')
-        execute 'substitute/\(' . word . '\)\([[:space:]]\+\|\_[[:space:]]*\)\([^[:space:]]\+\)/\3\2\1/e'
+        execute 'substitute/\([^[:space:]]*\%' . col('.') . 'c[^[:space:]]*\)\([[:space:]]\+\|\_[[:space:]]*\)\([^[:space:]]\+\)/\3\2\1/e'
+
     endif
 
 endfunction
