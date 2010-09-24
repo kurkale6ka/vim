@@ -8,10 +8,10 @@
 " Todo: add the possibility to define custom 'operators'
 " Todo: Change [&& 'V' !=# visualmode()] to something better (see line 47)
 
-if exists('g:loaded_swap')
-    finish
-endif
-let g:loaded_swap = 1
+"if exists('g:loaded_swap')
+    "finish
+"endif
+"let g:loaded_swap = 1
 
 function! Swap_comparison_operands(mode) range
 
@@ -54,12 +54,14 @@ function! Swap_comparison_operands(mode) range
 
     elseif 'nr' == a:mode
 
-        "let word = 
-        execute "substitute/\(\<c-r>\<c-a>\)\([[:space:]]\+\|\_[[:space:]]*\)\(\[^[:space:]]\+\)/\3\2\1/e"
+        let word = matchstr(getline('.'), '\S*\%' . col('.') . 'c\S*')
+        execute 'substitute/\(' . word . '\)\([[:space:]]\+\|\_[[:space:]]*\)\([^[:space:]]\+\)/\3\2\1/e'
 
     elseif 'nl' == a:mode
 
-        execute "substitute/\(\[^[:space:]]\+\)\([[:space:]]\+\|\_[[:space:]]*\)\(\<c-r>\<c-a>\)/\3\2\1/e"
+        call search('[^[:space:]]\+\%([[:space:]]\+\|\_[[:space:]]*\)\S*\%' . col('.') . 'c', 'b')
+        let word = matchstr(getline('.'), '\S*\%' . col('.') . 'c\S*')
+        execute 'substitute/\(' . word . '\)\([[:space:]]\+\|\_[[:space:]]*\)\([^[:space:]]\+\)/\3\2\1/e'
     endif
 
 endfunction
