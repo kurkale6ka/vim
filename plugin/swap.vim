@@ -11,10 +11,10 @@
 " Todo: re-position the cursor using cursor()
 "       Position of cursor in the visual area?
 
-"if exists('g:loaded_swap')
-"finish
-"endif
-"let g:loaded_swap = 1
+if exists('g:loaded_swap')
+    finish
+endif
+let g:loaded_swap = 1
 
 function! Swap_comparison_operands(mode) range
 
