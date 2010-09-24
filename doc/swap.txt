@@ -1,4 +1,4 @@
-*swap.txt* For Vim version 7                      Last change: 23 September 2010
+*swap.txt* For Vim version 7                      Last change: 24 September 2010
 
 
                              Easy swapping of text~
@@ -28,23 +28,23 @@ loading this plugin by setting the swap global variable in your |vimrc| file:
 ================================================================================
 1. Visual mode                                                      *swap-visual*
 
-    1.1 \=~
+    1.1 \x~
 
-    First select some text ([] represents the highlighted area). Then press \=
+    First select some text ([] represents the highlighted area). Then press \x
 >
-    [a == 123] [  a == 123 ] [a==123] [a== 123]
-         |           |           |        |
-         V           V           V        V
-     123 == a     123 == a    123==a   123 == a
+    [a == 123] [  a == 123 ] [a==123]
+         |           |           |
+         V           V           V
+     123 == a     123 == a    123==a
 <
     Note: Your selection can be loose and include white spaces at both ends.
 
-    1.2 \\=~
+    1.2 \\x~
 
     By default the plugin acts on comparison operators |comparison_operators|
     You are however allowed to specify any pivot for the swapping.
 
-    First select some text. Then press \\=
+    First select some text. Then press \\x
     You will be asked to give a pattern (,\s used here)
 >
     function! ([first, second])
@@ -54,7 +54,7 @@ loading this plugin by setting the swap global variable in your |vimrc| file:
 <
     1.3~
 
-    You can also use V, v or ^v to select several lines (v used), then press \=
+    You can also use V, v or ^v to select several lines (v used), then press \x
 >
     a == [123
     user !~ unknown
@@ -68,7 +68,7 @@ loading this plugin by setting the swap global variable in your |vimrc| file:
 ================================================================================
 2. Normal mode                                                      *swap-normal*
 
-    2.1 \=~
+    2.1 \x~
 
     X indicates the cursor position in the examples below.
 >

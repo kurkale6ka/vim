@@ -36,9 +36,9 @@ function! Swap_comparison_operands(mode) range
 
             execute 'silent ' . a:firstline . ',' . a:lastline .
                 \'substitute/^[[:space:]]*\zs' .
-                \'\([^[:space:]].\{-1,}\)' .
+                \'\([^[:space:]].\{-}\)' .
                 \'\([[:space:]]*' . operators . '[[:space:]]*\)' .
-                \'\([^[:space:]].\{-1,}\)' .
+                \'\([^[:space:]].\{-}\)' .
                 \'\ze[[:space:]]*$/\3\2\1/e'
         else
             if col("'<") < col("'>")
@@ -52,9 +52,9 @@ function! Swap_comparison_operands(mode) range
 
             execute 'silent ' . a:firstline . ',' . a:lastline .
                 \'substitute/\%' . col_start . 'c[[:space:]]*\zs' .
-                \'\([^[:space:]].\{-1,}\)' .
+                \'\([^[:space:]].\{-}\)' .
                 \'\([[:space:]]*' . operators . '[[:space:]]*\)' .
-                \'\([^[:space:]].\{-1,}\)' .
+                \'\([^[:space:]].\{-}\)' .
                 \'\ze[[:space:]]*\%' . col_end . 'c/\3\2\1/e'
         endif
 
