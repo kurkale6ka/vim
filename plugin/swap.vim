@@ -1,14 +1,20 @@
-" Chosen rule: keep the left position unchanged
+" Easy swapping of text
+"
+" Author: Dimitar Dimitrov (mitkofr@yahoo.fr), kurkale6ka
+"
+" Latest version at:
+" http://github.com/kurkale6ka/vimfiles/blob/master/plugin/swap.vim
 "
 " Todo: rightleft
 " Todo: repeat.vim
 " Todo: add the possibility to define custom 'operators'
 " Todo: re-position the cursor using cursor()
+"       Position of cursor in the visual area?
 
-if exists('g:loaded_swap')
-    finish
-endif
-let g:loaded_swap = 1
+"if exists('g:loaded_swap')
+"finish
+"endif
+"let g:loaded_swap = 1
 
 function! Swap_comparison_operands(mode) range
 
@@ -20,54 +26,57 @@ function! Swap_comparison_operands(mode) range
             let operators = input('Pivot: ')
             let operators = '\%(' . operators . '\)'
         else
-            let operators = '\%(===\|!==\|<>\|\%(=[=~]\|![=~]\|>=\|>\|<=\|<\)[#?]\?\)'
+            let operators =
+                \'\%(===\|!==\|<>\|\%(=[=~]\|![=~]\|>=\|>\|<=\|<\)[#?]\?\)'
         endif
 
-        if col("'<") < col("'>")
-
-            let col_start = col("'<")
-            let col_end   = col("'>") + 1
-        else
-            let col_start = col("'>")
-            let col_end   = col("'<") + 1
-        endif
-
+        " Whole lines
         if 'V' ==# visualmode() ||
             \ 'v' ==# visualmode() && line("'<") != line("'>")
 
-            execute 'silent ' . a:firstline . ',' . a:lastline . 'substitute/^[[:space:]]*\zs\(.\{-1,}\)\([[:space:]]*' .
-                \operators .
-                \'[[:space:]]*\)\(.\{-1,}\)\ze[[:space:]]*$/\3\2\1/e'
+            execute 'silent ' . a:firstline . ',' . a:lastline .
+                \'substitute/^[[:space:]]*\zs' .
+                \'\([^[:space:]].\{-1,}\)' .
+                \'\([[:space:]]*' . operators . '[[:space:]]*\)' .
+                \'\([^[:space:]].\{-1,}\)' .
+                \'\ze[[:space:]]*$/\3\2\1/e'
+        else
+            if col("'<") < col("'>")
+
+                let col_start = col("'<")
+                let col_end   = col("'>") + 1
+            else
+                let col_start = col("'>")
+                let col_end   = col("'<") + 1
+            endif
+
+            execute 'silent ' . a:firstline . ',' . a:lastline .
+                \'substitute/\%' . col_start . 'c[[:space:]]*\zs' .
+                \'\([^[:space:]].\{-1,}\)' .
+                \'\([[:space:]]*' . operators . '[[:space:]]*\)' .
+                \'\([^[:space:]].\{-1,}\)' .
+                \'\ze[[:space:]]*\%' . col_end . 'c/\3\2\1/e'
         endif
 
-        execute 'silent ' . a:firstline . ',' . a:lastline . 'substitute/\%' . col_start . 'c[[:space:]]*\zs\(.\{-1,}\)\([[:space:]]*' .
-            \operators .
-            \'[[:space:]]*\)\(.\{-1,}\)\ze[[:space:]]*' .
-            \'\%' . col_end . 'c/\3\2\1/e'
-
-        let col_end_bak = col_end - 1
-
-        execute 'normal ' . col_end_bak . '|'
+        normal `>
 
     elseif a:mode =~ 'n'
 
-        let col_start_bak = col('.')
+        let col_bak  = col('.')
+        let line_bak = line('.')
 
         if 'nl' == a:mode
 
-            call search('[^[:space:]]\+\%([[:space:]]\+\|\_[[:space:]]\+\)[^[:space:]]*\%' . col('.') . 'c', 'b')
-        else
-            let line_bak = line('.')
+            call search('[^[:space:]]\+' .
+                \'\%([[:space:]]\+\|\_[[:space:]]\+\)' .
+                \'[^[:space:]]*\%' . col('.') . 'c', 'b')
         endif
 
-        execute 'substitute/\([^[:space:]]*\%' . col('.') . 'c[^[:space:]]*\)\([[:space:]]\+\|\_[[:space:]]*\)\([^[:space:]]\+\)/\3\2\1/e'
+        execute 'substitute/\([^[:space:]]*\%' . col('.') . 'c[^[:space:]]*\)' .
+            \'\([[:space:]]\+\|\_[[:space:]]*\)' .
+            \'\([^[:space:]]\+\)/\3\2\1/e'
 
-        if 'nr' == a:mode
-
-            execute line_bak
-        endif
-
-        execute 'normal ' . col_start_bak . '|'
+        call cursor(line_bak, col_bak)
 
     endif
 
