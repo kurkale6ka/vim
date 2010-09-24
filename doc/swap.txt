@@ -32,10 +32,10 @@ loading this plugin by setting the swap global variable in your |vimrc| file:
 
     First select some text ([] represents the highlighted area). Then press \x
 >
-    [a == 123] [  a == 123 ] [a==123]
-         |           |           |
-         V           V           V
-     123 == a     123 == a    123==a
+    [a ==   123] [  a == 123 ] [a==123]
+          |            |           |
+          V            V           V
+     123 ==   a     123 == a    123==a
 <
     Note: Your selection can be loose and include white spaces at both ends.
 
@@ -72,21 +72,21 @@ loading this plugin by setting the swap global variable in your |vimrc| file:
 
     X indicates the cursor position in the examples below.
 >
-    zero onXe two three ...
+          X
+    zero one      a_longer_word three
              |
              V
-    zero two one three ...
+    zero a_longer_word      one three
 <
-    2.2 \l=~
+    2.2 \<left>x~
 >
-    zero one twXo three ...
-             |
+    zero one two three
+    let's have some more fun
+      X      |
              V
-    zero two one three ...
+    zero one two let's
+    three have some more fun
 <
-    Note: Word swapping support is very limited for now. It won't work if used
-          on the last or previous to last Word in a sentence.
-
 ================================================================================
 3. Supported comparison operators                                *swap-operators*
 
