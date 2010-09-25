@@ -17,6 +17,7 @@ let g:loaded_sequence = 1
 
 function! Sequence(operation) range
 
+    " subtraction or addition
     if a:operation =~ 'block'
 
         let counter = v:count1
@@ -24,7 +25,8 @@ function! Sequence(operation) range
         let counter = 0
     endif
 
-    if a:operation =~ 'x'
+    " subtraction
+    if 'block_x' == a:operation
 
         let operation = '-'
     else
