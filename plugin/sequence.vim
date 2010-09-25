@@ -7,6 +7,8 @@
 "
 " Todo: vb mode
 " Todo: Calculate the range instead of giving one
+" Todo: repeat.vim
+" Todo: \<c-a> -> <c-A>? (same for \<c-x>
 
 if exists('g:loaded_sequence')
     finish
