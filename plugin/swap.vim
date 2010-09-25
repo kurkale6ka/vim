@@ -69,11 +69,11 @@ function! Swap_comparison_operands(mode) range
 
             call search('[^[:space:]]\+' .
                 \'\%([[:space:]]\+\|\_[[:space:]]\+\)' .
-                \'[^[:space:]]*\%' . col('.') . 'c', 'b')
+                \'[^[:space:]]*\%' . col('.') . 'c', 'bW')
         endif
 
         execute 'substitute/\([^[:space:]]*\%' . col('.') . 'c[^[:space:]]*\)' .
-            \'\([[:space:]]\+\|\_[[:space:]]*\)' .
+            \'\([[:space:]]\+\|\_[[:space:]]\+\)' .
             \'\([^[:space:]]\+\)/\3\2\1/e'
 
         call cursor(line_bak, col_bak)
@@ -85,4 +85,4 @@ endfunction
 vmap <leader>x         :call Swap_comparison_operands('v')<cr>
 vmap <leader><leader>x :call Swap_comparison_operands('vi')<cr>
 nmap <leader>x         :<c-u>call Swap_comparison_operands('nr')<cr>
-nmap <leader><left>x   :<c-u>call Swap_comparison_operands('nl')<cr>
+nmap <leader>X         :<c-u>call Swap_comparison_operands('nl')<cr>
