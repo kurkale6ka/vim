@@ -1,4 +1,4 @@
-*swap.txt* For Vim version 7                      Last change: 24 September 2010
+*swap.txt* For Vim version 7                      Last change: 25 September 2010
 
 
                              Easy swapping of text~
@@ -78,7 +78,7 @@ loading this plugin by setting the swap global variable in your |vimrc| file:
              V
     zero a_longer_word      one three
 <
-    2.2 \<left>x~
+    2.2 \X~
 >
     zero one two three
     let's have some more fun
