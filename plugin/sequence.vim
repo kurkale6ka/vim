@@ -6,6 +6,7 @@
 " http://github.com/kurkale6ka/vimfiles/blob/master/plugin/sequence.vim
 "
 " Todo: vb mode
+" Todo: Calculate the range instead of giving one
 
 if exists('g:loaded_sequence')
     finish
