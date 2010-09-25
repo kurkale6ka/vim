@@ -20,6 +20,8 @@ function! Swap_comparison_operands(mode) range
 
     if a:mode =~ 'v'
 
+        let save_cursor = getpos("'>")
+
         " visual interactive :)
         if 'vi' == a:mode
 
@@ -58,12 +60,9 @@ function! Swap_comparison_operands(mode) range
                 \'\ze[[:space:]]*\%' . col_end . 'c/\3\2\1/e'
         endif
 
-        normal `>
-
     elseif a:mode =~ 'n'
 
-        let col_bak  = col('.')
-        let line_bak = line('.')
+        let save_cursor = getpos(".")
 
         if 'nl' == a:mode
 
@@ -75,10 +74,9 @@ function! Swap_comparison_operands(mode) range
         execute 'substitute/\([^[:space:]]*\%' . col('.') . 'c[^[:space:]]*\)' .
             \'\([[:space:]]\+\|\_[[:space:]]\+\)' .
             \'\([^[:space:]]\+\)/\3\2\1/e'
-
-        call cursor(line_bak, col_bak)
-
     endif
+
+    call setpos('.', save_cursor)
 
 endfunction
 
