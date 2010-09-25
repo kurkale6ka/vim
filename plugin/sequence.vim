@@ -40,11 +40,11 @@ function! Sequence(operation) range
 
             if 'seq_i' == a:operation
 
-                let counter += 1
+                let counter += v:count1
 
             elseif 'seq_d' == a:operation
 
-                let counter -= 1
+                let counter -= v:count1
             endif
         endif
         +
