@@ -6,16 +6,34 @@
 " http://github.com/kurkale6ka/vimfiles/blob/master/plugin/sequence.vim
 "
 " Todo: vb mode
-" Todo: Calculate the range instead of giving one
 " Todo: repeat.vim
-" Todo: \<c-a> -> <c-A>? (same for \<c-x>
 
-if exists('g:loaded_sequence')
-    finish
-endif
-let g:loaded_sequence = 1
+"if exists('g:loaded_sequence')
+"finish
+"endif
+"let g:loaded_sequence = 1
 
 function! Sequence(operation) range
+
+    let firstline = a:firstline
+    let lastline  = a:lastline
+
+    let digit_pattern = '-\?\d\+'
+
+    if getline(firstline) =~ digit_pattern && firstline == lastline
+
+        while getline(firstline - 1) =~ digit_pattern && firstline > 1
+
+            let firstline -= 1
+        endwhile
+
+        while getline(lastline + 1) =~ digit_pattern && lastline < line('$')
+
+            let lastline += 1
+        endwhile
+
+        execute firstline
+    endif
 
     " subtraction or addition
     if a:operation =~ 'block'
@@ -33,9 +51,9 @@ function! Sequence(operation) range
         let operation = '+'
     endif
 
-    for i in range(0, a:lastline - a:firstline)
+    for i in range(0, lastline - firstline)
 
-        let digit = matchstr(getline('.'), '-\?\d\+')
+        let digit = matchstr(getline('.'), digit_pattern)
 
         if '' != digit
 
@@ -56,7 +74,10 @@ function! Sequence(operation) range
 
 endfunction
 
-vmap \<c-a> :call Sequence('seq_i')  <cr>
-vmap \<c-x> :call Sequence('seq_d')  <cr>
-vmap  <c-a> :call Sequence('block_a')<cr>
-vmap  <c-x> :call Sequence('block_x')<cr>
+vmap <m-a> :     call Sequence('seq_i')<cr>
+vmap <m-x> :     call Sequence('seq_d')<cr>
+nmap <m-a> :<c-u>call Sequence('seq_i')<cr>
+nmap <m-x> :<c-u>call Sequence('seq_d')<cr>
+
+vmap <c-a> :call Sequence('block_a')<cr>
+vmap <c-x> :call Sequence('block_x')<cr>
