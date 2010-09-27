@@ -20,6 +20,8 @@ if has('win32')
     behave xterm
 endif
 
+call pathogen#runtime_append_all_bundles()
+
 " Keep these lines after runtimepath!
 syntax on
 filetype plugin indent on
