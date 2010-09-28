@@ -84,6 +84,13 @@ function! blockinsert#do_exe (operation, col1, col2, row1, row2, text)
         let operation = go_start . v:count1 . 'x'
     endif
 
+    if a:row2 - a:row1 <= line('$') - line('.')
+
+        let lastline = a:row2 - a:row1 + 1
+    else
+        let lastline = line('$') - line('.') + 1
+    endif
+
     if !empty(a:col1)
 
         let current_line = getline('.')
@@ -97,16 +104,16 @@ function! blockinsert#do_exe (operation, col1, col2, row1, row2, text)
         let _col1 = strlen(str_to_col1)
         let _col2 = strlen(str_to_col2)
 
-        for i in range(1, a:row2 - a:row1 + 1)
+        for i in range(1, lastline)
 
-            if strpart(getline('.'), _col1 - 1, _col2 - _col1 + 1) =~ '[^[:space:]]\+'
+            if strpart(getline('.'), _col1 - 1, _col2 - _col1 + 1) =~ '[^[:space:]]'
 
                 execute 'normal ' . operation
             endif
             +
         endfor
     else
-        for i in range(1, a:row2 - a:row1 + 1)
+        for i in range(1, lastline)
 
             if getline('.') !~ '^[[:space:]]*$'
 
@@ -197,7 +204,7 @@ function! blockinsert#do (mode, ope1, ope2, col1, col2, row1, row2, text1, text2
         if "\<c-v>" == visualmode() ||
             \ 'v' ==# visualmode() && a:firstline == a:lastline
 
-            let _mode = 'vbr'
+            let mode = 'vbr'
 
             if virtcol("'<") < virtcol("'>")
 
@@ -208,14 +215,14 @@ function! blockinsert#do (mode, ope1, ope2, col1, col2, row1, row2, text1, text2
                 let col2 = virtcol("'<")
             endif
         else
-            let _mode = 'vlr'
+            let mode = 'vlr'
         endif
 
     elseif 'c' == a:mode
 
-        let _mode = 'cr'
+        let mode = 'cr'
     else
-        let _mode = a:mode
+        let mode = a:mode
     endif
 
     if 'vbr' == a:mode
@@ -252,7 +259,7 @@ function! blockinsert#do (mode, ope1, ope2, col1, col2, row1, row2, text1, text2
             let row2 = line("'}") - 1
         endif
 
-    " use previous range
+        " use previous range
     elseif a:mode =~ 'r'
 
         let  row1 = a:row1
@@ -287,13 +294,13 @@ function! blockinsert#do (mode, ope1, ope2, col1, col2, row1, row2, text1, text2
     set virtualedit=
 
     silent! call repeat#set(":\<c-u>call blockinsert#do ('" .
-        \         _mode .
-        \"', '" .  ope1 .
-        \"', '" .  ope2 .
-        \"',  " .  col1 .
-        \" ,  " .  col2 .
-        \" ,  " .  row1 .
-        \" ,  " .  row2 .
+        \         mode  .
+        \"', '" . ope1  .
+        \"', '" . ope2  .
+        \"',  " . col1  .
+        \" ,  " . col2  .
+        \" ,  " . row1  .
+        \" ,  " . row2  .
         \" , '" . text1 .
         \"', '" . text2 .
         \"')\<cr>"
