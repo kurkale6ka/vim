@@ -19,21 +19,21 @@
 
 function! blockinsert#do_exe (operation, col1, col2, row1, row2, text)
 
-    if empty(a:col1)
+    if empty(a:col1) && a:operation =~ 'q'
 
         let go_start = '^'
         let go_end   = '$'
+
+    elseif empty(a:col1) &&  a:operation !~ 'q'
+
+        let go_start = ''
+        let go_end   = ''
     else
         let col2 = a:col2 + 1
 
         let go_start = a:col1 . "|:call search('" . '\%' . a:col1 . 'v.\{-}\zs[^[:space:]].*\%' . col2 . "v', 'c'  , line('.'))\<cr>"
 
-        if a:col2 > virtcol('$')
-
-            let go_end   = a:col1 . "|:call search('" . '\%' . a:col1 . 'v.*[^[:space:]]\+\ze.*$' . "', 'ce', line('.'))\<cr>"
-        else
-            let go_end   = a:col1 . "|:call search('" . '\%' . a:col1 . 'v.*[^[:space:]]\+\ze.*\%' . col2 . "v', 'ce', line('.'))\<cr>"
-        endif
+        let go_end   = a:col1 . "|:call search('" . '\%' . a:col1 . 'v.*[^[:space:]]\+\ze.*\%' . col2 . "v', 'ce', line('.'))\<cr>"
 
         let block = 1
     endif
@@ -44,7 +44,7 @@ function! blockinsert#do_exe (operation, col1, col2, row1, row2, text)
 
             if exists('block')
 
-                let operation = go_end . v:count1 . 'a' . a:text . "\<esc>"
+                let operation = v:count1 . 'a' . a:text . "\<esc>"
             else
                 let operation = v:count1 . 'A' . a:text . "\<esc>"
             endif
@@ -53,7 +53,7 @@ function! blockinsert#do_exe (operation, col1, col2, row1, row2, text)
 
             if exists('block')
 
-                let operation = go_start . v:count1 . 'i' . a:text . "\<esc>"
+                let operation = v:count1 . 'i' . a:text . "\<esc>"
             else
                 let operation = v:count1 . 'I' . a:text . "\<esc>"
             endif
@@ -62,18 +62,18 @@ function! blockinsert#do_exe (operation, col1, col2, row1, row2, text)
 
             if v:count1 > 1 && a:text !~ '^[[:space:]]*[[:digit:]]'
 
-                let operation = go_end . v:count1 . a:text . "\<esc>"
+                let operation = v:count1 . a:text . "\<esc>"
             else
-                let operation = go_end . a:text . "\<esc>"
+                let operation = a:text . "\<esc>"
             endif
 
         elseif 'qi' == a:operation
 
             if v:count1 > 1 && a:text !~ '^[[:space:]]*[[:digit:]]'
 
-                let operation = go_start . v:count1 . a:text . "\<esc>"
+                let operation = v:count1 . a:text . "\<esc>"
             else
-                let operation = go_start . a:text . "\<esc>"
+                let operation = a:text . "\<esc>"
             endif
         endif
 
@@ -82,14 +82,13 @@ function! blockinsert#do_exe (operation, col1, col2, row1, row2, text)
         if v:count1 > 1
 
             let _count = v:count1 - 1
-            let go_end = go_end . _count . 'h'
         endif
 
-        let operation = go_end . v:count1 . 'x'
+        let operation = _count . 'h' . v:count1 . 'x'
 
     elseif a:operation =~ 'i'
 
-        let operation = go_start . v:count1 . 'x'
+        let operation = v:count1 . 'x'
     endif
 
     if a:row2 - a:row1 <= line('$') - line('.')
@@ -106,7 +105,9 @@ function! blockinsert#do_exe (operation, col1, col2, row1, row2, text)
             if a:col2 > virtcol('$')
 
                 let test_string = matchstr(getline('.'), '\%' . a:col1 . 'v.*$')
+                let go_end   = a:col1 . "|:call search('" . '\%' . a:col1 . 'v.*[^[:space:]]\+\ze.*$' . "', 'ce', line('.'))\<cr>"
             else
+
                 let test_string =
                     \matchstr(getline('.'), '\%' .a:col1. 'v.*\%' . col2 . 'v')
             endif
@@ -127,7 +128,12 @@ function! blockinsert#do_exe (operation, col1, col2, row1, row2, text)
                     let s:test_strings[i] = 1
                 endif
 
-                execute 'normal ' . operation
+                if a:operation =~ 'a'
+
+                    execute 'normal ' . go_end . operation
+                else
+                    execute 'normal ' . go_start . operation
+                endif
             endif
             +
         endfor
@@ -136,7 +142,12 @@ function! blockinsert#do_exe (operation, col1, col2, row1, row2, text)
 
             if getline('.') !~ '^[[:space:]]*$'
 
-                execute 'normal ' . operation
+                if a:operation =~ 'a'
+
+                    execute 'normal ' . go_end . operation
+                else
+                    execute 'normal ' . go_start . operation
+                endif
             endif
             +
         endfor
