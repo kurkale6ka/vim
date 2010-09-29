@@ -37,6 +37,18 @@ function! SpaceLine(both)
         endif
     endif
 
+    let virtualedit_bak = &virtualedit
+    set virtualedit=
+
+    if !empty(a:both)
+
+        silent! call repeat#set(":\<c-u>call SpaceLine(" . a:both . ")\<cr>")
+    else
+        silent! call repeat#set(":\<c-u>call SpaceLine('')\<cr>")
+    endif
+
+    let &virtualedit = virtualedit_bak
+
     call setpos('.', save_cursor)
 
 endfunction
