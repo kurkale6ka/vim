@@ -93,20 +93,17 @@ function! blockinsert#do_exe (operation, col1, col2, row1, row2, text)
 
     if !empty(a:col1)
 
-        let current_line = getline('.')
-
-        let _col1 = a:col1 + 1
-        let _col2 = a:col2 + 1
-
-        let str_to_col1 = substitute(current_line, '\%' . _col1 . 'v.*', '', '')
-        let str_to_col2 = substitute(current_line, '\%' . _col2 . 'v.*', '', '')
-
-        let _col1 = strlen(str_to_col1)
-        let _col2 = strlen(str_to_col2)
-
         for i in range(1, lastline)
 
-            if strpart(getline('.'), _col1 - 1, _col2 - _col1 + 1) =~ '[^[:space:]]'
+            if a:col2 > virtcol('$')
+
+                let test_string = matchstr(getline('.'), '\%' . a:col1 . 'v.*$')
+            else
+                let test_string =
+                    \matchstr(getline('.'), '\%' .a:col1. 'v.*\%' .a:col2. 'v')
+            endif
+
+            if test_string  =~ '[^[:space:]]'
 
                 execute 'normal ' . operation
             endif
