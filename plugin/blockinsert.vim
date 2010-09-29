@@ -12,10 +12,10 @@
 "
 " todo: When hitting <esc> after 'Enter text:', it should abort, not delete
 
-if exists('g:loaded_blockinsert')
-    finish
-endif
-let g:loaded_blockinsert = 1
+"if exists('g:loaded_blockinsert')
+"finish
+"endif
+"let g:loaded_blockinsert = 1
 
 function! blockinsert#do_exe (operation, col1, col2, row1, row2, text)
 
@@ -26,8 +26,14 @@ function! blockinsert#do_exe (operation, col1, col2, row1, row2, text)
     else
         let col2 = a:col2 + 1
 
-        let go_start = a:col1 . "|:call search('\%" . a:col1 . "v.*\zs[^[:space:]]\ze.*\%" . col2 . "v', 'c'  , line('.'))\<cr>"
-        let go_end   = a:col2 . "|:call search('\%" . a:col1 . "v.*\zs[^[:space:]]\ze.*\%" . col2 . "v', 'cbe', line('.'))\<cr>"
+        let go_start = a:col1 . "|:call search('" . '\%' . a:col1 . 'v.\{-}\zs[^[:space:]].*\%' . col2 . "v', 'c'  , line('.'))\<cr>"
+
+        if a:col2 > virtcol('$')
+
+            let go_end   = a:col1 . "|:call search('" . '\%' . a:col1 . 'v.*[^[:space:]]\+\ze.*$' . "', 'ce', line('.'))\<cr>"
+        else
+            let go_end   = a:col1 . "|:call search('" . '\%' . a:col1 . 'v.*[^[:space:]]\+\ze.*\%' . col2 . "v', 'ce', line('.'))\<cr>"
+        endif
 
         let block = 1
     endif
