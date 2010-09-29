@@ -24,8 +24,10 @@ function! blockinsert#do_exe (operation, col1, col2, row1, row2, text)
         let go_start = '^'
         let go_end   = '$'
     else
-        let go_start = a:col1 . "|:call search('[^[:space:]]', 'c')\<cr>"
-        let go_end   = a:col2 . "|:call search('[^[:space:]]', 'cb')\<cr>"
+        let col2 = a:col2 + 1
+
+        let go_start = a:col1 . "|:call search('\%" . a:col1 . "v.*\zs[^[:space:]]\ze.*\%" . col2 . "v', 'c'  , line('.'))\<cr>"
+        let go_end   = a:col2 . "|:call search('\%" . a:col1 . "v.*\zs[^[:space:]]\ze.*\%" . col2 . "v', 'cbe', line('.'))\<cr>"
 
         let block = 1
     endif
@@ -100,10 +102,24 @@ function! blockinsert#do_exe (operation, col1, col2, row1, row2, text)
                 let test_string = matchstr(getline('.'), '\%' . a:col1 . 'v.*$')
             else
                 let test_string =
-                    \matchstr(getline('.'), '\%' .a:col1. 'v.*\%' .a:col2. 'v')
+                    \matchstr(getline('.'), '\%' .a:col1. 'v.*\%' . col2 . 'v')
             endif
 
-            if test_string  =~ '[^[:space:]]'
+            " +-------------------+
+            " | s:test_strings[1] |
+            " +-------------------+
+            " |   empty portion   |
+            " +-------------------+
+            " | s:test_strings[2] |
+            " +-------------------+
+            " | s:test_strings[3] |
+            " +-------------------+
+            if has_key(s:test_strings, i) || test_string  =~ '[^[:space:]]'
+
+                if !has_key(s:test_strings, i)
+
+                    let s:test_strings[i] = 1
+                endif
 
                 execute 'normal ' . operation
             endif
@@ -199,7 +215,7 @@ function! blockinsert#do (mode, ope1, ope2, col1, col2, row1, row2, text1, text2
     if 'v' == a:mode
 
         if "\<c-v>" == visualmode() ||
-            \ 'v' ==# visualmode() && a:firstline == a:lastline
+            \  'v' ==# visualmode() && a:firstline == a:lastline
 
             let mode = 'vbr'
 
@@ -270,6 +286,8 @@ function! blockinsert#do (mode, ope1, ope2, col1, col2, row1, row2, text1, text2
 
         let line_bak = line('.')
     endif
+
+    let s:test_strings = {}
 
     if !empty(ope2)
 
