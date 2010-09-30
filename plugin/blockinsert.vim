@@ -19,22 +19,17 @@
 
 function! blockinsert#do_exe (operation, col1, col2, row1, row2, text)
 
-    if empty(a:col1) && a:operation =~ 'q'
+    if empty(a:col1) && a:operation =~ 'q' || '_delete_please' == a:text
 
         let go_start = '^'
         let go_end   = '$'
 
-    elseif empty(a:col1) &&  a:operation !~ 'q'
+        " I (insert) and A (append)
+    elseif empty(a:col1) && a:operation !~ 'q'
 
         let go_start = ''
         let go_end   = ''
     else
-        let col2 = a:col2 + 1
-
-        let go_start = a:col1 . "|:call search('" . '\%' . a:col1 . 'v.\{-}\zs[^[:space:]].*\%' . col2 . "v', 'c'  , line('.'))\<cr>"
-
-        let go_end   = a:col1 . "|:call search('" . '\%' . a:col1 . 'v.*[^[:space:]]\+\ze.*\%' . col2 . "v', 'ce', line('.'))\<cr>"
-
         let block = 1
     endif
 
@@ -82,15 +77,18 @@ function! blockinsert#do_exe (operation, col1, col2, row1, row2, text)
         if v:count1 > 1
 
             let _count = v:count1 - 1
-        endif
 
-        let operation = _count . 'h' . v:count1 . 'x'
+            let operation = _count . 'h' . v:count1 . 'x'
+        else
+            let operation = v:count1 . 'x'
+        endif
 
     elseif a:operation =~ 'i'
 
         let operation = v:count1 . 'x'
     endif
 
+    " Less lines to be transformed than the recorded range
     if a:row2 - a:row1 <= line('$') - line('.')
 
         let lastline = a:row2 - a:row1 + 1
@@ -102,14 +100,22 @@ function! blockinsert#do_exe (operation, col1, col2, row1, row2, text)
 
         for i in range(1, lastline)
 
-            if a:col2 > virtcol('$')
+            if a:col2 >= virtcol('$')
+
+                "let current_line = substitute(getline('.'), "\<tab>", '', 'g')
 
                 let test_string = matchstr(getline('.'), '\%' . a:col1 . 'v.*$')
+
+                let go_start = a:col1 . "|:call search('" . '\%' . a:col1 . 'v.\{-}\zs[^[:space:]].*$' . "', 'c', line('.'))\<cr>"
                 let go_end   = a:col1 . "|:call search('" . '\%' . a:col1 . 'v.*[^[:space:]]\+\ze.*$' . "', 'ce', line('.'))\<cr>"
             else
+                let col2 = a:col2 + 1
 
                 let test_string =
                     \matchstr(getline('.'), '\%' .a:col1. 'v.*\%' . col2 . 'v')
+
+                let go_start = a:col1 . "|:call search('" . '\%' . a:col1 . 'v.\{-}\zs[^[:space:]].*\%' . col2 . "v', 'c'  , line('.'))\<cr>"
+                let go_end   = a:col1 . "|:call search('" . '\%' . a:col1 . 'v.*[^[:space:]]\+\ze.*\%' . col2 . "v', 'ce', line('.'))\<cr>"
             endif
 
             " +-------------------+
@@ -121,7 +127,7 @@ function! blockinsert#do_exe (operation, col1, col2, row1, row2, text)
             " +-------------------+
             " | s:test_strings[3] |
             " +-------------------+
-            if has_key(s:test_strings, i) || test_string  =~ '[^[:space:]]'
+            if has_key(s:test_strings, i) || test_string =~ '[^[:space:]]'
 
                 if !has_key(s:test_strings, i)
 
@@ -248,7 +254,7 @@ function! blockinsert#do (mode, ope1, ope2, col1, col2, row1, row2, text1, text2
             let mode = 'vlr'
         endif
 
-    elseif 'c' == a:mode
+    elseif 'c' == a:mode && a:row1 != a:row2
 
         let mode = 'cr'
     else
@@ -268,7 +274,7 @@ function! blockinsert#do (mode, ope1, ope2, col1, col2, row1, row2, text1, text2
     endif
 
     " no range given
-    if 'n' == a:mode
+    if 'n' == a:mode || 'c' == a:mode && a:row1 == a:row2
 
         '{
 
@@ -292,11 +298,11 @@ function! blockinsert#do (mode, ope1, ope2, col1, col2, row1, row2, text1, text2
         " use previous range
     elseif a:mode =~ 'r'
 
-        let  row1 = a:row1
-        let  row2 = a:row2
+        let row1 = a:row1
+        let row2 = a:row2
     else
-        let  row1 = a:firstline
-        let  row2 = a:lastline
+        let row1 = a:firstline
+        let row2 = a:lastline
     endif
 
     if !empty(ope1) && !empty(ope2)
@@ -342,32 +348,33 @@ function! blockinsert#do (mode, ope1, ope2, col1, col2, row1, row2, text1, text2
 
 endfunction
 
-if exists('g:blockinsert_commands') && g:blockinsert_commands == 1
+" mode, ope1, ope2, col1, col2, row1, row2, text1, text2
+"if exists('g:blockinsert_commands') && g:blockinsert_commands == 1
 
-    command! -nargs=* -range BlockInsert
-        \ <line1>,<line2>call blockinsert#do ('c', '', 'i',  0, 0, 0, 0, '', <q-args>)
+command! -nargs=* -range BlockInsert
+    \ <line1>,<line2>call blockinsert#do ('c', '', 'i',  0, 0, <line1>, <line2>, '', <q-args>)
 
-    command! -nargs=* -range BlockAppend
-        \ <line1>,<line2>call blockinsert#do ('c', '', 'a',  0, 0, 0, 0, '', <q-args>)
+command! -nargs=* -range BlockAppend
+    \ <line1>,<line2>call blockinsert#do ('c', '', 'a',  0, 0, <line1>, <line2>, '', <q-args>)
 
-    command! -nargs=* -range BlockQInsert
-        \ <line1>,<line2>call blockinsert#do ('c', '', 'qi', 0, 0, 0, 0, '', <q-args>)
+command! -nargs=* -range BlockQInsert
+    \ <line1>,<line2>call blockinsert#do ('c', '', 'qi', 0, 0, <line1>, <line2>, '', <q-args>)
 
-    command! -nargs=* -range BlockQAppend
-        \ <line1>,<line2>call blockinsert#do ('c', '', 'qa', 0, 0, 0, 0, '', <q-args>)
+command! -nargs=* -range BlockQAppend
+    \ <line1>,<line2>call blockinsert#do ('c', '', 'qa', 0, 0, <line1>, <line2>, '', <q-args>)
 
-    command! -nargs=* -range BlockBoth
-        \ <line1>,<line2>call blockinsert#do ('c', 'i',  'a',  0, 0, 0, 0, <f-args>)
+command! -nargs=* -range BlockBoth
+    \ <line1>,<line2>call blockinsert#do ('c', 'i',   'a',   0, 0, <line1>, <line2>, <f-args>)
 
-    command! -nargs=* -range BlockBothSame
-        \ <line1>,<line2>call blockinsert#do ('c', 'iu',  'au',  0, 0, 0, 0, <q-args>, '')
+command! -nargs=* -range BlockBothSame
+    \ <line1>,<line2>call blockinsert#do ('c', 'iu',  'au',  0, 0, <line1>, <line2>, <q-args>, '')
 
-    command! -nargs=* -range BlockQBoth
-        \ <line1>,<line2>call blockinsert#do ('c', 'qi', 'qa', 0, 0, 0, 0, <f-args>)
+command! -nargs=* -range BlockQBoth
+    \ <line1>,<line2>call blockinsert#do ('c', 'qi',  'qa',  0, 0, <line1>, <line2>, <f-args>)
 
-    command! -nargs=* -range BlockQBothSame
-        \ <line1>,<line2>call blockinsert#do ('c', 'qiu', 'qau', 0, 0, 0, 0, <q-args>, '')
-endif
+command! -nargs=* -range BlockQBothSame
+    \ <line1>,<line2>call blockinsert#do ('c', 'qiu', 'qau', 0, 0, <line1>, <line2>, <q-args>, '')
+"endif
 
 " Insert / Append
 vmap <plug>blockinsert-i  :call blockinsert#do ('v', '', 'i',  0, 0, 0, 0, '', '')<cr>
