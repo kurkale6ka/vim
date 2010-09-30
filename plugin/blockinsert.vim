@@ -17,6 +17,31 @@
 "endif
 "let g:loaded_blockinsert = 1
 
+"function! Tab_spaces()
+
+    "normal h
+
+    "let before_tab = virtcol('.')
+
+    "call search('[^[:tab:]]', 'W', line('.'))
+
+    "let after_tab = virtcol('.')
+
+    "call search('[[:tab:]]\+', 'Wb', line('.'))
+
+    "return after_tab - before_tab - 1
+
+"endfunction
+
+"while search('\t\+','W',line('.'))
+
+    "let nb_spaces = Tab_spaces()
+    "echo nb_spaces
+    "sleep
+
+    "execute "normal x" . nb_spaces . "i \<esc>"
+"endwhile
+
 function! blockinsert#do_exe (operation, col1, col2, row1, row2, text)
 
     if empty(a:col1) && a:operation =~ 'q' || '_delete_please' == a:text
