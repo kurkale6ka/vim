@@ -7,7 +7,6 @@
 "
 " Todo: rightleft
 " Todo: repeat.vim
-" Todo: add the possibility to define custom 'operators'
 " Todo: re-position the cursor using cursor()
 "       Position of cursor in the visual area?
 
@@ -16,7 +15,7 @@ if exists('g:loaded_swap')
 endif
 let g:loaded_swap = 1
 
-function! Swap_comparison_operands(mode) range
+function! Swap_operands(mode) range
 
     if a:mode =~ 'v'
 
@@ -26,11 +25,37 @@ function! Swap_comparison_operands(mode) range
         if 'vi' == a:mode
 
             let operators = input('Pivot: ')
-            let operators = '\%(' . operators . '\)'
         else
-            let operators =
-                \'\%(===\|!==\|<>\|\%(=[=~]\|![=~]\|>=\|>\|<=\|<\)[#?]\?\)'
+            let logical_ops    = ['&&', '||']
+            let assignment_ops = ['+=', '-=', '*=', '/=', '%=', '&=', '|=',
+                \'^=', '<<=', '>>=']
+
+            let bitwise_ops    = ['<<', '>>']
+            let pointer_ops    = ['->*', '->']
+            let scope_ops      = ['::']
+            let comparison_ops = ['===', '!==', '<>', '==#', '!=#', '>#', '>=#',
+                \'<#', '<=#', '=~#', '!~#', '==?', '!=?', '>?', '>=?', '<?',
+                \'<=?', '=~?', '!~?', '==', '!=', '>=', '<=', '=~', '!~']
+
+            let misc_ops       = ['>', '<', '=', '+', '-', '*', '/', '%', '&',
+                \'|', '^', '.*', '.', '?', ':', ',', '~=', "'=", "'<", "'>",
+                \'!<', '!>']
+
+            let operators_list = logical_ops + assignment_ops + bitwise_ops +
+                \pointer_ops + scope_ops + comparison_ops + misc_ops
+
+            if exists('g:swap_custom_ops')
+
+                " let g:swap_custom_ops = ['first_operator', 'second_operator']
+                let operators_list += g:swap_custom_ops
+            endif
+
+            let operators = join(operators_list, '\|')
+            let g:opss = operators
+            let operators = escape(operators, '*/~.^')
         endif
+
+        let operators = '\%(' . operators . '\)'
 
         " Whole lines
         if 'V' ==# visualmode() ||
@@ -60,10 +85,12 @@ function! Swap_comparison_operands(mode) range
                 \'\ze[[:space:]]*\%' . col_end . 'c/\3\2\1/e'
         endif
 
+        " Swap Words
     elseif a:mode =~ 'n'
 
         let save_cursor = getpos(".")
 
+        " swap with Word on the left
         if 'nl' == a:mode
 
             call search('[^[:space:]]\+' .
@@ -71,6 +98,7 @@ function! Swap_comparison_operands(mode) range
                 \'[^[:space:]]*\%' . col('.') . 'c', 'bW')
         endif
 
+        " swap with Word on the right
         execute 'substitute/\([^[:space:]]*\%' . col('.') . 'c[^[:space:]]*\)' .
             \'\([[:space:]]\+\|\_[[:space:]]\+\)' .
             \'\([^[:space:]]\+\)/\3\2\1/e'
@@ -80,7 +108,7 @@ function! Swap_comparison_operands(mode) range
 
 endfunction
 
-vmap <leader>x         :call Swap_comparison_operands('v')<cr>
-vmap <leader><leader>x :call Swap_comparison_operands('vi')<cr>
-nmap <leader>x         :<c-u>call Swap_comparison_operands('nr')<cr>
-nmap <leader>X         :<c-u>call Swap_comparison_operands('nl')<cr>
+vmap <leader>x         :call Swap_operands('v')<cr>
+vmap <leader><leader>x :call Swap_operands('vi')<cr>
+nmap <leader>x         :<c-u>call Swap_operands('nr')<cr>
+nmap <leader>X         :<c-u>call Swap_operands('nl')<cr>
