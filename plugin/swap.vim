@@ -15,6 +15,9 @@ if exists('g:loaded_swap')
 endif
 let g:loaded_swap = 1
 
+let s:savecpo = &cpo
+set cpo&vim
+
 function! Swap_operands(mode) range
 
     if a:mode =~ 'v'
@@ -109,3 +112,6 @@ vmap <leader>x         :call Swap_operands('v')<cr>
 vmap <leader><leader>x :call Swap_operands('vi')<cr>
 nmap <leader>x         :<c-u>call Swap_operands('nr')<cr>
 nmap <leader>X         :<c-u>call Swap_operands('nl')<cr>
+
+let &cpo = s:savecpo
+unlet s:savecpo
