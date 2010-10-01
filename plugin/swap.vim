@@ -51,11 +51,8 @@ function! Swap_operands(mode) range
             endif
 
             let operators = join(operators_list, '\|')
-            let g:opss = operators
             let operators = escape(operators, '*/~.^')
         endif
-
-        let operators = '\%(' . operators . '\)'
 
         " Whole lines
         if 'V' ==# visualmode() ||
@@ -64,7 +61,7 @@ function! Swap_operands(mode) range
             execute 'silent ' . a:firstline . ',' . a:lastline .
                 \'substitute/^[[:space:]]*\zs' .
                 \'\([^[:space:]].\{-}\)' .
-                \'\([[:space:]]*' . operators . '[[:space:]]*\)' .
+                \'\([[:space:]]*\%(' . operators . '\)[[:space:]]*\)' .
                 \'\([^[:space:]].\{-}\)' .
                 \'\ze[[:space:]]*$/\3\2\1/e'
         else
@@ -80,7 +77,7 @@ function! Swap_operands(mode) range
             execute 'silent ' . a:firstline . ',' . a:lastline .
                 \'substitute/\%' . col_start . 'c[[:space:]]*\zs' .
                 \'\([^[:space:]].\{-}\)' .
-                \'\([[:space:]]*' . operators . '[[:space:]]*\)' .
+                \'\([[:space:]]*\%(' . operators . '\)[[:space:]]*\)' .
                 \'\([^[:space:]].\{-}\)' .
                 \'\ze[[:space:]]*\%' . col_end . 'c/\3\2\1/e'
         endif
