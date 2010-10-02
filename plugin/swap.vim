@@ -29,29 +29,32 @@ function! Swap_operands(mode) range
 
             let operators = input('Pivot: ')
         else
-            let logical_ops    = ['&&', '||']
-            let assignment_ops = ['+=', '-=', '*=', '/=', '%=', '&=', '|=',
-                \'^=', '<<=', '>>=']
+            let comparison_ops = ['===', '!==',  '<>', '==#', '!=#',  '>#',
+                                 \'>=#',  '<#', '<=#', '=~#', '!~#', '==?',
+                                 \'!=?',  '>?', '>=?',  '<?', '<=?', '=~?',
+                                 \'!~?',  '==',  '!=',  '>=',  '<=',  '=~',
+                                 \ '~=',  '!~']
+            let logical_ops    = [ '&&',  '||']
+            let assignment_ops = [ '+=',  '-=',  '*=',  '/=',  '%=',  '&=',
+                                 \ '|=',  '^=', '<<=', '>>=']
+            let scope_ops      = [ '::']
+            let pointer_ops    = ['->*',  '->',  '.*']
+            let bitwise_ops    = [ '<<',  '>>']
+            let misc_ops       = [  '>',   '<',   '=',   '+',   '-',   '*',
+                                 \  '/',   '%',   '&',   '|',   '^',   '.',
+                                 \  '?',   ':',   ',',  "'=",  "'<",  "'>",
+                                 \ '!<',  '!>']
 
-            let bitwise_ops    = ['<<', '>>']
-            let pointer_ops    = ['->*', '->']
-            let scope_ops      = ['::']
-            let comparison_ops = ['===', '!==', '<>', '==#', '!=#', '>#', '>=#',
-                \'<#', '<=#', '=~#', '!~#', '==?', '!=?', '>?', '>=?', '<?',
-                \'<=?', '=~?', '!~?', '==', '!=', '>=', '<=', '=~', '!~']
-
-            let misc_ops       = ['>', '<', '=', '+', '-', '*', '/', '%', '&',
-                \'|', '^', '.*', '.', '?', ':', ',', '~=', "'=", "'<", "'>",
-                \'!<', '!>']
-
-            let operators_list = logical_ops + assignment_ops + bitwise_ops +
-                \pointer_ops + scope_ops + comparison_ops + misc_ops
+            let operators_list = comparison_ops + logical_ops + assignment_ops +
+                \scope_ops + pointer_ops + bitwise_ops
 
             if exists('g:swap_custom_ops')
 
                 " let g:swap_custom_ops = ['first_operator', 'second_operator']
                 let operators_list += g:swap_custom_ops
             endif
+
+            let operators_list += misc_ops
 
             let operators = join(operators_list, '\|')
             let operators = escape(operators, '*/~.^')
@@ -85,7 +88,7 @@ function! Swap_operands(mode) range
                 \'\ze[[:space:]]*\%' . col_end . 'c/\3\2\1/e'
         endif
 
-        " Swap Words
+    " Swap Words
     elseif a:mode =~ 'n'
 
         let save_cursor = getpos(".")
