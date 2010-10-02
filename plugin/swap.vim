@@ -29,7 +29,7 @@ let g:loaded_swap = 1
 let s:savecpo = &cpoptions
 set cpoptions&vim
 
-function! s:Swap_operands(mode) range
+function! s:Swap(mode) range
 
     if a:mode =~ 'v'
 
@@ -130,10 +130,10 @@ function! s:Swap_operands(mode) range
 
 endfunction
 
-vmap <silent> <plug>SwapOperands      :call <sid>Swap_operands('v')<cr>
-vmap <silent> <plug>SwapOperandsPivot :call <sid>Swap_operands('vi')<cr>
-nmap <silent> <plug>SwapWithR_WORD    :<c-u>call <sid>Swap_operands('nr')<cr>
-nmap <silent> <plug>SwapWithL_WORD    :<c-u>call <sid>Swap_operands('nl')<cr>
+vmap <silent> <plug>SwapSwapOperands      :     call <sid>Swap('v' )<cr>
+vmap <silent> <plug>SwapSwapOperandsPivot :     call <sid>Swap('vi')<cr>
+nmap <silent> <plug>SwapSwapWithR_WORD    :<c-u>call <sid>Swap('nr')<cr>
+nmap <silent> <plug>SwapSwapWithL_WORD    :<c-u>call <sid>Swap('nl')<cr>
 
 let &cpoptions = s:savecpo
 unlet s:savecpo
