@@ -10,15 +10,26 @@
 " Todo: re-position the cursor using cursor()
 "       Position of cursor in the visual area?
 
-if exists('g:loaded_swap')
+if exists('g:loaded_swap') || &compatible || v:version < 700
+
+    if &compatible && &verbose
+
+        echo "Swap is not designed to work in compatible mode."
+
+    elseif v:version < 700
+
+        echo "Swap needs Vim 7.0 or above to work correctly."
+    endif
+
     finish
 endif
+
 let g:loaded_swap = 1
 
-let s:savecpo = &cpo
-set cpo&vim
+let s:savecpo = &cpoptions
+set cpoptions&vim
 
-function! Swap_operands(mode) range
+function! s:Swap_operands(mode) range
 
     if a:mode =~ 'v'
 
@@ -45,8 +56,12 @@ function! Swap_operands(mode) range
                                  \  '?',   ':',   ',',  "'=",  "'<",  "'>",
                                  \ '!<',  '!>']
 
-            let operators_list = comparison_ops + logical_ops + assignment_ops +
-                \scope_ops + pointer_ops + bitwise_ops
+            let operators_list = comparison_ops +
+                               \ logical_ops    +
+                               \ assignment_ops +
+                               \ scope_ops      +
+                               \ pointer_ops    +
+                               \ bitwise_ops
 
             if exists('g:swap_custom_ops')
 
@@ -57,7 +72,7 @@ function! Swap_operands(mode) range
             let operators_list += misc_ops
 
             let operators = join(operators_list, '\|')
-            let operators = escape(operators, '*/~.^')
+            let operators = escape(operators, '*/~.^$')
         endif
 
         " Whole lines
@@ -65,9 +80,10 @@ function! Swap_operands(mode) range
             \ 'v' ==# visualmode() && line("'<") != line("'>")
 
             execute 'silent ' . a:firstline . ',' . a:lastline .
-                \'substitute/^[[:space:]]*\zs' .
+                \'substitute/'           .
+                \  '^[[:space:]]*\zs'    .
                 \'\([^[:space:]].\{-}\)' .
-                \'\([[:space:]]*\%(' . operators . '\)[[:space:]]*\)' .
+                \ '\([[:space:]]*\%('    . operators . '\)[[:space:]]*\)' .
                 \'\([^[:space:]].\{-}\)' .
                 \'\ze[[:space:]]*$/\3\2\1/e'
         else
@@ -81,11 +97,11 @@ function! Swap_operands(mode) range
             endif
 
             execute 'silent ' . a:firstline . ',' . a:lastline .
-                \'substitute/\%' . col_start . 'c[[:space:]]*\zs' .
+                \'substitute/\%'         . col_start . 'c[[:space:]]*\zs' .
                 \'\([^[:space:]].\{-}\)' .
-                \'\([[:space:]]*\%(' . operators . '\)[[:space:]]*\)' .
+                \ '\([[:space:]]*\%('    . operators . '\)[[:space:]]*\)' .
                 \'\([^[:space:]].\{-}\)' .
-                \'\ze[[:space:]]*\%' . col_end . 'c/\3\2\1/e'
+                \'\ze[[:space:]]*\%'     . col_end . 'c/\3\2\1/e'
         endif
 
     " Swap Words
@@ -96,25 +112,28 @@ function! Swap_operands(mode) range
         " swap with Word on the left
         if 'nl' == a:mode
 
-            call search('[^[:space:]]\+' .
-                \'\%([[:space:]]\+\|\_[[:space:]]\+\)' .
-                \'[^[:space:]]*\%' . col('.') . 'c', 'bW')
+            call search('[^[:space:]]\+'  .
+                      \'\_[[:space:]]\+'  .
+                      \ '[^[:space:]]*\%' . col('.') . 'c', 'bW')
+                      " Todo: \'expand('<cWORD>'), 'bW')
         endif
 
         " swap with Word on the right
-        execute 'substitute/\([^[:space:]]*\%' . col('.') . 'c[^[:space:]]*\)' .
-            \'\([[:space:]]\+\|\_[[:space:]]\+\)' .
-            \'\([^[:space:]]\+\)/\3\2\1/e'
+        " Todo: execute 'substitute/\(' . expand('<cWORD>') . '\)' .
+        execute 'silent substitute/' .
+            \ '\([^[:space:]]*\%'    . col('.') . 'c[^[:space:]]*\)' .
+            \'\(\_[[:space:]]\+\)'   .
+            \ '\([^[:space:]]\+\)/\3\2\1/e'
     endif
 
     call setpos('.', save_cursor)
 
 endfunction
 
-vmap <leader>x         :call Swap_operands('v')<cr>
-vmap <leader><leader>x :call Swap_operands('vi')<cr>
-nmap <leader>x         :<c-u>call Swap_operands('nr')<cr>
-nmap <leader>X         :<c-u>call Swap_operands('nl')<cr>
+vmap <silent> <plug>SwapOperands      :call <sid>Swap_operands('v')<cr>
+vmap <silent> <plug>SwapOperandsPivot :call <sid>Swap_operands('vi')<cr>
+nmap <silent> <plug>SwapWithR_WORD    :<c-u>call <sid>Swap_operands('nr')<cr>
+nmap <silent> <plug>SwapWithL_WORD    :<c-u>call <sid>Swap_operands('nl')<cr>
 
-let &cpo = s:savecpo
+let &cpoptions = s:savecpo
 unlet s:savecpo

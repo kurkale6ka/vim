@@ -693,10 +693,15 @@ function! YRRunAfterMaps()
     nnoremap Y :YRYankCount 'y$'<cr>
 endfunction
 
-map tt <plug>(smarttill-t)
-map TT <plug>(smarttill-T)
-map ff <plug>(smarttill-f)
-map FF <plug>(smarttill-F)
+map tt <plug>Smarttill_t)
+map TT <plug>Smarttill_T)
+map ff <plug>Smarttill_f)
+map FF <plug>Smarttill_F)
+
+vmap <leader>x         <plug>SwapOperands
+vmap <leader><leader>x <plug>SwapOperandsPivot
+nmap <leader>x         <plug>SwapWithR_WORD
+nmap <leader>X         <plug>SwapWithL_WORD
 
 vmap <leader>i  <plug>blockinsert-i
 vmap <leader>a  <plug>blockinsert-a
