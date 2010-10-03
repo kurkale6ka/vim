@@ -703,6 +703,14 @@ vmap <leader><leader>x <plug>SwapSwapOperandsPivot
 nmap <leader>x         <plug>SwapSwapWithR_WORD
 nmap <leader>X         <plug>SwapSwapWithL_WORD
 
+vmap <m-a> <plug>SequenceV_Increment
+vmap <m-x> <plug>SequenceV_Decrement
+nmap <m-a> <plug>SequenceN_Increment
+nmap <m-x> <plug>SequenceN_Decrement
+
+vmap <c-a> <plug>SequenceAdd
+vmap <c-x> <plug>SequenceSubtract
+
 vmap <leader>i  <plug>blockinsert-i
 vmap <leader>a  <plug>blockinsert-a
 vmap <leader>qi <plug>blockinsert-qi

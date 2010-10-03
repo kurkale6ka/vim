@@ -7,12 +7,26 @@
 "
 " Todo: repeat.vim
 
-if exists('g:loaded_sequence')
+if exists('g:loaded_sequence') || &compatible || v:version < 700
+
+    if &compatible && &verbose
+
+        echo "Sequence is not designed to work in compatible mode."
+
+    elseif v:version < 700
+
+        echo "Sequence needs Vim 7.0 or above to work correctly."
+    endif
+
     finish
 endif
+
 let g:loaded_sequence = 1
 
-function! Sequence(mode, operation) range
+let s:savecpo = &cpoptions
+set cpoptions&vim
+
+function! s:Sequence(mode, operation) range
 
     let firstline = a:firstline
     let lastline  = a:lastline
@@ -108,10 +122,13 @@ function! Sequence(mode, operation) range
 
 endfunction
 
-vmap <m-a> :     call Sequence('v', 'seq_i')<cr>
-vmap <m-x> :     call Sequence('v', 'seq_d')<cr>
-nmap <m-a> :<c-u>call Sequence('n', 'seq_i')<cr>
-nmap <m-x> :<c-u>call Sequence('n', 'seq_d')<cr>
+vmap <silent> <plug>SequenceV_Increment :     call <sid>Sequence('v', 'seq_i')<cr>
+vmap <silent> <plug>SequenceV_Decrement :     call <sid>Sequence('v', 'seq_d')<cr>
+nmap <silent> <plug>SequenceN_Increment :<c-u>call <sid>Sequence('n', 'seq_i')<cr>
+nmap <silent> <plug>SequenceN_Decrement :<c-u>call <sid>Sequence('n', 'seq_d')<cr>
 
-vmap <c-a> :call Sequence('v', 'block_a')<cr>
-vmap <c-x> :call Sequence('v', 'block_x')<cr>
+vmap <silent> <plug>SequenceAdd      :call <sid>Sequence('v', 'block_a')<cr>
+vmap <silent> <plug>SequenceSubtract :call <sid>Sequence('v', 'block_x')<cr>
+
+let &cpoptions = s:savecpo
+unlet s:savecpo
