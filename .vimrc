@@ -711,29 +711,29 @@ nmap <m-x> <plug>SequenceN_Decrement
 vmap <c-a> <plug>SequenceAdd
 vmap <c-x> <plug>SequenceSubtract
 
-vmap <leader>i  <plug>blockinsert-i
-vmap <leader>a  <plug>blockinsert-a
-vmap <leader>qi <plug>blockinsert-qi
-vmap <leader>qa <plug>blockinsert-qa
+vmap <leader>i  <plug>BlockinsertVInsert
+vmap <leader>a  <plug>BlockinsertVAppend
+vmap <leader>qi <plug>BlockinsertVQ_Insert
+vmap <leader>qa <plug>BlockinsertVQ_Append
 
-nmap <leader>i  <plug>blockinsert-i
-nmap <leader>a  <plug>blockinsert-a
-nmap <leader>qi <plug>blockinsert-qi
-nmap <leader>qa <plug>blockinsert-qa
+nmap <leader>i  <plug>BlockinsertNInsert
+nmap <leader>a  <plug>BlockinsertNAppend
+nmap <leader>qi <plug>BlockinsertNQ_Insert
+nmap <leader>qa <plug>BlockinsertNQ_Append
 
-vmap <leader>[]  <plug>blockinsert-b
-vmap <leader>[[  <plug>blockinsert-ub
-vmap <leader>]]  <plug>blockinsert-ub
-vmap <leader>q[] <plug>blockinsert-qb
-vmap <leader>q[[ <plug>blockinsert-uqb
-vmap <leader>q]] <plug>blockinsert-uqb
+vmap <leader>[]  <plug>BlockinsertVBoth
+vmap <leader>[[  <plug>BlockinsertVBothSame
+vmap <leader>]]  <plug>BlockinsertVBothSame
+vmap <leader>q[] <plug>BlockinsertVQ_Both
+vmap <leader>q[[ <plug>BlockinsertVQ_BothSame
+vmap <leader>q]] <plug>BlockinsertVQ_BothSame
 
-nmap <leader>[]  <plug>blockinsert-b
-nmap <leader>[[  <plug>blockinsert-ub
-nmap <leader>]]  <plug>blockinsert-ub
-nmap <leader>q[] <plug>blockinsert-qb
-nmap <leader>q[[ <plug>blockinsert-uqb
-nmap <leader>q]] <plug>blockinsert-uqb
+nmap <leader>[]  <plug>BlockinsertNBoth
+nmap <leader>[[  <plug>BlockinsertNBothSame
+nmap <leader>]]  <plug>BlockinsertNBothSame
+nmap <leader>q[] <plug>BlockinsertNQ_Both
+nmap <leader>q[[ <plug>BlockinsertNQ_BothSame
+nmap <leader>q]] <plug>BlockinsertNQ_BothSame
 
 " Disable all those plugins!
 

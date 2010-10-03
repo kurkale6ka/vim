@@ -12,12 +12,26 @@
 "
 " todo: When hitting <esc> after 'Enter text:', it should abort, not delete
 
-"if exists('g:loaded_blockinsert')
-"finish
-"endif
-"let g:loaded_blockinsert = 1
+if exists('g:loaded_blockinsert') || &compatible || v:version < 700
 
-"function! Tab_spaces()
+    if &compatible && &verbose
+
+        echo "Blockinsert is not designed to work in compatible mode."
+
+    elseif v:version < 700
+
+        echo "Blockinsert needs Vim 7.0 or above to work correctly."
+    endif
+
+    finish
+endif
+
+let g:loaded_blockinsert = 1
+
+let s:savecpo = &cpoptions
+set cpoptions&vim
+
+"function! s:Tab_spaces()
 
     "normal h
 
@@ -35,21 +49,21 @@
 
 "while search('\t\+','W',line('.'))
 
-    "let nb_spaces = Tab_spaces()
+    "let nb_spaces = s:Tab_spaces()
     "echo nb_spaces
     "sleep
 
     "execute "normal x" . nb_spaces . "i \<esc>"
 "endwhile
 
-function! blockinsert#do_exe (operation, col1, col2, row1, row2, text)
+function! s:Do_exe (operation, col1, col2, row1, row2, text)
 
     if empty(a:col1) && a:operation =~ 'q' || '_delete_please' == a:text
 
         let go_start = '^'
         let go_end   = '$'
 
-        " I (insert) and A (append)
+    " I (insert) and A (append)
     elseif empty(a:col1) && a:operation !~ 'q'
 
         let go_start = ''
@@ -186,7 +200,7 @@ function! blockinsert#do_exe (operation, col1, col2, row1, row2, text)
 
 endfunction
 
-function! blockinsert#get_text (ope, text1, text2)
+function! s:Get_text (ope, text1, text2)
 
     if !empty(a:text1)
 
@@ -235,18 +249,18 @@ function! blockinsert#get_text (ope, text1, text2)
 
 endfunction
 
-function! blockinsert#do (mode, ope1, ope2, col1, col2, row1, row2, text1, text2) range
+function! s:Do (mode, ope1, ope2, col1, col2, row1, row2, text1, text2) range
 
     if !empty(a:ope1)
 
-        let text1 = blockinsert#get_text (a:ope1, a:text1, '')
+        let text1 = s:Get_text (a:ope1, a:text1, '')
     else
         let text1 = ''
     endif
 
     if !empty(a:ope2)
 
-        let text2 = blockinsert#get_text (a:ope2, a:text2, text1)
+        let text2 = s:Get_text (a:ope2, a:text2, text1)
     else
         let text2 = ''
     endif
@@ -339,7 +353,7 @@ function! blockinsert#do (mode, ope1, ope2, col1, col2, row1, row2, text1, text2
 
     if !empty(ope2)
 
-        call blockinsert#do_exe (ope2, col1, col2, row1, row2, text2)
+        call s:Do_exe (ope2, col1, col2, row1, row2, text2)
 
         if !empty(ope1)
 
@@ -349,14 +363,14 @@ function! blockinsert#do (mode, ope1, ope2, col1, col2, row1, row2, text1, text2
 
     if !empty(ope1)
 
-        call blockinsert#do_exe (ope1, col1, col2, row1, row2, text1)
+        call s:Do_exe (ope1, col1, col2, row1, row2, text1)
     endif
 
     " When enabled (my case :), it is causing problems
     let virtualedit_bak = &virtualedit
     set virtualedit=
 
-    silent! call repeat#set(":\<c-u>call blockinsert#do ('" .
+    silent! call repeat#set(":\<c-u>call s:Do ('" .
         \         mode  .
         \"', '" . ope1  .
         \"', '" . ope2  .
@@ -376,50 +390,106 @@ endfunction
 " mode, ope1, ope2, col1, col2, row1, row2, text1, text2
 "if exists('g:blockinsert_commands') && g:blockinsert_commands == 1
 
-command! -nargs=* -range BlockInsert
-    \ <line1>,<line2>call blockinsert#do ('c', '', 'i',  0, 0, <line1>, <line2>, '', <q-args>)
+command! -nargs=* -range BlockInsert <line1>,<line2>
+    \
+    \call <sid>Do ('c', '', 'i',  0, 0, <line1>, <line2>, '', <q-args>)
 
-command! -nargs=* -range BlockAppend
-    \ <line1>,<line2>call blockinsert#do ('c', '', 'a',  0, 0, <line1>, <line2>, '', <q-args>)
+command! -nargs=* -range BlockAppend <line1>,<line2>
+    \
+    \call <sid>Do ('c', '', 'a',  0, 0, <line1>, <line2>, '', <q-args>)
 
-command! -nargs=* -range BlockQInsert
-    \ <line1>,<line2>call blockinsert#do ('c', '', 'qi', 0, 0, <line1>, <line2>, '', <q-args>)
+command! -nargs=* -range BlockQInsert <line1>,<line2>
+    \
+    \call <sid>Do ('c', '', 'qi', 0, 0, <line1>, <line2>, '', <q-args>)
 
-command! -nargs=* -range BlockQAppend
-    \ <line1>,<line2>call blockinsert#do ('c', '', 'qa', 0, 0, <line1>, <line2>, '', <q-args>)
+command! -nargs=* -range BlockQAppend <line1>,<line2>
+    \
+    \call <sid>Do ('c', '', 'qa', 0, 0, <line1>, <line2>, '', <q-args>)
 
-command! -nargs=* -range BlockBoth
-    \ <line1>,<line2>call blockinsert#do ('c', 'i',   'a',   0, 0, <line1>, <line2>, <f-args>)
+command! -nargs=* -range BlockBoth <line1>,<line2>
+    \
+    \call <sid>Do ('c', 'i',   'a',   0, 0, <line1>, <line2>, <f-args>)
 
-command! -nargs=* -range BlockBothSame
-    \ <line1>,<line2>call blockinsert#do ('c', 'iu',  'au',  0, 0, <line1>, <line2>, <q-args>, '')
+command! -nargs=* -range BlockBothSame <line1>,<line2>
+    \
+    \call <sid>Do ('c', 'iu',  'au',  0, 0, <line1>, <line2>, <q-args>, '')
 
-command! -nargs=* -range BlockQBoth
-    \ <line1>,<line2>call blockinsert#do ('c', 'qi',  'qa',  0, 0, <line1>, <line2>, <f-args>)
+command! -nargs=* -range BlockQBoth <line1>,<line2>
+    \
+    \call <sid>Do ('c', 'qi',  'qa',  0, 0, <line1>, <line2>, <f-args>)
 
-command! -nargs=* -range BlockQBothSame
-    \ <line1>,<line2>call blockinsert#do ('c', 'qiu', 'qau', 0, 0, <line1>, <line2>, <q-args>, '')
+command! -nargs=* -range BlockQBothSame <line1>,<line2>
+    \
+    \call <sid>Do ('c', 'qiu', 'qau', 0, 0, <line1>, <line2>, <q-args>, '')
 "endif
 
 " Insert / Append
-vmap <plug>blockinsert-i  :call blockinsert#do ('v', '', 'i',  0, 0, 0, 0, '', '')<cr>
-vmap <plug>blockinsert-a  :call blockinsert#do ('v', '', 'a',  0, 0, 0, 0, '', '')<cr>
-vmap <plug>blockinsert-qi :call blockinsert#do ('v', '', 'qi', 0, 0, 0, 0, '', '')<cr>
-vmap <plug>blockinsert-qa :call blockinsert#do ('v', '', 'qa', 0, 0, 0, 0, '', '')<cr>
+vmap <silent> <plug>BlockinsertVInsert
+    \
+    \ :call <sid>Do ('v', '', 'i',  0, 0, 0, 0, '', '')<cr>
+
+vmap <silent> <plug>BlockinsertVAppend
+    \
+    \ :call <sid>Do ('v', '', 'a',  0, 0, 0, 0, '', '')<cr>
+
+vmap <silent> <plug>BlockinsertVQ_Insert
+    \
+    \ :call <sid>Do ('v', '', 'qi', 0, 0, 0, 0, '', '')<cr>
+
+vmap <silent> <plug>BlockinsertVQ_Append
+    \
+    \ :call <sid>Do ('v', '', 'qa', 0, 0, 0, 0, '', '')<cr>
+
 
 " Insert / Append
-nmap <plug>blockinsert-i  :<c-u>call blockinsert#do ('n', '', 'i',  0, 0, 0, 0, '', '')<cr>
-nmap <plug>blockinsert-a  :<c-u>call blockinsert#do ('n', '', 'a',  0, 0, 0, 0, '', '')<cr>
-nmap <plug>blockinsert-qi :<c-u>call blockinsert#do ('n', '', 'qi', 0, 0, 0, 0, '', '')<cr>
-nmap <plug>blockinsert-qa :<c-u>call blockinsert#do ('n', '', 'qa', 0, 0, 0, 0, '', '')<cr>
+nmap <silent> <plug>BlockinsertNInsert
+    \
+    \ :<c-u>call <sid>Do ('n', '', 'i',  0, 0, 0, 0, '', '')<cr>
+
+nmap <silent> <plug>BlockinsertNAppend
+    \
+    \ :<c-u>call <sid>Do ('n', '', 'a',  0, 0, 0, 0, '', '')<cr>
+
+nmap <silent> <plug>BlockinsertNQ_Insert
+    \
+    \ :<c-u>call <sid>Do ('n', '', 'qi', 0, 0, 0, 0, '', '')<cr>
+
+nmap <silent> <plug>BlockinsertNQ_Append
+    \
+    \ :<c-u>call <sid>Do ('n', '', 'qa', 0, 0, 0, 0, '', '')<cr>
 
 " Both Insert & Append
-vmap <plug>blockinsert-b   :call blockinsert#do ('v', 'i',   'a',   0, 0, 0, 0, '', '')<cr>
-vmap <plug>blockinsert-ub  :call blockinsert#do ('v', 'iu',  'au',  0, 0, 0, 0, '', '')<cr>
-vmap <plug>blockinsert-qb  :call blockinsert#do ('v', 'qi',  'qa',  0, 0, 0, 0, '', '')<cr>
-vmap <plug>blockinsert-uqb :call blockinsert#do ('v', 'qiu', 'qau', 0, 0, 0, 0, '', '')<cr>
+vmap <silent> <plug>BlockinsertVBoth
+    \
+    \ :call <sid>Do ('v', 'i',   'a',   0, 0, 0, 0, '', '')<cr>
 
-nmap <plug>blockinsert-b   :<c-u>call blockinsert#do ('n', 'i',   'a',   0, 0, 0, 0, '', '')<cr>
-nmap <plug>blockinsert-ub  :<c-u>call blockinsert#do ('n', 'iu',  'au',  0, 0, 0, 0, '', '')<cr>
-nmap <plug>blockinsert-qb  :<c-u>call blockinsert#do ('n', 'qi',  'qa',  0, 0, 0, 0, '', '')<cr>
-nmap <plug>blockinsert-uqb :<c-u>call blockinsert#do ('n', 'qiu', 'qau', 0, 0, 0, 0, '', '')<cr>
+vmap <silent> <plug>BlockinsertVBothSame
+    \
+    \ :call <sid>Do ('v', 'iu',  'au',  0, 0, 0, 0, '', '')<cr>
+
+vmap <silent> <plug>BlockinsertVQ_Both
+    \
+    \ :call <sid>Do ('v', 'qi',  'qa',  0, 0, 0, 0, '', '')<cr>
+
+vmap <silent> <plug>BlockinsertVQ_BothSame
+    \
+    \ :call <sid>Do ('v', 'qiu', 'qau', 0, 0, 0, 0, '', '')<cr>
+
+nmap <silent> <plug>BlockinsertNBoth
+    \
+    \ :<c-u>call <sid>Do ('n', 'i',   'a',   0, 0, 0, 0, '', '')<cr>
+
+nmap <silent> <plug>BlockinsertNBothSame
+    \
+    \ :<c-u>call <sid>Do ('n', 'iu',  'au',  0, 0, 0, 0, '', '')<cr>
+
+nmap <silent> <plug>BlockinsertNQ_Both
+    \
+    \ :<c-u>call <sid>Do ('n', 'qi',  'qa',  0, 0, 0, 0, '', '')<cr>
+
+nmap <silent> <plug>BlockinsertNQ_BothSame
+    \
+    \ :<c-u>call <sid>Do ('n', 'qiu', 'qau', 0, 0, 0, 0, '', '')<cr>
+
+let &cpoptions = s:savecpo
+unlet s:savecpo
