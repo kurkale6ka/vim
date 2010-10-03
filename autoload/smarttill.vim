@@ -40,34 +40,35 @@ function! smarttill#motion(motion, mode)  " {{{1
 
     if a:motion ==# 'T' || a:motion ==# 'F'
 
-        let s:motion = 'b'
+        let motion = 'b'
     else
-        let s:motion = ''
+        let motion = ''
     endif
 
     " Move the cursor to [count]'th occurrence of any punctuation, or
     " function[N]ame()
-    let s:pattern = '\%([[:punct:]]\|\u\%(\w*[[:space:]]*(\_[^(]\{-})\)\@=\)'
+    let pattern = '\%([[:punct:]]\|\u\%(\w*[[:space:]]*(\_[^(]\{-})\)\@=\)'
 
     " Adjust the cursor position to emulate the t motion.
     if a:motion ==# 't' && a:mode != 'o'
 
         for i in range(v:count1)
 
-            call search('.' . s:pattern . '\@=', s:motion . 'W')
+            call search('.' . pattern . '\@=', motion . 'W')
         endfor
 
-    elseif a:motion ==# 'T' && a:mode != '' || a:motion ==# 'f' && a:mode ==# 'o'
+    elseif a:motion ==# 'T' && a:mode !=   '' ||
+        \  a:motion ==# 'f' && a:mode ==# 'o'
 
         for i in range(v:count1)
 
-            call search(s:pattern . '\@<=.', s:motion . 'W')
+            call search(pattern . '\@<=.', motion . 'W')
         endfor
 
     else
         for i in range(v:count1)
 
-            call search(s:pattern, s:motion . 'W')
+            call search(pattern, motion . 'W')
         endfor
     endif
 
