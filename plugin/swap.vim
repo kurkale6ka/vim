@@ -6,7 +6,7 @@
 " http://github.com/kurkale6ka/vimfiles/blob/master/plugin/swap.vim
 "
 " Todo: rightleft
-" Todo: repeat.vim
+" Todo: repeat.vim for visual mode
 " Todo: re-position the cursor using cursor()
 "       Position of cursor in the visual area?
 
@@ -125,6 +125,21 @@ function! s:Swap(mode) range
             \'\(\_[[:space:]]\+\)'   .
             \ '\([^[:space:]]\+\)/\3\2\1/e'
     endif
+
+    " repeat
+    let virtualedit_bak = &virtualedit
+    set virtualedit=
+
+    if 'nr' == a:mode
+
+        silent! call repeat#set("\<plug>SwapSwapWithR_WORD")
+
+    elseif 'nl' == a:mode
+
+        silent! call repeat#set("\<plug>SwapSwapWithL_WORD")
+    endif
+
+    let &virtualedit = virtualedit_bak
 
     call setpos('.', save_cursor)
 

@@ -1,4 +1,11 @@
-function! BlankLines() range
+" Blanking lines
+"
+" Author: Dimitar Dimitrov (mitkofr@yahoo.fr), kurkale6ka
+"
+" Latest version at:
+" http://github.com/kurkale6ka/vimfiles/blob/master/plugin/blanklines.vim
+
+function! s:BlankLines(mode) range
 
     let operation = 'normal 0Dj'
 
@@ -17,11 +24,19 @@ function! BlankLines() range
     let virtualedit_bak = &virtualedit
     set virtualedit=
 
-    silent! call repeat#set(":call BlankLines()\<cr>")
+    if 'v' == a:mode
+
+        silent! call repeat#set("\<plug>BlanklinesVBlank")
+    else
+        silent! call repeat#set("\<plug>BlanklinesNBlank")
+    endif
 
     let &virtualedit = virtualedit_bak
 
 endfunction
 
-nmap <silent> <leader>d :call BlankLines()<cr>
-vmap <silent> <leader>d :call BlankLines()<cr>
+nmap <silent> <plug>BlanklinesNBlank :call <sid>BlankLines('n')<cr>
+vmap <silent> <plug>BlanklinesVBlank :call <sid>BlankLines('v')<cr>
+
+nmap <leader>d <plug>BlanklinesNBlank
+vmap <leader>d <plug>BlanklinesVBlank

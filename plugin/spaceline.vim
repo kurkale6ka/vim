@@ -5,12 +5,7 @@
 " Latest version at:
 " http://github.com/kurkale6ka/vimfiles/blob/master/plugin/spaceline.vim
 
-if exists('g:loaded_spaceline')
-    finish
-endif
-let g:loaded_spaceline = 1
-
-function! SpaceLine(both)
+function! s:SpaceLine(both)
 
     let save_cursor = getpos(".")
 
@@ -21,7 +16,10 @@ function! SpaceLine(both)
 
     if line_above =~ '[^[:space:]]'
 
-        if line_above !~ comment_pattern && len(line_above) > 6 || v:count1 > 1 || !empty(a:both)
+        if line_above !~ comment_pattern &&
+            \ len(line_above) > 6
+            \ || v:count1 > 1
+            \ || !empty(a:both)
 
             normal O
             +
@@ -42,9 +40,9 @@ function! SpaceLine(both)
 
     if !empty(a:both)
 
-        silent! call repeat#set(":\<c-u>call SpaceLine(" . a:both . ")\<cr>")
+        silent! call repeat#set("\<plug>SpacelineBoth")
     else
-        silent! call repeat#set(":\<c-u>call SpaceLine('')\<cr>")
+        silent! call repeat#set("\<plug>SpacelineSingle")
     endif
 
     let &virtualedit = virtualedit_bak
@@ -53,5 +51,8 @@ function! SpaceLine(both)
 
 endfunction
 
-nmap <leader>o :<c-u>call SpaceLine('')<cr>
-nmap <leader>O :<c-u>call SpaceLine('both')<cr>
+nmap <silent> <plug>SpacelineSingle :<c-u>call <sid>SpaceLine('')<cr>
+nmap <silent> <plug>SpacelineBoth   :<c-u>call <sid>SpaceLine('both')<cr>
+
+nmap <leader>o <plug>SpacelineSingle
+nmap <leader>O <plug>SpacelineBoth

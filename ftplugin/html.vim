@@ -15,6 +15,9 @@
 "
 " Author: Dimitar Dimitrov: mitkofr@yahoo.fr, kurkale6ka
 "
+" Latest version at:
+" http://github.com/kurkale6ka/vimfiles/blob/master/ftplugin/html.vim
+"
 " Note: Start with :se ft=html for any text where you want to use these
 "       macros. The indenting will be done better
 "

@@ -5,7 +5,7 @@
 " Latest version at:
 " http://github.com/kurkale6ka/vimfiles/blob/master/plugin/sequence.vim
 "
-" Todo: repeat.vim
+" Todo: repeat.vim for visual mode
 
 if exists('g:loaded_sequence') || &compatible || v:version < 700
 
@@ -120,12 +120,38 @@ function! s:Sequence(mode, operation) range
         +
     endfor
 
+    " repeat
+    let virtualedit_bak = &virtualedit
+    set virtualedit=
+
+    if 'n' == a:mode && 'seq_i' == a:operation
+
+        silent! call repeat#set("\<plug>SequenceN_Increment")
+
+    elseif 'n' == a:mode && 'seq_d' == a:operation
+
+        silent! call repeat#set("\<plug>SequenceN_Decrement")
+    endif
+
+    let &virtualedit = virtualedit_bak
+
 endfunction
 
-vmap <silent> <plug>SequenceV_Increment :     call <sid>Sequence('v', 'seq_i')<cr>
-vmap <silent> <plug>SequenceV_Decrement :     call <sid>Sequence('v', 'seq_d')<cr>
-nmap <silent> <plug>SequenceN_Increment :<c-u>call <sid>Sequence('n', 'seq_i')<cr>
-nmap <silent> <plug>SequenceN_Decrement :<c-u>call <sid>Sequence('n', 'seq_d')<cr>
+vmap <silent> <plug>SequenceV_Increment
+    \
+    \ :call <sid>Sequence('v', 'seq_i')<cr>
+
+vmap <silent> <plug>SequenceV_Decrement
+    \
+    \ :call <sid>Sequence('v', 'seq_d')<cr>
+
+nmap <silent> <plug>SequenceN_Increment
+    \
+    \ :<c-u>call <sid>Sequence('n', 'seq_i')<cr>
+
+nmap <silent> <plug>SequenceN_Decrement
+    \
+    \ :<c-u>call <sid>Sequence('n', 'seq_d')<cr>
 
 vmap <silent> <plug>SequenceAdd      :call <sid>Sequence('v', 'block_a')<cr>
 vmap <silent> <plug>SequenceSubtract :call <sid>Sequence('v', 'block_x')<cr>
