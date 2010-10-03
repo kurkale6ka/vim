@@ -56,7 +56,7 @@ set cpoptions&vim
     "execute "normal x" . nb_spaces . "i \<esc>"
 "endwhile
 
-function! s:Do_exe (operation, col1, col2, row1, row2, text)
+function! s:BlockDo (operation, col1, col2, row1, row2, text)
 
     if empty(a:col1) && a:operation =~ 'q' || '_delete_please' == a:text
 
@@ -249,7 +249,7 @@ function! s:Get_text (ope, text1, text2)
 
 endfunction
 
-function! s:Do (mode, ope1, ope2, col1, col2, row1, row2, text1, text2) range
+function! BlockDoIni (mode, ope1, ope2, col1, col2, row1, row2, text1, text2) range
 
     if !empty(a:ope1)
 
@@ -353,7 +353,7 @@ function! s:Do (mode, ope1, ope2, col1, col2, row1, row2, text1, text2) range
 
     if !empty(ope2)
 
-        call s:Do_exe (ope2, col1, col2, row1, row2, text2)
+        call s:BlockDo (ope2, col1, col2, row1, row2, text2)
 
         if !empty(ope1)
 
@@ -363,14 +363,14 @@ function! s:Do (mode, ope1, ope2, col1, col2, row1, row2, text1, text2) range
 
     if !empty(ope1)
 
-        call s:Do_exe (ope1, col1, col2, row1, row2, text1)
+        call s:BlockDo (ope1, col1, col2, row1, row2, text1)
     endif
 
     " When enabled (my case :), it is causing problems
     let virtualedit_bak = &virtualedit
     set virtualedit=
 
-    silent! call repeat#set(":\<c-u>call s:Do ('" .
+    silent! call repeat#set(":\<c-u>call BlockDoIni ('" .
         \         mode  .
         \"', '" . ope1  .
         \"', '" . ope2  .
@@ -392,104 +392,104 @@ endfunction
 
 command! -nargs=* -range BlockInsert <line1>,<line2>
     \
-    \call <sid>Do ('c', '', 'i',  0, 0, <line1>, <line2>, '', <q-args>)
+    \call BlockDoIni ('c', '', 'i',  0, 0, <line1>, <line2>, '', <q-args>)
 
 command! -nargs=* -range BlockAppend <line1>,<line2>
     \
-    \call <sid>Do ('c', '', 'a',  0, 0, <line1>, <line2>, '', <q-args>)
+    \call BlockDoIni ('c', '', 'a',  0, 0, <line1>, <line2>, '', <q-args>)
 
 command! -nargs=* -range BlockQInsert <line1>,<line2>
     \
-    \call <sid>Do ('c', '', 'qi', 0, 0, <line1>, <line2>, '', <q-args>)
+    \call BlockDoIni ('c', '', 'qi', 0, 0, <line1>, <line2>, '', <q-args>)
 
 command! -nargs=* -range BlockQAppend <line1>,<line2>
     \
-    \call <sid>Do ('c', '', 'qa', 0, 0, <line1>, <line2>, '', <q-args>)
+    \call BlockDoIni ('c', '', 'qa', 0, 0, <line1>, <line2>, '', <q-args>)
 
 command! -nargs=* -range BlockBoth <line1>,<line2>
     \
-    \call <sid>Do ('c', 'i',   'a',   0, 0, <line1>, <line2>, <f-args>)
+    \call BlockDoIni ('c', 'i',   'a',   0, 0, <line1>, <line2>, <f-args>)
 
 command! -nargs=* -range BlockBothSame <line1>,<line2>
     \
-    \call <sid>Do ('c', 'iu',  'au',  0, 0, <line1>, <line2>, <q-args>, '')
+    \call BlockDoIni ('c', 'iu',  'au',  0, 0, <line1>, <line2>, <q-args>, '')
 
 command! -nargs=* -range BlockQBoth <line1>,<line2>
     \
-    \call <sid>Do ('c', 'qi',  'qa',  0, 0, <line1>, <line2>, <f-args>)
+    \call BlockDoIni ('c', 'qi',  'qa',  0, 0, <line1>, <line2>, <f-args>)
 
 command! -nargs=* -range BlockQBothSame <line1>,<line2>
     \
-    \call <sid>Do ('c', 'qiu', 'qau', 0, 0, <line1>, <line2>, <q-args>, '')
+    \call BlockDoIni ('c', 'qiu', 'qau', 0, 0, <line1>, <line2>, <q-args>, '')
 "endif
 
 " Insert / Append
 vmap <silent> <plug>BlockinsertVInsert
     \
-    \ :call <sid>Do ('v', '', 'i',  0, 0, 0, 0, '', '')<cr>
+    \ :call BlockDoIni ('v', '', 'i',  0, 0, 0, 0, '', '')<cr>
 
 vmap <silent> <plug>BlockinsertVAppend
     \
-    \ :call <sid>Do ('v', '', 'a',  0, 0, 0, 0, '', '')<cr>
+    \ :call BlockDoIni ('v', '', 'a',  0, 0, 0, 0, '', '')<cr>
 
 vmap <silent> <plug>BlockinsertVQ_Insert
     \
-    \ :call <sid>Do ('v', '', 'qi', 0, 0, 0, 0, '', '')<cr>
+    \ :call BlockDoIni ('v', '', 'qi', 0, 0, 0, 0, '', '')<cr>
 
 vmap <silent> <plug>BlockinsertVQ_Append
     \
-    \ :call <sid>Do ('v', '', 'qa', 0, 0, 0, 0, '', '')<cr>
+    \ :call BlockDoIni ('v', '', 'qa', 0, 0, 0, 0, '', '')<cr>
 
 
 " Insert / Append
 nmap <silent> <plug>BlockinsertNInsert
     \
-    \ :<c-u>call <sid>Do ('n', '', 'i',  0, 0, 0, 0, '', '')<cr>
+    \ :<c-u>call BlockDoIni ('n', '', 'i',  0, 0, 0, 0, '', '')<cr>
 
 nmap <silent> <plug>BlockinsertNAppend
     \
-    \ :<c-u>call <sid>Do ('n', '', 'a',  0, 0, 0, 0, '', '')<cr>
+    \ :<c-u>call BlockDoIni ('n', '', 'a',  0, 0, 0, 0, '', '')<cr>
 
 nmap <silent> <plug>BlockinsertNQ_Insert
     \
-    \ :<c-u>call <sid>Do ('n', '', 'qi', 0, 0, 0, 0, '', '')<cr>
+    \ :<c-u>call BlockDoIni ('n', '', 'qi', 0, 0, 0, 0, '', '')<cr>
 
 nmap <silent> <plug>BlockinsertNQ_Append
     \
-    \ :<c-u>call <sid>Do ('n', '', 'qa', 0, 0, 0, 0, '', '')<cr>
+    \ :<c-u>call BlockDoIni ('n', '', 'qa', 0, 0, 0, 0, '', '')<cr>
 
 " Both Insert & Append
 vmap <silent> <plug>BlockinsertVBoth
     \
-    \ :call <sid>Do ('v', 'i',   'a',   0, 0, 0, 0, '', '')<cr>
+    \ :call BlockDoIni ('v', 'i',   'a',   0, 0, 0, 0, '', '')<cr>
 
 vmap <silent> <plug>BlockinsertVBothSame
     \
-    \ :call <sid>Do ('v', 'iu',  'au',  0, 0, 0, 0, '', '')<cr>
+    \ :call BlockDoIni ('v', 'iu',  'au',  0, 0, 0, 0, '', '')<cr>
 
 vmap <silent> <plug>BlockinsertVQ_Both
     \
-    \ :call <sid>Do ('v', 'qi',  'qa',  0, 0, 0, 0, '', '')<cr>
+    \ :call BlockDoIni ('v', 'qi',  'qa',  0, 0, 0, 0, '', '')<cr>
 
 vmap <silent> <plug>BlockinsertVQ_BothSame
     \
-    \ :call <sid>Do ('v', 'qiu', 'qau', 0, 0, 0, 0, '', '')<cr>
+    \ :call BlockDoIni ('v', 'qiu', 'qau', 0, 0, 0, 0, '', '')<cr>
 
 nmap <silent> <plug>BlockinsertNBoth
     \
-    \ :<c-u>call <sid>Do ('n', 'i',   'a',   0, 0, 0, 0, '', '')<cr>
+    \ :<c-u>call BlockDoIni ('n', 'i',   'a',   0, 0, 0, 0, '', '')<cr>
 
 nmap <silent> <plug>BlockinsertNBothSame
     \
-    \ :<c-u>call <sid>Do ('n', 'iu',  'au',  0, 0, 0, 0, '', '')<cr>
+    \ :<c-u>call BlockDoIni ('n', 'iu',  'au',  0, 0, 0, 0, '', '')<cr>
 
 nmap <silent> <plug>BlockinsertNQ_Both
     \
-    \ :<c-u>call <sid>Do ('n', 'qi',  'qa',  0, 0, 0, 0, '', '')<cr>
+    \ :<c-u>call BlockDoIni ('n', 'qi',  'qa',  0, 0, 0, 0, '', '')<cr>
 
 nmap <silent> <plug>BlockinsertNQ_BothSame
     \
-    \ :<c-u>call <sid>Do ('n', 'qiu', 'qau', 0, 0, 0, 0, '', '')<cr>
+    \ :<c-u>call BlockDoIni ('n', 'qiu', 'qau', 0, 0, 0, 0, '', '')<cr>
 
 let &cpoptions = s:savecpo
 unlet s:savecpo
