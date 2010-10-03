@@ -97,9 +97,9 @@ function! s:Sequence(mode, operation) range
 
         if 'v' == a:mode && "\<c-v>" == visualmode()
 
-            let digit = matchstr(getline('.'), _digit)
+            let  digit = matchstr(getline('.'), _digit)
         else
-            let digit  = matchstr(getline('.'), digit_pattern)
+            let  digit = matchstr(getline('.'),  digit_pattern)
             let _digit = digit
         endif
 

@@ -17,9 +17,9 @@ function! s:SpaceLine(both)
     if line_above =~ '[^[:space:]]'
 
         if line_above !~ comment_pattern &&
-            \ len(line_above) > 6
-            \ || v:count1 > 1
-            \ || !empty(a:both)
+            \ len(line_above) > 6        ||
+            \ v:count1 > 1               ||
+            \ !empty(a:both)
 
             normal O
             +
