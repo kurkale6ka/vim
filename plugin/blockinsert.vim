@@ -251,6 +251,7 @@ endfunction
 
 function! BlockDoIni (mode, ope1, ope2, col1, col2, row1, row2, text1, text2) range
 
+    " Get texts
     if !empty(a:ope1)
 
         let text1 = s:Get_text (a:ope1, a:text1, '')
@@ -265,6 +266,7 @@ function! BlockDoIni (mode, ope1, ope2, col1, col2, row1, row2, text1, text2) ra
         let text2 = ''
     endif
 
+    " Get operations ([q]i, [q]a)
     if (a:ope1 !~ 'u')
 
         let ope1 = a:ope1
@@ -274,6 +276,7 @@ function! BlockDoIni (mode, ope1, ope2, col1, col2, row1, row2, text1, text2) ra
         let ope2 = substitute(a:ope2, 'u', '', '')
     endif
 
+    " Get columns
     if 'v' == a:mode
 
         if "\<c-v>" == visualmode() ||
@@ -312,6 +315,7 @@ function! BlockDoIni (mode, ope1, ope2, col1, col2, row1, row2, text1, text2) ra
         let col2 = 0
     endif
 
+    " Get rows
     " no range given
     if 'n' == a:mode || 'c' == a:mode && a:row1 == a:row2
 
@@ -334,16 +338,17 @@ function! BlockDoIni (mode, ope1, ope2, col1, col2, row1, row2, text1, text2) ra
             let row2 = line("'}") - 1
         endif
 
-        " use previous range
+    " use previous range
     elseif a:mode =~ 'r'
 
-        let row1 = a:row1
-        let row2 = a:row2
+        let  row1 = a:row1
+        let  row2 = a:row2
     else
-        let row1 = a:firstline
-        let row2 = a:lastline
+        let  row1 = a:firstline
+        let  row2 = a:lastline
     endif
 
+    " Execute operations
     if !empty(ope1) && !empty(ope2)
 
         let line_bak = line('.')
@@ -366,18 +371,19 @@ function! BlockDoIni (mode, ope1, ope2, col1, col2, row1, row2, text1, text2) ra
         call s:BlockDo (ope1, col1, col2, row1, row2, text1)
     endif
 
+    " Repeat
     " When enabled (my case :), it is causing problems
     let virtualedit_bak = &virtualedit
     set virtualedit=
 
     silent! call repeat#set(":\<c-u>call BlockDoIni ('" .
-        \         mode  .
-        \"', '" . ope1  .
-        \"', '" . ope2  .
-        \"',  " . col1  .
-        \" ,  " . col2  .
-        \" ,  " . row1  .
-        \" ,  " . row2  .
+        \          mode .
+        \"', '" .  ope1 .
+        \"', '" .  ope2 .
+        \"',  " .  col1 .
+        \" ,  " .  col2 .
+        \" ,  " .  row1 .
+        \" ,  " .  row2 .
         \" , '" . text1 .
         \"', '" . text2 .
         \"')\<cr>"
