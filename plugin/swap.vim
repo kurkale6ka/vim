@@ -114,15 +114,15 @@ function! s:Swap(mode) range
 
             call search('[^[:space:]]\+'  .
                       \'\_[[:space:]]\+'  .
-                      \ '[^[:space:]]*\%' . col('.') . 'c', 'bW')
+                      \ '[^[:space:]]*\%#', 'bW')
                       " Todo: \'expand('<cWORD>'), 'bW')
         endif
 
         " swap with Word on the right
         " Todo: execute 'substitute/\(' . expand('<cWORD>') . '\)' .
-        execute 'silent substitute/' .
-            \ '\([^[:space:]]*\%'    . col('.') . 'c[^[:space:]]*\)' .
-            \'\(\_[[:space:]]\+\)'   .
+        execute 'silent substitute/'              .
+            \ '\([^[:space:]]*\%#[^[:space:]]*\)' .
+            \'\(\_[[:space:]]\+\)'                .
             \ '\([^[:space:]]\+\)/\3\2\1/e'
     endif
 
