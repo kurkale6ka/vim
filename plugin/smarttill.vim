@@ -26,20 +26,20 @@ if exists('g:loaded_smarttill')
     finish
 endif
 
-nnoremap <silent> <plug>Smarttill_t :<c-u>call smarttill#motion('t', 'n')<cr>
-nnoremap <silent> <plug>Smarttill_T :<c-u>call smarttill#motion('T', 'n')<cr>
-nnoremap <silent> <plug>Smarttill_f :<c-u>call smarttill#motion('f', 'n')<cr>
-nnoremap <silent> <plug>Smarttill_F :<c-u>call smarttill#motion('F', 'n')<cr>
+nnoremap <silent> <plug>(smarttill-t) :<c-u>call smarttill#motion('t', 'n')<cr>
+nnoremap <silent> <plug>(smarttill-T) :<c-u>call smarttill#motion('T', 'n')<cr>
+nnoremap <silent> <plug>(smarttill-f) :<c-u>call smarttill#motion('f', 'n')<cr>
+nnoremap <silent> <plug>(smarttill-F) :<c-u>call smarttill#motion('F', 'n')<cr>
 
-vnoremap <silent> <plug>Smarttill_t :<c-u>call smarttill#motion('t', 'v')<cr>
-vnoremap <silent> <plug>Smarttill_T :<c-u>call smarttill#motion('T', 'v')<cr>
-vnoremap <silent> <plug>Smarttill_f :<c-u>call smarttill#motion('f', 'v')<cr>
-vnoremap <silent> <plug>Smarttill_F :<c-u>call smarttill#motion('F', 'v')<cr>
+vnoremap <silent> <plug>(smarttill-t) :<c-u>call smarttill#motion('t', 'v')<cr>
+vnoremap <silent> <plug>(smarttill-T) :<c-u>call smarttill#motion('T', 'v')<cr>
+vnoremap <silent> <plug>(smarttill-f) :<c-u>call smarttill#motion('f', 'v')<cr>
+vnoremap <silent> <plug>(smarttill-F) :<c-u>call smarttill#motion('F', 'v')<cr>
 
-onoremap <silent> <plug>Smarttill_t :<c-u>call smarttill#motion('t', 'o')<cr>
-onoremap <silent> <plug>Smarttill_T :<c-u>call smarttill#motion('T', 'o')<cr>
-onoremap <silent> <plug>Smarttill_f :<c-u>call smarttill#motion('f', 'o')<cr>
-onoremap <silent> <plug>Smarttill_F :<c-u>call smarttill#motion('F', 'o')<cr>
+onoremap <silent> <plug>(smarttill-t) :<c-u>call smarttill#motion('t', 'o')<cr>
+onoremap <silent> <plug>(smarttill-T) :<c-u>call smarttill#motion('T', 'o')<cr>
+onoremap <silent> <plug>(smarttill-f) :<c-u>call smarttill#motion('f', 'o')<cr>
+onoremap <silent> <plug>(smarttill-F) :<c-u>call smarttill#motion('F', 'o')<cr>
 
 let g:loaded_smarttill = 1
 
