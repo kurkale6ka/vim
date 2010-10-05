@@ -31,6 +31,8 @@ set cpoptions&vim
 
 function! s:Swap(mode) range
 
+    let last_search = histget('search', -1)
+
     if a:mode =~ 'v'
 
         let save_cursor = getpos("'>")
@@ -90,10 +92,22 @@ function! s:Swap(mode) range
             if col("'<") < col("'>")
 
                 let col_start = col("'<")
-                let col_end   = col("'>") + 1
+
+                if col("'>") >= col('$')
+
+                    let col_end = col('$')
+                else
+                    let col_end = col("'>") + 1
+                endif
             else
                 let col_start = col("'>")
-                let col_end   = col("'<") + 1
+
+                if col("'<") >= col('$')
+
+                    let col_end = col('$')
+                else
+                    let col_end = col("'<") + 1
+                endif
             endif
 
             execute 'silent ' . a:firstline . ',' . a:lastline .
@@ -124,7 +138,7 @@ function! s:Swap(mode) range
             \ '\([^[:space:]]\+\)/\3\2\1/e'
     endif
 
-    " repeat
+    " Repeat
     let virtualedit_bak = &virtualedit
     set virtualedit=
 
@@ -138,6 +152,12 @@ function! s:Swap(mode) range
     endif
 
     let &virtualedit = virtualedit_bak
+
+    " Restore saved values
+    if histget('search', -1) != last_search
+
+        call histdel('search', -1)
+    endif
 
     call setpos('.', save_cursor)
 
