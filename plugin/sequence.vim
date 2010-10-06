@@ -80,7 +80,7 @@ function! s:Sequence(mode, operation) range
 
     endif
 
-    " subtraction or addition
+    " Subtraction or addition
     if a:operation =~ 'block'
 
         let counter = v:count1
@@ -88,7 +88,7 @@ function! s:Sequence(mode, operation) range
         let counter = 0
     endif
 
-    " subtraction
+    " Subtraction
     if 'block_x' == a:operation
 
         let operation = '-'
