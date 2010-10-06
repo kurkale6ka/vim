@@ -144,7 +144,7 @@ loading this plugin by setting the swap global variable in your |vimrc| file:
 For all this to work you MUST define your custom mappings in your |vimrc|:
 >
     vmap <leader>x         <plug>SwapSwapOperands
-    vmap <leader><leader>x <plug>SwapSwapOperandsPivot
+    vmap <leader><leader>x <plug>SwapSwapPivotOperands
     nmap <leader>x         <plug>SwapSwapWithR_WORD
     nmap <leader>X         <plug>SwapSwapWithL_WORD
 <
