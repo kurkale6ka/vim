@@ -41,6 +41,11 @@ onoremap <silent> <plug>Smarttill_T :<c-u>call smarttill#motion('T', 'o')<cr>
 onoremap <silent> <plug>Smarttill_f :<c-u>call smarttill#motion('f', 'o')<cr>
 onoremap <silent> <plug>Smarttill_F :<c-u>call smarttill#motion('F', 'o')<cr>
 
+map tt <plug>Smarttill_t
+map TT <plug>Smarttill_T
+map ff <plug>Smarttill_f
+map FF <plug>Smarttill_F
+
 let g:loaded_smarttill = 1
 
 " vim: set foldmethod=marker foldmarker&:

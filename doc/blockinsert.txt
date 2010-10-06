@@ -19,7 +19,7 @@ http://github.com/kurkale6ka/vimfiles/blob/master/doc/blockinsert.txt
 1. Normal mode                                               |blockinsert-normal|
 2. Visual mode                                               |blockinsert-visual|
 3. Commands                                                |blockinsert-commands|
-4. Mappings                                                |blockinsert-mappings|
+4. Custom mappings                                  |blockinsert-custom-mappings|
 
 The functionality mentioned here is a plugin, see |add-plugin|.
 You can avoid loading this plugin by setting the blockinsert global variable in
@@ -159,9 +159,9 @@ them enabled:
 *Todo make the commands accept a count as their first argument
 
 ================================================================================
-4. Mappings                                                *blockinsert-mappings*
+4. Custom mappings                                  *blockinsert-custom-mappings*
 
-For all this to work you MUST define your custom mappings in your |vimrc|:
+You have the possibility to define your own custom mappings in your |vimrc|:
 
 vmap <leader>i  <plug>blockinsert-i
 vmap <leader>a  <plug>blockinsert-a

@@ -693,48 +693,6 @@ function! YRRunAfterMaps()
     nnoremap Y :YRYankCount 'y$'<cr>
 endfunction
 
-map tt <plug>Smarttill_t
-map TT <plug>Smarttill_T
-map ff <plug>Smarttill_f
-map FF <plug>Smarttill_F
-
-vmap <leader>x         <plug>SwapSwapOperands
-vmap <leader><leader>x <plug>SwapSwapPivotOperands
-nmap <leader>x         <plug>SwapSwapWithR_WORD
-nmap <leader>X         <plug>SwapSwapWithL_WORD
-
-vmap <m-a> <plug>SequenceV_Increment
-vmap <m-x> <plug>SequenceV_Decrement
-nmap <m-a> <plug>SequenceN_Increment
-nmap <m-x> <plug>SequenceN_Decrement
-
-vmap <c-a> <plug>SequenceAdd
-vmap <c-x> <plug>SequenceSubtract
-
-vmap <leader>i  <plug>BlockinsertVInsert
-vmap <leader>a  <plug>BlockinsertVAppend
-vmap <leader>qi <plug>BlockinsertVQ_Insert
-vmap <leader>qa <plug>BlockinsertVQ_Append
-
-nmap <leader>i  <plug>BlockinsertNInsert
-nmap <leader>a  <plug>BlockinsertNAppend
-nmap <leader>qi <plug>BlockinsertNQ_Insert
-nmap <leader>qa <plug>BlockinsertNQ_Append
-
-vmap <leader>[]  <plug>BlockinsertVBoth
-vmap <leader>[[  <plug>BlockinsertVBothSame
-vmap <leader>]]  <plug>BlockinsertVBothSame
-vmap <leader>q[] <plug>BlockinsertVQ_Both
-vmap <leader>q[[ <plug>BlockinsertVQ_BothSame
-vmap <leader>q]] <plug>BlockinsertVQ_BothSame
-
-nmap <leader>[]  <plug>BlockinsertNBoth
-nmap <leader>[[  <plug>BlockinsertNBothSame
-nmap <leader>]]  <plug>BlockinsertNBothSame
-nmap <leader>q[] <plug>BlockinsertNQ_Both
-nmap <leader>q[[ <plug>BlockinsertNQ_BothSame
-nmap <leader>q]] <plug>BlockinsertNQ_BothSame
-
 " Disable all those plugins!
 
 if version < 702

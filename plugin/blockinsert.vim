@@ -446,7 +446,6 @@ vmap <silent> <plug>BlockinsertVQ_Append
     \
     \ :call BlockDoIni ('v', '', 'qa', 0, 0, 0, 0, '', '')<cr>
 
-
 " Insert / Append
 nmap <silent> <plug>BlockinsertNInsert
     \
@@ -496,6 +495,30 @@ nmap <silent> <plug>BlockinsertNQ_Both
 nmap <silent> <plug>BlockinsertNQ_BothSame
     \
     \ :<c-u>call BlockDoIni ('n', 'qiu', 'qau', 0, 0, 0, 0, '', '')<cr>
+
+vmap <leader>i  <plug>BlockinsertVInsert
+vmap <leader>a  <plug>BlockinsertVAppend
+vmap <leader>qi <plug>BlockinsertVQ_Insert
+vmap <leader>qa <plug>BlockinsertVQ_Append
+
+nmap <leader>i  <plug>BlockinsertNInsert
+nmap <leader>a  <plug>BlockinsertNAppend
+nmap <leader>qi <plug>BlockinsertNQ_Insert
+nmap <leader>qa <plug>BlockinsertNQ_Append
+
+vmap <leader>[]  <plug>BlockinsertVBoth
+vmap <leader>[[  <plug>BlockinsertVBothSame
+vmap <leader>]]  <plug>BlockinsertVBothSame
+vmap <leader>q[] <plug>BlockinsertVQ_Both
+vmap <leader>q[[ <plug>BlockinsertVQ_BothSame
+vmap <leader>q]] <plug>BlockinsertVQ_BothSame
+
+nmap <leader>[]  <plug>BlockinsertNBoth
+nmap <leader>[[  <plug>BlockinsertNBothSame
+nmap <leader>]]  <plug>BlockinsertNBothSame
+nmap <leader>q[] <plug>BlockinsertNQ_Both
+nmap <leader>q[[ <plug>BlockinsertNQ_BothSame
+nmap <leader>q]] <plug>BlockinsertNQ_BothSame
 
 let &cpoptions = s:savecpo
 unlet s:savecpo

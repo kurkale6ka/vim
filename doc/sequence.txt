@@ -19,7 +19,7 @@ http://github.com/kurkale6ka/vimfiles/blob/master/doc/sequence.txt
 1. Usage                                                         |sequence-usage|
     1.1 Repeat                                                  |sequence-repeat|
 
-2. Mappings                                                   |sequence-mappings|
+2. Custom mappings                                     |sequence-custom-mappings|
 
 The functionality mentioned here is a plugin, see |add-plugin|. You can avoid
 loading this plugin by setting the sequence global variable in your |vimrc|
@@ -69,9 +69,9 @@ This plugin integrates with Tim Pope's repeat plugin. It means that you can use
 For more information see: http://github.com/tpope/vim-repeat
 
 ================================================================================
-2. Mappings                                                   *sequence-mappings*
+2. Custom mappings                                     *sequence-custom-mappings*
 
-For all this to work you MUST define your custom mappings in your |vimrc|:
+You have the possibility to define your own custom mappings in your |vimrc|:
 >
     vmap <m-a> <plug>SequenceV_Increment
     vmap <m-x> <plug>SequenceV_Decrement

@@ -24,7 +24,7 @@ http://github.com/kurkale6ka/vimfiles/blob/master/doc/swap.txt
 3. Operators                                                     |swap-operators|
         3.1 Custom operators                                    |swap-custom-ops|
 
-4. Mappings                                                       |swap-mappings|
+4. Custom mappings                                         |swap-custom-mappings|
 
 The functionality mentioned here is a plugin, see |add-plugin|. You can avoid
 loading this plugin by setting the swap global variable in your |vimrc| file:
@@ -139,9 +139,9 @@ loading this plugin by setting the swap global variable in your |vimrc| file:
     let g:swap_custom_ops = ['first_operator', 'second_operator', ...]
 <
 ================================================================================
-4. Mappings                                                       *swap-mappings*
+4. Custom mappings                                         *swap-custom-mappings*
 
-For all this to work you MUST define your custom mappings in your |vimrc|:
+You have the possibility to define your own custom mappings in your |vimrc|:
 >
     vmap <leader>x         <plug>SwapSwapOperands
     vmap <leader><leader>x <plug>SwapSwapPivotOperands

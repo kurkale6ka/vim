@@ -165,5 +165,13 @@ nmap <silent> <plug>SequenceN_Decrement
 vmap <silent> <plug>SequenceAdd      :call <sid>Sequence('v', 'block_a')<cr>
 vmap <silent> <plug>SequenceSubtract :call <sid>Sequence('v', 'block_x')<cr>
 
+vmap <m-a> <plug>SequenceV_Increment
+vmap <m-x> <plug>SequenceV_Decrement
+nmap <m-a> <plug>SequenceN_Increment
+nmap <m-x> <plug>SequenceN_Decrement
+
+vmap <c-a> <plug>SequenceAdd
+vmap <c-x> <plug>SequenceSubtract
+
 let &cpoptions = s:savecpo
 unlet s:savecpo
