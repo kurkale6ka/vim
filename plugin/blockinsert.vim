@@ -296,7 +296,7 @@ function! BlockDoIni (mode, ope1, ope2, col1, col2, row1, row2, text1, text2) ra
             let mode = 'vlr'
         endif
 
-    elseif 'c' == a:mode && a:row1 != a:row2
+    elseif 'c' == a:mode && a:row1 != a:row2 && 0 != a:row1
 
         let mode = 'cr'
     else
@@ -317,6 +317,10 @@ function! BlockDoIni (mode, ope1, ope2, col1, col2, row1, row2, text1, text2) ra
 
     " Get rows
     " no range given
+    " Limitation: if a:mode is 'c' and there is a visual selection on the
+    "             current line only, the range will still be re-calculated.
+    "             This is because there is no way in Vim to know what the
+    "             current mode is!
     if 'n' == a:mode || 'c' == a:mode && a:row1 == a:row2
 
         '{
@@ -338,14 +342,21 @@ function! BlockDoIni (mode, ope1, ope2, col1, col2, row1, row2, text1, text2) ra
             let row2 = line("'}") - 1
         endif
 
+        let _row1 = 0
+        let _row2 = 0
+
     " use previous range
     elseif a:mode =~ 'r'
 
         let  row1 = a:row1
         let  row2 = a:row2
+        let _row1 = a:row1
+        let _row2 = a:row2
     else
         let  row1 = a:firstline
         let  row2 = a:lastline
+        let _row1 = a:firstline
+        let _row2 = a:lastline
     endif
 
     " Execute operations
@@ -376,14 +387,14 @@ function! BlockDoIni (mode, ope1, ope2, col1, col2, row1, row2, text1, text2) ra
     let virtualedit_bak = &virtualedit
     set virtualedit=
 
-    silent! call repeat#set(":\<c-u>call BlockDoIni ('" .
-        \          mode .
+    silent! call repeat#set(":\<c-u>call BlockDoIni ('"
+        \       .  mode .
         \"', '" .  ope1 .
         \"', '" .  ope2 .
         \"',  " .  col1 .
         \" ,  " .  col2 .
-        \" ,  " .  row1 .
-        \" ,  " .  row2 .
+        \" ,  " . _row1 .
+        \" ,  " . _row2 .
         \" , '" . text1 .
         \"', '" . text2 .
         \"')\<cr>"
