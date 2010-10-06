@@ -151,9 +151,9 @@ function! s:Swap(mode) range
         silent! call repeat#set("\<plug>SwapSwapWithL_WORD")
     endif
 
+    " Restore saved values
     let &virtualedit = virtualedit_bak
 
-    " Restore saved values
     if histget('search', -1) != last_search
 
         call histdel('search', -1)
@@ -164,7 +164,7 @@ function! s:Swap(mode) range
 endfunction
 
 vmap <silent> <plug>SwapSwapOperands      :     call <sid>Swap('v' )<cr>
-vmap <silent> <plug>SwapSwapOperandsPivot :     call <sid>Swap('vi')<cr>
+vmap <silent> <plug>SwapSwapPivotOperands :     call <sid>Swap('vi')<cr>
 nmap <silent> <plug>SwapSwapWithR_WORD    :<c-u>call <sid>Swap('nr')<cr>
 nmap <silent> <plug>SwapSwapWithL_WORD    :<c-u>call <sid>Swap('nl')<cr>
 

@@ -28,6 +28,8 @@ set cpoptions&vim
 
 function! s:Sequence(mode, operation) range
 
+    let last_search = histget('search', -1)
+
     let firstline = a:firstline
     let lastline  = a:lastline
 
@@ -35,6 +37,7 @@ function! s:Sequence(mode, operation) range
 
     if 'n' == a:mode
 
+        " Calculate the range
         if getline(firstline) =~ digit_pattern && firstline == lastline
 
             while getline(firstline - 1) =~ digit_pattern && firstline > 1
@@ -120,7 +123,7 @@ function! s:Sequence(mode, operation) range
         +
     endfor
 
-    " repeat
+    " Repeat
     let virtualedit_bak = &virtualedit
     set virtualedit=
 
@@ -133,7 +136,13 @@ function! s:Sequence(mode, operation) range
         silent! call repeat#set("\<plug>SequenceN_Decrement")
     endif
 
+    " Restore saved values
     let &virtualedit = virtualedit_bak
+
+    if histget('search', -1) != last_search
+
+        call histdel('search', -1)
+    endif
 
 endfunction
 

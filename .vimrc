@@ -699,7 +699,7 @@ map ff <plug>Smarttill_f
 map FF <plug>Smarttill_F
 
 vmap <leader>x         <plug>SwapSwapOperands
-vmap <leader><leader>x <plug>SwapSwapOperandsPivot
+vmap <leader><leader>x <plug>SwapSwapPivotOperands
 nmap <leader>x         <plug>SwapSwapWithR_WORD
 nmap <leader>X         <plug>SwapSwapWithL_WORD
 
