@@ -565,9 +565,9 @@ nmap <leader>l :%substitute/\s\+$<cr>``
 
 " <leader>c {{{2
 " Highlight text beyond the 80th column (<leader>c)
-nmap <leader>c :call Toggle_colorcolumn()<cr>
+nmap <leader>c :call <sid>Toggle_colorcolumn()<cr>
 
-function! Toggle_colorcolumn ()
+function! s:Toggle_colorcolumn ()
 
     if empty(&colorcolumn)
 
@@ -637,7 +637,7 @@ vmap [p "0p
 
 if version >= 703
 
-    function! Toggle_number()
+    function! s:Toggle_number()
 
         if !&relativenumber
 
@@ -648,7 +648,7 @@ if version >= 703
 
     endfunction
 
-    map <leader>n :call Toggle_number()<cr>
+    map <leader>n :call <sid>Toggle_number()<cr>
 
     set relativenumber
 
