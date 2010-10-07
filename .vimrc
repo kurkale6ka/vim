@@ -561,7 +561,30 @@ endfunction
 
 " <leader>l {{{2
 " Remove superfluous white spaces towards the EOL (<leader>l)
-nmap <leader>l :%substitute/\s\+$<cr>``
+nmap <leader>l :call <sid>RemoveSpacesEOL()<cr>
+
+function! s:RemoveSpacesEOL()
+
+    try
+        let last_search = histget('search', -1)
+
+        %substitute/\s\+$
+
+        normal ``
+
+        if histget('search', -1) != last_search
+
+            call histdel('search', -1)
+        endif
+
+    catch /E486/
+
+        echohl ErrorMsg
+        echo   'No superfluous EOL whitespaces'
+        echohl NONE
+    endtry
+
+endfunction
 
 " <leader>c {{{2
 " Highlight text beyond the 80th column (<leader>c)
