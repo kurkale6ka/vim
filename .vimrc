@@ -9,11 +9,11 @@
 if has('win32')
 
     set runtimepath=
-                \$HOME/vimfiles,
-                \$VIM/vimfiles,
-                \$VIMRUNTIME,
-                \$VIM/vimfiles/after,
-                \$HOME/vimfiles/after
+        \$HOME/vimfiles,
+        \$VIM/vimfiles,
+        \$VIMRUNTIME,
+        \$VIM/vimfiles/after,
+        \$HOME/vimfiles/after
 
     set viewdir=$HOME/vimfiles/view
 
@@ -113,8 +113,8 @@ function! SlSpace()
     endif
 endfunc
 set statusline=%<%n:\ %t\ %y%m%r\ %L\ lines%{SlSpace()}
-            \%{empty(&keymap)?'':'\ <'.b:keymap_name.'>'}
-            \%=%-14.(L:%l,\ C:%v%)\ %P
+    \%{empty(&keymap)?'':'\ <'.b:keymap_name.'>'}
+    \%=%-14.(L:%l,\ C:%v%)\ %P
 
 set showtabline=1
 
@@ -208,8 +208,8 @@ endif
 
 " I like my cursor pointing left when selecting text
 set mouseshape=i-r:beam,s:updown,sd:udsizing,vs:leftright,vd:lrsizing,m:no,
-            \ml:up-arrow,
-            \v:arrow
+    \ml:up-arrow,
+    \v:arrow
 
 if 'konsole' == $TERM
 
@@ -220,16 +220,16 @@ endif
 if !has('win32')
 
     set guifont=DejaVu\ Sans\ Mono\ 16,
-                \Nimbus\ Mono\ L\ 16,
-                \Andale\ Mono\ 16,
-                \Liberation\ Mono\ 16,
-                \Monospace\ 16
+        \Nimbus\ Mono\ L\ 16,
+        \Andale\ Mono\ 16,
+        \Liberation\ Mono\ 16,
+        \Monospace\ 16
 else
     set guifont=DejaVu_Sans_Mono:h13,
-                \Nimbus_Mono_L:h13,
-                \Andale_Mono:h13,
-                \Liberation_Mono:h13,
-                \Monospace:h13
+        \Nimbus_Mono_L:h13,
+        \Andale_Mono:h13,
+        \Liberation_Mono:h13,
+        \Monospace:h13
 endif
 
 " backups {{{2
@@ -413,14 +413,14 @@ inoremap <s-left>  <c-o>v<s-left>
 
 " Increase font size {{{2
 nmap <c-mousedown> :set guifont=<c-z><c-f>
-            \:substitute/\d\+/\=submatch(0)+1/g<cr><cr>
+    \:substitute/\d\+/\=submatch(0)+1/g<cr><cr>
 nmap <c-mouseup>   :set guifont=<c-z><c-f>
-            \:substitute/\d\+/\=submatch(0)-1/g<cr><cr>
+    \:substitute/\d\+/\=submatch(0)-1/g<cr><cr>
 
 imap <c-mousedown> <c-o>:set guifont=<c-z><c-f>
-            \:substitute/\d\+/\=submatch(0)+1/g<cr><cr>
+    \:substitute/\d\+/\=submatch(0)+1/g<cr><cr>
 imap <c-mouseup>   <c-o>:set guifont=<c-z><c-f>
-            \:substitute/\d\+/\=submatch(0)-1/g<cr><cr>
+    \:substitute/\d\+/\=submatch(0)-1/g<cr><cr>
 
 let g:gfn_bak = &guifont
 nmap <M-0> :let &guifont = g:gfn_bak<cr>
@@ -521,40 +521,13 @@ vnoremap <expr> { mode() == nr2char(22) ? line("'{") + 1 . 'G' : '{'
 nnoremap <silent> [[ :call search('^\S\@=.*{$', 'besW')<CR>
 nnoremap <silent> ]] :call search('^\S\@=.*{$',  'esW')<CR>
 onoremap <expr> [[ (search('^\S\@=.*{$', 'ebsW') && (setpos("''", getpos('.'))
-            \ <bar><bar> 1) ? "''" : "\<esc>")
+    \ <bar><bar> 1) ? "''" : "\<esc>")
 onoremap <expr> ]] (search('^\S\@=.*{$',  'esW') && (setpos("''", getpos('.'))
-            \ <bar><bar> 1) ? "''" : "\<esc>")
-
-" <leader>l {{{2
-" Remove superfluous white spaces towards the EOL (<leader>l)
-nmap <leader>l :call <sid>RemoveSpacesEOL()<cr>
-
-function! s:RemoveSpacesEOL()
-
-    try
-        let last_search = histget('search', -1)
-
-        %substitute/\s\+$
-
-        normal ``
-
-        if histget('search', -1) != last_search
-
-            call histdel('search', -1)
-        endif
-
-    catch /E486/
-
-        echohl ErrorMsg
-        echo   'No superfluous EOL whitespaces'
-        echohl NONE
-    endtry
-
-endfunction
+    \ <bar><bar> 1) ? "''" : "\<esc>")
 
 " <leader>c {{{2
 " Highlight text beyond the 80th column (<leader>c)
-nmap <leader>c :call <sid>Toggle_colorcolumn()<cr>
+nmap <silent> <leader>c :call <sid>Toggle_colorcolumn()<cr>
 
 function! s:Toggle_colorcolumn ()
 
@@ -569,9 +542,56 @@ function! s:Toggle_colorcolumn ()
 
 endfunction
 
+" <leader>l {{{2
+" Remove superfluous white spaces towards the EOL (<leader>l)
+nmap <leader>l :call <sid>TransformLines ('del_EOL_spaces')<cr>
+
 " <leader>sq {{{2
 " Squeeze empty lines (<leader>sq)
-nmap <leader>z :global/^\%([[:space:]]*$\n\)\{2,}/delete<cr>``
+nmap <leader>z :call <sid>TransformLines ('squeeze')<cr>
+
+" todo: move to autoload
+"       the 'no lines compressed' doesn't show
+function! s:TransformLines (operation)
+
+    let last_search = histget('search', -1)
+
+    try
+        if 'squeeze' == a:operation
+
+            global/^\%([[:space:]]*$\n\)\{2,}/delete
+
+        elseif 'del_EOL_spaces' == a:operation
+
+            %substitute/\s\+$
+        endif
+
+        normal ``
+
+    catch /E486/
+
+        echohl ErrorMsg
+
+        if 'squeeze' == a:operation
+
+            echo 'No lines compressed'
+
+        elseif 'del_EOL_spaces' == a:operation
+
+            echo 'No superfluous EOL whitespaces'
+        endif
+
+        echohl NONE
+
+    finally
+
+        if histget('search', -1) != last_search
+
+            call histdel('search', -1)
+        endif
+    endtry
+
+endfunction
 
 function! Toggle_quotes () range
 
@@ -702,7 +722,7 @@ let loaded_spellfile_plugin  = 1
 
 command! WriteSudo write !sudo tee % > /dev/null
 command! DiffOrig vnew | set buftype=nofile | read# | silent 0delete_ |
-            \ diffthis | wincmd p | diffthis
+    \ diffthis | wincmd p | diffthis
 
 " Autocommands {{{1
 
@@ -714,9 +734,9 @@ if has('autocmd')
 
         " Jump to the last spot the cursor was at in a file when reading it
         autocmd BufReadPost *
-                    \ if line("'\"") > 0 && line("'\"") <= line('$') |
-                    \ execute 'normal g`"' |
-                    \ endif
+            \ if line("'\"") > 0 && line("'\"") <= line('$') |
+            \ execute 'normal g`"' |
+            \ endif
 
         " When reading a file, :cd to its parent directory unless it's a help
         " file. It reproduces the behaviour of autochdir which doesn't work
@@ -725,7 +745,7 @@ if has('autocmd')
 
         " Wrap automatically at 80 chars for plain text files
         autocmd FileType text,svn setlocal formatoptions+=t
-                    \ autoindent smartindent
+            \ autoindent smartindent
 
         " Useful for class aware omnicompletion with php
         autocmd FileType php,phtml let @v="\<esc>yiwO/* @var $\<esc>pa Zend_ */\<left>\<left>\<left>"
@@ -734,11 +754,11 @@ if has('autocmd')
 
         " Perl (to be improved)
         autocmd FileType perl set makeprg=perl\ -c\ %\ $*
-                    \ errorformat=%m\ at\ %f\ line\ %l.
+            \ errorformat=%m\ at\ %f\ line\ %l.
 
         " PHP
         autocmd FileType php set makeprg=php\ -l\ %\ $*
-                    \ errorformat=%E%m\ in\ %f\ on\ line\ %l,%Z%m
+            \ errorformat=%E%m\ in\ %f\ on\ line\ %l,%Z%m
         " }}}2
 
     augroup END
