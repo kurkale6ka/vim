@@ -1,6 +1,4 @@
 " "" instead of ci" and ci'
-nmap <silent> "" :call CI_quotes()<cr>
-
 function! CI_quotes()
 
     let nb_quotes  = strlen(substitute(getline('.'), "[^']", '', 'g'))
@@ -39,7 +37,6 @@ function! CI_quotes()
         startinsert
 
         " Repeat
-        " When enabled (my case :), it is causing problems
         let virtualedit_bak = &virtualedit
         set virtualedit=
 
@@ -49,3 +46,5 @@ function! CI_quotes()
     endif
 
 endfunction
+
+nmap <silent> "" :call CI_quotes()<cr>
