@@ -303,7 +303,7 @@ function! s:Gm()
 
     let first_col = virtcol('.')
 
-    call searchpos('[^[:space:]]\ze[[:space:]]*$', 'c', line('.'))
+    call search('[^[:space:]]\ze[[:space:]]*$', 'c', line('.'))
 
     let last_col  = virtcol('.')
 
@@ -457,15 +457,15 @@ nmap <f6>   1z=
 " F4 {{{2
 " Toggle between completeopt+=preview and completeopt-=preview
 " mnemo - 'same' behaviour as F4 used in Dolphin KDE
-nmap <f4>      :call Toggle_Longest_Preview('f4')<cr>
-imap <f4> <c-o>:call Toggle_Longest_Preview('f4')<cr>
+nmap <f4>      :call <sid>Toggle_Longest_Preview('f4')<cr>
+imap <f4> <c-o>:call <sid>Toggle_Longest_Preview('f4')<cr>
 
 " F12 {{{2
 " Toggle between completeopt+=longest and completeopt-=longest
-nmap <f12>      :call Toggle_Longest_Preview('f12')<cr>
-imap <f12> <c-o>:call Toggle_Longest_Preview('f12')<cr>
+nmap <f12>      :call <sid>Toggle_Longest_Preview('f12')<cr>
+imap <f12> <c-o>:call <sid>Toggle_Longest_Preview('f12')<cr>
 
-function! Toggle_Longest_Preview(key)
+function! s:Toggle_Longest_Preview(key)
 
     if a:key == 'f12'
 
@@ -599,6 +599,8 @@ endfunction
 
 function! Toggle_quotes () range
 
+    let last_search = histget('search', -1)
+
     if a:firstline != a:lastline
 
         let endline = a:lastline - a:firstline + 1
@@ -622,7 +624,13 @@ function! Toggle_quotes () range
 
     silent! call repeat#set(":call Toggle_quotes()\<cr>")
 
+    " Restore saved values
     let &virtualedit = virtualedit_bak
+
+    if histget('search', -1) != last_search
+
+        call histdel('search', -1)
+    endif
 
 endfunction
 
@@ -641,10 +649,10 @@ nmap q= @=<c-f>
 map <leader>b :ls<cr>
 map <leader>s :set spell! spell?<cr>
 map <leader>p :set invpaste paste?<cr>
-map <leader>\ :s:\\:/:g<cr>
-map <leader>/ :s:\\:/:g<cr>
-map <leader>< :s/>\zs\s*\ze</\r/g<cr>
-map <leader>> :s/>\zs\s*\ze</\r/g<cr>
+map <leader>\ :substitute:\\:/:g<cr>
+map <leader>/ :substitute:\\:/:g<cr>
+map <leader>< :substitute/>\zs\s*\ze</\r/g<cr>
+map <leader>> :substitute/>\zs\s*\ze</\r/g<cr>
 
 vmap [p "0p
 
@@ -698,12 +706,12 @@ let php_folding = 3
 
 let php_large_file = 0
 
-let vim_indent_cont=4
+let vim_indent_cont = 4
 
 let g:SuperTabDefaultCompletionType = "context"
 
 function! YRRunAfterMaps()
-    nnoremap Y :YRYankCount 'y$'<cr>
+    nnoremap <silent> Y :YRYankCount 'y$'<cr>
 endfunction
 
 " Disable all those plugins!
@@ -778,8 +786,8 @@ endfunc
 
 cabbrev vsb vertical sbuffer
 cabbrev svb vertical sbuffer
-cabbrev <> s/>\zs\s*\ze</\r/g
-cabbrev >< s/>\zs\s*\ze</\r/g
+cabbrev <> substitute/>\zs\s*\ze</\r/g
+cabbrev >< substitute/>\zs\s*\ze</\r/g
 
 cabbrev ftt set filetype=<c-r>=EatChar('\s')<cr>
 cabbrev fft set filetype=<c-r>=EatChar('\s')<cr>
