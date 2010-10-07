@@ -23,7 +23,7 @@ endif
 call pathogen#runtime_append_all_bundles()
 
 " Keep these lines after runtimepath!
-syntax on
+syntax                 on
 filetype plugin indent on
 
 set nocompatible
@@ -112,6 +112,7 @@ function! SlSpace()
         return ''
     endif
 endfunc
+
 set statusline=%<%n:\ %t\ %y%m%r\ %L\ lines%{SlSpace()}
     \%{empty(&keymap)?'':'\ <'.b:keymap_name.'>'}
     \%=%-14.(L:%l,\ C:%v%)\ %P
@@ -296,18 +297,21 @@ set history=1000
 " Mappings {{{1
 
 " gm improved {{{2
-function! Gm()
+function! s:Gm()
 
     execute 'normal ^'
 
-    let b:first_col = virtcol('.')
-    let b:last_col  = virtcol('$') - 1
+    let first_col = virtcol('.')
 
-    execute 'normal ' . (b:first_col + b:last_col) / 2 . '|'
+    call searchpos('[^[:space:]]\ze[[:space:]]*$', 'c', line('.'))
+
+    let last_col  = virtcol('.')
+
+    execute 'normal ' . (first_col + last_col) / 2 . '|'
 
 endfunction
 
-nmap gm :call Gm()<cr>
+nmap <silent> gm :call <sid>Gm()<cr>
 
 " `A...`Z {{{2
 " Jump to file on last change position
