@@ -525,40 +525,6 @@ onoremap <expr> [[ (search('^\S\@=.*{$', 'ebsW') && (setpos("''", getpos('.'))
 onoremap <expr> ]] (search('^\S\@=.*{$',  'esW') && (setpos("''", getpos('.'))
             \ <bar><bar> 1) ? "''" : "\<esc>")
 
-" "" instead of ci" and ci' {{{2
-nmap <silent> "" :call CI_quotes()<cr>
-
-function! CI_quotes()
-
-    let [qq_line, qq_col] = searchpos('"', 'cnW')
-    let [q_line , q_col ] = searchpos("'", 'cnW')
-
-    let curr_line = line('.')
-
-    if qq_line == curr_line || q_line == curr_line
-
-        if qq_line == curr_line && q_line == curr_line
-
-            if qq_col < q_col
-
-                normal ci"
-            else
-                normal ci'
-            endif
-
-        elseif qq_line == curr_line
-
-            normal ci"
-        else
-            normal ci'
-        endif
-
-        normal l
-        startinsert
-    endif
-
-endfunction
-
 " <leader>l {{{2
 " Remove superfluous white spaces towards the EOL (<leader>l)
 nmap <leader>l :call <sid>RemoveSpacesEOL()<cr>
