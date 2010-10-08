@@ -1,41 +1,104 @@
 " "" instead of ci" and ci'
 function! CI_quotes()
 
+    let my_changedtick = b:changedtick
+
     let nb_quotes  = strlen(substitute(getline('.'), "[^']", '', 'g'))
     let nb_qquotes = strlen(substitute(getline('.'), '[^"]', '', 'g'))
 
-    let changed_quotes = 0
+    while nb_quotes < 2 && nb_qquotes < 2 && search ('["'."']", 'c')
+
+        let nb_quotes  = strlen(substitute(getline('.'), "[^']", '', 'g'))
+        let nb_qquotes = strlen(substitute(getline('.'), '[^"]', '', 'g'))
+
+    endwhile
+
+    let save_cursor = getpos(".")
 
     if nb_quotes >= 2 && nb_qquotes >= 2
 
-        if search("'", 'cbn', line('.'))
+        " If before the first quote or double quote...
+        if !search ('["' . "']", 'cbW', line('.'))
 
-            normal ci'
-        else
-            normal ci"
+            " ...go to the first one
+            call search ('["' . "']", 'cW', line('.'))
         endif
 
-        let changed_quotes = 1
+        if "'" == matchstr(getline('.'), "['".'"]', col('.') - 1)
+
+            let quote_under_cursor = "'"
+            let anti_quote         = '"'
+        else
+            let quote_under_cursor = '"'
+            let anti_quote         = "'"
+        endif
+
+        " Not at EOL
+        if col('.') + 1 != col('$')
+
+            call setpos('.', save_cursor)
+
+            let at_eol = 0
+        else
+            let at_eol = 1
+        endif
+
+        let my_text = input('Text: ')
+
+        if at_eol || !at_eol && search (quote_under_cursor, 'cnW', line('.'))
+
+            execute 'normal ci' . quote_under_cursor . my_text . "\<esc>"
+        else
+            execute 'normal ci' . anti_quote . my_text . "\<esc>"
+        endif
 
     elseif nb_quotes >= 2
 
+        " Beyond EOL
+        if col('.') >= col('$')
+
+            call search("'", 'cbW', line('.'))
+        endif
+
         normal ci'
 
-        let changed_quotes = 1
+        if my_changedtick != b:changedtick
 
-    elseif nb_qquotes
+            let my_text = input('Text: ')
+
+            normal l
+
+            execute 'normal i' . my_text . "\<esc>"
+        endif
+
+    elseif nb_qquotes >= 2
+
+        " Beyond EOL
+        if col('.') >= col('$')
+
+            call search('"', 'cbW', line('.'))
+        endif
 
         normal ci"
 
-        let changed_quotes = 1
+        if my_changedtick != b:changedtick
+
+            let my_text = input('Text: ')
+
+            normal l
+
+            execute 'normal i' . my_text . "\<esc>"
+        endif
     endif
 
-    if changed_quotes
+    if my_changedtick == b:changedtick
 
-        normal l
+        echohl  ErrorMsg
+        echo   'Nothing to do'
+        echohl  None
 
-        startinsert
-
+        call setpos('.', save_cursor)
+    else
         " Repeat
         let virtualedit_bak = &virtualedit
         set virtualedit=
