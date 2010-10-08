@@ -1,5 +1,5 @@
 " "" instead of ci" and ci'
-function! CI_quotes()
+function! CI_quotes (text)
 
     let my_changedtick = b:changedtick
 
@@ -43,7 +43,12 @@ function! CI_quotes()
             let at_eol = 1
         endif
 
-        let my_text = input('Text: ')
+        if empty(a:text)
+
+            let my_text = input('Text: ')
+        else
+            let my_text = a:text
+        endif
 
         if at_eol || !at_eol && search (quote_under_cursor, 'cnW', line('.'))
 
@@ -64,7 +69,12 @@ function! CI_quotes()
 
         if my_changedtick != b:changedtick
 
-            let my_text = input('Text: ')
+            if empty(a:text)
+
+                let my_text = input('Text: ')
+            else
+                let my_text = a:text
+            endif
 
             normal l
 
@@ -83,7 +93,12 @@ function! CI_quotes()
 
         if my_changedtick != b:changedtick
 
-            let my_text = input('Text: ')
+            if empty(a:text)
+
+                let my_text = input('Text: ')
+            else
+                let my_text = a:text
+            endif
 
             normal l
 
@@ -103,11 +118,11 @@ function! CI_quotes()
         let virtualedit_bak = &virtualedit
         set virtualedit=
 
-        silent! call repeat#set(":call CI_quotes()\<cr>")
+        silent! call repeat#set(":call CI_quotes('" . my_text . "')\<cr>")
 
         let &virtualedit = virtualedit_bak
     endif
 
 endfunction
 
-nmap <silent> "" :call CI_quotes()<cr>
+nmap <silent> "" :call CI_quotes('')<cr>
