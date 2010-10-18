@@ -1,4 +1,59 @@
-" "" instead of ci" and ci'
+" Use "" instead of ci" or ci'
+"
+" Author: Dimitar Dimitrov (mitkofr@yahoo.fr), kurkale6ka
+"
+" Latest version at:
+" http://github.com/kurkale6ka/vimfiles/blob/master/plugin/quotes.vim
+
+if exists('g:loaded_quotes') || &compatible || v:version < 700
+
+    if &compatible && &verbose
+
+        echo "Quotes is not designed to work in compatible mode."
+
+    elseif v:version < 700
+
+        echo "Quotes needs Vim 7.0 or above to work correctly."
+    endif
+
+    finish
+endif
+
+let g:loaded_quotes = 1
+
+let s:savecpo = &cpoptions
+set cpoptions&vim
+
+function! s:ChangeTextQuotes (changedtick, quote, text)
+
+    " Beyond EOL
+    if col('.') >= col('$')
+
+        call search(a:quote, 'cbW', line('.'))
+    endif
+
+    execute 'normal ci' . a:quote
+
+    if a:changedtick != b:changedtick
+
+        if empty(a:text)
+
+            let my_text = input('Text: ')
+
+        elseif 'no_text' == a:text
+
+            let my_text = ''
+        else
+            let my_text = a:text
+        endif
+
+        execute 'normal a' . my_text . "\<esc>"
+
+        return my_text
+    endif
+
+endfunction
+
 function! CI_quotes (text)
 
     let my_changedtick = b:changedtick
@@ -6,10 +61,28 @@ function! CI_quotes (text)
     let nb_quotes  = strlen(substitute(getline('.'), "[^']", '', 'g'))
     let nb_qquotes = strlen(substitute(getline('.'), '[^"]', '', 'g'))
 
-    while nb_quotes < 2 && nb_qquotes < 2 && search ('["'."']", 'c')
+    while nb_quotes < 2 && nb_qquotes < 2
 
-        let nb_quotes  = strlen(substitute(getline('.'), "[^']", '', 'g'))
-        let nb_qquotes = strlen(substitute(getline('.'), '[^"]', '', 'g'))
+        if 1 != line('$')
+
+            let current_line = line('.')
+
+            if current_line < line('w$')
+
+                +
+
+            elseif current_line == line('w$')
+
+                execute line('w0')
+            endif
+
+            call search ('["'."']", 'w', current_line)
+
+            let nb_quotes  = strlen(substitute(getline('.'), "[^']", '', 'g'))
+            let nb_qquotes = strlen(substitute(getline('.'), '[^"]', '', 'g'))
+        else
+            return
+        endif
 
     endwhile
 
@@ -46,6 +119,10 @@ function! CI_quotes (text)
         if empty(a:text)
 
             let my_text = input('Text: ')
+
+        elseif 'no_text' == a:text
+
+            let my_text = ''
         else
             let my_text = a:text
         endif
@@ -54,56 +131,16 @@ function! CI_quotes (text)
 
             execute 'normal ci' . quote_under_cursor . my_text . "\<esc>"
         else
-            execute 'normal ci' . anti_quote . my_text . "\<esc>"
+            execute 'normal ci' . anti_quote         . my_text . "\<esc>"
         endif
 
     elseif nb_quotes >= 2
 
-        " Beyond EOL
-        if col('.') >= col('$')
-
-            call search("'", 'cbW', line('.'))
-        endif
-
-        normal ci'
-
-        if my_changedtick != b:changedtick
-
-            if empty(a:text)
-
-                let my_text = input('Text: ')
-            else
-                let my_text = a:text
-            endif
-
-            normal l
-
-            execute 'normal i' . my_text . "\<esc>"
-        endif
+        let my_text = s:ChangeTextQuotes (my_changedtick, "'", a:text)
 
     elseif nb_qquotes >= 2
 
-        " Beyond EOL
-        if col('.') >= col('$')
-
-            call search('"', 'cbW', line('.'))
-        endif
-
-        normal ci"
-
-        if my_changedtick != b:changedtick
-
-            if empty(a:text)
-
-                let my_text = input('Text: ')
-            else
-                let my_text = a:text
-            endif
-
-            normal l
-
-            execute 'normal i' . my_text . "\<esc>"
-        endif
+        let my_text = s:ChangeTextQuotes (my_changedtick, '"', a:text)
     endif
 
     if my_changedtick == b:changedtick
@@ -116,7 +153,7 @@ function! CI_quotes (text)
     else
         if empty(my_text)
 
-            let my_text = ''
+            let my_text = 'no_text'
 
             normal l
 
@@ -134,4 +171,8 @@ function! CI_quotes (text)
 
 endfunction
 
-nmap <silent> "" :call CI_quotes('')<cr>
+nmap <silent> <plug>QuotesCIQuotes :<c-u>call CI_quotes('')<cr>
+nmap       "" <plug>QuotesCIQuotes
+
+let &cpoptions = s:savecpo
+unlet s:savecpo
