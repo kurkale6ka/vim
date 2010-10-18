@@ -114,6 +114,15 @@ function! CI_quotes (text)
 
         call setpos('.', save_cursor)
     else
+        if empty(my_text)
+
+            let my_text = ''
+
+            normal l
+
+            startinsert
+        endif
+
         " Repeat
         let virtualedit_bak = &virtualedit
         set virtualedit=
