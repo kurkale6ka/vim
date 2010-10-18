@@ -61,30 +61,34 @@ function! CI_quotes (text)
     let nb_quotes  = strlen(substitute(getline('.'), "[^']", '', 'g'))
     let nb_qquotes = strlen(substitute(getline('.'), '[^"]', '', 'g'))
 
+    let stop_line = line('.')
+
     while nb_quotes < 2 && nb_qquotes < 2
 
-        if 1 != line('$')
+        +
 
-            let current_line = line('.')
+        if 0 == search ('["'."']", '', line('w$'))
 
-            if current_line < line('w$')
+            break
+        else
 
-                +
+        let nb_quotes  = strlen(substitute(getline('.'), "[^']", '', 'g'))
+        let nb_qquotes = strlen(substitute(getline('.'), '[^"]', '', 'g'))
 
-            elseif current_line == line('w$')
+    endwhile
 
-                execute line('w0')
-            endif
+    if nb_quotes < 2 && nb_qquotes < 2
 
-            call search ('["'."']", 'w', current_line)
+        execute line('w0')
+
+        " todo: do not search current line
+        while nb_quotes < 2 && nb_qquotes < 2 && search ('["'."']", '', stop_line)
 
             let nb_quotes  = strlen(substitute(getline('.'), "[^']", '', 'g'))
             let nb_qquotes = strlen(substitute(getline('.'), '[^"]', '', 'g'))
-        else
-            return
-        endif
 
-    endwhile
+        endwhile
+    endif
 
     let save_cursor = getpos(".")
 
