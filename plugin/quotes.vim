@@ -65,15 +65,15 @@ function! CI_quotes (text)
 
     while nb_quotes < 2 && nb_qquotes < 2
 
-        +
+        normal $
 
         if 0 == search ('["'."']", '', line('w$'))
 
             break
         else
-
-        let nb_quotes  = strlen(substitute(getline('.'), "[^']", '', 'g'))
-        let nb_qquotes = strlen(substitute(getline('.'), '[^"]', '', 'g'))
+            let nb_quotes  = strlen(substitute(getline('.'), "[^']", '', 'g'))
+            let nb_qquotes = strlen(substitute(getline('.'), '[^"]', '', 'g'))
+        endif
 
     endwhile
 
@@ -81,11 +81,18 @@ function! CI_quotes (text)
 
         execute line('w0')
 
-        " todo: do not search current line
-        while nb_quotes < 2 && nb_qquotes < 2 && search ('["'."']", '', stop_line)
+        while nb_quotes < 2 && nb_qquotes < 2
 
-            let nb_quotes  = strlen(substitute(getline('.'), "[^']", '', 'g'))
-            let nb_qquotes = strlen(substitute(getline('.'), '[^"]', '', 'g'))
+            normal $
+
+            " todo: not search the stop line again
+            if 0 == search ('["'."']", '', stop_line)
+
+                break
+            else
+                let nb_quotes  = strlen(substitute(getline('.'), "[^']", '', 'g'))
+                let nb_qquotes = strlen(substitute(getline('.'), '[^"]', '', 'g'))
+            endif
 
         endwhile
     endif
