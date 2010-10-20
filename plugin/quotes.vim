@@ -4,6 +4,8 @@
 "
 " Latest version at:
 " http://github.com/kurkale6ka/vimfiles/blob/master/plugin/quotes.vim
+"
+" todo: highlight the matched quotes before changing them
 
 if exists('g:loaded_quotes') || &compatible || v:version < 700
 
@@ -58,10 +60,15 @@ function! CI_quotes (text)
 
     let my_changedtick = b:changedtick
 
+    let save_cursor = getpos(".")
+
+    let stop_line = line('.') - 1
+
+    " Look for quotes from the cursor line to the bottom of the screen
+    " todo: put into a function the code between '---'s
+    " ---
     let nb_quotes  = strlen(substitute(getline('.'), "[^']", '', 'g'))
     let nb_qquotes = strlen(substitute(getline('.'), '[^"]', '', 'g'))
-
-    let stop_line = line('.')
 
     while nb_quotes < 2 && nb_qquotes < 2
 
@@ -76,16 +83,21 @@ function! CI_quotes (text)
         endif
 
     endwhile
+    " ---
 
-    if nb_quotes < 2 && nb_qquotes < 2
+    " Look for quotes from the top of the screen to the cursor line
+    if nb_quotes < 2 && nb_qquotes < 2 && 1 != line('$')
 
         execute line('w0')
+
+        " ---
+        let nb_quotes  = strlen(substitute(getline('.'), "[^']", '', 'g'))
+        let nb_qquotes = strlen(substitute(getline('.'), '[^"]', '', 'g'))
 
         while nb_quotes < 2 && nb_qquotes < 2
 
             normal $
 
-            " todo: not search the stop line again
             if 0 == search ('["'."']", '', stop_line)
 
                 break
@@ -95,9 +107,8 @@ function! CI_quotes (text)
             endif
 
         endwhile
+        " ---
     endif
-
-    let save_cursor = getpos(".")
 
     if nb_quotes >= 2 && nb_qquotes >= 2
 
