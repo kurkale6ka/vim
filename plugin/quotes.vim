@@ -6,6 +6,7 @@
 " http://github.com/kurkale6ka/vimfiles/blob/master/plugin/quotes.vim
 "
 " todo: highlight the matched quotes before changing them
+" todo: add support for backticks
 
 if exists('g:loaded_quotes') || &compatible || v:version < 700
 
