@@ -639,6 +639,21 @@ endfunction
 nmap <leader>' :call Toggle_quotes()<cr>
 vmap <leader>' :call Toggle_quotes()<cr>
 
+function! s:Toggle_list()
+
+    if !&list
+
+        set list list?
+    else
+        set nolist list?
+    endif
+
+endfunction
+
+" <leader><space> {{{2
+" Toggle the 'list view
+map <leader><space> :call <sid>Toggle_list()<cr>
+
 " Windows {{{2
 nmap <c-w><c-w> :wincmd p<cr>
 
