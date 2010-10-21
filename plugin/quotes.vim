@@ -35,7 +35,7 @@ function! s:ChangeTextQuotes (changedtick, quote, text)
         call search(a:quote, 'cbW', line('.'))
     endif
 
-    execute 'normal ci' . a:quote
+    execute 'normal di' . a:quote
 
     if a:changedtick != b:changedtick
 
@@ -50,7 +50,7 @@ function! s:ChangeTextQuotes (changedtick, quote, text)
             let my_text = a:text
         endif
 
-        execute 'normal a' . my_text . "\<esc>"
+        execute 'normal i' . my_text . "\<esc>"
 
         return my_text
     endif
