@@ -682,6 +682,9 @@ cabbrev keymap& keymap&\|set spelllang&
 cabbrev kmp=    keymap&\|set spelllang&
 cabbrev keymap= keymap&\|set spelllang&
 
+cabbrev mpa map
+cabbrev frm fmr
+
 iabbrev _t <c-r>=strftime('%d %B %Y, %H:%M %Z (%A)')<cr><c-r>=EatChar('\s')<cr>
 
 " vim: set foldmethod=marker foldmarker&:
