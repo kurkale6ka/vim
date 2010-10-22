@@ -58,20 +58,25 @@ function! s:Swap(mode) range
                                  \  '?',   ':',   ',',  "'=",  "'<",  "'>",
                                  \ '!<',  '!>']
 
-            let operators_list = comparison_ops +
-                               \ logical_ops    +
-                               \ assignment_ops +
-                               \ scope_ops      +
-                               \ pointer_ops    +
-                               \ bitwise_ops
+            let operators_list = comparison_ops
 
-            if exists('g:swap_custom_ops')
+            " If a count is used, swap on comparison operators only
+            if v:count < 1
 
-                " let g:swap_custom_ops = ['first_operator', 'second_operator']
-                let operators_list += g:swap_custom_ops
+                let operators_list += assignment_ops +
+                                    \ logical_ops    +
+                                    \ scope_ops      +
+                                    \ pointer_ops    +
+                                    \ bitwise_ops
+
+                if exists('g:swap_custom_ops')
+
+                    " let g:swap_custom_ops = ['ope1', 'ope2', ...]
+                    let operators_list += g:swap_custom_ops
+                endif
+
+                let operators_list += misc_ops
             endif
-
-            let operators_list += misc_ops
 
             let operators = join(operators_list, '\|')
             let operators = escape(operators, '*/~.^$')
