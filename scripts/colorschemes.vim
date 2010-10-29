@@ -1,3 +1,7 @@
+view ~/vimfiles/plugin/swap.vim
+help help.txt
+125
+
 for c in split(glob('~/vimfiles/colors/*.vim'))
 
     let theme = substitute(c, '^.*[/\\]\|\.vim', '', 'g')
