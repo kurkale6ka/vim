@@ -1,17 +1,7 @@
-colorscheme blue      | redraw | echo 'blue'      | sleep 2
-colorscheme darkblue  | redraw | echo 'darkblue'  | sleep 2
-colorscheme default   | redraw | echo 'default'   | sleep 2
-colorscheme delek     | redraw | echo 'delek'     | sleep 2
-colorscheme desert    | redraw | echo 'desert'    | sleep 2
-colorscheme elflord   | redraw | echo 'elflord'   | sleep 2
-colorscheme evening   | redraw | echo 'evening'   | sleep 2
-colorscheme koehler   | redraw | echo 'koehler'   | sleep 2
-colorscheme morning   | redraw | echo 'morning'   | sleep 2
-colorscheme murphy    | redraw | echo 'murphy'    | sleep 2
-colorscheme pablo     | redraw | echo 'pablo'     | sleep 2
-colorscheme peachpuff | redraw | echo 'peachpuff' | sleep 2
-colorscheme ron       | redraw | echo 'ron'       | sleep 2
-colorscheme shine     | redraw | echo 'shine'     | sleep 2
-colorscheme slate     | redraw | echo 'slate'     | sleep 2
-colorscheme torte     | redraw | echo 'torte'     | sleep 2
-colorscheme zellner   | redraw | echo 'zellner'   | sleep 2
+for c in split(glob('~/vimfiles/colors/*.vim'))
+
+    let theme = substitute(c, '^.*[/\\]\|\.vim', '', 'g')
+
+    execute 'colorscheme ' . theme | redraw | echo theme | sleep 2
+
+endfor
