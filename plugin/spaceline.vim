@@ -55,4 +55,6 @@ nmap <silent> <plug>SpacelineSingle :<c-u>call <sid>SpaceLine('')<cr>
 nmap <silent> <plug>SpacelineBoth   :<c-u>call <sid>SpaceLine('both')<cr>
 
 nmap <leader>o <plug>SpacelineSingle
+nmap <c-cr>    <plug>SpacelineSingle
+" Todo: count <c-cr>
 nmap <leader>O <plug>SpacelineBoth
