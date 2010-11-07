@@ -1,4 +1,4 @@
-source $VIMRUNTIME/keymap/bulgarian.vim
+source $VIMRUNTIME/keymap/bulgarian-phonetic.vim
 
 set spelllang=bg
 
