@@ -33,27 +33,27 @@ set cpoptions&vim
 
 "function! s:Tab_spaces()
 
-    "normal h
+"normal h
 
-    "let before_tab = virtcol('.')
+"let before_tab = virtcol('.')
 
-    "call search('[^[:tab:]]', 'W', line('.'))
+"call search('[^[:tab:]]', 'W', line('.'))
 
-    "let after_tab = virtcol('.')
+"let after_tab = virtcol('.')
 
-    "call search('[[:tab:]]\+', 'Wb', line('.'))
+"call search('[[:tab:]]\+', 'Wb', line('.'))
 
-    "return after_tab - before_tab - 1
+"return after_tab - before_tab - 1
 
 "endfunction
 
 "while search('\t\+','W',line('.'))
 
-    "let nb_spaces = s:Tab_spaces()
-    "echo nb_spaces
-    "sleep
+"let nb_spaces = s:Tab_spaces()
+"echo nb_spaces
+"sleep
 
-    "execute "normal x" . nb_spaces . "i \<esc>"
+"execute "normal x" . nb_spaces . "i \<esc>"
 "endwhile
 
 function! s:BlockDo (operation, col1, col2, row1, row2, text)
@@ -63,7 +63,7 @@ function! s:BlockDo (operation, col1, col2, row1, row2, text)
         let go_start = '^'
         let go_end   = '$'
 
-    " I (insert) and A (append)
+        " I (insert) and A (append)
     elseif empty(a:col1) && a:operation !~ 'q'
 
         let go_start = ''
@@ -345,7 +345,7 @@ function! BlockDoIni (mode, ope1, ope2, col1, col2, row1, row2, text1, text2) ra
         let _row1 = 0
         let _row2 = 0
 
-    " use previous range
+        " use previous range
     elseif a:mode =~ 'r'
 
         let  row1 = a:row1
@@ -405,40 +405,40 @@ function! BlockDoIni (mode, ope1, ope2, col1, col2, row1, row2, text1, text2) ra
 endfunction
 
 " mode, ope1, ope2, col1, col2, row1, row2, text1, text2
-"if exists('g:blockinsert_commands') && g:blockinsert_commands == 1
+if exists('g:blockinsert_commands') && g:blockinsert_commands == 1
 
-command! -nargs=* -range BlockInsert <line1>,<line2>
-    \
-    \call BlockDoIni ('c', '', 'i',  0, 0, <line1>, <line2>, '', <q-args>)
+    command! -nargs=* -range BlockInsert <line1>,<line2>
+        \
+        \call BlockDoIni ('c', '', 'i',  0, 0, <line1>, <line2>, '', <q-args>)
 
-command! -nargs=* -range BlockAppend <line1>,<line2>
-    \
-    \call BlockDoIni ('c', '', 'a',  0, 0, <line1>, <line2>, '', <q-args>)
+    command! -nargs=* -range BlockAppend <line1>,<line2>
+        \
+        \call BlockDoIni ('c', '', 'a',  0, 0, <line1>, <line2>, '', <q-args>)
 
-command! -nargs=* -range BlockQInsert <line1>,<line2>
-    \
-    \call BlockDoIni ('c', '', 'qi', 0, 0, <line1>, <line2>, '', <q-args>)
+    command! -nargs=* -range BlockQInsert <line1>,<line2>
+        \
+        \call BlockDoIni ('c', '', 'qi', 0, 0, <line1>, <line2>, '', <q-args>)
 
-command! -nargs=* -range BlockQAppend <line1>,<line2>
-    \
-    \call BlockDoIni ('c', '', 'qa', 0, 0, <line1>, <line2>, '', <q-args>)
+    command! -nargs=* -range BlockQAppend <line1>,<line2>
+        \
+        \call BlockDoIni ('c', '', 'qa', 0, 0, <line1>, <line2>, '', <q-args>)
 
-command! -nargs=* -range BlockBoth <line1>,<line2>
-    \
-    \call BlockDoIni ('c', 'i',   'a',   0, 0, <line1>, <line2>, <f-args>)
+    command! -nargs=* -range BlockBoth <line1>,<line2>
+        \
+        \call BlockDoIni ('c', 'i',   'a',   0, 0, <line1>, <line2>, <f-args>)
 
-command! -nargs=* -range BlockBothSame <line1>,<line2>
-    \
-    \call BlockDoIni ('c', 'iu',  'au',  0, 0, <line1>, <line2>, <q-args>, '')
+    command! -nargs=* -range BlockBothSame <line1>,<line2>
+        \
+        \call BlockDoIni ('c', 'iu',  'au',  0, 0, <line1>, <line2>, <q-args>, '')
 
-command! -nargs=* -range BlockQBoth <line1>,<line2>
-    \
-    \call BlockDoIni ('c', 'qi',  'qa',  0, 0, <line1>, <line2>, <f-args>)
+    command! -nargs=* -range BlockQBoth <line1>,<line2>
+        \
+        \call BlockDoIni ('c', 'qi',  'qa',  0, 0, <line1>, <line2>, <f-args>)
 
-command! -nargs=* -range BlockQBothSame <line1>,<line2>
-    \
-    \call BlockDoIni ('c', 'qiu', 'qau', 0, 0, <line1>, <line2>, <q-args>, '')
-"endif
+    command! -nargs=* -range BlockQBothSame <line1>,<line2>
+        \
+        \call BlockDoIni ('c', 'qiu', 'qau', 0, 0, <line1>, <line2>, <q-args>, '')
+endif
 
 " Insert / Append
 vmap <silent> <plug>BlockinsertVInsert
