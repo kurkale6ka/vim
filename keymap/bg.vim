@@ -1,4 +1,9 @@
-source $VIMRUNTIME/keymap/bulgarian-phonetic.vim
+if filereadable($VIMRUNTIME . '/keymap/bulgarian-phonetic.vim')
+
+    source $VIMRUNTIME/keymap/bulgarian-phonetic.vim
+else
+    source $VIMRUNTIME/keymap/bulgarian.vim
+endif
 
 set spelllang=bg
 
