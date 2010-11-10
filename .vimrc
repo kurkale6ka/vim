@@ -611,6 +611,7 @@ let g:loaded_tarPlugin       = 1
 let g:loaded_getscriptPlugin = 1
 let loaded_rrhelper          = 1
 let loaded_spellfile_plugin  = 1
+let g:loaded_ZoomWin         = 1
 
 " There seems not to be a way to disable tohtml.vim
 
