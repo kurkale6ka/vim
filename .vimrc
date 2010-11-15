@@ -20,6 +20,7 @@ if has('win32')
     behave xterm
 endif
 
+call pathogen#helptags()
 call pathogen#runtime_append_all_bundles()
 
 " Keep these lines after runtimepath!
