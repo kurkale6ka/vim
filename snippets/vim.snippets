@@ -1,0 +1,40 @@
+snippet skel
+	" ${1:Short Description}
+	"
+	" Author: `g:snips_author` (mitkofr@yahoo.fr), kurkale6ka
+	"
+	" Latest version at:
+	" http://github.com/kurkale6ka/vimfiles/blob/master/plugin/${2:name}.vim
+
+	if exists('g:loaded_$2') || &compatible || v:version < 700
+
+		if &compatible && &verbose
+
+			echo "$2 is not designed to work in compatible mode."
+
+		elseif v:version < 700
+
+			echo "$2 needs Vim 7.0 or above to work correctly."
+		endif
+
+		finish
+	endif
+
+	let g:loaded_$2 = 1
+
+	let s:savecpo = &cpoptions
+	set cpoptions&vim
+
+	function! s:${3:}() range
+
+		" ${4:@todo}
+	endfunction
+
+	vmap <silent> <plug>$2${5:}
+		\
+		\ :call <sid>$3()<cr>
+
+	vmap ${6} <plug>$2$5
+
+	let &cpoptions = s:savecpo
+	unlet s:savecpo
