@@ -1,4 +1,4 @@
-snippet xdoc
+snippet skel
 	% article, proc, minimal, report, book, slides, memoir, letter, beamer
 	\documentclass[12pt,a4paper]{article}
 
@@ -9,7 +9,7 @@ snippet xdoc
 
 	\title{${1}}
 	\author{
-		Dimitar Dimitrov\\
+		`g:snips_author`\\
 		\texttt{mitkofr@yahoo.fr}\\
 		% \LaTeXe\footnote%
 		% {\href{http://www.latex-project.org/}%
@@ -26,19 +26,19 @@ snippet xdoc
 	\section{${2}}
 
 	\end{document}
-snippet xli
+snippet li Unordered list
 	\begin{itemize}
 	\item ${1}
 	\item ${2}
 	\item ${3}
 	\end{itemize}
-snippet xle
+snippet li Ordered list
 	\begin{enumerate}
 	\item ${1}
 	\item ${2}
 	\item ${3}
 	\end{enumerate}
-snippet xld
+snippet li Description
 	\begin{description}
 	\item[${1}]
 	\item[${2}]
