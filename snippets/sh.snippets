@@ -1,0 +1,21 @@
+snippet skel
+	#! /usr/bin/env bash
+
+	# ${1:Short Description}
+	#
+	# Author: `g:snips_author` <mitkofr@yahoo.fr>
+	# ------------------------------------------
+snippet #! Hash bang using the env command
+	#! /usr/bin/env bash
+snippet for for i in *; do (foreach)
+	for ${1:i} in ${2:*}; do
+
+		${3:echo} "$$1"
+	done
+snippet for for i in {1..11}; do (brace expansion)
+	for ${1:i} in {${2:start}..${3:end}}; do
+
+		${4:echo} "$$1"
+	done
+snippet AA
+	${///}

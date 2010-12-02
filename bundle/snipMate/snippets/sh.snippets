@@ -9,7 +9,7 @@ snippet if
 snippet elif
 	elif [[ ${1:condition} ]]; then
 		${2:#statements}
-snippet for
+snippet for C-like
 	for (( ${2:i} = 0; $2 < ${1:count}; $2++ )); do
 		${3:#statements}
 	done
