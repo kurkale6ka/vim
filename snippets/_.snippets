@@ -39,8 +39,16 @@ snippet lorem Long
 snippet cron
 	# minute | hour | day of month | month | day of week | command
 # 1900-2099/01-12/01-31
-snippet dater
+snippet regex Date
 	^(?:19|20)\d\d/(?:0?[1-9]|1[0-2])/(?:0?[1-9]|[12]\d|3[01])$
 # 03:24:44 Pm
-snippet timer
+snippet regex Time
 	^(?:0?\d|1\d|2[0-3])(?::[0-5]\d){1,2}[[:space:]]*(?:[aA]|[pP])[mM]$
+snippet regex Look behind Perl
+	(?<${1:=}${2:pattern1})${3:pattern2}
+snippet regex Look behind Vim
+	\%(${1:pattern1}\)\@<${2:=}${3:pattern2}
+snippet regex Look ahead Perl
+	${1:pattern1}(?${2:=}${3:pattern2})
+snippet regex Look ahead Vim
+	${1:pattern1}\%(${2:pattern1}\)\@${3:=}
