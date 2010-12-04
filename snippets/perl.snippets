@@ -3,27 +3,19 @@ snippet skel
 
 	use strict;
 	use warnings;
-
-	print "Hello, world";
-
-	my @animals = ("camel", "llama", "owl");
-
-	my %fruit_color = (
-
-		apple  => "red",
-		banana => "yellow",
-	);
-
-	foreach (@array) {
-
-		print "This element is $_\n";
-	}
-
-	$a =~ s/foo/bar/g;
-
-	sub square {
-
-		my $num = shift;
-		my $result = $num * $num;
-		return $result;
-	}
+snippet array
+	@${1:array} = qw/${2:word1} ${3:word2} ${4:word3}/;
+snippet word
+	@${1:array} = qw/${2:word1} ${3:word2} ${4:word3}/;
+snippet quote Array of words
+	@${1:array} = qw/${2:word1} ${3:word2} ${4:word3}/;
+snippet quote Quotes
+	$my ${1:variable} = q/${2:sentence}/;
+snippet quote Double quotes
+	$my ${1:variable} = qq/${2:sentence}/;
+snippet quote Back ticks
+	$my ${1:variable} = qx/${2:sentence}/;
+snippet s/// Substitute
+	$${1:scalar} =~ s/${2:old}/${3:new}/;
+snippet s/// Match
+	$${1:scalar} =~ /${2:pattern}/;
