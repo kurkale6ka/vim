@@ -1,0 +1,29 @@
+snippet skel
+	#! /usr/bin/env perl
+
+	use strict;
+	use warnings;
+
+	print "Hello, world";
+
+	my @animals = ("camel", "llama", "owl");
+
+	my %fruit_color = (
+
+		apple  => "red",
+		banana => "yellow",
+	);
+
+	foreach (@array) {
+
+		print "This element is $_\n";
+	}
+
+	$a =~ s/foo/bar/g;
+
+	sub square {
+
+		my $num = shift;
+		my $result = $num * $num;
+		return $result;
+	}
