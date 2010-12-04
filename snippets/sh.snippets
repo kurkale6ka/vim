@@ -39,3 +39,5 @@ snippet $$ all parameters starting with prefix
 	${!${1:prefix}@}
 snippet $$ Parameter expansion on arrays
 	${${1:parameters array}[@]${2}#%:/}
+snippet ren
+	for file in *; do mv "$file" "${file%.*}".new; done
