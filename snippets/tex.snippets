@@ -1,4 +1,12 @@
 snippet skel
+	% 10pt, 11pt, 12pt
+	% letterpaper, a5paper, b5paper, executivepaper, legalpaper
+	% fleqn, leqno
+	% titlepage, notitlepage
+	% onecolumn, twocolumn
+	% twoside, oneside
+	% landscape
+	% openright, openany
 	% article, proc, minimal, report, book, slides, memoir, letter, beamer
 	\documentclass[12pt,a4paper]{${1:article}}
 
@@ -20,12 +28,16 @@ snippet skel
 	\begin{document}
 
 	\maketitle
+	% plain, headings, empty
+	% \pagestyle{plain}
+	\thispagestyle{${3:empty}}
+
 	% \tableofcontents
 
 	% part, chapter, section, subsection, subsubsection, paragraph, subparagraph
-	\section{${3}}
+	\section{${4}}
 
-	${4}
+	${5}
 
 	\end{document}
 snippet li Unordered list
@@ -49,3 +61,5 @@ snippet li Description
 	\item[${5}] \hfill \\
 	${6}
 	\end{description}
+snippet ...
+	\ldots
