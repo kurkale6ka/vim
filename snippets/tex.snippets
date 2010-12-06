@@ -1,13 +1,13 @@
 snippet skel
 	% article, proc, minimal, report, book, slides, memoir, letter, beamer
-	\documentclass[12pt,a4paper]{article}
+	\documentclass[12pt,a4paper]{${1:article}}
 
 	% \usepackage{amsmath}
 	% \usepackage{tocloft}
 	% \renewcommand{\cftsecdotsep}{\cftdotsep}
 	% \usepackage[colorlinks=true,urlcolor=blue,linkcolor=cyan]{hyperref}
 
-	\title{${1}}
+	\title{${2}}
 	\author{
 		`g:snips_author`\\
 		\texttt{mitkofr@yahoo.fr}\\
@@ -23,7 +23,9 @@ snippet skel
 	% \tableofcontents
 
 	% part, chapter, section, subsection, subsubsection, paragraph, subparagraph
-	\section{${2}}
+	\section{${3}}
+
+	${4}
 
 	\end{document}
 snippet li Unordered list
