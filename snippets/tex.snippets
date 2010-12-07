@@ -11,7 +11,7 @@ snippet skel
 	% article, proc, minimal, report, book, slides, memoir, letter, beamer
 	\documentclass[12pt,a4paper]{${1:article}}
 
-	% \usepackage[french]{babel}
+	% \usepackage[francais]{babel}
 	% \usepackage{ucs}
 	% \usepackage[utf8x]{inputenc}
 
@@ -80,3 +80,22 @@ snippet €
 	\euro{}
 snippet £
 	\pounds{}
+# French
+snippet quotes
+	\og ${1} \fg{}
+snippet Mr Mr
+	M\up{r}
+snippet Mr Mme
+	M\up{me}
+snippet Mr Dr
+	D\up{r}
+snippet 1er 1er
+	1\ier{}
+snippet 1er 1ere
+	1\iere{}
+snippet No
+	\No
+snippet author
+	${1:Dimitar} \bsc{${2:Dimitrov}}
+snippet nombre
+	\nombre{${1}}
