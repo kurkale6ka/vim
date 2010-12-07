@@ -70,6 +70,56 @@ snippet li Description
 	\item[${5}] \hfill \\
 	${6}
 	\end{description}
+# flushleft, flushright, center, quote, verse
+snippet {
+	\begin{${1:equation}}
+	${2}
+	\end{$1}
+snippet code
+	\begin{verbatim}
+	${1}
+	\end{verbatim}
+snippet float
+	\begin{figure}[${1:tbp}]
+	\makebox[\textwidth]{\framebox[5cm]{\rule{0pt}{5cm}}}
+	\caption{${2:Caption.}\label{${3:mark}}}
+	\end{figure}
+snippet h1 Section
+	\section{${1}}
+
+	${2}
+snippet h1 Chapter
+	\chapter{${1}}
+
+	${2}
+snippet h1 Part (No section/chapter numbering)
+	\part{${1}}
+
+	${2}
+snippet h1 Paragraph
+	\paragraph{${1}}
+
+	${2}
+snippet h2 Sub section
+	\subsection{${1}}
+
+	${2}
+snippet h2 Sub paragraph
+	\subparagraph{${1}}
+
+	${2}
+snippet h3 Sub sub section
+	\subsubsection{${1}}
+
+	${2}
+snippet ref Set a mark
+	\label{${1:mark}}
+snippet ref Reference a mark
+	~\ref{${1:mark}}
+snippet ref Reference mark's page
+	~\pageref{${1:mark}}
+snippet foot
+	\footnote{${1}}
 snippet ...
 	\ldots
 snippet ~ Middle
@@ -80,6 +130,10 @@ snippet €
 	\euro{}
 snippet £
 	\pounds{}
+snippet dot
+	\@.
+snippet em
+	\emph{${1}}
 # French
 snippet quotes
 	\og ${1} \fg{}
@@ -96,6 +150,6 @@ snippet 1er 1ere
 snippet No
 	\No
 snippet author
-	${1:Dimitar} \bsc{${2:Dimitrov}}
+	M\up{${1:r}}~${2:Dimitar}~\bsc{${3:Dimitrov}}
 snippet nombre
 	\nombre{${1}}
