@@ -7,12 +7,21 @@ snippet skel
 	% twoside, oneside
 	% landscape
 	% openright, openany
+	% draft (for debugging)
 	% article, proc, minimal, report, book, slides, memoir, letter, beamer
 	\documentclass[12pt,a4paper]{${1:article}}
 
+	% \usepackage[french]{babel}
+	% \usepackage{ucs}
+	% \usepackage[utf8x]{inputenc}
+
 	% \usepackage{amsmath}
+
+	% \usepackage[official]{eurosym}
+
 	% \usepackage{tocloft}
 	% \renewcommand{\cftsecdotsep}{\cftdotsep}
+
 	% \usepackage[colorlinks=true,urlcolor=blue,linkcolor=cyan]{hyperref}
 
 	\title{${2}}
@@ -28,6 +37,7 @@ snippet skel
 	\begin{document}
 
 	\maketitle
+
 	% plain, headings, empty
 	% \pagestyle{plain}
 	\thispagestyle{${3:empty}}
@@ -63,3 +73,11 @@ snippet li Description
 	\end{description}
 snippet ...
 	\ldots
+snippet ~ Middle
+	$\sim$
+snippet ~ High
+	\~{}
+snippet €
+	\euro{}
+snippet £
+	\pounds{}
