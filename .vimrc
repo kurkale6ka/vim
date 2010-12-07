@@ -566,7 +566,7 @@ endif
 
 " Plugin settings {{{1
 
-let g:snips_author = 'Dimitar Dimitrov'
+let g:snips_author = 'Mr.~Dimitar~Dimitrov'
 " Man
 if !has('win32')
 
