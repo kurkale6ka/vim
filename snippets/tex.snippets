@@ -23,12 +23,32 @@ snippet skel
 	% \renewcommand{\cftsecdotsep}{\cftdotsep}
 
 	% Must be the last used package
-	% \usepackage[colorlinks=true,urlcolor=blue,linkcolor=cyan]{hyperref}
+	\usepackage{hyperref}
+	\hypersetup{
+		bookmarks=true,         % show bookmarks bar?
+		unicode=false,          % non-Latin characters in Acrobat’s bookmarks
+		pdftoolbar=true,        % show Acrobat’s toolbar?
+		pdfmenubar=true,        % show Acrobat’s menu?
+		pdffitwindow=false,     % window fit to page when opened
+		pdfstartview={FitH},    % fits the width of the page to the window
+		pdftitle={$2},          % title
+		pdfauthor={`g:snips_author`},         % author
+		pdfsubject={Subject},                 % subject of the document
+		pdfcreator={`g:snips_author`},        % creator of the document
+		pdfproducer={Producer},               % producer of the document
+		pdfkeywords={keyword1} {key2} {key3}, % list of keywords
+		pdfnewwindow=true,      % links in new window
+		colorlinks=true,        % false: boxed links; true: colored links
+		linkcolor=red,          % color of internal links
+		citecolor=green,        % color of links to bibliography
+		filecolor=magenta,      % color of file links
+		urlcolor=blue           % color of external links
+	}
 
 	\title{${2}}
 	\author{
 		`g:snips_author`\\
-		\texttt{mitkofr@yahoo.fr}\\
+		\href{mailto:mitkofr@yahoo.fr}{\texttt{mitkofr@yahoo.fr}}\\
 		% \LaTeXe\footnote%
 		% {\href{http://www.latex-project.org/}%
 		% {\LaTeX{} -- A document preparation system}}
@@ -85,6 +105,10 @@ snippet fig
 	\makebox[\textwidth]{\framebox[5cm]{\rule{0pt}{5cm}}}
 	\caption{${2:Caption.}\label{${3:mark}}}
 	\end{figure}
+snippet url href text
+	\url{${1:http://www.google.com}}
+snippet url Human text
+	\href{${1:http://www.google.com}}{${2:text}}
 snippet h1 Section
 	\section{${1}}
 
@@ -135,8 +159,26 @@ snippet £
 	\pounds{}
 snippet dot
 	\@.
-snippet em
+snippet em Emphasised
 	\emph{${1}}
+snippet em Monospace font
+	\texttt{${1}}
+snippet em Bold
+	\textbf{${1}}
+snippet em Medium weight
+	\textmd{${1}}
+snippet em Italic
+	\textit{${1}}
+snippet em Slanted
+	\textsl{${1}}
+snippet em Uppercase
+	\uppercase{${1}}
+snippet em Small Capitals
+	\textsc{${1}}
+snippet em Roman (serif)
+	\textrm{${1}}
+snippet em Sans serif
+	\textsf{${1}}
 # French
 snippet quotes
 	\og ${1} \fg{}
