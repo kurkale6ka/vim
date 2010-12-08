@@ -105,10 +105,12 @@ snippet fig
 	\makebox[\textwidth]{\framebox[5cm]{\rule{0pt}{5cm}}}
 	\caption{${2:Caption.}\label{${3:mark}}}
 	\end{figure}
-snippet url href text
+snippet @ href text
 	\url{${1:http://www.google.com}}
-snippet url Human text
+snippet @ Human text
 	\href{${1:http://www.google.com}}{${2:text}}
+snippet @ mail to
+	\href{mailto:${1:login}@${2:domain}}{$1@$2}
 snippet h1 Section
 	\section{${1}}
 
