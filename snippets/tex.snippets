@@ -32,11 +32,11 @@ snippet skel
 		pdffitwindow=false,     % window fit to page when opened
 		pdfstartview={FitH},    % fits the width of the page to the window
 		pdftitle={$2},          % title
-		pdfauthor={`g:snips_author`},         % author
-		pdfsubject={Subject},                 % subject of the document
-		pdfcreator={`g:snips_author`},        % creator of the document
-		pdfproducer={Producer},               % producer of the document
-		pdfkeywords={keyword1} {key2} {key3}, % list of keywords
+		pdfauthor={`g:snips_author`}, % author
+		pdfsubject={},                % subject of the document
+		pdfcreator={pdflatex},        % creator of the document
+		pdfproducer={},               % producer of the document
+		pdfkeywords={} {} {},   % list of keywords
 		pdfnewwindow=true,      % links in new window
 		colorlinks=true,        % false: boxed links; true: colored links
 		linkcolor=red,          % color of internal links
@@ -96,6 +96,14 @@ snippet {
 	\begin{${1:equation}}
 	${2}
 	\end{$1}
+snippet |
+	\begin{tabular}{ ${1:| c | c | c |} }
+	${2:\hline}
+	${3:col1} & ${4:col2} & ${5:col3} \\ ${6:\hline}
+	${7:col1} & ${8:col2} & ${9:col3} \\ ${10:\hline}
+	${11:col1} & ${12:col2} & ${13:col3} \\
+	${14:\hline}
+	\end{tabular}
 snippet code
 	\begin{verbatim}
 	${1}
