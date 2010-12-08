@@ -31,10 +31,10 @@ function l9#guardScriptLoading(path, vimVersion, l9Version)
   if exists(loadedVarName)
     return 0
   elseif v:version < a:vimVersion
-    echoerr a:path . ' requires Vim version ' . string(a:vimVersion * s:versionFactor)
+    "echoerr a:path . ' requires Vim version ' . string(a:vimVersion * s:versionFactor)
     return 0
   elseif !exists('*l9#isCompatible') || !l9#isCompatible(a:l9Version)
-    echoerr a:path . ' requires L9 library version ' . string(a:l9Version * s:versionFactor)
+    "echoerr a:path . ' requires L9 library version ' . string(a:l9Version * s:versionFactor)
     return 0
   endif
   let {loadedVarName} = 1
