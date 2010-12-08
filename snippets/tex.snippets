@@ -22,6 +22,7 @@ snippet skel
 	% \usepackage{tocloft}
 	% \renewcommand{\cftsecdotsep}{\cftdotsep}
 
+	% Must be the last used package
 	% \usepackage[colorlinks=true,urlcolor=blue,linkcolor=cyan]{hyperref}
 
 	\title{${2}}
@@ -114,9 +115,11 @@ snippet h3 Sub sub section
 	${2}
 snippet ref Set a mark
 	\label{${1:mark}}
-snippet ref Reference a mark
+snippet ref Go to a mark's section
 	~\ref{${1:mark}}
-snippet ref Reference mark's page
+snippet ref Go to a mark's section (via text link)
+	~\hyperref[${1:mark}]{${2:text}}
+snippet ref Go to a mark's page
 	~\pageref{${1:mark}}
 snippet foot
 	\footnote{${1}}
