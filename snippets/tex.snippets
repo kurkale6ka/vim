@@ -8,7 +8,7 @@ snippet skel
 	% landscape
 	% openright, openany
 	% draft (for debugging)
-	% article, proc, minimal, report, book, slides, memoir, letter, beamer
+	% article, proc, minimal, report, book, slides, memoir, beamer
 	\documentclass[12pt,a4paper]{${1:article}}
 
 	% \usepackage[francais]{babel}
@@ -68,6 +68,72 @@ snippet skel
 	\section{${4}}
 
 	${5}
+
+	\end{document}
+snippet letter English
+	\documentclass{letter}
+
+	\signature{`g:snips_author`}
+	\address{
+	${1:Address}\\
+	${2:City}\\
+	${3:Post Code}\\
+	}
+
+	\begin{document}
+
+	\begin{letter}{
+	${4:Company}\\
+	${5:Address}\\
+	${6:Post Code}\\
+	}
+
+	\opening{${7:Dear Sir or Madam:}}
+
+	${8}
+
+	\closing{${9:Yours Faithfully,}}
+
+	% \ps{P.S. ${10}}
+	% \encl{${11:Copyright permission form}}
+
+	\end{letter}
+
+	\end{document}
+snippet letter French
+	\documentclass{letter}
+
+	\signature{M\up{r}~Dimitar~\bsc{Dimitrov}}
+	\address{
+	${1:Address}\\
+	${2:City}\\
+	${3:Post Code}\\
+	}
+
+	\usepackage[francais]{babel}
+	\usepackage{ucs}
+	\usepackage[utf8x]{inputenc}
+
+	\usepackage[official]{eurosym}
+
+	\begin{document}
+
+	\begin{letter}{
+	${4:Company}\\
+	${5:Address}\\
+	${6:Post Code}\\
+	}
+
+	\opening{${7:Madame, Monsieur,}}
+
+	${8}
+
+	\closing{${9:Je vous prie d'agréer, Madame, Monsieur, l'expression de ma respectueuse considération.}}
+
+	% \ps{P.S. ${10}}
+	% \encl{${11:Pièce jointe}}
+
+	\end{letter}
 
 	\end{document}
 snippet li Unordered list
