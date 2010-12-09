@@ -104,10 +104,12 @@ snippet |
 	${11:col1} & ${12:col2} & ${13:col3} \\
 	${14:\hline}
 	\end{tabular}
-snippet code
+snippet pre Long
 	\begin{verbatim}
 	${1}
 	\end{verbatim}
+snippet pre Short
+	\verb#${1}#
 snippet fig
 	\begin{figure}[${1:tbp}]
 	\makebox[\textwidth]{\framebox[5cm]{\rule{0pt}{5cm}}}
@@ -167,7 +169,7 @@ snippet €
 	\euro{}
 snippet £
 	\pounds{}
-snippet dot
+snippet .
 	\@.
 snippet em Emphasised
 	\emph{${1}}
@@ -190,7 +192,7 @@ snippet em Roman (serif)
 snippet em Sans serif
 	\textsf{${1}}
 # French
-snippet quotes
+snippet "
 	\og ${1} \fg{}
 snippet Mr Mr
 	M\up{r}
@@ -206,5 +208,5 @@ snippet No
 	\No
 snippet author
 	M\up{${1:r}}~${2:Dimitar}~\bsc{${3:Dimitrov}}
-snippet nombre
+snippet 1
 	\nombre{${1}}
