@@ -354,8 +354,6 @@ nmap <leader>v v$h
 " Backspace {{{2
 " deletes leftwards
 nnoremap <bs>  "_X
-nnoremap <c-h> "_X
-fixdel
 
 " s-f1 {{{2
 " Help on current word
