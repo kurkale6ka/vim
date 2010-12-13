@@ -541,6 +541,36 @@ function! s:TransformLines (operation)
 
 endfunction
 
+function! s:Scriptnames (script)
+
+    " Redirect the output of scriptnames to variable scripts
+    redir => script_lines
+
+    let saveMore = &more
+    set nomore
+
+    scriptnames
+
+    redir END
+
+    let &more = saveMore
+
+    call feedkeys("\<cr>")
+
+    wincmd n
+
+    set buftype=nofile
+    set bufhidden=delete
+
+    execute "normal insert" . script_lines . "\<cr>"
+
+    execute 'vglobal/' . a:script . '/delete'
+    %substitute#^\s*\d\+:\s*.\{-}\%(\.vim\|vimfiles\)/##eg
+
+endfunction
+
+command! -nargs=1 Scriptnames call <sid>Scriptnames (<q-args>)
+
 " Windows {{{2
 nmap <c-w><c-w> :wincmd p<cr>
 
