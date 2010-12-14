@@ -37,7 +37,8 @@ snippet lorem Long
 	voluptatibus maiores alias consequatur aut perferendis doloribus asperiores
 	repellat.
 snippet cron
-	# minute | hour | day of month | month | day of week | command
+	# minute | hour | day_of_month | month | day_of_week | command
+	${1:minute} ${2:hour} ${3:day_of_month} ${4:month} ${5:day_of_week} ${6:command}
 # 1900-2099/01-12/01-31
 snippet regex Date
 	^(?:19|20)\d\d/(?:0?[1-9]|1[0-2])/(?:0?[1-9]|[12]\d|3[01])$
