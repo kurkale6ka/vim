@@ -541,9 +541,9 @@ function! s:TransformLines (operation)
 
 endfunction
 
+" todo: nofilter + Version: -> echo '+feature'
 function! s:Filter_lines (cmd, filter)
 
-    " Redirect the output of scriptnames to variable scripts
     redir => lines
 
     let saveMore = &more
@@ -565,6 +565,8 @@ function! s:Filter_lines (cmd, filter)
 
     execute 'vglobal/' . a:filter . '/delete'
     %substitute#^\s*\d\+:\s*##eg
+
+    0
 
 endfunction
 
