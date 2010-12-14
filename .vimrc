@@ -541,15 +541,15 @@ function! s:TransformLines (operation)
 
 endfunction
 
-function! s:Scriptnames (script)
+function! s:Filter_lines (cmd, filter)
 
     " Redirect the output of scriptnames to variable scripts
-    redir => script_lines
+    redir => lines
 
     let saveMore = &more
     set nomore
 
-    scriptnames
+    execute a:cmd
 
     redir END
 
@@ -560,16 +560,16 @@ function! s:Scriptnames (script)
     wincmd n
 
     set buftype=nofile
-    set bufhidden=delete
 
-    execute "normal insert" . script_lines . "\<cr>"
+    execute 'normal insert' . lines . "\<cr>"
 
-    execute 'vglobal/' . a:script . '/delete'
-    %substitute#^\s*\d\+:\s*.\{-}\%(\.vim\|vimfiles\)/##eg
+    execute 'vglobal/' . a:filter . '/delete'
+    %substitute#^\s*\d\+:\s*##eg
 
 endfunction
 
-command! -nargs=1 Scriptnames call <sid>Scriptnames (<q-args>)
+command! -nargs=1 Scriptnames call <sid>Filter_lines ('scriptnames', <q-args>)
+command! -nargs=1 Version call <sid>Filter_lines ('version', <q-args>)
 
 " Windows {{{2
 nmap <c-w><c-w> :wincmd p<cr>
