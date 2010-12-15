@@ -599,6 +599,10 @@ endif
 " Plugin settings {{{1
 
 let g:snips_author = 'Dimitar~Dimitrov'
+
+" Surround
+autocmd FileType php let b:surround_63 = "<?php \r ?>"
+
 " Man
 if !has('win32')
 
