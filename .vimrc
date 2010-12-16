@@ -374,7 +374,7 @@ nnoremap <c-tab> <c-^>
 
 " c-g {{{2
 " Print the working directory
-nmap <c-g> :pwd<cr>
+nmap <c-g> :echo expand('%:p:h')<cr>
 
 " Moving and deletion {{{2
 
