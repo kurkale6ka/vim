@@ -161,9 +161,21 @@ snippet /
 	\fraq{${1:numerator}}{${2:denominator}}
 # flushleft, flushright, center, quote, verse
 snippet {
-	\begin{${1:equation}}
+	\begin{${1:environment}}
 	${2}
 	\end{$1}
+snippet {m Maths - new line
+	\begin{displaymath}
+		${1}
+	\end{displaymath}
+snippet {m Maths - new line, equation (numbers)
+	\begin{equation}
+		${1}
+	\end{equation}
+snippet {m Maths - inline
+	\begin{math}
+		${1}
+	\end{math}
 snippet |
 	\begin{tabular}{ ${1:| c | c | c |} }
 	${2:\hline}
