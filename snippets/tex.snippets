@@ -164,7 +164,7 @@ snippet {
 	\begin{${1:environment}}
 	${2}
 	\end{$1}
-snippet {m Maths - new line
+snippet {m Maths - new line \[...\] $$...$$
 	\begin{displaymath}
 		${1}
 	\end{displaymath}
@@ -172,10 +172,8 @@ snippet {m Maths - new line, equation (numbers)
 	\begin{equation}
 		${1}
 	\end{equation}
-snippet {m Maths - inline
-	\begin{math}
-		${1}
-	\end{math}
+snippet {m Maths - inline \(...\) $...$
+	\begin{math} ${1} \end{math}
 snippet |
 	\begin{tabular}{ ${1:| c | c | c |} }
 	${2:\hline}
