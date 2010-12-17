@@ -603,6 +603,12 @@ let g:snips_author = 'Dimitar~Dimitrov'
 " Surround
 autocmd FileType php let b:surround_63 = "<?php \r ?>"
 
+" NERD_commenter
+let NERDCommentWholeLinesInVMode = 1
+let NERDLPlace='/*'
+let NERDRPlace='*/'
+let NERDSpaceDelims = 1
+
 " Man
 if !has('win32')
 
