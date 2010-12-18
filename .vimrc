@@ -602,7 +602,7 @@ let g:snips_author = 'Dimitar~Dimitrov'
 
 " Surround
 autocmd FileType php let b:surround_112 = "<?php \r ?>"
-autocmd FileType tex let b:surround_109 = "\begin{displaymath} \r \end{displaymath}"
+autocmd FileType tex let b:surround_109 = "\\begin{displaymath} \r \\end{displaymath}"
 
 " NERD_commenter
 let NERDCommentWholeLinesInVMode = 1
