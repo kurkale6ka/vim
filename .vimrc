@@ -607,6 +607,7 @@ autocmd FileType php let b:surround_118 = "var_dump(\r)"
 
 autocmd FileType tex let b:surround_98 = "\\textbf{\r}"
 autocmd FileType tex let b:surround_105 = "\\emph{\r}"
+autocmd FileType tex let b:surround_108 = "\\\1command: \1{\r}"
 autocmd FileType tex let b:surround_116 = "\\begin{math} \r \\end{math}"
 autocmd FileType tex let b:surround_101 = "\\begin{equation} \r \\end{equation}"
 autocmd FileType tex let b:surround_109 = "\\begin{displaymath} \r \\end{displaymath}"
