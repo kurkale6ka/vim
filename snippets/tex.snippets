@@ -189,14 +189,13 @@ snippet 2
 	\sqrt[${1:2}]{${2:argument}}
 snippet (
 	\left${1:(} ${2} \right${3:)}
+# Matrix p(), b[], v||, V||||
 snippet [
-	\left[
-	\begin{array}{ ${1:c c c} }
-	${2:11} & ${3:12} & ${4:13} \\
-	${5:21} & ${6:22} & ${7:23} \\
-	${8:31} & ${9:32} & ${10:33}
-	\end{array}
-	\right]
+	\begin{${1:p}matrix}{ ${2:c c c} }
+	${3:11} & ${4:12} & ${5:13} \\
+	${6:21} & ${7:22} & ${8:23} \\
+	${9:31} & ${10:32} & ${11:33}
+	\end{$1matrix}
 snippet for
 	\forall ${1:x} \in ${2:X}, \quad ${3:\exists y}
 snippet \a
