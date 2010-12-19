@@ -179,7 +179,7 @@ snippet ^
 	${1:x}^{${2}}
 snippet _
 	${1:x}_{${2}}
-snippet |_
+snippet |
 	|_{${1:n}=${2:0}}
 snippet / Horizontal fraction
 	\frac{${1:numerator}}{${2:denominator}}
@@ -194,7 +194,15 @@ snippet 2
 snippet (
 	\left${1:(} ${2} \right${3:)}
 # Matrix p(), b[], v||, V||||
-snippet [
+snippet [ Table
+	\begin{tabular}{ ${1:| c | c | c |} }
+	${2:\hline}
+	${3:col1} & ${4:col2} & ${5:col3} \\ ${6:\hline}
+	${7:col1} & ${8:col2} & ${9:col3} \\ ${10:\hline}
+	${11:col1} & ${12:col2} & ${13:col3} \\
+	${14:\hline}
+	\end{tabular}
+snippet [ Matrix
 	\begin{${1:p}matrix}
 	${2:11} & ${3:12} & ${4:13} \\
 	${5:21} & ${6:22} & ${7:23} \\
@@ -361,14 +369,6 @@ snippet greek
 	\Pi \pi \varpi & P \rho \varrho & \Sigma \sigma \varsigma & T \tau & \Upsilon \upsilon \\
 	\Phi \varphi \phi & X \chi & \Psi \psi & \Omega \omega & \cdots
 	\end{bmatrix}
-snippet |
-	\begin{tabular}{ ${1:| c | c | c |} }
-	${2:\hline}
-	${3:col1} & ${4:col2} & ${5:col3} \\ ${6:\hline}
-	${7:col1} & ${8:col2} & ${9:col3} \\ ${10:\hline}
-	${11:col1} & ${12:col2} & ${13:col3} \\
-	${14:\hline}
-	\end{tabular}
 snippet pre Long
 	\begin{verbatim}
 	${1}
