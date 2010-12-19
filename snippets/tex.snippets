@@ -160,23 +160,25 @@ snippet li Description
 # flushleft, flushright, center, quote, verse
 snippet {
 	\begin{${1:environment}}
-	${2}
+		${2}
 	\end{$1}
 # Maths
 snippet {m Maths - newline
 	\begin{displaymath}
 		${1}
 	\end{displaymath}
+snippet {m Maths - newline, equation (numbers)
+	\begin{equation}
+		${1}
+	\end{equation}
 snippet {m Maths - newline, aligned
 	\begin{align*}
 		${1} & ${2} \\
 		${3} & ${4}
 	\end{align*}
-snippet {m Maths - newline, equation (numbers)
-	\begin{equation}
-		${1}
-	\end{equation}
 snippet {m Maths - inline
+	\begin{math} ${1} \end{math}
+snippet {m Maths - inline displaystyle
 	\begin{math}\displaystyle ${1} \end{math}
 snippet ^
 	${1:x}^{${2}}
@@ -200,9 +202,9 @@ snippet (
 snippet [ Table
 	\begin{tabular}{ ${1:| c | c | c |} }
 	${2:\hline}
-	${3:col1} & ${4:col2} & ${5:col3} \\ ${6:\hline}
-	${7:col1} & ${8:col2} & ${9:col3} \\ ${10:\hline}
-	${11:col1} & ${12:col2} & ${13:col3} \\
+	${3:l1c1} & ${4:l1c2} & ${5:l1c3} \\ ${6:\hline}
+	${7:l2c1} & ${8:l2c2} & ${9:l2c3} \\ ${10:\hline}
+	${11:l3c1} & ${12:l3c2} & ${13:l3c3} \\
 	${14:\hline}
 	\end{tabular}
 snippet [ Matrix
