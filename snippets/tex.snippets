@@ -171,6 +171,10 @@ snippet {m Maths - newline, equation (numbers)
 	\begin{equation}
 		${1}
 	\end{equation}
+snippet {m Maths - newline, subequation
+	\begin{subequations}
+		${1}
+	\end{subequations}
 snippet {m Maths - newline, aligned
 	\begin{align*}
 		${1} & ${2} \\
@@ -200,7 +204,7 @@ snippet 2 ...with adjustments
 	\sqrt[\leftroot{${1:-2}}\uproot{${2:2}}${3:Nth}]{${4:number}}
 snippet (
 	\left${1:(} ${2} \right${3:)}
-# Matrix p(), b[], v||, V||||
+# Matrix p:(), b:[], v:||, V:||||, smallmatrix
 snippet [ Table
 	\begin{tabular}{ ${1:| c | c | c |} }
 	${2:\hline}
