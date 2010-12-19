@@ -173,8 +173,6 @@ snippet {m Maths - newline, equation (numbers)
 	\end{equation}
 snippet {m Maths - inline \(...\) $...$
 	\begin{math} ${1} \end{math}
-snippet *
-	\times
 snippet ^
 	${1:x}^{${2}}
 snippet _
@@ -185,7 +183,7 @@ snippet / Horizontal fraction
 	\frac{${1:numerator}}{${2:denominator}}
 snippet !
 	\binom{${1:n}}{${2:k}} = \frac{$1!}{$2!($1-$2)!}
-snippet / / fraction
+snippet / Slanted fraction
 	\sfrac{${1:left}}{${2:right}}
 snippet / Continued fraction
 	\cfrac{${1:numerator}}{${2:denominator}
@@ -221,6 +219,8 @@ snippet 0/ Var nothing
 	\varnothing
 snippet 0/ Empty set
 	\emptyset
+snippet 8
+	\infty
 snippet \a
 	\alpha
 snippet \A
@@ -343,6 +343,10 @@ snippet + Sum
 	\sum_{${1:i}=${2:1}}^{${3:\infty}} ${4} = ${5}
 snippet + Integral
 	\int_${1:0}^${2:\infty} ${3}\,${4:dx} = ${5}
+snippet * Product
+	\prod_{${1:n}=${2:1}}^{${3:\infty}} ${4} = ${5}
+snippet * times (x)
+	\times
 snippet <=
 	\leq
 snippet >=
