@@ -194,8 +194,10 @@ snippet / Continued fraction
 	\cfrac{${1:numerator}}{${2:denominator}
 snippet !
 	\binom{${1:n}}{${2:k}} = \frac{$1!}{$2!($1-$2)!}
-snippet 2
-	\sqrt[${1:2}]{${2:argument}}
+snippet 2 Nth root
+	\sqrt[${1:Nth}]{${2:number}}
+snippet 2 ...with adjustments
+	\sqrt[\leftroot{${1:-2}}\uproot{${2:2}}${3:Nth}]{${4:number}}
 snippet (
 	\left${1:(} ${2} \right${3:)}
 # Matrix p(), b[], v||, V||||
