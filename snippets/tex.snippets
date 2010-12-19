@@ -163,15 +163,20 @@ snippet {
 	${2}
 	\end{$1}
 # Maths
-snippet {m Maths - newline \[...\] $$...$$
+snippet {m Maths - newline
 	\begin{displaymath}
 		${1}
 	\end{displaymath}
+snippet {m Maths - newline, aligned
+	\begin{align*}
+		${1} & ${2} \\
+		${3} & ${4}
+	\end{align*}
 snippet {m Maths - newline, equation (numbers)
 	\begin{equation}
 		${1}
 	\end{equation}
-snippet {m Maths - inline \(...\) $...$
+snippet {m Maths - inline
 	\begin{math}\displaystyle ${1} \end{math}
 snippet ^
 	${1:x}^{${2}}
