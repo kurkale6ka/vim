@@ -600,19 +600,6 @@ endif
 
 let g:snips_author = 'Dimitar~Dimitrov'
 
-" Surround
-autocmd FileType php let b:surround_101 = "<?php echo '\r' ?>"
-autocmd FileType php let b:surround_112 = "<?php \r ?>"
-autocmd FileType php let b:surround_118 = "var_dump(\r)"
-
-autocmd FileType tex let b:surround_98 = "\\textbf{\r}"
-autocmd FileType tex let b:surround_105 = "\\emph{\r}"
-autocmd FileType tex let b:surround_108 = "\\\1command: \1{\r}"
-autocmd FileType tex let b:surround_116 = "\\begin{math}\\displaystyle \r \\end{math}"
-autocmd FileType tex let b:surround_101 = "\\begin{equation} \r \\end{equation}"
-autocmd FileType tex let b:surround_109 = "\\begin{displaymath} \r \\end{displaymath}"
-autocmd FileType tex let b:surround_112 = "\\left( \r \\right)"
-
 " NERD_commenter
 let NERDCommentWholeLinesInVMode = 1
 let NERDLPlace='/*'
