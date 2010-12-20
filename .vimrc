@@ -658,6 +658,7 @@ let g:loaded_ZoomWin         = 1
 
 " Commands {{{1
 
+command! DeleteTags %substitute:<[-?%![:space:]]\@!/\=\_.\{-1,}[-?%]\@<!>::gc
 command! WriteSudo write !sudo tee % > /dev/null
 command! DiffOrig vnew | set buftype=nofile | read# | silent 0delete_ |
     \ diffthis | wincmd p | diffthis
