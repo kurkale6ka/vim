@@ -598,7 +598,7 @@ endif
 
 " Plugin settings {{{1
 
-let g:snips_author = 'Dimitar~Dimitrov'
+let g:snips_author = 'Dimitar Dimitrov'
 
 " NERD_commenter
 let NERDCommentWholeLinesInVMode = 1
