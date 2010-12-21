@@ -67,17 +67,29 @@ snippet \p
 	<p>
 	${1}
 	</p>
+snippet \P
+	<p class="${1}">
+	${2}
+	</p>
 # Span
 snippet \s
 	<span> ${1} </span>
+snippet \S
+	<span class="${1}"> ${2} </span>
 # Division
 snippet \d
 	<div>
 	${1}
 	</div>
+snippet \D
+	<div class="${1}">
+	${2}
+	</div>
 # Link
 snippet \a
 	<a href="http://www.${1:google}.co.uk" title="${2:}"> $2 </a>
+snippet \A
+	<a href="http://www.${1:google}.co.uk" title="${2:}" class="${3}"> $2 </a>
 # Weights
 snippet em Emphasized
 	<em> ${1} </em>
