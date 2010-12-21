@@ -49,6 +49,7 @@ snippet skel
 	</body>
 
 	</html>
+# Titles
 snippet 1
 	<h1> ${1} </h1>
 snippet 2
@@ -61,5 +62,67 @@ snippet 5
 	<h5> ${1} </h5>
 snippet 6
 	<h6> ${1} </h6>
+# Paragraph
+snippet \p
+	<p>
+	${1}
+	</p>
+# Span
+snippet \s
+	<span> ${1} </span>
+# Division
+snippet \d
+	<div>
+	${1}
+	</div>
+# Link
+snippet \a
+	<a href="http://www.${1:google}.co.uk" title="${2:}"> $2 </a>
+# Weights
+snippet em Emphasized
+	<em> ${1} </em>
+snippet em Strong
+	<strong> ${1} </strong>
+snippet \i
+	<img src="${1}" alt="${2:}" title="$2" />
+snippet \j
+	<script type="${1:text/javascript}">
+	<!--
+	${2}
+	// -->
+	</script>
+snippet \n
+	<noscript>
+	${1}
+	</noscript>
+# Comments
 snippet \c
 	<!-- ${1} -->
+# Lists
+snippet li Unordered list
+	<ul>
+		<li>${1}</li>
+		<li>${2}</li>
+		<li>${3}</li>
+	</ul>
+snippet li Ordered list
+	<ul>
+		<li>${1}</li>
+		<li>${2}</li>
+		<li>${3}</li>
+	</ul>
+snippet li Definition list
+	<dl>
+		<dt>${1}</dt>
+		<dd>
+		${2}
+		</dd>
+		<dt>${3}</dt>
+		<dd>
+		${4}
+		</dd>
+		<dt>${5}</dt>
+		<dd>
+		${6}
+		</dd>
+	</dl>
