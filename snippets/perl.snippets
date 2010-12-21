@@ -3,19 +3,17 @@ snippet skel
 
 	use strict;
 	use warnings;
-snippet array
+
+	${1}
+snippet [
 	@${1:array} = qw/${2:word1} ${3:word2} ${4:word3}/;
-snippet word
-	@${1:array} = qw/${2:word1} ${3:word2} ${4:word3}/;
-snippet quote Array of words
-	@${1:array} = qw/${2:word1} ${3:word2} ${4:word3}/;
-snippet quote Quotes
-	$my ${1:variable} = q/${2:sentence}/;
-snippet quote Double quotes
-	$my ${1:variable} = qq/${2:sentence}/;
-snippet quote Back ticks
-	$my ${1:variable} = qx/${2:sentence}/;
-snippet s/// Substitute
+snippet ' Quotes
+	my $${1:variable} = q/${2:sentence}/;
+snippet ' Double quotes
+	my $${1:variable} = qq/${2:sentence}/;
+snippet ' Back ticks
+	my $${1:variable} = qx/${2:sentence}/;
+snippet s/ Substitute
 	$${1:scalar} =~ s/${2:old}/${3:new}/;
-snippet s/// Match
+snippet s/ Match
 	$${1:scalar} =~ /${2:pattern}/;

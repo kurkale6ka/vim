@@ -1,12 +1,10 @@
 snippet { <?php echo ... ?>
-	<?php echo "${1}" ?>
+	<?php echo $${1:this->} ?>
 snippet { <?php ... ?>
 	<?php ${1} ?>
 snippet { <?php ...
 	<?php
 
 	${1}
-
-	${2:?>}
-snippet -
+snippet \e
 	var_dump($${1:this->}${2});

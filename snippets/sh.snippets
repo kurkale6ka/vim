@@ -5,39 +5,41 @@ snippet skel
 	#
 	# Author: `g:snips_author` <mitkofr@yahoo.fr>
 	# -------------------------------------------
-snippet for for i in *; do (foreach)
+
+	${2}
+snippet for for i in *; do
 	for ${1:i} in ${2:*}; do
 
 		${3:echo} "$$1"
 	done
-snippet for for i in {1..11}; do (brace expansion)
+snippet for for i in {1..11}; do
 	for ${1:i} in {${2:start}..${3:end}}; do
 
 		${4:echo} "$$1"
 	done
-snippet $$ remove 1 from start
+snippet $ remove 1 from start
 	${${1:parameter}#${2:word to remove}}
-snippet $$ remove ALL from start
+snippet $ remove ALL from start
 	${${1:parameter}##${2:word to remove}}
-snippet $$ remove 1 from end
+snippet $ remove 1 from end
 	${${1:parameter}%${2:word to remove}}
-snippet $$ remove ALL from end
+snippet $ remove ALL from end
 	${${1:parameter}%%${2:word to remove}}
-snippet $$ s///
+snippet $ s///
 	${${1:parameter}/${2:old}/${3:new}}
-snippet $$ s/// ALL
+snippet $ s/// ALL
 	${${1:parameter}//${2:old}/${3:new}}
-snippet $$ substring in parameter
+snippet $ substring in parameter
 	${${1:parameter}:${2:start (0, ...)}${3::}${4:length (or everything)}}
-snippet $$ file.ext (remove everything in front)
+snippet $ file.ext (remove everything in front)
 	${${1:file name}##*/}
-snippet $$ Remove extension of file
+snippet $ Remove extension of file
 	${${1:file name}%.*}
-snippet $$ length of parameter
+snippet $ length of parameter
 	${#${1:parameter}}
-snippet $$ all parameters starting with prefix
+snippet $ all parameters starting with prefix
 	${!${1:prefix}@}
-snippet $$ Parameter expansion on arrays
+snippet $ Parameter expansion on arrays
 	${${1:parameters array}[@]${2}#%:/}
 snippet ren
 	for file in ${1:*}; do mv "$file" "${file%.*}".${2:new}; done
