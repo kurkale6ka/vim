@@ -1,0 +1,34 @@
+snippet skel Glow
+	gloader.load(['glow', '1', 'glow.dom'], {
+		async: true,
+		onLoad: function(glow) {
+			glow.ready(function() {
+
+				${1}
+			});
+		}
+	});
+snippet skel jQuery
+	$(document).ready(function() {
+
+		${1}
+	});
+snippet $ Glow
+	glow.dom.get('${1:.}')${2}
+snippet $ jQuery
+	$('${1:.}')${2}
+snippet $ Dojo id
+	dojo.byId('${1}')${2}
+snippet hover jQuery
+
+	$('${1:.}').hover(
+
+		function () {
+
+			${2}
+		},
+		function () {
+
+			${3}
+		}
+	);
