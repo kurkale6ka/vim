@@ -102,21 +102,37 @@ snippet case
 
 	${9}
 snippet class
-	class ${1:Name} {
+	<?php
+	/**
+	 * @package ${1:name}
+	 */
+	/**
+	 * ${2:Short Description}
+	 *
+	 * @package ${3:$1}
+	 * @author `g:snips_author` <${4:fname}.${5:lname}@${6:company}>
+	 */
+	class ${7:Name} {
 
-		${2}
+		${8}
 	}
 snippet prop
 	${1:private} $${2:_property} = ${3:value};
 
 	${4}
 snippet fun
-	${1:private }function ${2:_name}(${3:$arg1}) {
+	/**
+	 * ${1:Description}
+	 *
+	 * ${2:@param type $varname description}
+	 * ${3:@return type description}
+	 */
+	${4:private }function ${5:_name}(${6:$arg1}) {
 
-		${4};
+		${7};
 	}
 
-	${5}
+	${8}
 snippet cons
 	function __construct(${1:$arg1}) {
 
