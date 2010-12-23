@@ -656,9 +656,22 @@ let g:loaded_ZoomWin         = 1
 
 " There seems not to be a way to disable tohtml.vim
 
+function s:Underline(chars)
+
+    let chars = empty(a:chars) ? '-' : a:chars
+
+    let nb_columns = virtcol('$') - 1
+    let nb_chars = strlen(chars)
+    let nb_insertions = nb_columns / nb_chars
+
+    execute "normal o\<esc>"
+    execute 'normal ' . nb_insertions . 'i' . chars . "\<esc>"
+
+endfunction
 " Commands {{{1
 
 command! DeleteTags %substitute:<[?%![:space:]]\@!/\=\_.\{-1,}[-?%]\@<!>::gc
+command! -nargs=* Underline call <sid>Underline(<q-args>)
 command! WriteSudo write !sudo tee % > /dev/null
 command! DiffOrig vnew | set buftype=nofile | read# | silent 0delete_ |
     \ diffthis | wincmd p | diffthis
