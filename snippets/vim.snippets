@@ -43,7 +43,9 @@ snippet save
 	set ${2:no}$1
 	let &$1 = save_$1
 snippet fun
-	function ${1:name}()
+	function! ${1:s:}(${2:argument})
 
-		${2}
+		${3}
 	endfunction
+
+	${4}
