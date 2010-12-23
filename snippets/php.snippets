@@ -101,3 +101,36 @@ snippet case
 	}
 
 	${9}
+snippet class
+	class ${1:Name} {
+
+		${2}
+	}
+snippet prop
+	${1:private} $${2:_property} = ${3:value};
+
+	${4}
+snippet fun
+	${1:private }function ${2:_name}(${3:$arg1}) {
+
+		${4};
+	}
+
+	${5}
+snippet cons
+	function __construct(${1:$arg1}) {
+
+		${2};
+	}
+
+	${3}
+snippet try
+	try {
+		${1};
+
+	} catch (${2:Exception} $${3:e}) {
+
+		${4:$$3->getMessage()};
+	}
+
+	${5}
