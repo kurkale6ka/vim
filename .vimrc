@@ -733,6 +733,8 @@ cabbrev ftt set filetype=<c-r>=EatChar('\s')<cr>
 cabbrev fft set filetype=<c-r>=EatChar('\s')<cr>
 cabbrev tt  set filetype=<c-r>=EatChar('\s')<cr>
 
+nmap <leader>f :set filetype=
+
 cabbrev kmp&    keymap&\|set spelllang&
 cabbrev keymap& keymap&\|set spelllang&
 cabbrev kmp=    keymap&\|set spelllang&
