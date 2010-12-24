@@ -662,16 +662,31 @@ function s:Underline(chars)
 
     let nb_columns = virtcol('$') - 1
     let nb_chars = strlen(chars)
-    let nb_insertions = nb_columns / nb_chars
+
+    if has('float')
+        let nb_insertions = floor(nb_columns / str2float(nb_chars))
+        let remainder = nb_columns % nb_chars
+    else
+        let nb_insertions = nb_columns / nb_chars
+    endif
 
     execute "normal o\<esc>"
-    execute 'normal ' . nb_insertions . 'i' . chars . "\<esc>"
+
+    if has('float')
+        execute 'normal ' . float2nr(nb_insertions) . 'i' . chars . "\<esc>"
+
+        if !empty(remainder)
+            execute 'normal A' . strpart(chars, 0, remainder) . "\<esc>"
+        endif
+    else
+        execute 'normal ' . nb_insertions . 'i' . chars . "\<esc>"
+    endif
 
 endfunction
 " Commands {{{1
 
 command! DeleteTags %substitute:<[?%![:space:]]\@!/\=\_.\{-1,}[-?%]\@<!>::gc
-command! -nargs=* Underline call <sid>Underline(<q-args>)
+command! -nargs=? Underline call <sid>Underline(<q-args>)
 command! WriteSudo write !sudo tee % > /dev/null
 command! DiffOrig vnew | set buftype=nofile | read# | silent 0delete_ |
     \ diffthis | wincmd p | diffthis
