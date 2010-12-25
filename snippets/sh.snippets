@@ -99,6 +99,15 @@ snippet read
 	done < <(${2:find /foo -print0})
 
 	${3}
+snippet fun
+	${1:name}() {
+
+		${2:commands}
+	}
+
+	${3}
+snippet alias
+	alias ${1:name}='${2}'
 # Extended globs
 snippet ~ Extended globs ?
 	?(${1:list})${2}
