@@ -744,10 +744,6 @@ cabbrev svb vertical sbuffer
 cabbrev <> substitute/>\zs\s*\ze</\r/g
 cabbrev >< substitute/>\zs\s*\ze</\r/g
 
-cabbrev ftt set filetype=<c-r>=EatChar('\s')<cr>
-cabbrev fft set filetype=<c-r>=EatChar('\s')<cr>
-cabbrev tt  set filetype=<c-r>=EatChar('\s')<cr>
-
 nmap <leader>f :set filetype=
 
 cabbrev kmp&    keymap&\|set spelllang&
