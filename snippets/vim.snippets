@@ -43,12 +43,12 @@ snippet save
 	set ${2:no}$1
 	let &$1 = save_$1
 snippet fun
-	function! ${1:s:}(${2:argument})
+	function! ${1:s:}(${2:argument})${3: range}
 
-		${3}
+		${4:let start = a:firstline}
 	endfunction
 
-	${4}
+	${5}
 snippet if
 	if ${1:condition}
 		${2}
@@ -67,7 +67,35 @@ snippet ifee
 	else
 		${5}
 	endif
+snippet while
+	while ${1:condition}
+
+		${2}
+	endwhile
+
+	${3}
+snippet for
+	for ${1:var} in ${2:list_expression(range(3))}
+
+		${3}
+	endfor
+
+	${4}
+snippet try
+	try
+		${1}
+	catch${2: /E484:/}
+		${3}
+	endtry
+
+	${4}
+snippet [ List
+	let ${1:list} = [${2:'item1'}]
+snippet [ Dictionary
+	let ${1:dictionary} = {${2:'key1'}: ${3:'value1'}}
+snippet ?
+	${1:condition} ? ${2:true} : ${3:false}
 snippet \
 	<leader>${1}
 snippet com
-	command! ${1:-nargs=?} ${2:-complete=customlist} ${3:-range=%} ${4:Name} ${5::call}
+	command! ${1:-nargs=?} ${2:-complete=customlist} ${3:-range=%} ${4:Name} ${5::call s:Function(<q-args>)}
