@@ -6,8 +6,7 @@ snippet skel
 	# Author: `g:snips_author` <mitkofr@yahoo.fr>
 	# -------------------------------------------
 
-	${2}
-	echo 'Hello World!'
+	${2:shopt -s extglob}
 snippet for for i in *; do
 	for ${1:i} in ${2:*}; do
 
@@ -18,6 +17,37 @@ snippet for for i in {1..11}; do
 
 		${4:echo} "$$1"
 	done
+snippet if Commands
+	if ${1:commands}; then
+
+		${2:commands}
+	fi
+
+	${3}
+snippet if String comparison
+	if [[ ${1:'test'} ${2:==} ${3:$right_operand} ]]; then
+
+		${4:commands}
+	fi
+
+	${5}
+snippet if Digit comparison
+	if (( ${1:0} ${2:<} ${3:j} )); then
+
+		${4:commands}
+	fi
+
+	${5}
+snippet ~ Extended globs ?
+	?(${1:list})${2}
+snippet ~ Extended globs *
+	*(${1:list})${2}
+snippet ~ Extended globs +
+	+(${1:list})${2}
+snippet ~ Extended globs @: matches 1 of the given patterns
+	@(${1:list})${2}
+snippet ~ Extended globs !: matches anything but the patterns
+	!(${1:list})${2}
 snippet $ remove 1 from start
 	${${1:parameter}#${2:word to remove}}
 snippet $ remove ALL from start
