@@ -6,4 +6,4 @@ function! Bufdo(args)
 
 endfunction
 
-command! -nargs=+ Bufdo call Bufdo(<q-args>)
+" command! -nargs=+ Bufdo call Bufdo(<q-args>)
