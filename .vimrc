@@ -711,7 +711,7 @@ if has('autocmd')
         autocmd BufEnter * if &filetype != 'help' | silent! cd %:p:h | endif
 
         " Wrap automatically at 80 chars for plain text files
-        autocmd FileType text,svn setlocal formatoptions+=t
+        autocmd FileType txt,text,svn setlocal formatoptions+=t
             \ autoindent smartindent
 
         " Useful for class aware omnicompletion with php
