@@ -138,3 +138,25 @@ snippet li Definition list
 		${6}
 		</dd>
 	</dl>
+snippet form
+	<form action="${1:parser.php}" method="${2:post}">
+		<fieldset>
+			<legend>${3}</legend>
+			<dl>
+				<dt><label for="$5">${4}</label></dt>
+				<dd>
+					<input id="${5:}" name="$5" type="${6:text}" value="${7:}" />
+
+					<ul class="errors">
+
+						<li>${8:$7 error}</li>
+					</ul>
+
+					<p class="description">
+
+						${9:Element description}
+					</p>
+				</dd>
+			</dl>
+		</fieldset>
+	</form>
