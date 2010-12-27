@@ -601,10 +601,11 @@ endif
 let g:snips_author = 'Dimitar Dimitrov'
 
 " NERD_commenter
+" let NERDLPlace='/*'
+" let NERDRPlace='*/'
 let NERDCommentWholeLinesInVMode = 1
-let NERDLPlace='/*'
-let NERDRPlace='*/'
 let NERDSpaceDelims = 1
+map <leader>cc <plug>NERDCommenterAlignBoth
 
 " Man
 if !has('win32')
