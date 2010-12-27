@@ -605,7 +605,6 @@ let g:snips_author = 'Dimitar Dimitrov'
 " let NERDRPlace='*/'
 let NERDCommentWholeLinesInVMode = 1
 let NERDSpaceDelims = 1
-map <leader>cc <plug>NERDCommenterAlignBoth
 
 " Man
 if !has('win32')
@@ -752,6 +751,7 @@ cabbrev keymap& keymap&\|set spelllang&
 cabbrev kmp=    keymap&\|set spelllang&
 cabbrev keymap= keymap&\|set spelllang&
 
+cabbrev waq wqa
 cabbrev mpa map
 cabbrev frm fmr
 
