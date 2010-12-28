@@ -1,12 +1,20 @@
-snippet { <?php echo ... ?>
-	<?php echo $${1:this->} ?>
-snippet { <?php ... ?>
-	<?php ${1} ?>
-snippet { <?php ...
+snippet skel
+	<?php
+
+	${1}
+snippet {
 	<?php
 
 	${1}
 snippet \e
+	<?php echo $${1:this->} ?>
+snippet \E
+	<?php echo '${1}' ?>
+snippet '
+	<?php echo '${1}' ?>
+snippet \p
+	<?php ${1} ?>
+snippet \v
 	var_dump($${1:this->}${2});
 snippet \cc
 	/**
