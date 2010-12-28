@@ -116,7 +116,7 @@ endfunc
 
 set statusline=%<%n:\ %t\ %y%m%r\ %L\ lines%{SlSpace()}
     \%{empty(&keymap)?'':'\ <'.b:keymap_name.'>'}
-    \%=%-14.(L:%l,\ C:%v%)\ %P
+    \%=%-14.(%{'['.&fileformat.']'}\ L:%l,\ C:%v%)\ %P
 
 set showtabline=1
 
@@ -355,10 +355,10 @@ nmap <leader>v v$h
 " deletes leftwards
 nnoremap <bs>  "_X
 
-" s-f1 {{{2
+" \h {{{2
 " Help on current word
-nmap <s-f1> :help    <c-r><c-w><cr>
-vmap <s-f1> "*y:help <c-r>*<cr>
+nmap <leader>h :help    <c-r><c-w><cr>
+vmap <leader>h "*y:help <c-r>*<cr>
 
 " alt-i {{{2
 " Re-indent the whole file
