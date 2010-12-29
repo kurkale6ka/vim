@@ -750,7 +750,16 @@ cabbrev svb vertical sbuffer
 cabbrev <> substitute/>\zs\s*\ze</\r/g
 cabbrev >< substitute/>\zs\s*\ze</\r/g
 
-nmap <leader>f :set filetype=
+nmap <leader>ft :set filetype=
+nmap <leader>fp :set filetype=php<cr>
+nmap <leader>fh :set filetype=html<cr>
+nmap <leader>fj :set filetype=javascript<cr>
+nmap <leader>fx :set filetype=xml<cr>
+nmap <leader>fv :set filetype=vim<cr>
+nmap <leader>fl :set filetype=tex<cr>
+nmap <leader>fb :set filetype=sh<cr>
+nmap <leader>fc :set filetype=css<cr>
+nmap <leader>fr :set filetype=ruby<cr>
 
 cabbrev kmp&    keymap&\|set spelllang&
 cabbrev keymap& keymap&\|set spelllang&
