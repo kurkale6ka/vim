@@ -459,6 +459,11 @@ nmap <f6>   1z=
 " Help switching between buffers
 nmap <c-space> :b<space>
 imap <c-cr> <esc>o<cr>
+nmap yaf :%y<cr>
+nmap daf :%d<cr>
+nmap caf :%d<cr>i
+nmap vaf ggVG
+nmap =af gg=G``
 
 " c-s, c-s a {{{2
 " Saving:
