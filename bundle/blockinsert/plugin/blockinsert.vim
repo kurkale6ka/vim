@@ -427,7 +427,7 @@ if exists('g:blockinsert_commands') && g:blockinsert_commands == 1
         \
         \call BlockDoIni ('c', 'i',   'a',   0, 0, <line1>, <line2>, <f-args>)
 
-    command! -nargs=* -range BlockBothSame <line1>,<line2>
+    command! -nargs=* -range BlockBSame <line1>,<line2>
         \
         \call BlockDoIni ('c', 'iu',  'au',  0, 0, <line1>, <line2>, <q-args>, '')
 
@@ -435,7 +435,7 @@ if exists('g:blockinsert_commands') && g:blockinsert_commands == 1
         \
         \call BlockDoIni ('c', 'qi',  'qa',  0, 0, <line1>, <line2>, <f-args>)
 
-    command! -nargs=* -range BlockQBothSame <line1>,<line2>
+    command! -nargs=* -range BlockQBSame <line1>,<line2>
         \
         \call BlockDoIni ('c', 'qiu', 'qau', 0, 0, <line1>, <line2>, <q-args>, '')
 endif
@@ -479,7 +479,7 @@ vmap <silent> <plug>BlockinsertVBoth
     \
     \ :call BlockDoIni ('v', 'i',   'a',   0, 0, 0, 0, '', '')<cr>
 
-vmap <silent> <plug>BlockinsertVBothSame
+vmap <silent> <plug>BlockinsertVBSame
     \
     \ :call BlockDoIni ('v', 'iu',  'au',  0, 0, 0, 0, '', '')<cr>
 
@@ -487,7 +487,7 @@ vmap <silent> <plug>BlockinsertVQ_Both
     \
     \ :call BlockDoIni ('v', 'qi',  'qa',  0, 0, 0, 0, '', '')<cr>
 
-vmap <silent> <plug>BlockinsertVQ_BothSame
+vmap <silent> <plug>BlockinsertVQ_BSame
     \
     \ :call BlockDoIni ('v', 'qiu', 'qau', 0, 0, 0, 0, '', '')<cr>
 
@@ -495,7 +495,7 @@ nmap <silent> <plug>BlockinsertNBoth
     \
     \ :<c-u>call BlockDoIni ('n', 'i',   'a',   0, 0, 0, 0, '', '')<cr>
 
-nmap <silent> <plug>BlockinsertNBothSame
+nmap <silent> <plug>BlockinsertNBSame
     \
     \ :<c-u>call BlockDoIni ('n', 'iu',  'au',  0, 0, 0, 0, '', '')<cr>
 
@@ -503,7 +503,7 @@ nmap <silent> <plug>BlockinsertNQ_Both
     \
     \ :<c-u>call BlockDoIni ('n', 'qi',  'qa',  0, 0, 0, 0, '', '')<cr>
 
-nmap <silent> <plug>BlockinsertNQ_BothSame
+nmap <silent> <plug>BlockinsertNQ_BSame
     \
     \ :<c-u>call BlockDoIni ('n', 'qiu', 'qau', 0, 0, 0, 0, '', '')<cr>
 
@@ -518,18 +518,18 @@ nmap <leader>qi <plug>BlockinsertNQ_Insert
 nmap <leader>qa <plug>BlockinsertNQ_Append
 
 vmap <leader>[]  <plug>BlockinsertVBoth
-vmap <leader>[[  <plug>BlockinsertVBothSame
-vmap <leader>]]  <plug>BlockinsertVBothSame
+vmap <leader>[[  <plug>BlockinsertVBSame
+vmap <leader>]]  <plug>BlockinsertVBSame
 vmap <leader>q[] <plug>BlockinsertVQ_Both
-vmap <leader>q[[ <plug>BlockinsertVQ_BothSame
-vmap <leader>q]] <plug>BlockinsertVQ_BothSame
+vmap <leader>q[[ <plug>BlockinsertVQ_BSame
+vmap <leader>q]] <plug>BlockinsertVQ_BSame
 
 nmap <leader>[]  <plug>BlockinsertNBoth
-nmap <leader>[[  <plug>BlockinsertNBothSame
-nmap <leader>]]  <plug>BlockinsertNBothSame
+nmap <leader>[[  <plug>BlockinsertNBSame
+nmap <leader>]]  <plug>BlockinsertNBSame
 nmap <leader>q[] <plug>BlockinsertNQ_Both
-nmap <leader>q[[ <plug>BlockinsertNQ_BothSame
-nmap <leader>q]] <plug>BlockinsertNQ_BothSame
+nmap <leader>q[[ <plug>BlockinsertNQ_BSame
+nmap <leader>q]] <plug>BlockinsertNQ_BSame
 
 let &cpoptions = s:savecpo
 unlet s:savecpo
