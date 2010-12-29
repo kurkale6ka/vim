@@ -410,11 +410,13 @@ nmap <s-down>      Vj
 imap <s-down> <c-o>Vj
 vmap <s-down>       j
 
-nnoremap <s-right> v<s-right>
-nnoremap <s-left>  v<s-left>
+nmap <s-right>      vE
+imap <s-right> <c-o>vE
+vmap <s-right>       E
 
-inoremap <s-right> <c-o>v<s-right>
-inoremap <s-left>  <c-o>v<s-left>
+nmap <s-left>       vB
+imap <s-left>  <c-o>vB
+vmap <s-left>        B
 
 " Increase font size {{{2
 nmap <c-mousedown> :set guifont=<c-z><c-f>
@@ -459,6 +461,8 @@ nmap <f6>   1z=
 " Help switching between buffers
 nmap <c-space> :b<space>
 imap <c-cr> <esc>o<cr>
+
+" Text-object: file
 nmap yaf :%y<cr>
 nmap daf :%d<cr>
 nmap caf :%d<cr>i
@@ -628,13 +632,8 @@ if !has('gui_running')
     endif
 endif
 
-" PHP syntax folding
-
-" 1: for folding classes and functions
-" 2: for folding all { } regions
-" 3: for folding only functions (latest version)
+" PHP
 let php_folding = 3
-
 let php_large_file = 0
 
 let vim_indent_cont = 4
@@ -645,7 +644,7 @@ function! YRRunAfterMaps()
     nnoremap <silent> Y :YRYankCount 'y$'<cr>
 endfunction
 
-" Disable all those plugins!
+" Disable all these plugins!
 
 if version < 702
     let g:space_loaded = 1
