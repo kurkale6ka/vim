@@ -35,7 +35,6 @@ if version >= 703
 endif
 
 " todo: toggle (use '/" function)
-map <leader>\ :substitute:\\:/:g<cr>
 map <leader>/ :substitute:\\:/:g<cr>
 
 function! Toggle_quotes () range
