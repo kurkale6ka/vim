@@ -1,3 +1,15 @@
+" 1
+let b:surround_49  = "<h1> \r </h1>"
+" 2
+let b:surround_50  = "<h2> \r </h2>"
+" 3
+let b:surround_51  = "<h3> \r </h3>"
+" 4
+let b:surround_52  = "<h4> \r </h4>"
+" 5
+let b:surround_53  = "<h5> \r </h5>"
+" 6
+let b:surround_54  = "<h6> \r </h6>"
 " a
 let b:surround_97  = "<a href=\"\" title=\"\"> \r </a>"
 " A
