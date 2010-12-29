@@ -458,6 +458,7 @@ nmap <f6>   1z=
 " c-space {{{2
 " Help switching between buffers
 nmap <c-space> :b<space>
+imap <c-cr> <esc>o<cr>
 
 " c-s, c-s a {{{2
 " Saving:
