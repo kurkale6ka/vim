@@ -691,8 +691,8 @@ function s:Underline(chars)
 endfunction
 " Commands {{{1
 
-command! DeleteTags %substitute:<[?%![:space:]]\@!/\=\_.\{-1,}[-?%]\@<!>::gc
 command! -nargs=? Underline call <sid>Underline(<q-args>)
+command! DeleteTags %substitute:<[?%![:space:]]\@!/\=\_.\{-1,}[-?%]\@<!>::gc
 command! WriteSudo write !sudo tee % > /dev/null
 command! DiffOrig vnew | set buftype=nofile | read# | silent 0delete_ |
     \ diffthis | wincmd p | diffthis
@@ -745,11 +745,6 @@ function! EatChar(pat)
     return (char =~ a:pat) ? '' : char
 endfunc
 
-cabbrev vsb vertical sbuffer
-cabbrev svb vertical sbuffer
-cabbrev <> substitute/>\zs\s*\ze</\r/g
-cabbrev >< substitute/>\zs\s*\ze</\r/g
-
 nmap <leader>ft :set filetype=
 nmap <leader>fp :set filetype=php<cr>
 nmap <leader>fh :set filetype=html<cr>
@@ -761,10 +756,13 @@ nmap <leader>fb :set filetype=sh<cr>
 nmap <leader>fc :set filetype=css<cr>
 nmap <leader>fr :set filetype=ruby<cr>
 
-cabbrev kmp&    keymap&\|set spelllang&
-cabbrev keymap& keymap&\|set spelllang&
-cabbrev kmp=    keymap&\|set spelllang&
-cabbrev keymap= keymap&\|set spelllang&
+cabbrev vsb vertical sbuffer
+cabbrev svb vertical sbuffer
+
+cabbrev kmp&    keymap& spelllang&
+cabbrev keymap& keymap& spelllang&
+cabbrev kmp=    keymap& spelllang&
+cabbrev keymap= keymap& spelllang&
 
 cabbrev waq wqa
 cabbrev mpa map
