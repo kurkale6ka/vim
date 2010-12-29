@@ -4,6 +4,13 @@ snippet skel
 	int main(int argc, char* argv[])
 	{
 		${1}
-		printf("Hello World!\n");
 		return 0;
 	}
+snippet \p
+	printf("${1}\n");
+snippet \p1
+	printf("${1:string...}%${2:s}${3:...string}\n", ${4:var1});
+snippet \p2
+	printf("${1:str}%${2:s}${3:str}%${4:s}${5:str}\n", ${6:var1}, ${7:var2});
+snippet \p3
+	printf("${1:str}%${2:s}${3:str}%${4:s}${5:str}%${6:s}${7:str}\n", ${8:var1}, ${9:var2}, ${10:var3});

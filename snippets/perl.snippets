@@ -5,7 +5,6 @@ snippet skel
 	use warnings;
 
 	${1}
-	print "Hello World!\n";
 snippet [
 	@${1:array} = qw/${2:word1} ${3:word2} ${4:word3}/;
 snippet ' Quotes
@@ -14,7 +13,11 @@ snippet ' Double quotes
 	my $${1:variable} = qq/${2:sentence}/;
 snippet ' Back ticks
 	my $${1:variable} = qx/${2:sentence}/;
-snippet s/ Substitute
+snippet ~ Substitute
 	$${1:scalar} =~ s/${2:old}/${3:new}/;
-snippet s/ Match
+snippet ~ Match
 	$${1:scalar} =~ /${2:pattern}/;
+snippet ~ Look behind
+	(?<${1:=}${2:pattern1})${3:pattern2}
+snippet ~ Look ahead
+	${1:pattern1}(?${2:=}${3:pattern2})
