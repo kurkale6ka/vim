@@ -763,6 +763,7 @@ cabbrev keymap& keymap& spelllang&
 cabbrev kmp=    keymap& spelllang&
 cabbrev keymap= keymap& spelllang&
 
+cabbrev trp rtp
 cabbrev waq wqa
 cabbrev mpa map
 cabbrev frm fmr
