@@ -745,6 +745,8 @@ function! EatChar(pat)
 endfunc
 
 nmap <leader>ft :set filetype=
+nmap <leader>fa :set filetype=awk<cr>
+nmap <leader>fs :set filetype=scheme<cr>
 nmap <leader>fp :set filetype=php<cr>
 nmap <leader>fh :set filetype=html<cr>
 nmap <leader>fj :set filetype=javascript<cr>
