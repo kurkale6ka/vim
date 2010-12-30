@@ -481,15 +481,15 @@ endfunction
 " Close an opening tag {{{2
 " -------------------------
 
-" Each tag on a new line
-
-inoremap <silent> <buffer> >> > </><esc>4hvi<ov"*yiw`>4l"*p`[3hr<cr>O
-
-" Both tags on the same line
-
-inoremap <silent> <buffer> >/ ></><esc>3hvi<ov"*yiw`>3l"*pcit  <left>
-
-inoremap <silent> <buffer> <? <?php  ?><left><left><left>
+"" Each tag on a new line
+"
+"inoremap <silent> <buffer> >> > </><esc>4hvi<ov"*yiw`>4l"*p`[3hr<cr>O
+"
+"" Both tags on the same line
+"
+"inoremap <silent> <buffer> >/ ></><esc>3hvi<ov"*yiw`>3l"*pcit  <left>
+"
+"inoremap <silent> <buffer> <? <?php  ?><left><left><left>
 
 " Wrap a line, a WORD or a selection with <!-- --> {{{2
 " -----------------------------------------------------

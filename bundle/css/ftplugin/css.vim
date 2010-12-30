@@ -1,5 +1,7 @@
 set iskeyword+=-
 
+imap <silent> <buffer> <leader>cc /*  */<left><left><left>
+
 " rearrange this kind of patterns vertically:
 " -------------------------------------------
 "
