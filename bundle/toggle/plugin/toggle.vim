@@ -31,7 +31,7 @@ if version >= 703
 
     endfunction
 
-    nmap <silent> <leader><leader> :call <sid>Toggle_colorcolumn()<cr>
+    nmap <silent> <leader>8 :call <sid>Toggle_colorcolumn()<cr>
 endif
 
 " todo: toggle (use '/" function)

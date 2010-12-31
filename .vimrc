@@ -590,7 +590,7 @@ nmap <c-w><c-w> :wincmd p<cr>
 nmap q= @=<c-f>
 " }}}2
 
-map <leader>b :ls<cr>
+map <leader><leader> :ls<cr>
 map <leader>< :substitute/>\zs\s*\ze</\r/g<cr>
 map <leader>> :substitute/>\zs\s*\ze</\r/g<cr>
 
