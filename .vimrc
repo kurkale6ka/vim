@@ -636,7 +636,7 @@ endif
 let php_folding = 3
 let php_large_file = 0
 
-let vim_indent_cont = 3
+let vim_indent_cont = &shiftwidth
 
 let g:SuperTabDefaultCompletionType = "context"
 
