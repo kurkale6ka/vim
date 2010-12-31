@@ -8,16 +8,16 @@
 " Common util {{{2
 if has('win32')
 
-    set runtimepath=
-        \$HOME/vimfiles,
-        \$VIM/vimfiles,
-        \$VIMRUNTIME,
-        \$VIM/vimfiles/after,
-        \$HOME/vimfiles/after
+   set runtimepath=
+      \$HOME/vimfiles,
+      \$VIM/vimfiles,
+      \$VIMRUNTIME,
+      \$VIM/vimfiles/after,
+      \$HOME/vimfiles/after
 
-    set viewdir=$HOME/vimfiles/view
+   set viewdir=$HOME/vimfiles/view
 
-    behave xterm
+   behave xterm
 endif
 
 call pathogen#runtime_append_all_bundles()
@@ -41,46 +41,46 @@ set includeexpr=substitute(v:fname,'^/','','')
 
 if has('folding')
 
-    set foldmethod=marker
-    set foldmarker=~\\~,~/~
+   set foldmethod=marker
+   set foldmarker=~\\~,~/~
 endif
 
 " Security restrictions
 if 'root' != $USER || has('win32')
 
-    set exrc
-    set modeline
-    set modelines=3
+   set exrc
+   set modeline
+   set modelines=3
 else
-    set noexrc
-    set nomodeline
+   set noexrc
+   set nomodeline
 endif
 
 if has('multi_byte')
 
-    if &encoding !~? 'utf-\=8'
+   if &encoding !~? 'utf-\=8'
 
-        if empty(&termencoding)
+      if empty(&termencoding)
 
-            let &termencoding = &encoding
-        endif
+         let &termencoding = &encoding
+      endif
 
-        set encoding=utf-8
-    endif
+      set encoding=utf-8
+   endif
 endif
 
 if &encoding =~ '^u\(tf\|cs\)' " When running in a Unicode environment
 
-    " tabs = arrow + dots (▷⋅⋅⋅)
-    let s:arr = nr2char(9655) " use U+25B7 for an arrow (▷) and
-    let s:dot = nr2char(8901) " use U+22C5 for a  dot   (⋅)
+   " tabs = arrow + dots (▷⋅⋅⋅)
+   let s:arr = nr2char(9655) " use U+25B7 for an arrow (▷) and
+   let s:dot = nr2char(8901) " use U+22C5 for a  dot   (⋅)
 
-    execute 'set listchars=tab:'    . s:arr . s:dot
-    execute 'set listchars+=trail:' . s:dot
-    execute 'set listchars+=nbsp:'  . s:dot
+   execute 'set listchars=tab:'    . s:arr . s:dot
+   execute 'set listchars+=trail:' . s:dot
+   execute 'set listchars+=nbsp:'  . s:dot
 
-    " arrow + space (↪ ) at the beginning of wrapped lines
-    let &showbreak=nr2char(8618).' '
+   " arrow + space (↪ ) at the beginning of wrapped lines
+   let &showbreak=nr2char(8618).' '
 endif
 
 " Alerts and visual feedback {{{2
@@ -106,17 +106,17 @@ set virtualedit=all
 
 " Statusline & tabline
 function! SlSpace()
-    if exists('*GetSpaceMovement')
-        let s:mov = GetSpaceMovement()
-        return '' != s:mov ? ' (' . s:mov . ') ' : ''
-    else
-        return ''
-    endif
+   if exists('*GetSpaceMovement')
+      let s:mov = GetSpaceMovement()
+      return '' != s:mov ? ' (' . s:mov . ') ' : ''
+   else
+      return ''
+   endif
 endfunc
 
 set statusline=%<%n:\ %t\ %y%m%r\ %L\ lines%{SlSpace()}
-    \%{empty(&keymap)?'':'\ <'.b:keymap_name.'>'}
-    \%=%-14.(%{'['.&fileformat.']'}\ L:%l,\ C:%v%)\ %P
+   \%{empty(&keymap)?'':'\ <'.b:keymap_name.'>'}
+   \%=%-14.(%{'['.&fileformat.']'}\ L:%l,\ C:%v%)\ %P
 
 set showtabline=1
 
@@ -124,114 +124,114 @@ set tabline=%!MyTabLine()
 
 function! MyTabLine()
 
-    let s = ''
+   let s = ''
 
-    for i in range(tabpagenr('$'))
+   for i in range(tabpagenr('$'))
 
-        " select the highlighting
-        if i + 1 == tabpagenr()
-            let s .= '%#TabLineSel#'
-        else
-            let s .= '%#TabLine#'
-        endif
+      " select the highlighting
+      if i + 1 == tabpagenr()
+         let s .= '%#TabLineSel#'
+      else
+         let s .= '%#TabLine#'
+      endif
 
-        " set the tab page number (for mouse clicks)
-        let s .= '%' . (i + 1) . 'T'
+      " set the tab page number (for mouse clicks)
+      let s .= '%' . (i + 1) . 'T'
 
-        " the label is made by MyTabLabel()
-        let s .= ' %{MyTabLabel(' . (i + 1) . ')} '
+      " the label is made by MyTabLabel()
+      let s .= ' %{MyTabLabel(' . (i + 1) . ')} '
 
-    endfor
+   endfor
 
-    " after the last tab fill with TabLineFill and reset tab page nr
-    let s .= '%#TabLineFill#%T'
+   " after the last tab fill with TabLineFill and reset tab page nr
+   let s .= '%#TabLineFill#%T'
 
-    " right-align the label to close the current tab page
-    if tabpagenr('$') > 1
-        let s .= '%=%#TabLine#%999XClose[X]'
-    endif
+   " right-align the label to close the current tab page
+   if tabpagenr('$') > 1
+      let s .= '%=%#TabLine#%999XClose[X]'
+   endif
 
-    return s
+   return s
 
 endfunction
 
 function! MyTabLabel(n)
 
-    let label = ''
+   let label = ''
 
-    let buflist = tabpagebuflist(a:n)
+   let buflist = tabpagebuflist(a:n)
 
-    " Add '+' if one of the buffers in the tab page is modified
-    for bufnr in buflist
-        if getbufvar(bufnr, '&modified')
-            let label = '+ '
-            break
-        endif
-    endfor
+   " Add '+' if one of the buffers in the tab page is modified
+   for bufnr in buflist
+      if getbufvar(bufnr, '&modified')
+         let label = '+ '
+         break
+      endif
+   endfor
 
-    let winnr = tabpagewinnr(a:n)
-    let fname = fnamemodify(bufname(buflist[winnr - 1]), ':t')
+   let winnr = tabpagewinnr(a:n)
+   let fname = fnamemodify(bufname(buflist[winnr - 1]), ':t')
 
-    if fname != ''
+   if fname != ''
 
-        let label .= fname
-    else
-        let label .= '[No Name]'
-    endif
+      let label .= fname
+   else
+      let label .= '[No Name]'
+   endif
 
-    " Append the number of windows in the tab page if more than one
-    let wincount = tabpagewinnr(a:n, '$')
+   " Append the number of windows in the tab page if more than one
+   let wincount = tabpagewinnr(a:n, '$')
 
-    if wincount > 1
-        let label .= ' (' . wincount . ')'
-    endif
+   if wincount > 1
+      let label .= ' (' . wincount . ')'
+   endif
 
-    return label
+   return label
 
 endfunction
 
 if has('syntax')
 
-    set cursorline
+   set cursorline
 endif
 
 " Mouse
 if has('mouse_xterm')
 
-    set mouse=a
-    set ttymouse=xterm2
-    set timeoutlen=2000
-    set ttimeoutlen=100
-    set ttyscroll=3
+   set mouse=a
+   set ttymouse=xterm2
+   set timeoutlen=2000
+   set ttimeoutlen=100
+   set ttyscroll=3
 
-    " Vim bug: Only t_te, not t_op, gets sent when leaving an alt screen
-    exe 'set t_te=' . &t_te . &t_op
+   " Vim bug: Only t_te, not t_op, gets sent when leaving an alt screen
+   exe 'set t_te=' . &t_te . &t_op
 endif
 
 " I like my cursor pointing left when selecting text
 set mouseshape=i-r:beam,s:updown,sd:udsizing,vs:leftright,vd:lrsizing,m:no,
-    \ml:up-arrow,
-    \v:arrow
+   \ml:up-arrow,
+   \v:arrow
 
 if 'konsole' == $TERM
 
-    let &t_SI = "\<esc>]50;CursorShape=1\x7"
-    let &t_EI = "\<esc>]50;CursorShape=0\x7"
+   let &t_SI = "\<esc>]50;CursorShape=1\x7"
+   let &t_EI = "\<esc>]50;CursorShape=0\x7"
 endif
 
 if !has('win32')
 
-    set guifont=DejaVu\ Sans\ Mono\ 16,
-        \Nimbus\ Mono\ L\ 16,
-        \Andale\ Mono\ 16,
-        \Liberation\ Mono\ 16,
-        \Monospace\ 16
+   set guifont=DejaVu\ Sans\ Mono\ 16,
+      \Nimbus\ Mono\ L\ 16,
+      \Andale\ Mono\ 16,
+      \Liberation\ Mono\ 16,
+      \Monospace\ 16
 else
-    set guifont=DejaVu_Sans_Mono:h13,
-        \Nimbus_Mono_L:h13,
-        \Andale_Mono:h13,
-        \Liberation_Mono:h13,
-        \Monospace:h13
+   set guifont=DejaVu_Sans_Mono:h13,
+      \Nimbus_Mono_L:h13,
+      \Andale_Mono:h13,
+      \Liberation_Mono:h13,
+      \Monospace:h13
 endif
 
 " backups {{{2
@@ -245,8 +245,8 @@ set backupext=~
 
 if has('win32')
 
-    set directory+=$LOCALAPPDATA\Temp " swap files
-    set backupdir+=$LOCALAPPDATA\Temp
+   set directory+=$LOCALAPPDATA\Temp " swap files
+   set backupdir+=$LOCALAPPDATA\Temp
 endif
 
 " Search {{{2
@@ -282,9 +282,9 @@ set splitright
 
 if version < 700
 
-    set switchbuf=useopen
+   set switchbuf=useopen
 else
-    set switchbuf=useopen,usetab
+   set switchbuf=useopen,usetab
 endif
 
 " Command line {{{2
@@ -300,15 +300,15 @@ set history=1000
 " gm improved {{{2
 function! s:Gm()
 
-    execute 'normal ^'
+   execute 'normal ^'
 
-    let first_col = virtcol('.')
+   let first_col = virtcol('.')
 
-    call search('[^[:space:]]\ze[[:space:]]*$', 'c', line('.'))
+   call search('[^[:space:]]\ze[[:space:]]*$', 'c', line('.'))
 
-    let last_col  = virtcol('.')
+   let last_col  = virtcol('.')
 
-    execute 'normal ' . (first_col + last_col) / 2 . '|'
+   execute 'normal ' . (first_col + last_col) / 2 . '|'
 
 endfunction
 
@@ -362,7 +362,7 @@ vmap <leader>h "*y:help <c-r>*<cr>
 
 " alt-i {{{2
 " Re-indent the whole file
-nmap <m-i> :Indentation<cr>
+nmap <silent> <m-i> :Indentation<cr>
 
 " zM {{{2
 " Fold everything & go to line 1
@@ -420,14 +420,14 @@ vmap <s-left>        B
 
 " Increase font size {{{2
 nmap <c-mousedown> :set guifont=<c-z><c-f>
-    \:substitute/\d\+/\=submatch(0)+1/g<cr><cr>
+   \:substitute/\d\+/\=submatch(0)+1/g<cr><cr>
 nmap <c-mouseup>   :set guifont=<c-z><c-f>
-    \:substitute/\d\+/\=submatch(0)-1/g<cr><cr>
+   \:substitute/\d\+/\=submatch(0)-1/g<cr><cr>
 
 imap <c-mousedown> <c-o>:set guifont=<c-z><c-f>
-    \:substitute/\d\+/\=submatch(0)+1/g<cr><cr>
+   \:substitute/\d\+/\=submatch(0)+1/g<cr><cr>
 imap <c-mouseup>   <c-o>:set guifont=<c-z><c-f>
-    \:substitute/\d\+/\=submatch(0)-1/g<cr><cr>
+   \:substitute/\d\+/\=submatch(0)-1/g<cr><cr>
 
 let g:gfn_bak = &guifont
 nmap <M-0> :let &guifont = g:gfn_bak<cr>
@@ -467,7 +467,7 @@ nmap yaf :%y<cr>
 nmap daf :%d<cr>
 nmap caf :%d<cr>i
 nmap vaf ggVG
-nmap =af :Indentation<cr>
+nmap <silent> =af :Indentation<cr>
 
 " c-s, c-s a {{{2
 " Saving:
@@ -496,9 +496,9 @@ vnoremap <expr> { mode() == nr2char(22) ? line("'{") + 1 . 'G' : '{'
 nnoremap <silent> [[ :call search('^\S\@=.*{$', 'besW')<CR>
 nnoremap <silent> ]] :call search('^\S\@=.*{$',  'esW')<CR>
 onoremap <expr> [[ (search('^\S\@=.*{$', 'ebsW') && (setpos("''", getpos('.'))
-    \ <bar><bar> 1) ? "''" : "\<esc>")
+   \ <bar><bar> 1) ? "''" : "\<esc>")
 onoremap <expr> ]] (search('^\S\@=.*{$',  'esW') && (setpos("''", getpos('.'))
-    \ <bar><bar> 1) ? "''" : "\<esc>")
+   \ <bar><bar> 1) ? "''" : "\<esc>")
 
 " <leader>l {{{2
 " Remove superfluous white spaces towards the EOL (<leader>l)
@@ -512,71 +512,71 @@ nmap <leader>z :call <sid>TransformLines ('squeeze')<cr>
 "       the 'no lines compressed' doesn't show
 function! s:TransformLines (operation)
 
-    let last_search = histget('search', -1)
+   let last_search = histget('search', -1)
 
-    try
-        if 'squeeze' == a:operation
+   try
+      if 'squeeze' == a:operation
 
-            global/^\%([[:space:]]*$\n\)\{2,}/delete
+         global/^\%([[:space:]]*$\n\)\{2,}/delete
 
-        elseif 'del_EOL_spaces' == a:operation
+      elseif 'del_EOL_spaces' == a:operation
 
-            %substitute/\s\+$
-        endif
+         %substitute/\s\+$
+      endif
 
-        normal ``
+      normal ``
 
-    catch /E486/
+   catch /E486/
 
-        echohl ErrorMsg
+      echohl ErrorMsg
 
-        if 'squeeze' == a:operation
+      if 'squeeze' == a:operation
 
-            echo 'No lines compressed'
+         echo 'No lines compressed'
 
-        elseif 'del_EOL_spaces' == a:operation
+      elseif 'del_EOL_spaces' == a:operation
 
-            echo 'No superfluous EOL whitespaces'
-        endif
+         echo 'No superfluous EOL whitespaces'
+      endif
 
-        echohl NONE
+      echohl NONE
 
-    finally
+   finally
 
-        if histget('search', -1) != last_search
+      if histget('search', -1) != last_search
 
-            call histdel('search', -1)
-        endif
-    endtry
+         call histdel('search', -1)
+      endif
+   endtry
 
 endfunction
 
 " todo: nofilter + Version: -> echo '+feature'
 function! s:Filter_lines (cmd, filter)
 
-    redir => lines
+   redir => lines
 
-    let saveMore = &more
-    set nomore
+   let saveMore = &more
+   set nomore
 
-    execute a:cmd
+   execute a:cmd
 
-    redir END
+   redir END
 
-    let &more = saveMore
+   let &more = saveMore
 
-    call feedkeys("\<cr>")
+   call feedkeys("\<cr>")
 
-    wincmd n
+   wincmd n
 
-    set buftype=nofile
+   set buftype=nofile
 
-    execute 'normal insert' . lines . "\<cr>"
+   execute 'normal insert' . lines . "\<cr>"
 
-    execute 'vglobal/' . a:filter . '/delete'
-    %substitute#^\s*\d\+:\s*##eg
+   execute 'vglobal/' . a:filter . '/delete'
+   %substitute#^\s*\d\+:\s*##eg
 
-    0
+   0
 
 endfunction
 
@@ -598,11 +598,11 @@ vmap [p "0p
 
 if version >= 703
 
-    set relativenumber
+   set relativenumber
 
-    set cryptmethod=blowfish
+   set cryptmethod=blowfish
 
-    set undofile
+   set undofile
 
 endif
 
@@ -619,35 +619,35 @@ let NERDSpaceDelims = 1
 " Man
 if !has('win32')
 
-    runtime! ftplugin/man.vim
+   runtime! ftplugin/man.vim
 endif
 
 if !has('gui_running')
 
-    if &term == 'xterm'
+   if &term == 'xterm'
 
-        " Note: konsole has 256 color support
-        set t_Co=256
-        let g:CSApprox_konsole = 1
-    endif
+      " Note: konsole has 256 color support
+      set t_Co=256
+      let g:CSApprox_konsole = 1
+   endif
 endif
 
 " PHP
 let php_folding = 3
 let php_large_file = 0
 
-let vim_indent_cont = 4
+let vim_indent_cont = 3
 
 let g:SuperTabDefaultCompletionType = "context"
 
 function! YRRunAfterMaps()
-    nnoremap <silent> Y :YRYankCount 'y$'<cr>
+   nnoremap <silent> Y :YRYankCount 'y$'<cr>
 endfunction
 
 " Disable all these plugins!
 
 if version < 702
-    let g:space_loaded = 1
+   let g:space_loaded = 1
 endif
 
 let g:loaded_netrwPlugin     = 1
@@ -663,97 +663,105 @@ let g:loaded_ZoomWin         = 1
 
 function s:Underline(chars)
 
-    let chars = empty(a:chars) ? '-' : a:chars
+   let chars = empty(a:chars) ? '-' : a:chars
 
-    let nb_columns = virtcol('$') - 1
-    let nb_chars = strlen(chars)
+   let nb_columns = virtcol('$') - 1
+   let nb_chars = strlen(chars)
 
-    if has('float')
-        let nb_insertions = floor(nb_columns / str2float(nb_chars))
-        let remainder = nb_columns % nb_chars
-    else
-        let nb_insertions = nb_columns / nb_chars
-    endif
+   if has('float')
+      let nb_insertions = floor(nb_columns / str2float(nb_chars))
+      let remainder = nb_columns % nb_chars
+   else
+      let nb_insertions = nb_columns / nb_chars
+   endif
 
-    execute "normal o\<esc>"
+   execute "normal o\<esc>"
 
-    if has('float')
-        execute 'normal ' . float2nr(nb_insertions) . 'i' . chars . "\<esc>"
+   if has('float')
+      execute 'normal ' . float2nr(nb_insertions) . 'i' . chars . "\<esc>"
 
-        if !empty(remainder)
-            execute 'normal A' . strpart(chars, 0, remainder) . "\<esc>"
-        endif
-    else
-        execute 'normal ' . nb_insertions . 'i' . chars . "\<esc>"
-    endif
+      if !empty(remainder)
+         execute 'normal A' . strpart(chars, 0, remainder) . "\<esc>"
+      endif
+   else
+      execute 'normal ' . nb_insertions . 'i' . chars . "\<esc>"
+   endif
 
 endfunction
 
-function! s:Indentation(amount)
+function! s:Indentation(amount) range
 
-    let amount = empty(a:amount) ? 3 : a:amount
+   let save_shiftwidth = &shiftwidth
 
-    let &shiftwidth = amount
+   if !empty(a:amount)
+      let &shiftwidth = a:amount
+   endif
 
-    silent normal gg=G``
+   if a:firstline == a:lastline
+      normal gg=G``
+   else
+      execute a:firstline . ',' . a:lastline . ' normal=='
+   endif
+
+   let &shiftwidth = save_shiftwidth
 
 endfunction
 
 " Commands {{{1
 
 command! -nargs=? Underline call <sid>Underline(<q-args>)
-command! -nargs=? Indentation call <sid>Indentation(<q-args>)
+command! -nargs=? -range Indentation <line1>,<line2> call <sid>Indentation(<q-args>)
 command! DeleteTags %substitute:<[?%![:space:]]\@!/\=\_.\{-1,}[-?%]\@<!>::gc
 command! WriteSudo write !sudo tee % > /dev/null
 command! DiffOrig vnew | set buftype=nofile | read# | silent 0delete_ |
-    \ diffthis | wincmd p | diffthis
+   \ diffthis | wincmd p | diffthis
 
 " Autocommands {{{1
 
 if has('autocmd')
 
-    augroup vimrcGrp
+   augroup vimrcGrp
 
-        autocmd!
+      autocmd!
 
-        " Jump to the last spot the cursor was at in a file when reading it
-        autocmd BufReadPost *
-            \ if line("'\"") > 0 && line("'\"") <= line('$') |
-            \ execute 'normal g`"' |
-            \ endif
+      " Jump to the last spot the cursor was at in a file when reading it
+      autocmd BufReadPost *
+         \ if line("'\"") > 0 && line("'\"") <= line('$') |
+         \ execute 'normal g`"' |
+         \ endif
 
-        " When reading a file, :cd to its parent directory unless it's a help
-        " file. It reproduces the behaviour of autochdir which doesn't work
-        " properly
-        autocmd BufEnter * if &filetype != 'help' | silent! cd %:p:h | endif
+      " When reading a file, :cd to its parent directory unless it's a help
+      " file. It reproduces the behaviour of autochdir which doesn't work
+      " properly
+      autocmd BufEnter * if &filetype != 'help' | silent! cd %:p:h | endif
 
-        " Wrap automatically at 80 chars for plain text files
-        autocmd FileType txt,text,svn setlocal formatoptions+=t
-            \ autoindent smartindent
+      " Wrap automatically at 80 chars for plain text files
+      autocmd FileType txt,text,svn setlocal formatoptions+=t
+         \ autoindent smartindent
 
-        " Useful for class aware omnicompletion with php
-        autocmd FileType php,phtml let @v="\<esc>yiwO/* @var $\<esc>pa Zend_ */\<left>\<left>\<left>"
+      " Useful for class aware omnicompletion with php
+      autocmd FileType php,phtml let @v="\<esc>yiwO/* @var $\<esc>pa Zend_ */\<left>\<left>\<left>"
 
-        " Use :make to check a script {{{2
+      " Use :make to check a script {{{2
 
-        " Perl (to be improved)
-        autocmd FileType perl set makeprg=perl\ -c\ %\ $*
-            \ errorformat=%m\ at\ %f\ line\ %l.
+      " Perl (to be improved)
+      autocmd FileType perl set makeprg=perl\ -c\ %\ $*
+         \ errorformat=%m\ at\ %f\ line\ %l.
 
-        " PHP
-        autocmd FileType php set makeprg=php\ -l\ %\ $*
-            \ errorformat=%E%m\ in\ %f\ on\ line\ %l,%Z%m
-        " }}}2
+      " PHP
+      autocmd FileType php set makeprg=php\ -l\ %\ $*
+         \ errorformat=%E%m\ in\ %f\ on\ line\ %l,%Z%m
+      " }}}2
 
-    augroup END
+   augroup END
 endif
 
 " Abbreviations {{{1
 
 function! EatChar(pat)
 
-    let char = nr2char(getchar(0))
-    return (char =~ a:pat) ? '' : char
+   let char = nr2char(getchar(0))
+   return (char =~ a:pat) ? '' : char
 endfunc
 
 nmap <leader>ft :set filetype=
