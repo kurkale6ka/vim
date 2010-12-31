@@ -263,8 +263,8 @@ set nojoinspaces
 
 " Tabs and shifting {{{2
 set shiftround
-set shiftwidth=4
-set softtabstop=4
+set shiftwidth=3
+set softtabstop=3
 set tabstop=8
 set expandtab
 
@@ -362,7 +362,7 @@ vmap <leader>h "*y:help <c-r>*<cr>
 
 " alt-i {{{2
 " Re-indent the whole file
-nmap <m-i> gg=G``
+nmap <m-i> :Indentation<cr>
 
 " zM {{{2
 " Fold everything & go to line 1
@@ -467,7 +467,7 @@ nmap yaf :%y<cr>
 nmap daf :%d<cr>
 nmap caf :%d<cr>i
 nmap vaf ggVG
-nmap =af gg=G``
+nmap =af :Indentation<cr>
 
 " c-s, c-s a {{{2
 " Saving:
@@ -688,9 +688,21 @@ function s:Underline(chars)
     endif
 
 endfunction
+
+function! s:Indentation(amount)
+
+    let amount = empty(a:amount) ? 3 : a:amount
+
+    let &shiftwidth = amount
+
+    silent normal gg=G``
+
+endfunction
+
 " Commands {{{1
 
 command! -nargs=? Underline call <sid>Underline(<q-args>)
+command! -nargs=? Indentation call <sid>Indentation(<q-args>)
 command! DeleteTags %substitute:<[?%![:space:]]\@!/\=\_.\{-1,}[-?%]\@<!>::gc
 command! WriteSudo write !sudo tee % > /dev/null
 command! DiffOrig vnew | set buftype=nofile | read# | silent 0delete_ |
