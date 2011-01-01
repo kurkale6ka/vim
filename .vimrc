@@ -709,6 +709,22 @@ function! s:Indentation(amount) range
 
 endfunction
 
+function! s:ShowValues(verb)
+
+   let options = input('Options? ', '', 'option')
+   let optionsArr = split(options)
+
+   if 1 != a:verb
+      execute 'set ' . join(optionsArr, '? ') . '?'
+   else
+      execute 'verbose set ' . join(optionsArr, '? ') . '?'
+   endif
+
+endfunction
+
+nmap \V :call <sid>ShowValues(0)<cr>
+nmap \B :call <sid>ShowValues(1)<cr>
+
 " Commands {{{1
 
 command! -nargs=? Underline call <sid>Underline(<q-args>)
