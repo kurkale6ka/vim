@@ -9,6 +9,7 @@ set spelllang=bg
 
 let b:keymap_name = "бг"
 
+lmap <buffer> w  ж
 lmap <buffer> W  Ж
 lmap <buffer> y  у
 lmap <buffer> Y  У
