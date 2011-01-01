@@ -595,6 +595,8 @@ map <leader>< :substitute/>\zs\s*\ze</\r/g<cr>
 map <leader>> :substitute/>\zs\s*\ze</\r/g<cr>
 
 vmap [p "0p
+nmap [P :pu!<cr>
+nmap ]P :pu<cr>
 
 if version >= 703
 
