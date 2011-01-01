@@ -9,7 +9,7 @@ function! s:SpaceLines(force)
 
     let save_cursor = getpos(".")
 
-    let comment_pattern = '^[[:space:]]*\%(["*#;]\|\/\/\|\/\*\)'
+    let comment_pattern = '^[[:space:]]*\%(["*#;%]\|\/\/\|\/\*\)'
 
     let line_above = getline(line('.') - 1)
     let line_below = getline(line('.') + 1)
