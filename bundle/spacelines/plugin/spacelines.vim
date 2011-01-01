@@ -5,7 +5,7 @@
 " Latest version at:
 " http://github.com/kurkale6ka/vimfiles/blob/master/plugin/spaceline.vim
 
-function! s:SpaceLine(both)
+function! s:SpaceLines(force)
 
     let save_cursor = getpos(".")
 
@@ -14,12 +14,17 @@ function! s:SpaceLine(both)
     let line_above = getline(line('.') - 1)
     let line_below = getline(line('.') + 1)
 
+    let line_above_length = strlen(strpart(line_above, match(line_above, '\S')))
+    let line_below_length = strlen(strpart(line_below, match(line_below, '\S')))
+
+    let limit = 6
+
     if line_above =~ '[^[:space:]]'
 
         if line_above !~ comment_pattern &&
-            \ len(line_above) > 6        ||
+            \ line_above_length > limit  ||
             \ v:count1 > 1               ||
-            \ !empty(a:both)
+            \ !empty(a:force)
 
             normal O
             +
@@ -28,7 +33,7 @@ function! s:SpaceLine(both)
 
     if line_below =~ '[^[:space:]]'
 
-        if len(line_below) > 6 || v:count1 > 1 || !empty(a:both)
+        if line_below_length > limit || v:count1 > 1 || !empty(a:force)
 
             normal o
             -
@@ -38,11 +43,11 @@ function! s:SpaceLine(both)
     let virtualedit_bak = &virtualedit
     set virtualedit=
 
-    if !empty(a:both)
+    if !empty(a:force)
 
-        silent! call repeat#set("\<plug>SpacelineBoth")
+        silent! call repeat#set("\<plug>SpaceLinesForce")
     else
-        silent! call repeat#set("\<plug>SpacelineSingle")
+        silent! call repeat#set("\<plug>SpaceLines")
     endif
 
     let &virtualedit = virtualedit_bak
@@ -51,10 +56,10 @@ function! s:SpaceLine(both)
 
 endfunction
 
-nmap <silent> <plug>SpacelineSingle :<c-u>call <sid>SpaceLine('')<cr>
-nmap <silent> <plug>SpacelineBoth   :<c-u>call <sid>SpaceLine('both')<cr>
+nmap <silent> <plug>SpaceLines      :<c-u>call <sid>SpaceLines('')<cr>
+nmap <silent> <plug>ForceSpaceLines :<c-u>call <sid>SpaceLines('force')<cr>
 
-nmap <leader>o <plug>SpacelineSingle
-nmap <c-cr>    <plug>SpacelineSingle
+nmap <leader>m <plug>SpaceLines
+nmap <c-cr>    <plug>SpaceLines
 " Todo: count <c-cr>
-nmap <leader>O <plug>SpacelineBoth
+nmap <leader>M <plug>ForceSpaceLines

@@ -709,21 +709,27 @@ function! s:Indentation(amount) range
 
 endfunction
 
-function! s:ShowValues(verb)
+function! s:ShowOptionsValues(verb)
 
    let options = input('Options? ', '', 'option')
-   let optionsArr = split(options)
 
-   if 1 != a:verb
-      execute 'set ' . join(optionsArr, '? ') . '?'
+   if !empty(options)
+
+      let optionsArr = split(options)
+
+      if 1 != a:verb
+         execute 'set ' . join(optionsArr, '? ') . '?'
+      else
+         execute 'verbose set ' . join(optionsArr, '? ') . '?'
+      endif
    else
-      execute 'verbose set ' . join(optionsArr, '? ') . '?'
+      set
    endif
 
 endfunction
 
-nmap \V :call <sid>ShowValues(0)<cr>
-nmap \B :call <sid>ShowValues(1)<cr>
+nmap \o :call <sid>ShowOptionsValues(0)<cr>
+nmap \O :call <sid>ShowOptionsValues(1)<cr>
 
 " Commands {{{1
 
