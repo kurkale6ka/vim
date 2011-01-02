@@ -709,6 +709,36 @@ function! s:Indentation(amount) range
 
 endfunction
 
+function! s:AddSubtract(operation, direction)
+
+   if &nrformats =~ 'alpha'
+
+      let pattern = '\a\|\d'
+   else
+      let pattern = '\d'
+   endif
+
+   if 'b' == a:direction
+
+      call search(pattern, 'bcw')
+   else
+      call search(pattern, 'cw')
+   endif
+
+   if 'a' == a:operation
+
+      execute 'normal! ' . v:count1 . "\<c-a>"
+   else
+      execute 'normal! ' . v:count1 . "\<c-x>"
+   endif
+
+endfunction
+
+nmap <silent> <c-a> :<c-u>call <sid>AddSubtract('a', 'f')<cr>
+" nmap <silent> <c-A> :<c-u>call <sid>AddSubtract('a', 'b')<cr>
+nmap <silent> <c-x> :<c-u>call <sid>AddSubtract('s', 'f')<cr>
+" nmap <silent> <c-X> :<c-u>call <sid>AddSubtract('s', 'b')<cr>
+
 function! s:ShowOptionsValues(verb)
 
    let options = input('Options? ', '', 'option')
