@@ -734,10 +734,10 @@ function! s:AddSubtract(operation, direction)
 
 endfunction
 
-nmap <silent> <c-a> :<c-u>call <sid>AddSubtract('a', 'f')<cr>
-" nmap <silent> <c-A> :<c-u>call <sid>AddSubtract('a', 'b')<cr>
-nmap <silent> <c-x> :<c-u>call <sid>AddSubtract('s', 'f')<cr>
-" nmap <silent> <c-X> :<c-u>call <sid>AddSubtract('s', 'b')<cr>
+nmap <silent>         <c-a> :<c-u>call <sid>AddSubtract('a', 'f')<cr>
+nmap <silent> <leader><c-a> :<c-u>call <sid>AddSubtract('a', 'b')<cr>
+nmap <silent>         <c-x> :<c-u>call <sid>AddSubtract('s', 'f')<cr>
+nmap <silent> <leader><c-x> :<c-u>call <sid>AddSubtract('s', 'b')<cr>
 
 function! s:ShowOptionsValues(verb)
 
