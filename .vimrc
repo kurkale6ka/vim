@@ -809,6 +809,8 @@ cabbrev keymap& keymap& spelllang&
 cabbrev kmp=    keymap& spelllang&
 cabbrev keymap= keymap& spelllang&
 
+nmap <leader>bg :set keymap=bg<cr>
+
 cabbrev trp rtp
 cabbrev waq wqa
 cabbrev mpa map
