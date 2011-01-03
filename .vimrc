@@ -353,7 +353,7 @@ nmap <leader>v v$h
 
 " Backspace {{{2
 " deletes leftwards
-nnoremap <bs>  "_X
+   nnoremap <bs>  "_X
 
 " \h {{{2
 " Help on current word
@@ -384,6 +384,8 @@ cnoremap <esc>b <s-left>
 cnoremap <esc>f <s-right>
 cnoremap <m-b>  <s-left>
 cnoremap <m-f>  <s-right>
+map <home> ^
+imap <home> <c-o>I
 
 imap <c-up> <c-o>{
 map  <c-up>      {
