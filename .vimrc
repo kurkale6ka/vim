@@ -836,12 +836,10 @@ nmap <leader>fr :set filetype=ruby<cr>
 cabbrev vsb vertical sbuffer
 cabbrev svb vertical sbuffer
 
-cabbrev kmp&    keymap& spelllang&
-cabbrev keymap& keymap& spelllang&
-cabbrev kmp=    keymap& spelllang&
-cabbrev keymap= keymap& spelllang&
-
-nmap <leader>bg :set keymap=bg<cr>
+nmap <leader>kbg :set keymap=bg<cr>
+nmap <leader>kfr :set keymap=fr<cr>
+nmap <leader>kes :set keymap=es<cr>
+nmap <leader>ken :set keymap& spelllang&<cr>
 
 cabbrev trp rtp
 cabbrev waq wqa
