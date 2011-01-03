@@ -590,6 +590,7 @@ nmap <c-w><c-w> :wincmd p<cr>
 
 " q= {{{2
 nmap q= @=<c-f>
+nmap q@ :call input('')<cr><c-f>
 " }}}2
 
 map <leader><leader> :ls<cr>
