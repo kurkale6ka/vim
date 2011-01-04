@@ -349,8 +349,19 @@ nmap Y y$
 xmap <silent> Y :<c-u>call <sid>BlockCopy()<cr>
 nmap gV     gvV
 nmap g<c-v> gv<c-v>
-nmap <leader><c-l> :<c-r>=
-   \substitute(getline('.'), '^[[:space:]:]\+\<bar>[[:space:]]\+$', '', '')<cr>
+
+function! s:LineCopy()
+
+   let line =
+      \substitute(getline('.'), '^[[:space:]:]\+\|[[:space:]]\+$', '', '')
+
+   call histadd(':', line)
+
+   return line
+
+endfunction
+
+nmap <leader><c-l> :<c-r>=<sid>LineCopy()<cr>
 
 function! s:BlockCopy()
 
