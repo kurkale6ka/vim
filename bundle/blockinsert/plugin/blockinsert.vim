@@ -33,7 +33,7 @@ set cpoptions&vim
 
 "function! s:Tab_spaces()
 
-"normal h
+"normal! h
 
 "let before_tab = virtcol('.')
 
@@ -53,7 +53,7 @@ set cpoptions&vim
 "echo nb_spaces
 "sleep
 
-"execute "normal x" . nb_spaces . "i \<esc>"
+"execute "normal! x" . nb_spaces . "i \<esc>"
 "endwhile
 
 function! s:BlockDo (operation, col1, col2, row1, row2, text)
@@ -175,9 +175,9 @@ function! s:BlockDo (operation, col1, col2, row1, row2, text)
 
             if a:operation =~ 'a'
 
-               execute 'normal ' . go_end . operation
+               execute 'normal! ' . go_end . operation
             else
-               execute 'normal ' . go_start . operation
+               execute 'normal! ' . go_start . operation
             endif
          endif
          +
@@ -189,9 +189,9 @@ function! s:BlockDo (operation, col1, col2, row1, row2, text)
 
             if a:operation =~ 'a'
 
-               execute 'normal ' . go_end . operation
+               execute 'normal! ' . go_end . operation
             else
-               execute 'normal ' . go_start . operation
+               execute 'normal! ' . go_start . operation
             endif
          endif
          +

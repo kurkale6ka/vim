@@ -7,7 +7,7 @@
 
 function! s:BlankLines(mode) range
 
-   let operation = 'normal 0Dj'
+   let operation = 'normal! 0Dj'
 
    if a:firstline != a:lastline
 

@@ -26,7 +26,7 @@ function! s:SpaceLines(force)
          \ v:count1 > 1               ||
          \ !empty(a:force)
 
-         normal O
+         normal! O
          +
       endif
    endif
@@ -35,7 +35,7 @@ function! s:SpaceLines(force)
 
       if line_below_length > limit || v:count1 > 1 || !empty(a:force)
 
-         normal o
+         normal! o
          -
       endif
    endif

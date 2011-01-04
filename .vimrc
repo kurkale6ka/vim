@@ -300,7 +300,7 @@ set history=1000
 " gm improved {{{2
 function! s:Gm()
 
-   execute 'normal ^'
+   execute 'normal! ^'
 
    let first_col = virtcol('.')
 
@@ -308,7 +308,7 @@ function! s:Gm()
 
    let last_col  = virtcol('.')
 
-   execute 'normal ' . (first_col + last_col) / 2 . '|'
+   execute 'normal! ' . (first_col + last_col) / 2 . '|'
 
 endfunction
 
@@ -552,7 +552,7 @@ function! s:TransformLines (operation)
          %substitute/[[:space:]]\+$
       endif
 
-      normal ``
+      normal! ``
 
    catch /E486/
 
@@ -599,7 +599,7 @@ function! s:Filter_lines (cmd, filter)
 
    set buftype=nofile
 
-   execute 'normal insert' . lines . "\<cr>"
+   execute 'normal! insert' . lines . "\<cr>"
 
    execute 'vglobal/' . a:filter . '/delete'
    %substitute#^[[:space:]]*\d\+:[[:space:]]*##eg
@@ -706,16 +706,16 @@ function s:Underline(chars)
       let nb_insertions = nb_columns / nb_chars
    endif
 
-   execute "normal o\<esc>"
+   execute "normal! o\<esc>"
 
    if has('float')
-      execute 'normal ' . float2nr(nb_insertions) . 'i' . chars . "\<esc>"
+      execute 'normal! ' . float2nr(nb_insertions) . 'i' . chars . "\<esc>"
 
       if !empty(remainder)
-         execute 'normal A' . strpart(chars, 0, remainder) . "\<esc>"
+         execute 'normal! A' . strpart(chars, 0, remainder) . "\<esc>"
       endif
    else
-      execute 'normal ' . nb_insertions . 'i' . chars . "\<esc>"
+      execute 'normal! ' . nb_insertions . 'i' . chars . "\<esc>"
    endif
 
 endfunction
@@ -729,9 +729,9 @@ function! s:Indentation(amount) range
    endif
 
    if a:firstline == a:lastline
-      normal gg=G``
+      normal! gg=G``
    else
-      execute a:firstline . ',' . a:lastline . ' normal=='
+      execute a:firstline . ',' . a:lastline . ' normal!=='
    endif
 
    let &shiftwidth = save_shiftwidth
@@ -811,7 +811,7 @@ if has('autocmd')
       " Jump to the last spot the cursor was at in a file when reading it
       autocmd BufReadPost *
          \ if line("'\"") > 0 && line("'\"") <= line('$') |
-         \ execute 'normal g`"' |
+         \ execute 'normal! g`"' |
          \ endif
 
       " When reading a file, :cd to its parent directory unless it's a help

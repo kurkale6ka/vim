@@ -35,7 +35,7 @@ function! s:ChangeTextQuotes (changedtick, quote, text)
       call search(a:quote, 'cbW', line('.'))
    endif
 
-   execute 'normal di' . a:quote
+   execute 'normal! di' . a:quote
 
    if a:changedtick != b:changedtick
 
@@ -50,7 +50,7 @@ function! s:ChangeTextQuotes (changedtick, quote, text)
          let my_text = a:text
       endif
 
-      execute 'normal i' . my_text . "\<esc>"
+      execute 'normal! i' . my_text . "\<esc>"
 
       return my_text
    endif
@@ -73,7 +73,7 @@ function! CI_quotes (text)
 
    while nb_quotes < 2 && nb_qquotes < 2
 
-      normal $
+      normal! $
 
       if 0 == search ('["'."']", '', line('w$'))
 
@@ -97,7 +97,7 @@ function! CI_quotes (text)
 
       while nb_quotes < 2 && nb_qquotes < 2
 
-         normal $
+         normal! $
 
          if 0 == search ('["'."']", '', stop_line)
 
@@ -152,9 +152,9 @@ function! CI_quotes (text)
 
       if at_eol || !at_eol && search (quote_under_cursor, 'cnW', line('.'))
 
-         execute 'normal ci' . quote_under_cursor . my_text . "\<esc>"
+         execute 'normal! ci' . quote_under_cursor . my_text . "\<esc>"
       else
-         execute 'normal ci' . anti_quote         . my_text . "\<esc>"
+         execute 'normal! ci' . anti_quote         . my_text . "\<esc>"
       endif
 
    elseif nb_quotes >= 2
@@ -178,7 +178,7 @@ function! CI_quotes (text)
 
          let my_text = 'no_text'
 
-         normal l
+         normal! l
 
          startinsert
       endif
