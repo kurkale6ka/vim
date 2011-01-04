@@ -349,6 +349,8 @@ nmap Y y$
 xmap <silent> Y :<c-u>call <sid>BlockCopy()<cr>
 nmap gV     gvV
 nmap g<c-v> gv<c-v>
+nmap <leader><c-l> :<c-r>=
+   \substitute(getline('.'), '^[[:space:]:]\+\<bar>[[:space:]]\+$', '', '')<cr>
 
 function! s:BlockCopy()
 
@@ -536,7 +538,7 @@ function! s:TransformLines (operation)
 
       elseif 'del_EOL_spaces' == a:operation
 
-         %substitute/\s\+$
+         %substitute/[[:space:]]\+$
       endif
 
       normal ``
@@ -589,7 +591,7 @@ function! s:Filter_lines (cmd, filter)
    execute 'normal insert' . lines . "\<cr>"
 
    execute 'vglobal/' . a:filter . '/delete'
-   %substitute#^\s*\d\+:\s*##eg
+   %substitute#^[[:space:]]*\d\+:[[:space:]]*##eg
 
    0
 
@@ -607,8 +609,8 @@ nmap q@ :call input('')<cr><c-f>
 " }}}2
 
 map <leader><leader> :ls<cr>
-map <leader>< :substitute/>\zs\s*\ze</\r/g<cr>
-map <leader>> :substitute/>\zs\s*\ze</\r/g<cr>
+map <leader>< :substitute/>\zs[[:space:]]*\ze</\r/g<cr>
+map <leader>> :substitute/>\zs[[:space:]]*\ze</\r/g<cr>
 
 xmap [p "0p
 nmap [P :pu!<cr>
@@ -780,7 +782,8 @@ nmap \O :call <sid>ShowOptionsValues(1)<cr>
 " Commands {{{1
 
 command! -nargs=? Underline call <sid>Underline(<q-args>)
-command! -nargs=? -range Indentation <line1>,<line2> call <sid>Indentation(<q-args>)
+command! -nargs=? -range Indentation
+   \ <line1>,<line2> call <sid>Indentation(<q-args>)
 command! DeleteTags %substitute:<[?%![:space:]]\@!/\=\_.\{-1,}[-?%]\@<!>::gc
 command! WriteSudo write !sudo tee % > /dev/null
 command! DiffOrig vnew | set buftype=nofile | read# | silent 0delete_ |
@@ -810,7 +813,8 @@ if has('autocmd')
          \ autoindent smartindent
 
       " Useful for class aware omnicompletion with php
-      autocmd FileType php,phtml let @v="\<esc>yiwO/* @var $\<esc>pa Zend_ */\<left>\<left>\<left>"
+      autocmd FileType php,phtml
+         \ let @v="\<esc>yiwO/* @var $\<esc>pa Zend_ */\<left>\<left>\<left>"
 
       " Use :make to check a script {{{2
 
@@ -861,6 +865,7 @@ cabbrev mpa map
 cabbrev frm fmr
 
 iabbrev latex LaTeX
-iabbrev _t <c-r>=strftime('%d %B %Y, %H:%M %Z (%A)')<cr><c-r>=EatChar('\s')<cr>
+iabbrev _t <c-r>=strftime('%d %B %Y, %H:%M %Z (%A)')<cr>
+   \<c-r>=EatChar('[[:space:]]')<cr>
 
 " vim: set foldmethod=marker foldmarker&:
