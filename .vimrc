@@ -346,7 +346,7 @@ nnoremap <silent> `Z :silent! normal! `Z`.<cr>
 " Y {{{2
 " copies to the EOL
 nmap Y y$
-vmap <silent> Y :<c-u>call <sid>BlockCopy()<cr>
+xmap <silent> Y :<c-u>call <sid>BlockCopy()<cr>
 nmap gV     gvV
 nmap g<c-v> gv<c-v>
 
@@ -371,7 +371,7 @@ nmap <leader>v v$h
 " \h {{{2
 " Help on current word
 nmap <leader>h :help    <c-r><c-w><cr>
-vmap <leader>h "*y:help <c-r>*<cr>
+xmap <leader>h "*y:help <c-r>*<cr>
 
 " alt-i {{{2
 " Re-indent the whole file
@@ -453,7 +453,7 @@ nnoremap <c-l> :nohlsearch<cr><c-l>
 
 " [I {{{2
 " Searches using [I in visual mode
-vmap [I "*y:global/<c-r>*<cr>
+xmap [I "*y:global/<c-r>*<cr>
 
 " Q {{{2
 " Format paragraphs
@@ -610,7 +610,7 @@ map <leader><leader> :ls<cr>
 map <leader>< :substitute/>\zs\s*\ze</\r/g<cr>
 map <leader>> :substitute/>\zs\s*\ze</\r/g<cr>
 
-vmap [p "0p
+xmap [p "0p
 nmap [P :pu!<cr>
 nmap ]P :pu<cr>
 
