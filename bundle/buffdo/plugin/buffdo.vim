@@ -2,7 +2,7 @@
 "       those buffers
 function! Bufdo(args)
 
-    execute 'bufdo ' . a:args
+   execute 'bufdo ' . a:args
 
 endfunction
 

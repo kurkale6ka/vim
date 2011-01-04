@@ -145,16 +145,16 @@
 
 if exists('g:loaded_html') || &compatible || v:version < 700
 
-    if &compatible && &verbose
+   if &compatible && &verbose
 
-        echo "Html.vim is not designed to work in compatible mode."
+      echo "Html.vim is not designed to work in compatible mode."
 
-    elseif v:version < 700
+   elseif v:version < 700
 
-        echo "Html.vim needs Vim 7.0 or above to work correctly."
-    endif
+      echo "Html.vim needs Vim 7.0 or above to work correctly."
+   endif
 
-    finish
+   finish
 endif
 
 let g:loaded_html = 1
@@ -169,62 +169,62 @@ set cpoptions&vim
 
 " <ul>
 if !exists("b:ul_class")
-    let b:ul_class = ''
+   let b:ul_class = ''
 endif
 
 " <ol>
 if !exists("b:ol_class")
-    let b:ol_class = ''
+   let b:ol_class = ''
 endif
 
 " <p>
 if !exists("b:p_class")
-    let b:p_class = ''
+   let b:p_class = ''
 endif
 
 " <div>
 if !exists("b:div_class")
-    let b:div_class = ''
+   let b:div_class = ''
 endif
 
 " <td>
 if !exists("b:td_class")
-    let b:td_class = ''
+   let b:td_class = ''
 endif
 
 " <a>
 if !exists("b:a_class")
-    let b:a_class = ''
+   let b:a_class = ''
 endif
 
 " <span>
 if !exists("b:span_class")
-    let b:span_class = ''
+   let b:span_class = ''
 endif
 
 " <h1>
 if !exists("b:h1_class")
-    let b:h1_class = ''
+   let b:h1_class = ''
 endif
 
 " <img>
 if !exists("b:i_class")
-    let b:i_class = ''
+   let b:i_class = ''
 endif
 
 " <em>
 if !exists("b:em_class")
-    let b:em_class = ''
+   let b:em_class = ''
 endif
 
 " <strong>
 if !exists("b:b_class")
-    let b:b_class = ''
+   let b:b_class = ''
 endif
 
 " <li>
 if !exists("b:li_class")
-    let b:li_class = ''
+   let b:li_class = ''
 endif
 
 " Init functions: set the class to the right value {{{2
@@ -236,95 +236,95 @@ endif
 
 function! s:Init_ul()
 
-    let @u="dipO<ul" . b:ul_class . ">\<cr>\<cr>\<cr></ul>\<esc>kP0\<c-v>']I<li>\<esc>gv$A</li>\<esc>gv:Tabularize html\<cr>-=at']+EB"
-    nnoremap <silent> <buffer> <leader>#u ciW<ul<esc>:exe 'norm a' . b:ul_class . "> <li>   </li> </ul>\eB2hvitholp3EB"<cr>
-    vnoremap <silent> <buffer> <leader>hu <c-v>^I<li><esc>gv$A</li><esc>gv:Tabularize html<cr>d']O<ul<esc>:exe 'norm a' . b:ul_class . ">\r\r\r</ul>\ekP-=at']+EB"<cr>
+   let @u="dipO<ul" . b:ul_class . ">\<cr>\<cr>\<cr></ul>\<esc>kP0\<c-v>']I<li>\<esc>gv$A</li>\<esc>gv:Tabularize html\<cr>-=at']+EB"
+   nnoremap <silent> <buffer> <leader>#u ciW<ul<esc>:exe 'norm a' . b:ul_class . "> <li>   </li> </ul>\eB2hvitholp3EB"<cr>
+   vnoremap <silent> <buffer> <leader>hu <c-v>^I<li><esc>gv$A</li><esc>gv:Tabularize html<cr>d']O<ul<esc>:exe 'norm a' . b:ul_class . ">\r\r\r</ul>\ekP-=at']+EB"<cr>
 
 endfunction
 
 function! s:Init_ol()
 
-    let @o="dipO<ol" . b:ol_class . ">\<cr>\<cr>\<cr></ol>\<esc>kP0\<c-v>']I<li>\<esc>gv$A</li>\<esc>gv:Tabularize html\<cr>-=at']+EB"
-    nnoremap <silent> <buffer> <leader>#o ciW<ol<esc>:exe 'norm a' . b:ol_class . "> <li>   </li> </ol>\eB2hvitholp3EB"<cr>
-    vnoremap <silent> <buffer> <leader>ho <c-v>^I<li><esc>gv$A</li><esc>gv:Tabularize html<cr>d']O<ol<esc>:exe 'norm a' . b:ol_class . ">\r\r\r</ol>\ekP-=at']+EB"<cr>
+   let @o="dipO<ol" . b:ol_class . ">\<cr>\<cr>\<cr></ol>\<esc>kP0\<c-v>']I<li>\<esc>gv$A</li>\<esc>gv:Tabularize html\<cr>-=at']+EB"
+   nnoremap <silent> <buffer> <leader>#o ciW<ol<esc>:exe 'norm a' . b:ol_class . "> <li>   </li> </ol>\eB2hvitholp3EB"<cr>
+   vnoremap <silent> <buffer> <leader>ho <c-v>^I<li><esc>gv$A</li><esc>gv:Tabularize html<cr>d']O<ol<esc>:exe 'norm a' . b:ol_class . ">\r\r\r</ol>\ekP-=at']+EB"<cr>
 
 endfunction
 
 function! s:Init_p()
 
-    let @p="dipO<p" . b:p_class . ">\<cr>\<cr>\<c-r>\"\<cr></p>\<esc>=at']+EB"
-    nnoremap <silent> <buffer> <leader>#p ciW<p<esc>:exe 'norm a' . b:p_class . ">   </p>\evitholp2EB"<cr>
-    vnoremap <silent> <buffer> <leader>hp c<p<esc>:exe 'norm a' . b:p_class . ">   </p>\evitholgpvatov:s/\\s\\+$//ge\r=atvatv"<cr>
+   let @p="dipO<p" . b:p_class . ">\<cr>\<cr>\<c-r>\"\<cr></p>\<esc>=at']+EB"
+   nnoremap <silent> <buffer> <leader>#p ciW<p<esc>:exe 'norm a' . b:p_class . ">   </p>\evitholp2EB"<cr>
+   vnoremap <silent> <buffer> <leader>hp c<p<esc>:exe 'norm a' . b:p_class . ">   </p>\evitholgpvatov:s/\\s\\+$//ge\r=atvatv"<cr>
 
 endfunction
 
 function! s:Init_div()
 
-    let @d="dipO<div" . b:div_class . ">\<cr>\<cr>\<c-r>\"\<cr></div>\<esc>=at']+EB"
-    nnoremap <silent> <buffer> <leader>#d ciW<div<esc>:exe 'norm a' . b:div_class . ">   </div>\evitholp2EB"<cr>
-    vnoremap <silent> <buffer> <leader>hd c<div<esc>:exe 'norm a' . b:div_class . ">   </div>\evitholgpvatov:s/\\s\\+$//ge\r=atvatv"<cr>
+   let @d="dipO<div" . b:div_class . ">\<cr>\<cr>\<c-r>\"\<cr></div>\<esc>=at']+EB"
+   nnoremap <silent> <buffer> <leader>#d ciW<div<esc>:exe 'norm a' . b:div_class . ">   </div>\evitholp2EB"<cr>
+   vnoremap <silent> <buffer> <leader>hd c<div<esc>:exe 'norm a' . b:div_class . ">   </div>\evitholgpvatov:s/\\s\\+$//ge\r=atvatv"<cr>
 
 endfunction
 
 function! s:Init_td()
 
-    let @t="I<td" . b:td_class . "> \<end> </td>\<esc>+EB"
-    nnoremap <silent> <buffer> <leader>#t ciW<td<esc>:exe 'norm a' . b:td_class . ">   </td>\evitholp2EB"<cr>
-    vnoremap <silent> <buffer> <leader>ht c<td<esc>:exe 'norm a' . b:td_class . ">   </td>\evitholgpvatov:s/\\s\\+$//ge\r=atvatv"<cr>
+   let @t="I<td" . b:td_class . "> \<end> </td>\<esc>+EB"
+   nnoremap <silent> <buffer> <leader>#t ciW<td<esc>:exe 'norm a' . b:td_class . ">   </td>\evitholp2EB"<cr>
+   vnoremap <silent> <buffer> <leader>ht c<td<esc>:exe 'norm a' . b:td_class . ">   </td>\evitholgpvatov:s/\\s\\+$//ge\r=atvatv"<cr>
 
 endfunction
 
 function! s:Init_a()
 
-    let @a="^y$i<a href='\<esc>pa'" . b:a_class . "> \<end> </a>\<esc>+EB"
-    nnoremap <silent> <buffer> <leader>#a ciW<a href=''<esc>gP:exe 'norm a' . b:a_class . ">   </a>\evitholp2EB"<cr>
-    vnoremap <silent> <buffer> <leader>ha c<a href=''<esc>gP:exe 'norm a' . b:a_class . ">   </a>\evitholgpvatov:s/\\s\\+$//ge\r=atvatv"<cr>
+   let @a="^y$i<a href='\<esc>pa'" . b:a_class . "> \<end> </a>\<esc>+EB"
+   nnoremap <silent> <buffer> <leader>#a ciW<a href=''<esc>gP:exe 'norm a' . b:a_class . ">   </a>\evitholp2EB"<cr>
+   vnoremap <silent> <buffer> <leader>ha c<a href=''<esc>gP:exe 'norm a' . b:a_class . ">   </a>\evitholgpvatov:s/\\s\\+$//ge\r=atvatv"<cr>
 
 endfunction
 
 function! s:Init_span()
 
-    let @s="I<span" . b:span_class . "> \<end> </span>\<esc>+EB"
-    nnoremap <silent> <buffer> <leader>#s ciW<span<esc>:exe 'norm a' . b:span_class . ">   </span>\evitholp2EB"<cr>
-    vnoremap <silent> <buffer> <leader>hs c<span<esc>:exe 'norm a' . b:span_class . ">   </span>\evitholgpvatov:s/\\s\\+$//ge\r=atvatv"<cr>
+   let @s="I<span" . b:span_class . "> \<end> </span>\<esc>+EB"
+   nnoremap <silent> <buffer> <leader>#s ciW<span<esc>:exe 'norm a' . b:span_class . ">   </span>\evitholp2EB"<cr>
+   vnoremap <silent> <buffer> <leader>hs c<span<esc>:exe 'norm a' . b:span_class . ">   </span>\evitholgpvatov:s/\\s\\+$//ge\r=atvatv"<cr>
 
 endfunction
 
 function! s:Init_h1()
 
-    let @h="I<h1" . b:h1_class . "> \<end> </h1>\<esc>+EB"
-    nnoremap <silent> <buffer> <leader>#h ciW<h1<esc>:exe 'norm a' . b:h1_class . ">   </h1>\evitholp2EB"<cr>
-    vnoremap <silent> <buffer> <leader>hh c<h1<esc>:exe 'norm a' . b:h1_class . ">   </h1>\evitholgpvatov:s/\\s\\+$//ge\r=atvatv"<cr>
+   let @h="I<h1" . b:h1_class . "> \<end> </h1>\<esc>+EB"
+   nnoremap <silent> <buffer> <leader>#h ciW<h1<esc>:exe 'norm a' . b:h1_class . ">   </h1>\evitholp2EB"<cr>
+   vnoremap <silent> <buffer> <leader>hh c<h1<esc>:exe 'norm a' . b:h1_class . ">   </h1>\evitholgpvatov:s/\\s\\+$//ge\r=atvatv"<cr>
 
 endfunction
 
 function! s:Init_i()
 
-    let @i="i<img src='' alt='' title=''" . b:i_class . " />\<esc>`[2Ei"
+   let @i="i<img src='' alt='' title=''" . b:i_class . " />\<esc>`[2Ei"
 
 endfunction
 
 function! s:Init_em()
 
-    let @e="I<em" . b:em_class . "> \<end> </em>\<esc>+EB"
-    nnoremap <silent> <buffer> <leader>#e ciW<em<esc>:exe 'norm a' . b:em_class . ">   </em>\evitholp2EB"<cr>
-    vnoremap <silent> <buffer> <leader>he c<em<esc>:exe 'norm a' . b:em_class . ">   </em>\evitholgpvatov:s/\\s\\+$//ge\r=atvatv"<cr>
+   let @e="I<em" . b:em_class . "> \<end> </em>\<esc>+EB"
+   nnoremap <silent> <buffer> <leader>#e ciW<em<esc>:exe 'norm a' . b:em_class . ">   </em>\evitholp2EB"<cr>
+   vnoremap <silent> <buffer> <leader>he c<em<esc>:exe 'norm a' . b:em_class . ">   </em>\evitholgpvatov:s/\\s\\+$//ge\r=atvatv"<cr>
 
 endfunction
 
 function! s:Init_b()
 
-    let @b="I<strong" . b:b_class . "> \<end> </strong>\<esc>+EB"
-    nnoremap <silent> <buffer> <leader>#b ciW<strong<esc>:exe 'norm a' . b:b_class . ">   </strong>\evitholp2EB"<cr>
-    vnoremap <silent> <buffer> <leader>hb c<strong<esc>:exe 'norm a' . b:b_class . ">   </strong>\evitholgpvatov:s/\\s\\+$//ge\r=atvatv"<cr>
+   let @b="I<strong" . b:b_class . "> \<end> </strong>\<esc>+EB"
+   nnoremap <silent> <buffer> <leader>#b ciW<strong<esc>:exe 'norm a' . b:b_class . ">   </strong>\evitholp2EB"<cr>
+   vnoremap <silent> <buffer> <leader>hb c<strong<esc>:exe 'norm a' . b:b_class . ">   </strong>\evitholgpvatov:s/\\s\\+$//ge\r=atvatv"<cr>
 
 endfunction
 
 function! s:Init_li()
 
-    let @l="I<li" . b:li_class . "> \<end> </li>\<esc>+EB"
-    nnoremap <silent> <buffer> <leader>#l ciW<li<esc>:exe 'norm a' . b:li_class . ">   </li>\evitholp2EB"<cr>
-    vnoremap <silent> <buffer> <leader>hl c<li<esc>:exe 'norm a' . b:li_class . ">   </li>\evitholgpvatov:s/\\s\\+$//ge\r=atvatv"<cr>
+   let @l="I<li" . b:li_class . "> \<end> </li>\<esc>+EB"
+   nnoremap <silent> <buffer> <leader>#l ciW<li<esc>:exe 'norm a' . b:li_class . ">   </li>\evitholp2EB"<cr>
+   vnoremap <silent> <buffer> <leader>hl c<li<esc>:exe 'norm a' . b:li_class . ">   </li>\evitholgpvatov:s/\\s\\+$//ge\r=atvatv"<cr>
 
 endfunction
 
@@ -346,127 +346,127 @@ call s:Init_li  ()
 
 function! s:SetClass(tag, ...)
 
-    if 'ul' == a:tag || 'u' == a:tag
+   if 'ul' == a:tag || 'u' == a:tag
 
-        if !exists("a:1")
-            let b:ul_class = ''
-        else
-            let b:ul_class = " class='" . a:1 . "'"
-        endif
+      if !exists("a:1")
+         let b:ul_class = ''
+      else
+         let b:ul_class = " class='" . a:1 . "'"
+      endif
 
-        call s:Init_ul()
+      call s:Init_ul()
 
-    elseif 'ol' == a:tag || 'o' == a:tag
+   elseif 'ol' == a:tag || 'o' == a:tag
 
-        if !exists("a:1")
-            let b:ol_class = ''
-        else
-            let b:ol_class = " class='" . a:1 . "'"
-        endif
+      if !exists("a:1")
+         let b:ol_class = ''
+      else
+         let b:ol_class = " class='" . a:1 . "'"
+      endif
 
-        call s:Init_ol()
+      call s:Init_ol()
 
-    elseif 'p' == a:tag
+   elseif 'p' == a:tag
 
-        if !exists("a:1")
-            let b:p_class = ''
-        else
-            let b:p_class = " class='" . a:1 . "'"
-        endif
+      if !exists("a:1")
+         let b:p_class = ''
+      else
+         let b:p_class = " class='" . a:1 . "'"
+      endif
 
-        call s:Init_p()
+      call s:Init_p()
 
-    elseif 'div' == a:tag || 'd' == a:tag
+   elseif 'div' == a:tag || 'd' == a:tag
 
-        if !exists("a:1")
-            let b:div_class = ''
-        else
-            let b:div_class = " class='" . a:1 . "'"
-        endif
+      if !exists("a:1")
+         let b:div_class = ''
+      else
+         let b:div_class = " class='" . a:1 . "'"
+      endif
 
-        call s:Init_div()
+      call s:Init_div()
 
-    elseif 'td' == a:tag || 't' == a:tag
+   elseif 'td' == a:tag || 't' == a:tag
 
-        if !exists("a:1")
-            let b:td_class = ''
-        else
-            let b:td_class = " class='" . a:1 . "'"
-        endif
+      if !exists("a:1")
+         let b:td_class = ''
+      else
+         let b:td_class = " class='" . a:1 . "'"
+      endif
 
-        call s:Init_td()
+      call s:Init_td()
 
-    elseif 'a' == a:tag
+   elseif 'a' == a:tag
 
-        if !exists("a:1")
-            let b:a_class = ''
-        else
-            let b:a_class = " class='" . a:1 . "'"
-        endif
+      if !exists("a:1")
+         let b:a_class = ''
+      else
+         let b:a_class = " class='" . a:1 . "'"
+      endif
 
-        call s:Init_a()
+      call s:Init_a()
 
-    elseif 'span' == a:tag || 's' == a:tag
+   elseif 'span' == a:tag || 's' == a:tag
 
-        if !exists("a:1")
-            let b:span_class = ''
-        else
-            let b:span_class = " class='" . a:1 . "'"
-        endif
+      if !exists("a:1")
+         let b:span_class = ''
+      else
+         let b:span_class = " class='" . a:1 . "'"
+      endif
 
-        call s:Init_span()
+      call s:Init_span()
 
-    elseif 'h1' == a:tag || 'h' == a:tag
+   elseif 'h1' == a:tag || 'h' == a:tag
 
-        if !exists("a:1")
-            let b:h1_class = ''
-        else
-            let b:h1_class = " class='" . a:1 . "'"
-        endif
+      if !exists("a:1")
+         let b:h1_class = ''
+      else
+         let b:h1_class = " class='" . a:1 . "'"
+      endif
 
-        call s:Init_h1()
+      call s:Init_h1()
 
-    elseif 'img' == a:tag || 'i' == a:tag
+   elseif 'img' == a:tag || 'i' == a:tag
 
-        if !exists("a:1")
-            let b:i_class = ''
-        else
-            let b:i_class = " class='" . a:1 . "'"
-        endif
+      if !exists("a:1")
+         let b:i_class = ''
+      else
+         let b:i_class = " class='" . a:1 . "'"
+      endif
 
-        call s:Init_i()
+      call s:Init_i()
 
-    elseif 'em' == a:tag || 'e' == a:tag
+   elseif 'em' == a:tag || 'e' == a:tag
 
-        if !exists("a:1")
-            let b:em_class = ''
-        else
-            let b:em_class = " class='" . a:1 . "'"
-        endif
+      if !exists("a:1")
+         let b:em_class = ''
+      else
+         let b:em_class = " class='" . a:1 . "'"
+      endif
 
-        call s:Init_em()
+      call s:Init_em()
 
-    elseif 'strong' == a:tag || 'b' == a:tag
+   elseif 'strong' == a:tag || 'b' == a:tag
 
-        if !exists("a:1")
-            let b:b_class = ''
-        else
-            let b:b_class = " class='" . a:1 . "'"
-        endif
+      if !exists("a:1")
+         let b:b_class = ''
+      else
+         let b:b_class = " class='" . a:1 . "'"
+      endif
 
-        call s:Init_b()
+      call s:Init_b()
 
-    elseif 'li' == a:tag || 'l' == a:tag
+   elseif 'li' == a:tag || 'l' == a:tag
 
-        if !exists("a:1")
-            let b:li_class = ''
-        else
-            let b:li_class = " class='" . a:1 . "'"
-        endif
+      if !exists("a:1")
+         let b:li_class = ''
+      else
+         let b:li_class = " class='" . a:1 . "'"
+      endif
 
-        call s:Init_li()
+      call s:Init_li()
 
-    endif
+   endif
 
 endfunction
 
@@ -474,7 +474,7 @@ command! -complete=customlist,<sid>HtmlTags -nargs=+ Class :call <sid>SetClass(<
 
 function! s:HtmlTags(A,L,P)
 
-    return ['div ', 'span ', 'ul ', 'ol ', 'h1 ', 'li ', 'td ', 'img ', 'em ', 'strong ', 'a ', 'p ']
+   return ['div ', 'span ', 'ul ', 'ol ', 'h1 ', 'li ', 'td ', 'img ', 'em ', 'strong ', 'a ', 'p ']
 
 endfunction
 

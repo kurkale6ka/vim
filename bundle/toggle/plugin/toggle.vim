@@ -1,37 +1,37 @@
 map <leader>s     :set spell!   spell?<cr>
 map <leader>p     :set invpaste paste?<cr>
-map <leader><tab> :set invlist  list?<cr>
+map <leader><tab> :set invlist   list?<cr>
 
 if version >= 703
 
-    function! s:Toggle_number()
+   function! s:Toggle_number()
 
-        if !&relativenumber
+      if !&relativenumber
 
-            set relativenumber relativenumber?
-        else
-            set number number?
-        endif
+         set relativenumber relativenumber?
+      else
+         set number number?
+      endif
 
-    endfunction
+   endfunction
 
-    map <leader>n :call <sid>Toggle_number()<cr>
+   map <leader>n :call <sid>Toggle_number()<cr>
 
-    " Highlight text beyond the 80th column (<leader>c)
-    function! s:Toggle_colorcolumn ()
+   " Highlight text beyond the 80th column (<leader>c)
+   function! s:Toggle_colorcolumn ()
 
-        if empty(&colorcolumn)
+      if empty(&colorcolumn)
 
-            set colorcolumn=+1
-            let @/ = '\%81v.*'
-        else
-            set colorcolumn=
-            let @/ = ''
-        endif
+         set colorcolumn=+1
+         let @/ = '\%81v.*'
+      else
+         set colorcolumn=
+         let @/ = ''
+      endif
 
-    endfunction
+   endfunction
 
-    nmap <silent> <leader>8 :call <sid>Toggle_colorcolumn()<cr>
+   nmap <silent> <leader>8 :call <sid>Toggle_colorcolumn()<cr>
 endif
 
 " todo: toggle (use '/" function)
@@ -39,44 +39,44 @@ map <leader>/ :substitute:\\:/:g<cr>
 
 function! Toggle_quotes () range
 
-    let last_search = histget('search', -1)
+   let last_search = histget('search', -1)
 
-    if a:firstline != a:lastline
+   if a:firstline != a:lastline
 
-        let endline = a:lastline - a:firstline + 1
-    else
-        let endline = v:count1
-    endif
+      let endline = a:lastline - a:firstline + 1
+   else
+      let endline = v:count1
+   endif
 
-    for i in range(1, endline)
+   for i in range(1, endline)
 
-        if -1 != match(getline('.'), '"')
+      if -1 != match(getline('.'), '"')
 
-            substitute/"/'/ge
-        else
-            substitute/'/"/ge
-        endif
-        +
-    endfor
+         substitute/"/'/ge
+      else
+         substitute/'/"/ge
+      endif
+      +
+   endfor
 
-    let virtualedit_bak = &virtualedit
-    set virtualedit=
+   let virtualedit_bak = &virtualedit
+   set virtualedit=
 
-    silent! call repeat#set(":call Toggle_quotes()\<cr>")
+   silent! call repeat#set(":call Toggle_quotes()\<cr>")
 
-    " Restore saved values
-    let &virtualedit = virtualedit_bak
+   " Restore saved values
+   let &virtualedit = virtualedit_bak
 
-    if histget('search', -1) != last_search
+   if histget('search', -1) != last_search
 
-        call histdel('search', -1)
-    endif
+      call histdel('search', -1)
+   endif
 
 endfunction
 
 " Replace all " by '
 nmap <leader>' :call Toggle_quotes()<cr>
-vmap <leader>' :call Toggle_quotes()<cr>
+xmap <leader>' :call Toggle_quotes()<cr>
 
 " Toggle between completeopt+=preview and completeopt-=preview
 " mnemo - 'same' behaviour as F4 used in Dolphin KDE
@@ -89,30 +89,30 @@ imap <f12> <c-o>:call <sid>Toggle_Longest_Preview('f12')<cr>
 
 function! s:Toggle_Longest_Preview(key)
 
-    if a:key == 'f12'
+   if a:key == 'f12'
 
-        if &completeopt =~ 'longest'
+      if &completeopt =~ 'longest'
 
-            set   completeopt-=longest
-            set   showfulltag
-            echo 'completeopt - longest (Zend_Acl)'
-        else
-            set   completeopt+=longest
-            set   noshowfulltag
-            echo 'completeopt + longest (Zend_)'
-        endif
+         set   completeopt-=longest
+         set   showfulltag
+         echo 'completeopt - longest (Zend_Acl)'
+      else
+         set   completeopt+=longest
+         set   noshowfulltag
+         echo 'completeopt + longest (Zend_)'
+      endif
 
-    elseif a:key == 'f4'
+   elseif a:key == 'f4'
 
-        if &completeopt =~ 'preview'
+      if &completeopt =~ 'preview'
 
-            set   completeopt-=preview
-            echo 'completeopt - preview'
-        else
+         set   completeopt-=preview
+         echo 'completeopt - preview'
+      else
 
-            set   completeopt+=preview
-            echo 'completeopt + preview window'
-        endif
-    endif
+         set   completeopt+=preview
+         echo 'completeopt + preview window'
+      endif
+   endif
 
 endfunction

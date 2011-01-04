@@ -12,16 +12,16 @@
 
 if exists('g:loaded_swap') || &compatible || v:version < 700
 
-    if &compatible && &verbose
+   if &compatible && &verbose
 
-        echo "Swap is not designed to work in compatible mode."
+      echo "Swap is not designed to work in compatible mode."
 
-    elseif v:version < 700
+   elseif v:version < 700
 
-        echo "Swap needs Vim 7.0 or above to work correctly."
-    endif
+      echo "Swap needs Vim 7.0 or above to work correctly."
+   endif
 
-    finish
+   finish
 endif
 
 let g:loaded_swap = 1
@@ -31,150 +31,150 @@ set cpoptions&vim
 
 function! s:Swap(mode) range
 
-    let last_search = histget('search', -1)
+   let last_search = histget('search', -1)
 
-    if a:mode =~ 'v'
+   if a:mode =~ 'v'
 
-        let save_cursor = getpos("'>")
+      let save_cursor = getpos("'>")
 
-        " visual interactive :)
-        if 'vi' == a:mode
+      " visual interactive :)
+      if 'vi' == a:mode
 
-            let operators = input('Pivot: ')
-        else
-            let comparison_ops = ['===', '!==',  '<>', '==#', '!=#',  '>#',
-                                 \'>=#',  '<#', '<=#', '=~#', '!~#', '==?',
-                                 \'!=?',  '>?', '>=?',  '<?', '<=?', '=~?',
-                                 \'!~?',  '==',  '!=',  '>=',  '<=',  '=~',
-                                 \ '~=',  '!~']
-            let logical_ops    = [ '&&',  '||']
-            let assignment_ops = [ '+=',  '-=',  '*=',  '/=',  '%=',  '&=',
-                                 \ '|=',  '^=', '<<=', '>>=']
-            let scope_ops      = [ '::']
-            let pointer_ops    = ['->*',  '->',  '.*']
-            let bitwise_ops    = [ '<<',  '>>']
-            let misc_ops       = [  '>',   '<',   '=',   '+',   '-',   '*',
-                                 \  '/',   '%',   '&',   '|',   '^',   '.',
-                                 \  '?',   ':',   ',',  "'=",  "'<",  "'>",
-                                 \ '!<',  '!>']
+         let operators = input('Pivot: ')
+      else
+         let comparison_ops = ['===', '!==',  '<>', '==#', '!=#',  '>#',
+                              \'>=#',  '<#', '<=#', '=~#', '!~#', '==?',
+                              \'!=?',  '>?', '>=?',  '<?', '<=?', '=~?',
+                              \'!~?',  '==',  '!=',  '>=',  '<=',  '=~',
+                              \ '~=',  '!~']
+         let logical_ops    = [ '&&',  '||']
+         let assignment_ops = [ '+=',  '-=',  '*=',  '/=',  '%=',  '&=',
+                              \ '|=',  '^=', '<<=', '>>=']
+         let scope_ops      = [ '::']
+         let pointer_ops    = ['->*',  '->',  '.*']
+         let bitwise_ops    = [ '<<',  '>>']
+         let misc_ops       = [  '>',   '<',   '=',   '+',   '-',   '*',
+                              \  '/',   '%',   '&',   '|',   '^',   '.',
+                              \  '?',   ':',   ',',  "'=",  "'<",  "'>",
+                              \ '!<',  '!>']
 
-            let operators_list = comparison_ops
+         let operators_list = comparison_ops
 
-            " If a count is used, swap on comparison operators only
-            if v:count < 1
+         " If a count is used, swap on comparison operators only
+         if v:count < 1
 
-                let operators_list += assignment_ops +
-                                    \ logical_ops    +
-                                    \ scope_ops      +
-                                    \ pointer_ops    +
-                                    \ bitwise_ops
+            let operators_list += assignment_ops +
+                                \ logical_ops    +
+                                \ scope_ops      +
+                                \ pointer_ops    +
+                                \ bitwise_ops
 
-                if exists('g:swap_custom_ops')
+            if exists('g:swap_custom_ops')
 
-                    " let g:swap_custom_ops = ['ope1', 'ope2', ...]
-                    let operators_list += g:swap_custom_ops
-                endif
-
-                let operators_list += misc_ops
+               " let g:swap_custom_ops = ['ope1', 'ope2', ...]
+               let operators_list += g:swap_custom_ops
             endif
 
-            let operators = join(operators_list, '\|')
-            let operators = escape(operators, '*/~.^$')
-        endif
+            let operators_list += misc_ops
+         endif
 
-        " Whole lines
-        if 'V' ==# visualmode() ||
-            \ 'v' ==# visualmode() && line("'<") != line("'>")
+         let operators = join(operators_list, '\|')
+         let operators = escape(operators, '*/~.^$')
+      endif
 
-            execute 'silent ' . a:firstline . ',' . a:lastline .
-                \'substitute/'           .
-                \  '^[[:space:]]*\zs'    .
-                \'\([^[:space:]].\{-}\)' .
-                \ '\([[:space:]]*\%('    . operators . '\)[[:space:]]*\)' .
-                \'\([^[:space:]].\{-}\)' .
-                \'\ze[[:space:]]*$/\3\2\1/e'
-        else
-            if col("'<") < col("'>")
+      " Whole lines
+      if 'V' ==# visualmode() ||
+         \ 'v' ==# visualmode() && line("'<") != line("'>")
 
-                let col_start = col("'<")
+         execute 'silent ' . a:firstline . ',' . a:lastline .
+            \'substitute/'           .
+            \  '^[[:space:]]*\zs'    .
+            \'\([^[:space:]].\{-}\)' .
+            \ '\([[:space:]]*\%('    . operators . '\)[[:space:]]*\)' .
+            \'\([^[:space:]].\{-}\)' .
+            \'\ze[[:space:]]*$/\3\2\1/e'
+      else
+         if col("'<") < col("'>")
 
-                if col("'>") >= col('$')
+            let col_start = col("'<")
 
-                    let col_end = col('$')
-                else
-                    let col_end = col("'>") + 1
-                endif
+            if col("'>") >= col('$')
+
+               let col_end = col('$')
             else
-                let col_start = col("'>")
-
-                if col("'<") >= col('$')
-
-                    let col_end = col('$')
-                else
-                    let col_end = col("'<") + 1
-                endif
+               let col_end = col("'>") + 1
             endif
+         else
+            let col_start = col("'>")
 
-            execute 'silent ' . a:firstline . ',' . a:lastline .
-                \'substitute/\%'         . col_start . 'c[[:space:]]*\zs' .
-                \'\([^[:space:]].\{-}\)' .
-                \ '\([[:space:]]*\%('    . operators . '\)[[:space:]]*\)' .
-                \'\([^[:space:]].\{-}\)' .
-                \'\ze[[:space:]]*\%'     . col_end . 'c/\3\2\1/e'
-        endif
+            if col("'<") >= col('$')
 
-    " Swap Words
-    elseif a:mode =~ 'n'
+               let col_end = col('$')
+            else
+               let col_end = col("'<") + 1
+            endif
+         endif
 
-        let save_cursor = getpos(".")
+         execute 'silent ' . a:firstline . ',' . a:lastline .
+            \'substitute/\%'         . col_start . 'c[[:space:]]*\zs' .
+            \'\([^[:space:]].\{-}\)' .
+            \ '\([[:space:]]*\%('    . operators . '\)[[:space:]]*\)' .
+            \'\([^[:space:]].\{-}\)' .
+            \'\ze[[:space:]]*\%'     . col_end   . 'c/\3\2\1/e'
+      endif
 
-        " swap with Word on the left
-        if 'nl' == a:mode
+      " Swap Words
+   elseif a:mode =~ 'n'
 
-            call search('[^[:space:]]\+'  .
-                      \'\_[[:space:]]\+'  .
-                      \ '[^[:space:]]*\%#', 'bW')
-        endif
+      let save_cursor = getpos(".")
 
-        " swap with Word on the right
-        execute 'silent substitute/'              .
-            \ '\([^[:space:]]*\%#[^[:space:]]*\)' .
-            \'\(\_[[:space:]]\+\)'                .
-            \ '\([^[:space:]]\+\)/\3\2\1/e'
-    endif
+      " swap with Word on the left
+      if 'nl' == a:mode
 
-    " Repeat
-    let virtualedit_bak = &virtualedit
-    set virtualedit=
+         call search('[^[:space:]]\+'  .
+            \'\_[[:space:]]\+'  .
+            \ '[^[:space:]]*\%#', 'bW')
+      endif
 
-    if 'nr' == a:mode
+      " swap with Word on the right
+      execute 'silent substitute/'              .
+         \ '\([^[:space:]]*\%#[^[:space:]]*\)' .
+         \'\(\_[[:space:]]\+\)'                .
+         \ '\([^[:space:]]\+\)/\3\2\1/e'
+   endif
 
-        silent! call repeat#set("\<plug>SwapSwapWithR_WORD")
+   " Repeat
+   let virtualedit_bak = &virtualedit
+   set virtualedit=
 
-    elseif 'nl' == a:mode
+   if 'nr' == a:mode
 
-        silent! call repeat#set("\<plug>SwapSwapWithL_WORD")
-    endif
+      silent! call repeat#set("\<plug>SwapSwapWithR_WORD")
 
-    " Restore saved values
-    let &virtualedit = virtualedit_bak
+   elseif 'nl' == a:mode
 
-    if histget('search', -1) != last_search
+      silent! call repeat#set("\<plug>SwapSwapWithL_WORD")
+   endif
 
-        call histdel('search', -1)
-    endif
+   " Restore saved values
+   let &virtualedit = virtualedit_bak
 
-    call setpos('.', save_cursor)
+   if histget('search', -1) != last_search
+
+      call histdel('search', -1)
+   endif
+
+   call setpos('.', save_cursor)
 
 endfunction
 
-vmap <silent> <plug>SwapSwapOperands      :     call <sid>Swap('v' )<cr>
-vmap <silent> <plug>SwapSwapPivotOperands :     call <sid>Swap('vi')<cr>
+xmap <silent> <plug>SwapSwapOperands      :     call <sid>Swap('v' )<cr>
+xmap <silent> <plug>SwapSwapPivotOperands :     call <sid>Swap('vi')<cr>
 nmap <silent> <plug>SwapSwapWithR_WORD    :<c-u>call <sid>Swap('nr')<cr>
 nmap <silent> <plug>SwapSwapWithL_WORD    :<c-u>call <sid>Swap('nl')<cr>
 
-vmap <leader>x         <plug>SwapSwapOperands
-vmap <leader><leader>x <plug>SwapSwapPivotOperands
+xmap <leader>x         <plug>SwapSwapOperands
+xmap <leader><leader>x <plug>SwapSwapPivotOperands
 nmap <leader>x         <plug>SwapSwapWithR_WORD
 nmap <leader>X         <plug>SwapSwapWithL_WORD
 

@@ -7,36 +7,36 @@
 
 function! s:BlankLines(mode) range
 
-    let operation = 'normal 0Dj'
+   let operation = 'normal 0Dj'
 
-    if a:firstline != a:lastline
+   if a:firstline != a:lastline
 
-        let endline = a:lastline - a:firstline + 1
-    else
-        let endline = v:count1
-    endif
+      let endline = a:lastline - a:firstline + 1
+   else
+      let endline = v:count1
+   endif
 
-    for i in range(1, endline)
+   for i in range(1, endline)
 
-        execute operation
-    endfor
+      execute operation
+   endfor
 
-    let virtualedit_bak = &virtualedit
-    set virtualedit=
+   let virtualedit_bak = &virtualedit
+   set virtualedit=
 
-    if 'v' == a:mode
+   if 'v' == a:mode
 
-        silent! call repeat#set("\<plug>BlanklinesVBlank")
-    else
-        silent! call repeat#set("\<plug>BlanklinesNBlank")
-    endif
+      silent! call repeat#set("\<plug>BlanklinesVBlank")
+   else
+      silent! call repeat#set("\<plug>BlanklinesNBlank")
+   endif
 
-    let &virtualedit = virtualedit_bak
+   let &virtualedit = virtualedit_bak
 
 endfunction
 
 nmap <silent> <plug>BlanklinesNBlank :call <sid>BlankLines('n')<cr>
-vmap <silent> <plug>BlanklinesVBlank :call <sid>BlankLines('v')<cr>
+xmap <silent> <plug>BlanklinesVBlank :call <sid>BlankLines('v')<cr>
 
 nmap <leader>d <plug>BlanklinesNBlank
-vmap <leader>d <plug>BlanklinesVBlank
+xmap <leader>d <plug>BlanklinesVBlank
