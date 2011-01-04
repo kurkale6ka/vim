@@ -346,6 +346,19 @@ nnoremap <silent> `Z :silent! normal! `Z`.<cr>
 " Y {{{2
 " copies to the EOL
 nmap Y y$
+vmap <silent> Y :<c-u>call <sid>BlockCopy()<cr>
+nmap gV     gvV
+nmap g<c-v> gv<c-v>
+
+function! s:BlockCopy()
+
+   if "\<c-v>" == visualmode()
+
+      normal! gv$y
+   else
+      normal! gvVy
+   endif
+endfunction
 
 " <leader>v {{{2
 " selects to the EOL excluded
