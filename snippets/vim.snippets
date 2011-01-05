@@ -45,7 +45,7 @@ snippet save
 snippet fun
 	function! ${1:s:}(${2:argument})${3: range}
 
-		${4:let start = a:firstline}
+		${4:a:$2}
 	endfunction
 
 	${5}
@@ -97,6 +97,8 @@ snippet ?
 	${1:condition} ? ${2:true} : ${3:false}
 snippet com
 	command! ${1:-nargs=?} ${2:-complete=customlist} ${3:-range=%} ${4:Name} ${5::call s:Function(<q-args>)}
+snippet au
+	autocmd ${1:opt_group} ${2:event} ${3:file_pattern} ${4:opt_nested} ${5:command}
 snippet ~ Look behind
 	\%(${1:pattern1}\)\@<${2:=}${3:pattern2}
 snippet ~ Look ahead

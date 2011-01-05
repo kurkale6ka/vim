@@ -875,6 +875,31 @@ cabbrev waq wqa
 cabbrev mpa map
 cabbrev frm fmr
 
+cabbrev \s   [[:space:]]<c-r>=EatChar('[[:space:]]')<cr>
+cabbrev \S  [^[:space:]]<c-r>=EatChar('[[:space:]]')<cr>
+cabbrev \d   [[:digit:]]<c-r>=EatChar('[[:space:]]')<cr>
+cabbrev \D  [^[:digit:]]<c-r>=EatChar('[[:space:]]')<cr>
+cabbrev \x  [[:xdigit:]]<c-r>=EatChar('[[:space:]]')<cr>
+cabbrev \X [^[:xdigit:]]<c-r>=EatChar('[[:space:]]')<cr>
+cabbrev \a   [[:alpha:]]<c-r>=EatChar('[[:space:]]')<cr>
+cabbrev \A  [^[:alpha:]]<c-r>=EatChar('[[:space:]]')<cr>
+
+iabbrev \l  [[:lower:]]<c-r>=EatChar('[[:space:]]')<cr>
+iabbrev \L [^[:lower:]]<c-r>=EatChar('[[:space:]]')<cr>
+iabbrev \u  [[:upper:]]<c-r>=EatChar('[[:space:]]')<cr>
+iabbrev \U [^[:upper:]]<c-r>=EatChar('[[:space:]]')<cr>
+
+" function! s:IfCopy()
+
+"    let start = search('if', 'bn') + 1
+"    " let start = search('\%(if\_[[:space:]]\+\)\@<=\S', 'bn') + 1
+"    let end = line('.') - 2
+
+"    return getline(start, end)
+" endfunction
+
+" inoreabbrev else else<cr><c-r>=<sid>IfCopy()<cr><c-r>=EatChar('$')<cr>
+
 iabbrev latex LaTeX
 iabbrev _t <c-r>=strftime('%d %B %Y, %H:%M %Z (%A)')<cr>
    \<c-r>=EatChar('[[:space:]]')<cr>
