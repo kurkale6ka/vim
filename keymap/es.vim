@@ -4,4 +4,5 @@ set spelllang=es
 
 let b:keymap_name = "es"
 
-lmap <buffer> /? ¿
+lmap <buffer> '? ¿
+lmap <buffer> '! ¡
