@@ -373,6 +373,10 @@ function! s:BlockCopy()
    endif
 endfunction
 
+nmap <leader>s :<c-v>%substitute/<c-r><c-w>//gc<left><left><left>
+nmap <leader>g :global/<c-r><c-w>/
+cmap % %s///gc<left><left><left><left>
+
 " <leader>v {{{2
 " selects to the EOL excluded
 nmap <leader>v v$h
@@ -862,13 +866,13 @@ nmap <leader>fb :set filetype=sh<cr>
 nmap <leader>fc :set filetype=css<cr>
 nmap <leader>fr :set filetype=ruby<cr>
 
-cabbrev vsb vertical sbuffer
-cabbrev svb vertical sbuffer
-
 nmap <leader>kbg :set keymap=bg<cr>
 nmap <leader>kfr :set keymap=fr<cr>
 nmap <leader>kes :set keymap=es<cr>
 nmap <leader>ken :set keymap& spelllang&<cr>
+
+cabbrev vsb vertical sbuffer
+cabbrev svb vertical sbuffer
 
 cabbrev trp rtp
 cabbrev waq wqa

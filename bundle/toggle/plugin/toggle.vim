@@ -1,4 +1,4 @@
-map <leader>s     :set spell!   spell?<cr>
+map <leader>e     :set spell!   spell?<cr>
 map <leader>p     :set invpaste paste?<cr>
 map <leader><tab> :set invlist   list?<cr>
 
