@@ -376,6 +376,7 @@ endfunction
 nmap <leader>s :%substitute/<c-r><c-w>//gc<left><left><left>
 nmap <leader>g :global/<c-r><c-w>/
 nmap <leader>5 :%substitute///gc<left><left><left><left>
+nmap <leader>bg :Bgrep/<c-r><c-w>/<cr>
 
 " <leader>v {{{2
 " selects to the EOL excluded
