@@ -91,9 +91,9 @@ snippet \a
 snippet \A
 	<a href="http://www.${1:google}.co.uk" title="${2:}" class="${3}"> $2 </a>
 # Weights
-snippet em Emphasized
+snippet \em Emphasized
 	<em> ${1} </em>
-snippet em Strong
+snippet \em Strong
 	<strong> ${1} </strong>
 snippet \i
 	<img src="${1}" alt="${2:}" title="$2" />
@@ -115,19 +115,21 @@ snippet \cs
 	   - ${1}
 	   -->
 # Lists
-snippet li Unordered list
+snippet \li
+	<li>${1}</li>
+snippet \l Unordered list
 	<ul>
 		<li>${1}</li>
 		<li>${2}</li>
 		<li>${3}</li>
 	</ul>
-snippet li Ordered list
+snippet \l Ordered list
 	<ul>
 		<li>${1}</li>
 		<li>${2}</li>
 		<li>${3}</li>
 	</ul>
-snippet li Definition list
+snippet \l Definition list
 	<dl>
 		<dt>${1}</dt>
 		<dd>
@@ -142,7 +144,7 @@ snippet li Definition list
 		${6}
 		</dd>
 	</dl>
-snippet form
+snippet \f
 	<form action="${1:parser.php}" method="${2:post}">
 		<fieldset>
 			<legend>${3}</legend>
