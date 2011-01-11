@@ -465,10 +465,6 @@ imap <c-mouseup>   <c-o>:set guifont=<c-z><c-f>
 let g:gfn_bak = &guifont
 nmap <M-0> :let &guifont = g:gfn_bak<cr>
 
-" c-l {{{2
-" Redraw the screen and remove any search highlighting
-nnoremap <c-l> :nohlsearch<cr><c-l>
-
 " [I {{{2
 " Searches using [I in visual mode
 xmap [I "*y:global/<c-r>*<cr>
@@ -532,6 +528,10 @@ onoremap <expr> [[ (search('^\S\@=.*{$', 'ebsW') && (setpos("''", getpos('.'))
    \ <bar><bar> 1) ? "''" : "\<esc>")
 onoremap <expr> ]] (search('^\S\@=.*{$',  'esW') && (setpos("''", getpos('.'))
    \ <bar><bar> 1) ? "''" : "\<esc>")
+
+" c-l {{{2
+" Redraw the screen and remove any search highlighting
+nnoremap <c-l> :nohlsearch<cr><c-l>
 
 " <leader>l {{{2
 " Remove superfluous white spaces towards the EOL (<leader>l)
