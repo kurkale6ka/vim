@@ -615,7 +615,7 @@ command! -nargs=1 Scriptnames call <sid>Filter_lines ('scriptnames', <q-args>)
 command! -nargs=1 Version call <sid>Filter_lines ('version', <q-args>)
 
 " Windows {{{2
-nmap <c-w><c-w> :wincmd p<cr>
+nmap <silent> <c-w><c-w> :wincmd p<cr>
 
 " q= {{{2
 nmap q= @=<c-f>
