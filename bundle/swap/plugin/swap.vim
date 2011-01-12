@@ -173,10 +173,10 @@ xmap <silent> <plug>SwapSwapPivotOperands :     call <sid>Swap('vi')<cr>
 nmap <silent> <plug>SwapSwapWithR_WORD    :<c-u>call <sid>Swap('nr')<cr>
 nmap <silent> <plug>SwapSwapWithL_WORD    :<c-u>call <sid>Swap('nl')<cr>
 
-xmap <leader>x         <plug>SwapSwapOperands
-xmap <leader><leader>x <plug>SwapSwapPivotOperands
-nmap <leader>x         <plug>SwapSwapWithR_WORD
-nmap <leader>X         <plug>SwapSwapWithL_WORD
+xmap <leader>x  <plug>SwapSwapOperands
+xmap <leader>cx <plug>SwapSwapPivotOperands
+nmap <leader>x  <plug>SwapSwapWithR_WORD
+nmap <leader>X  <plug>SwapSwapWithL_WORD
 
 let &cpoptions = s:savecpo
 unlet s:savecpo
