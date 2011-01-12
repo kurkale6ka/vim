@@ -567,7 +567,7 @@ function! s:TransformLines (operation)
 
       elseif 'del_EOL_spaces' == a:operation
 
-         echo 'No superfluous EOL whitespaces'
+         " echo 'No superfluous EOL whitespaces'
       endif
 
       echohl NONE
