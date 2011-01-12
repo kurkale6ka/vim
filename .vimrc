@@ -531,11 +531,9 @@ onoremap <expr> ]] (search('^\S\@=.*{$',  'esW') && (setpos("''", getpos('.'))
 
 " c-l {{{2
 " Redraw the screen and remove any search highlighting
-nnoremap <c-l> :nohlsearch<cr><c-l>
-
-" <leader>l {{{2
-" Remove superfluous white spaces towards the EOL (<leader>l)
-nmap <leader>l :call <sid>TransformLines ('del_EOL_spaces')<cr>
+" Remove superfluous white spaces towards the EOL
+nnoremap <c-l> :nohlsearch<bar>
+   \call <sid>TransformLines ('del_EOL_spaces')<cr><c-l>
 
 " <leader>sq {{{2
 " Squeeze empty lines (<leader>sq)
