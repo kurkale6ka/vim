@@ -532,7 +532,7 @@ onoremap <expr> ]] (search('^\S\@=.*{$',  'esW') && (setpos("''", getpos('.'))
 " c-l {{{2
 " Redraw the screen and remove any search highlighting
 " Remove superfluous white spaces towards the EOL
-nnoremap <c-l> :nohlsearch<bar>
+nnoremap <silent> <c-l> :nohlsearch<bar>
    \call <sid>TransformLines ('del_EOL_spaces')<cr><c-l>
 
 " <leader>sq {{{2
