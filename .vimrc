@@ -622,7 +622,7 @@ nmap q= @=<c-f>
 nmap q@ :call input('')<cr><c-f>
 " }}}2
 
-map <leader><leader> :ls<cr>
+map <leader>l :ls<cr>
 map <leader>< :substitute/>\zs[[:space:]]*\ze</\r/g<cr>
 map <leader>> :substitute/>\zs[[:space:]]*\ze</\r/g<cr>
 
@@ -649,6 +649,7 @@ let g:snips_author = 'Dimitar Dimitrov'
 " let NERDRPlace='*/'
 let NERDCommentWholeLinesInVMode = 1
 let NERDSpaceDelims = 1
+map <leader><leader> <plug>NERDCommenterToggle
 
 " Man
 if !has('win32')
