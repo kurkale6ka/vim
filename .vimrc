@@ -390,6 +390,9 @@ nmap <leader>v v$h
 " Help on current word
 nmap <leader>h :help    <c-r><c-w><cr>
 xmap <leader>h "*y:help <c-r>*<cr>
+cmap <silent> h<cr>       help<bar>only<cr>
+nmap <silent>  <f1>      :help<bar>only<cr>
+imap <silent>  <f1> <c-o>:help<bar>only<cr>
 
 " alt-i {{{2
 " Re-indent the whole file
