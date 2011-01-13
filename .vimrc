@@ -426,6 +426,8 @@ map  <c-down>      }
 
 " Deletion
 map!     <c-bs>    <c-w>
+imap     <c-k>     <c-o>D
+cmap     <c-k>     <c-f>D<c-c>
 cnoremap <esc><bs> <c-w>
 cnoremap <m-bs>    <c-w>
 

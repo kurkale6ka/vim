@@ -1,6 +1,7 @@
-map <leader>e     :set spell!   spell?<cr>
-map <leader>p     :set invpaste paste?<cr>
-map <leader><tab> :set invlist   list?<cr>
+nmap <leader>e     :set spell!     spell?<cr>
+nmap <leader>dg    :set digraph! digraph?<cr>
+nmap <leader>p     :set invpaste   paste?<cr>
+nmap <leader><tab> :set invlist     list?<cr>
 
 if version >= 703
 
@@ -15,7 +16,7 @@ if version >= 703
 
    endfunction
 
-   map <leader>n :call <sid>Toggle_number()<cr>
+   nmap <leader>n :call <sid>Toggle_number()<cr>
 
    " Highlight text beyond the 80th column (<leader>c)
    function! s:Toggle_colorcolumn ()
@@ -35,7 +36,8 @@ if version >= 703
 endif
 
 " todo: toggle (use '/" function)
-map <leader>/ :substitute:\\:/:g<cr>
+nmap <leader>/ :substitute:\\:/:g<cr>
+xmap <leader>/ :substitute:\%V\\:/:g<cr>
 
 function! Toggle_quotes () range
 

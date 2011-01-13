@@ -38,5 +38,5 @@ endfunction
 nmap <silent> <plug>BlanklinesNBlank :call <sid>BlankLines('n')<cr>
 xmap <silent> <plug>BlanklinesVBlank :call <sid>BlankLines('v')<cr>
 
-nmap <leader>d <plug>BlanklinesNBlank
-xmap <leader>d <plug>BlanklinesVBlank
+nmap <leader>dd <plug>BlanklinesNBlank
+xmap <leader>dd <plug>BlanklinesVBlank
