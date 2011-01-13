@@ -502,8 +502,10 @@ nmap <silent> =af :Indentation<cr>
 " Saving:
 
 " write this file
-nmap <c-s>      :update<cr>
-imap <c-s> <c-o>:update<cr>
+nmap <c-s>s      :update<cr>
+imap <c-s>s <c-o>:update<cr>
+nmap <c-s><c-s>      :update<cr>
+imap <c-s><c-s> <c-o>:update<cr>
 
 " write all files
 nmap <c-s><c-a>      :wall<cr>
