@@ -637,6 +637,11 @@ xmap [p "0p
 nmap [P :pu!<cr>
 nmap ]P :pu<cr>
 
+" Exchange first and last line in a visual area
+xmap  <cr> <esc>'<dd'>[pjdd`<P==
+xmap ]<cr> <esc>'<dd'>p==
+xmap [<cr> <esc>'>dd'<P==
+
 if version >= 703
 
    set relativenumber
