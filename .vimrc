@@ -559,7 +559,7 @@ function! s:TransformLines (operation)
 
       elseif 'del_EOL_spaces' == a:operation
 
-         %substitute/[[:space:]]\+$
+         %substitute/[[:space:]]\+$//e
       endif
 
       normal! ``
