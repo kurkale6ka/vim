@@ -641,6 +641,8 @@ nmap ]P :pu<cr>
 xmap  <cr> <esc>'<dd'>[pjdd`<P==
 xmap ]<cr> <esc>'<dd'>p==
 xmap [<cr> <esc>'>dd'<P==
+xmap ]t <esc>'<yy'>p==
+xmap [t <esc>'>yy'<P==
 
 if version >= 703
 
