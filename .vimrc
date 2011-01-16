@@ -494,7 +494,7 @@ nmap <f6>   1z=
 " c-space {{{2
 " Help switching between buffers
 nmap <c-space> :b<space>
-imap <c-cr> <esc>o<cr>
+imap <c-cr> <esc>o
 
 " Text-object: file
 nmap yaf :%y<cr>
