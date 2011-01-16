@@ -623,6 +623,8 @@ command! -nargs=1 Version call <sid>Filter_lines ('version', <q-args>)
 
 " Windows {{{2
 nmap <silent> <c-w><c-w> :wincmd p<cr>
+nmap <silent> <c-w>   e  :WinFullScreen<cr>
+nmap <silent> <c-w><c-e> :WinFullScreen<cr>
 
 " q= {{{2
 nmap q= @=<c-f>
