@@ -21,10 +21,14 @@ lmap <buffer> 4  ч
 lmap <buffer> $  Ч
 lmap <buffer> 6  ш
 lmap <buffer> ^  Ш
+lmap <buffer> 7  щ
 lmap <buffer> 6t щ
+lmap <buffer> &  Щ
 lmap <buffer> ^t Щ
 lmap <buffer> ^T Щ
 lmap <buffer> ]  ъ
 lmap <buffer> }  Ъ
 lmap <buffer> [  ь
 lmap <buffer> {  Ь
+lmap <buffer> 1  ю
+lmap <buffer> !  Ю

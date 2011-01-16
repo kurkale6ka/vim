@@ -817,6 +817,9 @@ command! DeleteTags %substitute:<[?%![:space:]]\@!/\=\_.\{-1,}[-?%]\@<!>::gc
 command! WriteSudo write !sudo tee % > /dev/null
 command! DiffOrig vnew | set buftype=nofile | read# | silent 0delete_ |
    \ diffthis | wincmd p | diffthis
+command! Translate call setline(line('.'), tr(getline('.'),
+   \'ABVGDEWZIJKLMNOPRSTUYFHXC$^&}{!|Qabvgdewzijklmnoprstuyfhxc467][1\q',
+   \'АБВГДЕЖЗИЙКЛМНОПРСТУYФХXЦЧШЩЪЬЮЮЯабвгдежзийклмнопрстуyфхxцчшщъьююя'))
 
 " Autocommands {{{1
 
