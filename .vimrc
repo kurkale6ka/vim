@@ -640,9 +640,9 @@ nmap ]P :pu<cr>
 " Exchange first and last line in a visual area
 xmap  <cr> <esc>'<dd'>[pjdd`<P==
 xmap ]<cr> <esc>'<dd'>p==
-xmap [<cr> <esc>'>dd'<P==
+xmap [<cr> <esc>'>dd'<p==
 xmap ]t <esc>'<yy'>p==
-xmap [t <esc>'>yy'<P==
+xmap [t <esc>'>yy'<p==
 
 if version >= 703
 
