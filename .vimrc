@@ -758,7 +758,7 @@ function! s:Indentation(amount) range
 
 endfunction
 
-function! s:AddSubtract(operation, direction)
+function! AddSubtract(operation, direction)
 
    if &nrformats =~ 'alpha'
 
@@ -777,16 +777,20 @@ function! s:AddSubtract(operation, direction)
    if 'a' == a:operation
 
       execute 'normal! ' . v:count1 . "\<c-a>"
+      silent! call
+         \ repeat#set(":\<c-u>call AddSubtract('a', '" . a:direction . "')\<cr>")
    else
       execute 'normal! ' . v:count1 . "\<c-x>"
+      silent! call
+         \ repeat#set(":\<c-u>call AddSubtract('s', '" . a:direction . "')\<cr>")
    endif
 
 endfunction
 
-nmap <silent>         <c-a> :<c-u>call <sid>AddSubtract('a', 'f')<cr>
-nmap <silent> <leader><c-a> :<c-u>call <sid>AddSubtract('a', 'b')<cr>
-nmap <silent>         <c-x> :<c-u>call <sid>AddSubtract('s', 'f')<cr>
-nmap <silent> <leader><c-x> :<c-u>call <sid>AddSubtract('s', 'b')<cr>
+nmap <silent>         <c-a> :<c-u>call AddSubtract('a', 'f')<cr>
+nmap <silent> <leader><c-a> :<c-u>call AddSubtract('a', 'b')<cr>
+nmap <silent>         <c-x> :<c-u>call AddSubtract('s', 'f')<cr>
+nmap <silent> <leader><c-x> :<c-u>call AddSubtract('s', 'b')<cr>
 
 function! s:ShowOptionsValues(verb)
 
