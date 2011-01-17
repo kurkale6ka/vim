@@ -458,14 +458,14 @@ vmap <s-left>        B
 
 " Increase font size {{{2
 nmap <c-mousedown> :set guifont=<c-z><c-f>
-   \:substitute/\d\+/\=submatch(0)+1/g<cr><cr>
+   \:substitute/[[:digit:]]\+/\=submatch(0)+1/g<cr><cr>
 nmap <c-mouseup>   :set guifont=<c-z><c-f>
-   \:substitute/\d\+/\=submatch(0)-1/g<cr><cr>
+   \:substitute/[[:digit:]]\+/\=submatch(0)-1/g<cr><cr>
 
 imap <c-mousedown> <c-o>:set guifont=<c-z><c-f>
-   \:substitute/\d\+/\=submatch(0)+1/g<cr><cr>
+   \:substitute/[[:digit:]]\+/\=submatch(0)+1/g<cr><cr>
 imap <c-mouseup>   <c-o>:set guifont=<c-z><c-f>
-   \:substitute/\d\+/\=submatch(0)-1/g<cr><cr>
+   \:substitute/[[:digit:]]\+/\=submatch(0)-1/g<cr><cr>
 
 let g:gfn_bak = &guifont
 nmap <M-0> :let &guifont = g:gfn_bak<cr>
@@ -529,11 +529,11 @@ vnoremap <expr> { mode() == nr2char(22) ? line("'{") + 1 . 'G' : '{'
 
 " [[, ]] {{{2
 " work even if the { is not in the first column
-nnoremap <silent> [[ :call search('^\S\@=.*{$', 'besW')<CR>
-nnoremap <silent> ]] :call search('^\S\@=.*{$',  'esW')<CR>
-onoremap <expr> [[ (search('^\S\@=.*{$', 'ebsW') && (setpos("''", getpos('.'))
+nnoremap <silent> [[ :call search('^[^[:space:]]\@=.*{$', 'besW')<CR>
+nnoremap <silent> ]] :call search('^[^[:space:]]\@=.*{$',  'esW')<CR>
+onoremap <expr> [[ (search('^[^[:space:]]\@=.*{$', 'ebsW') && (setpos("''", getpos('.'))
    \ <bar><bar> 1) ? "''" : "\<esc>")
-onoremap <expr> ]] (search('^\S\@=.*{$',  'esW') && (setpos("''", getpos('.'))
+onoremap <expr> ]] (search('^[^[:space:]]\@=.*{$',  'esW') && (setpos("''", getpos('.'))
    \ <bar><bar> 1) ? "''" : "\<esc>")
 
 " c-l {{{2
@@ -612,7 +612,7 @@ function! s:Filter_lines (cmd, filter)
    execute 'normal! insert' . lines . "\<cr>"
 
    execute 'vglobal/' . a:filter . '/delete'
-   %substitute#^[[:space:]]*\d\+:[[:space:]]*##eg
+   %substitute#^[[:space:]]*[[:digit:]]\+:[[:space:]]*##eg
 
    0
 
@@ -762,9 +762,9 @@ function! AddSubtract(operation, direction)
 
    if &nrformats =~ 'alpha'
 
-      let pattern = '\a\|\d'
+      let pattern = '[[:alpha:][:digit:]]'
    else
-      let pattern = '\d'
+      let pattern = '[[:digit:]]'
    endif
 
    if 'b' == a:direction
@@ -778,11 +778,11 @@ function! AddSubtract(operation, direction)
 
       execute 'normal! ' . v:count1 . "\<c-a>"
       silent! call
-         \ repeat#set(":\<c-u>call AddSubtract('a', '" . a:direction . "')\<cr>")
+         \ repeat#set(":\<c-u>call AddSubtract('a', '" .a:direction. "')\<cr>")
    else
       execute 'normal! ' . v:count1 . "\<c-x>"
       silent! call
-         \ repeat#set(":\<c-u>call AddSubtract('s', '" . a:direction . "')\<cr>")
+         \ repeat#set(":\<c-u>call AddSubtract('s', '" .a:direction. "')\<cr>")
    endif
 
 endfunction
