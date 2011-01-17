@@ -796,7 +796,7 @@ function! s:ShowOptionsValues(verb)
 
       let optionsArr = split(options)
 
-      if 1 != a:verb
+      if 1 != a:verb && len(optionsArr) == 1
          execute 'set ' . join(optionsArr, '? ') . '?'
       else
          execute 'verbose set ' . join(optionsArr, '? ') . '?'
@@ -807,8 +807,8 @@ function! s:ShowOptionsValues(verb)
 
 endfunction
 
-nmap \o :call <sid>ShowOptionsValues(0)<cr>
-nmap \O :call <sid>ShowOptionsValues(1)<cr>
+nmap <leader>o :call <sid>ShowOptionsValues(0)<cr>
+nmap <leader>O :call <sid>ShowOptionsValues(1)<cr>
 
 " Commands {{{1
 
@@ -898,19 +898,19 @@ cabbrev waq wqa
 cabbrev mpa map
 cabbrev frm fmr
 
-" cabbrev \s   [[:space:]]<c-r>=EatChar('[[:space:]]')<cr>
-" cabbrev \S  [^[:space:]]<c-r>=EatChar('[[:space:]]')<cr>
-" cabbrev \d   [[:digit:]]<c-r>=EatChar('[[:space:]]')<cr>
-" cabbrev \D  [^[:digit:]]<c-r>=EatChar('[[:space:]]')<cr>
-" cabbrev \x  [[:xdigit:]]<c-r>=EatChar('[[:space:]]')<cr>
-" cabbrev \X [^[:xdigit:]]<c-r>=EatChar('[[:space:]]')<cr>
-" cabbrev \a   [[:alpha:]]<c-r>=EatChar('[[:space:]]')<cr>
-" cabbrev \A  [^[:alpha:]]<c-r>=EatChar('[[:space:]]')<cr>
+" cabbrev <leader>s   [[:space:]]<c-r>=EatChar('[[:space:]]')<cr>
+" cabbrev <leader>S  [^[:space:]]<c-r>=EatChar('[[:space:]]')<cr>
+" cabbrev <leader>d   [[:digit:]]<c-r>=EatChar('[[:space:]]')<cr>
+" cabbrev <leader>D  [^[:digit:]]<c-r>=EatChar('[[:space:]]')<cr>
+" cabbrev <leader>x  [[:xdigit:]]<c-r>=EatChar('[[:space:]]')<cr>
+" cabbrev <leader>X [^[:xdigit:]]<c-r>=EatChar('[[:space:]]')<cr>
+" cabbrev <leader>a   [[:alpha:]]<c-r>=EatChar('[[:space:]]')<cr>
+" cabbrev <leader>A  [^[:alpha:]]<c-r>=EatChar('[[:space:]]')<cr>
 
-" iabbrev \l  [[:lower:]]<c-r>=EatChar('[[:space:]]')<cr>
-" iabbrev \L [^[:lower:]]<c-r>=EatChar('[[:space:]]')<cr>
-" iabbrev \u  [[:upper:]]<c-r>=EatChar('[[:space:]]')<cr>
-" iabbrev \U [^[:upper:]]<c-r>=EatChar('[[:space:]]')<cr>
+" iabbrev<leader>l  [[:lower:]]<c-r>=EatChar('[[:space:]]')<cr>
+" iabbrev<leader>L [^[:lower:]]<c-r>=EatChar('[[:space:]]')<cr>
+" iabbrev<leader>u  [[:upper:]]<c-r>=EatChar('[[:space:]]')<cr>
+" iabbrev<leader>U [^[:upper:]]<c-r>=EatChar('[[:space:]]')<cr>
 
 " function! s:IfCopy()
 
