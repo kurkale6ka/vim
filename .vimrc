@@ -631,8 +631,8 @@ nmap q= @=<c-f>
 nmap q@ :call input('')<cr><c-f>
 " }}}2
 
-" xmap <leader>l :left<cr>
-map <leader>l :ls<cr>
+xmap <leader>l :left<cr>
+nmap <leader>l :ls<cr>
 map <leader>< :substitute/>\zs[[:space:]]*\ze</\r/g<cr>
 map <leader>> :substitute/>\zs[[:space:]]*\ze</\r/g<cr>
 
