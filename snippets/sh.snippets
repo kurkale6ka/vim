@@ -9,7 +9,7 @@ snippet skel
 	${2:shopt -s extglob}
 # Loops
 snippet for for variable in words
-	for ${1:i} in ${2:*}; do
+	for ${1:i} in ${2:"$@"}; do
 
 		${3:echo} "$$1"
 	done
@@ -110,15 +110,15 @@ snippet alias
 	alias ${1:name}='${2}'
 # Extended globs
 snippet ~ Extended globs ?
-	?(${1:list})${2}
+	?(${1:item1}|${2:item2})${3}
 snippet ~ Extended globs *
-	*(${1:list})${2}
+	*(${1:item1}|${2:item2})${3}
 snippet ~ Extended globs +
-	+(${1:list})${2}
+	+(${1:item1}|${2:item2})${3}
 snippet ~ Extended globs @: matches 1 of the given patterns
-	@(${1:list})${2}
+	@(${1:item1}|${2:item2})${3}
 snippet ~ Extended globs !: matches anything but the patterns
-	!(${1:list})${2}
+	!(${1:item1}|${2:item2})${3}
 # Parameter expansion
 snippet $ remove 1 from start
 	${${1:parameter}#${2:word to remove}}
