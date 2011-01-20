@@ -109,6 +109,9 @@ snippet fun
 snippet alias
 	alias ${1:name}='${2}'
 # Extended globs
+snippet ~ Extended globs declaration
+	shopt -s extglob
+	${1}
 snippet ~ Extended globs ?
 	?(${1:item1}|${2:item2})${3}
 snippet ~ Extended globs *
