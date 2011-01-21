@@ -631,7 +631,7 @@ nmap q= @=<c-f>
 nmap q@ :call input('')<cr><c-f>
 " }}}2
 
-xmap <tab>   >
+xmap   <tab> >
 xmap <s-tab> <
 nmap <leader>0 :left<cr>
 xmap <leader>0 :left<cr>
