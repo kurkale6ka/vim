@@ -1,3 +1,9 @@
+" 1
+let b:surround_49  = "\\section{\r}"
+" 2
+let b:surround_50  = "\\subsection{\r}"
+" 3
+let b:surround_51  = "\\subsubsection{\r}"
 " b
 let b:surround_98  = "\\textbf{\r}"
 " e
