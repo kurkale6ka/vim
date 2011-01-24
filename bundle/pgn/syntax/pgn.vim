@@ -1,4 +1,3 @@
-" ♔ ♚  ♕ ♛  ♖ ♜  ♗ ♝  ♘ ♞  ♙ ♟
 syntax clear
 
 syntax case ignore
