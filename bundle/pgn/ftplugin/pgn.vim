@@ -1,6 +1,8 @@
 set nonumber norelativenumber
 
-iabbrev o-o   O-O
-iabbrev 0-0   O-O
-iabbrev o-o-o O-O-O
-iabbrev 0-0-0 O-O-O
+iabbrev oo  O-O
+iabbrev OO  O-O
+iabbrev 00  O-O
+iabbrev ooo O-O-O
+iabbrev OOO O-O-O
+iabbrev 000 O-O-O
