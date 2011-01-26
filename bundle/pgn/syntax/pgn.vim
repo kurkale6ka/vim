@@ -10,7 +10,7 @@ syntax region Comment start=/{/ end=/}/
 syntax match Define /".*"/
 
 " Move number: 1.
-syntax match LineNr /[[:digit:]]\+\.\%(\.\.\)\?/
+syntax match LineNr /[[:digit:]]\+[[:space:]]*\.\%(\.\.\)\?/
 
 " Good move: !?, !, !!
 syntax match StorageClass /![!?]\?/
