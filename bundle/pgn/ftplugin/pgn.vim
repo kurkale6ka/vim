@@ -7,9 +7,20 @@ iabbrev ooo O-O-O
 iabbrev OOO O-O-O
 iabbrev 000 O-O-O
 
-" ♔ ♚  ♕ ♛  ♖ ♜  ♗ ♝  ♘ ♞  ♙ ♟
-
+" ♙ ♟  ♖ ♜  ♘ ♞  ♗ ♝  ♕ ♛  ♔ ♚
 " command! -range=% Figures call tr(
+" substitute/\%(^[[:space:]]*[[:digit:]]\+[[:space:]]*\.[[:space:]]*\)\@<=\ze[a-h][1-8]/♙/gc
+" " substitute/\%(^[[:space:]]*[[:digit:]]\+[[:space:]]*\.[[:space:]]*\)\@<=\ze[a-h][1-8]/♟/gc
+" substitute/\%(^[[:space:]]*[[:digit:]]\+[[:space:]]*\.[[:space:]]*\)\@<=R/♖/gc
+" " substitute/\%(^[[:space:]]*[[:digit:]]\+[[:space:]]*\.[[:space:]]*\)\@<=R/♜/gc
+" substitute/\%(^[[:space:]]*[[:digit:]]\+[[:space:]]*\.[[:space:]]*\)\@<=N/♘/gc
+" " substitute/\%(^[[:space:]]*[[:digit:]]\+[[:space:]]*\.[[:space:]]*\)\@<=N/♞/gc
+" substitute/\%(^[[:space:]]*[[:digit:]]\+[[:space:]]*\.[[:space:]]*\)\@<=B/♗/gc
+" " substitute/\%(^[[:space:]]*[[:digit:]]\+[[:space:]]*\.[[:space:]]*\)\@<=B/♝/gc
+" substitute/\%(^[[:space:]]*[[:digit:]]\+[[:space:]]*\.[[:space:]]*\)\@<=Q/♕/gc
+" " substitute/\%(^[[:space:]]*[[:digit:]]\+[[:space:]]*\.[[:space:]]*\)\@<=Q/♛/gc
+" substitute/\%(^[[:space:]]*[[:digit:]]\+[[:space:]]*\.[[:space:]]*\)\@<=K/♔/gc
+" " substitute/\%(^[[:space:]]*[[:digit:]]\+[[:space:]]*\.[[:space:]]*\)\@<=K/♚/gc
 
 function! s:NumberIncrement()
 
@@ -30,3 +41,4 @@ function! s:NumberIncrement()
 endfunction
 
 inoremap <cr> <cr><c-r>=<sid>NumberIncrement()<cr>
+nnoremap o    o<c-r>=<sid>NumberIncrement()<cr>
