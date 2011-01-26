@@ -24,11 +24,13 @@
 16. Qc2 Na7
 17. Rxc7 Nd5
 18. Rc5 Rc8
+{ Turned out to be a good move (19) (no risk for the knight)
+  although I hadn't really thought it trough :) }
 19. Rc1 Qb8
 20. Qb3 e6
 21. Rxc8 Nxc8
 22. e4 Nf4
-23. Bf1 Bh8? ; was 9 :)
+23. Bf1 Bh3
 24. Rc5 Nd6
 25. Qc2 Qa8
 26. Rc6 Nc4
@@ -48,4 +50,4 @@
 40. Be6+ Kf8
 41. Bd4 Nf4
 42. Bc5+ Ke8
-43. Nd6+ Kd8 1/2-1/2
+43. Nd6+ Kd8 1/2-1/2 ; the real move was Ke7??
