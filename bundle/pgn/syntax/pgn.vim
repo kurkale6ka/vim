@@ -2,6 +2,9 @@ syntax clear
 
 syntax case ignore
 
+" Folding
+" syntax region chessGameFold start=/^[[[:space:]]*Event/ end=/-/ transparent fold
+
 " Comments: ;, {}
 syntax match  Comment /;.*$/
 syntax region Comment start=/{/ end=/}/
