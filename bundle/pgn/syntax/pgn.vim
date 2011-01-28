@@ -12,10 +12,10 @@ syntax keyword Normal Event Site Date Round White Black Result Annotator PlyCoun
 syntax match Define /".*"/
 
 " Comments: ;, {}
-syntax match  chessComments /;.*$/
-syntax region chessComments start=/{/ end=/}/
+syntax match  chessComment /;.*$/
+syntax region chessComment start=/{/ end=/}/
 
-highlight link chessComments Comment
+highlight link chessComment Comment
 
 " Move number: 1.
 syntax match LineNr /[[:digit:]]\+[[:space:]]*\.\%(\.\.\)\?/
