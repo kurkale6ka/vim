@@ -6,19 +6,16 @@ syntax case ignore
 syntax region chessGameFold start=/^[[:space:]]*[[[:space:]]*Date/ end=/\n\ze[[:space:]]*[[[:space:]]*Event/ transparent fold
 
 " ???
-syntax keyword chessKeywords Event Site Date Round White Black Result Annotator PlyCount TimeControl Time Termination Mode FEN
+syntax keyword Normal Event Site Date Round White Black Result Annotator PlyCount TimeControl Time Termination Mode FEN
 
-highlight link chessKeywords Keyword
-highlight Keyword gui=bold term=bold
+" Tag value: [key "value"]
+syntax match Define /".*"/
 
 " Comments: ;, {}
 syntax match  chessComments /;.*$/
 syntax region chessComments start=/{/ end=/}/
 
 highlight link chessComments Comment
-
-" Tag value: [key "value"]
-syntax match Define /".*"/
 
 " Move number: 1.
 syntax match LineNr /[[:digit:]]\+[[:space:]]*\.\%(\.\.\)\?/
