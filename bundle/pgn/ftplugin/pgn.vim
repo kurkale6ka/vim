@@ -1,4 +1,5 @@
 set nonumber norelativenumber
+set foldmethod=syntax
 
 iabbrev oo  O-O
 iabbrev OO  O-O

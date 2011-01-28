@@ -3,11 +3,19 @@ syntax clear
 syntax case ignore
 
 " Folding
-" syntax region chessGameFold start=/^[[[:space:]]*Event/ end=/-/ transparent fold
+syntax region chessGameFold start=/^[[:space:]]*[[[:space:]]*Date/ end=/\n\ze[[:space:]]*[[[:space:]]*Event/ transparent fold
+
+" ???
+syntax keyword chessKeywords Event Site Date Round White Black Result Annotator PlyCount TimeControl Time Termination Mode FEN
+
+highlight link chessKeywords Keyword
+highlight Keyword gui=bold term=bold
 
 " Comments: ;, {}
-syntax match  Comment /;.*$/
-syntax region Comment start=/{/ end=/}/
+syntax match  chessComments /;.*$/
+syntax region chessComments start=/{/ end=/}/
+
+highlight link chessComments Comment
 
 " Tag value: [key "value"]
 syntax match Define /".*"/
