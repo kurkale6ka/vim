@@ -1,2 +1,2 @@
 " Folding
-syntax region iniFold start=/^[[:space:]]*[/ end=/\n\ze[[:space:]]*[/ transparent fold
+syntax region iniFold start=/^[[:space:]]*\[.\{-}\][[:space:]]*\n\zs/ end=/\n\ze[[:space:]]*\[/ transparent fold

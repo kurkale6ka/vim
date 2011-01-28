@@ -3,7 +3,7 @@ syntax clear
 syntax case ignore
 
 " Folding
-syntax region chessGameFold start=/^[[:space:]]*[[[:space:]]*Date/ end=/\n\ze[[:space:]]*[[[:space:]]*Event/ transparent fold
+syntax region chessGameFold start=/^[[:space:]]*\[[[:space:]]*Date/ end=/\n\ze[[:space:]]*\[[[:space:]]*Event/ transparent fold
 
 " ???
 syntax keyword Normal Event Site Date Round White Black Result Annotator PlyCount TimeControl Time Termination Mode FEN
