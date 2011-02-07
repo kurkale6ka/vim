@@ -1,5 +1,5 @@
-set nonumber norelativenumber
-set foldmethod=syntax
+setlocal nonumber norelativenumber
+setlocal foldmethod=syntax
 
 iabbrev oo  O-O
 iabbrev OO  O-O
