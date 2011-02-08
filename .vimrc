@@ -553,6 +553,8 @@ function! s:TransformLines (operation)
    let last_search = histget('search', -1)
 
    try
+      let save_cursor = getpos(".")
+
       if 'squeeze' == a:operation
 
          global/^\%([[:space:]]*$\n\)\{2,}/delete
@@ -562,7 +564,7 @@ function! s:TransformLines (operation)
          silent! %substitute/[[:space:]]\+$//e
       endif
 
-      normal! ``
+      call setpos('.', save_cursor)
 
    catch /E486/
 
@@ -753,7 +755,10 @@ function! s:Indentation(amount) range
    endif
 
    if a:firstline == a:lastline
-      normal! gg=G``
+
+      let save_cursor = getpos(".")
+      normal! gg=G
+      call setpos('.', save_cursor)
    else
       execute a:firstline . ',' . a:lastline . ' normal!=='
    endif
