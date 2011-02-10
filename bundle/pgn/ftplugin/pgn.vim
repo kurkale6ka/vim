@@ -42,4 +42,4 @@ function! s:NumberIncrement()
 endfunction
 
 inoremap <cr> <cr><c-r>=<sid>NumberIncrement()<cr>
-nnoremap o    o<c-r>=<sid>NumberIncrement()<cr>
+nnoremap o       o<c-r>=<sid>NumberIncrement()<cr>
