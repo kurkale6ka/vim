@@ -26,7 +26,7 @@ iabbrev 000 O-O-O
 function! s:NumberIncrement()
 
    let move_number =
-      \search('^[[:space:]]*[[:digit:]]\+[[:space:]]*\.\%(.\+[[:digit:]]\+[[:space:]]*\.\)\@!',
+      \search('^[[:space:]]*[[:digit:]]\+[[:space:]]*\.\%(.\{-1,}[[:digit:]]\+[[:space:]]*\.\)\@!',
       \'bcn',
       \line('.') - 1)
 
