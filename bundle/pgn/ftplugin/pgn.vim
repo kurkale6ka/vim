@@ -12,17 +12,17 @@ iabbrev 000 O-O-O
 " ♙ ♟  ♖ ♜  ♘ ♞  ♗ ♝  ♕ ♛  ♔ ♚
 " command! -range=% Figures call tr(
 " substitute/\%(^[[:space:]]*[[:digit:]]\+[[:space:]]*\.[[:space:]]*\)\@<=\ze[a-h][1-8]/♙/gc
-" " substitute/\%(^[[:space:]]*[[:digit:]]\+[[:space:]]*\.[[:space:]]*\)\@<=\ze[a-h][1-8]/♟/gc
+" substitute/[a-h][1-8]/♟/gc
 " substitute/\%(^[[:space:]]*[[:digit:]]\+[[:space:]]*\.[[:space:]]*\)\@<=R/♖/gc
-" " substitute/\%(^[[:space:]]*[[:digit:]]\+[[:space:]]*\.[[:space:]]*\)\@<=R/♜/gc
+" substitute/R/♜/gc
 " substitute/\%(^[[:space:]]*[[:digit:]]\+[[:space:]]*\.[[:space:]]*\)\@<=N/♘/gc
-" " substitute/\%(^[[:space:]]*[[:digit:]]\+[[:space:]]*\.[[:space:]]*\)\@<=N/♞/gc
+" substitute/N/♞/gc
 " substitute/\%(^[[:space:]]*[[:digit:]]\+[[:space:]]*\.[[:space:]]*\)\@<=B/♗/gc
-" " substitute/\%(^[[:space:]]*[[:digit:]]\+[[:space:]]*\.[[:space:]]*\)\@<=B/♝/gc
+" substitute/B/♝/gc
 " substitute/\%(^[[:space:]]*[[:digit:]]\+[[:space:]]*\.[[:space:]]*\)\@<=Q/♕/gc
-" " substitute/\%(^[[:space:]]*[[:digit:]]\+[[:space:]]*\.[[:space:]]*\)\@<=Q/♛/gc
+" substitute/Q/♛/gc
 " substitute/\%(^[[:space:]]*[[:digit:]]\+[[:space:]]*\.[[:space:]]*\)\@<=K/♔/gc
-" " substitute/\%(^[[:space:]]*[[:digit:]]\+[[:space:]]*\.[[:space:]]*\)\@<=K/♚/gc
+" substitute/K/♚/gc
 
 function! s:NumberIncrement()
 
