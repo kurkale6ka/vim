@@ -675,6 +675,7 @@ map <leader><leader> <plug>NERDCommenterToggle
 
 " Surround
 let g:surround_{char2nr('w')} = "\\<\r\\>"
+let g:surround_{char2nr("\<c-cr>")} = "http://www.\r.com"
 let g:surround_{char2nr('c')} = "http://www.\r.com"
 
 " Man
