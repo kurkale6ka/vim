@@ -1,5 +1,6 @@
 setlocal nonumber norelativenumber
 setlocal foldmethod=syntax
+setlocal autoindent
 
 iabbrev oo  O-O
 iabbrev OO  O-O
@@ -25,14 +26,15 @@ iabbrev 000 O-O-O
 
 function! s:NumberIncrement()
 
-   let move_number =
+   let line_number =
       \search('^[[:space:]]*[[:digit:]]\+[[:space:]]*\.\%(.\{-1,}[[:digit:]]\+[[:space:]]*\.\)\@!',
       \'bcn',
       \line('.') - 1)
 
-   if move_number
+   if line_number
 
-      let curr_line = getline(move_number)
+      let curr_line = getline(line_number)
+      let curr_line = substitute(curr_line, '^[[:space:]]\+', '', '')
       let next_move_number = strpart(curr_line, 0, stridx(curr_line, '.')) + 1
       return next_move_number . '. '
    else
