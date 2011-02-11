@@ -9,7 +9,34 @@ iabbrev ooo O-O-O
 iabbrev OOO O-O-O
 iabbrev 000 O-O-O
 
-" ♙ ♟  ♖ ♜  ♘ ♞  ♗ ♝  ♕ ♛  ♔ ♚
+function! s:ChessBoard(show)
+
+   let board = "8  ♜ ♞ ♝ ♛ ♚ ♝ ♞ ♜   1  ♖ ♘ ♗ ♔ ♕ ♗ ♘ ♖\n"
+      \      . "7  ♟ ♟ ♟ ♟ ♟ ♟ ♟ ♟   2  ♙ ♙ ♙ ♙ ♙ ♙ ♙ ♙\n"
+      \      . "6                    3\n"
+      \      . "5                    4\n"
+      \      . "4                    5\n"
+      \      . "3                    6\n"
+      \      . "2  ♙ ♙ ♙ ♙ ♙ ♙ ♙ ♙   7  ♟ ♟ ♟ ♟ ♟ ♟ ♟ ♟\n"
+      \      . "1  ♖ ♘ ♗ ♕ ♔ ♗ ♘ ♖   8  ♜ ♞ ♝ ♚ ♛ ♝ ♞ ♜\n"
+      \      . "\n"
+      \      . "   a b c d e f g h      h g f e d c b a"
+
+   if 'echo' == a:show
+
+      echo board
+   else
+      execute "normal i0\<c-d>{\<esc>"
+      execute "normal o\<esc>"
+      execute 'normal o' . board . "\<esc>"
+      execute "normal o0\<c-d>}\<esc>"
+   endif
+
+endfunction
+
+command! ChessBoardEcho  call<sid>ChessBoard('echo')
+command! ChessBoardPrint call<sid>ChessBoard('print')
+
 " command! -range=% Figures call tr(
 " substitute/\%(^[[:space:]]*[[:digit:]]\+[[:space:]]*\.[[:space:]]*\)\@<=\ze[a-h][1-8]/♙/gc
 " substitute/[a-h][1-8]/♟/gc
@@ -27,7 +54,7 @@ iabbrev 000 O-O-O
 function! s:NumberIncrement()
 
    let line_number =
-      \search('^[[:space:]]*[[:digit:]]\+[[:space:]]*\.\%(.\{-1,}[[:digit:]]\+[[:space:]]*\.\)\@!',
+      \search('^[[:space:]]*[[:digit:]]\+[[:space:]]*\.\%(.\{-1,}\%([[:digit:]]\+[[:space:]]*\.\|1-0\|½-½\|1/2-1/2\|0-1\)\)\@!',
       \'bcn',
       \line('.') - 1)
 
