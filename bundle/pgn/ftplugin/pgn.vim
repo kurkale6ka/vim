@@ -8,6 +8,22 @@ iabbrev 00  O-O
 iabbrev ooo O-O-O
 iabbrev OOO O-O-O
 iabbrev 000 O-O-O
+inoremap > 1-0
+inoremap < 0-1
+imap = 1/2-1/2
+imap 12 ½
+imap \pw ♙
+imap \pb ♟
+imap \rw ♖
+imap \rb ♜
+imap \nw ♘
+imap \nb ♞
+imap \bw ♗
+imap \bb ♝
+imap \qw ♕
+imap \qb ♛
+imap \kw ♔
+imap \kb ♚
 
 function! s:ChessBoard(show)
 
