@@ -110,6 +110,11 @@ syntax match ChessError /\<[^a-h[:digit:]]\%([1-8]\>\)\@=\|\%([RNBQK]\%([a-h][1-
 " Unknown tag key
 syntax match ChessError /^[[:space:]]*\[[[:space:]]*\%(\%(Event\|Site\|Date\|Round\|White\|Black\|Result\|Annotator\|PlyCount\|TimeControl\|Time\|Termination\|Mode\|FEN\)\>\)\@!/
 
+" ... error (1. ... or 1....)
+syntax match ChessError /\%(\d\.\)\@<=[[:space:]]\+\%(\.\{3}\)\@=/
+syntax match ChessError /\%(\d\.[[:space:]]\+\.\.\)\@<=\./
+syntax match ChessError /\%(\d\.\{3}\)\@<=\./
+
 " Bad result
 syntax match ChessError /\%("[[:space:]]*\)\?1-1\%([[:space:]]*"\)\?/
 

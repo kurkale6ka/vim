@@ -37,7 +37,7 @@ endfunction
 command! ChessBoardEcho  call<sid>ChessBoard('echo')
 command! ChessBoardPrint call<sid>ChessBoard('print')
 
-command! ChessNormalize substitute/\s\+\ze\d\+\./\r/eg
+command! -range ChessNormalize <line1>,<line2>substitute/\s\+\ze\d\+\./\r/eg
 
 " command! -range=% Figures call tr(
 " substitute/\%(^[[:space:]]*[[:digit:]]\+[[:space:]]*\.[[:space:]]*\)\@<=\ze[a-h][1-8]/♙/gc
