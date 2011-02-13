@@ -79,7 +79,7 @@ syntax match ChessAction /[x#=]\|++\?\|e\.\?p\.\?/
 highlight link ChessAction Constant
 
 " Result
-syntax match ChessResult #1-0\|½-½\|1/2-1/2\|0-1#
+syntax match ChessResult #1-0\|½-½\|1/2-1/2\|0-1\|\%(\d\..\{-}\)\@<=\*#
 
 highlight link ChessResult CursorLine
 

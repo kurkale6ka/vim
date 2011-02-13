@@ -8,22 +8,22 @@ iabbrev 00  O-O
 iabbrev ooo O-O-O
 iabbrev OOO O-O-O
 iabbrev 000 O-O-O
-inoremap > 1-0
-inoremap < 0-1
-imap = 1/2-1/2
-imap 12 ½
-imap \pw ♙
-imap \pb ♟
-imap \rw ♖
-imap \rb ♜
-imap \nw ♘
-imap \nb ♞
-imap \bw ♗
-imap \bb ♝
-imap \qw ♕
-imap \qb ♛
-imap \kw ♔
-imap \kb ♚
+inoremap <buffer> > 1-0
+inoremap <buffer> < 0-1
+imap     <buffer> = 1/2-1/2
+imap     <buffer> 12 ½
+imap     <buffer> \pw ♙
+imap     <buffer> \pb ♟
+imap     <buffer> \rw ♖
+imap     <buffer> \rb ♜
+imap     <buffer> \nw ♘
+imap     <buffer> \nb ♞
+imap     <buffer> \bw ♗
+imap     <buffer> \bb ♝
+imap     <buffer> \qw ♕
+imap     <buffer> \qb ♛
+imap     <buffer> \kw ♔
+imap     <buffer> \kb ♚
 
 function! s:ChessBoard(show)
 
@@ -72,7 +72,7 @@ command! -range ChessNormalize <line1>,<line2>substitute/\s\+\ze\d\+\./\r/eg
 function! s:NumberIncrement()
 
    let line_number =
-      \search('^[[:space:]]*[[:digit:]]\+[[:space:]]*\.\%(.\{-1,}\%([[:digit:]]\+[[:space:]]*\.\|1-0\|½-½\|1/2-1/2\|0-1\)\)\@!',
+      \search('^[[:space:]]*[[:digit:]]\+[[:space:]]*\.\%(.\{-1,}\%([[:digit:]]\+[[:space:]]*\.\|1-0\|½-½\|1/2-1/2\|0-1\|\%(\d\..\{-}\)\@<=\*\)\)\@!',
       \'bcn',
       \line('.') - 1)
 
