@@ -11,7 +11,6 @@ iabbrev 000 O-O-O
 inoremap <buffer> > 1-0
 inoremap <buffer> < 0-1
 imap     <buffer> = 1/2-1/2
-imap     <buffer> 12 ½
 imap     <buffer> \pw ♙
 imap     <buffer> \pb ♟
 imap     <buffer> \rw ♖
