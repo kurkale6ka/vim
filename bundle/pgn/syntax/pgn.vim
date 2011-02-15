@@ -65,8 +65,10 @@ highlight link ChessFile Statement
 
 " Pawn / case: d3
 syntax match ChessCase /\<[a-h][1-8]\>\|\%([RNBQK]\%([a-h][1-8]\?\)\?x\?\|[a-h]x\)\@<=[a-h][1-8]/
+syntax match ChessCaseBlack /\%(\.\s*\)\@<!\%(\<[a-h][1-8]\>\|\%([RNBQK]\%([a-h][1-8]\?\)\?x\?\|[a-h]x\)\@<=[a-h][1-8]\)/
 
 highlight link ChessCase Special
+highlight ChessCaseBlack term=bold ctermfg=104 guifg=SlateBlue ctermbg=254 guibg=Grey90
 
 " Castling: O-O, O-O-O
 syntax match ChessCastling /0-0\%(-0\)\?\|O-O\%(-O\)\?/
