@@ -71,7 +71,7 @@ highlight ChessCastlingBlack term=bold cterm=bold ctermfg=131 gui=bold guifg=Bro
 
 " Capture, check, checkmate, promotion, en passant
 syntax match ChessAction /[x#=]\|++\?\|e\.\?p\.\?/
-syntax match ChessActionBlack /\%(\%(\d\.\s*\)\@<!\%([RNBQK]\%([a-h][1-8]\?\)\?\|[a-h]\)\)\@<=x\|\%(\%(\d\.\s*\)\@<!\%(\%([RNBQK]\%([a-h][1-8]\?\)\?x\?\|[a-h]x\)[a-h][1-8]\|\<[a-h][1-8]\>\)\)\@<=\%(#\|++\?\|[[:space:]]*e\.\?p\.\?\)/
+syntax match ChessActionBlack /\%(\%(\d\.\s*\)\@<!\%([RNBQK]\%([a-h][1-8]\?\)\?\|[a-h]\)\)\@<=x\|\%(\%(\d\.\s*\)\@<!\%(\%([RNBQK]\%([a-h][1-8]\?\)\?x\?\|[a-h]x\)[a-h][1-8]\|\<[a-h][1-8]\>\)\)\@<=\%(#\|++\?\|[[:space:]]*e\.\?p\.\?\)\|\%(\%(\d\.\s*\)\@<!\%(\%([a-h]x\)\?[a-h][18]\)\)\@<==[RNBQK]\@=/
 
 highlight link ChessAction Constant
 highlight ChessActionBlack term=underline ctermfg=201 guifg=Magenta ctermbg=254 guibg=Grey90
@@ -104,6 +104,10 @@ syntax match ChessError /\%(\<[a-h]\)\@<=[09]\>\|\%(\%([RNBQK]\%([a-h][1-8]\?\)\
 
 " Wrong case: bad file
 syntax match ChessError /\<[^a-h[:digit:]]\%([1-8]\>\)\@=\|\%([RNBQK]\%([a-h][1-8]\?\)\?x\?\|[a-h]x\)\@<=[^a-h[:space:]][1-8]\@=/
+
+" Wrong promotion (rank <> 1/8 or piece <> RNBQK)
+syntax match ChessError /\%(\%([a-h]x\)\?[a-h]\)\@<=[^18]\%(=[RNBQK]\)\@=/
+syntax match ChessError /\%(\%([a-h]x\)\?[a-h][18]=\)\@<=[^RNBQK]/
 
 " Unknown tag key
 syntax match ChessError /^[[:space:]]*\[[[:space:]]*\%(\%(Event\|Site\|Date\|Round\|White\|Black\|Result\|Annotator\|PlyCount\|TimeControl\|Time\|Termination\|Mode\|FEN\)\>\)\@!/
