@@ -56,8 +56,8 @@ highlight link ChessFile Statement
 highlight ChessFileBlack term=bold cterm=bold ctermfg=131 gui=bold guifg=Brown ctermbg=254 guibg=Grey90
 
 " Pawn / case: d3
-syntax match ChessCase /\<[a-h][1-8]\>\|\%([RNBQK]\%([a-h][1-8]\?\)\?x\?\|[a-h]x\)\@<=[a-h][1-8]/
-syntax match ChessCaseBlack /\%(\d\.[[:space:]]*\)\@<!\<[a-h][1-8]\>\|\%(\%(\d\.[[:space:]]*\)\@<!\%([RNBQK]\%([a-h][1-8]\?\)\?x\?\|[a-h]x\)\)\@<=[a-h][1-8]/
+syntax match ChessCase /\<[a-h]\%([18]\|[2-7]=\@!\)\>\|\%([RNBQK]\%([a-h][1-8]\?\)\?x\?\)\@<=[a-h][1-8]\|\%([a-h]x\)\@<=[a-h]\%([18]\|[2-7]=\@!\)/
+syntax match ChessCaseBlack /\%(\d\.[[:space:]]*\)\@<!\<[a-h]\%([18]\|[2-7]=\@!\)\>\|\%(\%(\d\.[[:space:]]*\)\@<!\%([RNBQK]\%([a-h][1-8]\?\)\?x\?\)\)\@<=[a-h][1-8]\|\%(\%(\d\.[[:space:]]*\)\@<!\%([a-h]x\)\)\@<=[a-h]\%([18]\|[2-7]=\@!\)/
 
 highlight link ChessCase Special
 highlight ChessCaseBlack term=bold ctermfg=104 guifg=SlateBlue ctermbg=254 guibg=Grey90
@@ -79,7 +79,7 @@ highlight ChessActionBlack term=underline ctermfg=201 guifg=Magenta ctermbg=254 
 " Result
 syntax match ChessResult #1-0\|½-½\|1/2-1/2\|0-1\|\%(\d\..\{-}\)\@<=\*#
 
-highlight link ChessResult CursorLine
+highlight link ChessResult PreProc
 
 " Errors
 " One error at a time, several won't be highlighted
