@@ -28,63 +28,53 @@ highlight link ChessMoveNumber LineNr
 
 " Good move: !?, !, !!
 syntax match ChessGoodMove /![!?]\?/
+syntax match ChessGoodMoveBlack /\%(\%(\d\.\s*\)\@<!\%(\%([RNBQK]\%([a-h][1-8]\?\)\?x\?\|[a-h]x\)[a-h][1-8]\|\<[a-h][1-8]\>\)\)\@<=[[:space:]]*![!?]\?/
 
 highlight link ChessGoodMove Type
+highlight ChessGoodMoveBlack term=underline cterm=bold ctermfg=72 gui=bold guifg=SeaGreen ctermbg=254 guibg=Grey90
 
 " Bad move: ?!, ?, ??
 syntax match ChessBadMove /?[?!]\?/
+syntax match ChessBadMoveBlack /\%(\%(\d\.\s*\)\@<!\%(\%([RNBQK]\%([a-h][1-8]\?\)\?x\?\|[a-h]x\)[a-h][1-8]\|\<[a-h][1-8]\>\)\)\@<=[[:space:]]*?[?!]\?/
 
 highlight link ChessBadMove WarningMsg
-
-" " White move background: 3. (Nc3xb5) ---
-" syntax match ChessWhite /\%(^[[:space:]]*[[:digit:]]\+[[:space:]]*\.[[:space:]]*\)\@<=\%([RNBQK]\%([a-h][1-8]\?\)\?x\?[a-h][1-8]\)/
-
-" " File: (f)xg4
-" syntax match ChessWhite /\%(^[[:space:]]*[[:digit:]]\+[[:space:]]*\.[[:space:]]*\)\@<=\%([a-h]x[a-h][1-8]\)/
-
-" highlight ChessWhite guibg=#ffcc99
-
-" " Black move background: 3... (Rh5)
-" syntax match ChessBlack /[RNBQK]\%([a-h][1-8]\?\)\?x\?[a-h][1-8]/
-
-" " File: (f)xg4
-" syntax match ChessBlack /[a-h]x[a-h][1-8]/
-
-" highlight ChessBlack guibg=#cc9966
+highlight ChessBadMoveBlack term=standout ctermfg=196 guifg=Red ctermbg=254 guibg=Grey90
 
 " Rook, kNight, Bishop, Queen, King
 " Ex: N, Nc, Nc3
 syntax match ChessStrongPiece /\%([RNBQK]\%([a-h][1-8]\?\)\?\)\%(x\?[a-h][1-8]\)\@=/
-syntax match ChessStrongPieceBlack /\%(\.\s*\)\@<!\%([RNBQK]\%([a-h][1-8]\?\)\?\)\%(x\?[a-h][1-8]\)\@=/
+syntax match ChessStrongPieceBlack /\%(\d\.\s*\)\@<!\%([RNBQK]\%([a-h][1-8]\?\)\?\)\%(x\?[a-h][1-8]\)\@=/
 
 highlight link ChessStrongPiece Statement
 highlight ChessStrongPieceBlack term=bold cterm=bold ctermfg=131 gui=bold guifg=Brown ctermbg=254 guibg=Grey90
 
 " File: (f)xg4
 syntax match ChessFile /[a-h]\%(x[a-h][1-8]\)\@=/
-syntax match ChessFileBlack /\%(\.\s*\)\@<![a-h]\%(x[a-h][1-8]\)\@=/
+syntax match ChessFileBlack /\%(\d\.\s*\)\@<![a-h]\%(x[a-h][1-8]\)\@=/
 
 highlight link ChessFile Statement
 highlight ChessFileBlack term=bold cterm=bold ctermfg=131 gui=bold guifg=Brown ctermbg=254 guibg=Grey90
 
 " Pawn / case: d3
 syntax match ChessCase /\<[a-h][1-8]\>\|\%([RNBQK]\%([a-h][1-8]\?\)\?x\?\|[a-h]x\)\@<=[a-h][1-8]/
-syntax match ChessCaseBlack /\%(\.\s*\)\@<!\<[a-h][1-8]\>\|\%(\%(\.\s*\)\@<!\%([RNBQK]\%([a-h][1-8]\?\)\?x\?\|[a-h]x\)\)\@<=[a-h][1-8]/
+syntax match ChessCaseBlack /\%(\d\.\s*\)\@<!\<[a-h][1-8]\>\|\%(\%(\d\.\s*\)\@<!\%([RNBQK]\%([a-h][1-8]\?\)\?x\?\|[a-h]x\)\)\@<=[a-h][1-8]/
 
 highlight link ChessCase Special
 highlight ChessCaseBlack term=bold ctermfg=104 guifg=SlateBlue ctermbg=254 guibg=Grey90
 
 " Castling: O-O, O-O-O
 syntax match ChessCastling /0-0\%(-0\)\?\|O-O\%(-O\)\?/
-syntax match ChessCastlingBlack /\%(\.\s*\)\@<!\%(0-0\%(-0\)\?\|O-O\%(-O\)\?\)/
+syntax match ChessCastlingBlack /\%(\d\.\s*\)\@<!\%(0-0\%(-0\)\?\|O-O\%(-O\)\?\)/
 
 highlight link ChessCastling Statement
 highlight ChessCastlingBlack term=bold cterm=bold ctermfg=131 gui=bold guifg=Brown ctermbg=254 guibg=Grey90
 
 " Capture, check, checkmate, promotion, en passant
 syntax match ChessAction /[x#=]\|++\?\|e\.\?p\.\?/
+syntax match ChessActionBlack /\%(\%(\d\.\s*\)\@<!\%([RNBQK]\%([a-h][1-8]\?\)\?\|[a-h]\)\)\@<=x\|\%(\%(\d\.\s*\)\@<!\%(\%([RNBQK]\%([a-h][1-8]\?\)\?x\?\|[a-h]x\)[a-h][1-8]\|\<[a-h][1-8]\>\)\)\@<=\%(#\|++\?\|[[:space:]]*e\.\?p\.\?\)/
 
 highlight link ChessAction Constant
+highlight ChessActionBlack term=underline ctermfg=201 guifg=Magenta ctermbg=254 guibg=Grey90
 
 " Result
 syntax match ChessResult #1-0\|½-½\|1/2-1/2\|0-1\|\%(\d\..\{-}\)\@<=\*#
