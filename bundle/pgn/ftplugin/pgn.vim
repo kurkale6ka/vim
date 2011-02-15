@@ -10,6 +10,7 @@ iabbrev OOO O-O-O
 iabbrev 000 O-O-O
 inoremap <buffer> > 1-0
 inoremap <buffer> < 0-1
+inoremap <buffer> - 1/2-1/2
 imap     <buffer> \pw ♙
 imap     <buffer> \pb ♟
 imap     <buffer> \rw ♖
