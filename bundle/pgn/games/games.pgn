@@ -51,3 +51,41 @@
 41. Bd4 Nf4
 42. Bc5+ Ke8
 43. Nd6+ Kd8 1/2-1/2 ; the real move was Ke7??
+
+[Event "??"]
+[Site "Welwyn Garden City, Hertfordshire UK"]
+[Date "2011.02.15"]
+[Round "??"]
+[White "Dimitrov, Dimitar"]
+[Black "Pearson, Richard"]
+[Result "0-1"]
+
+1. e4 e5
+2. Nc3 Nf6
+3. Nf3 Bc5
+4. Nxe5 d6
+5. Nf3 Ng4
+6. d4 Bb6
+7. Bc4 h6
+8. O-O Nc6
+9. Bb5 Bd7
+10. d5 Ne5
+11. Bxd7 Qxd7
+12. h3 Nf6
+13. b3 Ba5
+14. Bb2 Bxc3
+15. Bxc3 O-O
+16. Re1 Re8
+17. Bb2 c6
+18. dxc6 Qxc6
+19. Qe2 Nxf3
+20. Qxf3 Nxe4
+21. Rxe4?? Qxe4 ; Did I think Rook == Knight ???
+22. Qg3 Qg6
+23. Qc3 Rac8
+24. Qd4 Rxc2
+25. h4 Re2
+26. Rc1 Rxb2
+27. Rc8+ Kh7
+28. h5 Qxh5 0-1 ; I surrendered
+
