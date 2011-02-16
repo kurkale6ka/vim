@@ -54,9 +54,9 @@ syntax match ChessFileBlack /\%([[:digit:]]\.[[:space:]]*\)\@<![a-h]\%(x[a-h][1-
 highlight link ChessFile Statement
 highlight ChessFileBlack term=bold cterm=bold ctermfg=131 gui=bold guifg=Brown ctermbg=254 guibg=Grey90
 
-" Pawn / case: d3
-syntax match ChessCase /\<[a-h]\%([18]\|[2-7]=\@!\)\>\|\%([RNBQK]\%([a-h][1-8]\?\)\?x\?\)\@<=[a-h][1-8]\|\%([a-h]x\)\@<=[a-h]\%([18]\%([[:space:]]*e\.\?p\.\?\)\@!\|[36]=\@!\|[2457]\%([[:space:]]*e\.\?p\.\?\|=\)\@!\)/
-syntax match ChessCaseBlack /\%([[:digit:]]\.[[:space:]]*\)\@<!\<[a-h]\%([18]\|[2-7]=\@!\)\>\|\%(\%([[:digit:]]\.[[:space:]]*\)\@<!\%([RNBQK]\%([a-h][1-8]\?\)\?x\?\)\)\@<=[a-h][1-8]\|\%(\%([[:digit:]]\.[[:space:]]*\)\@<!\%([a-h]x\)\)\@<=[a-h]\%([18]\%([[:space:]]*e\.\?p\.\?\)\@!\|[36]=\@!\|[2457]\%([[:space:]]*e\.\?p\.\?\|=\)\@!\)/
+" Pawn / case: d3, Ra3x(d3), cx(d3)
+syntax match ChessCase /\<[a-h]\%([18]\|[2-7]=\@!\)\>\|\%([RNBQK]\%([a-h][1-8]\?\)\?x\?\)\@<=[a-h][1-8]\|\%(\<[a-h]x\)\@<=[a-h]\%([18]\%([[:space:]]*e\.\?p\.\?\)\@!\|[36]=\@!\|[2457]\%([[:space:]]*e\.\?p\.\?\|=\)\@!\)/
+syntax match ChessCaseBlack /\%([[:digit:]]\.[[:space:]]*\)\@<!\<[a-h]\%([18]\|[2-7]=\@!\)\>\|\%(\%([[:digit:]]\.[[:space:]]*\)\@<!\%([RNBQK]\%([a-h][1-8]\?\)\?x\?\)\)\@<=[a-h][1-8]\|\%(\%([[:digit:]]\.[[:space:]]*\)\@<!\%(\<[a-h]x\)\)\@<=[a-h]\%([18]\%([[:space:]]*e\.\?p\.\?\)\@!\|[36]=\@!\|[2457]\%([[:space:]]*e\.\?p\.\?\|=\)\@!\)/
 
 highlight link ChessCase Special
 highlight ChessCaseBlack term=bold ctermfg=104 guifg=SlateBlue ctermbg=254 guibg=Grey90
