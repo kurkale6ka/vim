@@ -91,7 +91,7 @@ highlight link ChessResult Normal
 syntax match ChessError /\%(\%([RNBQK][a-h]\)\@<=[09]\)\%(x\?[a-h][1-8]\)\@=/
 
 " RNBQK wrong case: bad file
-" no rank
+" no rank (2 cases)
 syntax match ChessError /\%([RNBQK]\@<=[^a-h]\)\%(x[a-h][1-8]\)\@=/
 syntax match ChessError /\%([RNBQK]\@<=[^a-hx[:space:]]\)\%([a-h][1-8]\)\@=/
 " rank: caught below (Wrong case: bad file)
