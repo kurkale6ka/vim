@@ -71,7 +71,7 @@ highlight ChessCastlingBlack term=bold cterm=bold ctermfg=131 gui=bold guifg=Bro
 " Capture, check, checkmate, promotion, en passant
 syntax match ChessAction /[x#=]\|++\?\|e\.\?p\.\?/
 " x, #/+/++, ep, =
-syntax match ChessActionBlack /\%(\%([[:digit:]]\.[[:space:]]*\)\@<!\%([RNBQK]\%([a-h][1-8]\?\)\?\|[a-h]\)\)\@<=x\|\%(\%([[:digit:]]\.[[:space:]]*\)\@<!\%(\%([RNBQK]\%([a-h][1-8]\?\)\?x\?\|[a-h]x\)[a-h][1-8]\|\<[a-h][1-8]\>\|[a-h]x[a-h][36][[:space:]]*e\.\?p\.\?\)\)\@<=\%([[:space:]]*\%(#\|++\?\)\)\|\%(\%([[:digit:]]\.[[:space:]]*\)\@<![a-h]x[a-h][36]\)\@<=[[:space:]]*e\.\?p\.\?\|\%(\%([[:digit:]]\.[[:space:]]*\)\@<!\%([a-h]x[a-h][18]\|\<[a-h][18]\)\)\@<==[RNBQ]\@=/
+syntax match ChessActionBlack /\%(\%([[:digit:]]\.[[:space:]]*\)\@<!\%([RNBQK]\%([a-h][1-8]\?\)\?\|\<[a-h]\)\)\@<=x\|\%(\%([[:digit:]]\.[[:space:]]*\)\@<!\%(\%([RNBQK]\%([a-h][1-8]\?\)\?x\?\|[a-h]x\)[a-h][1-8]\|\<[a-h][1-8]\>\|[a-h]x[a-h][36][[:space:]]*e\.\?p\.\?\)\)\@<=\%([[:space:]]*\%(#\|++\?\)\)\|\%(\%([[:digit:]]\.[[:space:]]*\)\@<![a-h]x[a-h][36]\)\@<=[[:space:]]*e\.\?p\.\?\|\%(\%([[:digit:]]\.[[:space:]]*\)\@<!\%([a-h]x[a-h][18]\|\<[a-h][18]\)\)\@<==[RNBQ]\@=/
 
 highlight link ChessAction Constant
 highlight ChessActionBlack term=underline ctermfg=201 guifg=Magenta ctermbg=254 guibg=Grey90
