@@ -27,14 +27,15 @@ highlight link ChessMoveNumber LineNr
 
 " Good move: !?, !, !!
 syntax match ChessGoodMove /![!?]\?/
-syntax match ChessGoodMoveBlack /\%(\%([[:digit:]]\.[[:space:]]*\)\@<!\%(\%([RNBQK]\%([a-h][1-8]\?\)\?x\?\|[a-h]x\)[a-h][1-8]\|\<[a-h][1-8]\>\|\%([a-h]x[a-h][18]=\|\<[a-h][18]=\)[RNBQ]\)\)\@<=[[:space:]]*![!?]\?/
+syntax match ChessGoodMoveBlack /\%(\%([[:digit:]]\.[[:space:]]*\)\@<!\%(\%(\%([RNBQK]\%([a-h][1-8]\?\)\?x\?\|[a-h]x\)[a-h][1-8]\|\<[a-h][1-8]\>\|\%([a-h]x[a-h][18]=\|\<[a-h][18]=\)[RNBQ]\)\%([[:space:]]*\%(#\|++\?\)\)\?\|[a-h]x[a-h][36]\%([[:space:]]*e\.\?p\.\?\%([[:space:]]*\%(#\|++\?\)\)\?\)\?\)\)\@<=[[:space:]]*![!?]\?/
 
 highlight link ChessGoodMove Type
 highlight ChessGoodMoveBlack term=underline cterm=bold ctermfg=72 gui=bold guifg=SeaGreen ctermbg=254 guibg=Grey90
 
 " Bad move: ?!, ?, ??
 syntax match ChessBadMove /?[?!]\?/
-syntax match ChessBadMoveBlack /\%(\%([[:digit:]]\.[[:space:]]*\)\@<!\%(\%([RNBQK]\%([a-h][1-8]\?\)\?x\?\|[a-h]x\)[a-h][1-8]\|\<[a-h][1-8]\>\|\%([a-h]x[a-h][18]=\|\<[a-h][18]=\)[RNBQ]\)\)\@<=[[:space:]]*?[?!]\?/
+syntax match ChessBadMoveBlack /\%(\%([[:digit:]]\.[[:space:]]*\)\@<!\%(\%(\%([RNBQK]\%([a-h][1-8]\?\)\?x\?\|[a-h]x\)[a-h][1-8]\|\<[a-h][1-8]\>\|\%([a-h]x[a-h][18]=\|\<[a-h][18]=\)[RNBQ]\)\%([[:space:]]*\%(#\|++\?\)\)\?\|[a-h]x[a-h][36]\%([[:space:]]*e\.\?p\.\?\%([[:space:]]*\%(#\|++\?\)\)\?\)\?\)\)\@<=[[:space:]]*?[?!]\?/
+" syntax match ChessBadMoveBlack /\%(\%([[:digit:]]\.[[:space:]]*\)\@<!\%(\%([RNBQK]\%([a-h][1-8]\?\)\?x\?\|[a-h]x\)[a-h][1-8]\|\<[a-h][1-8]\>\|[a-h]x[a-h][36]\%([[:space:]]*e\.\?p\.\?\)\?\|\%([a-h]x[a-h][18]=\|\<[a-h][18]=\)[RNBQ]\)\)\@<=[[:space:]]*?[?!]\?/
 
 highlight link ChessBadMove WarningMsg
 highlight ChessBadMoveBlack term=standout ctermfg=196 guifg=Red ctermbg=254 guibg=Grey90
@@ -55,8 +56,8 @@ highlight link ChessFile Statement
 highlight ChessFileBlack term=bold cterm=bold ctermfg=131 gui=bold guifg=Brown ctermbg=254 guibg=Grey90
 
 " Pawn / case: d3
-syntax match ChessCase /\<[a-h]\%([18]\|[2-7]=\@!\)\>\|\%([RNBQK]\%([a-h][1-8]\?\)\?x\?\)\@<=[a-h][1-8]\|\%([a-h]x\)\@<=[a-h]\%([18]\|[2-7]=\@!\)/
-syntax match ChessCaseBlack /\%([[:digit:]]\.[[:space:]]*\)\@<!\<[a-h]\%([18]\|[2-7]=\@!\)\>\|\%(\%([[:digit:]]\.[[:space:]]*\)\@<!\%([RNBQK]\%([a-h][1-8]\?\)\?x\?\)\)\@<=[a-h][1-8]\|\%(\%([[:digit:]]\.[[:space:]]*\)\@<!\%([a-h]x\)\)\@<=[a-h]\%([18]\|[2-7]=\@!\)/
+syntax match ChessCase /\<[a-h]\%([18]\|[2-7]=\@!\)\>\|\%([RNBQK]\%([a-h][1-8]\?\)\?x\?\)\@<=[a-h][1-8]\|\%([a-h]x\)\@<=[a-h]\%([18]\%([[:space:]]*e\.\?p\.\?\)\@!\|[36]=\@!\|[2457]\%([[:space:]]*e\.\?p\.\?\|=\)\@!\)/
+syntax match ChessCaseBlack /\%([[:digit:]]\.[[:space:]]*\)\@<!\<[a-h]\%([18]\|[2-7]=\@!\)\>\|\%(\%([[:digit:]]\.[[:space:]]*\)\@<!\%([RNBQK]\%([a-h][1-8]\?\)\?x\?\)\)\@<=[a-h][1-8]\|\%(\%([[:digit:]]\.[[:space:]]*\)\@<!\%([a-h]x\)\)\@<=[a-h]\%([18]\%([[:space:]]*e\.\?p\.\?\)\@!\|[36]=\@!\|[2457]\%([[:space:]]*e\.\?p\.\?\|=\)\@!\)/
 
 highlight link ChessCase Special
 highlight ChessCaseBlack term=bold ctermfg=104 guifg=SlateBlue ctermbg=254 guibg=Grey90
@@ -70,7 +71,8 @@ highlight ChessCastlingBlack term=bold cterm=bold ctermfg=131 gui=bold guifg=Bro
 
 " Capture, check, checkmate, promotion, en passant
 syntax match ChessAction /[x#=]\|++\?\|e\.\?p\.\?/
-syntax match ChessActionBlack /\%(\%([[:digit:]]\.[[:space:]]*\)\@<!\%([RNBQK]\%([a-h][1-8]\?\)\?\|[a-h]\)\)\@<=x\|\%(\%([[:digit:]]\.[[:space:]]*\)\@<!\%(\%([RNBQK]\%([a-h][1-8]\?\)\?x\?\|[a-h]x\)[a-h][1-8]\|\<[a-h][1-8]\>\)\)\@<=\%(#\|++\?\|[[:space:]]*e\.\?p\.\?\)\|\%(\%([[:digit:]]\.[[:space:]]*\)\@<!\%([a-h]x[a-h][18]\|\<[a-h][18]\)\)\@<==[RNBQ]\@=/
+" x, #/+/++, ep, =
+syntax match ChessActionBlack /\%(\%([[:digit:]]\.[[:space:]]*\)\@<!\%([RNBQK]\%([a-h][1-8]\?\)\?\|[a-h]\)\)\@<=x\|\%(\%([[:digit:]]\.[[:space:]]*\)\@<!\%(\%([RNBQK]\%([a-h][1-8]\?\)\?x\?\|[a-h]x\)[a-h][1-8]\|\<[a-h][1-8]\>\|[a-h]x[a-h][36][[:space:]]*e\.\?p\.\?\)\)\@<=\%([[:space:]]*\%(#\|++\?\)\)\|\%(\%([[:digit:]]\.[[:space:]]*\)\@<![a-h]x[a-h][36]\)\@<=[[:space:]]*e\.\?p\.\?\|\%(\%([[:digit:]]\.[[:space:]]*\)\@<!\%([a-h]x[a-h][18]\|\<[a-h][18]\)\)\@<==[RNBQ]\@=/
 
 highlight link ChessAction Constant
 highlight ChessActionBlack term=underline ctermfg=201 guifg=Magenta ctermbg=254 guibg=Grey90
@@ -107,6 +109,15 @@ syntax match ChessError /\<[^a-h[:digit:]]\%([1-8]\>\)\@=\|\%([RNBQK]\%([a-h][1-
 " Wrong promotion (rank <> 1/8 or piece <> RNBQ)
 syntax match ChessError /\%(\%([a-h]x\)\?[a-h]\)\@<=[^18]\%(=[RNBQ]\)\@=/
 syntax match ChessError /\%(\%([a-h]x\)\?[a-h][18]=\)\@<=[^RNBQ]/
+
+" En passant erroneous rank
+syntax match ChessError /\%([a-h]x[a-h]\)\@<=[^36]\%([[:space:]]*e\.\?p\.\?\)\@=/
+
+" Erroneous first move
+" [a-h][3-6] or N[acfh][36]
+" syntax match ChessError /\%(\<1\..\{-}[a-h]\)\@<=[^3-6]/
+" syntax match ChessError /\%(\<1\..\{-}N[acfh]\)\@<=[^36]/
+" " ...
 
 " Unknown tag key
 syntax match ChessError /^[[:space:]]*\[[[:space:]]*\%(\%(Event\|Site\|Date\|Round\|White\|Black\|Result\|Annotator\|PlyCount\|TimeControl\|Time\|Termination\|Mode\|FEN\)\>\)\@!/
