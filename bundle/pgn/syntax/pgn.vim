@@ -35,7 +35,6 @@ highlight ChessGoodMoveBlack term=underline cterm=bold ctermfg=72 gui=bold guifg
 " Bad move: ?!, ?, ??
 syntax match ChessBadMove /?[?!]\?/
 syntax match ChessBadMoveBlack /\%(\%([[:digit:]]\.[[:space:]]*\)\@<!\%(\%(\%([RNBQK]\%([a-h][1-8]\?\)\?x\?\|[a-h]x\)[a-h][1-8]\|\<[a-h][1-8]\>\|\%([a-h]x[a-h][18]=\|\<[a-h][18]=\)[RNBQ]\)\%([[:space:]]*\%(#\|++\?\)\)\?\|[a-h]x[a-h][36]\%([[:space:]]*e\.\?p\.\?\%([[:space:]]*\%(#\|++\?\)\)\?\)\?\)\)\@<=[[:space:]]*?[?!]\?/
-" syntax match ChessBadMoveBlack /\%(\%([[:digit:]]\.[[:space:]]*\)\@<!\%(\%([RNBQK]\%([a-h][1-8]\?\)\?x\?\|[a-h]x\)[a-h][1-8]\|\<[a-h][1-8]\>\|[a-h]x[a-h][36]\%([[:space:]]*e\.\?p\.\?\)\?\|\%([a-h]x[a-h][18]=\|\<[a-h][18]=\)[RNBQ]\)\)\@<=[[:space:]]*?[?!]\?/
 
 highlight link ChessBadMove WarningMsg
 highlight ChessBadMoveBlack term=standout ctermfg=196 guifg=Red ctermbg=254 guibg=Grey90
