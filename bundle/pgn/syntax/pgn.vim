@@ -26,7 +26,7 @@ syntax match ChessMoveNumber /[[:digit:]]\+[[:space:]]*\.\%(\.\.\)\?/
 highlight link ChessMoveNumber LineNr
 
 " Good move: !?, !, !!
-syntax match ChessGoodMove /![!?]\?/
+syntax match ChessGoodMove /![!?]\?\%([[:space:]]\+.\)\@=/
 " Rc2xa2!, cxd4!, g4!, axb8=Q!, a8=Q!, axb3ep!
 syntax match ChessGoodMoveBlack /\%(\%([[:digit:]]\.[[:space:]]*\)\@<!\%(\%(\%([RNBQK]\%([a-h][1-8]\?\)\?x\?\|\<[a-h]x\)[a-h][1-8]\|\<[a-h]\%([18]\|[2-7]=\@!\)\>\|\%([a-h]x[a-h][18]=\|\<[a-h][18]=\)[RNBQ]\)\%([[:space:]]*\%(#\|++\?\)\)\?\|[a-h]x[a-h][36]\%([[:space:]]*e\.\?p\.\?\%([[:space:]]*\%(#\|++\?\)\)\?\)\?\)\)\@<=[[:space:]]*![!?]\?/
 
