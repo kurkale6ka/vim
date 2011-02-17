@@ -50,7 +50,7 @@ highlight link ChessStrongPiece Statement
 highlight ChessStrongPieceBlack term=bold cterm=bold ctermfg=131 gui=bold guifg=Brown ctermbg=254 guibg=Grey90
 
 " File: (f)xg4ep
-syntax match ChessFile /[a-h]\%(x[a-h]\%([18]\%([[:space:]]*e\.\?p\.\?\)\@!\|[36]=\@!\|[2457]\%([[:space:]]*e\.\?p\.\?\|=\)\@!\)\)\@=/
+syntax match ChessFile /\%([[:digit:]]\.\%(\.\.\)\?[[:space:]]\+\)\@<=[a-h]\%(x[a-h]\%([18]\%([[:space:]]*e\.\?p\.\?\)\@!\|[36]=\@!\|[2457]\%([[:space:]]*e\.\?p\.\?\|=\)\@!\)\)\@=/
 syntax match ChessFileBlack /\%([[:digit:]]\.[[:space:]]*\)\@<![a-h]\%(x[a-h]\%([18]\%([[:space:]]*e\.\?p\.\?\)\@!\|[36]=\@!\|[2457]\%([[:space:]]*e\.\?p\.\?\|=\)\@!\)\)\@=/
 
 highlight link ChessFile Statement
