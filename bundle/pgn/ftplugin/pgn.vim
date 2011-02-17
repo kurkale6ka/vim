@@ -1,6 +1,7 @@
 setlocal nonumber norelativenumber
 setlocal foldmethod=syntax
 setlocal autoindent
+setlocal nocursorline
 
 iabbrev oo  O-O
 iabbrev OO  O-O
@@ -8,20 +9,27 @@ iabbrev 00  O-O
 iabbrev ooo O-O-O
 iabbrev OOO O-O-O
 iabbrev 000 O-O-O
+
 inoremap <buffer> > 1-0
 inoremap <buffer> < 0-1
-imap     <buffer> \pw ♙
-imap     <buffer> \pb ♟
-imap     <buffer> \rw ♖
-imap     <buffer> \rb ♜
-imap     <buffer> \nw ♘
-imap     <buffer> \nb ♞
-imap     <buffer> \bw ♗
-imap     <buffer> \bb ♝
-imap     <buffer> \qw ♕
-imap     <buffer> \qb ♛
-imap     <buffer> \kw ♔
-imap     <buffer> \kb ♚
+
+imap <buffer> \pw ♙
+imap <buffer> \pb ♟
+
+imap <buffer> \rw ♖
+imap <buffer> \rb ♜
+
+imap <buffer> \nw ♘
+imap <buffer> \nb ♞
+
+imap <buffer> \bw ♗
+imap <buffer> \bb ♝
+
+imap <buffer> \qw ♕
+imap <buffer> \qb ♛
+
+imap <buffer> \kw ♔
+imap <buffer> \kb ♚
 
 function! s:ChessBoard(show)
 
