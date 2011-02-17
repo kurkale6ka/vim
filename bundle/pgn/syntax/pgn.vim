@@ -43,7 +43,7 @@ highlight ChessBadMoveBlack term=standout ctermfg=196 guifg=Red ctermbg=254 guib
 
 " Rook, kNight, Bishop, Queen, King
 " Ex: (N)c3xb5, h8=(Q), axb8=(R)
-syntax match ChessStrongPiece /\%([RNBQK]\%([a-h][1-8]\?\)\?\)\%(x\?[a-h][1-8]\)\@=\|\%(\%([a-h]x\)\?[a-h][18]=\)\@<=[RNBQ]/
+syntax match ChessStrongPiece /\%([[:digit:]]\.\%(\.\.\)\?[[:space:]]\+\)\@<=\%([RNBQK]\%([a-h][1-8]\?\)\?\)\%(x\?[a-h][1-8]\)\@=\|\%([[:digit:]]\.\%(\.\.\)\?[[:space:]]\+\%([a-h]x\)\?[a-h][18]=\)\@<=[RNBQ]/
 syntax match ChessStrongPieceBlack /\%([[:digit:]]\.[[:space:]]*\)\@<!\%([RNBQK]\%([a-h][1-8]\?\)\?\)\%(x\?[a-h][1-8]\)\@=\|\%(\%([[:digit:]]\.[[:space:]]*\)\@<!\%([a-h]x[a-h][18]=\|\<[a-h][18]=\)\)\@<=[RNBQ]/
 
 highlight link ChessStrongPiece Statement
