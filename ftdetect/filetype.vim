@@ -12,5 +12,6 @@ augroup filetypedetect
     autocmd BufRead,BufNewFile *.ftl      set filetype=xml
     autocmd BufRead,BufNewFile *.feature  set filetype=ruby
     autocmd BufRead,BufNewFile *.pgn      set filetype=pgn
+    autocmd BufRead,BufNewFile *.txt      set filetype=txt
 
 augroup END
