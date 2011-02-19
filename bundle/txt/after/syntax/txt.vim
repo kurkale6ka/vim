@@ -1,5 +1,5 @@
 syntax match txtTitle /\%(^[[:space:]]*\n\|\%^\)\@<=.*[^.?!]\%(\n^[[:space:]]*$\)\@=/
-syntax match txtLink /\<http[^"']\{-}\ze\%([[:space:]]\|['"]\|$\)/
+syntax match txtLink /\<\%(http\|ftp\)[^"']\{-}\ze\%([[:space:]]\|['"]\|$\)/
 syntax match txtSectionDelimiter /^[[:space:]]*-\+[[:space:]]*$/
 syntax match txtList /^[[:space:]]*\%([*-]\|\d\+\.\?\)[[:space:]]\+/
 syntax match txtAcronym /\<\u\{2,}\>/
