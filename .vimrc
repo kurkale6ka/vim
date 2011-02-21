@@ -378,6 +378,11 @@ nmap <leader>g :global/<c-r><c-w>/
 nmap <leader>5 :%substitute///gc<left><left><left><left>
 nmap <leader>bg :Bgrep/<c-r><c-w>/<cr>
 
+nmap <c-pageup>        :bprevious<cr>
+nmap <c-pagedown>      :bnext<cr>
+imap <c-pageup>   <c-o>:bprevious<cr>
+imap <c-pagedown> <c-o>:bnext<cr>
+
 " <leader>v {{{2
 " selects to the EOL excluded
 nmap <leader>v v$h
