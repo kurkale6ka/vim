@@ -678,6 +678,9 @@ let g:surround_{char2nr('w')} = "\\<\r\\>"
 let g:surround_{char2nr("\<c-cr>")} = "http://www.\r.com"
 let g:surround_{char2nr('c')} = "http://www.\r.com"
 
+let apache_version = '2.2'
+let g:is_bash = 1
+
 " Man
 if !has('win32')
 
