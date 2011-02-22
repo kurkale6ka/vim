@@ -1,1 +1,3 @@
-syntax region htmlLink start=/<a\_[[:space:]]\+\_[^>]\{-}[[:space:]]href\_.\{-}>\_[[:space:]]*/ end="\_[[:space:]]*</a>"me=e-4 contains=@Spell,htmlTag,htmlEndTag,htmlSpecialChar,htmlPreProc,htmlComment,javaScript,@htmlPreproc
+syntax clear htmlLink
+
+syntax region htmlLink start=/<a\_[[:space:]]\+\_[^>]\{-}\<href\_.\{-}>\_[[:space:]]*/hs=e+1 end="\_[[:space:]]*</a>"he=s-1 contains=@Spell,htmlTag,htmlEndTag,htmlSpecialChar,htmlPreProc,htmlComment,javaScript,@htmlPreproc
