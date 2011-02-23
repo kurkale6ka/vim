@@ -16,13 +16,17 @@ syntax match txtList /^[[:space:]]*\%([*-]\|\%([[:digit:]]\+\|[[:lower:]]\)[.)]\
 syntax match txtNote /^.\+:[[:space:]]*$/
 
 " UCPA
-syntax match txtAcronym /\<\u\{2,}\>/
+syntax match txtAcronym /\<[[:upper:]]\{2,}\>/
+
+" Numbers
+syntax match txtNumber /[[:digit:]]\+/
 
 highlight link txtTitle   Statement
 highlight link txtLink    Underlined
 highlight link txtEmail   Underlined
 " highlight txtList term=bold cterm=bold gui=bold
 highlight link txtList    Constant
+highlight link txtNumber  Constant
 highlight link txtAcronym Type
 highlight link txtNote    PreProc
 
