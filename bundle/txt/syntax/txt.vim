@@ -1,4 +1,4 @@
-syntax match txtTitle /\%(^[[:space:]]*\n\|\%^\)\@<=.*[^.?!:]\%(\n^[[:space:]]*$\)\@=/
+syntax match txtTitle /\%(^[[:space:]]*\n\|\%^\)\@<=\u.*[^.?!:]\%(\n^[[:space:]]*$\)\@=/
 
 syntax match txtLink "\<\%(https\?\|ftp\)://\%(www\.\)\?[-[:alnum:]_.#~+/]\+\%(?[-[:alnum:][:xdigit:]_.~+=&;]\+\)\?"
 
@@ -20,6 +20,16 @@ syntax match txtAcronym /\<[[:upper:]]\{2,}\>/
 
 " Numbers
 syntax match txtNumber /[[:digit:]]\+/
+
+syntax match txtBaseFileName "\<\%(\f\+\.[[:alpha:]]\+\|README\)\>"
+" Unix file
+syntax match txtFile "\%(\~\?/\|\.\.\?/\)\%(\%(\.\.\?\|\f\+\)/\)*\f\+\%(\.[[:alpha:]]\+\)\?"
+" Unix directory
+syntax match txtDirectory "\%(\.\.\?\|\f\)\+/\>"
+
+highlight link txtBaseFileName Comment
+highlight link txtFile Comment
+highlight link txtDirectory Comment
 
 highlight link txtTitle   Statement
 highlight link txtLink    Underlined
