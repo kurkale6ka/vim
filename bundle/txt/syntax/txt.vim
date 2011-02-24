@@ -23,9 +23,10 @@ syntax match txtNumber /[[:digit:]]\+/
 
 syntax match txtBaseFileName "\<\%(\f\+\.[[:alpha:]]\+\|README\)\>"
 " Unix file
-syntax match txtFile "\%(\~\?/\|\.\.\?/\)\%(\%(\.\.\?\|\f\+\)/\)*\f\+\%(\.[[:alpha:]]\+\)\?"
+syntax match txtFile "\<\%(\~\?/\|\.\.\?/\)\%(\%(\.\.\?\|\f\+\)/\)*\f\+\%(\.[[:alpha:]]\+\)\?"
+" syntax match txtFile "\%(\%(\.\.\?\|\f\+\)/\)\+\f\+\%(\.[[:alpha:]]\+\)\?"
 " Unix directory
-syntax match txtDirectory "\%(\.\.\?\|\f\)\+/\>"
+syntax match txtDirectory "\%(\.\.\?\|\f\+\)/\>"
 
 highlight link txtBaseFileName Comment
 highlight link txtFile Comment
