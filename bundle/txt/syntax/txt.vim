@@ -21,7 +21,7 @@ syntax match txtAcronym /\%([[:lower:]].\{-}\)\@<=\<[[:upper:]]\{2,}\>\|\<[[:upp
 " Numbers
 syntax match txtNumber /[[:digit:]]\+/
 
-syntax match txtBaseFileName "\<\%(\f\+\.[[:alpha:]]\+\|README\)\>"
+syntax match txtBaseFileName "\%(\k\+\.[[:alpha:]]\+\|README\)\>"
 " Unix file
 syntax match txtFile "\<\%(\~\?/\|\.\.\?/\)\%(\%(\.\.\?\|\f\+\)/\)*\f\+\%(\.[[:alpha:]]\+\)\?"
 syntax match txtFile "\%(\%(\.\.\?\|\f\+\)/\)\+\f\+\%(\.[[:alpha:]]\+\)\?"
