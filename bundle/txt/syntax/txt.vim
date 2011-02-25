@@ -1,11 +1,8 @@
-syntax match txtTitle /\%(^[[:space:]]*\n\|\%^\)\@<=\u.*[^.?!:]\%(\n^[[:space:]]*$\)\@=/
+syntax match txtTitle /\%(^[[:space:]]*\n\|\%^\)\@<=[[:upper:]].*[^.?!:]\%(\n^[[:space:]]*$\)\@=/
 
 syntax match txtLink "\<\%(https\?\|ftp\)://\%([-[:alnum:]_#~+/]\+\.\)*[-[:alnum:]_#~+/]\+\%(?[-[:alnum:][:xdigit:]_~+=&;]\+\)\?"
 
 syntax match txtEmail "[-[:alnum:]_#~+]\+\%(\.[-[:alnum:]_#~+]\+\)\?@[-[:alnum:]_#~+]\+\.[-[:alnum:]_#~+]\+"
-
-" --------------------------------------------------------------
-syntax match txtSectionDelimiter /^[[:space:]]*-\+[[:space:]]*$/
 
 " Lists:
 " * / - / 1.
@@ -23,24 +20,25 @@ syntax match txtNumber /[[:digit:]]\+/
 
 syntax match txtBaseFileName "\%(\k\+\.[[:alpha:]]\+\|README\)\>"
 " Unix file
-syntax match txtFile "\<\%(\~\?/\|\.\.\?/\)\%(\%(\.\.\?\|\f\+\)/\)*\f\+\%(\.[[:alpha:]]\+\)\?"
-syntax match txtFile "\%(\%(\.\.\?\|\f\+\)/\)\+\f\+\%(\.[[:alpha:]]\+\)\?"
-syntax match txtOS "OS/2\|MS-DOS"
+syntax match txtFile "\<\%(\~\?/\|\.\.\?/\)\%(\%(\.\.\?\|\k\+\)/\)*\k\+\%(\.[[:alpha:]]\+\)\?"
+syntax match txtFile "\%(\%(\.\.\?\|\k\+\)/\)\+\k\+\%(\.[[:alpha:]]\+\)\?"
 " Unix directory
-syntax match txtDirectory "\%(\.\.\?\|\f\+\)/\>"
+syntax match txtDirectory "\%(\.\.\?\|\k\+\)/\>"
+syntax match Normal "OS\%(/2\)\@="
 
-highlight link txtOS Normal
-highlight link txtBaseFileName Comment
-highlight link txtFile Comment
-highlight link txtDirectory Comment
+" --------------------------------------------------------------
+syntax match txtSectionDelimiter /^[[:space:]]*-\+[[:space:]]*$/
 
-highlight link txtTitle   Statement
-highlight link txtLink    Underlined
-highlight link txtEmail   Underlined
+highlight link txtTitle        Statement
+highlight link txtLink         Underlined
+highlight link txtEmail        Underlined
 " highlight txtList term=bold cterm=bold gui=bold
-highlight link txtList    Constant
-highlight link txtNumber  Constant
-highlight link txtAcronym Type
-highlight link txtNote    PreProc
+highlight link txtList         Constant
+highlight link txtNote         PreProc
+highlight link txtAcronym      Type
+highlight link txtNumber       Constant
+highlight link txtBaseFileName Comment
+highlight link txtFile         Comment
+highlight link txtDirectory    Comment
 
 highlight link txtSectionDelimiter helpSectionDelim
