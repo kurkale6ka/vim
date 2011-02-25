@@ -1,6 +1,6 @@
 syntax match txtTitle /\%(^[[:space:]]*\n\|\%^\)\@<=\u.*[^.?!:]\%(\n^[[:space:]]*$\)\@=/
 
-syntax match txtLink "\<\%(https\?\|ftp\)://\%(www\.\)\?[-[:alnum:]_.#~+/]\+\%(?[-[:alnum:][:xdigit:]_.~+=&;]\+\)\?"
+syntax match txtLink "\<\%(https\?\|ftp\)://\%([-[:alnum:]_#~+/]\+\.\)*[-[:alnum:]_#~+/]\+\%(?[-[:alnum:][:xdigit:]_~+=&;]\+\)\?"
 
 syntax match txtEmail "[-[:alnum:]_#~+]\+\%(\.[-[:alnum:]_#~+]\+\)\?@[-[:alnum:]_#~+]\+\.[-[:alnum:]_#~+]\+"
 
@@ -16,7 +16,7 @@ syntax match txtList /^[[:space:]]*\%([*-]\|\%([[:digit:]]\+\|[[:lower:]]\)[.)]\
 syntax match txtNote /^.\+:[[:space:]]*$/
 
 " UCPA
-syntax match txtAcronym /\<[[:upper:]]\{2,}\>/
+syntax match txtAcronym /\%([[:lower:]].\{-}\)\@<=\<[[:upper:]]\{2,}\>\|\<[[:upper:]]\{2,}\>\%(.\{-}[[:lower:]]\)\@=/
 
 " Numbers
 syntax match txtNumber /[[:digit:]]\+/
