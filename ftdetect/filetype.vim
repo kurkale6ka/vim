@@ -13,5 +13,7 @@ augroup filetypedetect
     autocmd BufRead,BufNewFile *.feature  set filetype=ruby
     autocmd BufRead,BufNewFile *.pgn      set filetype=pgn
     autocmd BufRead,BufNewFile *.txt      set filetype=txt
+    autocmd BufRead,BufNewFile *.text     set filetype=txt
+    autocmd BufRead,BufNewFile README     set filetype=txt
 
 augroup END
