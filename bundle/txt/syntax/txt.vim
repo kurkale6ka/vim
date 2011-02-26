@@ -1,4 +1,4 @@
-syntax match txtTitle /\%(^[[:space:]]*\n\|\%^\)\@<=[[:upper:]]\w*[^.?!:]\%(\n^[[:space:]]*$\)\@=/
+syntax match txtTitle /\%(^[[:space:]]*\n\|\%^\)\@<=[[:upper:]][^[:punct:]]*[^.?!:]\%(\n^[[:space:]]*$\)\@=/
 
 syntax match txtLink "\<\%(https\?\|ftp\)://\%([-[:alnum:]_#~+/]\+\.\)*[-[:alnum:]_#~+/]\+\%(?[-[:alnum:][:xdigit:]_~+=&;]\+\)\?"
 
@@ -31,7 +31,7 @@ syntax match Normal "OS\%(/2\)\@="
 " Windows absolute file path
 syntax match txtFile "[[:alpha:]]:\\\%(\k\+\\\)\+\k\+\%(\.[[:alpha:]]\+\)\?\>"
 
-syntax region txtString start=/\z(["`]\|'\%(s\>\)\@!\)/ skip=/\\\z1/ end=/\z1/
+syntax region txtString start=/\z(["`]\|'\%([st]\>\)\@!\)/ skip=/\\\z1/ end=/\z1/
 syntax region txtParens matchgroup=Comment start=/\[/ end=/\]/ transparent
 syntax region txtParens matchgroup=Comment start=/{/  end=/}/  transparent
 syntax region txtParens matchgroup=Comment start=/(/  end=/)/  transparent
