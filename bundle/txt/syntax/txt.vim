@@ -13,7 +13,7 @@ syntax match txtNumber /[[:digit:]]\+/
 " Lists:
 " * | - | 1. | IV) | a)
 " * | - | 2. | XI) | b)
-syntax match txtList /^[[:space:]]*\%([*-]\|[[:digit:]]\+[[:space:]]*[.)]\?\|\%([[:lower:]]\|[IVXLCDM]\+\)[[:space:]]*[.)]\)/
+syntax match txtList /^[[:space:]]*\%([*-]\|[[:digit:]]\+[[:space:]]*[.)]\?\|\%([[:alpha:]]\|[IVXLCDM]\+\)[[:space:]]*[.)]\)/
 
 " Note:
 syntax match txtNote /\%(^[[:space:]]*\n\|\%^\)\@<=[[:space:]]*[^[:digit:]].*:[[:space:]]*$/
