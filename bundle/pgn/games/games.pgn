@@ -136,15 +136,15 @@
 38. Kf3 Kg5
 39. gxf5 Kxf5
 40. Rh4 Rb7
-41. Rh5 Ke6
-42. Rh6 Ke5
-43. Rh5 Kd6
-44. Rh6 Kc5
-45. Rh5 Rf7
+41. Rh5+ Ke6
+42. Rh6+ Ke5
+43. Rh5+ Kd6
+44. Rh6+ Kc5
+45. Rh5 Rf7+
 46. Ke2 Kc4
 47. Rh4+ Kc5
 48. Rh3 d4
-49. exd4 Kxd4
+49. exd4+ Kxd4
 50. Rd3+ Kc4
 51. Re3 h5
 52. Re4+ Kd5
@@ -155,4 +155,6 @@
 57. f4+ Kf5
 58. Rh3 Rg7+
 59. Kh2 Kxf4
-60. Rg3 Rh3
+60. Rxh5 Rg3
+61. Rh3 Kf3 ; WHY?, why...
+62. Rxg3+ 0-1
