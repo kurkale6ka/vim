@@ -34,3 +34,11 @@ let b:surround_68  = "<div class=\"\1Class: \1\"> \r </div>"
 let b:surround_112 = "<p> \r </p>"
 " P
 let b:surround_80  = "<p class=\"\1Class: \1\"> \r </p>"
+" t
+let b:surround_116 = "<td> \r </td>"
+" T
+let b:surround_84  = "<td class=\"\1Class: \1\"> \r </td>"
+" h
+let b:surround_104 = "<th> \r </th>"
+" H
+let b:surround_72  = "<th class=\"\1Class: \1\"> \r </th>"
