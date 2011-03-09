@@ -1,11 +1,5 @@
 syntax match txtTitle /\%(^[[:space:]]*\n\|\%^\)\@<=[[:upper:]][^[:punct:]]*[^.?!:]\%(\n^[[:space:]]*$\)\@=/
 
-syntax case ignore
-
-syntax match txtLink "\<\%(https\?\|ftp\)://\%([-[:alnum:]_#~+/]\+\.\)*[-[:alnum:]_#~+/]\+\%(?[-[:alnum:][:xdigit:]_~+=&;]\+\)\?"
-
-syntax match txtEmail "\%(mailto:\)\?[-[:alnum:]_#~+]\+\%(\.[-[:alnum:]_#~+]\+\)\?@[-[:alnum:]_#~+]\+\%(\.[-[:alnum:]_#~+]\+\)\+"
-
 syntax case match
 
 " ACRONYM
@@ -45,6 +39,10 @@ syntax match txtTodo /@\?todo[[:space:]]*:\?/
 " syntax keyword txtPLanguage c c++ perl python ruby php lisp
 
 syntax case ignore
+
+syntax match txtLink "\<\%(https\?\|ftp\)://\%([-[:alnum:]_#~+/]\+\.\)*[-[:alnum:]_#~+/]\+\%(?[-[:alnum:][:xdigit:]_~+=&;]\+\)\?"
+
+syntax match txtEmail "\%(mailto:\)\?[-[:alnum:]_#~+]\+\%(\.[-[:alnum:]_#~+]\+\)\?@[-[:alnum:]_#~+]\+\%(\.[-[:alnum:]_#~+]\+\)\+"
 
 syntax keyword txtEditor vi[m] nvi [x]emacs textmate
 
