@@ -40,7 +40,7 @@ syntax match txtTodo /@\?todo[[:space:]]*:\?/
 
 syntax case ignore
 
-syntax match txtLink "\<\%(https\?\|ftp\)://\%([-[:alnum:]_#~+/]\+\.\)*[-[:alnum:]_#~+/]\+\%(?[-[:alnum:][:xdigit:]_~+=&;]\+\)\?"
+syntax match txtLink "\<\%(https\?\|ftp\)://\%([-[:alnum:]_#~+%/]\+\.\)*[-[:alnum:]_#~+%/]\+\%(?[-[:alnum:][:xdigit:]_~+%=&;]\+\)\?"
 
 syntax match txtEmail "\%(mailto:\)\?[-[:alnum:]_#~+]\+\%(\.[-[:alnum:]_#~+]\+\)\?@[-[:alnum:]_#~+]\+\%(\.[-[:alnum:]_#~+]\+\)\+"
 
