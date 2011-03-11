@@ -924,19 +924,38 @@ cabbrev waq wqa
 cabbrev mpa map
 cabbrev frm fmr
 
-" cabbrev <leader>s   [[:space:]]<c-r>=EatChar('[[:space:]]')<cr>
-" cabbrev <leader>S  [^[:space:]]<c-r>=EatChar('[[:space:]]')<cr>
-" cabbrev <leader>d   [[:digit:]]<c-r>=EatChar('[[:space:]]')<cr>
-" cabbrev <leader>D  [^[:digit:]]<c-r>=EatChar('[[:space:]]')<cr>
-" cabbrev <leader>x  [[:xdigit:]]<c-r>=EatChar('[[:space:]]')<cr>
-" cabbrev <leader>X [^[:xdigit:]]<c-r>=EatChar('[[:space:]]')<cr>
-" cabbrev <leader>a   [[:alpha:]]<c-r>=EatChar('[[:space:]]')<cr>
-" cabbrev <leader>A  [^[:alpha:]]<c-r>=EatChar('[[:space:]]')<cr>
-
-" iabbrev<leader>l  [[:lower:]]<c-r>=EatChar('[[:space:]]')<cr>
-" iabbrev<leader>L [^[:lower:]]<c-r>=EatChar('[[:space:]]')<cr>
-" iabbrev<leader>u  [[:upper:]]<c-r>=EatChar('[[:space:]]')<cr>
-" iabbrev<leader>U [^[:upper:]]<c-r>=EatChar('[[:space:]]')<cr>
+iabbrev :n      [[:alnum:]]<c-r>=EatChar('[[:space:]]')<cr>
+iabbrev :N     [^[:alnum:]]<c-r>=EatChar('[[:space:]]')<cr>
+iabbrev :a      [[:alpha:]]<c-r>=EatChar('[[:space:]]')<cr>
+iabbrev :A     [^[:alpha:]]<c-r>=EatChar('[[:space:]]')<cr>
+iabbrev :k      [[:blank:]]<c-r>=EatChar('[[:space:]]')<cr>
+iabbrev :K     [^[:blank:]]<c-r>=EatChar('[[:space:]]')<cr>
+iabbrev :c      [[:cntrl:]]<c-r>=EatChar('[[:space:]]')<cr>
+iabbrev :C     [^[:cntrl:]]<c-r>=EatChar('[[:space:]]')<cr>
+iabbrev :d      [[:digit:]]<c-r>=EatChar('[[:space:]]')<cr>
+iabbrev :D     [^[:digit:]]<c-r>=EatChar('[[:space:]]')<cr>
+iabbrev :g      [[:graph:]]<c-r>=EatChar('[[:space:]]')<cr>
+iabbrev :G     [^[:graph:]]<c-r>=EatChar('[[:space:]]')<cr>
+iabbrev :l      [[:lower:]]<c-r>=EatChar('[[:space:]]')<cr>
+iabbrev :L     [^[:lower:]]<c-r>=EatChar('[[:space:]]')<cr>
+iabbrev :i      [[:print:]]<c-r>=EatChar('[[:space:]]')<cr>
+iabbrev :I     [^[:print:]]<c-r>=EatChar('[[:space:]]')<cr>
+iabbrev :p      [[:punct:]]<c-r>=EatChar('[[:space:]]')<cr>
+iabbrev :P     [^[:punct:]]<c-r>=EatChar('[[:space:]]')<cr>
+iabbrev :s      [[:space:]]<c-r>=EatChar('[[:space:]]')<cr>
+iabbrev :S     [^[:space:]]<c-r>=EatChar('[[:space:]]')<cr>
+iabbrev :u      [[:upper:]]<c-r>=EatChar('[[:space:]]')<cr>
+iabbrev :U     [^[:upper:]]<c-r>=EatChar('[[:space:]]')<cr>
+iabbrev :x     [[:xdigit:]]<c-r>=EatChar('[[:space:]]')<cr>
+iabbrev :X    [^[:xdigit:]]<c-r>=EatChar('[[:space:]]')<cr>
+iabbrev :r     [[:return:]]<c-r>=EatChar('[[:space:]]')<cr>
+iabbrev :R    [^[:return:]]<c-r>=EatChar('[[:space:]]')<cr>
+iabbrev :t        [[:tab:]]<c-r>=EatChar('[[:space:]]')<cr>
+iabbrev :T       [^[:tab:]]<c-r>=EatChar('[[:space:]]')<cr>
+iabbrev :e     [[:escape:]]<c-r>=EatChar('[[:space:]]')<cr>
+iabbrev :E    [^[:escape:]]<c-r>=EatChar('[[:space:]]')<cr>
+iabbrev :b  [[:backspace:]]<c-r>=EatChar('[[:space:]]')<cr>
+iabbrev :B [^[:backspace:]]<c-r>=EatChar('[[:space:]]')<cr>
 
 " function! s:IfCopy()
 
