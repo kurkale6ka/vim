@@ -745,7 +745,12 @@ function s:Underline(chars)
       let nb_insertions = nb_columns / nb_chars
    endif
 
+   let saveFormatoptions = &formatoptions
+   set formatoptions-=o
+
    execute "normal! o\<esc>"
+
+   let &formatoptions = saveFormatoptions
 
    if has('float')
       execute 'normal! ' . float2nr(nb_insertions) . 'i' . chars . "\<esc>"
