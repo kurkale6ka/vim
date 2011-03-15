@@ -10,6 +10,7 @@ Abolish developper developer
 Abolish whcih which
 Abolish colaboration collaboration
 Abolish desier desire
+Abolish convinience convenience
 
 " Check all ll, pp, ss, nn words ?!
 " Lang dependant? (ex: appeller)
