@@ -614,9 +614,9 @@ function! s:Filter_lines (cmd, filter)
 
    wincmd n
 
-   set buftype=nofile
+   setlocal buftype=nofile noswapfile
 
-   execute 'normal! insert' . lines . "\<cr>"
+   execute 'normal! i' . lines . "\<cr>"
 
    execute 'vglobal/' . a:filter . '/delete'
    %substitute#^[[:space:]]*[[:digit:]]\+:[[:space:]]*##eg
