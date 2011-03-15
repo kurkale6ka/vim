@@ -11,6 +11,7 @@ Abolish whcih which
 Abolish colaboration collaboration
 Abolish desier desire
 Abolish convinience convenience
+Abolish pationate passionate
 
 " Check all ll, pp, ss, nn words ?!
 " Lang dependant? (ex: appeller)
