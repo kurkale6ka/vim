@@ -304,7 +304,7 @@ function! s:Gm()
 
    let first_col = virtcol('.')
 
-   call search('[^[:space:]]\ze[[:space:]]*$', 'c', line('.'))
+   execute 'normal! g_'
 
    let last_col  = virtcol('.')
 
