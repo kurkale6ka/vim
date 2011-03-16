@@ -612,14 +612,14 @@ function! s:Filter_lines (cmd, filter)
 
    call feedkeys("\<cr>")
 
-   wincmd n
+   new
 
-   setlocal buftype=nofile noswapfile
+   setlocal buftype=nofile bufhidden=hide noswapfile
 
-   execute 'normal! i' . lines . "\<cr>"
+   put=lines
 
    execute 'vglobal/' . a:filter . '/delete'
-   %substitute#^[[:space:]]*[[:digit:]]\+:[[:space:]]*##eg
+   %substitute#^[[:space:]]*[[:digit:]]\+:[[:space:]]*##e
 
    0
 
