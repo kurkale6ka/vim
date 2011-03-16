@@ -627,6 +627,13 @@ endfunction
 
 command! -nargs=1 Scriptnames call <sid>Filter_lines ('scriptnames', <q-args>)
 command! -nargs=1 Version call <sid>Filter_lines ('version', <q-args>)
+command! -nargs=+ Ascii call <sid>Ascii (<f-args>)
+
+function! s:Ascii (ascii_code1, ascii_code2)
+
+   echo range(nr2char(a:ascii_code1), nr2char(a:ascii_code2))
+
+endfunction
 
 " Windows {{{2
 nmap <silent> <c-w><c-w> :wincmd p<cr>
