@@ -631,7 +631,10 @@ command! -nargs=+ Ascii call <sid>Ascii (<f-args>)
 
 function! s:Ascii (ascii_code1, ascii_code2)
 
-   echo range(nr2char(a:ascii_code1), nr2char(a:ascii_code2))
+   for code in range(a:ascii_code1, a:ascii_code2)
+
+      echon nr2char(code) . ' '
+   endfor
 
 endfunction
 
