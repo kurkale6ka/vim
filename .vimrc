@@ -313,6 +313,8 @@ function! s:Gm()
 endfunction
 
 nmap <silent> gm :call <sid>Gm()<cr>
+omap <silent> gm :call <sid>Gm()<cr>
+" xmap <silent> gm :call <sid>Gm()<cr>
 
 " `A...`Z {{{2
 " Jump to file on last change position
