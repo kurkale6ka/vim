@@ -1,4 +1,6 @@
 Abolish teh the
+Abolish nwe new
+Abolish ascci ascii
 Abolish tihs this
 " Abolish have'nt haven't
 Abolish aditionaly additionally
