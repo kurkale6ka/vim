@@ -16,6 +16,7 @@ Abolish desier desire
 Abolish convinience convenience
 Abolish pationate passionate
 Abolish {help}full {}ful
+Abolish redifine redefine
 
 " Check all ll, pp, ss, nn words ?!
 " Lang dependant? (ex: appeller)
