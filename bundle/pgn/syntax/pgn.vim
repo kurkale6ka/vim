@@ -28,7 +28,7 @@ highlight link ChessMoveNumber LineNr
 " Good move: !?, !, !!
 syntax match ChessGoodMove /![!?]\?/
 " Rc2xa2!, cxd4!, g4!, axb8=Q!, a8=Q!, axb3ep!
-syntax match ChessGoodMoveBlack /\%(\%([[:digit:]]\.\%(\.\.\)\?[[:space:]]*\)\@<!\%(\%(\%([RNBQK]\%([a-h][1-8]\?\)\?x\?\|\<[a-h]x\)[a-h][1-8]\|\<[a-h]\%([18]\|[2-7]=\@!\)\>\|\%([a-h]x[a-h][18]=\|\<[a-h][18]=\)[RNBQ]\)\%([[:space:]]*\%(#\|++\?\)\)\?\|[a-h]x[a-h][36]\%([[:space:]]*e\.\?p\.\?\%([[:space:]]*\%(#\|++\?\)\)\?\)\?\)\)\@<=[[:space:]]*![!?]\?/
+syntax match ChessGoodMoveBlack /\%(\%([[:digit:]]\.\%(\.\.\)\?[[:space:]]*\)\@<!\%(\%(\%([RNBQK]\%([a-h][1-8]\?\)\?x\?\|\<[a-h]x\)[a-h][1-8]\|\<[a-h]\%([18]\|[2-7]=\@!\)\>\|\%([a-h]x[a-h][18]=\|\<[a-h][18]=\)[RNBQ]\)\%([[:space:]]*\%(#\|++\?\)\)\?\|[a-h]x[a-h][36]\%([[:space:]]*e\.\?p\.\?\%([[:space:]]*\%(#\|++\?\)\)\?\)\?\|O-O\%(-O\)\?\)\)\@<=[[:space:]]*![!?]\?/
 
 highlight link ChessGoodMove Type
 highlight ChessGoodMoveBlack term=underline cterm=bold ctermfg=72 gui=bold guifg=SeaGreen ctermbg=254 guibg=Grey90
@@ -36,7 +36,7 @@ highlight ChessGoodMoveBlack term=underline cterm=bold ctermfg=72 gui=bold guifg
 " Bad move: ?!, ?, ??
 syntax match ChessBadMove /?[?!]\?/
 " Rc2xa2?, cxd4?, g4?, axb8=Q?, a8=Q?, axb3ep?
-syntax match ChessBadMoveBlack /\%(\%([[:digit:]]\.\%(\.\.\)\?[[:space:]]*\)\@<!\%(\%(\%([RNBQK]\%([a-h][1-8]\?\)\?x\?\|\<[a-h]x\)[a-h][1-8]\|\<[a-h]\%([18]\|[2-7]=\@!\)\>\|\%([a-h]x[a-h][18]=\|\<[a-h][18]=\)[RNBQ]\)\%([[:space:]]*\%(#\|++\?\)\)\?\|[a-h]x[a-h][36]\%([[:space:]]*e\.\?p\.\?\%([[:space:]]*\%(#\|++\?\)\)\?\)\?\)\)\@<=[[:space:]]*?[?!]\?/
+syntax match ChessBadMoveBlack /\%(\%([[:digit:]]\.\%(\.\.\)\?[[:space:]]*\)\@<!\%(\%(\%([RNBQK]\%([a-h][1-8]\?\)\?x\?\|\<[a-h]x\)[a-h][1-8]\|\<[a-h]\%([18]\|[2-7]=\@!\)\>\|\%([a-h]x[a-h][18]=\|\<[a-h][18]=\)[RNBQ]\)\%([[:space:]]*\%(#\|++\?\)\)\?\|[a-h]x[a-h][36]\%([[:space:]]*e\.\?p\.\?\%([[:space:]]*\%(#\|++\?\)\)\?\)\?\|O-O\%(-O\)\?\)\)\@<=[[:space:]]*?[?!]\?/
 
 highlight link ChessBadMove WarningMsg
 highlight ChessBadMoveBlack term=standout ctermfg=196 guifg=Red ctermbg=254 guibg=Grey90
