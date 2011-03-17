@@ -638,13 +638,22 @@ function! s:Ascii (...)
       return
    endif
 
+   let codes =
+      \{0:'^@', 9:'^I', 10:'^J (^@)', 13:'^M', 32:'<space>', 127:'<del>', 160:'&nbsp'}
+
    if a:0 != 2
 
       for code in a:000
 
          echon '['. code .' '
          echohl Comment
-         echon  nr2char(code)
+
+         if has_key(codes, code)
+            echon codes[code]
+         else
+            echon  nr2char(code)
+         endif
+
          echohl Normal
          echon  '] '
       endfor
@@ -653,7 +662,13 @@ function! s:Ascii (...)
 
          echon '['. code .' '
          echohl Comment
-         echon  nr2char(code)
+
+         if has_key(codes, code)
+            echon codes[code]
+         else
+            echon  nr2char(code)
+         endif
+
          echohl Normal
          echon  '] '
       endfor
