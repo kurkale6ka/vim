@@ -964,10 +964,10 @@ nmap <leader>fb :set filetype=sh<cr>
 nmap <leader>fc :set filetype=css<cr>
 nmap <leader>fr :set filetype=ruby<cr>
 
-nmap <leader>kbg :set keymap=bg<cr>
-nmap <leader>kfr :set keymap=fr<cr>
-nmap <leader>kes :set keymap=es<cr>
-nmap <leader>ken :set keymap& spelllang&<cr>
+nmap <leader>kbg :setlocal keymap=bg<cr>
+nmap <leader>kfr :setlocal keymap=fr<cr>
+nmap <leader>kes :setlocal keymap=es<cr>
+nmap <leader>ken :setlocal keymap& spelllang&<cr>
 
 cabbrev vsb vertical sbuffer
 cabbrev svb vertical sbuffer
