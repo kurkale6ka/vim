@@ -629,14 +629,35 @@ endfunction
 
 command! -nargs=1 Scriptnames call <sid>Filter_lines ('scriptnames', <q-args>)
 command! -nargs=1 Version call <sid>Filter_lines ('version', <q-args>)
-command! -nargs=+ Ascii call <sid>Ascii (<f-args>)
+command! -nargs=* Ascii call <sid>Ascii (<f-args>)
 
-function! s:Ascii (ascii_code1, ascii_code2)
+function! s:Ascii (...)
 
-   for code in range(a:ascii_code1, a:ascii_code2)
+   if a:0 == 0
+      view $HOME/vimfiles/ascii
+      return
+   endif
 
-      echon nr2char(code) . ' '
-   endfor
+   if a:0 != 2
+
+      for code in a:000
+
+         echon '['. code .' '
+         echohl Comment
+         echon  nr2char(code)
+         echohl Normal
+         echon  '] '
+      endfor
+   else
+      for code in range(a:1, a:2)
+
+         echon '['. code .' '
+         echohl Comment
+         echon  nr2char(code)
+         echohl Normal
+         echon  '] '
+      endfor
+   endif
 
 endfunction
 
