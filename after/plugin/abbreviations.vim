@@ -4,6 +4,7 @@ Abolish tihs this
 Abolish aditionaly additionally
 Abolish profesion profession
 Abolish ubyquity ubiquity
+Abolish analysys analysis
 Abolish awlays always
 Abolish profesional professional
 Abolish developper developer
@@ -12,6 +13,7 @@ Abolish colaboration collaboration
 Abolish desier desire
 Abolish convinience convenience
 Abolish pationate passionate
+Abolish {help}full {}ful
 
 " Check all ll, pp, ss, nn words ?!
 " Lang dependant? (ex: appeller)
