@@ -407,7 +407,8 @@ nmap <silent> <m-i> :Indentation<cr>
 
 " zM {{{2
 " Fold everything & go to line 1
-nnoremap zM zMgg0
+nnoremap zM :let wv = winsaveview()<cr>zM:call winrestview(wv)<cr>
+" nnoremap zM zMgg0
 
 " c-tab {{{2
 " Switch to the alternate file
