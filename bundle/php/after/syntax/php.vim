@@ -1,1 +1,1 @@
-se iskeyword-=-
+setlocal iskeyword-=-

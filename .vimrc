@@ -876,10 +876,15 @@ function! s:ShowOptionsValues(verb)
       let optionsArr = split(options)
 
       if 1 != a:verb && len(optionsArr) == 1
-         execute 'set ' . join(optionsArr, '? ') . '?'
+
+         let command = 'set ' . join(optionsArr, '? ') . '?'
+         execute command
       else
-         execute 'verbose set ' . join(optionsArr, '? ') . '?'
+         let command = 'verbose set ' . join(optionsArr, '? ') . '?'
+         execute command
       endif
+
+      call histadd(':', command)
    else
       set
    endif
