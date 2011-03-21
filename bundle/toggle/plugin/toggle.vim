@@ -25,13 +25,13 @@ if version >= 703
 
          if empty(&textwidth)
 
-            set colorcolumn=81
+            setlocal colorcolumn=81
          else
-            set colorcolumn=+1
+            setlocal colorcolumn=+1
          endif
          let @/ = '\%81v.*'
       else
-         set colorcolumn=
+         setlocal colorcolumn=
          let @/ = ''
       endif
 
