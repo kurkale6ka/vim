@@ -1,7 +1,8 @@
-nmap <leader>e     :set spell!     spell?<cr>
+nmap <leader>e     :setlocal spell!  spell?<cr>
+nmap <leader><tab> :setlocal invlist  list?<cr>
+
 nmap <leader>dg    :set digraph! digraph?<cr>
 nmap <leader>p     :set invpaste   paste?<cr>
-nmap <leader><tab> :set invlist     list?<cr>
 
 if version >= 703
 
