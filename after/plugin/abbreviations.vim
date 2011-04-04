@@ -1,3 +1,5 @@
+Abolish awlays always
+Abolish whcih which
 Abolish teh the
 Abolish nwe new
 Abolish ascci ascii
@@ -7,16 +9,15 @@ Abolish aditionaly additionally
 Abolish profesion profession
 Abolish ubyquity ubiquity
 Abolish analysys analysis
-Abolish awlays always
 Abolish profesional professional
-Abolish developper developer
-Abolish whcih which
+Abolish developper{,s} developer{}
 Abolish colaboration collaboration
 Abolish desier desire
 Abolish convinience convenience
 Abolish pationate passionate
 Abolish {help}full {}ful
 Abolish redifine redefine
+Abolish holyday{,s} holiday{}
 
 " Check all ll, pp, ss, nn words ?!
 " Lang dependant? (ex: appeller)
