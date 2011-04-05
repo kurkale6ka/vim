@@ -21,6 +21,7 @@ if has('win32')
 endif
 
 call pathogen#runtime_append_all_bundles()
+call pathogen#runtime_append_all_bundles('plugins')
 call pathogen#helptags()
 
 " Keep these lines after runtimepath!
