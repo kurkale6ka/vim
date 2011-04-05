@@ -1,5 +1,5 @@
-= Here:
-   my Vim configuration files & plugins
+= Vim configuration files:
+Here you will find all my Vim configuration files & plugins
 
 = My Vim tips:
 
