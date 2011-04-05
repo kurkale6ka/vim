@@ -1,12 +1,14 @@
-= Here: my Vim configuration files & plugins
+= Here:
+   my Vim configuration files & plugins
 
 = My Vim tips:
 
-http://vim.wikia.com/wiki/A_better_gm_command
-http://vim.wikia.com/wiki/A_command_for_checking_if_a_plugin_has_loaded_and_if_so_allow_an_easy_open_with_gf
-http://vim.wikia.com/wiki/Underline_text
+* http://vim.wikia.com/wiki/A_better_gm_command
+* http://vim.wikia.com/wiki/A_command_for_checking_if_a_plugin_has_loaded_and_if_so_allow_an_easy_open_with_gf
+* http://vim.wikia.com/wiki/Underline_text
 
-= Vim online: http://www.vim.org
+= Vim online:
+   http://www.vim.org
 
 = Author:
 
