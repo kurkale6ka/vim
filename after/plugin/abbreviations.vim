@@ -17,6 +17,8 @@ Abolish convinience convenience
 Abolish pationate passionate
 Abolish {help}full {}ful
 Abolish redifine redefine
+Abolish beneat beneath
+Abolish rethorical rhetorical
 Abolish holyday{,s} holiday{}
 
 " Check all ll, pp, ss, nn words ?!
