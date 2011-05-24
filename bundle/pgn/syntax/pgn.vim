@@ -5,7 +5,7 @@ syntax case match
 " Folding
 syntax region ChessGameFold start=/^[[:space:]]*\[[[:space:]]*Date/ end=/\n\ze[[:space:]]*\[[[:space:]]*Event/ transparent fold
 
-syntax keyword ChessKeyword Event Site Date Round White Black Result Annotator PlyCount TimeControl Time Termination Mode FEN
+syntax keyword ChessKeyword Event Site Date Round White Black WhiteElo BlackElo Result Annotator PlyCount TimeControl Time Termination Mode FEN
 
 highlight link ChessKeyword Normal
 
@@ -121,7 +121,7 @@ syntax match ChessError /\%([a-h]x[a-h]\)\@<=[^36]\%([[:space:]]*e\.\?p\.\?\)\@=
 " " ...
 
 " Unknown tag key
-syntax match ChessError /^[[:space:]]*\[[[:space:]]*\%(\%(Event\|Site\|Date\|Round\|White\|Black\|Result\|Annotator\|PlyCount\|TimeControl\|Time\|Termination\|Mode\|FEN\)\>\)\@!/
+syntax match ChessError /^[[:space:]]*\[[[:space:]]*\%(\%(Event\|Site\|Date\|Round\|White\%(Elo\)\?\|Black\%(Elo\)\?\|Result\|Annotator\|PlyCount\|TimeControl\|Time\|Termination\|Mode\|FEN\)\>\)\@!/
 
 " ... error (1. ... or 1....)
 syntax match ChessError /\%([[:digit:]]\.\)\@<=[[:space:]]\+\%(\.\{3}\)\@=/
