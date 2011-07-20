@@ -32,3 +32,5 @@ lmap <buffer> [  ь
 lmap <buffer> {  Ь
 lmap <buffer> 1  ю
 lmap <buffer> !  Ю
+
+iabbrev абв абвгдежзийклмнопрстуфхцчшщъьюя<cr>АБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЬЮЯ
