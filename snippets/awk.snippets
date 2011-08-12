@@ -7,7 +7,7 @@ snippet skel
 
 	BEGIN {
 
-		if (ARGV[1] !~ "${6}")
+		if (ARGV[1] !~ /${6}/)
 		{
 			print "Usage: ${7}"
 			exit
@@ -21,7 +21,9 @@ snippet skel
 		# Number of fields: only parse records containing data
 		if (NF != 0)
 		{
+			/${8:pattern1}/ {${9:actions}}
+			/${10:pattern2}/ {${11:actions}}
 		}
 	}
 
-	END {${8}}
+	END {${12}}
