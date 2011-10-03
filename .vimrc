@@ -9,18 +9,18 @@
 if has('win32')
 
    set runtimepath=
-      \$HOME/vimfiles,
+      \$HOME/config/vimfiles,
       \$VIM/vimfiles,
       \$VIMRUNTIME,
       \$VIM/vimfiles/after,
-      \$HOME/vimfiles/after
+      \$HOME/config/vimfiles/after
 
-   set viewdir=$HOME/vimfiles/view
+   set viewdir=$HOME/config/vimfiles/view
 
    behave xterm
 endif
 
-call pathogen#runtime_prepend_subdirectories($HOME.'/vimfiles/plugins')
+call pathogen#runtime_prepend_subdirectories($HOME.'/config/vimfiles/plugins')
 call pathogen#runtime_append_all_bundles()
 call pathogen#helptags()
 
@@ -636,7 +636,7 @@ command! -nargs=* Ascii call <sid>Ascii (<f-args>)
 function! s:Ascii (...)
 
    if a:0 == 0
-      view $HOME/vimfiles/ascii
+      view $HOME/config/vimfiles/ascii
       return
    endif
 
