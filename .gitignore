@@ -12,3 +12,8 @@
 **/*.stackdump
 tags
 **/tags
+bundle/vim-blanklines/
+bundle/vim-blockinsert/
+bundle/vim-quotes/
+bundle/vim-sequence/
+bundle/vim-swap/
