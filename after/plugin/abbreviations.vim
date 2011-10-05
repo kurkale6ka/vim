@@ -1,3 +1,7 @@
+if !exists('g:loaded_abolish')
+   finish
+endif
+
 Abolish awlays always
 Abolish whcih which
 Abolish teh the
