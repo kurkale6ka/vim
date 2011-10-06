@@ -30,3 +30,4 @@ bundle/vim-repeat/
 bundle/vim-space/
 bundle/vim-surround/
 bundle/vim-unimpaired/
+bundle/bufkill.vim/
