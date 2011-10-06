@@ -11,4 +11,5 @@ function! s:VSetSearch()
 endfunction
 
 vnoremap <kmultiply> :<C-u>call <SID>VSetSearch()<CR>/<CR>
-vnoremap # :<C-u>call <SID>VSetSearch()<CR>?<CR>
+vnoremap *           :<C-u>call <SID>VSetSearch()<CR>/<CR>
+vnoremap #           :<C-u>call <SID>VSetSearch()<CR>?<CR>
