@@ -20,9 +20,7 @@ if has('win32')
    behave xterm
 endif
 
-call pathogen#runtime_prepend_subdirectories($HOME.'/config/vimfiles/plugins')
-call pathogen#runtime_append_all_bundles()
-call pathogen#helptags()
+call pathogen#infect()
 
 " Keep these lines after runtimepath!
 syntax                 on
