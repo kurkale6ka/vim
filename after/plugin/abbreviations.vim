@@ -40,15 +40,15 @@ else
    iabbrev ubyquity ubiquity
    iabbrev analysys analysis
    iabbrev profesional professional
-   iabbrev developper{,s} developer{}
+   iabbrev developper developer
    iabbrev colaboration collaboration
    iabbrev desier desire
    iabbrev convinience convenience
    iabbrev pationate passionate
-   iabbrev {help}full {}ful
+   iabbrev helpfull helpful
    iabbrev redifine redefine
    iabbrev beneat beneath
    iabbrev rethorical rhetorical
-   iabbrev holyday{,s} holiday{}
+   iabbrev holyday holiday
 
 endif
