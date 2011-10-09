@@ -778,7 +778,7 @@ let g:loaded_ZoomWin         = 1
 
 " There seems not to be a way to disable tohtml.vim
 
-function s:Underline(chars)
+function! s:Underline(chars)
 
    let chars = empty(a:chars) ? '-' : a:chars
 
