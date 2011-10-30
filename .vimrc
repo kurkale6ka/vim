@@ -220,11 +220,11 @@ endif
 
 if !has('win32')
 
-   set guifont=DejaVu\ Sans\ Mono\ 16,
-      \Nimbus\ Mono\ L\ 16,
-      \Andale\ Mono\ 16,
-      \Liberation\ Mono\ 16,
-      \Monospace\ 16
+   set guifont=DejaVu\ Sans\ Mono\ 14,
+      \Nimbus\ Mono\ L\ 14,
+      \Andale\ Mono\ 14,
+      \Liberation\ Mono\ 14,
+      \Monospace\ 14
 else
    set guifont=DejaVu_Sans_Mono:h13,
       \Nimbus_Mono_L:h13,
