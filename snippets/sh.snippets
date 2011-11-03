@@ -39,7 +39,7 @@ snippet until
 	done
 
 	${3}
-# Switch
+# Switch / select
 snippet case Case
 	case "$${1:variable}" in
 
@@ -48,21 +48,40 @@ snippet case Case
 		${6:glob3}) ${7:command};;
 		*) ${8:default_command};;
 	esac
-
-	${9}
 snippet case Select
-	select ${1:choice} in ${2:words}; do
+	options[0]='${1}'
+	options[1]='${2}'
+	options[2]='${3}'
 
-		if [[ ${3:correct} == $$1 ]]; then
+	select choice in "${options[@]}"; do
 
-			echo '${4:correct}'
-			break
-		fi
+		case "$choice" in
 
-		echo '${5:Incorrect}'
+			"${options[0]}") ${4}; break;;
+			"${options[1]}") ${5}; break;;
+			"${options[2]}") ${6}; break;;
+		esac
+		echo '*** Wrong choice ***'
 	done
+	${7}
+snippet sel
+	options[0]='${1}'
+	options[1]='${2}'
+	options[2]='${3}'
 
-	${6}
+	select choice in "${options[@]}"; do
+
+		case "$choice" in
+
+			"${options[0]}") ${4}; break;;
+			"${options[1]}") ${5}; break;;
+			"${options[2]}") ${6}; break;;
+		esac
+		echo '*** Wrong choice ***'
+	done
+	${7}
+snippet scan
+	read -p '${1:Enter value:}' ${2:var}
 # if
 snippet if Commands
 	if ${1:commands}; then
