@@ -41,7 +41,6 @@ set includeexpr=substitute(v:fname,'^/','','')
 if has('folding')
 
    set foldmethod=marker
-   set foldmarker=~\\~,~/~
 endif
 
 " Security restrictions
