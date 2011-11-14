@@ -80,10 +80,11 @@ if &encoding =~ '^u\(tf\|cs\)' " When running in a Unicode environment
 
    " arrow + space (↪ ) at the beginning of wrapped lines
    let &showbreak=nr2char(8618).' '
+
+   set list
 endif
 
 " Alerts and visual feedback {{{2
-set list
 set linebreak
 set number
 set numberwidth=3
