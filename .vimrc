@@ -680,11 +680,6 @@ nmap <silent> <c-w><c-w> :wincmd p<cr>
 nmap <silent> <c-w>e     :WinFullScreen<cr>
 nmap <silent> <c-w><c-e> :WinFullScreen<cr>
 
-" q= {{{2
-nmap q= @=<c-f>
-nmap q@ :call input('')<cr><c-f>
-" }}}2
-
 xmap   <tab> >
 xmap <s-tab> <
 nmap <leader>0 :left<cr>
