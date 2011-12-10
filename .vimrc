@@ -706,12 +706,8 @@ xmap [t <esc>'>yy'<p==
 
 if version >= 703
 
-   set relativenumber
-
    set cryptmethod=blowfish
-
    set undofile
-
 endif
 
 " Plugin settings {{{1
