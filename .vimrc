@@ -37,6 +37,7 @@ set viminfo='20,<50,s10,h,!
 " C, server side includes, HTML
 set include=^\\s*#\\s*include\\\|--\\s*#\\s*include\\s*virtual=\\\|href=
 set includeexpr=substitute(v:fname,'^/','','')
+set isfname-==
 
 if has('folding')
 
@@ -950,14 +951,14 @@ endfunc
 nmap <leader>ft :set filetype=
 nmap <leader>fa :set filetype=awk<cr>
 nmap <leader>fs :set filetype=scheme<cr>
-nmap <leader>fp :set filetype=php<cr>
+nmap <leader>fp :set filetype=perl<cr>
 nmap <leader>fh :set filetype=html<cr>
 nmap <leader>fj :set filetype=javascript<cr>
 nmap <leader>fx :set filetype=xml<cr>
 nmap <leader>fv :set filetype=vim<cr>
 nmap <leader>fl :set filetype=tex<cr>
 nmap <leader>fb :set filetype=sh<cr>
-nmap <leader>fc :set filetype=css<cr>
+nmap <leader>fc :set filetype=c<cr>
 nmap <leader>fr :set filetype=ruby<cr>
 
 nmap <leader>kbg :setlocal keymap=bg<cr>
