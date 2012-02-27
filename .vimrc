@@ -23,8 +23,9 @@ endif
 call pathogen#infect()
 
 " Keep these lines after runtimepath!
-syntax                 on
-filetype plugin indent on
+syntax          on
+filetype plugin on
+filetype indent on
 
 set nocompatible
 
