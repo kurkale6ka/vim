@@ -391,7 +391,7 @@ nmap <leader>v v$h
 
 " Backspace {{{2
 " deletes leftwards
-   nnoremap <bs>  "_X
+nnoremap <bs>  "_X
 
 " \h {{{2
 " Help on current word
