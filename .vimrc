@@ -5,6 +5,8 @@
 
 " Options {{{1
 
+set nocompatible
+
 " Common util {{{2
 if has('win32')
 
@@ -21,13 +23,6 @@ if has('win32')
 endif
 
 call pathogen#infect()
-
-" Keep these lines after runtimepath!
-syntax          on
-filetype plugin on
-filetype indent on
-
-set nocompatible
 
 set backspace=indent,eol,start
 set whichwrap=b,s,<,>,[,]
@@ -708,6 +703,12 @@ if version >= 703
 endif
 
 " Plugin settings {{{1
+
+" Keep these lines after runtimepath!
+filetype on
+filetype indent on
+filetype plugin on
+syntax on
 
 let g:snips_author = 'Dimitar Dimitrov'
 
