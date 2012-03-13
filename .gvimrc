@@ -7,6 +7,8 @@ set guioptions-=m
 set guioptions-=T
 set guioptions+=a
 
+set mousemodel=extend
+
 function GuiTabLabel()
 
     let label = ''
