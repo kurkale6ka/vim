@@ -287,6 +287,7 @@ endif
 set wildmenu
 set wildmode=full
 set wildignore+=*~,*.swp
+set wildignorecase
 set wildcharm=<c-z> " cmdline: <c-z> in a mapping acts like <tab>
 set history=1000
 " }}}2
