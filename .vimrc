@@ -110,7 +110,7 @@ function! SlSpace()
    endif
 endfunc
 
-set statusline=%<%n:\ %F,\ L:%l/%L\ C:%v
+set statusline=%<%n:\ %t,\ L:%l/%L\ C:%v
    \%{empty(&keymap)?'':'\ <'.b:keymap_name.'>'}\ %r%m
    \%=\%{empty(&filetype)?'':'['.&filetype.']-'}%{&fileformat}\ %P
 
