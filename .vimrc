@@ -100,7 +100,7 @@ set display+=lastline
 set scrolloff=3
 set virtualedit=all
 
-" Statusline & tabline
+" Statusline & tabline: %{SlSpace()}
 function! SlSpace()
    if exists('*GetSpaceMovement')
       let s:mov = GetSpaceMovement()
@@ -110,9 +110,9 @@ function! SlSpace()
    endif
 endfunc
 
-set statusline=%<%n:\ %t,\ L:%l/%L\ C:%v%{SlSpace()}
+set statusline=%<%n:\ %F,\ L:%l/%L\ C:%v
    \%{empty(&keymap)?'':'\ <'.b:keymap_name.'>'}\ %r%m
-   \%=%y\-%{&fileformat}\ %P
+   \%=\%{empty(&filetype)?'':'['.&filetype.']-'}%{&fileformat}\ %P
 
 set showtabline=1
 
