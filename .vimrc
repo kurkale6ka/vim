@@ -110,9 +110,9 @@ function! SlSpace()
    endif
 endfunc
 
-set statusline=%<%n:\ %t\ %y%m%r\ L:%l\ C:%v%{SlSpace()}
+set statusline=%<%n:\ %t\ %y%m%r\ L:%l/%L\ C:%v%{SlSpace()}
    \%{empty(&keymap)?'':'\ <'.b:keymap_name.'>'}
-   \%=%L\ lines\ %{'['.&fileformat.']'}\ %P
+   \%=%{'['.&fileformat.']'}\ %P
 
 set showtabline=1
 
