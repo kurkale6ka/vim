@@ -110,9 +110,9 @@ function! SlSpace()
    endif
 endfunc
 
-set statusline=%<%n:\ %t,\ L:%l/%L\ C:%v
+set statusline=%<%n.\ %t,\ L:%l/%L\ C:%v
    \%{empty(&keymap)?'':'\ <'.b:keymap_name.'>'}\ %r%m
-   \%=\%{empty(&filetype)?'':'['.&filetype.']-'}%{&fileformat}\ %P
+   \%=%{expand('%:p:~:h')},\ \%{empty(&filetype)?'':'['.&filetype.']-'}%{&fileformat}\ %P
 
 set showtabline=1
 
@@ -505,6 +505,7 @@ nmap daf :%d<cr>
 nmap caf :%d<cr>i
 nmap vaf ggVG
 nmap <silent> =af :Indentation<cr>
+nmap dl :$d<cr>``
 
 " c-s, c-s a {{{2
 " Saving:
