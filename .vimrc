@@ -110,9 +110,11 @@ function! SlSpace()
    endif
 endfunc
 
-set statusline=%<%n.\ %t,\ L:%l/%L\ C:%v
+hi User1 term=bold ctermbg=black ctermfg=Magenta gui=bold guibg=black guifg=Magenta
+
+set statusline=%<%n.\ %1*%t%*,\ L:%l/%1*%L%*\ C:%v
    \%{empty(&keymap)?'':'\ <'.b:keymap_name.'>'}\ %r%m
-   \%=%{expand('%:p:~:h')},\ \%{empty(&filetype)?'':'['.&filetype.']-'}%{&fileformat}\ %P
+   \%=%1*%{expand('%:p:~:h')}%*,\ \%{empty(&filetype)?'':'['.&filetype.']-'}%{&fileformat}\ %P
 
 set showtabline=1
 
