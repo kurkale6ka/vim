@@ -8,7 +8,7 @@ set cpo&vim
 
 AddTabularPipeline! alias /\S\+=/ tabular#TabularizeStrings(a:lines, '\S\+=', 'l1r0l0')
 
-AddTabularPipeline! arrow /=>/ tabular#TabularizeStrings(a:lines, '=>', 'l1')
+AddTabularPipeline! arrow /[=-]>/ tabular#TabularizeStrings(a:lines, '[=-]>', 'l1')
 
 AddTabularPipeline! css /:/ tabular#TabularizeStrings(a:lines, '{\%(\s*$\)\@!\|\%(^\s*\|;\s*\)\@<!}\|:\|;', 'l1')
 " AddTabularPipeline! css /:/ tabular#TabularizeStrings(a:lines, 'Ta/{\%(\s*$\)\@!\|\%(^\s*\|;\s*\)\@<!}\|:\%(\_[^{]\{-}}\)\@=\|;', 'l1')
