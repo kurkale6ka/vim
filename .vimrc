@@ -110,7 +110,7 @@ function! SlSpace()
    endif
 endfunc
 
-hi User1 term=bold ctermbg=black ctermfg=Magenta gui=bold guibg=black guifg=Magenta
+hi User1 term=bold ctermbg=black ctermfg=Yellow gui=bold guibg=black guifg=Yellow
 
 set statusline=%<%n.\ %1*%t%*,\ L:%l/%1*%L%*\ C:%v
    \%{empty(&keymap)?'':'\ <'.b:keymap_name.'>'}\ %r%m
