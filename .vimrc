@@ -736,6 +736,7 @@ if !has('win32')
    runtime! ftplugin/man.vim
 endif
 
+let g:CSApprox_verbose_level = 0
 if !has('gui_running')
 
    if &term == 'xterm'
