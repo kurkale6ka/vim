@@ -97,7 +97,7 @@ set report=0
 set laststatus=2
 set lazyredraw
 set display+=lastline
-set scrolloff=3
+set scrolloff=2
 set virtualedit=all
 
 " Statusline & tabline: %{SlSpace()}
