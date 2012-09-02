@@ -767,15 +767,10 @@ if !has('win32')
    runtime! ftplugin/man.vim
 endif
 
-let g:CSApprox_verbose_level = 0
-if !has('gui_running')
+let g:CSApprox_verbose_level = 1
 
-   if &term == 'xterm'
-
-      " Note: konsole has 256 color support
-      set t_Co=256
-      let g:CSApprox_konsole = 1
-   endif
+if &term =~ '^\(xterm\|screen\)$' && $COLORTERM == 'gnome-terminal'
+   set t_Co=256
 endif
 
 " PHP
