@@ -63,6 +63,7 @@ if has('multi_byte')
       set encoding=utf-8
    endif
 endif
+set fileencodings=ucs-bom,utf-8,default,cp1251,latin1
 
 if &encoding =~ '^u\(tf\|cs\)' " When running in a Unicode environment
 
