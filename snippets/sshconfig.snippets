@@ -12,7 +12,11 @@ snippet skel
 		User ${3:mitko}
 		IdentityFile ~/.ssh/${4:id_rsa}
 
-snippet proxy
+snippet h
+	Host ${1}
+		HostName ${2:ip}
+
+snippet p
 		ProxyCommand ssh ${1:jumphost} exec nc ${2:host} 22
 
 snippet 1
