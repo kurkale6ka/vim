@@ -770,7 +770,7 @@ endif
 
 let g:CSApprox_verbose_level = 1
 
-if &term =~ '^\(xterm\|screen\)$' && $COLORTERM == 'gnome-terminal'
+if &term =~ '^\(xterm\|screen\)$'
    set t_Co=256
 endif
 
