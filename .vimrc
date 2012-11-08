@@ -36,13 +36,11 @@ set includeexpr=substitute(v:fname,'^/','','')
 set isfname-==
 
 if has('folding')
-
    set foldmethod=marker
 endif
 
 " Security restrictions
 if 'root' != $USER || has('win32')
-
    set exrc
    set modeline
    set modelines=3
@@ -52,14 +50,10 @@ else
 endif
 
 if has('multi_byte')
-
    if &encoding !~? 'utf-\=8'
-
       if empty(&termencoding)
-
          let &termencoding = &encoding
       endif
-
       set encoding=utf-8
    endif
 endif
@@ -189,11 +183,6 @@ function! MyTabLabel(n)
 
 endfunction
 
-if has('syntax')
-
-   set cursorline
-endif
-
 " Mouse
 if has('mouse_xterm')
 
@@ -213,7 +202,6 @@ set mouseshape=i-r:beam,s:updown,sd:udsizing,vs:leftright,vd:lrsizing,m:no,
    \v:arrow
 
 if 'konsole' == $TERM
-
    let &t_SI = "\<esc>]50;CursorShape=1\x7"
    let &t_EI = "\<esc>]50;CursorShape=0\x7"
 endif
@@ -243,7 +231,6 @@ set backupskip=
 set backupext=~
 
 if has('win32')
-
    set directory+=$LOCALAPPDATA\Temp " swap files
    set backupdir+=$LOCALAPPDATA\Temp
 endif
@@ -280,7 +267,6 @@ set noequalalways
 set splitright
 
 if version < 700
-
    set switchbuf=useopen
 else
    set switchbuf=useopen,usetab
@@ -772,6 +758,9 @@ let g:CSApprox_verbose_level = 1
 
 if &term =~ '^\(xterm\|screen\)$'
    set t_Co=256
+   if has('syntax')
+      set cursorline
+   endif
 endif
 
 " PHP
