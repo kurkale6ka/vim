@@ -1,47 +1,59 @@
 snippet skel
-	Host ${1}
-		HostName ${2:ip}
+Host ${1}
+   HostName ${2:ip}
 
-	Host github.com
-		Hostname github.com
-		User git
-		IdentityFile ~/.ssh/id_rsa
+Host github.com
+   Hostname github.com
+   User git
+   IdentityFile ~/.ssh/id_rsa
 
-	Host *
-		ForwardAgent yes
-		User ${3:mitko}
-		IdentityFile ~/.ssh/${4:id_rsa}
+Host *
+   ForwardAgent yes
+   User ${3:mitko}
+   IdentityFile ~/.ssh/${4:id_rsa}
+endsnippet
 
 snippet h
-	Host ${1}
-		HostName ${2:ip}
+Host ${1:name}
+   HostName ${2:ip|fqdn}
+endsnippet
 
 snippet p
-		ProxyCommand ssh ${1:jumphost} exec nc ${2:host} 22
+ProxyCommand ssh ${1:jumphost} exec nc ${2:host} 22
+endsnippet
 
 snippet 1
-	192.168.0.1${1}
+192.168.0.1
+endsnippet
 
 snippet 2
-	192.168.0.2${1}
+192.168.0.2
+endsnippet
 
 snippet 3
-	192.168.0.3${1}
+192.168.0.3
+endsnippet
 
 snippet 4
-	192.168.0.4${1}
+192.168.0.4
+endsnippet
 
 snippet 5
-	192.168.0.5${1}
+192.168.0.5
+endsnippet
 
 snippet 6
-	192.168.0.6${1}
+192.168.0.6
+endsnippet
 
 snippet 7
-	192.168.0.7${1}
+192.168.0.7
+endsnippet
 
 snippet 8
-	192.168.0.8${1}
+192.168.0.8
+endsnippet
 
 snippet 9
-	192.168.0.9${1}
+192.168.0.9
+endsnippet
