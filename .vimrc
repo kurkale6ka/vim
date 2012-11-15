@@ -731,7 +731,13 @@ filetype indent on
 filetype plugin on
 syntax on
 
-let g:snips_author = 'Dimitar Dimitrov'
+let g:snips_author                 = 'Dimitar Dimitrov'
+let g:UltiSnipsSnippetsDir         = '~/vimfiles/snippets/'
+let g:UltiSnipsSnippetDirectories  = ["UltiSnips", "snippets"]
+let g:UltiSnipsListSnippets        = "<c-r><tab>"
+let g:UltiSnipsExpandTrigger       = "<tab>"
+let g:UltiSnipsJumpForwardTrigger  = "<tab>"
+let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 
 " NERD_commenter
 " let NERDLPlace='/*'

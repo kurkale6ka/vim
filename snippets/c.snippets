@@ -1,24 +1,37 @@
 snippet skel
-	#include <stdio.h>
+#include <stdio.h>
 
-	int main(int argc, char* argv[])
-	{
-		${1}
-		return 0;
-	}
+int main(int argc, char* argv[])
+{
+   ${1}
+   return 0;
+}
+endsnippet
+
 # printf
 snippet \p
-	printf("${1}\n");
+printf("${1}\n");
+endsnippet
+
 snippet \p1
-	printf("${1:string...}%${2:s}${3:...string}\n", ${4:var1});
+printf("${1:string...}%${2:s}${3:...string}\n", ${4:var1});
+endsnippet
+
 snippet \p2
-	printf("${1:str}%${2:s}${3:str}%${4:s}${5:str}\n", ${6:var1}, ${7:var2});
+printf("${1:str}%${2:s}${3:str}%${4:s}${5:str}\n", ${6:var1}, ${7:var2});
+endsnippet
+
 snippet \p3
-	printf("${1:str}%${2:s}${3:str}%${4:s}${5:str}%${6:s}${7:str}\n", ${8:var1}, ${9:var2}, ${10:var3});
+printf("${1:str}%${2:s}${3:str}%${4:s}${5:str}%${6:s}${7:str}\n", ${8:var1}, ${9:var2}, ${10:var3});
+endsnippet
+
 # Comments
 snippet \\
-	/* ${1} */
+/* ${1} */
+endsnippet
+
 snippet \cs
-	/*
-	 * ${1}
-	 */
+/*
+ * ${1}
+ */
+endsnippet
