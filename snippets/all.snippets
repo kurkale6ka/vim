@@ -1,0 +1,41 @@
+snippet ugo
+ 421421421
+-rwxrwxrwx
+endsnippet
+
+# Hash bang using the env command
+snippet #
+#! /usr/bin/env ${1:bash}
+endsnippet
+
+snippet mode "No eol colon version"
+${1:#} ex: ${2:fdm&} ${3:sw=4}
+endsnippet
+
+snippet mode "eol colon version"
+${1:#} ex: se ${2:fdm&} ${3:sw=4}:
+endsnippet
+
+snippet lorem "" !
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+culpa qui officia deserunt mollit anim id est laborum.
+endsnippet
+
+snippet cron
+# minute | hour | day_of_month | month | day_of_week | command
+${1:minute} ${2:hour} ${3:day_of_month} ${4:month} ${5:day_of_week} ${6:command}
+endsnippet
+
+# 1900-2099/01-12/01-31
+snippet ~ "Date"
+^(?:19|20)\\d\\d/(?:0?[1-9]|1[0-2])/(?:0?[1-9]|[12]\\d|3[01])\$
+endsnippet
+
+# 03:24:44 Pm
+snippet ~ "Time"
+^(?:0?\\d|1\\d|2[0-3])(?::[0-5]\\d)\{1,2}[[:space:]]*(?:[aA]|[pP])[mM]\$
+endsnippet

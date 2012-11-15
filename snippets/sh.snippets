@@ -1,191 +1,284 @@
 snippet skel
-	#! /usr/bin/env bash
+#! /usr/bin/env bash
 
-	# ${1:Short Description}
-	#
-	# Author: `g:snips_author` <mitkofr@yahoo.fr>
-	# -------------------------------------------
+# ${1:Short Description}
+#
+# Author: `g:snips_author` <mitkofr@yahoo.fr>
+# -------------------------------------------
 
-	${2:shopt -s extglob}
+${2:shopt -s extglob}
+endsnippet
+
 # Loops
-snippet for for variable in words
-	for ${1:i} in ${2:"$@"}; do
+snippet for "for variable in words"
+for ${1:i} in ${2:"\$@"}; do
 
-		${3:echo} "$$1"
-	done
-snippet for for variable in range
-	for ${1:i} in {${2:start}..${3:end}}; do
+   ${3:echo} "\$$1"
+done
+endsnippet
 
-		${4:echo} "$$1"
-	done
-snippet for C-like for
-	for ((${1:i} = ${2:0}; $1 < ${3:10}; $1++)); do
+snippet for "for variable in range"
+for ${1:i} in {${2:start}..${3:end}}; do
 
-		${4:commands}
-	done
+   ${4:echo} "\$$1"
+done
+endsnippet
 
-	${5}
+snippet for "C-like for"
+for ((${1:i} = ${2:0}; $1 < ${3:10}; $1++)); do
+
+   ${4:commands}
+done
+
+${5}
+endsnippet
+
 snippet while
-	while ${1:command}; do
+while ${1:command}; do
 
-		${2:commands}
-	done
+   ${2:commands}
+done
 
-	${3}
+${3}
+endsnippet
+
 snippet until
-	until ${1:command}; do
+until ${1:command}; do
 
-		${2:commands}
-	done
+   ${2:commands}
+done
 
-	${3}
+${3}
+endsnippet
+
 # Switch / select
-snippet case Case
-	case "$${1:variable}" in
+snippet case "Case"
+case "\$${1:variable}" in
 
-		${2:glob1}) ${3:command};;
-		${4:glob2}) ${5:command};;
-		${6:glob3}) ${7:command};;
-		*) ${8:default_command};;
-	esac
-snippet case Select
-	options[0]='${1}'
-	options[1]='${2}'
-	options[2]='${3}'
+   ${2:glob1}) ${3:command};;
+   ${4:glob2}) ${5:command};;
+   ${6:glob3}) ${7:command};;
+   *) ${8:default_command};;
+esac
+endsnippet
 
-	select choice in "${options[@]}"; do
+snippet case "Select"
+options[0]='${1}'
+options[1]='${2}'
+options[2]='${3}'
 
-		case "$choice" in
+select choice in "${options[@]}"; do
 
-			"${options[0]}") ${4}; break;;
-			"${options[1]}") ${5}; break;;
-			"${options[2]}") ${6}; break;;
-		esac
-		echo '*** Wrong choice ***'
-	done
-	${7}
+   case "$choice" in
+
+      "${options[0]}") ${4}; break;;
+      "${options[1]}") ${5}; break;;
+      "${options[2]}") ${6}; break;;
+   esac
+   echo '*** Wrong choice ***'
+done
+${7}
+endsnippet
+
 snippet sel
-	options[0]='${1}'
-	options[1]='${2}'
-	options[2]='${3}'
+options[0]='${1}'
+options[1]='${2}'
+options[2]='${3}'
 
-	select choice in "${options[@]}"; do
+select choice in "${options[@]}"; do
 
-		case "$choice" in
+   case "$choice" in
 
-			"${options[0]}") ${4}; break;;
-			"${options[1]}") ${5}; break;;
-			"${options[2]}") ${6}; break;;
-		esac
-		echo '*** Wrong choice ***'
-	done
-	${7}
+      "${options[0]}") ${4}; break;;
+      "${options[1]}") ${5}; break;;
+      "${options[2]}") ${6}; break;;
+   esac
+   echo '*** Wrong choice ***'
+done
+${7}
+endsnippet
+
 snippet scan
-	read -p '${1:Enter value:}' ${2:var}
+read -p '${1:Enter value:}' ${2:var}
 # if
-snippet if Commands
-	if ${1:commands}; then
+endsnippet
 
-		${2:commands}
-	fi
+snippet if "Commands"
+if ${1:commands}; then
 
-	${3}
-snippet if String comparison
-	if [[ ${1:'test'} ${2:==} ${3:$right_operand} ]]; then
+   ${2:commands}
+fi
 
-		${4:commands}
-	fi
+${3}
+endsnippet
 
-	${5}
-snippet if Digit comparison
-	if (( ${1:0} ${2:<} ${3:j} )); then
+snippet if "String comparison"
+if [[ ${1:'test'} ${2:==} ${3:\$right_operand} ]]; then
 
-		${4:commands}
-	fi
+   ${4:commands}
+fi
 
-	${5}
+${5}
+endsnippet
+
+snippet if "Digit comparison"
+if (( ${1:0} ${2:<} ${3:j} )); then
+
+   ${4:commands}
+fi
+
+${5}
+endsnippet
+
 # Arrays
-snippet [ Create an array
-	${1:array}=(${2:words})
-snippet [ Use an array
-	${${1:array}[@]}
+snippet [ "Create an array"
+${1:array}=(${2:words})
+endsnippet
+
+snippet [ "Use an array"
+${${1:array}[@]}
+endsnippet
+
 # Read
 snippet read
-	while read -r -d $'\0'; do
+while read -r -d \$'\0'; do
 
-		${1:"$REPLY"}
+   ${1:"\$REPLY"}
 
-	done < <(${2:find /foo -print0})
+done < <(${2:find /foo -print0})
 
-	${3}
+${3}
+endsnippet
+
 snippet fun
-	${1:name}() {
+${1:name}() {
 
-		${2:commands}
-	}
+   ${2:commands}
+}
 
-	${3}
+${3}
+endsnippet
+
 snippet alias
-	alias ${1:name}='${2}'
+alias ${1:name}='${2}'
+endsnippet
+
 # Extended globs
-snippet ~ Extended globs declaration
-	shopt -s extglob
-	${1}
-snippet ~ Extended globs ?
-	?(${1:item1}|${2:item2})${3}
-snippet ~ Extended globs *
-	*(${1:item1}|${2:item2})${3}
-snippet ~ Extended globs +
-	+(${1:item1}|${2:item2})${3}
-snippet ~ Extended globs @: matches 1 of the given patterns
-	@(${1:item1}|${2:item2})${3}
-snippet ~ Extended globs !: matches anything but the patterns
-	!(${1:item1}|${2:item2})${3}
+snippet ~ "Extended globs declaration"
+shopt -s extglob
+${1}
+endsnippet
+
+snippet ~ "Extended globs ?"
+?(${1:item1}|${2:item2})
+endsnippet
+
+snippet ~ "Extended globs *"
+*(${1:item1}|${2:item2})
+endsnippet
+
+snippet ~ "Extended globs +"
++(${1:item1}|${2:item2})
+endsnippet
+
+snippet ~ "Extended globs @: matches 1 of the given patterns"
+@(${1:item1}|${2:item2})
+endsnippet
+
+snippet ~ "Extended globs !: matches anything but the patterns"
+!(${1:item1}|${2:item2})
+endsnippet
+
 snippet 0
-	"$${1:0}"${2}
+"\$${1:0}"${2}
+endsnippet
+
 snippet 1
-	"$${1:1}"${2}
+"\$${1:1}"${2}
+endsnippet
+
 snippet 2
-	"$${1:2}"${2}
+"\$${1:2}"${2}
+endsnippet
+
 snippet 3
-	"$${1:3}"${2}
+"\$${1:3}"${2}
+endsnippet
+
 snippet 4
-	"$${1:4}"${2}
+"\$${1:4}"${2}
+endsnippet
+
 snippet 5
-	"$${1:5}"${2}
+"\$${1:5}"${2}
+endsnippet
+
 snippet 6
-	"$${1:6}"${2}
+"\$${1:6}"${2}
+endsnippet
+
 snippet 7
-	"$${1:7}"${2}
+"\$${1:7}"${2}
+endsnippet
+
 snippet 8
-	"$${1:8}"${2}
+"\$${1:8}"${2}
+endsnippet
+
 snippet 9
-	"$${1:9}"${2}
+"\$${1:9}"${2}
+endsnippet
+
 # Parameter expansion
-snippet $ remove 1 from start
-	${${1:parameter}#${2:word to remove}}
-snippet $ remove ALL from start
-	${${1:parameter}##${2:word to remove}}
-snippet $ remove 1 from end
-	${${1:parameter}%${2:word to remove}}
-snippet $ remove ALL from end
-	${${1:parameter}%%${2:word to remove}}
-snippet $ s///
-	${${1:parameter}/${2:old}/${3:new}}
-snippet $ s/// ALL
-	${${1:parameter}//${2:old}/${3:new}}
-snippet $ substring in parameter
-	${${1:parameter}:${2:start (0, ...)}${3::}${4:length (or everything)}}
-snippet $ file.ext (remove everything in front)
-	${${1:file name}##*/}
-snippet $ Remove extension of file
-	${${1:file name}%.*}
-snippet $ length of parameter
-	${#${1:parameter}}
-snippet $ all parameters starting with prefix
-	${!${1:prefix}@}
-snippet $ Parameter expansion on arrays
-	${${1:parameters array}[@]${2}#%:/}
+snippet $ "remove 1 from start"
+\$\{${1:parameter}#${2:word to remove}}
+endsnippet
+
+snippet $ "remove ALL from start"
+\$\{${1:parameter}##${2:word to remove}}
+endsnippet
+
+snippet $ "remove 1 from end"
+\$\{${1:parameter}%${2:word to remove}}
+endsnippet
+
+snippet $ "remove ALL from end"
+\$\{${1:parameter}%%${2:word to remove}}
+endsnippet
+
+snippet $ "s///"
+\$\{${1:parameter}/${2:old}/${3:new}}
+endsnippet
+
+snippet $ "s/// ALL"
+\$\{${1:parameter}//${2:old}/${3:new}}
+endsnippet
+
+snippet $ "substring in parameter"
+\$\{${1:parameter}:${2:start (0, ...)}${3::}${4:length (or everything)}}
+endsnippet
+
+snippet $ "file.ext (remove everything in front)"
+\$\{${1:file name}##*/}
+endsnippet
+
+snippet $ "Remove extension of file"
+\$\{${1:file name}%.*}
+endsnippet
+
+snippet $ "length of parameter"
+\$\{#${1:parameter}}
+endsnippet
+
+snippet $ "all parameters starting with prefix"
+\$\{!${1:prefix}@}
+endsnippet
+
+snippet $ "Parameter expansion on arrays"
+\$\{${1:parameters array}[@]${2}#%:/}
+endsnippet
+
 # Renaming files
 snippet ren
-	for file in ${1:*}; do mv "$file" "${file%.*}".${2:new}; done
+for file in ${1:*}; do mv "\$file" "${file%.*}".${2:new}; done
+endsnippet
