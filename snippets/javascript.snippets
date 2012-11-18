@@ -1,45 +1,64 @@
-snippet skel Glow
-	gloader.load(['glow', '1', 'glow.dom'], {
-		async: true,
-		onLoad: function(glow) {
-			glow.ready(function() {
+snippet skel "Glow"
+gloader.load(['glow', '1', 'glow.dom'], \{
+   async: true,
+   onLoad: function(glow) \{
+      glow.ready(function() \{
 
-				${1}
-			});
-		}
-	});
-snippet skel jQuery
-	$(document).ready(function() {
+         ${1}
+      });
+   }
+});
+endsnippet
 
-		${1}
-	});
-snippet $ Glow
-	glow.dom.get('${1:.}')${2}
-snippet $ jQuery
-	$('${1:.}')${2}
-snippet $ jQuery this
-	$(this)${1:.}
-snippet $ Dojo id
-	dojo.byId('${1}')${2}
-snippet hover jQuery
+snippet skel "jQuery"
+\$(document).ready(function() \{
 
-	$('${1:.}').hover(
+   ${1}
+});
+endsnippet
 
-		function () {
+snippet $ "Glow"
+glow.dom.get('${1:.}')
+endsnippet
 
-			${2}
-		},
-		function () {
+snippet $ "jQuery"
+\$('${1:.}')
+endsnippet
 
-			${3}
-		}
-	);
+snippet $ "jQuery this"
+\$(this)${1:.}
+endsnippet
+
+snippet $ "Dojo id"
+dojo.byId('${1}')
+endsnippet
+
+snippet hover "jQuery"
+
+\$('${1:.}').hover(
+
+   function () \{
+
+      ${2}
+   },
+   function () \{
+
+      ${3}
+   }
+);
+endsnippet
+
 # Comments
 snippet \\
-	/* ${1} */
+/* ${1} */
+endsnippet
+
 snippet \cs
-	/*
-	 * ${1}
-	 */
+/*
+ * ${1}
+ */
+endsnippet
+
 snippet \d
-	console.info(${1});
+console.info(${1});
+endsnippet

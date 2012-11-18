@@ -1,31 +1,56 @@
 snippet skel
-	#! /usr/bin/env perl
+#! /usr/bin/env perl
 
-	use strict;
-	use warnings;
+use strict;
+use warnings;
 
-	${1}
+${1}
+endsnippet
+
 snippet [
-	@${1:array} = qw/${2:word1} ${3:word2} ${4:word3}/;
-snippet ' Quotes
-	my $${1:variable} = q/${2:sentence}/;
-snippet ' Double quotes
-	my $${1:variable} = qq/${2:sentence}/;
-snippet ' Back ticks
-	my $${1:variable} = qx/${2:sentence}/;
-snippet ~ Substitute
-	$${1:scalar} =~ s/${2:old}/${3:new}/;
-snippet ~ Match
-	$${1:scalar} =~ /${2:pattern}/;
-snippet ~ Look behind
-	(?<${1:=}${2:pattern1})${3:pattern2}
-snippet ~ Look ahead
-	${1:pattern1}(?${2:=}${3:pattern2})
+@${1:array} = qw/${2:word1} ${3:word2} ${4:word3}/;
+endsnippet
+
+snippet ' "Quotes"
+my \$${1:variable} = q/${2:sentence}/;
+endsnippet
+
+snippet ' "Double quotes"
+my \$${1:variable} = qq/${2:sentence}/;
+endsnippet
+
+snippet ' "Back ticks"
+my \$${1:variable} = qx/${2:sentence}/;
+endsnippet
+
+snippet ~ "Substitute"
+\$${1:scalar} =~ s/${2:old}/${3:new}/;
+endsnippet
+
+snippet ~ "Match"
+\$${1:scalar} =~ /${2:pattern}/;
+endsnippet
+
+snippet ~ "Look behind"
+(?<${1:=}${2:pattern1})${3:pattern2}
+endsnippet
+
+snippet ~ "Look ahead"
+${1:pattern1}(?${2:=}${3:pattern2})
+endsnippet
+
 snippet $
-	"$${1}"
+"\$${1}"
+endsnippet
+
 snippet $$
-	"$${1}\n"
+"\$${1}\n"
+endsnippet
+
 snippet 1
-	"$${1}"
+"\$${1}"
+endsnippet
+
 snippet 11
-	"$${1}\n";
+"\$${1}\n";
+endsnippet
