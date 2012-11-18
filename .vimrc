@@ -738,7 +738,7 @@ let g:UltiSnipsListSnippets        = "<c-r><tab>"
 let g:UltiSnipsExpandTrigger       = "<tab>"
 let g:UltiSnipsJumpForwardTrigger  = "<tab>"
 let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
-let g:UltiSnipsDoHash              = 0
+let g:UltiSnipsDoHash              = 1
 
 " NERD_commenter
 " let NERDLPlace='/*'

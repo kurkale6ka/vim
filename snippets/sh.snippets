@@ -230,51 +230,51 @@ snippet 9
 endsnippet
 
 # Parameter expansion
-snippet $ "remove 1 from start"
+snippet / "remove 1 from start"
 \$\{${1:parameter}#${2:word to remove}}
 endsnippet
 
-snippet $ "remove ALL from start"
+snippet / "remove ALL from start"
 \$\{${1:parameter}##${2:word to remove}}
 endsnippet
 
-snippet $ "remove 1 from end"
+snippet / "remove 1 from end"
 \$\{${1:parameter}%${2:word to remove}}
 endsnippet
 
-snippet $ "remove ALL from end"
+snippet / "remove ALL from end"
 \$\{${1:parameter}%%${2:word to remove}}
 endsnippet
 
-snippet $ "s///"
+snippet / "s///"
 \$\{${1:parameter}/${2:old}/${3:new}}
 endsnippet
 
-snippet $ "s/// ALL"
+snippet / "s/// ALL"
 \$\{${1:parameter}//${2:old}/${3:new}}
 endsnippet
 
-snippet $ "substring in parameter"
+snippet / "substring in parameter"
 \$\{${1:parameter}:${2:start (0, ...)}${3::}${4:length (or everything)}}
 endsnippet
 
-snippet $ "file.ext (remove everything in front)"
+snippet / "file.ext (remove everything in front)"
 \$\{${1:file name}##*/}
 endsnippet
 
-snippet $ "Remove extension of file"
+snippet / "Remove extension of file"
 \$\{${1:file name}%.*}
 endsnippet
 
-snippet $ "length of parameter"
+snippet / "length of parameter"
 \$\{#${1:parameter}}
 endsnippet
 
-snippet $ "all parameters starting with prefix"
+snippet / "all parameters starting with prefix"
 \$\{!${1:prefix}@}
 endsnippet
 
-snippet $ "Parameter expansion on arrays"
+snippet / "Parameter expansion on arrays"
 \$\{${1:parameters array}[@]${2}#%:/}
 endsnippet
 
