@@ -246,5 +246,9 @@ for file in ${1:*}; do mv -- "\$file" "${file%.*}".${2:new}; done
 endsnippet
 
 snippet p
-printf '%s\n' 
+printf '%s\n' ${1}
+endsnippet
+
+snippet e
+   >&2
 endsnippet
