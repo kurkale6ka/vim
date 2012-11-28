@@ -107,7 +107,16 @@ snippet [ "Use an array"
 ${${1:array}[@]}
 endsnippet
 
-snippet <>
+snippet <> "Read a heredoc"
+while read -r ${1:line}; do
+   [[ $$1 = \#* ]] && continue
+   echo "$$1"
+done << EOF
+${2}
+EOF
+endsnippet
+
+snippet <> "Read find's output"
 while read -r -d \$'\0'; do
 
    ${1:"\$REPLY"}
