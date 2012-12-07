@@ -101,7 +101,7 @@ endsnippet
 
 snippet <> "Read a heredoc"
 while read -r ${1:line}; do
-   [[ $$1 = \#* ]] && continue
+   [[ $$1 = \#* || ! $host ]] && continue
    echo "$$1"
 done << EOF
 ${2}
