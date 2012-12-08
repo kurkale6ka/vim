@@ -731,14 +731,14 @@ filetype indent on
 filetype plugin on
 syntax on
 
-let g:snips_author                 = 'Dimitar Dimitrov'
-let g:UltiSnipsSnippetsDir         = '~/vimfiles/snippets/'
-let g:UltiSnipsSnippetDirectories  = ["UltiSnips", "snippets"]
-let g:UltiSnipsListSnippets        = "<c-r><tab>"
-let g:UltiSnipsExpandTrigger       = "<tab>"
-let g:UltiSnipsJumpForwardTrigger  = "<tab>"
-let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
-let g:UltiSnipsDoHash              = 1
+let g:UltiSnipsSnippetsDir           = '~/vimfiles/snippets/'
+let g:UltiSnipsSnippetDirectories    = ["UltiSnips", "snippets"]
+let g:UltiSnipsListSnippets          = "<c-r><tab>"
+let g:UltiSnipsExpandTrigger         = "<tab>"
+let g:UltiSnipsJumpForwardTrigger    = "<tab>"
+let g:UltiSnipsJumpBackwardTrigger   = "<s-tab>"
+let g:UltiSnipsDoHash                = 1
+let g:UltiSnipsDontReverseSearchPath = 1
 
 " NERD_commenter
 " let NERDLPlace='/*'
@@ -1050,6 +1050,5 @@ iabbrev :B [^[:backspace:]]<c-r>=EatChar('[[:space:]]')<cr>
 iabbrev latex LaTeX
 iabbrev _t <c-r>=strftime('%d %B %Y, %H:%M %Z (%A)')<cr>
    \<c-r>=EatChar('[[:space:]]')<cr>
-iabbrev www http://www.<c-r>=EatChar('[[:space:]]')<cr>
 
 " vim: set foldmethod=marker foldmarker&:
