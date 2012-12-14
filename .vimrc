@@ -729,7 +729,7 @@ endif
 filetype on
 filetype indent on
 filetype plugin on
-syntax on
+syntax enable
 
 let g:UltiSnipsSnippetsDir           = '~/vimfiles/snippets/'
 let g:UltiSnipsSnippetDirectories    = ["UltiSnips", "snippets"]
