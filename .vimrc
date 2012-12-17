@@ -184,13 +184,14 @@ function! MyTabLabel(n)
 endfunction
 
 " Mouse
-if has('mouse_xterm')
+if has('mouse_xterm') && has('xterm_clipboard')
 
    set mouse=a
    set ttymouse=xterm2
    set timeoutlen=2000
    set ttimeoutlen=100
    set ttyscroll=3
+   set clipboard^=unnamed,unnamedplus
 
    " Vim bug: Only t_te, not t_op, gets sent when leaving an alt screen
    exe 'set t_te=' . &t_te . &t_op
