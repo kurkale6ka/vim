@@ -191,7 +191,7 @@ if has('mouse_xterm') && has('xterm_clipboard')
    set timeoutlen=2000
    set ttimeoutlen=100
    set ttyscroll=3
-   set clipboard^=unnamed,unnamedplus
+   set clipboard^=unnamedplus
 
    " Vim bug: Only t_te, not t_op, gets sent when leaving an alt screen
    exe 'set t_te=' . &t_te . &t_op
