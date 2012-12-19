@@ -12,6 +12,7 @@
 **/*.stackdump
 tags
 **/tags
+bundle/bufexplorer
 bundle/vim-blanklines/
 bundle/vim-blockinsert/
 bundle/vim-quotes/
