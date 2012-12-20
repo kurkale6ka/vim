@@ -704,8 +704,8 @@ xmap <s-tab> <
 nmap <leader>0 :left<cr>
 xmap <leader>0 :left<cr>
 noremap <silent> <leader>l  :BufExplorer<cr>
-noremap <silent> <leader>sl :BufExplorerHorizontalSplit<cr>
-noremap <silent> <leader>vl :BufExplorerVerticalSplit<cr>
+" noremap <silent> <leader>sl :BufExplorerHorizontalSplit<cr>
+" noremap <silent> <leader>vl :BufExplorerVerticalSplit<cr>
 map <leader>< :substitute/>\zs[[:space:]]*\ze</\r/g<cr>
 map <leader>> :substitute/>\zs[[:space:]]*\ze</\r/g<cr>
 

@@ -39,3 +39,8 @@ endsnippet
 snippet ~ "Time"
 ^(?:0?\\d|1\\d|2[0-3])(?::[0-5]\\d)\{1,2}[[:space:]]*(?:[aA]|[pP])[mM]\$
 endsnippet
+
+snippet |
+# Allows to use port $1 on localhost to get to port $3 on $2 trough $4
+ssh -fNL ${1:8080}:${2:remote}:${3:80} ${4:gate}
+endsnippet
