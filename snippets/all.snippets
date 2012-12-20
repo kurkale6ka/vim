@@ -42,5 +42,6 @@ endsnippet
 
 snippet |
 # Allows to use port $1 on localhost to get to port $3 on $2 trough $4
+# $2 must be reachable from $4
 ssh -fNL ${1:8080}:${2:remote}:${3:80} ${4:gate}
 endsnippet
