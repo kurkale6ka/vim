@@ -1050,6 +1050,7 @@ iabbrev :B [^[:backspace:]]<c-r>=EatChar('[[:space:]]')<cr>
 
 " inoreabbrev else else<cr><c-r>=<sid>IfCopy()<cr><c-r>=EatChar('$')<cr>
 
+cabbrev <silent> seta sil! se nu ls=2 ve=all mouse=a \| sy enable
 iabbrev latex LaTeX
 iabbrev _t <c-r>=strftime('%d %B %Y, %H:%M %Z (%A)')<cr>
    \<c-r>=EatChar('[[:space:]]')<cr>
