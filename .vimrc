@@ -1,6 +1,6 @@
 " Author: Dimitar Dimitrov: mitkofr@yahoo.fr, kurkale6ka
 "
-"   Note: zR to unfold everything, then :help folding
+" Note: zR to unfold everything, then :help folding
 " ------------------------------------------------------
 
 " Options {{{1
@@ -8,20 +8,6 @@
 set nocompatible
 
 " Common util {{{2
-if has('win32')
-
-   set runtimepath=
-      \$HOME/config/vimfiles,
-      \$VIM/vimfiles,
-      \$VIMRUNTIME,
-      \$VIM/vimfiles/after,
-      \$HOME/config/vimfiles/after
-
-   set viewdir=$HOME/config/vimfiles/view
-
-   behave xterm
-endif
-
 call pathogen#infect()
 
 set backspace=indent,eol,start
@@ -40,7 +26,7 @@ if has('folding')
 endif
 
 " Security restrictions
-if 'root' != $USER || has('win32')
+if 'root' != $USER
    set exrc
    set modeline
    set modelines=3
@@ -207,20 +193,11 @@ if 'konsole' == $TERM
    let &t_EI = "\<esc>]50;CursorShape=0\x7"
 endif
 
-if !has('win32')
-
-   set guifont=DejaVu\ Sans\ Mono\ 14,
-      \Nimbus\ Mono\ L\ 14,
-      \Andale\ Mono\ 14,
-      \Liberation\ Mono\ 14,
-      \Monospace\ 14
-else
-   set guifont=DejaVu_Sans_Mono:h13,
-      \Nimbus_Mono_L:h13,
-      \Andale_Mono:h13,
-      \Liberation_Mono:h13,
-      \Monospace:h13
-endif
+set guifont=DejaVu\ Sans\ Mono\ 14,
+   \Nimbus\ Mono\ L\ 14,
+   \Andale\ Mono\ 14,
+   \Liberation\ Mono\ 14,
+   \Monospace\ 14
 
 " backups {{{2
 set noautowrite
@@ -230,11 +207,6 @@ set writebackup
 set backup
 set backupskip=
 set backupext=~
-
-if has('win32')
-   set directory+=$LOCALAPPDATA\Temp " swap files
-   set backupdir+=$LOCALAPPDATA\Temp
-endif
 
 " Search {{{2
 set incsearch
@@ -386,15 +358,6 @@ xmap <leader>h "*y:help <c-r>*<cr>
 nmap <silent> <f1>      :help<bar>only<cr>
 imap <silent> <f1> <c-o>:help<bar>only<cr>
 
-" alt-i {{{2
-" Re-indent the whole file
-nmap <silent> <m-i> :Indentation<cr>
-
-" zM {{{2
-" Fold everything & go to line 1
-nnoremap zM :let wv = winsaveview()<cr>zM:call winrestview(wv)<cr>
-" nnoremap zM zMgg0
-
 " c-tab {{{2
 " Switch to the alternate file
 nnoremap <c-tab> <c-^>
@@ -448,20 +411,6 @@ vmap <s-right>       E
 nmap <s-left>       vB
 imap <s-left>  <c-o>vB
 vmap <s-left>        B
-
-" Increase font size {{{2
-nmap <c-mousedown> :set guifont=<c-z><c-f>
-   \:substitute/[[:digit:]]\+/\=submatch(0)+1/g<cr><cr>
-nmap <c-mouseup>   :set guifont=<c-z><c-f>
-   \:substitute/[[:digit:]]\+/\=submatch(0)-1/g<cr><cr>
-
-imap <c-mousedown> <c-o>:set guifont=<c-z><c-f>
-   \:substitute/[[:digit:]]\+/\=submatch(0)+1/g<cr><cr>
-imap <c-mouseup>   <c-o>:set guifont=<c-z><c-f>
-   \:substitute/[[:digit:]]\+/\=submatch(0)-1/g<cr><cr>
-
-let g:gfn_bak = &guifont
-nmap <M-0> :let &guifont = g:gfn_bak<cr>
 
 " [I {{{2
 " Searches using [I in visual mode
@@ -734,14 +683,13 @@ filetype indent on
 filetype plugin on
 syntax enable
 
-let g:UltiSnipsSnippetsDir           = '~/vimfiles/snippets/'
-let g:UltiSnipsSnippetDirectories    = ["UltiSnips", "snippets"]
-let g:UltiSnipsListSnippets          = "<c-r><tab>"
-let g:UltiSnipsExpandTrigger         = "<tab>"
-let g:UltiSnipsJumpForwardTrigger    = "<tab>"
-let g:UltiSnipsJumpBackwardTrigger   = "<s-tab>"
-let g:UltiSnipsDoHash                = 1
-let g:UltiSnipsDontReverseSearchPath = 1
+let g:UltiSnipsSnippetsDir         = '~/vimfiles/snippets/'
+let g:UltiSnipsSnippetDirectories  = ["UltiSnips", "snippets"]
+let g:UltiSnipsListSnippets        = "<c-r><tab>"
+let g:UltiSnipsExpandTrigger       = "<tab>"
+let g:UltiSnipsJumpForwardTrigger  = "<tab>"
+let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+let g:UltiSnipsDoHash              = 1
 
 " NERD_commenter
 " let NERDLPlace='/*'
@@ -755,12 +703,8 @@ let g:surround_{char2nr('w')} = "\\<\r\\>"
 let g:surround_{char2nr("\<c-cr>")} = "http://www.\r.com"
 let g:surround_{char2nr('c')} = "http://www.\r.com"
 
-let apache_version = '2.2'
-let g:is_bash = 1
-
 " Man
 if !has('win32')
-
    runtime! ftplugin/man.vim
 endif
 
@@ -772,10 +716,6 @@ if &term =~ '^\(xterm\|screen\)$'
       set cursorline
    endif
 endif
-
-" PHP
-let php_folding = 3
-let php_large_file = 0
 
 let vim_indent_cont = &shiftwidth
 
@@ -927,9 +867,6 @@ command! DeleteTags %substitute:<[?%![:space:]]\@!/\=\_.\{-1,}[-?%]\@<!>::gc
 command! WriteSudo write !sudo tee % > /dev/null
 command! DiffOrig vnew | set buftype=nofile | read# | silent 0delete_ |
    \ diffthis | wincmd p | diffthis
-command! Translate call setline(line('.'), tr(getline('.'),
-   \'ABVGDEWZIJKLMNOPRSTUYFHXC$^&}{!|Qabvgdewzijklmnoprstuyfhxc467][1\q',
-   \'АБВГДЕЖЗИЙКЛМНОПРСТУYФХXЦЧШЩЪЬЮЮЯабвгдежзийклмнопрстуyфхxцчшщъьююя'))
 
 " Autocommands {{{1
 
@@ -953,32 +890,12 @@ if has('autocmd')
       " Wrap automatically at 80 chars for plain text files
       autocmd FileType txt,text,svn setlocal formatoptions+=t
          \ autoindent smartindent
-
-      " Useful for class aware omnicompletion with php
-      autocmd FileType php,phtml
-         \ let @v="\<esc>yiwO/* @var $\<esc>pa Zend_ */\<left>\<left>\<left>"
-
-      " Use :make to check a script {{{2
-
-      " Perl (to be improved)
-      autocmd FileType perl set makeprg=perl\ -c\ %\ $*
-         \ errorformat=%m\ at\ %f\ line\ %l.
-
-      " PHP
-      autocmd FileType php set makeprg=php\ -l\ %\ $*
-         \ errorformat=%E%m\ in\ %f\ on\ line\ %l,%Z%m
       " }}}2
 
    augroup END
 endif
 
 " Abbreviations {{{1
-
-function! EatChar(pat)
-
-   let char = nr2char(getchar(0))
-   return (char =~ a:pat) ? '' : char
-endfunc
 
 nmap <leader>ft :set filetype=
 nmap <leader>fa :set filetype=awk<cr>
@@ -998,61 +915,23 @@ nmap <leader>kfr :setlocal keymap=fr<cr>
 nmap <leader>kes :setlocal keymap=es<cr>
 nmap <leader>ken :setlocal keymap& spelllang&<cr>
 
-cabbrev vsb vertical sbuffer
-cabbrev svb vertical sbuffer
-
 cabbrev trp rtp
 cabbrev waq wqa
 cabbrev mpa map
 cabbrev frm fmr
-
-iabbrev :n      [[:alnum:]]<c-r>=EatChar('[[:space:]]')<cr>
-iabbrev :N     [^[:alnum:]]<c-r>=EatChar('[[:space:]]')<cr>
-iabbrev :a      [[:alpha:]]<c-r>=EatChar('[[:space:]]')<cr>
-iabbrev :A     [^[:alpha:]]<c-r>=EatChar('[[:space:]]')<cr>
-iabbrev :k      [[:blank:]]<c-r>=EatChar('[[:space:]]')<cr>
-iabbrev :K     [^[:blank:]]<c-r>=EatChar('[[:space:]]')<cr>
-iabbrev :c      [[:cntrl:]]<c-r>=EatChar('[[:space:]]')<cr>
-iabbrev :C     [^[:cntrl:]]<c-r>=EatChar('[[:space:]]')<cr>
-iabbrev :d      [[:digit:]]<c-r>=EatChar('[[:space:]]')<cr>
-iabbrev :D     [^[:digit:]]<c-r>=EatChar('[[:space:]]')<cr>
-iabbrev :g      [[:graph:]]<c-r>=EatChar('[[:space:]]')<cr>
-iabbrev :G     [^[:graph:]]<c-r>=EatChar('[[:space:]]')<cr>
-iabbrev :l      [[:lower:]]<c-r>=EatChar('[[:space:]]')<cr>
-iabbrev :L     [^[:lower:]]<c-r>=EatChar('[[:space:]]')<cr>
-iabbrev :i      [[:print:]]<c-r>=EatChar('[[:space:]]')<cr>
-iabbrev :I     [^[:print:]]<c-r>=EatChar('[[:space:]]')<cr>
-iabbrev :p      [[:punct:]]<c-r>=EatChar('[[:space:]]')<cr>
-iabbrev :P     [^[:punct:]]<c-r>=EatChar('[[:space:]]')<cr>
-iabbrev :s      [[:space:]]<c-r>=EatChar('[[:space:]]')<cr>
-iabbrev :S     [^[:space:]]<c-r>=EatChar('[[:space:]]')<cr>
-iabbrev :u      [[:upper:]]<c-r>=EatChar('[[:space:]]')<cr>
-iabbrev :U     [^[:upper:]]<c-r>=EatChar('[[:space:]]')<cr>
-iabbrev :x     [[:xdigit:]]<c-r>=EatChar('[[:space:]]')<cr>
-iabbrev :X    [^[:xdigit:]]<c-r>=EatChar('[[:space:]]')<cr>
-iabbrev :r     [[:return:]]<c-r>=EatChar('[[:space:]]')<cr>
-iabbrev :R    [^[:return:]]<c-r>=EatChar('[[:space:]]')<cr>
-iabbrev :t        [[:tab:]]<c-r>=EatChar('[[:space:]]')<cr>
-iabbrev :T       [^[:tab:]]<c-r>=EatChar('[[:space:]]')<cr>
-iabbrev :e     [[:escape:]]<c-r>=EatChar('[[:space:]]')<cr>
-iabbrev :E    [^[:escape:]]<c-r>=EatChar('[[:space:]]')<cr>
-iabbrev :b  [[:backspace:]]<c-r>=EatChar('[[:space:]]')<cr>
-iabbrev :B [^[:backspace:]]<c-r>=EatChar('[[:space:]]')<cr>
-
-" function! s:IfCopy()
-
-"    let start = search('\<if.*$\n\%([[:space:]]*{\)\=\_[[:space:]]\+\zs', 'bn')
-"    let end   = search('[^[:space:]][[:space:]]*$\n\ze\_[[:space:]]\+\%([[:space:]]*}[[:space:]]*\)\=else', 'bn')
-
-"    return getline(start, end)
-
-" endfunction
-
-" inoreabbrev else else<cr><c-r>=<sid>IfCopy()<cr><c-r>=EatChar('$')<cr>
+cabbrev vsb vertical sbuffer
+cabbrev svb vertical sbuffer
 
 cabbrev <silent> seta sil! se nu ls=2 ve=all mouse=a \| sy enable
-iabbrev latex LaTeX
-iabbrev _t <c-r>=strftime('%d %B %Y, %H:%M %Z (%A)')<cr>
-   \<c-r>=EatChar('[[:space:]]')<cr>
+
+function! EatChar(pat)
+   let char = nr2char(getchar(0))
+   return (char =~ a:pat) ? '' : char
+endfunc
+
+iabbrev :d  [[:digit:]]<c-r>=EatChar('[[:space:]]')<cr>
+iabbrev :D [^[:digit:]]<c-r>=EatChar('[[:space:]]')<cr>
+iabbrev :s  [[:space:]]<c-r>=EatChar('[[:space:]]')<cr>
+iabbrev :S [^[:space:]]<c-r>=EatChar('[[:space:]]')<cr>
 
 " vim: set foldmethod=marker foldmarker&:
