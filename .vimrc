@@ -78,6 +78,18 @@ set statusline=%<%n.\ %1*%t%*,\ L:%l/%1*%L%*\ C:%v
    \%{empty(&keymap)?'':'\ <'.b:keymap_name.'>'}\ %r%m
    \%=%1*%{expand('%:p:~:h')}%*,\ \%{empty(&filetype)?'':'['.&filetype.']-'}%{&fileformat}\ %P
 
+" TODO
+if $TERM == 'konsole'
+   let &t_SI = "\<esc>]50;CursorShape=1\x7"
+   let &t_EI = "\<esc>]50;CursorShape=0\x7"
+endif
+
+set guifont=DejaVu\ Sans\ Mono\ 14,
+   \Nimbus\ Mono\ L\ 14,
+   \Andale\ Mono\ 14,
+   \Liberation\ Mono\ 14,
+   \Monospace\ 14
+
 " Tabline {{{2
 set showtabline=1
 
@@ -161,7 +173,7 @@ if has('mouse_xterm') && has('xterm_clipboard')
    set ttyscroll=3
    " yank operations go to "+ in addition to ""
    set clipboard^=unnamedplus
-   " set clipboard^=autoselectplus (present in 7.3.754)
+   " set clipboard^=autoselectplus (present in 7.3.597 & go+=P)
 
    " Vim bug: Only t_te, not t_op, gets sent when leaving an alt screen
    exe 'set t_te=' . &t_te . &t_op
@@ -171,18 +183,6 @@ endif
 set mouseshape=i-r:beam,s:updown,sd:udsizing,vs:leftright,vd:lrsizing,m:no,
    \ml:up-arrow,
    \v:arrow
-
-" TODO
-if $TERM == 'konsole'
-   let &t_SI = "\<esc>]50;CursorShape=1\x7"
-   let &t_EI = "\<esc>]50;CursorShape=0\x7"
-endif
-
-set guifont=DejaVu\ Sans\ Mono\ 14,
-   \Nimbus\ Mono\ L\ 14,
-   \Andale\ Mono\ 14,
-   \Liberation\ Mono\ 14,
-   \Monospace\ 14
 
 " backups {{{2
 set noautowrite
@@ -335,14 +335,14 @@ nmap <leader>v v$h
 
 " Backspace {{{2
 " deletes leftwards
-nnoremap <bs>  "_X
+nnoremap <bs> "_X
 
 " \h {{{2
 " Help on current word
-nmap <leader>h :help    <c-r><c-w><cr>
-xmap <leader>h "*y:help <c-r>*<cr>
-nmap <silent> <f1>      :help<bar>only<cr>
-imap <silent> <f1> <c-o>:help<bar>only<cr>
+nmap          <leader>h      :help    <c-r><c-w><cr>
+xmap          <leader>h      "*y:help <c-r>*<cr>
+nmap <silent> <f1>           :help<bar>only<cr>
+imap <silent> <f1>      <c-o>:help<bar>only<cr>
 
 " c-tab {{{2
 " Switch to the alternate file
@@ -360,7 +360,7 @@ cnoremap <esc>b <s-left>
 cnoremap <esc>f <s-right>
 cnoremap <m-b>  <s-left>
 cnoremap <m-f>  <s-right>
-map <home> ^
+map  <home>      ^
 imap <home> <c-o>I
 
 imap <c-up> <c-o>{
@@ -375,11 +375,19 @@ imap     <c-k>     <c-o>D
 cmap     <c-k>     <c-f>D<c-c>
 cnoremap <esc><bs> <c-w>
 cnoremap <m-bs>    <c-w>
+nmap dl :$d<cr>``
 
 imap     <c-del>    <c-o>de
 cmap     <c-del>    <c-f>de<c-c>
 cnoremap <esc><del> <c-f>de<c-c>
 cnoremap <m-del>    <c-f>de<c-c>
+
+" Text-object: file
+nmap          daf :%d<cr>
+nmap          yaf :%y<cr>
+nmap          caf :%d<cr>i
+nmap          vaf ggVG
+nmap <silent> =af :Indentation<cr>
 
 " Visual selection {{{2
 nmap <s-up>      Vk
@@ -422,22 +430,15 @@ nmap <f6>   1z=
 " c-space {{{2
 " Help switching between buffers
 nmap <c-space> :b<space>
+" TODO: move
 imap <c-cr> <esc>o
-
-" Text-object: file
-nmap yaf :%y<cr>
-nmap daf :%d<cr>
-nmap caf :%d<cr>i
-nmap vaf ggVG
-nmap <silent> =af :Indentation<cr>
-nmap dl :$d<cr>``
 
 " c-s, c-s a {{{2
 " Saving:
 
 " write this file
-nmap <c-s>s      :update<cr>
-imap <c-s>s <c-o>:update<cr>
+nmap <c-s>s          :update<cr>
+imap <c-s>s     <c-o>:update<cr>
 nmap <c-s><c-s>      :update<cr>
 imap <c-s><c-s> <c-o>:update<cr>
 
@@ -650,8 +651,8 @@ nmap ]P :pu<cr>
 xmap  <cr> <esc>'<dd'>[pjdd`<P==
 xmap ]<cr> <esc>'<dd'>p==
 xmap [<cr> <esc>'>dd'<p==
-xmap ]t <esc>'<yy'>p==
-xmap [t <esc>'>yy'<p==
+xmap ]t    <esc>'<yy'>p==
+xmap [t    <esc>'>yy'<p==
 
 if version >= 703
    set cryptmethod=blowfish
@@ -679,6 +680,7 @@ let NERDCommentWholeLinesInVMode = 1
 let NERDSpaceDelims = 1
 map <leader><leader> <plug>NERDCommenterToggle
 
+" TODO
 let g:surround_{char2nr('w')} = "\\<\r\\>"
 let g:surround_{char2nr("\<c-cr>")} = "http://www.\r.com"
 let g:surround_{char2nr('c')} = "http://www.\r.com"
