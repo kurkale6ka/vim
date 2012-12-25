@@ -7,24 +7,9 @@
 
 set nocompatible
 
-" Common util {{{2
 call pathogen#infect()
 
-set backspace=indent,eol,start
-set whichwrap=b,s,<,>,[,]
-set matchpairs+=<:>
-set fileformats=unix,mac,dos
-set viminfo='20,<50,s10,h,!
-
-if has('folding')
-   set foldmethod=marker
-endif
-
-set secure
-set exrc
-set modeline
-set modelines=3
-
+" Encoding {{{2
 if has('multi_byte')
    if &encoding !~? 'utf-\=8'
       if empty(&termencoding)
@@ -34,6 +19,7 @@ if has('multi_byte')
    endif
 endif
 set fileencodings=ucs-bom,utf-8,default,cp1251,latin1
+set fileformats=unix,mac,dos
 
 if &encoding =~ '^u\(tf\|cs\)' " When running in a Unicode environment
 
@@ -70,18 +56,13 @@ set lazyredraw
 set display+=lastline
 set scrolloff=2
 set virtualedit=all
+set backspace=indent,eol,start
+set whichwrap=b,s,<,>,[,]
+set matchpairs+=<:>
 
-" yellow color in the statusline (%1*...%*)
-hi User1 term=bold ctermbg=black ctermfg=Yellow gui=bold guibg=black guifg=Yellow
-
-set statusline=%<%n.\ %1*%t%*,\ L:%l/%1*%L%*\ C:%v
-   \%{empty(&keymap)?'':'\ <'.b:keymap_name.'>'}\ %r%m
-   \%=%1*%{expand('%:p:~:h')}%*,\ \%{empty(&filetype)?'':'['.&filetype.']-'}%{&fileformat}\ %P
-
-" TODO
-if $TERM == 'konsole'
-   let &t_SI = "\<esc>]50;CursorShape=1\x7"
-   let &t_EI = "\<esc>]50;CursorShape=0\x7"
+if has('folding')
+   set foldmethod=marker
+   set foldmarker={{{,}}}
 endif
 
 set guifont=DejaVu\ Sans\ Mono\ 14,
@@ -89,6 +70,19 @@ set guifont=DejaVu\ Sans\ Mono\ 14,
    \Andale\ Mono\ 14,
    \Liberation\ Mono\ 14,
    \Monospace\ 14
+
+" TODO
+if $TERM == 'konsole'
+   let &t_SI = "\<esc>]50;CursorShape=1\x7"
+   let &t_EI = "\<esc>]50;CursorShape=0\x7"
+endif
+
+" yellow color in the statusline (%1*...%*)
+hi User1 term=bold ctermbg=black ctermfg=Yellow gui=bold guibg=black guifg=Yellow
+
+set statusline=%<%n.\ %1*%t%*,\ L:%l/%1*%L%*\ C:%v
+   \%{empty(&keymap)?'':'\ <'.b:keymap_name.'>'}\ %r%m
+   \%=%1*%{expand('%:p:~:h')}%*,\ \%{empty(&filetype)?'':'['.&filetype.']-'}%{&fileformat}\ %P
 
 " Tabline {{{2
 set showtabline=1
@@ -192,6 +186,7 @@ set writebackup
 set backup
 set backupskip=
 set backupext=~
+set viminfo='20,<50,s10,h,!
 
 " Search {{{2
 set incsearch
@@ -237,29 +232,8 @@ set wildmode=full
 set wildignore+=*~,*.swp
 set wildcharm=<c-z> " cmdline: <c-z> in a mapping acts like <tab>
 set history=1000
-" }}}2
 
 " Mappings {{{1
-
-" gm improved {{{2
-function! s:Gm()
-
-   execute 'normal! ^'
-
-   let first_col = virtcol('.')
-
-   execute 'normal! g_'
-
-   let last_col  = virtcol('.')
-
-   execute 'normal! ' . (first_col + last_col) / 2 . '|'
-
-endfunction
-
-nmap <silent> gm :call <sid>Gm()<cr>
-omap <silent> gm :call <sid>Gm()<cr>
-" xmap <silent> gm :call <sid>Gm()<cr>
-
 " `A...`Z {{{2
 " Jump to file on last change position
 nnoremap <silent> `A :silent! normal! `A`.<cr>
@@ -329,11 +303,6 @@ nmap <c-pagedown>      :bnext<cr>
 imap <c-pageup>   <c-o>:bprevious<cr>
 imap <c-pagedown> <c-o>:bnext<cr>
 
-" <leader>v {{{2
-" selects to the EOL excluded
-nmap <leader>v v$h
-
-" Backspace {{{2
 " deletes leftwards
 nnoremap <bs> "_X
 
@@ -344,11 +313,9 @@ xmap          <leader>h      "*y:help <c-r>*<cr>
 nmap <silent> <f1>           :help<bar>only<cr>
 imap <silent> <f1>      <c-o>:help<bar>only<cr>
 
-" c-tab {{{2
 " Switch to the alternate file
 nnoremap <c-tab> <c-^>
 
-" c-g {{{2
 " Print the working directory
 nmap <c-g> :echo expand('%:p:h')<cr>
 
@@ -406,11 +373,12 @@ nmap <s-left>       vB
 imap <s-left>  <c-o>vB
 vmap <s-left>        B
 
-" [I {{{2
+" selects to the EOL excluded
+nmap <leader>v v$h
+
 " Searches using [I in visual mode
 xmap [I "*y:global/<c-r>*<cr>
 
-" Q {{{2
 " Format paragraphs
 nmap Q gqap
 
@@ -660,8 +628,26 @@ if version >= 703
    set undofile
 endif
 
-" Plugin settings {{{1
+" Filetypes and keymaps {{{2
+nmap <leader>ft :set filetype=
+nmap <leader>fa :set filetype=awk<cr>
+nmap <leader>fs :set filetype=scheme<cr>
+nmap <leader>fp :set filetype=perl<cr>
+nmap <leader>fh :set filetype=html<cr>
+nmap <leader>fj :set filetype=javascript<cr>
+nmap <leader>fx :set filetype=xml<cr>
+nmap <leader>fv :set filetype=vim<cr>
+nmap <leader>fl :set filetype=tex<cr>
+nmap <leader>fb :set filetype=sh<cr>
+nmap <leader>fc :set filetype=c<cr>
+nmap <leader>fr :set filetype=ruby<cr>
 
+nmap <leader>kbg :setlocal keymap=bg<cr>
+nmap <leader>kfr :setlocal keymap=fr<cr>
+nmap <leader>kes :setlocal keymap=es<cr>
+nmap <leader>ken :setlocal keymap& spelllang&<cr>
+
+" Plugin settings {{{1
 " Keep these lines after runtimepath!
 filetype on
 filetype indent on
@@ -707,6 +693,25 @@ let loaded_rrhelper          = 1
 let loaded_spellfile_plugin  = 1
 let g:loaded_ZoomWin         = 1
 let g:loaded_flatfoot        = 1
+
+" Functions {{{1
+function! s:Gm()
+
+   execute 'normal! ^'
+
+   let first_col = virtcol('.')
+
+   execute 'normal! g_'
+
+   let last_col  = virtcol('.')
+
+   execute 'normal! ' . (first_col + last_col) / 2 . '|'
+
+endfunction
+
+nmap <silent> gm :call <sid>Gm()<cr>
+omap <silent> gm :call <sid>Gm()<cr>
+" xmap <silent> gm :call <sid>Gm()<cr>
 
 function! s:Underline(chars)
 
@@ -824,7 +829,6 @@ nmap <leader>o :call <sid>ShowOptionsValues(0)<cr>
 nmap <leader>O :call <sid>ShowOptionsValues(1)<cr>
 
 " Commands {{{1
-
 command! -nargs=? Underline call <sid>Underline(<q-args>)
 command! -nargs=? -range Indentation
    \ <line1>,<line2> call <sid>Indentation(<q-args>)
@@ -834,9 +838,12 @@ command! DiffOrig vnew | set buftype=nofile | read# | silent 0delete_ |
    \ diffthis | wincmd p | diffthis
 
 " Autocommands {{{1
+set secure
+set exrc
+set modeline
+set modelines=3
 
 if has('autocmd')
-
    augroup vimrcGrp
 
       autocmd!
@@ -855,31 +862,11 @@ if has('autocmd')
       " Wrap automatically at 80 chars for plain text files
       autocmd FileType txt,text,svn setlocal formatoptions+=t
          \ autoindent smartindent
-      " }}}2
 
    augroup END
 endif
 
 " Abbreviations {{{1
-
-nmap <leader>ft :set filetype=
-nmap <leader>fa :set filetype=awk<cr>
-nmap <leader>fs :set filetype=scheme<cr>
-nmap <leader>fp :set filetype=perl<cr>
-nmap <leader>fh :set filetype=html<cr>
-nmap <leader>fj :set filetype=javascript<cr>
-nmap <leader>fx :set filetype=xml<cr>
-nmap <leader>fv :set filetype=vim<cr>
-nmap <leader>fl :set filetype=tex<cr>
-nmap <leader>fb :set filetype=sh<cr>
-nmap <leader>fc :set filetype=c<cr>
-nmap <leader>fr :set filetype=ruby<cr>
-
-nmap <leader>kbg :setlocal keymap=bg<cr>
-nmap <leader>kfr :setlocal keymap=fr<cr>
-nmap <leader>kes :setlocal keymap=es<cr>
-nmap <leader>ken :setlocal keymap& spelllang&<cr>
-
 cabbrev trp rtp
 cabbrev waq wqa
 cabbrev mpa map
@@ -899,4 +886,4 @@ iabbrev :D [^[:digit:]]<c-r>=EatChar('[[:space:]]')<cr>
 iabbrev :s  [[:space:]]<c-r>=EatChar('[[:space:]]')<cr>
 iabbrev :S [^[:space:]]<c-r>=EatChar('[[:space:]]')<cr>
 
-" vim: set foldmethod=marker foldmarker&:
+" vim: set foldmethod=marker foldmarker={{{,}}}:
