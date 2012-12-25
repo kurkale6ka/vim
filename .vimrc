@@ -20,15 +20,10 @@ if has('folding')
    set foldmethod=marker
 endif
 
-" Security restrictions
-if 'root' != $USER
-   set exrc
-   set modeline
-   set modelines=3
-else
-   set noexrc
-   set nomodeline
-endif
+set secure
+set exrc
+set modeline
+set modelines=3
 
 if has('multi_byte')
    if &encoding !~? 'utf-\=8'
@@ -76,22 +71,14 @@ set display+=lastline
 set scrolloff=2
 set virtualedit=all
 
-" Statusline & tabline: %{SlSpace()}
-function! SlSpace()
-   if exists('*GetSpaceMovement')
-      let s:mov = GetSpaceMovement()
-      return '' != s:mov ? ' (' . s:mov . ') ' : ''
-   else
-      return ''
-   endif
-endfunc
-
+" yellow color in the statusline (%1*...%*)
 hi User1 term=bold ctermbg=black ctermfg=Yellow gui=bold guibg=black guifg=Yellow
 
 set statusline=%<%n.\ %1*%t%*,\ L:%l/%1*%L%*\ C:%v
    \%{empty(&keymap)?'':'\ <'.b:keymap_name.'>'}\ %r%m
    \%=%1*%{expand('%:p:~:h')}%*,\ \%{empty(&filetype)?'':'['.&filetype.']-'}%{&fileformat}\ %P
 
+" Tabline {{{2
 set showtabline=1
 
 set tabline=%!MyTabLine()
@@ -164,7 +151,7 @@ function! MyTabLabel(n)
 
 endfunction
 
-" Mouse
+" Mouse {{{2
 if has('mouse_xterm') && has('xterm_clipboard')
 
    set mouse=a
@@ -172,7 +159,9 @@ if has('mouse_xterm') && has('xterm_clipboard')
    set timeoutlen=2000
    set ttimeoutlen=100
    set ttyscroll=3
+   " yank operations go to "+ in addition to ""
    set clipboard^=unnamedplus
+   " set clipboard^=autoselectplus (present in 7.3.754)
 
    " Vim bug: Only t_te, not t_op, gets sent when leaving an alt screen
    exe 'set t_te=' . &t_te . &t_op
@@ -183,7 +172,8 @@ set mouseshape=i-r:beam,s:updown,sd:udsizing,vs:leftright,vd:lrsizing,m:no,
    \ml:up-arrow,
    \v:arrow
 
-if 'konsole' == $TERM
+" TODO
+if $TERM == 'konsole'
    let &t_SI = "\<esc>]50;CursorShape=1\x7"
    let &t_EI = "\<esc>]50;CursorShape=0\x7"
 endif
@@ -211,6 +201,7 @@ set infercase
 set hlsearch
 
 " Text formating {{{2
+" TODO
 set textwidth=80
 set formatoptions=croqn
 set nojoinspaces
@@ -560,7 +551,7 @@ function! s:BoxIn()
    let &ve = vesave
 endfunction
 
-" todo: nofilter + Version: -> echo '+feature'
+" TODO: nofilter + Version: -> echo '+feature'
 function! s:Filter_lines (cmd, filter)
 
    redir => lines
@@ -586,7 +577,6 @@ function! s:Filter_lines (cmd, filter)
    %substitute#^[[:space:]]*[[:digit:]]\+:[[:space:]]*##e
 
    0
-
 endfunction
 
 command! -nargs=1 Scriptnames call <sid>Filter_lines ('scriptnames', <q-args>)
@@ -647,9 +637,8 @@ xmap   <tab> >
 xmap <s-tab> <
 nmap <leader>0 :left<cr>
 xmap <leader>0 :left<cr>
-noremap <silent> <leader>l  :BufExplorer<cr>
-" noremap <silent> <leader>sl :BufExplorerHorizontalSplit<cr>
-" noremap <silent> <leader>vl :BufExplorerVerticalSplit<cr>
+noremap <silent> <leader>l :BufExplorer<cr>
+" TODO: move to html/xml
 map <leader>< :substitute/>\zs[[:space:]]*\ze</\r/g<cr>
 map <leader>> :substitute/>\zs[[:space:]]*\ze</\r/g<cr>
 
@@ -686,22 +675,13 @@ let g:UltiSnipsJumpForwardTrigger  = "<tab>"
 let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 let g:UltiSnipsDoHash              = 1
 
-" NERD_commenter
-" let NERDLPlace='/*'
-" let NERDRPlace='*/'
 let NERDCommentWholeLinesInVMode = 1
 let NERDSpaceDelims = 1
 map <leader><leader> <plug>NERDCommenterToggle
 
-" Surround
 let g:surround_{char2nr('w')} = "\\<\r\\>"
 let g:surround_{char2nr("\<c-cr>")} = "http://www.\r.com"
 let g:surround_{char2nr('c')} = "http://www.\r.com"
-
-" Man
-if !has('win32')
-   runtime! ftplugin/man.vim
-endif
 
 let g:CSApprox_verbose_level = 1
 
@@ -714,18 +694,8 @@ endif
 
 let vim_indent_cont = &shiftwidth
 
-let g:SuperTabDefaultCompletionType = "context"
-
-function! YRRunAfterMaps()
-   nnoremap <silent> Y :YRYankCount 'y$'<cr>
-endfunction
-
 " Disable all these plugins!
-
-if version < 702
-   let g:space_loaded = 1
-endif
-
+" There seems not to be a way to disable tohtml.vim
 let g:loaded_netrwPlugin     = 1
 let g:loaded_zipPlugin       = 1
 let g:loaded_vimballPlugin   = 0
@@ -735,8 +705,6 @@ let loaded_rrhelper          = 1
 let loaded_spellfile_plugin  = 1
 let g:loaded_ZoomWin         = 1
 let g:loaded_flatfoot        = 1
-
-" There seems not to be a way to disable tohtml.vim
 
 function! s:Underline(chars)
 
