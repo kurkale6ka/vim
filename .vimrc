@@ -16,11 +16,6 @@ set matchpairs+=<:>
 set fileformats=unix,mac,dos
 set viminfo='20,<50,s10,h,!
 
-" C, server side includes, HTML
-set include=^\\s*#\\s*include\\\|--\\s*#\\s*include\\s*virtual=\\\|href=
-set includeexpr=substitute(v:fname,'^/','','')
-set isfname-==
-
 if has('folding')
    set foldmethod=marker
 endif

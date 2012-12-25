@@ -1,3 +1,7 @@
+" server side includes, html
+set include=--\\s*#\\s*include\\s*virtual=\\\|href=
+set includeexpr=substitute(v:fname,'^/','','')
+
 imap <silent> <buffer> <leader><leader> <!--  --><left><left><left><left>
 imap <silent> <buffer> <leader>p <p><cr><cr></p><left><left><left><left><up><tab>
 imap <silent> <buffer> <leader>d <div><cr><cr></div><left><left><left><left><left><left><up><tab>
