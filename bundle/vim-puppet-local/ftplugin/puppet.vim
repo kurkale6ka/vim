@@ -1,3 +1,4 @@
 set path+=$HOME/repos/operations/puppet/
-set include=puppet:\/\/\/\\zs
+" template('...') ?
+set include=puppet:\/\/\/
 set includeexpr=substitute(v:fname,'modules/.\+\?\zs/','/files','')
