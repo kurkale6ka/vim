@@ -9,6 +9,24 @@ set nocompatible
 
 call pathogen#infect()
 
+" backups {{{2
+set noautowrite
+set noautowriteall
+set noautoread
+set writebackup
+set backup
+set backupskip=
+set backupext=~
+if version >= 703 | set undofile | endif
+set viminfo='20,<50,s10,h,!
+
+" Search {{{2
+set incsearch
+set ignorecase
+set smartcase
+set infercase
+set hlsearch
+
 " Encoding {{{2
 if has('multi_byte')
    if &encoding !~? 'utf-\=8'
@@ -38,27 +56,25 @@ if &encoding =~ '^u\(tf\|cs\)' " When running in a Unicode environment
 endif
 
 " Alerts and visual feedback {{{2
-set linebreak
 set number
 set numberwidth=3
+set matchpairs+=<:>
 set showmatch
 set matchtime=2
 set showcmd
 set shortmess=flmnrxoOtT
-set ruler
 " visual bell instead of beeping + disable the visual effect
 " = no flashing at all
 set visualbell t_vb=
 set confirm
 set report=0
-set laststatus=2
 set lazyredraw
 set display+=lastline
+set linebreak
 set scrolloff=2
 set virtualedit=all
-set backspace=indent,eol,start
 set whichwrap=b,s,<,>,[,]
-set matchpairs+=<:>
+set backspace=indent,eol,start
 
 if has('folding')
    set foldmethod=marker
@@ -76,6 +92,70 @@ if $TERM == 'konsole'
    let &t_SI = "\<esc>]50;CursorShape=1\x7"
    let &t_EI = "\<esc>]50;CursorShape=0\x7"
 endif
+
+" Mouse {{{2
+if has('mouse_xterm') && has('xterm_clipboard')
+
+   set mouse=a
+   set ttymouse=xterm2
+   set timeoutlen=2000
+   set ttimeoutlen=100
+   set ttyscroll=3
+   " yank operations go to "+ in addition to ""
+   set clipboard^=unnamedplus
+   " set clipboard^=autoselectplus (present in 7.3.597 & go+=P)
+
+   " Vim bug: Only t_te, not t_op, gets sent when leaving an alt screen
+   exe 'set t_te=' . &t_te . &t_op
+endif
+
+" I like my cursor pointing left when selecting text
+set mouseshape=i-r:beam,s:updown,sd:udsizing,vs:leftright,vd:lrsizing,m:no,
+   \ml:up-arrow,
+   \v:arrow
+
+" Text formating {{{2
+" TODO
+set textwidth=80
+set formatoptions=croqn
+set nojoinspaces
+
+nmap Q gqap
+
+" Tabs and shifting {{{2
+set shiftround
+set shiftwidth=3
+set softtabstop=3
+set tabstop=8
+set expandtab
+
+" Tags {{{2
+set complete-=t
+set complete-=]
+set completeopt-=preview
+set showfulltag
+
+" Windows and buffers {{{2
+set hidden
+set diffopt+=vertical
+set noequalalways
+set splitright
+
+if version < 700
+   set switchbuf=useopen
+else
+   set switchbuf=useopen,usetab
+endif
+
+" Command line {{{2
+set wildmenu
+set wildmode=full
+set wildignore+=*~,*.swp
+if version >= 703 | set wildignorecase | endif
+set wildcharm=<c-z> " cmdline: <c-z> in a mapping acts like <tab>
+set ruler
+set laststatus=2
+set history=1000
 
 " yellow color in the statusline (%1*...%*)
 hi User1 term=bold ctermbg=black ctermfg=Yellow gui=bold guibg=black guifg=Yellow
@@ -157,141 +237,28 @@ function! MyTabLabel(n)
 
 endfunction
 
-" Mouse {{{2
-if has('mouse_xterm') && has('xterm_clipboard')
-
-   set mouse=a
-   set ttymouse=xterm2
-   set timeoutlen=2000
-   set ttimeoutlen=100
-   set ttyscroll=3
-   " yank operations go to "+ in addition to ""
-   set clipboard^=unnamedplus
-   " set clipboard^=autoselectplus (present in 7.3.597 & go+=P)
-
-   " Vim bug: Only t_te, not t_op, gets sent when leaving an alt screen
-   exe 'set t_te=' . &t_te . &t_op
-endif
-
-" I like my cursor pointing left when selecting text
-set mouseshape=i-r:beam,s:updown,sd:udsizing,vs:leftright,vd:lrsizing,m:no,
-   \ml:up-arrow,
-   \v:arrow
-
-" backups {{{2
-set noautowrite
-set noautowriteall
-set noautoread
-set writebackup
-set backup
-set backupskip=
-set backupext=~
-set viminfo='20,<50,s10,h,!
-
-" Search {{{2
-set incsearch
-set ignorecase
-set smartcase
-set infercase
-set hlsearch
-
-" Text formating {{{2
-" TODO
-set textwidth=80
-set formatoptions=croqn
-set nojoinspaces
-
-" Tabs and shifting {{{2
-set shiftround
-set shiftwidth=3
-set softtabstop=3
-set tabstop=8
-set expandtab
-
-" Tags {{{2
-set complete-=t
-set complete-=]
-set completeopt-=preview
-set showfulltag
-
-" Windows and buffers {{{2
-set hidden
-set diffopt+=vertical
-set noequalalways
-set splitright
-
-if version < 700
-   set switchbuf=useopen
-else
-   set switchbuf=useopen,usetab
-endif
-
-" Command line {{{2
-set wildmenu
-set wildmode=full
-set wildignore+=*~,*.swp
-set wildcharm=<c-z> " cmdline: <c-z> in a mapping acts like <tab>
-set history=1000
-
 " Mappings {{{1
-" `A...`Z {{{2
-" Jump to file on last change position
-nnoremap <silent> `A :silent! normal! `A`.<cr>
-nnoremap <silent> `B :silent! normal! `B`.<cr>
-nnoremap <silent> `C :silent! normal! `C`.<cr>
-nnoremap <silent> `D :silent! normal! `D`.<cr>
-nnoremap <silent> `E :silent! normal! `E`.<cr>
-nnoremap <silent> `F :silent! normal! `F`.<cr>
-nnoremap <silent> `G :silent! normal! `G`.<cr>
-nnoremap <silent> `H :silent! normal! `H`.<cr>
-nnoremap <silent> `I :silent! normal! `I`.<cr>
-nnoremap <silent> `J :silent! normal! `J`.<cr>
-nnoremap <silent> `K :silent! normal! `K`.<cr>
-nnoremap <silent> `L :silent! normal! `L`.<cr>
-nnoremap <silent> `M :silent! normal! `M`.<cr>
-nnoremap <silent> `N :silent! normal! `N`.<cr>
-nnoremap <silent> `O :silent! normal! `O`.<cr>
-nnoremap <silent> `P :silent! normal! `P`.<cr>
-nnoremap <silent> `Q :silent! normal! `Q`.<cr>
-nnoremap <silent> `R :silent! normal! `R`.<cr>
-nnoremap <silent> `S :silent! normal! `S`.<cr>
-nnoremap <silent> `T :silent! normal! `T`.<cr>
-nnoremap <silent> `U :silent! normal! `U`.<cr>
-nnoremap <silent> `V :silent! normal! `V`.<cr>
-nnoremap <silent> `W :silent! normal! `W`.<cr>
-nnoremap <silent> `X :silent! normal! `X`.<cr>
-nnoremap <silent> `Y :silent! normal! `Y`.<cr>
-nnoremap <silent> `Z :silent! normal! `Z`.<cr>
 
 " Y {{{2
-" copies to the EOL
-nmap Y y$
-xmap <silent> Y :<c-u>call <sid>BlockCopy()<cr>
-nmap gV     gvV
-nmap g<c-v> gv<c-v>
-
-function! s:LineCopy()
-
-   let line =
-      \substitute(getline('.'), '^[[:space:]:]\+\|[[:space:]]\+$', '', '')
-
-   call histadd(':', line)
-
-   return line
-
-endfunction
-
-nmap <leader><c-l> :<c-r>=<sid>LineCopy()<cr>
-
 function! s:BlockCopy()
-
    if "\<c-v>" == visualmode()
-
       normal! gv$y
    else
       normal! gvVy
    endif
 endfunction
+
+nmap          Y y$
+xmap <silent> Y :<c-u>call <sid>BlockCopy()<cr>
+
+function! s:LineCopy()
+   let line =
+      \substitute(getline('.'), '^[[:space:]:]\+\|[[:space:]]\+$', '', '')
+   call histadd(':', line)
+   return line
+endfunction
+
+nmap <leader><c-l> :<c-r>=<sid>LineCopy()<cr>
 
 nmap <leader>s :%substitute/<c-r><c-w>//gc<left><left><left>
 nmap <leader>g :global/<c-r><c-w>/
@@ -303,7 +270,6 @@ nmap <c-pagedown>      :bnext<cr>
 imap <c-pageup>   <c-o>:bprevious<cr>
 imap <c-pagedown> <c-o>:bnext<cr>
 
-" deletes leftwards
 nnoremap <bs> "_X
 
 " \h {{{2
@@ -357,6 +323,8 @@ nmap          vaf ggVG
 nmap <silent> =af :Indentation<cr>
 
 " Visual selection {{{2
+nmap <leader>v v$h
+
 nmap <s-up>      Vk
 imap <s-up> <c-o>Vk
 vmap <s-up>       k
@@ -373,14 +341,11 @@ nmap <s-left>       vB
 imap <s-left>  <c-o>vB
 vmap <s-left>        B
 
-" selects to the EOL excluded
-nmap <leader>v v$h
+nmap gV     gvV
+nmap g<c-v> gv<c-v>
 
 " Searches using [I in visual mode
 xmap [I "*y:global/<c-r>*<cr>
-
-" Format paragraphs
-nmap Q gqap
 
 " F5, F8, F9 {{{2
 " Debugging:
@@ -520,37 +485,23 @@ function! s:BoxIn()
    let &ve = vesave
 endfunction
 
-" TODO: nofilter + Version: -> echo '+feature'
-function! s:Filter_lines (cmd, filter)
-
+function! s:Scriptnames (filter)
    redir => lines
-
    let saveMore = &more
    set nomore
-
-   execute a:cmd
-
+   scriptnames
    redir END
-
    let &more = saveMore
-
    call feedkeys("\<cr>")
-
    new
-
    setlocal buftype=nofile bufhidden=hide noswapfile
-
    put=lines
-
    execute 'vglobal/' . a:filter . '/delete'
    %substitute#^[[:space:]]*[[:digit:]]\+:[[:space:]]*##e
-
    0
 endfunction
 
-command! -nargs=1 Scriptnames call <sid>Filter_lines ('scriptnames', <q-args>)
-command! -nargs=1 Version call <sid>Filter_lines ('version', <q-args>)
-command! -nargs=* Ascii call <sid>Ascii (<f-args>)
+command! -nargs=1 Scriptnames call <sid>Scriptnames (<q-args>)
 
 function! s:Ascii (...)
 
@@ -597,6 +548,8 @@ function! s:Ascii (...)
 
 endfunction
 
+command! -nargs=* Ascii call <sid>Ascii (<f-args>)
+
 " Windows {{{2
 nmap <silent> <c-w><c-w> :wincmd p<cr>
 nmap <silent> <c-w>e     :WinFullScreen<cr>
@@ -621,12 +574,6 @@ xmap ]<cr> <esc>'<dd'>p==
 xmap [<cr> <esc>'>dd'<p==
 xmap ]t    <esc>'<yy'>p==
 xmap [t    <esc>'>yy'<p==
-
-if version >= 703
-   set cryptmethod=blowfish
-   set wildignorecase
-   set undofile
-endif
 
 " Filetypes and keymaps {{{2
 nmap <leader>ft :set filetype=
@@ -694,19 +641,13 @@ let loaded_spellfile_plugin  = 1
 let g:loaded_ZoomWin         = 1
 let g:loaded_flatfoot        = 1
 
-" Functions {{{1
+" Functions and commands {{{1
 function! s:Gm()
-
    execute 'normal! ^'
-
    let first_col = virtcol('.')
-
    execute 'normal! g_'
-
    let last_col  = virtcol('.')
-
    execute 'normal! ' . (first_col + last_col) / 2 . '|'
-
 endfunction
 
 nmap <silent> gm :call <sid>Gm()<cr>
@@ -746,6 +687,8 @@ function! s:Underline(chars)
 
 endfunction
 
+command! -nargs=? Underline call <sid>Underline(<q-args>)
+
 function! s:Indentation(amount) range
 
    let save_shiftwidth = &shiftwidth
@@ -766,6 +709,9 @@ function! s:Indentation(amount) range
    let &shiftwidth = save_shiftwidth
 
 endfunction
+
+command! -nargs=? -range Indentation
+   \ <line1>,<line2> call <sid>Indentation(<q-args>)
 
 function! AddSubtract(operation, direction)
 
@@ -828,20 +774,45 @@ endfunction
 nmap <leader>o :call <sid>ShowOptionsValues(0)<cr>
 nmap <leader>O :call <sid>ShowOptionsValues(1)<cr>
 
-" Commands {{{1
-command! -nargs=? Underline call <sid>Underline(<q-args>)
-command! -nargs=? -range Indentation
-   \ <line1>,<line2> call <sid>Indentation(<q-args>)
 command! DeleteTags %substitute:<[?%![:space:]]\@!/\=\_.\{-1,}[-?%]\@<!>::gc
 command! WriteSudo write !sudo tee % > /dev/null
 command! DiffOrig vnew | set buftype=nofile | read# | silent 0delete_ |
    \ diffthis | wincmd p | diffthis
 
 " Autocommands {{{1
-set secure
 set exrc
+set secure
+if version >= 703 | set cryptmethod=blowfish | endif
 set modeline
 set modelines=3
+
+" Jump to file on last change position
+nnoremap <silent> `A :silent! normal! `A`.<cr>
+nnoremap <silent> `B :silent! normal! `B`.<cr>
+nnoremap <silent> `C :silent! normal! `C`.<cr>
+nnoremap <silent> `D :silent! normal! `D`.<cr>
+nnoremap <silent> `E :silent! normal! `E`.<cr>
+nnoremap <silent> `F :silent! normal! `F`.<cr>
+nnoremap <silent> `G :silent! normal! `G`.<cr>
+nnoremap <silent> `H :silent! normal! `H`.<cr>
+nnoremap <silent> `I :silent! normal! `I`.<cr>
+nnoremap <silent> `J :silent! normal! `J`.<cr>
+nnoremap <silent> `K :silent! normal! `K`.<cr>
+nnoremap <silent> `L :silent! normal! `L`.<cr>
+nnoremap <silent> `M :silent! normal! `M`.<cr>
+nnoremap <silent> `N :silent! normal! `N`.<cr>
+nnoremap <silent> `O :silent! normal! `O`.<cr>
+nnoremap <silent> `P :silent! normal! `P`.<cr>
+nnoremap <silent> `Q :silent! normal! `Q`.<cr>
+nnoremap <silent> `R :silent! normal! `R`.<cr>
+nnoremap <silent> `S :silent! normal! `S`.<cr>
+nnoremap <silent> `T :silent! normal! `T`.<cr>
+nnoremap <silent> `U :silent! normal! `U`.<cr>
+nnoremap <silent> `V :silent! normal! `V`.<cr>
+nnoremap <silent> `W :silent! normal! `W`.<cr>
+nnoremap <silent> `X :silent! normal! `X`.<cr>
+nnoremap <silent> `Y :silent! normal! `Y`.<cr>
+nnoremap <silent> `Z :silent! normal! `Z`.<cr>
 
 if has('autocmd')
    augroup vimrcGrp
