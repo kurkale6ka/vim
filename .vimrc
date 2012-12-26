@@ -49,6 +49,7 @@ if &encoding =~ '^u\(tf\|cs\)' " When running in a Unicode environment
    let &showbreak=nr2char(8618).' '
    set linebreak
    set list
+   nmap <leader><tab> :setlocal invlist list?<cr>
 endif
 
 " Alerts and visual feedback {{{2
@@ -314,6 +315,13 @@ nmap <s-f7> [s
 nmap <f6>   1z=
 nmap <f5>   :update<bar>make<cr>
 
+nmap <leader>e   :setlocal spell!   spell?<cr>
+nmap <leader>dg  :set      digraph! digraph?<cr>
+nmap <leader>kbg :setlocal keymap=bg<cr>
+nmap <leader>kfr :setlocal keymap=fr<cr>
+nmap <leader>kes :setlocal keymap=es<cr>
+nmap <leader>ken :setlocal keymap& spelllang&<cr>
+
 cabbrev trp rtp
 cabbrev waq wqa
 cabbrev mpa map
@@ -333,7 +341,7 @@ onoremap <expr>   [[ (search('^[^[:space:]]\@=.*{$', 'ebsW') &&
 onoremap <expr>   ]] (search('^[^[:space:]]\@=.*{$',  'esW') &&
    \ (setpos("''", getpos('.')) <bar><bar> 1) ? "''" : "\<esc>")
 
-" Filetypes and keymaps {{{2
+" Filetypes {{{2
 nmap <leader>ft :set filetype=
 nmap <leader>fa :set filetype=awk<cr>
 nmap <leader>fs :set filetype=scheme<cr>
@@ -346,11 +354,6 @@ nmap <leader>fl :set filetype=tex<cr>
 nmap <leader>fb :set filetype=sh<cr>
 nmap <leader>fc :set filetype=c<cr>
 nmap <leader>fr :set filetype=ruby<cr>
-
-nmap <leader>kbg :setlocal keymap=bg<cr>
-nmap <leader>kfr :setlocal keymap=fr<cr>
-nmap <leader>kes :setlocal keymap=es<cr>
-nmap <leader>ken :setlocal keymap& spelllang&<cr>
 
 " Plugin settings {{{1
 filetype plugin indent on
@@ -440,6 +443,7 @@ nmap <leader>z :call <sid>TransformLines ('squeeze')<cr>
 xmap [p "0p
 nmap [P :pu!<cr>
 nmap ]P :pu<cr>
+nmap <leader>p :set invpaste paste?<cr>
 
 " Exchange first and last line in a visual area
 xmap  <cr> <esc>'<dd'>[pjdd`<P==
@@ -653,6 +657,55 @@ endfunction
 
 nmap <leader>o :call <sid>ShowOptionsValues(0)<cr>
 nmap <leader>O :call <sid>ShowOptionsValues(1)<cr>
+
+" Highlight text beyond the 80th column {{{2
+if version >= 703
+   function! s:Toggle_colorcolumn ()
+      if empty(&colorcolumn)
+         if empty(&textwidth)
+            setlocal colorcolumn=81
+         else
+            setlocal colorcolumn=+1
+         endif
+         let @/ = '\%81v.*'
+      else
+         setlocal colorcolumn=
+         let @/ = ''
+      endif
+   endfunction
+   nmap <silent> <leader>8 :call <sid>Toggle_colorcolumn()<cr>
+endif
+
+" Insert completion {{{2
+function! s:Toggle_Longest_Preview(key)
+   if a:key == 'f12'
+      if &completeopt =~ 'longest'
+         set   completeopt-=longest
+         set   showfulltag
+         echo 'completeopt - longest (User_Account)'
+      else
+         set   completeopt+=longest
+         set   noshowfulltag
+         echo 'completeopt + longest (User_)'
+      endif
+   elseif a:key == 'f4'
+      if &completeopt =~ 'preview'
+         set   completeopt-=preview
+         echo 'completeopt - preview'
+      else
+         set   completeopt+=preview
+         echo 'completeopt + preview window'
+      endif
+   endif
+endfunction
+
+" Preview window: toggle completeopt's preview
+nmap <f4>      :call <sid>Toggle_Longest_Preview('f4')<cr>
+imap <f4> <c-o>:call <sid>Toggle_Longest_Preview('f4')<cr>
+
+" Toggle completeopt's longest
+nmap <f12>      :call <sid>Toggle_Longest_Preview('f12')<cr>
+imap <f12> <c-o>:call <sid>Toggle_Longest_Preview('f12')<cr>
 
 " Commands and autocommands {{{1
 if has('autocmd')
