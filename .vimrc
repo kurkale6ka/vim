@@ -4,28 +4,24 @@
 " ------------------------------------------------------
 
 " Options {{{1
-
 set nocompatible
-
 call pathogen#infect()
 
-" backups {{{2
-set noautowrite
-set noautowriteall
-set noautoread
+" Backups {{{2
+set backup backupskip= backupext=~
+set noautowrite noautowriteall
 set writebackup
-set backup
-set backupskip=
-set backupext=~
+set noautoread
 if version >= 703 | set undofile | endif
 set viminfo='20,<50,s10,h,!
 
 " Search {{{2
-set incsearch
-set ignorecase
-set smartcase
-set infercase
-set hlsearch
+set incsearch hlsearch
+set ignorecase smartcase infercase
+
+nmap <leader>g    :global/<c-r><c-w>/
+xmap <leader>g "*y:global/<c-r>*<cr>
+nmap <leader>bg :Bgrep/<c-r><c-w>/<cr>
 
 " Encoding {{{2
 if has('multi_byte')
@@ -51,35 +47,31 @@ if &encoding =~ '^u\(tf\|cs\)' " When running in a Unicode environment
 
    " arrow + space (↪ ) at the beginning of wrapped lines
    let &showbreak=nr2char(8618).' '
-
+   set linebreak
    set list
 endif
 
 " Alerts and visual feedback {{{2
-set number
-set numberwidth=3
+set number numberwidth=3
 set matchpairs+=<:>
-set showmatch
-set matchtime=2
-set showcmd
-set shortmess=flmnrxoOtT
-" visual bell instead of beeping + disable the visual effect
-" = no flashing at all
+set showmatch matchtime=2
+" visual bell instead of beeps + disable the visual effect = no flashing at all
 set visualbell t_vb=
 set confirm
-set report=0
 set lazyredraw
 set display+=lastline
-set linebreak
 set scrolloff=2
 set virtualedit=all
 set whichwrap=b,s,<,>,[,]
 set backspace=indent,eol,start
+set shortmess=flmnrxoOtT
+set showcmd
+set report=0
 
-if has('folding')
-   set foldmethod=marker
-   set foldmarker={{{,}}}
-endif
+" Print working directory
+nmap <c-g> :echo expand('%:p:h')<cr>
+
+if has('folding') | set foldmethod=marker foldmarker={{{,}}} | endif
 
 set guifont=DejaVu\ Sans\ Mono\ 14,
    \Nimbus\ Mono\ L\ 14,
@@ -87,35 +79,20 @@ set guifont=DejaVu\ Sans\ Mono\ 14,
    \Liberation\ Mono\ 14,
    \Monospace\ 14
 
-" TODO
-if $TERM == 'konsole'
-   let &t_SI = "\<esc>]50;CursorShape=1\x7"
-   let &t_EI = "\<esc>]50;CursorShape=0\x7"
-endif
-
 " Mouse {{{2
 if has('mouse_xterm') && has('xterm_clipboard')
-
    set mouse=a
    set ttymouse=xterm2
-   set timeoutlen=2000
-   set ttimeoutlen=100
+   set timeoutlen=2000 ttimeoutlen=100
    set ttyscroll=3
    " yank operations go to "+ in addition to ""
    set clipboard^=unnamedplus
-   " set clipboard^=autoselectplus (present in 7.3.597 & go+=P)
-
+   " TODO: set clipboard^=autoselectplus (present in 7.3.597 + go+=P)
    " Vim bug: Only t_te, not t_op, gets sent when leaving an alt screen
    exe 'set t_te=' . &t_te . &t_op
 endif
 
-" I like my cursor pointing left when selecting text
-set mouseshape=i-r:beam,s:updown,sd:udsizing,vs:leftright,vd:lrsizing,m:no,
-   \ml:up-arrow,
-   \v:arrow
-
 " Text formating {{{2
-" TODO
 set textwidth=80
 set formatoptions=croqn
 set nojoinspaces
@@ -123,15 +100,17 @@ set nojoinspaces
 nmap Q gqap
 
 " Tabs and shifting {{{2
-set shiftround
-set shiftwidth=3
-set softtabstop=3
-set tabstop=8
 set expandtab
+set softtabstop=3 tabstop=8
+set shiftwidth=3 shiftround
+
+xmap   <tab> >
+xmap <s-tab> <
+nmap <leader>0 :left<cr>
+xmap <leader>0 :left<cr>
 
 " Tags {{{2
-set complete-=t
-set complete-=]
+set complete-=t complete-=]
 set completeopt-=preview
 set showfulltag
 
@@ -147,9 +126,22 @@ else
    set switchbuf=useopen,usetab
 endif
 
+cabbrev vsb vertical sbuffer
+cabbrev svb vertical sbuffer
+
+noremap       <silent> <leader>l      :BufExplorer<cr>
+nmap          <c-pageup>              :bprevious<cr>
+nmap          <c-pagedown>            :bnext<cr>
+imap          <c-pageup>         <c-o>:bprevious<cr>
+imap          <c-pagedown>       <c-o>:bnext<cr>
+nmap          <c-space>               :b<space>
+nnoremap      <c-tab>                 <c-^>
+nmap <silent> <c-w><c-w>              :wincmd p<cr>
+nmap <silent> <c-w>e                  :WinFullScreen<cr>
+nmap <silent> <c-w><c-e>              :WinFullScreen<cr>
+
 " Command line {{{2
-set wildmenu
-set wildmode=full
+set wildmenu wildmode=full
 set wildignore+=*~,*.swp
 if version >= 703 | set wildignorecase | endif
 set wildcharm=<c-z> " cmdline: <c-z> in a mapping acts like <tab>
@@ -158,15 +150,16 @@ set laststatus=2
 set history=1000
 
 " yellow color in the statusline (%1*...%*)
-hi User1 term=bold ctermbg=black ctermfg=Yellow gui=bold guibg=black guifg=Yellow
+highlight User1
+   \ term=bold ctermbg=black ctermfg=Yellow gui=bold guibg=black guifg=Yellow
 
 set statusline=%<%n.\ %1*%t%*,\ L:%l/%1*%L%*\ C:%v
    \%{empty(&keymap)?'':'\ <'.b:keymap_name.'>'}\ %r%m
-   \%=%1*%{expand('%:p:~:h')}%*,\ \%{empty(&filetype)?'':'['.&filetype.']-'}%{&fileformat}\ %P
+   \%=%1*%{expand('%:p:~:h')}%*,\ \%{empty(&filetype)?'':'['.&filetype.']-'}
+   \%{&fileformat}\ %P
 
 " Tabline {{{2
 set showtabline=1
-
 set tabline=%!MyTabLine()
 
 function! MyTabLine()
@@ -238,8 +231,7 @@ function! MyTabLabel(n)
 endfunction
 
 " Mappings {{{1
-
-" Y {{{2
+" Copy {{{2
 function! s:BlockCopy()
    if "\<c-v>" == visualmode()
       normal! gv$y
@@ -260,157 +252,147 @@ endfunction
 
 nmap <leader><c-l> :<c-r>=<sid>LineCopy()<cr>
 
-nmap <leader>s :%substitute/<c-r><c-w>//gc<left><left><left>
-nmap <leader>g :global/<c-r><c-w>/
-nmap <leader>5 :%substitute///gc<left><left><left><left>
-nmap <leader>bg :Bgrep/<c-r><c-w>/<cr>
-
-nmap <c-pageup>        :bprevious<cr>
-nmap <c-pagedown>      :bnext<cr>
-imap <c-pageup>   <c-o>:bprevious<cr>
-imap <c-pagedown> <c-o>:bnext<cr>
-
-nnoremap <bs> "_X
-
-" \h {{{2
-" Help on current word
-nmap          <leader>h      :help    <c-r><c-w><cr>
-xmap          <leader>h      "*y:help <c-r>*<cr>
+" Help {{{2
+nmap          <leader>h      :help<c-r><c-w><cr>
+xmap          <leader>h   "*y:help<c-r>*<cr>
 nmap <silent> <f1>           :help<bar>only<cr>
 imap <silent> <f1>      <c-o>:help<bar>only<cr>
 
-" Switch to the alternate file
-nnoremap <c-tab> <c-^>
+" Moving around {{{2
+cnoremap <c-a>         <home>
+cnoremap <esc>b        <s-left>
+cnoremap <esc>f        <s-right>
+cnoremap <m-b>         <s-left>
+cnoremap <m-f>         <s-right>
+map      <home>        ^
+imap     <home>   <c-o>I
+imap     <c-up>   <c-o>{
+map      <c-up>        {
+imap     <c-down> <c-o>}
+map      <c-down>      }
 
-" Print the working directory
-nmap <c-g> :echo expand('%:p:h')<cr>
-
-" Moving and deletion {{{2
-
-" Moving
-cnoremap <c-a>  <home>
-cnoremap <esc>b <s-left>
-cnoremap <esc>f <s-right>
-cnoremap <m-b>  <s-left>
-cnoremap <m-f>  <s-right>
-map  <home>      ^
-imap <home> <c-o>I
-
-imap <c-up> <c-o>{
-map  <c-up>      {
-
-imap <c-down> <c-o>}
-map  <c-down>      }
-
-" Deletion
-map!     <c-bs>    <c-w>
-imap     <c-k>     <c-o>D
-cmap     <c-k>     <c-f>D<c-c>
-cnoremap <esc><bs> <c-w>
-cnoremap <m-bs>    <c-w>
-nmap dl :$d<cr>``
-
+" Deletion {{{2
+nnoremap <bs>            "_X
+map!     <c-bs>          <c-w>
+imap     <c-k>      <c-o>D
+cmap     <c-k>      <c-f>D<c-c>
+cnoremap <esc><bs>       <c-w>
+cnoremap <m-bs>          <c-w>
+nmap     dl              :$d<cr>``
 imap     <c-del>    <c-o>de
 cmap     <c-del>    <c-f>de<c-c>
 cnoremap <esc><del> <c-f>de<c-c>
 cnoremap <m-del>    <c-f>de<c-c>
 
-" Text-object: file
+" Text-object: file {{{2
 nmap          daf :%d<cr>
 nmap          yaf :%y<cr>
 nmap          caf :%d<cr>i
 nmap          vaf ggVG
-nmap <silent> =af :Indentation<cr>
+nmap <silent> =af :Indent<cr>
 
 " Visual selection {{{2
-nmap <leader>v v$h
-
-nmap <s-up>      Vk
-imap <s-up> <c-o>Vk
-vmap <s-up>       k
-
-nmap <s-down>      Vj
-imap <s-down> <c-o>Vj
-vmap <s-down>       j
-
+nmap <leader>v      v$h
+nmap gV             gvV
+nmap g<c-v>         gv<c-v>
+nmap <s-up>         Vk
+imap <s-up>    <c-o>Vk
+vmap <s-up>          k
+nmap <s-down>       Vj
+imap <s-down>  <c-o>Vj
+vmap <s-down>        j
 nmap <s-right>      vE
 imap <s-right> <c-o>vE
 vmap <s-right>       E
-
 nmap <s-left>       vB
 imap <s-left>  <c-o>vB
 vmap <s-left>        B
 
-nmap gV     gvV
-nmap g<c-v> gv<c-v>
-
-" Searches using [I in visual mode
-xmap [I "*y:global/<c-r>*<cr>
-
-" F5, F8, F9 {{{2
-" Debugging:
-nmap <f5> :update<bar>make<cr>
-
-nmap <f8> :cprevious<cr>
-nmap <f9> :cnext<cr>
-
-" F6, F7, s-F7 {{{2
-" Spell check
+" Spell/syntax check {{{2
 nmap <f7>   ]s
 nmap <s-f7> [s
 nmap <f6>   1z=
+nmap <f5>   :update<bar>make<cr>
 
-" c-space {{{2
-" Help switching between buffers
-nmap <c-space> :b<space>
-" TODO: move
-imap <c-cr> <esc>o
+cabbrev trp rtp
+cabbrev waq wqa
+cabbrev mpa map
+cabbrev frm fmr
 
-" c-s, c-s a {{{2
-" Saving:
-
-" write this file
-nmap <c-s>s          :update<cr>
-imap <c-s>s     <c-o>:update<cr>
-nmap <c-s><c-s>      :update<cr>
-imap <c-s><c-s> <c-o>:update<cr>
-
-" write all files
-nmap <c-s><c-a>      :wall<cr>
-imap <c-s><c-a> <c-o>:wall<cr>
-
-nmap <c-s>a      :wall<cr>
-imap <c-s>a <c-o>:wall<cr>
-
-" } {{{2
-" In visual-block mode: } selects the current column
-" these mappings work correctly only if 'nostartofline is set
+" In visual-block mode: } selects the current column {{{2
 set nostartofline
 
 vnoremap <expr> } mode() == nr2char(22) ? line("'}") - 1 . 'G' : '}'
 vnoremap <expr> { mode() == nr2char(22) ? line("'{") + 1 . 'G' : '{'
 
-" [[, ]] {{{2
-" work even if the { is not in the first column
-nnoremap <silent> [[ :call search('^[^[:space:]]\@=.*{$', 'besW')<CR>
-nnoremap <silent> ]] :call search('^[^[:space:]]\@=.*{$',  'esW')<CR>
-onoremap <expr> [[ (search('^[^[:space:]]\@=.*{$', 'ebsW') && (setpos("''", getpos('.'))
-   \ <bar><bar> 1) ? "''" : "\<esc>")
-onoremap <expr> ]] (search('^[^[:space:]]\@=.*{$',  'esW') && (setpos("''", getpos('.'))
-   \ <bar><bar> 1) ? "''" : "\<esc>")
+" [[, ]] work even if the { is not in the first column {{{2
+nnoremap <silent> [[ :call search('^[^[:space:]]\@=.*{$', 'besW')<cr>
+nnoremap <silent> ]] :call search('^[^[:space:]]\@=.*{$',  'esW')<cr>
+onoremap <expr>   [[ (search('^[^[:space:]]\@=.*{$', 'ebsW') &&
+   \ (setpos("''  ", getpos('.')) <bar><bar> 1) ? "''" : "\<esc>")
+onoremap <expr>   ]] (search('^[^[:space:]]\@=.*{$',  'esW') &&
+   \ (setpos("''", getpos('.')) <bar><bar> 1) ? "''" : "\<esc>")
 
-" c-l {{{2
-" Redraw the screen and remove any search highlighting
-" Remove superfluous white spaces towards the EOL
-nnoremap <silent> <c-l> :nohlsearch<bar>
-   \call <sid>TransformLines ('del_EOL_spaces')<cr><c-l>
+" Filetypes and keymaps {{{2
+nmap <leader>ft :set filetype=
+nmap <leader>fa :set filetype=awk<cr>
+nmap <leader>fs :set filetype=scheme<cr>
+nmap <leader>fp :set filetype=perl<cr>
+nmap <leader>fh :set filetype=html<cr>
+nmap <leader>fj :set filetype=javascript<cr>
+nmap <leader>fx :set filetype=xml<cr>
+nmap <leader>fv :set filetype=vim<cr>
+nmap <leader>fl :set filetype=tex<cr>
+nmap <leader>fb :set filetype=sh<cr>
+nmap <leader>fc :set filetype=c<cr>
+nmap <leader>fr :set filetype=ruby<cr>
 
-" <leader>sq {{{2
-" Squeeze empty lines (<leader>sq)
-nmap <leader>z :call <sid>TransformLines ('squeeze')<cr>
+nmap <leader>kbg :setlocal keymap=bg<cr>
+nmap <leader>kfr :setlocal keymap=fr<cr>
+nmap <leader>kes :setlocal keymap=es<cr>
+nmap <leader>ken :setlocal keymap& spelllang&<cr>
 
-" todo: move to autoload
-"       the 'no lines compressed' doesn't show
+" Plugin settings {{{1
+filetype plugin indent on
+syntax enable
+
+let g:UltiSnipsSnippetsDir         = '~/vimfiles/snippets/'
+let g:UltiSnipsSnippetDirectories  = ["UltiSnips", "snippets"]
+let g:UltiSnipsListSnippets        = "<c-r><tab>"
+let g:UltiSnipsExpandTrigger       = "<tab>"
+let g:UltiSnipsJumpForwardTrigger  = "<tab>"
+let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+
+let NERDCommentWholeLinesInVMode = 1
+let NERDSpaceDelims = 1
+map <leader><leader> <plug>NERDCommenterToggle
+
+let g:CSApprox_verbose_level = 1
+
+if &term =~ '^\(xterm\|screen\)$'
+   set t_Co=256
+   if has('syntax')
+      set cursorline
+   endif
+endif
+
+let vim_indent_cont = &shiftwidth
+
+" Disable/enable plugins!
+" There seems not to be a way to disable tohtml.vim
+let g:loaded_vimballPlugin   = 0
+let g:loaded_netrwPlugin     = 1
+let g:loaded_zipPlugin       = 1
+let g:loaded_tarPlugin       = 1
+let g:loaded_getscriptPlugin = 1
+let g:loaded_ZoomWin         = 1
+let g:loaded_flatfoot        = 1
+let loaded_rrhelper          = 1
+let loaded_spellfile_plugin  = 1
+
+" Functions {{{1
+" Transformations {{{2
+" TODO: move to autoload + the 'no lines compressed' doesn't show
 function! s:TransformLines (operation)
 
    let last_search = histget('search', -1)
@@ -419,11 +401,8 @@ function! s:TransformLines (operation)
       let save_cursor = getpos(".")
 
       if 'squeeze' == a:operation
-
          global/^\%([[:space:]]*$\n\)\{2,}/delete
-
       elseif 'del_EOL_spaces' == a:operation
-
          silent! %substitute/[[:space:]]\+$//e
       endif
 
@@ -434,11 +413,8 @@ function! s:TransformLines (operation)
       echohl ErrorMsg
 
       if 'squeeze' == a:operation
-
          echo 'No lines compressed'
-
       elseif 'del_EOL_spaces' == a:operation
-
          " echo 'No superfluous EOL whitespaces'
       endif
 
@@ -447,44 +423,35 @@ function! s:TransformLines (operation)
    finally
 
       if histget('search', -1) != last_search
-
          call histdel('search', -1)
       endif
    endtry
 
 endfunction
 
-vnoremap <leader>box <ESC>:call <SID>BoxIn()<CR>gvlolo
+" Redraw the screen and stop highlighting, remove extra white spaces at EOLs
+nnoremap <silent> <c-l> :nohlsearch<bar>
+   \call <sid>TransformLines ('del_EOL_spaces')<cr><c-l>
 
-function! s:BoxIn()
-   let mode = visualmode()
-   if mode == ""
-      return
-   endif
-   let vesave = &ve
-   let &ve = "all"
-   exe "norm! ix\<BS>\<ESC>"
-   if line("'<") > line("'>")
-      undoj | exe "norm! gvo\<ESC>"
-   endif
-   if mode != "\<C-v>"
-      let len = max(map(range(line("'<"), line("'>")), "virtcol([v:val, '$'])"))
-      undoj | exe "norm! gv\<C-v>o0o0" . (len-2?string(len-2):'') . "l\<esc>"
-   endif
-   let diff = virtcol("'>") - virtcol("'<")
-   if diff < 0
-      let diff = -diff
-   endif
-   let horizm = "+" . repeat('-', diff+1) . "+"
-   if mode == "\<C-v>"
-      undoj | exe "norm! `<O".horizm."\<ESC>"
-   else
-      undoj | exe line("'<")."put! ='".horizm."'" | norm! `<k
-   endif
-   undoj | exe "norm! yygvA|\<ESC>gvI|\<ESC>`>p"
-   let &ve = vesave
-endfunction
+" Squeeze empty lines
+nmap <leader>z :call <sid>TransformLines ('squeeze')<cr>
 
+" Paste
+xmap [p "0p
+nmap [P :pu!<cr>
+nmap ]P :pu<cr>
+
+" Exchange first and last line in a visual area
+xmap  <cr> <esc>'<dd'>[pjdd`<P==
+xmap ]<cr> <esc>'<dd'>p==
+xmap [<cr> <esc>'>dd'<p==
+xmap ]t    <esc>'<yy'>p==
+xmap [t    <esc>'>yy'<p==
+
+nmap <leader>s :%substitute/<c-r><c-w>//gc<left><left><left>
+imap <c-cr> <esc>o
+
+" Scriptnames {{{2
 function! s:Scriptnames (filter)
    redir => lines
    let saveMore = &more
@@ -503,6 +470,7 @@ endfunction
 
 command! -nargs=1 Scriptnames call <sid>Scriptnames (<q-args>)
 
+" Ascii {{{2
 function! s:Ascii (...)
 
    if a:0 == 0
@@ -511,7 +479,8 @@ function! s:Ascii (...)
    endif
 
    let codes =
-      \{0:'^@', 9:'^I', 10:'^J (^@)', 13:'^M', 32:'<space>', 127:'<del>', 160:'&nbsp'}
+      \{0:'^@', 9:'^I', 10:'^J (^@)', 13:'^M', 32:'<space>', 127:'<del>',
+      \160:'&nbsp'}
 
    if a:0 != 2
 
@@ -549,99 +518,7 @@ function! s:Ascii (...)
 endfunction
 
 command! -nargs=* Ascii call <sid>Ascii (<f-args>)
-
-" Windows {{{2
-nmap <silent> <c-w><c-w> :wincmd p<cr>
-nmap <silent> <c-w>e     :WinFullScreen<cr>
-nmap <silent> <c-w><c-e> :WinFullScreen<cr>
-
-xmap   <tab> >
-xmap <s-tab> <
-nmap <leader>0 :left<cr>
-xmap <leader>0 :left<cr>
-noremap <silent> <leader>l :BufExplorer<cr>
-" TODO: move to html/xml
-map <leader>< :substitute/>\zs[[:space:]]*\ze</\r/g<cr>
-map <leader>> :substitute/>\zs[[:space:]]*\ze</\r/g<cr>
-
-xmap [p "0p
-nmap [P :pu!<cr>
-nmap ]P :pu<cr>
-
-" Exchange first and last line in a visual area
-xmap  <cr> <esc>'<dd'>[pjdd`<P==
-xmap ]<cr> <esc>'<dd'>p==
-xmap [<cr> <esc>'>dd'<p==
-xmap ]t    <esc>'<yy'>p==
-xmap [t    <esc>'>yy'<p==
-
-" Filetypes and keymaps {{{2
-nmap <leader>ft :set filetype=
-nmap <leader>fa :set filetype=awk<cr>
-nmap <leader>fs :set filetype=scheme<cr>
-nmap <leader>fp :set filetype=perl<cr>
-nmap <leader>fh :set filetype=html<cr>
-nmap <leader>fj :set filetype=javascript<cr>
-nmap <leader>fx :set filetype=xml<cr>
-nmap <leader>fv :set filetype=vim<cr>
-nmap <leader>fl :set filetype=tex<cr>
-nmap <leader>fb :set filetype=sh<cr>
-nmap <leader>fc :set filetype=c<cr>
-nmap <leader>fr :set filetype=ruby<cr>
-
-nmap <leader>kbg :setlocal keymap=bg<cr>
-nmap <leader>kfr :setlocal keymap=fr<cr>
-nmap <leader>kes :setlocal keymap=es<cr>
-nmap <leader>ken :setlocal keymap& spelllang&<cr>
-
-" Plugin settings {{{1
-" Keep these lines after runtimepath!
-filetype on
-filetype indent on
-filetype plugin on
-syntax enable
-
-let g:UltiSnipsSnippetsDir         = '~/vimfiles/snippets/'
-let g:UltiSnipsSnippetDirectories  = ["UltiSnips", "snippets"]
-let g:UltiSnipsListSnippets        = "<c-r><tab>"
-let g:UltiSnipsExpandTrigger       = "<tab>"
-let g:UltiSnipsJumpForwardTrigger  = "<tab>"
-let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
-let g:UltiSnipsDoHash              = 1
-
-let NERDCommentWholeLinesInVMode = 1
-let NERDSpaceDelims = 1
-map <leader><leader> <plug>NERDCommenterToggle
-
-" TODO
-let g:surround_{char2nr('w')} = "\\<\r\\>"
-let g:surround_{char2nr("\<c-cr>")} = "http://www.\r.com"
-let g:surround_{char2nr('c')} = "http://www.\r.com"
-
-let g:CSApprox_verbose_level = 1
-
-if &term =~ '^\(xterm\|screen\)$'
-   set t_Co=256
-   if has('syntax')
-      set cursorline
-   endif
-endif
-
-let vim_indent_cont = &shiftwidth
-
-" Disable all these plugins!
-" There seems not to be a way to disable tohtml.vim
-let g:loaded_netrwPlugin     = 1
-let g:loaded_zipPlugin       = 1
-let g:loaded_vimballPlugin   = 0
-let g:loaded_tarPlugin       = 1
-let g:loaded_getscriptPlugin = 1
-let loaded_rrhelper          = 1
-let loaded_spellfile_plugin  = 1
-let g:loaded_ZoomWin         = 1
-let g:loaded_flatfoot        = 1
-
-" Functions and commands {{{1
+" gm {{{2
 function! s:Gm()
    execute 'normal! ^'
    let first_col = virtcol('.')
@@ -652,8 +529,8 @@ endfunction
 
 nmap <silent> gm :call <sid>Gm()<cr>
 omap <silent> gm :call <sid>Gm()<cr>
-" xmap <silent> gm :call <sid>Gm()<cr>
 
+" Underline {{{2
 function! s:Underline(chars)
 
    let chars = empty(a:chars) ? '-' : a:chars
@@ -688,8 +565,10 @@ function! s:Underline(chars)
 endfunction
 
 command! -nargs=? Underline call <sid>Underline(<q-args>)
+nmap <leader>u :Underline<cr>
 
-function! s:Indentation(amount) range
+" Indent {{{2
+function! s:Indent(amount) range
 
    let save_shiftwidth = &shiftwidth
 
@@ -710,9 +589,9 @@ function! s:Indentation(amount) range
 
 endfunction
 
-command! -nargs=? -range Indentation
-   \ <line1>,<line2> call <sid>Indentation(<q-args>)
+command! -nargs=? -range Indent <line1>,<line2> call <sid>Indent(<q-args>)
 
+" Add/Subtract {{{2
 function! AddSubtract(operation, direction)
 
    if &nrformats =~ 'alpha'
@@ -747,6 +626,7 @@ nmap <silent> <leader><c-a> :<c-u>call AddSubtract('a', 'b')<cr>
 nmap <silent>         <c-x> :<c-u>call AddSubtract('s', 'f')<cr>
 nmap <silent> <leader><c-x> :<c-u>call AddSubtract('s', 'b')<cr>
 
+" Show options {{{2
 function! s:ShowOptionsValues(verb)
 
    let options = input('Options? ', '', 'option')
@@ -774,17 +654,32 @@ endfunction
 nmap <leader>o :call <sid>ShowOptionsValues(0)<cr>
 nmap <leader>O :call <sid>ShowOptionsValues(1)<cr>
 
-command! DeleteTags %substitute:<[?%![:space:]]\@!/\=\_.\{-1,}[-?%]\@<!>::gc
+" Commands and autocommands {{{1
+if has('autocmd')
+   augroup vimrcGrp
+
+      autocmd!
+
+      " Jump to the last spot the cursor was at in a file when reading it
+      autocmd BufReadPost *
+         \ if line("'\"") > 0 && line("'\"") <= line('$') |
+         \ execute 'normal! g`"' |
+         \ endif
+
+      " When reading a file, :cd to its parent directory unless it's a help
+      " file. This replaces 'autochdir which doesn't work properly.
+      autocmd BufEnter * if &filetype != 'help' | silent! cd %:p:h | endif
+
+      " Wrap automatically at 80 chars for plain text files
+      autocmd FileType txt,text,svn setlocal formatoptions+=t
+         \ autoindent smartindent
+
+   augroup END
+endif
+
 command! WriteSudo write !sudo tee % > /dev/null
 command! DiffOrig vnew | set buftype=nofile | read# | silent 0delete_ |
    \ diffthis | wincmd p | diffthis
-
-" Autocommands {{{1
-set exrc
-set secure
-if version >= 703 | set cryptmethod=blowfish | endif
-set modeline
-set modelines=3
 
 " Jump to file on last change position
 nnoremap <silent> `A :silent! normal! `A`.<cr>
@@ -814,47 +709,10 @@ nnoremap <silent> `X :silent! normal! `X`.<cr>
 nnoremap <silent> `Y :silent! normal! `Y`.<cr>
 nnoremap <silent> `Z :silent! normal! `Z`.<cr>
 
-if has('autocmd')
-   augroup vimrcGrp
-
-      autocmd!
-
-      " Jump to the last spot the cursor was at in a file when reading it
-      autocmd BufReadPost *
-         \ if line("'\"") > 0 && line("'\"") <= line('$') |
-         \ execute 'normal! g`"' |
-         \ endif
-
-      " When reading a file, :cd to its parent directory unless it's a help
-      " file. It reproduces the behaviour of autochdir which doesn't work
-      " properly
-      autocmd BufEnter * if &filetype != 'help' | silent! cd %:p:h | endif
-
-      " Wrap automatically at 80 chars for plain text files
-      autocmd FileType txt,text,svn setlocal formatoptions+=t
-         \ autoindent smartindent
-
-   augroup END
-endif
-
-" Abbreviations {{{1
-cabbrev trp rtp
-cabbrev waq wqa
-cabbrev mpa map
-cabbrev frm fmr
-cabbrev vsb vertical sbuffer
-cabbrev svb vertical sbuffer
-
-cabbrev <silent> seta sil! se nu ls=2 ve=all mouse=a \| sy enable
-
-function! EatChar(pat)
-   let char = nr2char(getchar(0))
-   return (char =~ a:pat) ? '' : char
-endfunc
-
-iabbrev :d  [[:digit:]]<c-r>=EatChar('[[:space:]]')<cr>
-iabbrev :D [^[:digit:]]<c-r>=EatChar('[[:space:]]')<cr>
-iabbrev :s  [[:space:]]<c-r>=EatChar('[[:space:]]')<cr>
-iabbrev :S [^[:space:]]<c-r>=EatChar('[[:space:]]')<cr>
+set exrc
+set secure
+if version >= 703 | set cryptmethod=blowfish | endif
+set modeline
+set modelines=3
 
 " vim: set foldmethod=marker foldmarker={{{,}}}:
