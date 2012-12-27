@@ -254,8 +254,8 @@ endfunction
 nmap <leader><c-l> :<c-r>=<sid>LineCopy()<cr>
 
 " Help {{{2
-nmap          <leader>h      :help<c-r><c-w><cr>
-xmap          <leader>h   "*y:help<c-r>*<cr>
+nmap          <leader>h      :help <c-r><c-w><cr>
+xmap          <leader>h   "*y:help <c-r>*<cr>
 nmap <silent> <f1>           :help<bar>only<cr>
 imap <silent> <f1>      <c-o>:help<bar>only<cr>
 
