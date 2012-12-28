@@ -12,6 +12,7 @@
 **/*.stackdump
 tags
 **/tags
+autoload/pathogen.vim
 bundle/bufexplorer
 bundle/vim-blanklines/
 bundle/vim-blockinsert/
@@ -21,11 +22,11 @@ bundle/vim-swap/
 bundle/csapprox/
 bundle/nerdcommenter/
 bundle/tabular/
-autoload/pathogen.vim
 bundle/vim-pathogen/
 bundle/vim-abolish/
 bundle/vim-endwise/
 bundle/vim-flatfoot/
+bundle/vim-fugitive/
 bundle/vim-ragtag/
 bundle/vim-repeat/
 bundle/vim-space/

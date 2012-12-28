@@ -170,6 +170,14 @@ snippet \B "" i
 [^[:backspace:]]
 endsnippet
 
+snippet \w "" i
+[_[:alnum:]]
+endsnippet
+
+snippet \W "" i
+[^_[:alnum:]]
+endsnippet
+
 snippet |
 # Allows to use port $1 on localhost to get to port $3 on $2 trough $4
 # $2 must be reachable from $4
