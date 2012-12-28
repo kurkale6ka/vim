@@ -769,4 +769,6 @@ if version >= 703 | set cryptmethod=blowfish | endif
 set modeline
 set modelines=3
 
+if filereadable($HOME.'/.vimrc_after') | source $HOME/.vimrc_after | endif
+
 " vim: set foldmethod=marker foldmarker={{{,}}}:
