@@ -21,6 +21,7 @@ bundle/vim-sequence/
 bundle/vim-swap/
 bundle/csapprox/
 bundle/nerdcommenter/
+bundle/tablify/
 bundle/tabular/
 bundle/vim-pathogen/
 bundle/vim-abolish/
