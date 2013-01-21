@@ -150,13 +150,9 @@ set ruler
 set laststatus=2
 set history=1000
 
-" yellow color in the statusline (%1*...%*)
-highlight User1
-   \ term=bold ctermbg=black ctermfg=Yellow gui=bold guibg=black guifg=Yellow
-
-set statusline=%<%n.\ %1*%t%*,\ L:%l/%1*%L%*\ C:%v
+set statusline=%<%n.\ %t,\ L:%l/%L\ C:%v
    \%{empty(&keymap)?'':'\ <'.b:keymap_name.'>'}\ %r%m
-   \%=%1*%{expand('%:p:~:h')}%*,\ \%{empty(&filetype)?'':'['.&filetype.']-'}
+   \%=\%{empty(&filetype)?'':'['.&filetype.']-'}
    \%{&fileformat}\ %P
 
 " Tabline {{{2
