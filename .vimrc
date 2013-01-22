@@ -74,12 +74,6 @@ nmap <c-g> :echo expand('%:p:h')<cr>
 
 if has('folding') | set foldmethod=marker foldmarker={{{,}}} | endif
 
-set guifont=DejaVu\ Sans\ Mono\ 14,
-   \Nimbus\ Mono\ L\ 14,
-   \Andale\ Mono\ 14,
-   \Liberation\ Mono\ 14,
-   \Monospace\ 14
-
 " Mouse {{{2
 if has('mouse_xterm') && has('xterm_clipboard')
    set mouse=a
@@ -374,6 +368,8 @@ if &term =~ '^\(xterm\|screen\)$'
       set cursorline
    endif
 endif
+
+colorscheme desertEx
 
 let vim_indent_cont = &shiftwidth
 
