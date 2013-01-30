@@ -45,9 +45,9 @@ if &encoding =~ '^u\(tf\|cs\)' " When running in a Unicode environment
    execute 'set listchars+=trail:' . s:dot
    execute 'set listchars+=nbsp:'  . s:dot
 
+   set linebreak
    " arrow + space (↪ ) at the beginning of wrapped lines
    let &showbreak=nr2char(8618).' '
-   set linebreak
    set list
    nmap <leader><tab> :setlocal invlist list?<cr>
 endif
