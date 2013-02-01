@@ -183,3 +183,12 @@ snippet |
 # $2 must be reachable from $4
 ssh -fNL ${1:8080}:${2:remote}:${3:80} ${4:gate}
 endsnippet
+
+snippet sudoers
+# User_Alias $1 = millert, dowdy, mikef
+# Host_Alias WEBSERVERS = www1, www2, www3
+# Cmnd_Alias PROCESSES = /usr/bin/nice, /bin/kill, /usr/bin/renice
+# Defaults:user timestamp_timeout=510 # min before asking for password again
+# which %users (from which hosts)=(run as which user) NOPASSWORD: Cmnd_Alias
+${1:%admin} (${2:ALL})=(${3:ALL}) ${4:NOPASSWORD:} ${5:Cmnd_Alias}
+endsnippet
