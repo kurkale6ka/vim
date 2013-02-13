@@ -80,8 +80,8 @@ if has('mouse_xterm') && has('xterm_clipboard')
    set ttymouse=xterm2
    set timeoutlen=2000 ttimeoutlen=100
    set ttyscroll=3
-   " yank operations go to "+ in addition to ""
-   set clipboard^=unnamedplus
+   " TODO: " yank/delete... operations go to "+ in addition to ""
+   " set clipboard^=unnamedplus
    " TODO: set clipboard^=autoselectplus (present in 7.3.597 + go+=P)
    " Vim bug: Only t_te, not t_op, gets sent when leaving an alt screen
    exe 'set t_te=' . &t_te . &t_op
