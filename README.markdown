@@ -2,14 +2,14 @@ Vim tips
 ========
 
 Notes:  
-* _[]_ will be used to represent the position of the cursor  
-* _^a_ means _Ctrl+a_  
+* `[]` will be used to represent the position of the cursor  
+* `^a` means `Ctrl+a`  
 * `:h topic` can be used to access Vim's help section on topic  
 * `:h` on its own - help main page  
-* ^<LeftMouse> - jump to tag (link) under cursor, ^<RightMouse> - jump back  
-* It is IMPORTANT to run Vim in nocompatible mode (`:h'cp`)  
-* :ve will list all enabled (+) features  
-* vimtutor on the command line will teach you some basics
+* `^<LeftMouse>` - jump to tag (link) under cursor, `^<RightMouse>` - jump back  
+* It is **IMPORTANT** to run Vim in nocompatible mode (`:h'cp`)  
+* `:ve` will list all enabled (+) features  
+* **vimtutor** on the command line will teach you some basics
 
 ```
  I - insert at the beginning of line (:h I)
