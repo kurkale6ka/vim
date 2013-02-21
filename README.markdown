@@ -21,7 +21,7 @@ Vim tips
 **Note:** compare with their lowercase counterparts (eg: `:h i`)
 
 ```
-o - open line below (`:h o`)
+o - open line below (:h o)
 O - open line above
 ```
 
@@ -59,15 +59,16 @@ d<LeftMouse> - delete to where you click with your mouse
 . - repeat previous action (:h.)
 ```
 
-Splitting: (:h^ws (window split), :h^wv (window vertical), :h^wc (window close))
+**Splitting:** (`:h^ws` (window split), `:h^wv` (window vertical), `:h^wc` (window close))
 
-:e ^d - select a file to edit (mnemo: display)
+`:e ^d` - select a file to edit (mnemo: display)
 
 Jump to previous position
 -------------------------
+```
 example: while on line 23, use gg to go to the start of the file,
          `` will then bring you back, (:h``, :h jump-motions)
-
+```
 Complete word in insert mode
 ----------------------------
 original: Lorem ipsum dolor sit amet, consectetur l^p
