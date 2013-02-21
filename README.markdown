@@ -98,74 +98,95 @@ modified: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusm
 
 Macros
 ------
-1. qa - start recording in register a (qq would record in register q, `:h q`)
-2. q  - stop recording
-3. @a - execute actions recorded in register a
-Example:
+1. `qa` - start recording in register `a` (`qq` would record in register `q`, `:h q`)
+2. `q`  - stop recording
+3. `@a` - execute actions recorded in register `a`
+_**Example:**_
+```
      original: [L]orem ipsum dolor sit amet, consectetur
         macro: qqe2hveUWq (q(record)q...q(stop))
   explanation: e2hveUW means: go to the end of word
                               return 2 characters back
                               select visually to the end of word
                               make uppercase
-                              go to next WORD (`:h WORD`)
+                              go to next WORD (:h WORD)
 execute macro: 5@q (repeat 5 times)
      modified: LoREM ipSUM doLOR SIT aMET, consecteTUR
+```
 
-Text objects (:h text-objects, needs the +textobjects feature)
---------------------------------------------------------------
+Text objects (`:h text-objects`, needs the `+textobjects` feature)
+------------------------------------------------------------------
+```
 original: [L]orem ipsum 'dolor sit amet', consectetur
   action: ci' (change inside quotes)
 modified: [L]orem ipsum '', consectetur
+```
 
+```
 original: Lore[m] ipsum dolor sit amet, consectetur
   action: daw (delete a word)
 modified: ipsum dolor sit amet, consectetur
+```
 
+```
 original: Lorem ipsum dolor sit a[m]et, consectetur
   action: daW (delete a WORD)
 modified: Lorem ipsum dolor sit consectetur
+```
 
-To specified character (:h t, :h f)
------------------------------------
+To specified character (`:h t`, `:h f`)
+---------------------------------------
+```
 original: Lorem [i]psum dolor sit amet, consectetur
   action: tl ((go) to l)
   result: Lorem ipsum d[o]lor sit amet, consectetur
+```
 
+```
 original: Lorem [i]psum dolor sit amet, consectetur
   action: cto (change to o)
   result: Lorem olor sit amet, consectetur
+```
 
+```
 original: Lorem [i]psum dolor sit amet, consectetur
   action: dfc (delete to (forward) c (included))
   result: Lorem onsectetur
+```
 
 Visual block insert (`:h v_b_I`)
-------------------------------
+--------------------------------
+```
 original: [L]orem ipsum dolor sit amet, consectetur
           incididunt ut labore et dolore magna
  actions: ^v<Down>I--<esc>
 modified: --Lorem ipsum dolor sit amet, consectetur
           --incididunt ut labore et dolore magna
+```
 
 Visual block delete (`:h v_b_D`)
-------------------------------
+--------------------------------
+```
 original: Lorem ipsum dolor sit ame[t], consectetur
           incididunt ut labore et dolore magna
  actions: ^v<Down>D
 modified: Lorem ipsum dolor sit ame
           incididunt ut labore et d
+```
 
 Visual paste (`:h v_p`)
 ---------------------
+```
 original: Lorem ipsum [d]olor sit amet, consectetur
   action: yt,3Wviwp (copy to , then go 3 WORDs forward, select and paste)
 modified: Lorem ipsum dolor sit amet, dolor sit amet
+```
 
-gv: reselect previously selected visual area (mnemo: go visual, :h gv, :h v_o)
+`gv` - reselect previously selected visual area (mnemo: go visual, `:h gv`, `:h v_o`)
 
 Search and replace
 ------------------
+```
 original: Lorem,ipsum,[d]olor,sit,amet,consectetur
   action: :s/,\zs/\r/g (:h:s, :h/\zs (z start), :h/\r (<cr>))
 modified: Lorem,
@@ -174,11 +195,12 @@ modified: Lorem,
           sit,
           amet,
           consectetur
-    Note: %s/old/new/gc will replace all occurrences of old in the file and ask
-                        you to confirm (:h:%, :h:s_flags)
+```
+_**Note:**_ %s/old/new/gc will replace all occurrences of old in the file and ask
+                    you to confirm (:h:%, :h:s_flags)
 
 Open a file from within an edited file (`:h gf`)
-----------------------------------------------
+------------------------------------------------
 example: Lorem ipsum /et[c]/fstab, consectetur
  action: gf (goto file)
  result: you are now editing /etc/fstab
