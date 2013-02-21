@@ -1,14 +1,15 @@
-                                    Vim tips
-                                    ========
+Vim tips
+========
 
- Notes: [] will be used to represent the position of the cursor
-        ^a means Ctrl+a
-        :h topic can be used to access Vim's help section on topic
-        :h on its own - help main page
-        ^<LeftMouse> - jump to tag (link) under cursor, ^<RightMouse> - jump back
-        It is IMPORTANT to run Vim in nocompatible mode (`:h'cp`)
-        :ve will list all enabled (+) features
-        vimtutor on the command line will teach you some basics
+Notes:
+_[]_ will be used to represent the position of the cursor  
+_^a_ means _Ctrl+a_  
+`:h topic` can be used to access Vim's help section on topic  
+`:h` on its own - help main page  
+^<LeftMouse> - jump to tag (link) under cursor, ^<RightMouse> - jump back  
+It is IMPORTANT to run Vim in nocompatible mode (`:h'cp`)  
+:ve will list all enabled (+) features  
+vimtutor on the command line will teach you some basics
 
 ```
  I - insert at the beginning of line (:h I)
@@ -25,6 +26,7 @@ O - open line above
 Modify 2 lines: d<up>   (delete)
                 y<Down> (copy)
 
+```
           xs - change 2 characters (`:h s`)
           4s - change 4 characters (mnemo: substitute)
           cc - change current line
@@ -34,17 +36,24 @@ Modify 2 lines: d<up>   (delete)
 d<LeftMouse> - delete to where you click with your mouse
    :g/word/d - delete all lines containing word (:g/word shows them, `:h:g`)
            R - enter replace mode (`:h R`)
+```
 
+```
  vB - select back to the beginning of WORD (`:h v`)
 5yy - copy (yank) 5 lines
   P - paste above current line (:h P, :h]p, :h[p)
+```
 
+```
  u - undo
 ^r - redo
  U - undo all changes in current line
+```
 
+```
 * - search for word under cursor (mnemo: * often stands for all, `:h*`)
 . - repeat previous action (`:h.`)
+```
 
 Splitting: (:h^ws (window split), :h^wv (window vertical), :h^wc (window close))
 
