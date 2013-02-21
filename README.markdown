@@ -101,6 +101,7 @@ Macros
 1. `qa` - start recording in register `a` (`qq` would record in register `q`, `:h q`)
 2. `q`  - stop recording
 3. `@a` - execute actions recorded in register `a`
+
 _**Example:**_
 ```
      original: [L]orem ipsum dolor sit amet, consectetur
@@ -175,7 +176,7 @@ modified: Lorem ipsum dolor sit ame
 ```
 
 Visual paste (`:h v_p`)
----------------------
+-----------------------
 ```
 original: Lorem ipsum [d]olor sit amet, consectetur
   action: yt,3Wviwp (copy to , then go 3 WORDs forward, select and paste)
@@ -201,51 +202,60 @@ _**Note:**_ %s/old/new/gc will replace all occurrences of old in the file and as
 
 Open a file from within an edited file (`:h gf`)
 ------------------------------------------------
+```
 example: Lorem ipsum /et[c]/fstab, consectetur
  action: gf (goto file)
  result: you are now editing /etc/fstab
          (your other file is still opened in another buffer, go back with :e# or
          :bp (buffer previous) or ^6 or ^^, :h e#, :h:bp, :h^^)
+```
 
-Change to upper case (:h v_U, :h v_u, :h~)
-------------------------------------------
+Change to upper case (`:h v_U`, `:h v_u`, `:h~`)
+------------------------------------------------
+```
 original: L[o]rem ipsum dolor sit amet, consectetur
   action: viwU
 modified: LOREM ipsum dolor sit amet, consectetur
+```
 
-Add, substract (:h^a, :h^x)
----------------------------
+Add, substract (`:h^a`, `:h^x`)
+-------------------------------
+```
 original: L[o]rem ipsum dolor sit amet, 9
   action: 2^a
 modified: Lorem ipsum dolor sit amet, 11
+```
 
 Useful help links:
-:h tips
-:h usr_28 (folding)
-:h usr_40 (mappings)
-:h index
-:h'tags
-:h:fin
-:h'pa
-:h:helpg
+------------------
+* `:h tips`
+* `:h usr_28` (folding)
+* `:h usr_40` (mappings)
+* `:h index`
+* `:h'tags`
+* `:h:fin`
+* `:h'pa`
+* `:h:helpg`
 
 Plugins:
-https://github.com/tpope/vim-pathogen (used for easier install of other plugins)
-https://github.com/godlygeek/csapprox (gvim colorschemes for terminal)
-https://github.com/godlygeek/tabular (align stuff vertically)
-https://github.com/tpope/vim-surround (easier surrounding of text)
-https://github.com/scrooloose/nerdcommenter (easier commenting of code)
-https://github.com/SirVer/ultisnips (predefined snippets (skeletons) of text)
+--------
+* https://github.com/tpope/vim-pathogen (used for easier install of other plugins)
+* https://github.com/godlygeek/csapprox (gvim colorschemes for terminal)
+* https://github.com/godlygeek/tabular (align stuff vertically)
+* https://github.com/tpope/vim-surround (easier surrounding of text)
+* https://github.com/scrooloose/nerdcommenter (easier commenting of code)
+* https://github.com/SirVer/ultisnips (predefined snippets (skeletons) of text)
 
 Links:
-http://www.vim.org/
-http://en.wikipedia.org/wiki/Vim_%28text_editor%29
-http://en.wikipedia.org/wiki/Vi
-https://github.com/godlygeek/vim-files/blob/master/.vimrc
-http://vim.wikia.com/wiki/Vim_on_Freenode
+------
+* http://www.vim.org/
+* http://en.wikipedia.org/wiki/Vim_%28text_editor%29
+* http://en.wikipedia.org/wiki/Vi
+* https://github.com/godlygeek/vim-files/blob/master/.vimrc
+* http://vim.wikia.com/wiki/Vim_on_Freenode
 
-Quit and save: ZZ
-Quit without saving: ZQ
+Quit and save: `ZZ`  
+Quit without saving: `ZQ`
 
 My Vim tips on wikia:
 ---------------------
