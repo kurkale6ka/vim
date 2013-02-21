@@ -59,9 +59,13 @@ d<LeftMouse> - delete to where you click with your mouse
 . - repeat previous action (:h.)
 ```
 
-**Splitting:** (`:h^ws` (**w**indow **s**plit), `:h^wv` (**w**indow **v**ertical), `:h^wc` (**w**indow **c**lose))
-
 `:e ^d` - select a file to edit (mnemo: **d**isplay)
+
+Window Splitting
+----------------
+1. `:h^ws` (**w**indow **s**plit)
+2. `:h^wv` (**w**indow **v**ertical)
+3. `:h^wc` (**w**indow **c**lose)
 
 Jump to previous position
 -------------------------
