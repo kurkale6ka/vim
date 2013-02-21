@@ -1,10 +1,10 @@
 Vim tips
 ========
 
-Notes:  
+**Notes:**  
 * `[]` will be used to represent the position of the cursor  
 * `^a` means `Ctrl+a`  
-* `:h topic` can be used to access Vim's help section on topic  
+* `:h topic` can be used to access Vim's help section on `topic`  
 * `:h` on its own - help main page  
 * `^<LeftMouse>` - jump to tag (link) under cursor, `^<RightMouse>` - jump back  
 * It is **IMPORTANT** to run Vim in nocompatible mode (`:h'cp`)  
@@ -18,13 +18,17 @@ Notes:
 2D - delete to the end of line + next line
  C - change to the end of line
 ```
-_Note:_ compare with their lowercase counterparts (eg: `:h i`)
+**Note:** compare with their lowercase counterparts (eg: `:h i`)
 
+```
 o - open line below (`:h o`)
 O - open line above
+```
 
+```
 Modify 2 lines: d<up>   (delete)
                 y<Down> (copy)
+```
 
 ```
           xs - change 2 characters (:h s)
