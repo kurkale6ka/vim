@@ -1,14 +1,14 @@
 Vim tips
 ========
 
-**Notes:**  
-* `[]` will be used to represent the position of the cursor  
-* `^a` means `Ctrl+a`  
-* `:h topic` can be used to access Vim's help section on `topic`  
-* `:h` on its own - help main page  
-* `^<LeftMouse>` - jump to tag (link) under cursor, `^<RightMouse>` - jump back  
-* It is **IMPORTANT** to run Vim in nocompatible mode (`:h'cp`)  
-* `:ve` will list all enabled (+) features  
+_**Notes:**_
+* `[]` will be used to represent the position of the cursor
+* `^a` means `Ctrl+a`
+* `:h topic` can be used to access Vim's help section on `topic`
+* `:h` on its own - help main page
+* `^<LeftMouse>` - jump to tag (link) under cursor, `^<RightMouse>` - jump back
+* It is **IMPORTANT** to run Vim in nocompatible mode (`:h'cp`)
+* `:ve` will list all enabled (+) features
 * **vimtutor** on the command line will teach you some basics
 
 ```
@@ -18,7 +18,7 @@ Vim tips
 2D - delete to the end of line + next line
  C - change to the end of line
 ```
-**Note:** compare with their lowercase counterparts (eg: `:h i`)
+_**Note:**_ compare with their lowercase counterparts (eg: `:h i`)
 
 ```
 o - open line below (:h o)
@@ -69,25 +69,32 @@ Jump to previous position
 example: while on line 23, use gg to go to the start of the file,
          `` will then bring you back, (:h``, :h jump-motions)
 ```
+
 Complete word in insert mode
 ----------------------------
+```
 original: Lorem ipsum dolor sit amet, consectetur l^p
 modified: Lorem ipsum dolor sit amet, consectetur lorem
-(:h i^p, :h i^n (i is for insert, compare with :h^p), `:h'spell`)
+          (:h i^p, :h i^n (i is for insert, compare with :h^p), :h'spell)
+```
 
-Copy from above in insert mode (:h i^y, :h i^e)
------------------------------------------------
+Copy from above in insert mode (`:h i^y`, `:h i^e`)
+---------------------------------------------------
+```
 example: Lorem ipsum dolor sit amet, consectetur
          [] (cursor on next line, under L)
  action: ^y^y^y^y^y^y^y
  result: Lorem i
+```
 
 Join lines
 ----------
+```
 original: Lorem ipsum dolor sit amet, c[o]nsectetur adipisicing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua.
   action: J
 modified: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+```
 
 Macros
 ------
