@@ -63,9 +63,9 @@ d<LeftMouse> - delete to where you click with your mouse
 
 Window Splitting
 ----------------
-1. `:h^ws` (**w**indow **s**plit)
-2. `:h^wv` (**w**indow **v**ertical)
-3. `:h^wc` (**w**indow **c**lose)
+1. `:h^ws` (__w__indow **s**plit)
+2. `:h^wv` (__w__indow **v**ertical)
+3. `:h^wc` (__w__indow **c**lose)
 
 Jump to previous position
 -------------------------
