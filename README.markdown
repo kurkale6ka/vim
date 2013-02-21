@@ -59,9 +59,9 @@ d<LeftMouse> - delete to where you click with your mouse
 . - repeat previous action (:h.)
 ```
 
-**Splitting:** (`:h^ws` (window split), `:h^wv` (window vertical), `:h^wc` (window close))
+**Splitting:** (`:h^ws` (**w**indow **s**plit), `:h^wv` (**w**indow **v**ertical), `:h^wc` (**w**indow **c**lose))
 
-`:e ^d` - select a file to edit (mnemo: display)
+`:e ^d` - select a file to edit (mnemo: **d**isplay)
 
 Jump to previous position
 -------------------------
@@ -183,7 +183,7 @@ original: Lorem ipsum [d]olor sit amet, consectetur
 modified: Lorem ipsum dolor sit amet, dolor sit amet
 ```
 
-`gv` - reselect previously selected visual area (mnemo: go visual, `:h gv`, `:h v_o`)
+`gv` - reselect previously selected visual area (mnemo: **g**o **v**isual, `:h gv`, `:h v_o`)
 
 Search and replace
 ------------------
@@ -197,8 +197,8 @@ modified: Lorem,
           amet,
           consectetur
 ```
-_**Note:**_ %s/old/new/gc will replace all occurrences of old in the file and ask
-                    you to confirm (:h:%, :h:s_flags)
+_**Note:**_ `%s/old/new/gc` will replace all occurrences of old in the file and ask
+                    you to confirm (`:h:%`, `:h:s_flags`)
 
 Open a file from within an edited file (`:h gf`)
 ------------------------------------------------
