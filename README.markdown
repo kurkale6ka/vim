@@ -6,7 +6,7 @@
         :h topic can be used to access Vim's help section on topic
         :h on its own - help main page
         ^<LeftMouse> - jump to tag (link) under cursor, ^<RightMouse> - jump back
-        It is IMPORTANT to run Vim in nocompatible mode (:h'cp)
+        It is IMPORTANT to run Vim in nocompatible mode (`:h'cp`)
         :ve will list all enabled (+) features
         vimtutor on the command line will teach you some basics
 
@@ -17,23 +17,23 @@
  `C` - change to the end of line
 Note: compare with their lowercase counterparts (eg: `:h i`)
 
-o - open line below (:h o)
+o - open line below (`:h o`)
 O - open line above
 
 Modify 2 lines: d<up>   (delete)
                 y<Down> (copy)
 
-          xs - change 2 characters (:h s)
+          xs - change 2 characters (`:h s`)
           4s - change 4 characters (mnemo: substitute)
           cc - change current line
           de - delete to the end of word
-         2cE - change to the end of second WORD for current position (:h WORD)
+         2cE - change to the end of second WORD for current position (`:h WORD`)
       d/word - delete to next occurence of word
 d<LeftMouse> - delete to where you click with your mouse
-   :g/word/d - delete all lines containing word (:g/word shows them, :h:g)
-           R - enter replace mode (:h R)
+   :g/word/d - delete all lines containing word (:g/word shows them, `:h:g`)
+           R - enter replace mode (`:h R`)
 
- vB - select back to the beginning of WORD (:h v)
+ vB - select back to the beginning of WORD (`:h v`)
 5yy - copy (yank) 5 lines
   P - paste above current line (:h P, :h]p, :h[p)
 
@@ -41,8 +41,8 @@ d<LeftMouse> - delete to where you click with your mouse
 ^r - redo
  U - undo all changes in current line
 
-* - search for word under cursor (mnemo: * often stands for all, :h*)
-. - repeat previous action (:h.)
+* - search for word under cursor (mnemo: * often stands for all, `:h*`)
+. - repeat previous action (`:h.`)
 
 Splitting: (:h^ws (window split), :h^wv (window vertical), :h^wc (window close))
 
@@ -57,7 +57,7 @@ Complete word in insert mode
 ----------------------------
 original: Lorem ipsum dolor sit amet, consectetur l^p
 modified: Lorem ipsum dolor sit amet, consectetur lorem
-(:h i^p, :h i^n (i is for insert, compare with :h^p), :h'spell)
+(:h i^p, :h i^n (i is for insert, compare with :h^p), `:h'spell`)
 
 Copy from above in insert mode (:h i^y, :h i^e)
 -----------------------------------------------
@@ -75,7 +75,7 @@ modified: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusm
 
 Macros
 ------
-1. qa - start recording in register a (qq would record in register q, :h q)
+1. qa - start recording in register a (qq would record in register q, `:h q`)
 2. q  - stop recording
 3. @a - execute actions recorded in register a
 Example:
@@ -85,7 +85,7 @@ Example:
                               return 2 characters back
                               select visually to the end of word
                               make uppercase
-                              go to next WORD (:h WORD)
+                              go to next WORD (`:h WORD`)
 execute macro: 5@q (repeat 5 times)
      modified: LoREM ipSUM doLOR SIT aMET, consecteTUR
 
@@ -117,7 +117,7 @@ original: Lorem [i]psum dolor sit amet, consectetur
   action: dfc (delete to (forward) c (included))
   result: Lorem onsectetur
 
-Visual block insert (:h v_b_I)
+Visual block insert (`:h v_b_I`)
 ------------------------------
 original: [L]orem ipsum dolor sit amet, consectetur
           incididunt ut labore et dolore magna
@@ -125,7 +125,7 @@ original: [L]orem ipsum dolor sit amet, consectetur
 modified: --Lorem ipsum dolor sit amet, consectetur
           --incididunt ut labore et dolore magna
 
-Visual block delete (:h v_b_D)
+Visual block delete (`:h v_b_D`)
 ------------------------------
 original: Lorem ipsum dolor sit ame[t], consectetur
           incididunt ut labore et dolore magna
@@ -133,7 +133,7 @@ original: Lorem ipsum dolor sit ame[t], consectetur
 modified: Lorem ipsum dolor sit ame
           incididunt ut labore et d
 
-Visual paste (:h v_p)
+Visual paste (`:h v_p`)
 ---------------------
 original: Lorem ipsum [d]olor sit amet, consectetur
   action: yt,3Wviwp (copy to , then go 3 WORDs forward, select and paste)
@@ -154,7 +154,7 @@ modified: Lorem,
     Note: %s/old/new/gc will replace all occurrences of old in the file and ask
                         you to confirm (:h:%, :h:s_flags)
 
-Open a file from within an edited file (:h gf)
+Open a file from within an edited file (`:h gf`)
 ----------------------------------------------
 example: Lorem ipsum /et[c]/fstab, consectetur
  action: gf (goto file)
@@ -201,7 +201,6 @@ http://vim.wikia.com/wiki/Vim_on_Freenode
 
 Quit and save: ZZ
 Quit without saving: ZQ
-
 
 My Vim tips on wikia:
 ---------------------
