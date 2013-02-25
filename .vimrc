@@ -132,6 +132,7 @@ imap          <c-pagedown>       <c-o>:bnext<cr>
 nmap          <c-space>               :b<space>
 nnoremap      <c-tab>                 <c-^>
 nmap <silent> <c-w><c-w>              :wincmd p<cr>
+nmap <silent> <c-w>N                  :enew<cr>
 nmap <silent> <c-w>e                  :WinFullScreen<cr>
 nmap <silent> <c-w><c-e>              :WinFullScreen<cr>
 
@@ -144,7 +145,7 @@ set ruler
 set laststatus=2
 set history=1000
 
-set statusline=%<%n.\ %t,\ L:%l/%L\ C:%v
+set statusline=%<%L.\ %t,\ L:%l\ C:%v
    \%{empty(&keymap)?'':'\ <'.b:keymap_name.'>'}\ %r%m
    \%=\%{empty(&filetype)?'':'['.&filetype.']-'}
    \%{&fileformat}\ %P
