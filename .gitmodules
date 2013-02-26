@@ -31,3 +31,9 @@
 [submodule "bundle/bufkill"]
 	path = bundle/bufkill
 	url = git://github.com/vim-scripts/bufkill.vim.git
+[submodule "bundle/MarkLines"]
+	path = bundle/MarkLines
+	url = git://github.com/vim-scripts/MarkLines.git
+[submodule "bundle/UltiSnips"]
+	path = bundle/UltiSnips
+	url = git://github.com/SirVer/ultisnips.git
