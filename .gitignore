@@ -13,10 +13,3 @@
 tags
 **/tags
 autoload/pathogen.vim
-bundle/vim-blanklines/
-bundle/vim-sequence/
-bundle/vim-swap/
-bundle/tablify/
-bundle/vim-flatfoot/
-bundle/vim-fugitive/
-bundle/vim-space/

@@ -52,3 +52,12 @@
 [submodule "bundle/blockinsert"]
 	path = bundle/blockinsert
 	url = git@github.com:kurkale6ka/vim-blockinsert.git
+[submodule "bundle/swap"]
+	path = bundle/swap
+	url = git@github.com:kurkale6ka/vim-swap.git
+[submodule "bundle/sequence"]
+	path = bundle/sequence
+	url = git@github.com:kurkale6ka/vim-sequence.git
+[submodule "bundle/blanklines"]
+	path = bundle/blanklines
+	url = git@github.com:kurkale6ka/vim-blanklines.git
