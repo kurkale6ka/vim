@@ -21,7 +21,6 @@ bundle/vim-sequence/
 bundle/vim-swap/
 bundle/nerdcommenter/
 bundle/tablify/
-bundle/vim-pathogen/
 bundle/vim-flatfoot/
 bundle/vim-fugitive/
 bundle/vim-space/
