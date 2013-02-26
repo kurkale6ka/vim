@@ -25,3 +25,9 @@
 [submodule "bundle/pathogen"]
 	path = bundle/pathogen
 	url = git://github.com/tpope/vim-pathogen.git
+[submodule "bundle/puppet"]
+	path = bundle/puppet
+	url = git://github.com/rodjek/vim-puppet.git
+[submodule "bundle/bufkill"]
+	path = bundle/bufkill
+	url = git://github.com/vim-scripts/bufkill.vim.git
