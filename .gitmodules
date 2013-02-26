@@ -46,3 +46,9 @@
 [submodule "bundle/Colour-Sampler-Pack"]
 	path = bundle/Colour-Sampler-Pack
 	url = git://github.com/vim-scripts/Colour-Sampler-Pack.git
+[submodule "bundle/quotes"]
+	path = bundle/quotes
+	url = git@github.com:kurkale6ka/vim-quotes.git
+[submodule "bundle/blockinsert"]
+	path = bundle/blockinsert
+	url = git@github.com:kurkale6ka/vim-blockinsert.git

@@ -14,8 +14,6 @@ tags
 **/tags
 autoload/pathogen.vim
 bundle/vim-blanklines/
-bundle/vim-blockinsert/
-bundle/vim-quotes/
 bundle/vim-sequence/
 bundle/vim-swap/
 bundle/tablify/
