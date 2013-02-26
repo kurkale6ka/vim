@@ -1,6 +1,7 @@
 snippet skel
-Host ${1}
-   HostName ${2:ip}
+## ${1}
+Host ${2}
+   HostName ${3:ip}
 
 Host github.com
    Hostname github.com
@@ -9,8 +10,10 @@ Host github.com
 
 Host *
    ForwardAgent yes
-   User ${3:mitko}
-   IdentityFile ~/.ssh/${4:id_rsa}
+   User ${4:mitko}
+   IdentityFile ~/.ssh/${5:id_rsa}
+
+# ex: fdl=0 fdm=expr fde=getline(v\:lnum)=~'^##'?'>'.(matchend(getline(v\:lnum),'##\\+')-1)\:'='
 endsnippet
 
 snippet h
