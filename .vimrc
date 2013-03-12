@@ -365,10 +365,9 @@ let g:CSApprox_verbose_level = 1
 
 if &term =~ '^\(xterm\|screen\)$'
    set t_Co=256
-   if has('syntax')
-      set cursorline
-   endif
 endif
+
+set cursorline
 
 colorscheme desertEx
 
