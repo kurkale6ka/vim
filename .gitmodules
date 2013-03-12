@@ -61,3 +61,6 @@
 [submodule "bundle/blanklines"]
 	path = bundle/blanklines
 	url = git@github.com:kurkale6ka/vim-blanklines.git
+[submodule "bundle/syntastic"]
+	path = bundle/syntastic
+	url = git://github.com/scrooloose/syntastic.git
