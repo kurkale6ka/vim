@@ -18,6 +18,10 @@ snippet mode "eol colon version"
 ${1:#} ex: se ${2:fdm&} ${3:sw=4}:
 endsnippet
 
+snippet fde
+# ex: fdl=0 fde=getline(v\:lnum)=~'${1}'?'>1'\:'='
+endsnippet
+
 snippet lorem
 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
 incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
