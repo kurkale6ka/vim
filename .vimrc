@@ -755,6 +755,8 @@ nnoremap <silent> `X :silent! normal! `X`.<cr>
 nnoremap <silent> `Y :silent! normal! `Y`.<cr>
 nnoremap <silent> `Z :silent! normal! `Z`.<cr>
 
+nmap <space> :
+
 set exrc
 set secure
 if version >= 703 | set cryptmethod=blowfish | endif
