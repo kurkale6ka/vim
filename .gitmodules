@@ -64,3 +64,6 @@
 [submodule "bundle/syntastic"]
 	path = bundle/syntastic
 	url = git://github.com/scrooloose/syntastic.git
+[submodule "bundle/desertEx"]
+	path = bundle/desertEx
+	url = git@github.com:kurkale6ka/desertEx.git
