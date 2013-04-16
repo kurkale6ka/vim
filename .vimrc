@@ -369,7 +369,7 @@ endif
 
 set cursorline
 
-colorscheme desertEx
+colorscheme desertEX
 
 let vim_indent_cont = &shiftwidth
 
