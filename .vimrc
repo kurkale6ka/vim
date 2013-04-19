@@ -133,6 +133,7 @@ nmap          <c-space>               :b<space>
 nnoremap      <c-tab>                 <c-^>
 nmap <silent> <c-w><c-w>              :wincmd p<cr>
 nmap <silent> <c-w>N                  :enew<cr>
+nmap <silent> <c-w>t                  :tabnew<cr>
 nmap <silent> <c-w>e                  :WinFullScreen<cr>
 nmap <silent> <c-w><c-e>              :WinFullScreen<cr>
 
