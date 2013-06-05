@@ -75,15 +75,17 @@ nmap <c-g> :echo expand('%:p:h')<cr>
 if has('folding') | set foldmethod=marker foldmarker={{{,}}} | endif
 
 " Mouse {{{2
-if has('mouse_xterm') && has('xterm_clipboard')
+if has('mouse_xterm')
    set mouse=a
    set ttymouse=xterm2
    set timeoutlen=2000 ttimeoutlen=100
    set ttyscroll=3
-   " TODO: " yank/delete... operations go to "+ in addition to ""
-   " set clipboard^=unnamedplus
-   " TODO: set clipboard^=autoselectplus (present in 7.3.597 + go+=P)
-   " Vim bug: Only t_te, not t_op, gets sent when leaving an alt screen
+   if has('xterm_clipboard')
+     " TODO: " yank/delete... operations go to "+ in addition to ""
+     " set clipboard^=unnamedplus
+     " TODO: set clipboard^=autoselectplus (present in 7.3.597 + go+=P)
+     " Vim bug: Only t_te, not t_op, gets sent when leaving an alt screen
+   endif
    exe 'set t_te=' . &t_te . &t_op
 endif
 
