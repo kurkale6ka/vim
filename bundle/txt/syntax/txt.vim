@@ -41,8 +41,9 @@ syntax match txtTodo /@\?todo[[:space:]]*:\?/
 syntax case ignore
 
 " scheme://username:password@domain:port/path?query_string#fragment_id
-" syntax match txtLink "\<\%(https\?\|ftp\)://\a\%(-\|\w\)*\.\w\{2,}\.\?
-syntax match txtLink "\<\%(https\?\|ftp\)://\%([-[:alnum:]_#~+%/]\+\.\)*[-[:alnum:]_#~+%/]\+\%(?[-[:alnum:][:xdigit:]_~+%=&;]\+\)\?"
+"                            protocol               user:pass          sub/domain .com, .co.uk         port       qs
+"                     ======================------------------------=============================----------------===
+syntax match txtLink "\<\%(https\?\|ftp\)://\%(\w\+\%(:\w\+\)\?@\)\?\a\%(-\|\w\)*\%(\.\w\{2,}\)\+\%(:\d\{1,5}\)\?\S*"
 
 syntax match txtEmail "\%(mailto:\)\?[-[:alnum:]_#~+]\+\%(\.[-[:alnum:]_#~+]\+\)\?@[-[:alnum:]_#~+]\+\%(\.[-[:alnum:]_#~+]\+\)\+"
 
