@@ -449,6 +449,7 @@ xmap [t    <esc>'>yy'<p==
 
 nmap <leader>s :%substitute/<c-r><c-w>//gc<left><left><left>
 nmap =<space> [<space>]<space>
+imap <s-cr> <esc>O
 imap <c-cr> <esc>o
 
 " Scriptnames {{{2
