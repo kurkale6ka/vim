@@ -29,16 +29,19 @@ syntax match Normal "OS\%(/2\)\@="
 " Windows absolute file path
 syntax match txtFile "[[:alpha:]]:\\\%(\k\+\\\)\+\k\+\%(\.[[:alpha:]]\+\)\?\>"
 
+" Quoted text
 syntax region txtString start=/\z(["`]\|'\%([st]\>\)\@!\)/ skip=/\\\z1/ end=/\z1/
+
+" Parens
 syntax region txtParens matchgroup=Constant start=/\[/ end=/\]/ transparent
 syntax region txtParens matchgroup=Constant start=/{/  end=/}/  transparent
 syntax region txtParens matchgroup=Constant start=/(/  end=/)/  transparent
 
-syntax match txtTodo /@\?todo[[:space:]]*:\?/
-
 " syntax keyword txtPLanguage c c++ perl python ruby php lisp
 
 syntax case ignore
+
+syntax match txtTodo /@\?todo[[:space:]]*:\?/
 
 " scheme://username:password@domain:port/path?query_string#fragment_id
 "                            protocol               user:pass          sub/domain .com, .co.uk         port       qs
@@ -65,6 +68,7 @@ syntax match txtTime "\%(0\?[[:digit:]]\|1[[:digit:]]\|2[0-3]\)\%(:[0-5][[:digit
 syntax match txtAbbrev "\<\%(e\.\?g\.\?\|i\.\?e\.\?\)\A\@="
 
 " Section delimiters
+" --------- or ,,,,,,,,,, or ...
 syntax match txtSectionDelimiter /^[[:space:]]*\([[:punct:]]\)\1*[[:space:]]*$/
 
 " highlight txtList term=bold cterm=bold gui=bold
