@@ -45,7 +45,9 @@ syntax case ignore
 "                     ======================------------------------=============================----------------===
 syntax match txtLink "\<\%(https\?\|ftp\)://\%(\w\+\%(:\w\+\)\?@\)\?\a\%(-\|\w\)*\%(\.\w\{2,}\)\+\%(:\d\{1,5}\)\?\S*"
 
-syntax match txtEmail "\%(mailto:\)\?[-[:alnum:]_#~+]\+\%(\.[-[:alnum:]_#~+]\+\)\?@[-[:alnum:]_#~+]\+\%(\.[-[:alnum:]_#~+]\+\)\+"
+"                                             user      @          domain
+"                                      =================-===========================
+syntax match txtEmail "\<\%(mailto:\)\?[-_.%[:alnum:]]\+@[-.[:alnum:]]\+\.\a\{2,4}\>"
 
 syntax keyword txtEditor vi[m] nvi [x]emacs textmate
 
