@@ -19,9 +19,9 @@ set viminfo='20,<50,s10,h,!
 set incsearch hlsearch
 set ignorecase smartcase infercase
 
-nmap <leader>g    :global/<c-r><c-w>/
-xmap <leader>g "*y:global/<c-r>*<cr>
-nmap <leader>bg :Bgrep/<c-r><c-w>/<cr>
+nmap <leader>g     :global/<c-r><c-w>/
+xmap <leader>g  "*y:global/<c-r>*<cr>
+nmap <leader>bg  :Bgrep/<c-r><c-w>/<cr>
 
 " Encoding {{{2
 if has('multi_byte')
@@ -68,6 +68,8 @@ set backspace=indent,eol,start
 set shortmess=flmnrxoOtT
 set showcmd
 set report=0
+
+let did_install_default_menus = 1
 
 " Print working directory
 nmap <c-g> :echo expand('%:p:h')<cr>
@@ -126,18 +128,18 @@ endif
 cabbrev vsb vertical sbuffer
 cabbrev svb vertical sbuffer
 
-noremap       <silent> <leader>l      :BufExplorer<cr>
-nmap          <c-pageup>              :bprevious<cr>
-nmap          <c-pagedown>            :bnext<cr>
-imap          <c-pageup>         <c-o>:bprevious<cr>
-imap          <c-pagedown>       <c-o>:bnext<cr>
-nmap          <c-space>               :b<space>
-nnoremap      <c-tab>                 <c-^>
-nmap <silent> <c-w><c-w>              :wincmd p<cr>
-nmap <silent> <c-w>N                  :enew<cr>
-nmap <silent> <c-w>t                  :tabnew<cr>
-nmap <silent> <c-w>e                  :WinFullScreen<cr>
-nmap <silent> <c-w><c-e>              :WinFullScreen<cr>
+noremap           <silent> <leader>l      :BufExplorer<cr>
+nmap              <c-pageup>              :bprevious<cr>
+nmap              <c-pagedown>            :bnext<cr>
+imap              <c-pageup>         <c-o>:bprevious<cr>
+imap              <c-pagedown>       <c-o>:bnext<cr>
+nmap              <c-space>               :b<space>
+nnoremap          <c-tab>                 <c-^>
+nmap     <silent> <c-w><c-w>              :wincmd p<cr>
+nmap     <silent> <c-w>N                  :enew<cr>
+nmap     <silent> <c-w>t                  :tabnew<cr>
+nmap     <silent> <c-w>e                  :WinFullScreen<cr>
+nmap     <silent> <c-w><c-e>              :WinFullScreen<cr>
 
 " Command line {{{2
 set wildmenu wildmode=full
@@ -435,9 +437,9 @@ nnoremap <silent> <c-l> :nohlsearch<bar>
 nmap <leader>z :call <sid>TransformLines ('squeeze')<cr>
 
 " Paste
-xmap [p "0p
-nmap [P :pu!<cr>
-nmap ]P :pu<cr>
+xmap [p        "0p
+nmap [P        :pu!<cr>
+nmap ]P        :pu<cr>
 nmap <leader>p :set invpaste paste?<cr>
 
 " Exchange first and last line in a visual area
@@ -448,9 +450,9 @@ xmap ]t    <esc>'<yy'>p==
 xmap [t    <esc>'>yy'<p==
 
 nmap <leader>s :%substitute/<c-r><c-w>//gc<left><left><left>
-nmap =<space> [<space>]<space>
-imap <s-cr> <esc>O
-imap <c-cr> <esc>o
+nmap =<space>  [<space>]<space>
+imap <s-cr>    <esc>O
+imap <c-cr>    <esc>o
 
 " Scriptnames {{{2
 function! s:Scriptnames (filter)
