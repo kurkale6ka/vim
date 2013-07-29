@@ -275,7 +275,7 @@ imap     <c-k>      <c-o>D
 cmap     <c-k>      <c-f>D<c-c>
 cnoremap <esc><bs>       <c-w>
 cnoremap <m-bs>          <c-w>
-nmap     dl              :$d<cr>``
+nmap     dl              :%substitute/\_s*\%$<cr>``
 imap     <c-del>    <c-o>de
 cmap     <c-del>    <c-f>de<c-c>
 cnoremap <esc><del> <c-f>de<c-c>
