@@ -355,6 +355,14 @@ nmap <leader>fr :set filetype=ruby<cr>
 filetype plugin indent on
 syntax enable
 
+" Check syntax group of item under cursor
+func! SynStack()
+   if !exists("*synstack")
+      return
+   endif
+   echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+endfunc
+
 let g:UltiSnipsSnippetsDir         = '~/vimfiles/snippets/'
 let g:UltiSnipsSnippetDirectories  = ["UltiSnips", "snippets"]
 let g:UltiSnipsListSnippets        = "<c-r><tab>"
