@@ -143,7 +143,7 @@ nmap     <silent> <c-w><c-e>              :WinFullScreen<cr>
 
 " Command line {{{2
 set wildmenu wildmode=full
-set wildignore+=*~,*.swp
+set wildignore+=*~,*.swp,tags
 if version >= 703 | set wildignorecase | endif
 set wildcharm=<c-z> " cmdline: <c-z> in a mapping acts like <tab>
 set ruler
