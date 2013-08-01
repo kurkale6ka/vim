@@ -269,17 +269,17 @@ imap     <c-down> <c-o>}
 map      <c-down>      }
 
 " Deletion {{{2
-nnoremap <bs>            "_X
-map!     <c-bs>          <c-w>
-imap     <c-k>      <c-o>D
-cmap     <c-k>      <c-f>D<c-c>
-cnoremap <esc><bs>       <c-w>
-cnoremap <m-bs>          <c-w>
-nmap     dl              :%substitute/\_s*\%$<cr>``
-imap     <c-del>    <c-o>de
-cmap     <c-del>    <c-f>de<c-c>
-cnoremap <esc><del> <c-f>de<c-c>
-cnoremap <m-del>    <c-f>de<c-c>
+nnoremap          <bs>            "_X
+map!              <c-bs>          <c-w>
+imap              <c-k>      <c-o>D
+cmap              <c-k>      <c-f>D<c-c>
+cnoremap          <esc><bs>       <c-w>
+cnoremap          <m-bs>          <c-w>
+nmap     <silent> dl              :%substitute/\_s*\%$//<bar>nohlsearch<cr>``
+imap              <c-del>    <c-o>de
+cmap              <c-del>    <c-f>de<c-c>
+cnoremap          <esc><del> <c-f>de<c-c>
+cnoremap          <m-del>    <c-f>de<c-c>
 
 " Text-object: file {{{2
 nmap          daf :%d<cr>
