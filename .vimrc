@@ -409,7 +409,10 @@ function! s:TransformLines (operation)
       let save_cursor = getpos(".")
 
       if 'squeeze' == a:operation
-         global/^\%([[:space:]]*$\n\)\{2,}/delete
+         silent  %substitute/\%^\_s*\n\|\_s*\%$
+         silent   global/^\%([[:space:]]*$\n\)\{2,}/delete
+         silent! %substitute/[[:space:]]\+$//e
+         nohlsearch
       elseif 'del_EOL_spaces' == a:operation
          silent! %substitute/[[:space:]]\+$//e
       endif
@@ -442,7 +445,7 @@ nnoremap <silent> <c-l> :nohlsearch<bar>
    \call <sid>TransformLines ('del_EOL_spaces')<cr><c-l>
 
 " Squeeze empty lines
-nmap <leader>z :call <sid>TransformLines ('squeeze')<cr>
+nmap <silent> <leader>z :call <sid>TransformLines ('squeeze')<cr>
 
 " Paste
 xmap [p        "0p
