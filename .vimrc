@@ -103,8 +103,8 @@ set expandtab
 set softtabstop=3 tabstop=8
 set shiftwidth=3 shiftround
 
-xmap   <tab> >
-xmap <s-tab> <
+xmap   <tab>   >
+xmap <s-tab>   <
 nmap <leader>0 :left<cr>
 xmap <leader>0 :left<cr>
 
@@ -148,7 +148,7 @@ if version >= 703 | set wildignorecase | endif
 set wildcharm=<c-z> " cmdline: <c-z> in a mapping acts like <tab>
 set ruler
 set laststatus=2
-set history=1000
+set history=11111
 
 set statusline=%<%L.\ %t,\ L:%l\ C:%v
    \%{empty(&keymap)?'':'\ <'.b:keymap_name.'>'}\ %r%m
@@ -441,6 +441,7 @@ function! s:TransformLines (operation)
 endfunction
 
 " Redraw the screen and stop highlighting, remove extra white spaces at EOLs
+" nnoremap <silent> <c-l> :nohlsearch<bar>silent! %substitute/[[:space:]]\+$//e<cr><c-l>``
 nnoremap <silent> <c-l> :nohlsearch<bar>
    \call <sid>TransformLines ('del_EOL_spaces')<cr><c-l>
 
