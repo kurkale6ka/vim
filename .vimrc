@@ -21,7 +21,7 @@ set ignorecase smartcase infercase
 
 nmap <leader>g     :global/<c-r><c-w>/
 xmap <leader>g  "*y:global/<c-r>*<cr>
-nmap <leader>bg  :Bgrep/<c-r><c-w>/<cr>
+nmap <leader>bg    :Bgrep/<c-r><c-w>/<cr>
 
 " Encoding {{{2
 if has('multi_byte')
