@@ -440,7 +440,7 @@ function! s:TransformLines (operation)
 
 endfunction
 
-" Redraw the screen and stop highlighting, remove extra white spaces at EOLs
+" No highlighting, remove extra white spaces at EOLs and redraw the screen
 " nnoremap <silent> <c-l> :nohlsearch<bar>silent! %substitute/[[:space:]]\+$//e<cr><c-l>``
 nnoremap <silent> <c-l> :nohlsearch<bar>
    \call <sid>TransformLines ('del_EOL_spaces')<cr><c-l>
