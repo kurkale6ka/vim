@@ -23,6 +23,8 @@ nmap <leader>g     :global/<c-r><c-w>/
 xmap <leader>g  "*y:global/<c-r>*<cr>
 nmap <leader>bg    :Bgrep/<c-r><c-w>/<cr>
 
+set grepprg=command\ grep\ -niE\ --exclude='*~'\ --exclude\ tags
+
 " Encoding {{{2
 if has('multi_byte')
    if &encoding !~? 'utf-\=8'
