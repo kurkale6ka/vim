@@ -97,6 +97,7 @@ endif
 set textwidth=80
 set formatoptions=croqn
 set nojoinspaces
+set paragraphs=
 
 nmap Q gqap
 
@@ -739,6 +740,8 @@ if has('autocmd')
       " Wrap automatically at 80 chars for plain text files
       autocmd FileType txt,text,svn setlocal formatoptions+=t
          \ autoindent smartindent
+
+      autocmd FileType nroff,groff setlocal paragraphs='IPLPPPQPP TPHPLIPpLpItpplpipbp'
 
    augroup END
 endif
