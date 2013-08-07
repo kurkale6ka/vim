@@ -1,6 +1,5 @@
 augroup filetypedetect
 
-    autocmd BufRead,BufNewFile .bash_profile       set filetype=sh
     autocmd BufRead,BufNewFile *.info              set filetype=dosini
     autocmd BufRead,BufNewFile *.json              set filetype=javascript
     autocmd BufRead,BufNewFile *.inc               set filetype=apache
