@@ -742,6 +742,7 @@ if has('autocmd')
          \ autoindent smartindent
 
       autocmd FileType nroff,groff setlocal paragraphs='IPLPPPQPP TPHPLIPpLpItpplpipbp'
+      autocmd FileType gitcommit setlocal spell
 
    augroup END
 endif
