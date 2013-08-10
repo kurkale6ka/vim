@@ -6,6 +6,7 @@ augroup filetypedetect
     autocmd BufNewFile,BufRead *.ssi,*.sssi        set filetype=html
     autocmd BufNewFile,BufRead *.ftl               set filetype=xml
     autocmd BufNewFile,BufRead *.pgn               set filetype=pgn
+
     autocmd BufNewFile,BufRead *.txt,*.text,README,INSTALL,NEWS,TODO
        \ set filetype=txt
 
