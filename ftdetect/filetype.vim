@@ -1,19 +1,12 @@
 augroup filetypedetect
 
-    autocmd BufRead,BufNewFile *.info              set filetype=dosini
-    autocmd BufRead,BufNewFile *.json              set filetype=javascript
-    autocmd BufRead,BufNewFile *.inc               set filetype=apache
-    autocmd BufRead,BufNewFile *.sandbox           set filetype=apache
-    autocmd BufRead,BufNewFile *.access            set filetype=apache
-    autocmd BufRead,BufNewFile /etc/httpd/*/*.conf set filetype=apache
-    autocmd BufRead,BufNewFile *.platform          set filetype=apache
-    autocmd BufRead,BufNewFile *.ssi               set filetype=html
-    autocmd BufRead,BufNewFile *.sssi              set filetype=html
-    autocmd BufRead,BufNewFile *.ftl               set filetype=xml
-    autocmd BufRead,BufNewFile *.feature           set filetype=ruby
-    autocmd BufRead,BufNewFile *.pgn               set filetype=pgn
-    autocmd BufRead,BufNewFile *.txt               set filetype=txt
-    autocmd BufRead,BufNewFile *.text              set filetype=txt
-    autocmd BufRead,BufNewFile README              set filetype=txt
+    autocmd BufNewFile,BufRead *.info              set filetype=dosini
+    autocmd BufNewFile,BufRead *.json              set filetype=javascript
+    autocmd BufNewFile,BufRead /etc/httpd/*/*.conf set filetype=apache
+    autocmd BufNewFile,BufRead *.ssi,*.sssi        set filetype=html
+    autocmd BufNewFile,BufRead *.ftl               set filetype=xml
+    autocmd BufNewFile,BufRead *.pgn               set filetype=pgn
+    autocmd BufNewFile,BufRead *.txt,*.text,README,INSTALL,NEWS,TODO
+       \ set filetype=txt
 
 augroup END
