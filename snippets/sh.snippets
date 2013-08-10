@@ -131,28 +131,8 @@ alias ${1:name}='${2}'
 endsnippet
 
 # Extended globs
-snippet ~ "Extended globs declaration"
-shopt -s extglob
-endsnippet
-
-snippet ~ "Extended globs ?"
-?(${1:item1}|${2:item2})
-endsnippet
-
-snippet ~ "Extended globs *"
-*(${1:item1}|${2:item2})
-endsnippet
-
-snippet ~ "Extended globs +"
-+(${1:item1}|${2:item2})
-endsnippet
-
-snippet ~ "Extended globs @: matches 1 of the given patterns"
-@(${1:item1}|${2:item2})
-endsnippet
-
-snippet ~ "Extended globs !: matches anything but the patterns"
-!(${1:item1}|${2:item2})
+snippet *
+${1:@}(${2:item1}|${3:item2})
 endsnippet
 
 snippet 0
