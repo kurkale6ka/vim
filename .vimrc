@@ -743,6 +743,7 @@ if has('autocmd')
 
       autocmd FileType nroff,groff setlocal paragraphs='IPLPPPQPP TPHPLIPpLpItpplpipbp'
       autocmd FileType gitcommit setlocal spell
+      autocmd FileType vim setlocal keywordprg=:help
 
    augroup END
 endif
