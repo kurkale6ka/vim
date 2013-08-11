@@ -752,33 +752,10 @@ command! WriteSudo write !sudo tee % > /dev/null
 command! DiffOrig vnew | set buftype=nofile | read# | silent 0delete_ |
    \ diffthis | wincmd p | diffthis
 
-" Jump to file on last change position
-nnoremap <silent> `A :silent! normal! `A`.<cr>
-nnoremap <silent> `B :silent! normal! `B`.<cr>
-nnoremap <silent> `C :silent! normal! `C`.<cr>
-nnoremap <silent> `D :silent! normal! `D`.<cr>
-nnoremap <silent> `E :silent! normal! `E`.<cr>
-nnoremap <silent> `F :silent! normal! `F`.<cr>
-nnoremap <silent> `G :silent! normal! `G`.<cr>
-nnoremap <silent> `H :silent! normal! `H`.<cr>
-nnoremap <silent> `I :silent! normal! `I`.<cr>
-nnoremap <silent> `J :silent! normal! `J`.<cr>
-nnoremap <silent> `K :silent! normal! `K`.<cr>
-nnoremap <silent> `L :silent! normal! `L`.<cr>
-nnoremap <silent> `M :silent! normal! `M`.<cr>
-nnoremap <silent> `N :silent! normal! `N`.<cr>
-nnoremap <silent> `O :silent! normal! `O`.<cr>
-nnoremap <silent> `P :silent! normal! `P`.<cr>
-nnoremap <silent> `Q :silent! normal! `Q`.<cr>
-nnoremap <silent> `R :silent! normal! `R`.<cr>
-nnoremap <silent> `S :silent! normal! `S`.<cr>
-nnoremap <silent> `T :silent! normal! `T`.<cr>
-nnoremap <silent> `U :silent! normal! `U`.<cr>
-nnoremap <silent> `V :silent! normal! `V`.<cr>
-nnoremap <silent> `W :silent! normal! `W`.<cr>
-nnoremap <silent> `X :silent! normal! `X`.<cr>
-nnoremap <silent> `Y :silent! normal! `Y`.<cr>
-nnoremap <silent> `Z :silent! normal! `Z`.<cr>
+" Jump to file (A-Z marks) on last change position
+for nr in range(65, 91)
+   execute 'nnoremap <silent> `'.nr2char(nr).' :silent! normal! `'.nr2char(nr).'`.<cr>'
+endfor
 
 nmap <space> :
 
