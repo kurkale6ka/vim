@@ -753,7 +753,7 @@ command! DiffOrig vnew | set buftype=nofile | read# | silent 0delete_ |
    \ diffthis | wincmd p | diffthis
 
 " Jump to file (A-Z marks) on last change position
-for nr in range(65, 91)
+for nr in range(65, 90)
    execute 'nnoremap <silent> `'.nr2char(nr).' :silent! normal! `'.nr2char(nr).'`.<cr>'
 endfor
 
