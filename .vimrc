@@ -754,7 +754,8 @@ command! DiffOrig vnew | set buftype=nofile | read# | silent 0delete_ |
 
 " Jump to file (A-Z marks) on last position
 for nr in range(65, 90)
-   execute 'nnoremap <silent> `'.nr2char(nr).' :silent! normal! `'.nr2char(nr).'`"<cr>'
+   " TODO: report issue: when file open elsewhere, g`" not respected
+   execute 'nnoremap <silent> `'.nr2char(nr).' :normal! `'.nr2char(nr).'g`"<cr>'
 endfor
 
 nmap <space> :
