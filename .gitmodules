@@ -62,9 +62,9 @@
 	path = bundle/Colour-Sampler-Pack
 	url = git://github.com/vim-scripts/Colour-Sampler-Pack.git
 	ignore = dirty
-[submodule "bundle/quotes"]
-	path = bundle/quotes
-	url = git@github.com:kurkale6ka/vim-quotes.git
+[submodule "bundle/pairs"]
+	path = bundle/pairs
+	url = git@github.com:kurkale6ka/vim-pairs.git
 [submodule "bundle/blockinsert"]
 	path = bundle/blockinsert
 	url = git@github.com:kurkale6ka/vim-blockinsert.git
