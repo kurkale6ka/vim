@@ -271,6 +271,12 @@ map      <c-up>        {
 imap     <c-down> <c-o>}
 map      <c-down>      }
 
+nnoremap j      gj
+nnoremap <Down> gj
+nnoremap k      gk
+nnoremap <up>   gk
+nnoremap gr 999<c-r>
+
 " Deletion {{{2
 nnoremap          <bs>            "_X
 map!              <c-bs>          <c-w>
