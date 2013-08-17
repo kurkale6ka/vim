@@ -271,6 +271,31 @@ map      <c-up>        {
 imap     <c-down> <c-o>}
 map      <c-down>      }
 
+function! s:cmd_switch(c)
+   normal! 0
+   if search('[sg]/[^/]', 'e', line('.'))
+      if search('/', 'n', line('.'))
+         normal! vt/
+      else
+         normal! v$h
+      endif
+   else
+      normal! v$h
+   endif
+   call feedkeys("\<c-c>\<c-c>")
+   if a:c == 'g'
+      global/
+      call getreg('*')
+   elseif a:c == 'r'
+      substitute///gc<left><left><left>
+   else
+      /
+   endif
+endfunction
+cmap <c-g> <c-f>:call <sid>cmd_switch('g')<cr>
+cmap <c-s> <c-f>:call <sid>cmd_switch('r')<cr>
+cmap <c-/> <c-f>:call <sid>cmd_switch('s')<cr>
+
 nnoremap j      gj
 nnoremap <Down> gj
 nnoremap k      gk
