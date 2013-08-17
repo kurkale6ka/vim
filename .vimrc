@@ -282,7 +282,7 @@ function! s:cmd_switch(c)
    else
       normal! v$h
    endif
-   call feedkeys("\<c-c>\<c-c>")
+   quit
    if a:c == 'g'
       global/
       call getreg('*')
