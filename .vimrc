@@ -271,6 +271,31 @@ map      <c-up>        {
 imap     <c-down> <c-o>}
 map      <c-down>      }
 
+function! s:cmd_switch(c)
+   normal! 0
+   if search('[sg]/[^/]', 'e', line('.'))
+      if search('/', 'n', line('.'))
+         execute 'normal! "*yt/'
+      else
+         execute 'normal! "*y$'
+      endif
+   else
+      execute 'normal! "*y$'
+   endif
+   quit
+   " if a:c == 'g'
+   "    " execute 'global/'.getreg('*')
+   " elseif a:c == 'r'
+   "    " execute 'substitute/'.getreg('*')."//gc\<left>\<left>\<left>"
+   " else
+   "    " let @/ = getreg('*')
+   "    " execute '/'.getreg('*')
+   " endif
+endfunction
+cmap <silent> <c-g> <c-f>:call <sid>cmd_switch('g')<cr>
+" cmap <silent> <c-s> <c-f>:call <sid>cmd_switch('r')<cr>
+" cmap <silent> <c-/> <c-f>:call <sid>cmd_switch('s')<cr>
+
 nnoremap j      gj
 nnoremap <Down> gj
 nnoremap k      gk
