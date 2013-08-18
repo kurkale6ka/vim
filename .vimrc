@@ -275,26 +275,26 @@ function! s:cmd_switch(c)
    normal! 0
    if search('[sg]/[^/]', 'e', line('.'))
       if search('/', 'n', line('.'))
-         normal! vt/
+         execute 'normal! "*yt/'
       else
-         normal! v$h
+         execute 'normal! "*y$'
       endif
    else
-      normal! v$h
+      execute 'normal! "*y$'
    endif
    quit
-   if a:c == 'g'
-      global/
-      call getreg('*')
-   elseif a:c == 'r'
-      substitute///gc<left><left><left>
-   else
-      /
-   endif
+   " if a:c == 'g'
+   "    " execute 'global/'.getreg('*')
+   " elseif a:c == 'r'
+   "    " execute 'substitute/'.getreg('*')."//gc\<left>\<left>\<left>"
+   " else
+   "    " let @/ = getreg('*')
+   "    " execute '/'.getreg('*')
+   " endif
 endfunction
-cmap <c-g> <c-f>:call <sid>cmd_switch('g')<cr>
-cmap <c-s> <c-f>:call <sid>cmd_switch('r')<cr>
-cmap <c-/> <c-f>:call <sid>cmd_switch('s')<cr>
+cmap <silent> <c-g> <c-f>:call <sid>cmd_switch('g')<cr>
+" cmap <silent> <c-s> <c-f>:call <sid>cmd_switch('r')<cr>
+" cmap <silent> <c-/> <c-f>:call <sid>cmd_switch('s')<cr>
 
 nnoremap j      gj
 nnoremap <Down> gj
