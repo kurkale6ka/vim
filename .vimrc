@@ -316,11 +316,8 @@ cnoremap          <esc><del> <c-f>de<c-c>
 cnoremap          <m-del>    <c-f>de<c-c>
 
 " Text-object: file {{{2
-nmap          daf :%d<cr>
-nmap          yaf :%y<cr>
-nmap          caf :%d<cr>i
-nmap          vaf ggVG
-nmap <silent> =af :Indent<cr>
+xnoremap af ggVoG
+onoremap af :normal vaf<cr>
 
 " Visual selection {{{2
 nmap <leader>v      v$h
@@ -615,30 +612,6 @@ endfunction
 
 command! -nargs=? Underline call <sid>Underline(<q-args>)
 nmap <leader>u :Underline<cr>
-
-" Indent {{{2
-function! s:Indent(amount) range
-
-   let save_shiftwidth = &shiftwidth
-
-   if !empty(a:amount)
-      let &shiftwidth = a:amount
-   endif
-
-   if a:firstline == a:lastline
-
-      let save_cursor = getpos(".")
-      normal! gg=G
-      call setpos('.', save_cursor)
-   else
-      execute a:firstline . ',' . a:lastline . ' normal!=='
-   endif
-
-   let &shiftwidth = save_shiftwidth
-
-endfunction
-
-command! -nargs=? -range Indent <line1>,<line2> call <sid>Indent(<q-args>)
 
 " Add/Subtract {{{2
 function! AddSubtract(operation, direction)
