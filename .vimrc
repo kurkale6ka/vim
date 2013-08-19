@@ -273,7 +273,7 @@ map      <c-down>      }
 
 function! s:cmd_switch(c)
    normal! 0
-   if search('^\s*\%(g\%(l\%(o\%(b\%(al\?\)\?\)\?\)\?\)\?\|s\%(u\%(b\%(s\%(t\%(i\%(t\%(u\%(te\?\)\?\)\?\)\?\)\?\)\?\)\?\)\?\)\?\)/[^/]', 'e', line('.'))
+   if search('^\s*\%(g\%[lobal]\|s\%[ubstitute]\)/[^/]', 'e', line('.'))
       if search('/', 'n', line('.'))
          execute 'normal! "*yt/'
       else
