@@ -26,6 +26,7 @@ xmap <leader>g  "*y:global/<c-r>*<cr>
 nmap <leader>bg    :Bgrep/<c-r><c-w>/<cr>
 
 set grepprg=command\ grep\ -niE\ --exclude='*~'\ --exclude\ tags\ $*\ /dev/null
+set path+=$HOME/config/**
 
 " Encoding {{{2
 if has('multi_byte')
