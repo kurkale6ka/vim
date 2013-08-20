@@ -748,7 +748,7 @@ if has('autocmd')
          \ autoindent smartindent
 
       autocmd FileType nroff,groff setlocal paragraphs='IPLPPPQPP TPHPLIPpLpItpplpipbp'
-      autocmd FileType gitcommit execute 'goto|setlocal spell|startinsert'
+      autocmd FileType gitcommit execute 'goto|setlocal spell foldmethod&|startinsert'
       autocmd FileType vim setlocal keywordprg=:help
 
    augroup END
