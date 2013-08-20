@@ -5,7 +5,9 @@
 
 " Options {{{1
 set nocompatible
-if isdirectory($HOME.'/.vim/bundle') | call pathogen#infect() | endif
+if filereadable($HOME.'/.vim/autoload/pathogen.vim')
+   call pathogen#infect()
+endif
 
 " Backups {{{2
 set backup backupskip= backupext=~
@@ -413,7 +415,7 @@ endif
 
 set cursorline
 
-if isdirectory($HOME.'/.vim/bundle') | colorscheme desertEX | endif
+if isdirectory($HOME.'/.vim/bundle/desertEx') | colorscheme desertEX | endif
 
 let vim_indent_cont = &shiftwidth
 
