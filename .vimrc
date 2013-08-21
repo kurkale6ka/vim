@@ -500,24 +500,31 @@ nmap =<space>  [<space>]<space>
 imap <s-cr>    <esc>O
 imap <c-cr>    <esc>o
 
-" Scriptnames {{{2
-function! s:Scriptnames (filter)
+" Execute ex command in a Scratch buffer {{{2
+function! s:Scratch (command, ...)
    redir => lines
    let saveMore = &more
    set nomore
-   scriptnames
+   execute a:command
    redir END
    let &more = saveMore
    call feedkeys("\<cr>")
-   new
-   setlocal buftype=nofile bufhidden=hide noswapfile
+   new | setlocal buftype=nofile bufhidden=hide noswapfile
    put=lines
-   execute 'vglobal/' . a:filter . '/delete'
-   %substitute#^[[:space:]]*[[:digit:]]\+:[[:space:]]*##e
+   if a:0 > 0
+      execute 'vglobal/'.a:1.'/delete'
+   endif
+   if a:command == 'scriptnames'
+      %substitute#^[[:space:]]*[[:digit:]]\+:[[:space:]]*##e
+   endif
+   silent %substitute/\%^\_s*\n\|\_s*\%$
+   let height = line('$') + 3
+   execute 'normal! z'.height."\<cr>"
    0
 endfunction
 
-command! -nargs=1 Scriptnames call <sid>Scriptnames (<q-args>)
+command! -nargs=? Scriptnames call <sid>Scratch('scriptnames', <f-args>)
+command! -nargs=+ Scratch call <sid>Scratch(<f-args>)
 
 " Ascii {{{2
 function! s:Ascii (...)
@@ -729,13 +736,11 @@ nmap <f12>      :call <sid>Toggle_Longest_Preview('f12')<cr>
 imap <f12> <c-o>:call <sid>Toggle_Longest_Preview('f12')<cr>
 
 function! Find(path, filename)
-   new
-   setlocal buftype=nofile bufhidden=hide noswapfile
+   new | setlocal buftype=nofile bufhidden=hide noswapfile
    execute 'read !find '.a:path." -iname '*".a:filename."*' -print0 \| xargs -0"
    execute 'normal "*yy'
    execute 'arglocal'.getreg('*')
-   silent bdelete #
-   only
+   silent bdelete # | only
 endfunction
 command! -nargs=+ Find call Find(<f-args>)
 
