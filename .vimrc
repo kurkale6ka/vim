@@ -261,19 +261,6 @@ xmap          <leader>h   "*y:help <c-r>*<cr>
 nmap <silent> <f1>           :help<bar>only<cr>
 imap <silent> <f1>      <c-o>:help<bar>only<cr>
 
-" Moving around {{{2
-cnoremap <c-a>         <home>
-cnoremap <esc>b        <s-left>
-cnoremap <esc>f        <s-right>
-cnoremap <m-b>         <s-left>
-cnoremap <m-f>         <s-right>
-map      <home>        ^
-imap     <home>   <c-o>I
-imap     <c-up>   <c-o>{
-map      <c-up>        {
-imap     <c-down> <c-o>}
-map      <c-down>      }
-
 function! s:cmd_switch(c)
    normal! 0
    if search('^\s*\%(g\%[lobal]\|s\%[ubstitute]\)/[^/]', 'e', line('.'))
@@ -299,6 +286,17 @@ cmap <silent> <c-g> <c-f>:call <sid>cmd_switch('g')<cr>
 " cmap <silent> <c-s> <c-f>:call <sid>cmd_switch('r')<cr>
 " cmap <silent> <c-/> <c-f>:call <sid>cmd_switch('s')<cr>
 
+" Moving around {{{2
+cnoremap <c-a>         <home>
+cnoremap <m-b>         <s-left>
+cnoremap <m-f>         <s-right>
+map      <home>        ^
+imap     <home>   <c-o>I
+imap     <c-up>   <c-o>{
+map      <c-up>        {
+imap     <c-down> <c-o>}
+map      <c-down>      }
+
 nnoremap j      gj
 nnoremap <Down> gj
 nnoremap k      gk
@@ -306,17 +304,17 @@ nnoremap <up>   gk
 nnoremap gr 999<c-r>
 
 " Deletion {{{2
-nnoremap          <bs>            "_X
-map!              <c-bs>          <c-w>
-imap              <c-k>      <c-o>D
-cmap              <c-k>      <c-f>D<c-c>
-cnoremap          <esc><bs>       <c-w>
-cnoremap          <m-bs>          <c-w>
-nmap     <silent> dl              :%substitute/\_s*\%$//<bar>nohlsearch<cr>``
-imap              <c-del>    <c-o>de
-cmap              <c-del>    <c-f>de<c-c>
-cnoremap          <esc><del> <c-f>de<c-c>
-cnoremap          <m-del>    <c-f>de<c-c>
+nnoremap          <bs>         "_X
+inoremap          <c-w>   <c-o>dB
+cnoremap          <c-w>   <c-f>dB<c-c>
+inoremap          <c-bs>  <c-o>dB
+cnoremap          <m-bs>  <c-w>
+imap              <c-k>   <c-o>D
+cmap              <c-k>   <c-f>D<c-c>
+nmap     <silent> dl           :%substitute/\_s*\%$//<bar>nohlsearch<cr>``
+imap              <c-del> <c-o>de
+cmap              <c-del> <c-f>de<c-c>
+cnoremap          <m-del> <c-f>de<c-c>
 
 " Text-object: file {{{2
 xnoremap af ggVoG
