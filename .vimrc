@@ -728,6 +728,17 @@ imap <f4> <c-o>:call <sid>Toggle_Longest_Preview('f4')<cr>
 nmap <f12>      :call <sid>Toggle_Longest_Preview('f12')<cr>
 imap <f12> <c-o>:call <sid>Toggle_Longest_Preview('f12')<cr>
 
+function! Find(path, filename)
+   new
+   setlocal buftype=nofile bufhidden=hide noswapfile
+   execute 'read !find '.a:path." -iname '*".a:filename."*' -print0 \| xargs -0"
+   execute 'normal "*yy'
+   execute 'arglocal'.getreg('*')
+   silent bdelete #
+   only
+endfunction
+command! -nargs=+ Find call Find(<f-args>)
+
 " Commands and autocommands {{{1
 if has('autocmd')
    augroup vimrcGrp
