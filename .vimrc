@@ -287,15 +287,22 @@ cmap <silent> <c-g> <c-f>:call <sid>cmd_switch('g')<cr>
 " cmap <silent> <c-/> <c-f>:call <sid>cmd_switch('s')<cr>
 
 " Moving around {{{2
-cnoremap <c-a>         <home>
-cnoremap <m-b>         <s-left>
-cnoremap <m-f>         <s-right>
+noremap! <m-b>         <s-left>
+noremap! <m-f>         <s-right>
+noremap! <m-left>      <s-left>
+noremap! <m-right>     <s-right>
 map      <home>        ^
 imap     <home>   <c-o>I
+cmap     <home>   <c-f>^<c-c>
+cnoremap <c-a>         <home>
 imap     <c-up>   <c-o>{
+imap     <m-up>   <c-o>{
 map      <c-up>        {
+map      <m-up>        {
 imap     <c-down> <c-o>}
+imap     <m-down> <c-o>}
 map      <c-down>      }
+map      <m-down>      }
 
 nnoremap j      gj
 nnoremap <Down> gj
@@ -304,17 +311,18 @@ nnoremap <up>   gk
 nnoremap gr 999<c-r>
 
 " Deletion {{{2
-nnoremap          <bs>         "_X
 inoremap          <c-w>   <c-o>dB
 cnoremap          <c-w>   <c-f>dB<c-c>
-inoremap          <c-bs>  <c-o>dB
-cnoremap          <m-bs>  <c-w>
+nnoremap          <bs>         "_X
+noremap!          <c-bs>  <c-w>
+noremap!          <m-bs>  <c-w>
 imap              <c-k>   <c-o>D
 cmap              <c-k>   <c-f>D<c-c>
 nmap     <silent> dl           :%substitute/\_s*\%$//<bar>nohlsearch<cr>``
 imap              <c-del> <c-o>de
+imap              <m-del> <c-o>de
 cmap              <c-del> <c-f>de<c-c>
-cnoremap          <m-del> <c-f>de<c-c>
+cmap              <m-del> <c-f>de<c-c>
 
 " Text-object: file {{{2
 xnoremap af ggVoG
