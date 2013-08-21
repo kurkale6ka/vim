@@ -736,6 +736,7 @@ nmap <f12>      :call <sid>Toggle_Longest_Preview('f12')<cr>
 imap <f12> <c-o>:call <sid>Toggle_Longest_Preview('f12')<cr>
 
 function! Find(path, filename)
+   " args `'find '.a:path." -iname '*".a:filename."*' -print"`
    new | setlocal buftype=nofile bufhidden=hide noswapfile
    execute 'read !find '.a:path." -iname '*".a:filename."*' -print0 \| xargs -0"
    execute 'normal "*yy'
