@@ -266,7 +266,7 @@ My Vim tips on wikia:
 ---------------------
 
 * [A better gm command](http://vim.wikia.com/wiki/A_better_gm_command)
-* [:scriptnames on hormones](http://vim.wikia.com/wiki/A_command_for_checking_if_a_plugin_has_loaded_and_if_so_allow_an_easy_open_with_gf)
+* [Execute an ex command in a Scratch buffer](http://vim.wikia.com/wiki/List_loaded_scripts)
 * [Easy underlining of lines](http://vim.wikia.com/wiki/Underline_text)
 * [Enhanced Ctrl+A, Ctrl+X](http://vim.wikia.com/wiki/Enhanced_Ctrl-A)
 

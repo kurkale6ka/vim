@@ -506,7 +506,7 @@ nmap =<space>  [<space>]<space>
 imap <s-cr>    <esc>O
 imap <c-cr>    <esc>o
 
-" Execute ex command in a Scratch buffer {{{2
+" Execute an ex command in a Scratch buffer {{{2
 function! s:Scratch (command, ...)
    redir => lines
    let saveMore = &more
