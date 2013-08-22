@@ -97,7 +97,7 @@ if has('mouse_xterm')
 endif
 
 " Text formating {{{2
-set textwidth=80
+set textwidth=80 " TODO
 set formatoptions=croqn
 set nojoinspaces
 set paragraphs=
@@ -154,7 +154,7 @@ if version >= 703 | set wildignorecase | endif
 set wildcharm=<c-z> " cmdline: <c-z> in a mapping acts like <tab>
 set ruler
 set laststatus=2
-set history=11111
+set history=11111 " TODO
 
 set statusline=%<%L.\ %t,\ L:%l\ C:%v
    \%{empty(&keymap)?'':'\ <'.b:keymap_name.'>'}\ %r%m
