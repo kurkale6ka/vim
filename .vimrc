@@ -733,13 +733,15 @@ imap <f4> <c-o>:call <sid>Toggle_Longest_Preview('f4')<cr>
 nmap <f12>      :call <sid>Toggle_Longest_Preview('f12')<cr>
 imap <f12> <c-o>:call <sid>Toggle_Longest_Preview('f12')<cr>
 
-function! Find(path, filename)
-   " args `'find '.a:path." -iname '*".a:filename."*' -print"`
-   new | setlocal buftype=nofile bufhidden=hide noswapfile
-   execute 'read !find '.a:path." -iname '*".a:filename."*' -print0 \| xargs -0"
-   execute 'normal "*yy'
-   execute 'arglocal'.getreg('*')
-   silent bdelete # | only
+function! Find(...)
+   if a:0 == 1
+      let filename = a:1
+      execute "args `find . -iname '*".filename."*' -print`"
+   elseif a:0 == 2
+      let path     = a:1
+      let filename = a:2
+      execute 'args `find '.path." -iname '*".filename."*' -print`"
+   endif
 endfunction
 command! -nargs=+ Find call Find(<f-args>)
 
