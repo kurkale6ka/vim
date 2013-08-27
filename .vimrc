@@ -502,6 +502,8 @@ xmap ]t    <esc>'<yy'>p==
 xmap [t    <esc>'>yy'<p==
 
 nmap <leader>s :%substitute/<c-r><c-w>//gc<left><left><left>
+nmap gc *Ncgn
+nmap gC #ncgn
 nmap =<space>  [<space>]<space>
 imap <s-cr>    <esc>O
 imap <c-cr>    <esc>o
