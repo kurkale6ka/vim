@@ -778,6 +778,7 @@ if has('autocmd')
       autocmd FileType nroff,groff setlocal paragraphs='IPLPPPQPP TPHPLIPpLpItpplpipbp'
       autocmd FileType gitcommit execute 'goto|setlocal spell foldmethod&|startinsert'
       autocmd FileType vim setlocal keywordprg=:help
+      autocmd FileType json command -range=% -nargs=* Tidy <line1>,<line2>! python -mjson.tool
 
    augroup END
 endif
