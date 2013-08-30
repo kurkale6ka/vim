@@ -779,6 +779,7 @@ if has('autocmd')
       autocmd FileType gitcommit execute 'goto|setlocal spell foldmethod&|startinsert'
       autocmd FileType vim setlocal keywordprg=:help
       autocmd FileType json command -range=% -nargs=* Tidy <line1>,<line2>! python -mjson.tool
+      autocmd FileType html,xml command -range=% -nargs=* Tidy <line1>,<line2>! xmllint --format --recover - 2>/dev/null
 
    augroup END
 endif
