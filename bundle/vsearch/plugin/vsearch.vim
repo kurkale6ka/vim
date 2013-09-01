@@ -15,15 +15,18 @@ endfunction
 
 function! Del_word_delims()
    let reg = getreg('/')
-   " After * on a selection i^r/ will give me pattern instead of \Vpattern
-   let reg = substitute(reg, '^\\V'                                 , ''  , '' )
-   let reg = substitute(reg, '\\\\'                                 , '\\', 'g')
-   let reg = substitute(reg, '\\n'                                  , '\n', 'g')
    " After *                i^r/ will give me pattern instead of \<pattern\>
-   let reg = substitute(reg, '^\\<\%(.*\\>\)\@=\|\%(\\<.*\)\@<=\\>$', ''  , 'g')
-   return reg
+   let res = substitute(reg, '^\\<\%(.*\\>\)\@=\|\%(\\<.*\)\@<=\\>$', ''  , 'g')
+   if res != reg
+      return res
+   endif
+   " After * on a selection i^r/ will give me pattern instead of \Vpattern
+   let res = substitute(reg, '^\\V'                                 , ''  , '' )
+   let res = substitute(res, '\\\\'                                 , '\\', 'g')
+   let res = substitute(res, '\\n'                                  , '\n', 'g')
+   return res
 endfunction
-noremap! <c-r>/ <c-r>=Del_word_delims()<cr>
+noremap! <silent> <c-r>/ <c-r>=Del_word_delims()<cr>
 
 vnoremap <kmultiply> :<C-u>call <SID>VSetSearch()<CR>/<CR>
 vnoremap *           :<C-u>call <SID>VSetSearch()<CR>/<CR>
