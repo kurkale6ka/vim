@@ -13,23 +13,23 @@ iabbrev 000 O-O-O
 inoremap <buffer> > 1-0
 inoremap <buffer> < 0-1
 
-imap <buffer> \pw ♙
-imap <buffer> \pb ♟
+imap <buffer> <leader>pw ♙
+imap <buffer> <leader>pb ♟
 
-imap <buffer> \rw ♖
-imap <buffer> \rb ♜
+imap <buffer> <leader>rw ♖
+imap <buffer> <leader>rb ♜
 
-imap <buffer> \nw ♘
-imap <buffer> \nb ♞
+imap <buffer> <leader>nw ♘
+imap <buffer> <leader>nb ♞
 
-imap <buffer> \bw ♗
-imap <buffer> \bb ♝
+imap <buffer> <leader>bw ♗
+imap <buffer> <leader>bb ♝
 
-imap <buffer> \qw ♕
-imap <buffer> \qb ♛
+imap <buffer> <leader>qw ♕
+imap <buffer> <leader>qb ♛
 
-imap <buffer> \kw ♔
-imap <buffer> \kb ♚
+imap <buffer> <leader>kw ♔
+imap <buffer> <leader>kb ♚
 
 function! s:ChessBoard(show)
 
@@ -45,7 +45,6 @@ function! s:ChessBoard(show)
       \      . "    a b c d e f g h       h g f e d c b a"
 
    if 'echo' == a:show
-
       echo board
    else
       execute "normal i0\<c-d>{\<esc>"
