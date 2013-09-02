@@ -115,6 +115,7 @@ nmap <leader>0 :left<cr>
 xmap <leader>0 :left<cr>
 
 " Tags {{{2
+set tags+=$HOME/.vim/tags
 set complete-=t complete-=]
 set completeopt-=preview
 set showfulltag
