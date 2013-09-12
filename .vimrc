@@ -79,7 +79,10 @@ let did_install_default_menus = 1
 " Print working directory
 nmap <c-g> :echo expand('%:p:h')<cr>
 
-if has('folding') | set foldmethod=marker foldmarker={{{,}}} | endif
+if has('folding')
+   set foldnestmax=1
+   set foldmethod=marker foldmarker={{{,}}}
+endif
 
 " Mouse {{{2
 if has('mouse_xterm')
