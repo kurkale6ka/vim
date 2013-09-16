@@ -83,7 +83,7 @@
 	ignore = dirty
 [submodule "bundle/desertEx"]
 	path = bundle/desertEx
-	url = git@github.com:kurkale6ka/desertEx.git
+	url = git@github.com:kurkale6ka/vim-desertEx.git
 [submodule "bundle/markdown"]
 	path = bundle/markdown
 	url = git://github.com/tpope/vim-markdown.git
