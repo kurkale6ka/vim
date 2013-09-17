@@ -155,8 +155,12 @@ alias ${1:name}='${2}'
 endsnippet
 
 # Extended globs
-snippet *
-${1:@}(${2:item1}|${3:item2})
+snippet ext "Enable extended globs"
+shopt -s extglob
+endsnippet
+
+snippet ext "Use extended globs"
+${1:@?*+!}(${2:item1}|${3:item2})
 endsnippet
 
 snippet 0
