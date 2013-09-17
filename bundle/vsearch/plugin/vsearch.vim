@@ -26,7 +26,8 @@ function! Del_word_delims()
    let res = substitute(res, '\\n'           , '\n', 'g')
    return res
 endfunction
-noremap! <silent> <c-r>/ <c-r>=Del_word_delims()<cr>
+inoremap <silent> <c-r>/ <c-r>=Del_word_delims()<cr>
+cnoremap          <c-r>/ <c-r>=Del_word_delims()<cr>
 
 vnoremap <kmultiply> :<C-u>call <SID>VSetSearch()<CR>/<CR>
 vnoremap *           :<C-u>call <SID>VSetSearch()<CR>/<CR>
