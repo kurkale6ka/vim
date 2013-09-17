@@ -355,12 +355,21 @@ nmap <s-f7> [s
 nmap <f6>   1z=
 nmap <f5>   :update<bar>make<cr>
 
-nmap <leader>e   :setlocal spell!   spell?<cr>
-nmap <leader>dg  :set      digraph! digraph?<cr>
-nmap <leader>kbg :setlocal keymap=bg<cr>
-nmap <leader>kfr :setlocal keymap=fr<cr>
-nmap <leader>kes :setlocal keymap=es<cr>
-nmap <leader>ken :setlocal keymap& spelllang&<cr>
+nmap <leader>e  :setlocal spell!   spell?<cr>
+nmap <leader>dg :set      digraph! digraph?<cr>
+
+function! s:Toggle_bg()
+   if &keymap != ''
+      setlocal keymap& spelllang&
+   else
+      setlocal keymap=bg
+   endif
+endfunction
+nmap <silent> gb :call <SID>Toggle_bg()<cr>
+command ES :setlocal keymap=es
+command FR :setlocal keymap=fr
+command BG :setlocal keymap=bg
+command UK :setlocal keymap=bg
 
 cabbrev trp rtp
 cabbrev waq wqa
