@@ -26,7 +26,7 @@ xmap <leader>g  "*y:global/<c-r>*<cr>
 nmap <leader>bg    :Bgrep/<c-r><c-w>/<cr>
 
 set grepprg=command\ grep\ -niE\ --exclude='*~'\ --exclude\ tags\ $*\ /dev/null
-set path+=$HOME/config/**
+set path+=$HOME/github/**
 
 " Encoding {{{2
 if has('multi_byte')
@@ -118,7 +118,7 @@ nmap <leader>0 :left<cr>
 xmap <leader>0 :left<cr>
 
 " Tags {{{2
-set tags+=$HOME/config/tags
+set tags+=$HOME/github/tags
 set complete-=t complete-=]
 set completeopt-=preview
 set showfulltag
@@ -407,7 +407,7 @@ func! SynStack()
    echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 endfunc
 
-let g:UltiSnipsSnippetsDir         = '~/vimfiles/snippets/'
+let g:UltiSnipsSnippetsDir         = '~/vim/snippets/'
 let g:UltiSnipsSnippetDirectories  = ["UltiSnips", "snippets"]
 let g:UltiSnipsListSnippets        = "<c-r><tab>"
 let g:UltiSnipsExpandTrigger       = "<tab>"
@@ -542,7 +542,7 @@ command! -nargs=+ Scratch call <sid>Scratch(<f-args>)
 function! s:Ascii (...)
 
    if a:0 == 0
-      view $HOME/config/vimfiles/ascii
+      view $HOME/vim/ascii
       return
    endif
 
