@@ -264,3 +264,67 @@ endsnippet
 snippet trap
 trap '${1:exit 0}' ${2:INT TERM}
 endsnippet
+
+snippet init
+#! /usr/bin/env bash
+
+# Never use PID files: http://mywiki.wooledge.org/ProcessManagement
+# Try daemontools or runit instead!
+# https://github.com/imeyer/runit-rpm
+
+trap 'rm -f /mnt/nas/repos/$1.pid' HUP INT KILL TERM
+
+h() { echo 'Usage: $1 {status|stop|start|restart}' >&2; }
+
+(($# != 1)) && { h; exit 1; }
+
+Bold="$(tput bold)"
+LG="$(printf %s "$Bold"; tput setaf 2)"
+LR="$(printf %s "$Bold"; tput setaf 1)"
+Reset="$(tput sgr0)"
+
+status() {
+   local $1_pid="$(</mnt/nas/repos/$1.pid)"
+   if (($1_pid)) && kill -0 "$$1_pid"
+   then echo "${1/\w/\u$0/} is running with PID: $Bold$$1_pid$Reset"
+   else echo '${1/\w/\u$0/} is not running' >&2; exit 3
+   fi
+}
+
+stop() {
+   printf '%-31s' 'Stopping ${1/\w/\u$0/}...'
+   local $1_pid="$(</mnt/nas/repos/$1.pid)"
+   if (($1_pid)) && kill "$$1_pid"
+   then echo "[ ${LG}OK$Reset ]"
+   else echo "[ ${LR}FAILED$Reset ]" >&2; exit 4
+   fi
+}
+
+start() {
+   printf '%-31s' 'Starting ${1/\w/\u$0/}...'
+   # Enable logging >/var/log/$1 2>&1 & ?
+   if /mnt/nas/repos/$1 >/dev/null 2>&1 & then
+      $1_pid="$!"
+      # If the script dies here, we have a running process and a wrong PID file!
+      # Solution: delete the PID file in the trap.
+      if echo "$$1_pid" > /mnt/nas/repos/$1.pid; then
+         echo "[ ${LG}OK$Reset ] (PID: $Bold$$1_pid$Reset)"
+      else
+         echo 'Failed to create PID file' >&2
+         kill "$$1_pid"; exit 5
+      fi
+   else
+      echo "[ ${LR}FAILED$Reset ]" >&2; exit 6
+   fi
+}
+
+restart() { stop && start; }
+
+case "\$1" in
+    status) status    ;;
+      stop) stop      ;;
+     start) start     ;;
+   restart) restart   ;;
+         *) h; exit 2 ;;
+esac
+endsnippet
