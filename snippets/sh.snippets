@@ -275,10 +275,13 @@ snippet init
 # Never use PID files: http://mywiki.wooledge.org/ProcessManagement
 # Try daemontools or runit instead!
 # https://github.com/imeyer/runit-rpm
+#
+# chkconfig: 345 81 11
+# description: $1
 
-trap 'rm -f /mnt/nas/repos/$1.pid' HUP INT KILL TERM
+trap 'rm -f /mnt/nas/repos/$2.pid' HUP INT KILL TERM
 
-h() { echo 'Usage: $1 {status|stop|start|restart}' >&2; }
+h() { echo 'Usage: $2 {status|stop|start|restart}' >&2; }
 
 (($# != 1)) && { h; exit 1; }
 
@@ -288,34 +291,34 @@ LR="$(printf %s "$Bold"; tput setaf 1)"
 Reset="$(tput sgr0)"
 
 status() {
-   local $1_pid="$(</mnt/nas/repos/$1.pid)"
-   if (($1_pid)) && kill -0 "$$1_pid"
-   then echo "${1/\w/\u$0/} is running with PID: $Bold$$1_pid$Reset"
-   else echo '${1/\w/\u$0/} is not running' >&2; exit 3
+   local $2_pid="$(</mnt/nas/repos/$2.pid)"
+   if (($2_pid)) && kill -0 "$$2_pid"
+   then echo "${2/\w/\u$0/} is running with PID: $Bold$$2_pid$Reset"
+   else echo '${2/\w/\u$0/} is not running' >&2; exit 3
    fi
 }
 
 stop() {
-   printf '%-31s' 'Stopping ${1/\w/\u$0/}...'
-   local $1_pid="$(</mnt/nas/repos/$1.pid)"
-   if (($1_pid)) && kill "$$1_pid"
+   printf '%-31s' 'Stopping ${2/\w/\u$0/}...'
+   local $2_pid="$(</mnt/nas/repos/$2.pid)"
+   if (($2_pid)) && kill "$$2_pid"
    then echo "[ ${LG}OK$Reset ]"
    else echo "[ ${LR}FAILED$Reset ]" >&2; exit 4
    fi
 }
 
 start() {
-   printf '%-31s' 'Starting ${1/\w/\u$0/}...'
-   # Enable logging >/var/log/$1 2>&1 & ?
-   if /mnt/nas/repos/$1 >/dev/null 2>&1 & then
-      $1_pid="$!"
+   printf '%-31s' 'Starting ${2/\w/\u$0/}...'
+   # Enable logging >/var/log/$2 2>&1 & ?
+   if /mnt/nas/repos/$2 >/dev/null 2>&1 & then
+      $2_pid="$!"
       # If the script dies here, we have a running process and a wrong PID file!
       # Solution: delete the PID file in the trap.
-      if echo "$$1_pid" > /mnt/nas/repos/$1.pid; then
-         echo "[ ${LG}OK$Reset ] (PID: $Bold$$1_pid$Reset)"
+      if echo "$$2_pid" > /mnt/nas/repos/$2.pid; then
+         echo "[ ${LG}OK$Reset ] (PID: $Bold$$2_pid$Reset)"
       else
          echo 'Failed to create PID file' >&2
-         kill "$$1_pid"; exit 5
+         kill "$$2_pid"; exit 5
       fi
    else
       echo "[ ${LR}FAILED$Reset ]" >&2; exit 6
