@@ -1,6 +1,9 @@
-setlocal spelllang=bg
+lmapclear <buffer>
 
+setlocal spelllang=bg
 let b:keymap_name = "бг"
+
+inoreabbrev абв абвгдежзийклмнопрстуфхцчшщъьюя<cr>АБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЬЮЯ
 
 loadkeymap
 a   а   U+0430 CYRILLIC SMALL   LETTER A
@@ -65,5 +68,3 @@ C   Ц   U+0426 CYRILLIC CAPITAL LETTER TSE
 ~|  Ю   U+042E CYRILLIC CAPITAL LETTER YU
 q   я   U+044F CYRILLIC SMALL   LETTER YA         similar in shape
 Q   Я   U+042F CYRILLIC CAPITAL LETTER YA
-
-iabbrev абв абвгдежзийклмнопрстуфхцчшщъьюя<cr>АБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЬЮЯ
