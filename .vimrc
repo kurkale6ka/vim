@@ -526,17 +526,16 @@ function! s:Scratch (command, ...)
    redir => lines
    let saveMore = &more
    set nomore
-   execute a:command
+   execute 'silent '.a:command
    redir END
    let &more = saveMore
-   call feedkeys("\<cr>")
    new | setlocal buftype=nofile bufhidden=hide noswapfile
-   put=lines
+   silent put=lines
    if a:0 > 0
-      execute 'vglobal/'.a:1.'/delete'
+      execute 'silent vglobal/'.a:1.'/delete'
    endif
    if a:command == 'scriptnames'
-      %substitute#^[[:space:]]*[[:digit:]]\+:[[:space:]]*##e
+      silent %substitute#^[[:space:]]*[[:digit:]]\+:[[:space:]]*##e
    endif
    silent %substitute/\%^\_s*\n\|\_s*\%$
    let height = line('$') + 3
