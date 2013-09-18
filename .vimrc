@@ -366,10 +366,10 @@ function! s:Toggle_bg()
    endif
 endfunction
 nmap <silent> gb :call <SID>Toggle_bg()<cr>
-command ES :setlocal keymap=es
-command FR :setlocal keymap=fr
-command BG :setlocal keymap=bg
-command UK :setlocal keymap=bg
+command! ES setlocal keymap=es
+command! FR setlocal keymap=fr
+command! BG setlocal keymap=bg
+command! RU setlocal keymap=ru
 
 cabbrev trp rtp
 cabbrev waq wqa
