@@ -1,6 +1,6 @@
 source $VIMRUNTIME/keymap/accents.vim
 
-set spelllang=es
+setlocal spelllang=es
 
 let b:keymap_name = "es"
 
