@@ -46,139 +46,139 @@ snippet time
 ^(?:0?\\d|1\\d|2[0-3])(?::[0-5]\\d)\{1,2}[[:space:]]*(?:[aA]|[pP])[mM]\$
 endsnippet
 
-snippet \n "" i
+snippet \n "Regex for alnum" i
 [[:alnum:]]
 endsnippet
 
-snippet \N "" i
+snippet \N "Regex for non-alnum" i
 [^[:alnum:]]
 endsnippet
 
-snippet \a "" i
+snippet \a "Regex for alpha" i
 [[:alpha:]]
 endsnippet
 
-snippet \A "" i
+snippet \A "Regex for non-alpha" i
 [^[:alpha:]]
 endsnippet
 
-snippet \k "" i
+snippet \k "Regex for blank" i
 [[:blank:]]
 endsnippet
 
-snippet \K "" i
+snippet \K "Regex for non-blank" i
 [^[:blank:]]
 endsnippet
 
-snippet \c "" i
+snippet \c "Regex for cntrl" i
 [[:cntrl:]]
 endsnippet
 
-snippet \C "" i
+snippet \C "Regex for non-cntrl" i
 [^[:cntrl:]]
 endsnippet
 
-snippet \d "" i
+snippet \d "Regex for digit" i
 [[:digit:]]
 endsnippet
 
-snippet \D "" i
+snippet \D "Regex for non-digit" i
 [^[:digit:]]
 endsnippet
 
-snippet \g "" i
+snippet \g "Regex for graph" i
 [[:graph:]]
 endsnippet
 
-snippet \G "" i
+snippet \G "Regex for non-graph" i
 [^[:graph:]]
 endsnippet
 
-snippet \l "" i
+snippet \l "Regex for lower" i
 [[:lower:]]
 endsnippet
 
-snippet \L "" i
+snippet \L "Regex for non-lower" i
 [^[:lower:]]
 endsnippet
 
-snippet \i "" i
+snippet \i "Regex for print" i
 [[:print:]]
 endsnippet
 
-snippet \I "" i
+snippet \I "Regex for non-print" i
 [^[:print:]]
 endsnippet
 
-snippet \p "" i
+snippet \p "Regex for punct" i
 [[:punct:]]
 endsnippet
 
-snippet \P "" i
+snippet \P "Regex for non-punct" i
 [^[:punct:]]
 endsnippet
 
-snippet \s "" i
+snippet \s "Regex for space" i
 [[:space:]]
 endsnippet
 
-snippet \S "" i
+snippet \S "Regex for non-space" i
 [^[:space:]]
 endsnippet
 
-snippet \u "" i
+snippet \u "Regex for upper" i
 [[:upper:]]
 endsnippet
 
-snippet \U "" i
+snippet \U "Regex for non-upper" i
 [^[:upper:]]
 endsnippet
 
-snippet \x "" i
+snippet \x "Regex for xdigit" i
 [[:xdigit:]]
 endsnippet
 
-snippet \X "" i
+snippet \X "Regex for non-xdigit" i
 [^[:xdigit:]]
 endsnippet
 
-snippet \r "" i
+snippet \r "Regex for return" i
 [[:return:]]
 endsnippet
 
-snippet \R "" i
+snippet \R "Regex for non-return" i
 [^[:return:]]
 endsnippet
 
-snippet \t "" i
+snippet \t "Regex for tab" i
 [[:tab:]]
 endsnippet
 
-snippet \T "" i
+snippet \T "Regex for non-tab" i
 [^[:tab:]]
 endsnippet
 
-snippet \e "" i
+snippet \e "Regex for escape" i
 [[:escape:]]
 endsnippet
 
-snippet \E "" i
+snippet \E "Regex for non-escape" i
 [^[:escape:]]
 endsnippet
 
-snippet \b "" i
+snippet \b "Regex for backspace" i
 [[:backspace:]]
 endsnippet
 
-snippet \B "" i
+snippet \B "Regex for non-backspace" i
 [^[:backspace:]]
 endsnippet
 
-snippet \w "" i
+snippet \w "Regex for word" i
 [_[:alnum:]]
 endsnippet
 
-snippet \W "" i
+snippet \W "Regex for non-word" i
 [^_[:alnum:]]
 endsnippet
 
@@ -188,11 +188,11 @@ snippet |
 ssh -fNL ${1:8080}:${2:remote}:${3:80} ${4:gate}
 endsnippet
 
-snippet sudoers
+snippet /sudo(?:ers)?/ "Sudoers syntax summary" r
 # User_Alias $1 = millert, dowdy, mikef
 # Host_Alias WEBSERVERS = www1, www2, www3
 # Cmnd_Alias PROCESSES = /usr/bin/nice, /bin/kill, /usr/bin/renice
 # Defaults:user timestamp_timeout=510 # min before asking for password again
-# which %users (from which hosts)=(run as which user) NOPASSWORD: Cmnd_Alias
-${1:%admin} (${2:ALL})=(${3:ALL}) ${4:NOPASSWORD:} ${5:Cmnd_Alias}
+# which %users (from which hosts)=(run as which user) NOPASSWD: Cmnd_Alias
+${1:%admin} (${2:ALL})=(${3:ALL}) ${4:NOPASSWD:} ${5:Cmnd_Alias}
 endsnippet
