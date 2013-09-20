@@ -427,15 +427,18 @@ let NERDCommentWholeLinesInVMode = 1
 let NERDSpaceDelims = 1
 map <leader><leader> <plug>NERDCommenterToggle
 
-let g:CSApprox_verbose_level = 1
-
 if &term =~ '^\(xterm\|screen\)$'
    set t_Co=256
 endif
 
 set cursorline
 
-if isdirectory($HOME.'/.vim/bundle/desertEx') | colorscheme desertEX | endif
+if version < 703
+   let g:CSApprox_verbose_level = 0
+   colorscheme tdefault
+else
+   if isdirectory($HOME.'/.vim/bundle/desertEx') | colorscheme desertEX | endif
+endif
 
 let vim_indent_cont = &shiftwidth
 
