@@ -5,7 +5,7 @@ source $HOME/.vim/keymap/bg.vim
 setlocal spelllang=ru
 let b:keymap_name = "ру"
 
-inoreabbrev абв абвгдеёжзийклмнопрстуфхцчшщъыьэюя<cr>АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ
+inoreabbrev абв Аа  Бб  Вв  Гг  Дд  Ее  Ёё  Жж  Зз  Ии  Йй<cr>Кк  Лл  Мм  Нн  Оо  Пп  Рр  Сс  Тт  Уу  Фф<cr>Хх  Цц  Чч  Шш  Щщ  Ъъ  Ыы  Ьь  Ээ  Юю  Яя
 
 " U+0451 CYRILLIC SMALL   LETTER IO
 " U+0401 CYRILLIC CAPITAL LETTER IO

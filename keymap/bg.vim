@@ -3,7 +3,7 @@ lmapclear <buffer>
 setlocal spelllang=bg
 let b:keymap_name = "бг"
 
-inoreabbrev абв абвгдежзийклмнопрстуфхцчшщъьюя<cr>АБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЬЮЯ
+inoreabbrev абв Аа  Бб  Вв  Гг  Дд  Ее  Жж  Зз  Ии  Йй<cr>Кк  Лл  Мм  Нн  Оо  Пп  Рр  Сс  Тт  Уу<cr>Фф  Хх  Цц  Чч  Шш  Щщ  Ъъ  Ьь  Юю  Яя
 
 loadkeymap
 a   а   U+0430 CYRILLIC SMALL   LETTER A
