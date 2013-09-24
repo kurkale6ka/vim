@@ -465,9 +465,9 @@ function! s:TransformLines (operation)
       let save_cursor = getpos(".")
 
       if 'squeeze' == a:operation
-         silent  %substitute/\%^\_s*\n\|\_s*\%$
-         silent   global/^\%([[:space:]]*$\n\)\{2,}/delete
-         silent! %substitute/[[:space:]]\+$//e
+         silent  %substitute/\%^\_s*\n\|\_s*\%$            " BOF|EOF empty lines
+         silent   global/^\%([[:space:]]*$\n\)\{2,}/delete " Empty line clusters
+         silent! %substitute/[[:space:]]\+$//e             " EOL white spaces
          nohlsearch
       elseif 'del_EOL_spaces' == a:operation
          silent! %substitute/[[:space:]]\+$//e
@@ -497,7 +497,7 @@ function! s:TransformLines (operation)
 endfunction
 
 " No highlighting, remove extra white spaces at EOLs and redraw the screen
-" nnoremap <silent> <c-l> :nohlsearch<bar>silent! %substitute/[[:space:]]\+$//e<cr><c-l>``
+" nnoremap <silent> <c-l> :nohlsearch<bar>silent! %substitute/\s\+$//e<cr><c-l>``
 nnoremap <silent> <c-l> :nohlsearch<bar>
    \call <sid>TransformLines ('del_EOL_spaces')<cr><c-l>
 
