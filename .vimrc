@@ -386,54 +386,21 @@ let loaded_rrhelper          = 1
 let loaded_spellfile_plugin  = 1
 
 " Functions {{{1
-" Transformations {{{2
-" TODO: move to autoload + the 'no lines compressed' doesn't show
-function! s:TransformLines (operation)
-
-   let last_search = histget('search', -1)
-
-   try
-      let save_cursor = getpos(".")
-
-      if 'squeeze' == a:operation
-         silent  %substitute/\%^\_s*\n\|\_s*\%$            " BOF|EOF empty lines
-         silent   global/^\%([[:space:]]*$\n\)\{2,}/delete " Empty line clusters
-         silent! %substitute/[[:space:]]\+$//e             " EOL white spaces
-         nohlsearch
-      elseif 'del_EOL_spaces' == a:operation
-         silent! %substitute/[[:space:]]\+$//e
-      endif
-
-      call setpos('.', save_cursor)
-
-   catch /E486/
-
-      echohl ErrorMsg
-
-      if 'squeeze' == a:operation
-         echo 'No lines compressed'
-      elseif 'del_EOL_spaces' == a:operation
-         " echo 'No superfluous EOL whitespaces'
-      endif
-
-      echohl NONE
-
-   finally
-
-      if histget('search', -1) != last_search
-         call histdel('search', -1)
-      endif
-   endtry
-
+" Squeeze empty lines (TODO: remove entries from / history) {{{2
+function! s:Squeeze()
+   let save_cursor = getpos(".")
+   " BOF|EOF empty lines
+   silent  %substitute/\%^\_s*\n\|\_s*\%$//
+   " Squeeze empty line clusters
+   silent   global/^\%(\s*$\n\)\{2,}/delete
+   silent! %substitute/\s\+$//e
+   call setpos('.', save_cursor)
 endfunction
 
-" No highlighting, remove extra white spaces at EOLs and redraw the screen
-" nnoremap <silent> <c-l> :nohlsearch<bar>silent! %substitute/\s\+$//e<cr><c-l>``
-nnoremap <silent> <c-l> :nohlsearch<bar>
-   \call <sid>TransformLines ('del_EOL_spaces')<cr><c-l>
+nmap <silent> <leader>z :call <sid>Squeeze()<cr>
 
-" Squeeze empty lines
-nmap <silent> <leader>z :call <sid>TransformLines ('squeeze')<cr>
+" 1. No highlighting, 2. no EOL white spaces and 3. redraw the screen
+nnoremap <silent> <c-l> :nohlsearch<bar>silent! %s/\s\+$//e<cr><c-l>``
 
 " Paste
 xmap [p        "0p
