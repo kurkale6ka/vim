@@ -363,13 +363,12 @@ if &term =~ '^\(xterm\|screen\)$'
    set t_Co=256
 endif
 
-set cursorline
-
 if version < 703
    let g:CSApprox_verbose_level = 0
    colorscheme tdefault
 else
    if isdirectory($HOME.'/.vim/bundle/desertEx') | colorscheme desertEX | endif
+   set cursorline
 endif
 
 let vim_indent_cont = &shiftwidth
