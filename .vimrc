@@ -663,7 +663,7 @@ if has('autocmd')
 
       " Jump to the last spot the cursor was at in a file when reading it
       autocmd BufReadPost *
-         \ if line("'\"") > 0 && line("'\"") <= line('$') |
+         \ if line("'\"") > 0 && line("'\"") <= line('$') && &filetype != 'gitcommit' |
          \ execute 'normal! g`"' |
          \ endif
 
