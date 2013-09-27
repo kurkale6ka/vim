@@ -205,6 +205,13 @@ cmap <silent> <c-g> <c-f>:call <sid>cmd_switch('g')<cr>
 set showtabline=1
 set tabline=%!tabs#MyTabLine()
 
+" Security {{{2
+set exrc
+set secure
+if version >= 703 | set cryptmethod=blowfish | endif
+set modeline
+set modelines=3
+
 " Mappings {{{1
 " Copy / paste {{{2
 function! s:BlockCopy()
@@ -262,6 +269,12 @@ nnoremap <Down> gj
 nnoremap k      gk
 nnoremap <up>   gk
 nnoremap gr 999<c-r>
+
+" Jump to file (A-Z marks) on last position
+for nr in range(65, 90)
+   " TODO: report issue: when file open elsewhere, g`" not respected
+   execute 'nnoremap <silent> `'.nr2char(nr).' :normal! `'.nr2char(nr).'g`"<cr>'
+endfor
 
 " Deletion {{{2
 inoremap          <c-w>   <c-o>dB
@@ -356,14 +369,6 @@ nmap <leader>fr :set filetype=ruby<cr>
 " Plugin settings {{{1
 filetype plugin indent on
 syntax enable
-
-" Check syntax group of item under cursor
-func! SynStack()
-   if !exists("*synstack")
-      return
-   endif
-   echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
-endfunc
 
 let g:UltiSnipsSnippetsDir         = '~/vim/snippets/'
 let g:UltiSnipsSnippetDirectories  = ["UltiSnips", "snippets"]
@@ -576,6 +581,14 @@ if version >= 703
    nmap <silent> <leader>8 :call <sid>Toggle_colorcolumn()<cr>
 endif
 
+" Check syntax group of item under cursor {{{2
+func! SynStack()
+   if !exists("*synstack")
+      return
+   endif
+   echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+endfunc
+
 " Insert completion {{{2
 function! s:Toggle_Longest_Preview(key)
    if a:key == 'f12'
@@ -653,20 +666,6 @@ command! -nargs=* Ascii call ascii#codes (<f-args>)
 command! WriteSudo write !sudo tee % > /dev/null
 command! DiffOrig vnew | set buftype=nofile | read# | silent 0delete_ |
    \ diffthis | wincmd p | diffthis
-
-" Jump to file (A-Z marks) on last position
-for nr in range(65, 90)
-   " TODO: report issue: when file open elsewhere, g`" not respected
-   execute 'nnoremap <silent> `'.nr2char(nr).' :normal! `'.nr2char(nr).'g`"<cr>'
-endfor
-
-nmap <space> :
-
-set exrc
-set secure
-if version >= 703 | set cryptmethod=blowfish | endif
-set modeline
-set modelines=3
 
 if filereadable($HOME.'/.vimrc_after') | source $HOME/.vimrc_after | endif
 
