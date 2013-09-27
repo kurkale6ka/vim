@@ -1,14 +1,11 @@
-" Author: Dimitar Dimitrov: mitkofr@yahoo.fr, kurkale6ka
-"
-" Note: zR to unfold everything, then :help folding
-" ------------------------------------------------------
+" Author: Dimitar Dimitrov
+"         mitkofr@yahoo.fr
+"         kurkale6ka
+
+set nocompatible
+call pathogen#infect()
 
 " Options {{{1
-set nocompatible
-if filereadable($HOME.'/.vim/autoload/pathogen.vim')
-   call pathogen#infect()
-endif
-
 " Backups {{{2
 set backup backupskip= backupext=~
 set noautowrite noautowriteall
@@ -17,13 +14,20 @@ set noautoread
 if version >= 703 | set undofile | endif
 set viminfo='20,<50,s10,h,!
 
-" Search {{{2
+" Search and replace {{{2
 set incsearch hlsearch
 set ignorecase smartcase infercase
+
+" Stop highlighting and redraw the screen
+nnoremap <silent> <c-l> :nohlsearch<cr><c-l>
 
 nmap <leader>g     :global/<c-r><c-w>/
 xmap <leader>g  "*y:global/<c-r>*<cr>
 nmap <leader>bg    :Bgrep/<c-r><c-w>/<cr>
+
+nmap <leader>s :%substitute/<c-r><c-w>//gc<left><left><left>
+nmap gc *Ncgn
+nmap gC #ncgn
 
 set grepprg=command\ grep\ -niE\ --exclude='*~'\ --exclude\ tags\ $*\ /dev/null
 set path+=$HOME/github/**
@@ -165,12 +169,44 @@ set statusline=%<%L.\ %t,\ L:%l\ C:%v
    \%=\%{empty(&filetype)?'':'['.&filetype.']-'}
    \%{&fileformat}\ %P
 
+" Switch between command line commands
+" Note: switch is not functional yet, all it does is copy the pattern in "*
+function! s:cmd_switch(c)
+   normal! 0
+   " Copy the pattern of a :s/pattern or :g/pattern
+   if search('^\s*\%(g\%[lobal]\|s\%[ubstitute]\)/[^/]', 'e', line('.'))
+      if search('/', 'n', line('.'))
+         execute 'normal! "*yt/'
+      else
+         execute 'normal! "*y$'
+      endif
+   " Copy the pattern of a /
+   else
+      execute 'normal! "*y$'
+   endif
+   quit
+   " Scenarios: /regex<c-g>      => I intended to use :g/regex   Vs a search
+   "            :g/regex<c-r>    => I intended to use :s/regex// Vs :g/regex
+   "            :s/old/new/<c-/> => I intended to use /regex     Vs a substitute
+   " if a:c == 'g'
+   "    " execute 'global/'.getreg('*')
+   " elseif a:c == 'r'
+   "    " execute 'substitute/'.getreg('*')."//gc\<left>\<left>\<left>"
+   " else
+   "    " let @/ = getreg('*')
+   "    " execute '/'.getreg('*')
+   " endif
+endfunction
+cmap <silent> <c-g> <c-f>:call <sid>cmd_switch('g')<cr>
+" cmap <silent> <c-s> <c-f>:call <sid>cmd_switch('r')<cr>
+" cmap <silent> <c-/> <c-f>:call <sid>cmd_switch('s')<cr>
+
 " Tabline {{{2
 set showtabline=1
 set tabline=%!tabs#MyTabLine()
 
 " Mappings {{{1
-" Copy {{{2
+" Copy / paste {{{2
 function! s:BlockCopy()
    if "\<c-v>" == visualmode()
       normal! gv$y
@@ -191,36 +227,17 @@ endfunction
 
 nmap <leader><c-l> :<c-r>=<sid>LineCopy()<cr>
 
+" Paste
+xmap [p        "0p
+nmap [P        :pu!<cr>
+nmap ]P        :pu<cr>
+nmap <leader>p :set invpaste paste?<cr>
+
 " Help {{{2
 nmap          <leader>h      :help <c-r><c-w><cr>
 xmap          <leader>h   "*y:help <c-r>*<cr>
 nmap <silent> <f1>           :help<bar>only<cr>
 imap <silent> <f1>      <c-o>:help<bar>only<cr>
-
-function! s:cmd_switch(c)
-   normal! 0
-   if search('^\s*\%(g\%[lobal]\|s\%[ubstitute]\)/[^/]', 'e', line('.'))
-      if search('/', 'n', line('.'))
-         execute 'normal! "*yt/'
-      else
-         execute 'normal! "*y$'
-      endif
-   else
-      execute 'normal! "*y$'
-   endif
-   quit
-   " if a:c == 'g'
-   "    " execute 'global/'.getreg('*')
-   " elseif a:c == 'r'
-   "    " execute 'substitute/'.getreg('*')."//gc\<left>\<left>\<left>"
-   " else
-   "    " let @/ = getreg('*')
-   "    " execute '/'.getreg('*')
-   " endif
-endfunction
-cmap <silent> <c-g> <c-f>:call <sid>cmd_switch('g')<cr>
-" cmap <silent> <c-s> <c-f>:call <sid>cmd_switch('r')<cr>
-" cmap <silent> <c-/> <c-f>:call <sid>cmd_switch('s')<cr>
 
 " Moving around {{{2
 noremap! <m-b>         <s-left>
@@ -281,6 +298,13 @@ nmap <s-left>       vB
 imap <s-left>  <c-o>vB
 vmap <s-left>        B
 
+" Exchange first and last line in a visual area
+xmap  <cr> <esc>'<dd'>[pjdd`<P==
+xmap ]<cr> <esc>'<dd'>p==
+xmap [<cr> <esc>'>dd'<p==
+xmap ]t    <esc>'<yy'>p==
+xmap [t    <esc>'>yy'<p==
+
 " Spell/syntax check {{{2
 nmap <f7>   ]s
 nmap <s-f7> [s
@@ -290,14 +314,7 @@ nmap <f5>   :update<bar>make<cr>
 nmap <leader>e  :setlocal spell!   spell?<cr>
 nmap <leader>dg :set      digraph! digraph?<cr>
 
-function! s:Toggle_bg()
-   if &keymap != ''
-      setlocal keymap& spelllang&
-   else
-      setlocal keymap=bg
-   endif
-endfunction
-nmap <silent> gb :call <SID>Toggle_bg()<cr>
+nmap <silent> gb :call spelllang#bg()<cr>
 command! ES setlocal keymap=es
 command! FR setlocal keymap=fr
 command! BG setlocal keymap=bg
@@ -399,28 +416,10 @@ endfunction
 
 nmap <silent> <leader>z :call <sid>Squeeze()<cr>
 
-" Stop highlighting and redraw the screen
-nnoremap <silent> <c-l> :nohlsearch<cr><c-l>
-
-" Paste
-xmap [p        "0p
-nmap [P        :pu!<cr>
-nmap ]P        :pu<cr>
-nmap <leader>p :set invpaste paste?<cr>
-
-" Exchange first and last line in a visual area
-xmap  <cr> <esc>'<dd'>[pjdd`<P==
-xmap ]<cr> <esc>'<dd'>p==
-xmap [<cr> <esc>'>dd'<p==
-xmap ]t    <esc>'<yy'>p==
-xmap [t    <esc>'>yy'<p==
-
-nmap <leader>s :%substitute/<c-r><c-w>//gc<left><left><left>
-nmap gc *Ncgn
-nmap gC #ncgn
-nmap =<space>  [<space>]<space>
-imap <s-cr>    <esc>O
-imap <c-cr>    <esc>o
+" Add empty lines
+nmap =<space> [<space>]<space>
+imap <s-cr>   <esc>O
+imap <c-cr>   <esc>o
 
 " Execute an ex command in a Scratch buffer {{{2
 function! s:Scratch (command, ...)
@@ -446,8 +445,6 @@ endfunction
 
 command! -nargs=? Scriptnames call <sid>Scratch('scriptnames', <f-args>)
 command! -nargs=+ Scratch call <sid>Scratch(<f-args>)
-
-command! -nargs=* Ascii call ascii#codes (<f-args>)
 
 " gm {{{2
 function! s:Gm()
@@ -610,6 +607,7 @@ imap <f4> <c-o>:call <sid>Toggle_Longest_Preview('f4')<cr>
 nmap <f12>      :call <sid>Toggle_Longest_Preview('f12')<cr>
 imap <f12> <c-o>:call <sid>Toggle_Longest_Preview('f12')<cr>
 
+" Find files {{{2
 function! Find(...)
    if a:0 == 1
       let filename = a:1
@@ -651,6 +649,7 @@ if has('autocmd')
    augroup END
 endif
 
+command! -nargs=* Ascii call ascii#codes (<f-args>)
 command! WriteSudo write !sudo tee % > /dev/null
 command! DiffOrig vnew | set buftype=nofile | read# | silent 0delete_ |
    \ diffthis | wincmd p | diffthis
