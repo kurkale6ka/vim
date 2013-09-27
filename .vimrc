@@ -14,6 +14,8 @@ set noautoread
 if version >= 703 | set undofile | endif
 set viminfo='20,<50,s10,h,!
 
+command! WriteSudo write !sudo tee % > /dev/null
+
 " Search and replace {{{2
 set incsearch hlsearch
 set ignorecase smartcase infercase
@@ -318,14 +320,13 @@ xmap [<cr> <esc>'>dd'<p==
 xmap ]t    <esc>'<yy'>p==
 xmap [t    <esc>'>yy'<p==
 
-" Spell/syntax check {{{2
-nmap <f7>   ]s
-nmap <s-f7> [s
-nmap <f6>   1z=
-nmap <f5>   :update<bar>make<cr>
+" Spell check {{{2
+nmap <leader>e :setlocal spell! spell?<cr>
+nmap <f7>      ]s
+nmap <s-f7>    [s
+nmap <f6>      1z=
 
-nmap <leader>e  :setlocal spell!   spell?<cr>
-nmap <leader>dg :set      digraph! digraph?<cr>
+nmap <leader>dg :set digraph! digraph?<cr>
 
 nmap <silent> gb :call spelllang#bg()<cr>
 command! ES setlocal keymap=es
@@ -351,20 +352,6 @@ onoremap <expr>   [[ (search('^[^[:space:]]\@=.*{$', 'ebsW') &&
    \ (setpos("''  ", getpos('.')) <bar><bar> 1) ? "''" : "\<esc>")
 onoremap <expr>   ]] (search('^[^[:space:]]\@=.*{$',  'esW') &&
    \ (setpos("''", getpos('.')) <bar><bar> 1) ? "''" : "\<esc>")
-
-" Filetypes {{{2
-nmap <leader>ft :set filetype=
-nmap <leader>fa :set filetype=awk<cr>
-nmap <leader>fs :set filetype=scheme<cr>
-nmap <leader>fp :set filetype=perl<cr>
-nmap <leader>fh :set filetype=html<cr>
-nmap <leader>fj :set filetype=javascript<cr>
-nmap <leader>fx :set filetype=xml<cr>
-nmap <leader>fv :set filetype=vim<cr>
-nmap <leader>fl :set filetype=tex<cr>
-nmap <leader>fb :set filetype=sh<cr>
-nmap <leader>fc :set filetype=c<cr>
-nmap <leader>fr :set filetype=ruby<cr>
 
 " Plugin settings {{{1
 filetype plugin indent on
@@ -633,12 +620,10 @@ function! Find(...)
 endfunction
 command! -nargs=+ Find call Find(<f-args>)
 
-" Commands and autocommands {{{1
+" Autocommands, commands and filetype settings {{{1
 if has('autocmd')
-   augroup vimrcGrp
-
+   augroup POSITION
       autocmd!
-
       " Jump to the last spot the cursor was at in a file when reading it
       autocmd BufReadPost *
          \ if line("'\"") > 0 && line("'\"") <= line('$') && &filetype != 'gitcommit' |
@@ -648,25 +633,38 @@ if has('autocmd')
       " When reading a file, :cd to its parent directory unless it's a help
       " file. This replaces 'autochdir which doesn't work properly.
       autocmd BufEnter * if &filetype != 'help' | silent! cd %:p:h | endif
-
+   augroup END
+   augroup FILETYPE
+      autocmd!
       " Wrap automatically at 80 chars for plain text files
-      autocmd FileType txt,text,svn setlocal formatoptions+=t
-         \ autoindent smartindent
-
+      autocmd FileType txt,text,svn setlocal formatoptions+=t autoindent smartindent
       autocmd FileType nroff,groff setlocal paragraphs='IPLPPPQPP TPHPLIPpLpItpplpipbp'
       autocmd FileType gitcommit execute 'goto|setlocal spell foldmethod&|startinsert'
       autocmd FileType vim setlocal keywordprg=:help
       autocmd FileType json command -range=% -nargs=* Tidy <line1>,<line2>! python -mjson.tool
       autocmd FileType html,xml command -range=% -nargs=* Tidy <line1>,<line2>! xmllint --format --recover - 2>/dev/null
-
    augroup END
 endif
 
+nmap <leader>ft :set filetype=
+nmap <leader>fa :set filetype=awk<cr>
+nmap <leader>fs :set filetype=scheme<cr>
+nmap <leader>fp :set filetype=perl<cr>
+nmap <leader>fh :set filetype=html<cr>
+nmap <leader>fj :set filetype=javascript<cr>
+nmap <leader>fx :set filetype=xml<cr>
+nmap <leader>fv :set filetype=vim<cr>
+nmap <leader>fl :set filetype=tex<cr>
+nmap <leader>fb :set filetype=sh<cr>
+nmap <leader>fc :set filetype=c<cr>
+nmap <leader>fr :set filetype=ruby<cr>
+
+nmap <f5> :update<bar>make<cr>
 command! -nargs=* Ascii call ascii#codes (<f-args>)
-command! WriteSudo write !sudo tee % > /dev/null
 command! DiffOrig vnew | set buftype=nofile | read# | silent 0delete_ |
    \ diffthis | wincmd p | diffthis
 
+" Load business specific vimrc }}}1
 if filereadable($HOME.'/.vimrc_after') | source $HOME/.vimrc_after | endif
 
 " vim: set foldmethod=marker foldmarker={{{,}}}:
