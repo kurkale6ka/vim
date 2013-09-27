@@ -58,7 +58,7 @@ if &encoding =~ '^u\(tf\|cs\)' " When running in a Unicode environment
 endif
 
 " Alerts and visual feedback {{{2
-set number numberwidth=3
+set number numberwidth=1
 set matchpairs+=<:>
 set showmatch matchtime=2
 " visual bell instead of beeps + disable the visual effect = no flashing at all
