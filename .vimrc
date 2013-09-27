@@ -388,10 +388,10 @@ let loaded_spellfile_plugin  = 1
 " Functions {{{1
 " Squeeze empty lines (TODO: remove entries from / history) {{{2
 function! s:Squeeze()
-   let save_cursor = getpos(".")
-   " BOF|EOF empty lines
+   let save_cursor = getpos('.')
+   " empty lines at BOF|EOF
    silent  %substitute/\%^\_s*\n\|\_s*\%$//
-   " Squeeze empty line clusters
+   " empty line clusters
    silent   global/^\%(\s*$\n\)\{2,}/delete
    silent! %substitute/\s\+$//e
    call setpos('.', save_cursor)
@@ -399,8 +399,8 @@ endfunction
 
 nmap <silent> <leader>z :call <sid>Squeeze()<cr>
 
-" 1. No highlighting, 2. no EOL white spaces and 3. redraw the screen
-nnoremap <silent> <c-l> :nohlsearch<bar>silent! %s/\s\+$//e<cr><c-l>``
+" Stop highlighting and redraw the screen
+nnoremap <silent> <c-l> :nohlsearch<cr><c-l>
 
 " Paste
 xmap [p        "0p
