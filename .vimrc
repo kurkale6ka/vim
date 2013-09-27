@@ -90,6 +90,17 @@ if has('folding')
    set foldmethod=marker foldmarker={{{,}}}
 endif
 
+if &term =~ '^\(xterm\|screen\)$'
+   set t_Co=256
+endif
+
+if version < 703
+   colorscheme tdefault
+else
+   if isdirectory($HOME.'/.vim/bundle/desertEx') | colorscheme desertEX | endif
+   set cursorline
+endif
+
 " Mouse {{{2
 if has('mouse_xterm')
    set mouse=a
@@ -352,11 +363,12 @@ onoremap <expr>   [[ (search('^[^[:space:]]\@=.*{$', 'ebsW') &&
    \ (setpos("''  ", getpos('.')) <bar><bar> 1) ? "''" : "\<esc>")
 onoremap <expr>   ]] (search('^[^[:space:]]\@=.*{$',  'esW') &&
    \ (setpos("''", getpos('.')) <bar><bar> 1) ? "''" : "\<esc>")
+" }}}1
 
-" Plugin settings {{{1
 filetype plugin indent on
 syntax enable
 
+" Plugin settings {{{1
 let g:UltiSnipsSnippetsDir         = '~/vim/snippets/'
 let g:UltiSnipsSnippetDirectories  = ["UltiSnips", "snippets"]
 let g:UltiSnipsListSnippets        = "<c-r><tab>"
@@ -364,23 +376,11 @@ let g:UltiSnipsExpandTrigger       = "<tab>"
 let g:UltiSnipsJumpForwardTrigger  = "<tab>"
 let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 
-let NERDCommentWholeLinesInVMode = 1
 let NERDSpaceDelims = 1
+let NERDCommentWholeLinesInVMode = 1
 map <leader><leader> <plug>NERDCommenterToggle
 
-if &term =~ '^\(xterm\|screen\)$'
-   set t_Co=256
-endif
-
-if version < 703
-   let g:CSApprox_verbose_level = 0
-   colorscheme tdefault
-else
-   if isdirectory($HOME.'/.vim/bundle/desertEx') | colorscheme desertEX | endif
-   set cursorline
-endif
-
-let vim_indent_cont = &shiftwidth
+if version < 703 | let g:CSApprox_verbose_level = 0 | endif
 
 " Disable/enable plugins!
 " There seems not to be a way to disable tohtml.vim
@@ -435,8 +435,8 @@ function! s:Scratch (command, ...)
    0
 endfunction
 
-command! -nargs=? Scriptnames call <sid>Scratch('scriptnames', <f-args>)
 command! -nargs=+ Scratch call <sid>Scratch(<f-args>)
+command! -nargs=? Scriptnames call <sid>Scratch('scriptnames', <f-args>)
 
 " gm {{{2
 function! s:Gm()
@@ -658,6 +658,8 @@ nmap <leader>fl :set filetype=tex<cr>
 nmap <leader>fb :set filetype=sh<cr>
 nmap <leader>fc :set filetype=c<cr>
 nmap <leader>fr :set filetype=ruby<cr>
+
+let vim_indent_cont = &shiftwidth
 
 nmap <f5> :update<bar>make<cr>
 command! -nargs=* Ascii call ascii#codes (<f-args>)
