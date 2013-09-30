@@ -605,19 +605,6 @@ imap <f4> <c-o>:call <sid>Toggle_Longest_Preview('f4')<cr>
 nmap <f12>      :call <sid>Toggle_Longest_Preview('f12')<cr>
 imap <f12> <c-o>:call <sid>Toggle_Longest_Preview('f12')<cr>
 
-" Find files {{{2
-function! Find(...)
-   if a:0 == 1
-      let filename = a:1
-      execute "args `find . -iname '*".filename."*' -print`"
-   elseif a:0 == 2
-      let path     = a:1
-      let filename = a:2
-      execute 'args `find '.path." -iname '*".filename."*' -print`"
-   endif
-endfunction
-command! -nargs=+ Find call Find(<f-args>)
-
 " Autocommands, commands and filetype settings {{{1
 if has('autocmd')
    augroup POSITION
@@ -659,6 +646,7 @@ nmap <leader>fr :set filetype=ruby<cr>
 
 let vim_indent_cont = &shiftwidth
 
+command! -nargs=+ Find call find#files(<f-args>)
 nmap <f5> :update<bar>make<cr>
 command! -nargs=* Ascii call ascii#codes (<f-args>)
 command! DiffOrig vnew | set buftype=nofile | read# | silent 0delete_ |
