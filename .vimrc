@@ -242,14 +242,7 @@ endfunction
 nmap          Y y$
 xmap <silent> Y :<c-u>call <sid>BlockCopy()<cr>
 
-function! s:LineCopy()
-   let line =
-      \substitute(getline('.'), '^[[:space:]:]\+\|[[:space:]]\+$', '', '')
-   call histadd(':', line)
-   return line
-endfunction
-
-nmap <leader><c-l> :<c-r>=<sid>LineCopy()<cr>
+nmap <leader><c-l> :<c-r>=copy#line()<cr>
 
 " Paste
 xmap [p        "0p
@@ -555,7 +548,7 @@ command! -nargs=? Scriptnames call scratch#buffer('scriptnames', <f-args>)
 
 nmap <f5> :update<bar>make<cr>
 
-command! -nargs=* Ascii call ascii#codes (<f-args>)
+command! -nargs=* Ascii call ascii#codes(<f-args>)
 
 command! DiffOrig vnew | set buftype=nofile | read# | silent 0delete_ |
    \ diffthis | wincmd p | diffthis
