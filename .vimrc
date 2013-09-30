@@ -36,6 +36,8 @@ nmap gC #ncgn
 set grepprg=command\ grep\ -niE\ --exclude='*~'\ --exclude\ tags\ $*\ /dev/null
 set path+=$HOME/github/**
 
+command! -nargs=+ Find call find#files(<f-args>)
+
 " Encoding {{{2
 if has('multi_byte')
    if &encoding !~? 'utf-\=8'
@@ -411,31 +413,6 @@ nmap =<space> [<space>]<space>
 imap <s-cr>   <esc>O
 imap <c-cr>   <esc>o
 
-" Execute an ex command in a Scratch buffer {{{2
-function! s:Scratch (command, ...)
-   redir => lines
-   let saveMore = &more
-   set nomore
-   execute 'silent '.a:command
-   redir END
-   let &more = saveMore
-   new | setlocal buftype=nofile bufhidden=hide noswapfile
-   silent put=lines
-   if a:0 > 0
-      execute 'silent vglobal/'.a:1.'/delete'
-   endif
-   if a:command == 'scriptnames'
-      silent %substitute#^[[:space:]]*[[:digit:]]\+:[[:space:]]*##e
-   endif
-   silent %substitute/\%^\_s*\n\|\_s*\%$
-   let height = line('$') + 3
-   execute 'normal! z'.height."\<cr>"
-   0
-endfunction
-
-command! -nargs=+ Scratch call <sid>Scratch(<f-args>)
-command! -nargs=? Scriptnames call <sid>Scratch('scriptnames', <f-args>)
-
 " gm {{{2
 function! s:Gm()
    execute 'normal! ^'
@@ -646,7 +623,8 @@ nmap <leader>fr :set filetype=ruby<cr>
 
 let vim_indent_cont = &shiftwidth
 
-command! -nargs=+ Find call find#files(<f-args>)
+command! -nargs=+ Scratch call scratch#buffer(<f-args>)
+command! -nargs=? Scriptnames call scratch#buffer('scriptnames', <f-args>)
 nmap <f5> :update<bar>make<cr>
 command! -nargs=* Ascii call ascii#codes (<f-args>)
 command! DiffOrig vnew | set buftype=nofile | read# | silent 0delete_ |
