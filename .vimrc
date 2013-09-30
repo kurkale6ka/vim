@@ -425,43 +425,6 @@ endfunction
 nmap <silent> gm :call <sid>Gm()<cr>
 omap <silent> gm :call <sid>Gm()<cr>
 
-" Underline {{{2
-function! s:Underline(chars)
-
-   let chars = empty(a:chars) ? '-' : a:chars
-
-   let nb_columns = virtcol('$') - 1
-   let nb_chars = strlen(chars)
-
-   if has('float')
-      let nb_insertions = floor(nb_columns / str2float(nb_chars))
-      let remainder = nb_columns % nb_chars
-   else
-      let nb_insertions = nb_columns / nb_chars
-   endif
-
-   let saveFormatoptions = &formatoptions
-   set formatoptions-=o
-
-   execute "normal! o\<esc>"
-
-   let &formatoptions = saveFormatoptions
-
-   if has('float')
-      execute 'normal! ' . float2nr(nb_insertions) . 'i' . chars . "\<esc>"
-
-      if !empty(remainder)
-         execute 'normal! A' . strpart(chars, 0, remainder) . "\<esc>"
-      endif
-   else
-      execute 'normal! ' . nb_insertions . 'i' . chars . "\<esc>"
-   endif
-
-endfunction
-
-command! -nargs=? Underline call <sid>Underline(<q-args>)
-nmap <leader>u :Underline<cr>
-
 " Add/Subtract {{{2
 function! AddSubtract(operation, direction)
 
@@ -622,6 +585,9 @@ nmap <leader>fc :set filetype=c<cr>
 nmap <leader>fr :set filetype=ruby<cr>
 
 let vim_indent_cont = &shiftwidth
+
+command! -nargs=? Underline call underline#current(<q-args>)
+nmap <leader>u :Underline<cr>
 
 command! -nargs=+ Scratch call scratch#buffer(<f-args>)
 command! -nargs=? Scriptnames call scratch#buffer('scriptnames', <f-args>)
