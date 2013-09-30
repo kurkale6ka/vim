@@ -4,6 +4,8 @@
 
 set nocompatible
 call pathogen#infect()
+filetype plugin indent on
+syntax enable
 
 " Options {{{1
 " Backups {{{2
@@ -363,10 +365,6 @@ onoremap <expr>   [[ (search('^[^[:space:]]\@=.*{$', 'ebsW') &&
    \ (setpos("''  ", getpos('.')) <bar><bar> 1) ? "''" : "\<esc>")
 onoremap <expr>   ]] (search('^[^[:space:]]\@=.*{$',  'esW') &&
    \ (setpos("''", getpos('.')) <bar><bar> 1) ? "''" : "\<esc>")
-" }}}1
-
-filetype plugin indent on
-syntax enable
 
 " Plugin settings {{{1
 let g:UltiSnipsSnippetsDir         = '~/vim/snippets/'
