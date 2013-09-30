@@ -3,3 +3,11 @@ function! copy#line()
    call histadd(':', line)
    return line
 endfunction
+
+function! copy#block()
+   if "\<c-v>" == visualmode()
+      normal! gv$y
+   else
+      normal! gvY
+   endif
+endfunction

@@ -231,16 +231,9 @@ set modelines=3
 
 " Mappings {{{1
 " Copy / paste {{{2
-function! s:BlockCopy()
-   if "\<c-v>" == visualmode()
-      normal! gv$y
-   else
-      normal! gvVy
-   endif
-endfunction
 
 nmap          Y y$
-xmap <silent> Y :<c-u>call <sid>BlockCopy()<cr>
+xmap <silent> Y :<c-u>call copy#block()<cr>
 
 nmap <leader><c-l> :<c-r>=copy#line()<cr>
 
