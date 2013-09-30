@@ -233,7 +233,7 @@ set modelines=3
 " Copy / paste {{{2
 
 nmap          Y y$
-xmap <silent> Y :<c-u>call copy#block()<cr>
+xmap <silent> Y :<c-u>call copy#selection()<cr>
 
 nmap <leader><c-l> :<c-r>=copy#line()<cr>
 
