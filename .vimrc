@@ -506,14 +506,6 @@ if version >= 703
    nmap <silent> <leader>8 :call <sid>Toggle_colorcolumn()<cr>
 endif
 
-" Check syntax group of item under cursor {{{2
-func! SynStack()
-   if !exists("*synstack")
-      return
-   endif
-   echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
-endfunc
-
 " Insert completion {{{2
 function! s:Toggle_Longest_Preview(key)
    if a:key == 'f12'
