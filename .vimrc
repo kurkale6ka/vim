@@ -506,37 +506,6 @@ if version >= 703
    nmap <silent> <leader>8 :call <sid>Toggle_colorcolumn()<cr>
 endif
 
-" Insert completion {{{2
-function! s:Toggle_Longest_Preview(key)
-   if a:key == 'f12'
-      if &completeopt =~ 'longest'
-         set   completeopt-=longest
-         set   showfulltag
-         echo 'completeopt - longest (User_Account)'
-      else
-         set   completeopt+=longest
-         set   noshowfulltag
-         echo 'completeopt + longest (User_)'
-      endif
-   elseif a:key == 'f4'
-      if &completeopt =~ 'preview'
-         set   completeopt-=preview
-         echo 'completeopt - preview'
-      else
-         set   completeopt+=preview
-         echo 'completeopt + preview window'
-      endif
-   endif
-endfunction
-
-" Preview window: toggle completeopt's preview
-nmap <f4>      :call <sid>Toggle_Longest_Preview('f4')<cr>
-imap <f4> <c-o>:call <sid>Toggle_Longest_Preview('f4')<cr>
-
-" Toggle completeopt's longest
-nmap <f12>      :call <sid>Toggle_Longest_Preview('f12')<cr>
-imap <f12> <c-o>:call <sid>Toggle_Longest_Preview('f12')<cr>
-
 " Autocommands, commands and filetype settings {{{1
 if has('autocmd')
    augroup POSITION
