@@ -550,10 +550,13 @@ let vim_indent_cont = &shiftwidth
 command! -nargs=? Underline call underline#current(<q-args>)
 nmap <leader>u :Underline<cr>
 
-command! -nargs=+ Scratch call scratch#buffer(<f-args>)
+command! -nargs=+ Scratch     call scratch#buffer(               <f-args>)
 command! -nargs=? Scriptnames call scratch#buffer('scriptnames', <f-args>)
+
 nmap <f5> :update<bar>make<cr>
+
 command! -nargs=* Ascii call ascii#codes (<f-args>)
+
 command! DiffOrig vnew | set buftype=nofile | read# | silent 0delete_ |
    \ diffthis | wincmd p | diffthis
 
