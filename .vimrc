@@ -268,6 +268,9 @@ imap     <m-down> <c-o>}
 map      <c-down>      }
 map      <m-down>      }
 
+nmap <silent> gm :call move#gm()<cr>
+omap <silent> gm :call move#gm()<cr>
+
 " Jump to file (A-Z marks) on last position
 for nr in range(65, 90)
    " TODO: report issue: when file open elsewhere, g`" not respected
@@ -391,18 +394,6 @@ nmap <silent> <leader>z :call <sid>Squeeze()<cr>
 nmap =<space> [<space>]<space>
 imap <s-cr>   <esc>O
 imap <c-cr>   <esc>o
-
-" gm {{{2
-function! s:Gm()
-   execute 'normal! ^'
-   let first_col = virtcol('.')
-   execute 'normal! g_'
-   let last_col  = virtcol('.')
-   execute 'normal! ' . (first_col + last_col) / 2 . '|'
-endfunction
-
-nmap <silent> gm :call <sid>Gm()<cr>
-omap <silent> gm :call <sid>Gm()<cr>
 
 " Add/Subtract {{{2
 function! AddSubtract(operation, direction)
