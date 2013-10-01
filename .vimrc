@@ -90,6 +90,9 @@ let did_install_default_menus = 1
 " Print working directory
 nmap <c-g> :echo expand('%:p:h')<cr>
 
+nmap <leader>o :call options#show_values(0)<cr>
+nmap <leader>O :call options#show_values(1)<cr>
+
 if has('folding')
    set foldnestmax=1
    set foldmethod=marker foldmarker={{{,}}}
@@ -400,34 +403,6 @@ nmap <silent> <leader>z :call <sid>Squeeze()<cr>
 nmap =<space> [<space>]<space>
 imap <s-cr>   <esc>O
 imap <c-cr>   <esc>o
-
-" Show options {{{2
-function! s:ShowOptionsValues(verb)
-
-   let options = input('Options? ', '', 'option')
-
-   if !empty(options)
-
-      let optionsArr = split(options)
-
-      if 1 != a:verb && len(optionsArr) == 1
-
-         let command = 'set ' . join(optionsArr, '? ') . '?'
-         execute command
-      else
-         let command = 'verbose set ' . join(optionsArr, '? ') . '?'
-         execute command
-      endif
-
-      call histadd(':', command)
-   else
-      set
-   endif
-
-endfunction
-
-nmap <leader>o :call <sid>ShowOptionsValues(0)<cr>
-nmap <leader>O :call <sid>ShowOptionsValues(1)<cr>
 
 " Highlight text beyond the 80th column {{{2
 if version >= 703
