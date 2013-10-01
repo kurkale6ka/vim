@@ -350,6 +350,12 @@ onoremap <expr>   [[ (search('^[^[:space:]]\@=.*{$', 'ebsW') &&
 onoremap <expr>   ]] (search('^[^[:space:]]\@=.*{$',  'esW') &&
    \ (setpos("''", getpos('.')) <bar><bar> 1) ? "''" : "\<esc>")
 
+" Add/Subtract {{{2
+nmap <silent>         <c-a> :<c-u>call number#change('a', 'f')<cr>
+nmap <silent> <leader><c-a> :<c-u>call number#change('a', 'b')<cr>
+nmap <silent>         <c-x> :<c-u>call number#change('s', 'f')<cr>
+nmap <silent> <leader><c-x> :<c-u>call number#change('s', 'b')<cr>
+
 " Plugin settings {{{1
 let g:UltiSnipsSnippetsDir         = '~/vim/snippets/'
 let g:UltiSnipsSnippetDirectories  = ["UltiSnips", "snippets"]
@@ -394,41 +400,6 @@ nmap <silent> <leader>z :call <sid>Squeeze()<cr>
 nmap =<space> [<space>]<space>
 imap <s-cr>   <esc>O
 imap <c-cr>   <esc>o
-
-" Add/Subtract {{{2
-function! AddSubtract(operation, direction)
-
-   if &nrformats =~ 'alpha'
-
-      let pattern = '[[:alpha:][:digit:]]'
-   else
-      let pattern = '[[:digit:]]'
-   endif
-
-   if 'b' == a:direction
-
-      call search(pattern, 'bcw')
-   else
-      call search(pattern, 'cw')
-   endif
-
-   if 'a' == a:operation
-
-      execute 'normal! ' . v:count1 . "\<c-a>"
-      silent! call
-         \ repeat#set(":\<c-u>call AddSubtract('a', '" .a:direction. "')\<cr>")
-   else
-      execute 'normal! ' . v:count1 . "\<c-x>"
-      silent! call
-         \ repeat#set(":\<c-u>call AddSubtract('s', '" .a:direction. "')\<cr>")
-   endif
-
-endfunction
-
-nmap <silent>         <c-a> :<c-u>call AddSubtract('a', 'f')<cr>
-nmap <silent> <leader><c-a> :<c-u>call AddSubtract('a', 'b')<cr>
-nmap <silent>         <c-x> :<c-u>call AddSubtract('s', 'f')<cr>
-nmap <silent> <leader><c-x> :<c-u>call AddSubtract('s', 'b')<cr>
 
 " Show options {{{2
 function! s:ShowOptionsValues(verb)
