@@ -16,6 +16,7 @@ set noautoread
 if version >= 703 | set undofile | endif
 set viminfo='20,<50,s10,h,!
 
+nnoremap gr 999<c-r>
 command! WriteSudo write !sudo tee % > /dev/null
 
 " Search and replace {{{2
@@ -164,7 +165,8 @@ nmap              <c-pageup>              :bprevious<cr>
 nmap              <c-pagedown>            :bnext<cr>
 imap              <c-pageup>         <c-o>:bprevious<cr>
 imap              <c-pagedown>       <c-o>:bnext<cr>
-nmap              <c-space>               :ls<cr>:buffer<space>
+" nmap              <c-space>               :ls<cr>:buffer<space>
+nmap              <c-space>               :buffer <c-z>
 nnoremap          <c-tab>                 <c-^>
 nmap     <silent> <c-w><c-w>              :wincmd p<cr>
 nmap     <silent> <c-w>N                  :enew<cr>
@@ -232,10 +234,9 @@ set modelines=3
 " Mappings {{{1
 " Copy / paste {{{2
 
-nmap          Y y$
-xmap <silent> Y :<c-u>call copy#selection()<cr>
-
-nmap <leader><c-l> :<c-r>=copy#line()<cr>
+nmap          Y             y$
+xmap <silent> Y             :<c-u>call copy#selection()<cr>
+nmap          <leader><c-l> :<c-r>=copy#line()<cr>
 
 " Paste
 xmap [p        "0p
@@ -266,12 +267,6 @@ imap     <c-down> <c-o>}
 imap     <m-down> <c-o>}
 map      <c-down>      }
 map      <m-down>      }
-
-nnoremap j      gj
-nnoremap <Down> gj
-nnoremap k      gk
-nnoremap <up>   gk
-nnoremap gr 999<c-r>
 
 " Jump to file (A-Z marks) on last position
 for nr in range(65, 90)
@@ -326,8 +321,6 @@ nmap <leader>e :setlocal spell! spell?<cr>
 nmap <f7>      ]s
 nmap <s-f7>    [s
 nmap <f6>      1z=
-
-nmap <leader>dg :set digraph! digraph?<cr>
 
 nmap <silent> gb :call spelllang#bg()<cr>
 command! ES setlocal keymap=es
