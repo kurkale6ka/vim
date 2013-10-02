@@ -7,6 +7,9 @@ set guioptions-=m guioptions-=T guioptions+=a
 
 set guifont=DejaVu\ Sans\ Mono\ 13
 
+command! -bar Bigger  :let &gfn = substitute(&gfn,'\d\+$','\=submatch(0)+1','')
+command! -bar Smaller :let &gfn = substitute(&gfn,'\d\+$','\=submatch(0)-1','')
+
 " Save this/all file(s)
 nmap <c-s>s          :update<cr>
 imap <c-s>s     <c-o>:update<cr>
