@@ -141,7 +141,7 @@ command! -nargs=? Underline call underline#current(<q-args>)
 nmap <leader>u :Underline<cr>
 
 command! RemoveSpaces silent! %substitute/\s\+$//e
-autocmd BufWritePre * silent! %substitute/\s\+$//e
+autocmd BufWritePre * if &ft != 'markdown' | silent! %s/\s\+$//e | endif
 
 nmap <silent> <leader>z :call squeeze#lines()<cr>
 
