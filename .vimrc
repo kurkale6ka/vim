@@ -186,8 +186,7 @@ nmap              <c-pageup>              :bprevious<cr>
 nmap              <c-pagedown>            :bnext<cr>
 imap              <c-pageup>         <c-o>:bprevious<cr>
 imap              <c-pagedown>       <c-o>:bnext<cr>
-" nmap              <c-space>               :ls<cr>:buffer<space>
-nmap              <c-space>               :buffer <c-z>
+nmap              <c-space>               :ls<cr>:buffer<space>
 nnoremap          <c-tab>                 <c-^>
 nmap     <silent> <c-w><c-w>              :wincmd p<cr>
 nmap     <silent> <c-w>N                  :enew<cr>
