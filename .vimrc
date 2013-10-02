@@ -109,6 +109,11 @@ else
    set cursorline
 endif
 
+" Highlight text beyond the 80th column
+if version >= 703
+   nmap <silent> <leader>8 :call highlight#column81()<cr>
+endif
+
 " Mouse {{{2
 if has('mouse_xterm')
    set mouse=a
@@ -131,6 +136,19 @@ set nojoinspaces
 set paragraphs=
 
 nmap Q gqap
+
+command! -nargs=? Underline call underline#current(<q-args>)
+nmap <leader>u :Underline<cr>
+
+command! RemoveSpaces silent! %substitute/\s\+$//e
+autocmd BufWritePre * silent! %substitute/\s\+$//e
+
+nmap <silent> <leader>z :call squeeze#lines()<cr>
+
+" Add empty lines
+nmap =<space> [<space>]<space>
+imap <s-cr>   <esc>O
+imap <c-cr>   <esc>o
 
 " Tabs and shifting {{{2
 set expandtab
@@ -385,43 +403,6 @@ let g:loaded_flatfoot        = 1
 let loaded_rrhelper          = 1
 let loaded_spellfile_plugin  = 1
 
-" Functions {{{1
-" Squeeze empty lines (TODO: remove entries from / history) {{{2
-function! s:Squeeze()
-   let save_cursor = getpos('.')
-   " empty lines at BOF|EOF
-   silent  %substitute/\%^\_s*\n\|\_s*\%$//
-   " empty line clusters
-   silent   global/^\%(\s*$\n\)\{2,}/delete
-   silent! %substitute/\s\+$//e
-   call setpos('.', save_cursor)
-endfunction
-
-nmap <silent> <leader>z :call <sid>Squeeze()<cr>
-
-" Add empty lines
-nmap =<space> [<space>]<space>
-imap <s-cr>   <esc>O
-imap <c-cr>   <esc>o
-
-" Highlight text beyond the 80th column {{{2
-if version >= 703
-   function! s:Toggle_colorcolumn ()
-      if empty(&colorcolumn)
-         if empty(&textwidth)
-            setlocal colorcolumn=81
-         else
-            setlocal colorcolumn=+1
-         endif
-         let @/ = '\%81v.*'
-      else
-         setlocal colorcolumn=
-         let @/ = ''
-      endif
-   endfunction
-   nmap <silent> <leader>8 :call <sid>Toggle_colorcolumn()<cr>
-endif
-
 " Autocommands, commands and filetype settings {{{1
 if has('autocmd')
    augroup POSITION
@@ -463,9 +444,6 @@ nmap <leader>fr :set filetype=ruby<cr>
 
 let vim_indent_cont = &shiftwidth
 
-command! -nargs=? Underline call underline#current(<q-args>)
-nmap <leader>u :Underline<cr>
-
 command! -nargs=+ Scratch     call scratch#buffer(               <f-args>)
 command! -nargs=? Scriptnames call scratch#buffer('scriptnames', <f-args>)
 
@@ -478,5 +456,3 @@ command! DiffOrig vnew | set buftype=nofile | read# | silent 0delete_ |
 
 " Load business specific vimrc }}}1
 if filereadable($HOME.'/.vimrc_after') | source $HOME/.vimrc_after | endif
-
-" vim: set foldmethod=marker foldmarker={{{,}}}:
