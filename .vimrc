@@ -107,10 +107,7 @@ if version < 703
 else
    if isdirectory($HOME.'/.vim/bundle/desertEx') | colorscheme desertEX | endif
    set cursorline
-endif
-
-" Highlight text beyond the 80th column
-if version >= 703
+   " Highlight text beyond the 80th column
    nmap <silent> <leader>8 :call highlight#column81()<cr>
 endif
 
