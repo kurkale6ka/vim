@@ -14,7 +14,7 @@ function! scratch#buffer (command, ...)
    let &more = saveMore
    new | setlocal buftype=nofile bufhidden=hide noswapfile
    silent put=lines
-   " Example: Scratch ve ls - filter 'ls' matching lines only
+   " Example: Scratch ve autocmd - filter 'autocmd' matching lines only
    if a:0 > 0 && filter == 1
       execute 'silent vglobal/'.a:1.'/delete'
    endif
