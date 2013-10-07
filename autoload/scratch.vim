@@ -3,12 +3,19 @@ function! scratch#buffer (command, ...)
    redir => lines
    let saveMore = &more
    set nomore
-   execute 'silent '.a:command
+   let filter = 1
+   if a:0 > 0 && match (a:000[a:0 - 1], '?', -1) != -1
+      execute 'silent '.a:command.' '.join(a:000)
+      let filter = 0
+   else
+      execute 'silent '.a:command
+   endif
    redir END
    let &more = saveMore
    new | setlocal buftype=nofile bufhidden=hide noswapfile
    silent put=lines
-   if a:0 > 0
+   " Example: Scratch ve ls - filter 'ls' matching lines only
+   if a:0 > 0 && filter == 1
       execute 'silent vglobal/'.a:1.'/delete'
    endif
    if a:command == 'scriptnames'
