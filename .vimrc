@@ -332,8 +332,8 @@ cabbrev frm fmr
 " In visual-block mode: } selects the current column {{{2
 set nostartofline
 
-vnoremap <expr> } mode() == nr2char(22) ? line("'}") - 1 . 'G' : '}'
-vnoremap <expr> { mode() == nr2char(22) ? line("'{") + 1 . 'G' : '{'
+xnoremap <expr> } mode() == '<c-v>' ? line("'}") - 1 . 'G' : '}'
+xnoremap <expr> { mode() == '<c-v>' ? line("'{") + 1 . 'G' : '{'
 
 " [[, ]] work even if the { is not in the first column {{{2
 nnoremap <silent> [[ :call search('^[^[:space:]]\@=.*{$', 'besW')<cr>
