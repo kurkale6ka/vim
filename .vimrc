@@ -235,6 +235,8 @@ nmap [P        :pu!<cr>
 nmap ]P        :pu<cr>
 nmap <leader>p :set invpaste paste?<cr>
 
+" command! -nargs=? Append call register#append(<f-args>)
+
 " Help {{{2
 nmap          <leader>h      :help <c-r><c-w><cr>
 xmap          <leader>h   "*y:help <c-r>*<cr>
