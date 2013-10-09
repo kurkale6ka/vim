@@ -328,6 +328,8 @@ cabbrev trp rtp
 cabbrev waq wqa
 cabbrev mpa map
 cabbrev frm fmr
+iabbrev @@ mitkofr@yahoo.fr
+iabbrev dd Dimitar Dimitrov
 
 " In visual-block mode: } selects the current column {{{2
 set nostartofline
