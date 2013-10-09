@@ -3,33 +3,33 @@ setlocal foldmethod=syntax
 setlocal autoindent
 setlocal nocursorline
 
-iabbrev oo  O-O
-iabbrev OO  O-O
-iabbrev 00  O-O
-iabbrev ooo O-O-O
-iabbrev OOO O-O-O
-iabbrev 000 O-O-O
+iabbrev <buffer> oo  O-O
+iabbrev <buffer> OO  O-O
+iabbrev <buffer> 00  O-O
+iabbrev <buffer> ooo O-O-O
+iabbrev <buffer> OOO O-O-O
+iabbrev <buffer> 000 O-O-O
 
 inoremap <buffer> > 1-0
 inoremap <buffer> < 0-1
 
-imap <buffer> <leader>pw ♙
-imap <buffer> <leader>pb ♟
+imap <buffer> <localleader>pw ♙
+imap <buffer> <localleader>pb ♟
 
-imap <buffer> <leader>rw ♖
-imap <buffer> <leader>rb ♜
+imap <buffer> <localleader>rw ♖
+imap <buffer> <localleader>rb ♜
 
-imap <buffer> <leader>nw ♘
-imap <buffer> <leader>nb ♞
+imap <buffer> <localleader>nw ♘
+imap <buffer> <localleader>nb ♞
 
-imap <buffer> <leader>bw ♗
-imap <buffer> <leader>bb ♝
+imap <buffer> <localleader>bw ♗
+imap <buffer> <localleader>bb ♝
 
-imap <buffer> <leader>qw ♕
-imap <buffer> <leader>qb ♛
+imap <buffer> <localleader>qw ♕
+imap <buffer> <localleader>qb ♛
 
-imap <buffer> <leader>kw ♔
-imap <buffer> <leader>kb ♚
+imap <buffer> <localleader>kw ♔
+imap <buffer> <localleader>kb ♚
 
 function! s:ChessBoard(show)
 
@@ -93,5 +93,5 @@ function! s:NumberIncrement()
 
 endfunction
 
-inoremap <cr> <cr><c-r>=<sid>NumberIncrement()<cr>
-nnoremap o       o<c-r>=<sid>NumberIncrement()<cr>
+inoremap <buffer> <cr> <cr><c-r>=<sid>NumberIncrement()<cr>
+nnoremap <buffer> o       o<c-r>=<sid>NumberIncrement()<cr>
