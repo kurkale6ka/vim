@@ -1,5 +1,7 @@
 augroup FT_COMMENTS_GRP
 
+autocmd!
+
 " Comments: \\
 autocmd FileType c,cpp,java,javascript
    \ imap <silent> <buffer> <leader><leader> /*  */<left><left><left>|
