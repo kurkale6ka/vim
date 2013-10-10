@@ -412,6 +412,8 @@ if has('autocmd')
    augroup END
 endif
 
+source $HOME/.vim/bundle/ft_comments/ftplugin/comments.vim
+
 nmap <leader>ft :set filetype=
 nmap <leader>fa :set filetype=awk<cr>
 nmap <leader>fs :set filetype=scheme<cr>
