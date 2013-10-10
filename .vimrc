@@ -141,7 +141,6 @@ command! -nargs=? Underline call underline#current(<q-args>)
 nmap <leader>u :Underline<cr>
 
 command! RemoveSpaces silent! %substitute/\s\+$//e
-autocmd! BufWritePre * if &ft != 'markdown' | silent! %s/\s\+$//e | endif
 
 nmap <silent> <leader>z :call squeeze#lines()<cr>
 
@@ -379,7 +378,7 @@ let loaded_spellfile_plugin  = 1
 
 " Autocommands, commands and filetype settings {{{1
 if has('autocmd')
-   augroup POSITION_VIMRC
+   augroup RC_GRP_POSITION
       autocmd!
       " Jump to the last spot the cursor was at in a file when reading it
       autocmd BufReadPost *
@@ -391,7 +390,7 @@ if has('autocmd')
       " file. This replaces 'autochdir which doesn't work properly.
       autocmd BufEnter * if &filetype != 'help' | silent! cd %:p:h | endif
    augroup END
-   augroup FILETYPE_VIMRC
+   augroup RC_GRP_FILETYPE
       autocmd!
       " Wrap automatically at 80 chars for plain text files
       autocmd FileType txt,text,svn setlocal formatoptions+=t autoindent smartindent
@@ -400,6 +399,11 @@ if has('autocmd')
       autocmd FileType vim setlocal keywordprg=:help
       autocmd FileType json command -range=% -nargs=* Tidy <line1>,<line2>! python -mjson.tool
       autocmd FileType html,xml command -range=% -nargs=* Tidy <line1>,<line2>! xmllint --format --recover - 2>/dev/null
+   augroup END
+   augroup RC_GRP_REMOVE
+      autocmd!
+      " Delete EOL white spaces
+      autocmd BufWritePre * if &ft != 'markdown' | silent! %s/\s\+$//e | endif
    augroup END
 endif
 
