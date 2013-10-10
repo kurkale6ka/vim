@@ -140,8 +140,6 @@ nmap Q gqap
 command! -nargs=? Underline call underline#current(<q-args>)
 nmap <leader>u :Underline<cr>
 
-command! RemoveSpaces silent! %substitute/\s\+$//e
-
 nmap <silent> <leader>z :call squeeze#lines()<cr>
 
 " Add empty lines
@@ -420,7 +418,7 @@ nmap <leader>fb :set filetype=sh<cr>
 nmap <leader>fc :set filetype=c<cr>
 nmap <leader>fr :set filetype=ruby<cr>
 
-let vim_indent_cont = &shiftwidth
+command! RemoveSpaces silent! %substitute/\s\+$//e
 
 command! -nargs=+ Scratch     call scratch#buffer(               <f-args>)
 command! -nargs=? Scriptnames call scratch#buffer('scriptnames', <f-args>)
@@ -431,6 +429,8 @@ command! -nargs=* Ascii call ascii#codes(<f-args>)
 
 command! DiffOrig vnew | set buftype=nofile | read# | silent 0delete_ |
    \ diffthis | wincmd p | diffthis
+
+let vim_indent_cont = &shiftwidth
 
 " Load business specific vimrc }}}1
 if filereadable($HOME.'/.vimrc_after') | source $HOME/.vimrc_after | endif
