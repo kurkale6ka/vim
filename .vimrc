@@ -397,6 +397,10 @@ if has('autocmd')
       autocmd FileType vim setlocal keywordprg=:help
       autocmd FileType json command -range=% -nargs=* Tidy <line1>,<line2>! python -mjson.tool
       autocmd FileType html,xml command -range=% -nargs=* Tidy <line1>,<line2>! xmllint --format --recover - 2>/dev/null
+      autocmd FileType md,markdown
+         \ onoremap <buffer> ih :<c-u>execute "normal! ?^==\\+$\r:nohlsearch\rkvg_"<cr>|
+         \ onoremap <buffer> ah :<c-u>execute "normal! ?^==\\+$\r:nohlsearch\rg_vk0"<cr>
+
    augroup END
    augroup RC_GRP_REMOVE
       autocmd!
