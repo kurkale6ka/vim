@@ -397,6 +397,9 @@ if has('autocmd')
       autocmd FileType vim setlocal keywordprg=:help
       autocmd FileType json command -range=% -nargs=* Tidy <line1>,<line2>! python -mjson.tool
       autocmd FileType html,xml command -range=% -nargs=* Tidy <line1>,<line2>! xmllint --format --recover - 2>/dev/null
+      " Get highlighting for apache version 2.2
+      autocmd FileType apache let apache_version = '2.2'
+      autocmd FileType vim let vim_indent_cont = &shiftwidth
       autocmd FileType md,markdown
          \ onoremap <buffer> ih :<c-u>execute "normal! ?^==\\+$\r:nohlsearch\rkvg_"<cr>|
          \ onoremap <buffer> ah :<c-u>execute "normal! ?^==\\+$\r:nohlsearch\rg_vk0"<cr>
@@ -433,8 +436,6 @@ command! DiffOrig vnew | set buftype=nofile | read# | silent 0delete_ |
    \ diffthis | wincmd p | diffthis
 
 nmap <f5> :update<bar>make<cr>
-
-let vim_indent_cont = &shiftwidth
 
 " Load business specific vimrc }}}1
 if filereadable($HOME.'/.vimrc_after') | source $HOME/.vimrc_after | endif
