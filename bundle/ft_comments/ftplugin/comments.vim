@@ -18,4 +18,9 @@ autocmd FileType java
 autocmd FileType cpp
    \ imap <silent> <buffer> <leader>p cout << '' << endl;<left><left><left><left><left><left><left><left><left><left>
 
+" To be improved
+autocmd FileType perl
+   \ set makeprg=perl\ -c\ %\ $*|
+   \ set errorformat=%m\ at\ %f\ line\ %l.
+
 augroup END
