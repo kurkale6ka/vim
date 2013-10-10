@@ -20,6 +20,11 @@ autocmd FileType java
 autocmd FileType cpp
    \ imap <silent> <buffer> <localleader>p cout << '' << endl;<left><left><left><left><left><left><left><left><left><left>
 
+" the letter c is used for surrounding
+autocmd FileType ruby
+   \ imap <silent> <buffer> <leader>p puts ''<left>|
+   \ let b:surround_99 = "=begin \r =end"
+
 " To be improved
 autocmd FileType perl
    \ setlocal makeprg=perl\ -c\ %\ $*|
