@@ -141,7 +141,7 @@ command! -nargs=? Underline call underline#current(<q-args>)
 nmap <leader>u :Underline<cr>
 
 command! RemoveSpaces silent! %substitute/\s\+$//e
-autocmd BufWritePre * if &ft != 'markdown' | silent! %s/\s\+$//e | endif
+autocmd! BufWritePre * if &ft != 'markdown' | silent! %s/\s\+$//e | endif
 
 nmap <silent> <leader>z :call squeeze#lines()<cr>
 
@@ -379,7 +379,7 @@ let loaded_spellfile_plugin  = 1
 
 " Autocommands, commands and filetype settings {{{1
 if has('autocmd')
-   augroup POSITION
+   augroup POSITION_VIMRC
       autocmd!
       " Jump to the last spot the cursor was at in a file when reading it
       autocmd BufReadPost *
@@ -391,7 +391,7 @@ if has('autocmd')
       " file. This replaces 'autochdir which doesn't work properly.
       autocmd BufEnter * if &filetype != 'help' | silent! cd %:p:h | endif
    augroup END
-   augroup FILETYPE
+   augroup FILETYPE_VIMRC
       autocmd!
       " Wrap automatically at 80 chars for plain text files
       autocmd FileType txt,text,svn setlocal formatoptions+=t autoindent smartindent
