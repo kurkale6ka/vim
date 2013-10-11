@@ -5,7 +5,13 @@
 set nocompatible
 
 let &runtimepath = substitute(&runtimepath, '\.\zevim', '', 'g')
-call pathogen#infect($HOME.'/vim/bundle/{}')
+call pathogen#infect('~/vim/bundle/{}')
+se rtp+=$HOME/vim/bundle/.blanklines
+se rtp+=$HOME/vim/bundle/.blockinsert
+se rtp+=$HOME/vim/bundle/.desertEx
+se rtp+=$HOME/vim/bundle/.pairs
+se rtp+=$HOME/vim/bundle/.sequence
+se rtp+=$HOME/vim/bundle/.swap
 
 filetype plugin indent on
 syntax enable
@@ -108,7 +114,7 @@ endif
 if version < 703
    colorscheme tdefault
 else
-   if isdirectory($HOME.'/vim/bundle/desertEx') | colorscheme desertEX | endif
+   if isdirectory($HOME.'/vim/bundle/.desertEx') | colorscheme desertEX | endif
    set cursorline
    " Highlight text beyond the 80th column
    nmap <silent> <leader>8 :call highlight#column81()<cr>
