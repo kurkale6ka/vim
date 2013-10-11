@@ -82,6 +82,9 @@ augroup RC_GRP_SYNTAX
    "    \ syntax clear htmlLink
    "    \ syntax region htmlLink start=/<a\_[[:space:]]\+\_[^>]\{-}\<href\_.\{-}>\_[[:space:]]*/hs=e+1 end="\_[[:space:]]*</a>"he=s-1 contains=@Spell,htmlTag,htmlEndTag,htmlSpecialChar,htmlPreProc,htmlComment,javaScript,@htmlPreproc
 
+   autocmd Syntax xsd
+      \ syntax region xmlComment start=/<\a\+:annotation>/ end=/<\/\a\+:annotation>/
+
 augroup END
 
 augroup RC_GRP_POSITION
