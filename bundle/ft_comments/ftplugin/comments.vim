@@ -70,11 +70,14 @@ augroup RC_GRP_FILETYPE
    autocmd FileType cpp
       \ imap <silent> <buffer> <localleader>p cout << '' << endl;<left><left><left><left><left><left><left><left><left><left>
 
+   autocmd FileType dosini,ini
+      \ setlocal foldmethod=syntax
+
    " For shell scripts, use bash syntax not sh
    autocmd FileType sh
       \ let g:is_bash = 1
 
-   " the letter c is used for surrounding
+   " [99 c]
    autocmd FileType ruby
       \ imap <silent> <buffer> <localleader>p puts ''<left>|
       \ let b:surround_99 = "=begin \r =end"
@@ -104,6 +107,11 @@ augroup RC_GRP_SYNTAX
    autocmd!
    autocmd Syntax tex
       \ syntax region texFold start=/\\section{.\{-}}/ end=/\\section{.\{-}}/ transparent fold
+
+   " syntax region dosiniFold start=/^[[:space:]]*\[.\{-}\][[:space:]]*\n\zs/ end=/\n\ze[[:space:]]*\[/ transparent fold
+   autocmd Syntax dosini,ini
+      \ syntax region dosiniFold start=/^[[:space:]]*\[/ end=/\n\ze[[:space:]]*\[/ transparent fold
+
    " autocmd Syntax html,htm,phtml,shtml,xhtml
    "    \ syntax clear htmlLink
    "    \ syntax region htmlLink start=/<a\_[[:space:]]\+\_[^>]\{-}\<href\_.\{-}>\_[[:space:]]*/hs=e+1 end="\_[[:space:]]*</a>"he=s-1 contains=@Spell,htmlTag,htmlEndTag,htmlSpecialChar,htmlPreProc,htmlComment,javaScript,@htmlPreproc
