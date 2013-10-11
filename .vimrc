@@ -382,7 +382,7 @@ let loaded_spellfile_plugin  = 1
 
 " Autocommands, commands and filetype settings {{{1
 if has('autocmd')
-   source $HOME/.vim/bundle/ft_comments/ftplugin/comments.vim
+   source $HOME/.vim/plugin/autocommands.vim
 endif
 
 nmap <leader>ft :set filetype=
