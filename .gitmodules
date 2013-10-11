@@ -1,95 +1,95 @@
 [submodule "bundle/surround"]
-	path = bundle/surround
-	url = git://github.com/tpope/vim-surround.git
-	ignore = dirty
+   path = bundle/surround
+   url = git://github.com/tpope/vim-surround.git
+   ignore = dirty
 [submodule "bundle/abolish"]
-	path = bundle/abolish
-	url = git://github.com/tpope/vim-abolish.git
-	ignore = dirty
+   path = bundle/abolish
+   url = git://github.com/tpope/vim-abolish.git
+   ignore = dirty
 [submodule "bundle/endwise"]
-	path = bundle/endwise
-	url = git://github.com/tpope/vim-endwise.git
-	ignore = dirty
+   path = bundle/endwise
+   url = git://github.com/tpope/vim-endwise.git
+   ignore = dirty
 [submodule "bundle/ragtag"]
-	path = bundle/ragtag
-	url = git://github.com/tpope/vim-ragtag.git
-	ignore = dirty
+   path = bundle/ragtag
+   url = git://github.com/tpope/vim-ragtag.git
+   ignore = dirty
 [submodule "bundle/repeat"]
-	path = bundle/repeat
-	url = git://github.com/tpope/vim-repeat.git
-	ignore = dirty
+   path = bundle/repeat
+   url = git://github.com/tpope/vim-repeat.git
+   ignore = dirty
 [submodule "bundle/unimpaired"]
-	path = bundle/unimpaired
-	url = git://github.com/tpope/vim-unimpaired.git
-	ignore = dirty
+   path = bundle/unimpaired
+   url = git://github.com/tpope/vim-unimpaired.git
+   ignore = dirty
 [submodule "bundle/tabular"]
-	path = bundle/tabular
-	url = git://github.com/godlygeek/tabular.git
-	ignore = dirty
+   path = bundle/tabular
+   url = git://github.com/godlygeek/tabular.git
+   ignore = dirty
 [submodule "bundle/csapprox"]
-	path = bundle/csapprox
-	url = git://github.com/godlygeek/csapprox.git
-	ignore = dirty
+   path = bundle/csapprox
+   url = git://github.com/godlygeek/csapprox.git
+   ignore = dirty
 [submodule "bundle/pathogen"]
-	path = bundle/pathogen
-	url = git://github.com/tpope/vim-pathogen.git
-	ignore = dirty
+   path = bundle/pathogen
+   url = git://github.com/tpope/vim-pathogen.git
+   ignore = dirty
 [submodule "bundle/puppet"]
-	path = bundle/puppet
-	url = git://github.com/rodjek/vim-puppet.git
-	ignore = dirty
+   path = bundle/puppet
+   url = git://github.com/rodjek/vim-puppet.git
+   ignore = dirty
 [submodule "bundle/bufkill"]
-	path = bundle/bufkill
-	url = git://github.com/vim-scripts/bufkill.vim.git
-	ignore = dirty
+   path = bundle/bufkill
+   url = git://github.com/vim-scripts/bufkill.vim.git
+   ignore = dirty
 [submodule "bundle/MarkLines"]
-	path = bundle/MarkLines
-	url = git://github.com/vim-scripts/MarkLines.git
-	ignore = dirty
+   path = bundle/MarkLines
+   url = git://github.com/vim-scripts/MarkLines.git
+   ignore = dirty
 [submodule "bundle/UltiSnips"]
-	path = bundle/UltiSnips
-	url = git://github.com/SirVer/ultisnips.git
-	ignore = dirty
+   path = bundle/UltiSnips
+   url = git://github.com/SirVer/ultisnips.git
+   ignore = dirty
 [submodule "bundle/bufexplorer"]
-	path = bundle/bufexplorer
-	url = git://github.com/vim-scripts/bufexplorer.zip.git
-	ignore = dirty
+   path = bundle/bufexplorer
+   url = git://github.com/vim-scripts/bufexplorer.zip.git
+   ignore = dirty
 [submodule "bundle/nerdcommenter"]
-	path = bundle/nerdcommenter
-	url = git://github.com/scrooloose/nerdcommenter.git
-	ignore = dirty
+   path = bundle/nerdcommenter
+   url = git://github.com/scrooloose/nerdcommenter.git
+   ignore = dirty
 [submodule "bundle/Colour-Sampler-Pack"]
-	path = bundle/Colour-Sampler-Pack
-	url = git://github.com/vim-scripts/Colour-Sampler-Pack.git
-	ignore = dirty
-[submodule "bundle/pairs"]
-	path = bundle/pairs
-	url = git@github.com:kurkale6ka/vim-pairs.git
-[submodule "bundle/blockinsert"]
-	path = bundle/blockinsert
-	url = git@github.com:kurkale6ka/vim-blockinsert.git
-[submodule "bundle/swap"]
-	path = bundle/swap
-	url = git@github.com:kurkale6ka/vim-swap.git
-[submodule "bundle/sequence"]
-	path = bundle/sequence
-	url = git@github.com:kurkale6ka/vim-sequence.git
-[submodule "bundle/blanklines"]
-	path = bundle/blanklines
-	url = git@github.com:kurkale6ka/vim-blanklines.git
+   path = bundle/Colour-Sampler-Pack
+   url = git://github.com/vim-scripts/Colour-Sampler-Pack.git
+   ignore = dirty
+[submodule "bundle/.pairs"]
+   path = bundle/.pairs
+   url = git@github.com:kurkale6ka/vim-pairs.git
+[submodule "bundle/.blockinsert"]
+   path = bundle/.blockinsert
+   url = git@github.com:kurkale6ka/vim-blockinsert.git
+[submodule "bundle/.swap"]
+   path = bundle/.swap
+   url = git@github.com:kurkale6ka/vim-swap.git
+[submodule "bundle/.sequence"]
+   path = bundle/.sequence
+   url = git@github.com:kurkale6ka/vim-sequence.git
+[submodule "bundle/.blanklines"]
+   path = bundle/.blanklines
+   url = git@github.com:kurkale6ka/vim-blanklines.git
 [submodule "bundle/syntastic"]
-	path = bundle/syntastic
-	url = git://github.com/scrooloose/syntastic.git
-	ignore = dirty
-[submodule "bundle/desertEx"]
-	path = bundle/desertEx
-	url = git@github.com:kurkale6ka/vim-desertEx.git
+   path = bundle/syntastic
+   url = git://github.com/scrooloose/syntastic.git
+   ignore = dirty
+[submodule "bundle/.desertEx"]
+   path = bundle/.desertEx
+   url = git@github.com:kurkale6ka/vim-desertEx.git
 [submodule "bundle/markdown"]
-	path = bundle/markdown
-	url = git://github.com/tpope/vim-markdown.git
+   path = bundle/markdown
+   url = git://github.com/tpope/vim-markdown.git
 [submodule "bundle/_json"]
-	path = bundle/_json
-	url = https://github.com/elzr/vim-json.git
+   path = bundle/_json
+   url = https://github.com/elzr/vim-json.git
 [submodule "bundle/.chess"]
-	path = bundle/.chess
-	url = git@github.com:kurkale6ka/vim-chess.git
+   path = bundle/.chess
+   url = git@github.com:kurkale6ka/vim-chess.git
