@@ -58,10 +58,6 @@
    path = bundle/nerdcommenter
    url = git://github.com/scrooloose/nerdcommenter.git
    ignore = dirty
-[submodule "bundle/Colour-Sampler-Pack"]
-   path = bundle/Colour-Sampler-Pack
-   url = git://github.com/vim-scripts/Colour-Sampler-Pack.git
-   ignore = dirty
 [submodule "bundle/.pairs"]
    path = bundle/.pairs
    url = git@github.com:kurkale6ka/vim-pairs.git
