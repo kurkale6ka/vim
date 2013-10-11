@@ -135,3 +135,21 @@ augroup RC_GRP_MISC
    " Delete EOL white spaces
    autocmd BufWritePre * if &ft != 'markdown' | silent! %s/\s\+$//e | endif
 augroup END
+
+augroup RC_GRP_SURROUND
+   autocmd!
+   " [49 1] [50 2] [51 3] [52 4] [53 5] [54 6] [55 7] [56 8] [57 9]
+   autocmd FileType snippets
+      \ let b:surround_49 = "${1:\r}"
+      \ let b:surround_50 = "${2:\r}"
+      \ let b:surround_51 = "${3:\r}"
+      \ let b:surround_52 = "${4:\r}"
+      \ let b:surround_53 = "${5:\r}"
+      \ let b:surround_54 = "${6:\r}"
+      \ let b:surround_55 = "${7:\r}"
+      \ let b:surround_56 = "${8:\r}"
+      \ let b:surround_57 = "${9:\r}"
+
+augroup END
+
+" vim: foldmethod=indent foldnestmax=1
