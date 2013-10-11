@@ -39,8 +39,15 @@ augroup RC_GRP_FILETYPE
       \ imap <silent> <buffer> <localleader>cs /*<cr><cr>/<left><up><space>
 
    " Comments: \cs
-   autocmd FileType java
+   autocmd FileType java,php
       \ imap <silent> <buffer> <localleader>cs /**<cr><cr>/<left><up><space>
+
+   " Useful for class aware omnicompletion
+   autocmd FileType php
+      \ let @v="\<esc>yiwO/* @var $\<esc>pa Zend_ */\<left>\<left>\<left>"|
+      \ let php_folding = 3|
+      \ let php_large_file = 0|
+      \ inoremap <silent> <buffer> <localleader>E <?php echo  ?><left><left><left>
 
    " autocmd FileType c
    " " imap <silent> <buffer> <localleader>p printf("\n");<left><left><left><left><left>
@@ -57,11 +64,6 @@ augroup RC_GRP_FILETYPE
 
    autocmd FileType ruby
       \ imap <silent> <buffer> <localleader>p puts ''<left>
-
-   " To be improved
-   autocmd FileType perl
-      \ setlocal makeprg=perl\ -c\ %\ $*|
-      \ setlocal errorformat=%m\ at\ %f\ line\ %l.
 
    autocmd FileType tex
       \ iabbrev latex \latex{}
@@ -167,6 +169,28 @@ augroup RC_GRP_SURROUND
    " [99 c]
    autocmd FileType ruby
       \ let b:surround_99 = "=begin \r =end"
+
+   " [69 E] [43 +] [45 -] [118 v] [116 t]
+   autocmd FileType php
+      \ let b:surround_69  = "<?php echo \r ?>"   |
+      \ let b:surround_43  = "<?php echo '\r' ?>" |
+      \ let b:surround_45  = "<?php \r ?>"        |
+      \ let b:surround_118 = "var_dump(\r)"       |
+      \ let b:surround_116 = "try { \r } catch (Exception $e) {$e->getMessage();}"
+
+augroup END
+
+augroup RC_GRP_MAKE
+   autocmd!
+
+   " To be improved
+   autocmd FileType perl
+      \ setlocal makeprg=perl\ -c\ %\ $*|
+      \ setlocal errorformat=%m\ at\ %f\ line\ %l.
+
+   autocmd FileType php
+      \ set makeprg=php\ -l\ %\ $*|
+      \ set errorformat=%E%m\ in\ %f\ on\ line\ %l,%Z%m
 
 augroup END
 
