@@ -34,6 +34,11 @@ autocmd FileType perl
    \ setlocal makeprg=perl\ -c\ %\ $*|
    \ setlocal errorformat=%m\ at\ %f\ line\ %l.
 
+autocmd FileType html,xml
+   \ imap <silent> <buffer> <leader><leader> <!--  --><left><left><left><left>|
+   \ imap <silent> <buffer> <leader>cs <!--<cr><cr>><left><up><space>|
+   \ command! DeleteTags %substitute:<[?%![:space:]]\@!/\=\_.\{-1,}[-?%]\@<!>::gc
+
 " [49 1] [50 2] [51 3] [98 b] [101 e] [108 l] [109 m] [77 M] [69 E] [100 d] [112 p]
 autocmd FileType tex
    \ let b:surround_49  = "\\section{\r}"                              |
