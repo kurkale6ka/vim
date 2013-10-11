@@ -83,9 +83,9 @@
 [submodule "bundle/markdown"]
    path = bundle/markdown
    url = git://github.com/tpope/vim-markdown.git
-[submodule "bundle/_json"]
-   path = bundle/_json
-   url = https://github.com/elzr/vim-json.git
+[submodule "bundle/json"]
+	path = bundle/json
+	url = https://github.com/elzr/vim-json.git
 [submodule "bundle/.chess"]
    path = bundle/.chess
    url = git@github.com:kurkale6ka/vim-chess.git
