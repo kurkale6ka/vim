@@ -382,43 +382,8 @@ let loaded_spellfile_plugin  = 1
 
 " Autocommands, commands and filetype settings {{{1
 if has('autocmd')
-   augroup RC_GRP_POSITION
-      autocmd!
-      " Jump to the last spot the cursor was at in a file when reading it
-      autocmd BufReadPost *
-         \ if line("'\"") > 0 && line("'\"") <= line('$') && &filetype != 'gitcommit' |
-         \ execute 'normal! g`"' |
-         \ endif
-
-      " When reading a file, :cd to its parent directory unless it's a help
-      " file. This replaces 'autochdir which doesn't work properly.
-      autocmd BufEnter * if &filetype != 'help' | silent! cd %:p:h | endif
-   augroup END
-   augroup RC_GRP_FILETYPE
-      autocmd!
-      " Wrap automatically at 80 chars for plain text files
-      autocmd FileType txt,text,svn setlocal formatoptions+=t autoindent smartindent
-      autocmd FileType nroff,groff setlocal paragraphs='IPLPPPQPP TPHPLIPpLpItpplpipbp'
-      autocmd FileType gitcommit execute 'goto|setlocal spell foldmethod&|startinsert'
-      autocmd FileType vim setlocal keywordprg=:help
-      autocmd FileType json command -range=% -nargs=* Tidy <line1>,<line2>! python -mjson.tool
-      autocmd FileType html,xml command -range=% -nargs=* Tidy <line1>,<line2>! xmllint --format --recover - 2>/dev/null
-      " Get highlighting for apache version 2.2
-      autocmd FileType apache let apache_version = '2.2'
-      autocmd FileType vim let vim_indent_cont = &shiftwidth
-      autocmd FileType md,markdown
-         \ onoremap <buffer> ih :<c-u>execute "normal! ?^==\\+$\r:nohlsearch\rkvg_"<cr>|
-         \ onoremap <buffer> ah :<c-u>execute "normal! ?^==\\+$\r:nohlsearch\rg_vk0"<cr>
-
-   augroup END
-   augroup RC_GRP_REMOVE
-      autocmd!
-      " Delete EOL white spaces
-      autocmd BufWritePre * if &ft != 'markdown' | silent! %s/\s\+$//e | endif
-   augroup END
+   source $HOME/.vim/bundle/ft_comments/ftplugin/comments.vim
 endif
-
-source $HOME/.vim/bundle/ft_comments/ftplugin/comments.vim
 
 nmap <leader>ft :set filetype=
 nmap <leader>fa :set filetype=awk<cr>
