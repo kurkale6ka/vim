@@ -1,0 +1,1 @@
+setlocal paragraphs=IPLPPPQPP\ TPHPLIPpLpItpplpipbp

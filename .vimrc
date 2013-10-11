@@ -382,7 +382,23 @@ let loaded_spellfile_plugin  = 1
 
 " Autocommands, commands and filetype settings {{{1
 if has('autocmd')
-   source $HOME/.vim/plugin/autocommands.vim
+   augroup RC_AUTOCOMMANDS
+      autocmd!
+
+      " Jump to the last spot the cursor was at in a file when reading it
+      autocmd BufReadPost *
+         \ if line("'\"") > 0 && line("'\"") <= line('$') && &filetype != 'gitcommit' |
+         \ execute 'normal! g`"' |
+         \ endif
+
+      " When reading a file, :cd to its parent directory unless it's a help
+      " file. This replaces 'autochdir which doesn't work properly.
+      autocmd BufEnter * if &filetype != 'help' | silent! cd %:p:h | endif
+
+      " Delete EOL white spaces
+      autocmd BufWritePre * if &ft != 'markdown' | silent! %s/\s\+$//e | endif
+
+   augroup END
 endif
 
 nmap <leader>ft :set filetype=
