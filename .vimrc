@@ -6,12 +6,13 @@ set nocompatible
 
 let &runtimepath = substitute(&runtimepath, '\.\zevim', '', 'g')
 call pathogen#infect('~/vim/bundle/{}')
-se rtp+=$HOME/vim/bundle/.blanklines
-se rtp+=$HOME/vim/bundle/.blockinsert
-se rtp+=$HOME/vim/bundle/.desertEx
-se rtp+=$HOME/vim/bundle/.pairs
-se rtp+=$HOME/vim/bundle/.sequence
-se rtp+=$HOME/vim/bundle/.swap
+set rtp+=$HOME/vim/bundle/.blanklines
+set rtp+=$HOME/vim/bundle/.blockinsert
+set rtp+=$HOME/vim/bundle/.chess
+set rtp+=$HOME/vim/bundle/.desertEx
+set rtp+=$HOME/vim/bundle/.pairs
+set rtp+=$HOME/vim/bundle/.sequence
+set rtp+=$HOME/vim/bundle/.swap
 
 filetype plugin indent on
 syntax enable
@@ -414,12 +415,11 @@ nmap <leader>fb :set filetype=sh<cr>
 nmap <leader>fc :set filetype=c<cr>
 nmap <leader>fr :set filetype=ruby<cr>
 
-command! RemoveSpaces silent! %substitute/\s\+$//e
-
-command! -nargs=+ Scratch     call scratch#buffer(               <f-args>)
-command! -nargs=? Scriptnames call scratch#buffer('scriptnames', <f-args>)
-
-command! -nargs=* Ascii call ascii#codes(<f-args>)
+command!          RemoveSpaces silent! %substitute/\s\+$//e
+command!          SyntaxStack  call  syntax#stack()
+command! -nargs=* Ascii        call   ascii#codes(<f-args>)
+command! -nargs=+ Scratch      call scratch#buffer(               <f-args>)
+command! -nargs=? Scriptnames  call scratch#buffer('scriptnames', <f-args>)
 
 command! DiffOrig vnew | set buftype=nofile | read# | silent 0delete_ |
    \ diffthis | wincmd p | diffthis
