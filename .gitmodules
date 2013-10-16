@@ -58,27 +58,27 @@
    path = bundle/nerdcommenter
    url = git://github.com/scrooloose/nerdcommenter.git
    ignore = dirty
-[submodule "bundle/.pairs"]
-   path = bundle/.pairs
+[submodule "bundle/pairs"]
+   path = bundle/pairs
    url = git@github.com:kurkale6ka/vim-pairs.git
-[submodule "bundle/.blockinsert"]
-   path = bundle/.blockinsert
+[submodule "bundle/blockinsert"]
+   path = bundle/blockinsert
    url = git@github.com:kurkale6ka/vim-blockinsert.git
-[submodule "bundle/.swap"]
-   path = bundle/.swap
+[submodule "bundle/swap"]
+   path = bundle/swap
    url = git@github.com:kurkale6ka/vim-swap.git
-[submodule "bundle/.sequence"]
-   path = bundle/.sequence
+[submodule "bundle/sequence"]
+   path = bundle/sequence
    url = git@github.com:kurkale6ka/vim-sequence.git
-[submodule "bundle/.blanklines"]
-   path = bundle/.blanklines
+[submodule "bundle/blanklines"]
+   path = bundle/blanklines
    url = git@github.com:kurkale6ka/vim-blanklines.git
 [submodule "bundle/syntastic"]
    path = bundle/syntastic
    url = git://github.com/scrooloose/syntastic.git
    ignore = dirty
-[submodule "bundle/.desertEx"]
-   path = bundle/.desertEx
+[submodule "bundle/desertEx"]
+   path = bundle/desertEx
    url = git@github.com:kurkale6ka/vim-desertEx.git
 [submodule "bundle/markdown"]
    path = bundle/markdown
@@ -86,6 +86,6 @@
 [submodule "bundle/json"]
    path = bundle/json
    url = https://github.com/elzr/vim-json.git
-[submodule "bundle/.chess"]
-   path = bundle/.chess
+[submodule "bundle/chess"]
+   path = bundle/chess
    url = git@github.com:kurkale6ka/vim-chess.git
