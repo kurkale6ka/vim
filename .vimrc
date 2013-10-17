@@ -390,7 +390,7 @@ if has('autocmd')
       autocmd BufEnter * if &filetype != 'help' | silent! cd %:p:h | endif
 
       " Delete EOL white spaces
-      autocmd BufWritePre * if &ft != 'markdown' | silent! %s/\s\+$//e | endif
+      autocmd BufWritePre * if &ft != 'markdown' | call spaces#remove() | endif
 
    augroup END
 endif
@@ -408,7 +408,7 @@ nmap <leader>fb :set filetype=sh<cr>
 nmap <leader>fc :set filetype=c<cr>
 nmap <leader>fr :set filetype=ruby<cr>
 
-command!          RemoveSpaces silent! %substitute/\s\+$//e
+command!          RemoveSpaces call  spaces#remove()
 command!          SyntaxStack  call  syntax#stack()
 command! -nargs=* Ascii        call   ascii#codes(<f-args>)
 command! -nargs=+ Scratch      call scratch#buffer(               <f-args>)
