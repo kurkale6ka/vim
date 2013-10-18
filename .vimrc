@@ -140,7 +140,8 @@ nmap Q gqap
 command! -nargs=? Underline call underline#current(<q-args>)
 nmap <leader>u :Underline<cr>
 
-nmap <silent> <leader>z :call squeeze#lines()<cr>
+nmap <silent> <leader>z :            call squeeze#lines('')<cr>
+vmap <silent> <leader>z :<c-u>silent call squeeze#lines('v')<cr>
 
 " Add empty lines
 nmap =<space> [<space>]<space>
