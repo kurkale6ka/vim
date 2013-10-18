@@ -91,7 +91,7 @@ set report=0
 let did_install_default_menus = 1
 
 " Print working directory
-nmap <c-g> :echo expand('%:p:h')<cr>
+nnoremap <c-g> 2<c-g>
 
 nmap <leader>o :call options#show_values(0)<cr>
 nmap <leader>O :call options#show_values(1)<cr>
