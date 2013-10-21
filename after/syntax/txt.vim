@@ -37,8 +37,9 @@ syntax match Normal "OS\%(/2\)\@="
 syntax match txtFile "[[:alpha:]]:\\\%(\k\+\\\)\+\k\+\%(\.[[:alpha:]]\+\)\?\>"
 highlight link txtFile Special
 
-" Quotes and parens {{{1
-syntax region txtString start=/\z(["`]\|'\%([st]\>\)\@!\)/ skip=/\\\z1/ end=/\z1/
+" Strings and parens {{{1
+" Note: skips don't or girl's between ''s
+syntax region txtString start=/\z(["`]\|'\%([st]\s\)\@!\)/ skip=/\\\z1/ end=/\z1/
 highlight link txtString Constant
 
 " Parens
