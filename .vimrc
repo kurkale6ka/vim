@@ -112,8 +112,8 @@ else
    set cursorline
    " Highlight text beyond the 80th column
    nmap <silent> <leader>8 :call highlight#column81()<cr>
-   match ColorColumn /\%81v./
 endif
+match ColorColumn /\%81v./
 
 " Mouse {{{2
 if has('mouse_xterm')
