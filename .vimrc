@@ -270,6 +270,7 @@ for nr in range(65, 90)
 endfor
 
 " Deletion {{{2
+inoremap          <c-u>   <c-g>u<c-u>
 inoremap          <c-w>   <c-o>dB
 cnoremap          <c-w>   <c-f>dB<c-c>
 nnoremap          <bs>         "_X
