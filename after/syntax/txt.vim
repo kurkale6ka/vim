@@ -1,15 +1,15 @@
 " ACRONYMS {{{1
-syntax match txtAcronym /\%(\U.\{-}\H\)\@<=[[:upper:]]\{2,}\>\|\H\@<=[[:upper:]]\{2,}\>\%(.\{-}\U\)\@=/
+syntax match txtAcronym /\%(\U.\{-}\H\)\@<=\u\{2,}\>\|\H\@<=\u\{2,}\>\%(.\{-}\U\)\@=/
 highlight link txtAcronym Type
 
 " Lists and numbers {{{1
+syntax match txtNumber /[[:digit:]]\+/
+highlight link txtNumber Constant
+
 " * | - | 1. | IV) | a)
 " * | - | 2. | XI) | b)
 syntax match txtList /^[[:space:]]*\%([*-]\|[[:digit:]]\+[[:space:]]*[.)]\?\|\%([[:alpha:]]\|[IVXLCDM]\+\)[[:space:]]*[.)]\)/
 highlight link txtList Constant
-
-syntax match txtNumber /[[:digit:]]\+/
-highlight link txtNumber Constant
 
 " Titles and sections {{{1
 syntax match txtTitle /\%(^[[:space:]]*\n\|\%^\)\@<=[[:upper:]][^[:punct:]]*[^.?!:]\%(\n^[[:space:]]*$\)\@=/
