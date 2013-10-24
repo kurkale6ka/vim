@@ -61,6 +61,8 @@ highlight link txtSectionDelimiter PreProc
 syntax case match
 
 " URLs and emails {{{1
+syntax match txtLink "\<\%(https\?\|ftp\)://\S\+"
+
 " scheme://username:password@domain:port/path?query_string#fragment_id
 "                            protocol               user:pass          sub/domain .com, .co.uk         port       qs
 "                     ======================------------------------=============================----------------===
@@ -75,11 +77,17 @@ highlight link txtEmail Underlined
 " Programming {{{1
 " syntax keyword txtPLanguage sh bash c c++ perl python ruby php lisp haskell
 
-syntax keyword txtEditor vi[m] [x]emacs
+syntax keyword txtEditor Vi[m] [X]Emacs
 highlight link txtEditor Identifier
 
 syntax match txtVariable /\$\w\+/
 highlight link txtVariable PreProc
+
+syntax match txtCode /\%(cd\|git\|c\?ssh\|wget\|vim\|su\s-\)\s\+\S\+/
+syntax match txtCode /\%(cp\|scp\)\%(\s\+\S\+\)\{2}/
+syntax match txtCode :/etc/init.d/\S\+\s\S\+:
+syntax match txtCode /puppet agent --test\%(\s--tags\s\S\+\)\?/
+highlight link txtCode Identifier
 
 syntax match txtComments /#.*$/
 syntax match txtComments /\%({{{\|}}}\)\d\+/
