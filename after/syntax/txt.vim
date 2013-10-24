@@ -41,7 +41,7 @@ syntax case ignore
 
 " Notes and TODOs {{{1
 syntax match txtNote /\%(^\s*\n\|\%^\)\@<=\s*[^[:digit:]].*:\s*$/
-syntax match txtNote /note:/
+syntax match txtNote /\%(note\|ex\%(ample\)\?\).\{-}:/
 highlight link txtNote PreProc
 
 syntax match txtTodo /@\?todo\s*:\?/
