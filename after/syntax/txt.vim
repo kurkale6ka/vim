@@ -15,8 +15,8 @@ highlight link txtList Constant
 syntax match txtTitle /\%(^[[:space:]]*\n\|\%^\)\@<=[[:upper:]][^[:punct:]]*[^.?!:]\%(\n^[[:space:]]*$\)\@=/
 highlight link txtTitle Statement
 
-" Section delimiters ( --------- or ,,,,,,,,,, or ... )
-syntax match txtSectionDelimiter /^[[:space:]]*\([[:punct:]]\)\1\+[[:space:]]*$/
+" Section delimiters ( --- or ,,, or ... )
+syntax match txtSectionDelimiter /^\s*[[:punct:]]\{3,}\s*$/
 highlight link txtSectionDelimiter PreProc
 
 syntax case match
