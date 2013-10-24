@@ -11,16 +11,6 @@ highlight link txtNumber Constant
 syntax match txtList /^[[:space:]]*\%([*-]\|[[:digit:]]\+[[:space:]]*[.)]\?\|\%([[:alpha:]]\|[IVXLCDM]\+\)[[:space:]]*[.)]\)/
 highlight link txtList Constant
 
-" Titles and sections {{{1
-syntax match txtTitle /\%(^[[:space:]]*\n\|\%^\)\@<=[[:upper:]][^[:punct:]]*[^.?!:]\%(\n^[[:space:]]*$\)\@=/
-highlight link txtTitle Statement
-
-" Section delimiters ( --- or ,,, or ... )
-syntax match txtSectionDelimiter /^\s*[[:punct:]]\{3,}\s*$/
-highlight link txtSectionDelimiter PreProc
-
-syntax case match
-
 " Files {{{1
 " Basename
 syntax match txtBaseFileName "\%(\k\+\.[[:alpha:]]\+\|README\)\>"
@@ -56,6 +46,19 @@ highlight link txtNote PreProc
 syntax match txtTodo /@\?todo[[:space:]]*:\?/
 highlight link txtTodo Todo
 
+" Titles and sections {{{1
+syntax match txtH1Title /\%(^\s*\n\|\%^\)\@<=\u[^[:punct:]]*[^.?!:]\ze\%({{{\d\+\)\?\n\%(^\s*$\)\@=/
+syntax match txtH1Title /\u.\{-}\ze\%({{{\d\+\)\?\n\%(^\s*=\{3,}\s*$\)\@=/
+syntax match txtH2Title /\u.\{-}\ze\%({{{\d\+\)\?\n\%(^\s*-\{3,}\s*$\)\@=/
+highlight link txtH1Title Statement
+highlight link txtH2Title Statement
+
+" Section delimiters ( --- or ,,, or ... )
+syntax match txtSectionDelimiter /^\s*[[:punct:]]\{3,}\s*$/
+highlight link txtSectionDelimiter PreProc
+
+syntax case match
+
 " URLs and emails {{{1
 " scheme://username:password@domain:port/path?query_string#fragment_id
 "                            protocol               user:pass          sub/domain .com, .co.uk         port       qs
@@ -78,6 +81,7 @@ syntax match txtVariable /\$\w\+/
 highlight link txtVariable PreProc
 
 syntax match txtComments /#.*$/
+syntax match txtComments /\%({{{\|}}}\)\d\+/
 highlight link txtComments Comment
 
 " Date and Time {{{1
