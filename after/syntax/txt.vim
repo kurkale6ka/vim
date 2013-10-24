@@ -1,14 +1,14 @@
 " ACRONYMS {{{1
-syntax match txtAcronym /\%(\U.\{-}\H\)\@<=\u\{2,}\>\|\H\@<=\u\{2,}\>\%(.\{-}\U\)\@=/
+syntax match txtAcronym /\%([^-_A-Za-z0-9]\|^\)\zs\%(\u\|\d\)\+\ze\%([^-_A-Za-z0-9]\|$\)/
 highlight link txtAcronym Type
 
 " Lists and numbers {{{1
-syntax match txtNumber /[[:digit:]]\+/
+syntax match txtNumber /\d\+/
 highlight link txtNumber Constant
 
 " * | - | 1. | IV) | a)
 " * | - | 2. | XI) | b)
-syntax match txtList /^[[:space:]]*\%([*-]\|[[:digit:]]\+[[:space:]]*[.)]\?\|\%([[:alpha:]]\|[IVXLCDM]\+\)[[:space:]]*[.)]\)/
+syntax match txtList /^\s*\%([*-]\|\d\+\s*[.)]\?\|\%(\a\|[IVXLCDM]\+\)\s*[.)]\)/
 highlight link txtList Constant
 
 " Files {{{1
