@@ -83,8 +83,9 @@ highlight link txtEditor Identifier
 syntax match txtVariable /\$\w\+/
 highlight link txtVariable PreProc
 
-syntax match txtCode /\%(cd\|git\|c\?ssh\|wget\|vim\|su\s-\)\s\+\S\+/
-syntax match txtCode /\%(cp\|scp\)\%(\s\+\S\+\)\{2}/
+syntax match txtCode /\<\%(cd\|git\|c\?ssh\|wget\|vim\|su\s-\)\s\+\S\+/
+syntax match txtCode /\<\%(cp\|scp\)\%(\s\+\S\+\)\{2}/
+syntax match txtCode /curl.\{-}http\S\+/
 syntax match txtCode :/etc/init.d/\S\+\s\S\+:
 syntax match txtCode /puppet agent --test\%(\s--tags\s\S\+\)\?/
 highlight link txtCode Identifier
