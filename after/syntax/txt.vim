@@ -18,10 +18,11 @@ highlight link txtBaseFileName Special
 " Unix relative file path
 " syntax match txtFile "\%(\%(\.\.\?\|\k\+\)/\)\+\k\+\%(\.[[:alpha:]]\+\)\?"
 " Unix absolute file path
-syntax match txtFile "\%(\~\|\.\.\?\)\?/\%(\%(\.\.\|\k\+\)/\)*\k\+\%(\.[[:alpha:]]\+\)\?\>"
+syntax match txtFile "\%(\s\|^\)\zs\~\?/\f\+"
+" syntax match txtFile "\%(\~\|\.\.\?\)\?/\%(\%(\.\.\|\k\+\)/\)*\k\+\%(\.[[:alpha:]]\+\)\?\>"
 " Unix directory
 " syntax match txtDirectory "\%(\.\.\?\|\k\+\)/\>"
-highlight link txtDirectory Special
+" highlight link txtDirectory Special
 syntax match Normal "OS\%(/2\)\@="
 " Windows absolute file path
 syntax match txtFile "[[:alpha:]]:\\\%(\k\+\\\)\+\k\+\%(\.[[:alpha:]]\+\)\?\>"
