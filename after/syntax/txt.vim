@@ -40,10 +40,11 @@ syntax region txtParens matchgroup=Constant start=/(/  end=/)/  transparent
 syntax case ignore
 
 " Notes and TODOs {{{1
-syntax match txtNote /\%(^[[:space:]]*\n\|\%^\)\@<=[[:space:]]*[^[:digit:]].*:[[:space:]]*$/
+syntax match txtNote /\%(^\s*\n\|\%^\)\@<=\s*[^[:digit:]].*:\s*$/
+syntax match txtNote /note:/
 highlight link txtNote PreProc
 
-syntax match txtTodo /@\?todo[[:space:]]*:\?/
+syntax match txtTodo /@\?todo\s*:\?/
 highlight link txtTodo Todo
 
 " Titles and sections {{{1
