@@ -17,20 +17,17 @@ highlight link txtList Constant
 " Basename
 syntax case match
 syntax match txtBaseFileName "\%(\f\+\.\a\+\|README\|INSTALL\)\>"
+syntax match txtBaseFileName "\%(\*\.\a\+\)\>"
 syntax case ignore
 highlight link txtBaseFileName Identifier
-" Unix relative file path
-" syntax match txtFile "\%(\%(\.\.\?\|\k\+\)/\)\+\k\+\%(\.[[:alpha:]]\+\)\?"
 " Unix absolute file path
 syntax match txtFile "\%(\s\|^\)\zs\~\?/\f\+"
-" syntax match txtFile "\%(\~\|\.\.\?\)\?/\%(\%(\.\.\|\k\+\)/\)*\k\+\%(\.[[:alpha:]]\+\)\?\>"
-" Unix directory
-" syntax match txtDirectory "\%(\.\.\?\|\k\+\)/\>"
-" highlight link txtDirectory Special
-syntax match Normal "OS\%(/2\)\@="
+
 " Windows absolute file path
 syntax match txtFile "[[:alpha:]]:\\\%(\k\+\\\)\+\k\+\%(\.[[:alpha:]]\+\)\?\>"
 highlight link txtFile Identifier
+
+syntax match Normal "OS\%(/2\)\@="
 
 " Strings and parens {{{1
 " Note: skips don't or girl's between ''s
@@ -62,15 +59,15 @@ syntax match txtVariable /\$\w\+/
 highlight link txtVariable PreProc
 
 syntax match txtCode /\<\%(cd\|git\|c\?ssh\|wget\|dig\|su\s-\)\s\+\S\+/
-syntax match txtCode /\<\%(vim\|touch\)\s\+\f\+/
-syntax match txtCode /\<\%(cp\|scp\)\%(\s\+\S\+\)\{2}/
+syntax match txtCode /\<\%(vim\|touch\|rm\)\s\+\f\+/
+syntax match txtCode /\<\%(cp\|scp\|yum\)\%(\s\+\S\+\)\{2}/
 syntax match txtCode /||\|&&/
 syntax match txtCode /curl.\{-}http\S\+/
 syntax match txtCode :/etc/init.d/\S\+\s\S\+:
 syntax match txtCode /puppet agent --test\%(\s--tags\s\S\+\)\?/
-syntax match txtCode /\s\zs--\?\a\w*/
+syntax match txtCode /\s\zs--\?\a\S*/
 syntax match txtCode /\w\+\%(::\w\+\)\+/
-syntax match txtCode /mysql\%(dump\)\?\|clush\|\<ldap\a*/
+syntax match txtCode /mysql\%(dump\)\?\|clush\|chkconfig\|slappasswd\|\<ldap\a*/
 syntax match txtCode /rake.\{-}migrate\|cap\s\+deploy/
 syntax match txtCode /ruby.\{-}\.rb\|perl.\{-}\.pl\|mysql.\{-}\.sql/
 highlight link txtCode Special
@@ -92,6 +89,7 @@ syntax match txtSectionDelimiter /^\s*[[:punct:]]\{3,}\s*$/
 highlight link txtSectionDelimiter PreProc
 
 " URLs and emails {{{1
+" Very generic match allowing URLs like ldaps://...
 syntax match txtLink "\<\a\+:///\?\S\+"
 
 " scheme://username:password@domain:port/path?query_string#fragment_id
