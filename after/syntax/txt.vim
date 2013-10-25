@@ -8,7 +8,9 @@ highlight link txtNumber Constant
 
 " * | - | 1. | IV) | a)
 " * | - | 2. | XI) | b)
-syntax match txtList /^\s*\%([*-]\|\d\+\s*[.)]\?\|\%(\a\|[IVXLCDM]\+\)\s*[.)]\)/
+syntax case ignore
+syntax match txtList /^\s*\%([*-]\|\d\+\s*[.)]\?\|\%(\a\|[ivxlcdm]\+\)\s*[.)]\)/
+syntax case match
 highlight link txtList Constant
 
 " Files {{{1
@@ -38,42 +40,15 @@ syntax region txtParens matchgroup=Constant start=/\[/ end=/\]/ transparent
 syntax region txtParens matchgroup=Constant start=/{/  end=/}/  transparent
 syntax region txtParens matchgroup=Constant start=/(/  end=/)/  transparent
 
-syntax case ignore
-
 " Notes and TODOs {{{1
+syntax case ignore
 syntax match txtNote /\%(^\s*\n\|\%^\)\@<=\s*[^[:digit:]].*:\s*$/
 syntax match txtNote /\%(note\|ex\%(ample\)\?\).\{-}:/
+syntax case match
 highlight link txtNote PreProc
 
 syntax match txtTodo /@\?todo\s*:\?/
 highlight link txtTodo Todo
-
-" Titles and sections {{{1
-syntax match txtH1Title /\%(^\s*\n\|\%^\)\@<=\u[^[:punct:]]*[^.?!:]\ze\%({{{\d\+\)\?\n\%(^\s*$\)\@=/
-syntax match txtH1Title /\a.\{-}\ze\%({{{\d\+\)\?\n\%(^\s*=\{3,}\s*$\)\@=/
-syntax match txtH2Title /\a.\{-}\ze\%({{{\d\+\)\?\n\%(^\s*-\{3,}\s*$\)\@=/
-highlight link txtH1Title Statement
-highlight link txtH2Title Statement
-
-" Section delimiters ( --- or ,,, or ... )
-syntax match txtSectionDelimiter /^\s*[[:punct:]]\{3,}\s*$/
-highlight link txtSectionDelimiter PreProc
-
-syntax case match
-
-" URLs and emails {{{1
-syntax match txtLink "\<\%(https\?\|ftp\)://\S\+"
-
-" scheme://username:password@domain:port/path?query_string#fragment_id
-"                            protocol               user:pass          sub/domain .com, .co.uk         port       qs
-"                     ======================------------------------=============================----------------===
-syntax match txtLink "\<\%(https\?\|ftp\)://\%(\w\+\%(:\w\+\)\?@\)\?\a\%(-\|\w\)*\%(\.\w\{2,}\)\+\%(:\d\{1,5}\)\?\S*"
-highlight link txtLink Underlined
-
-"                                             user      @          domain
-"                                      =================-===========================
-syntax match txtEmail "\<\%(mailto:\)\?[-_.%[:alnum:]]\+@[-.[:alnum:]]\+\.\a\{2,4}\>"
-highlight link txtEmail Underlined
 
 " Programming {{{1
 " syntax keyword txtPLanguage sh bash c c++ perl python ruby php lisp haskell
@@ -89,12 +64,37 @@ syntax match txtCode /\<\%(cp\|scp\)\%(\s\+\S\+\)\{2}/
 syntax match txtCode /curl.\{-}http\S\+/
 syntax match txtCode :/etc/init.d/\S\+\s\S\+:
 syntax match txtCode /puppet agent --test\%(\s--tags\s\S\+\)\?/
-syntax match txtCode /--\S\+/
+syntax match txtCode /\zs\%(--\a\S*\|-\a\)\ze/
 highlight link txtCode Identifier
 
 syntax match txtComments /#.*$/
 syntax match txtComments /\%({{{\|}}}\)\d\+/
 highlight link txtComments Comment
+
+" Titles and sections {{{1
+syntax match txtH1Title /\%(^\s*\n\|\%^\)\@<=\u[^[:punct:]]*[^.?!:]\ze\%({{{\d\+\)\?\n\%(^\s*$\)\@=/
+syntax match txtH1Title /\a.\{-}\ze\%({{{\d\+\)\?\n\%(^\s*=\{3,}\s*$\)\@=/
+syntax match txtH2Title /\a.\{-}\ze\%({{{\d\+\)\?\n\%(^\s*-\{3,}\s*$\)\@=/
+highlight link txtH1Title Statement
+highlight link txtH2Title Statement
+
+" Section delimiters ( --- or ,,, or ... )
+syntax match txtSectionDelimiter /^\s*[[:punct:]]\{3,}\s*$/
+highlight link txtSectionDelimiter PreProc
+
+" URLs and emails {{{1
+syntax match txtLink "\<\%(https\?\|ftp\)://\S\+"
+
+" scheme://username:password@domain:port/path?query_string#fragment_id
+"                            protocol               user:pass          sub/domain .com, .co.uk         port       qs
+"                     ======================------------------------=============================----------------===
+syntax match txtLink "\<\%(https\?\|ftp\)://\%(\w\+\%(:\w\+\)\?@\)\?\a\%(-\|\w\)*\%(\.\w\{2,}\)\+\%(:\d\{1,5}\)\?\S*"
+highlight link txtLink Underlined
+
+"                                             user      @          domain
+"                                      =================-===========================
+syntax match txtEmail "\<\%(mailto:\)\?[-_.%[:alnum:]]\+@[-.[:alnum:]]\+\.\a\{2,4}\>"
+highlight link txtEmail Underlined
 
 " Date and Time {{{1
 " Year/01-12/01-31
