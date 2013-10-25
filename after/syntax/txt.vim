@@ -45,7 +45,7 @@ syntax region txtParens matchgroup=Constant start=/(/  end=/)/  transparent
 " Notes and TODOs {{{1
 syntax case ignore
 syntax match txtNote /\%(^\s*\n\|\%^\)\@<=\s*[^[:digit:]].*:\s*$/
-syntax match txtNote /\%(note\|ex\%(ample\)\?\).\{-}:/
+syntax match txtNote /\%(note\|ex\%(ample\)\?\):/
 syntax case match
 highlight link txtNote PreProc
 
@@ -61,13 +61,16 @@ highlight link txtEditor Special
 syntax match txtVariable /\$\w\+/
 highlight link txtVariable PreProc
 
-syntax match txtCode /\<\%(cd\|git\|c\?ssh\|wget\|dig\|vim\|su\s-\)\s\+\S\+/
+syntax match txtCode /\<\%(cd\|git\|c\?ssh\|wget\|dig\|su\s-\)\s\+\S\+/
+syntax match txtCode /\<\%(vim\|touch\)\s\+\f\+/
 syntax match txtCode /\<\%(cp\|scp\)\%(\s\+\S\+\)\{2}/
+syntax match txtCode /||\|&&/
 syntax match txtCode /curl.\{-}http\S\+/
 syntax match txtCode :/etc/init.d/\S\+\s\S\+:
 syntax match txtCode /puppet agent --test\%(\s--tags\s\S\+\)\?/
-syntax match txtCode /\s\zs--\?\a\S*/
-syntax match txtCode /mysql\%(dump\)\?\|clush\|ldap\a*/
+syntax match txtCode /\s\zs--\?\a\w*/
+syntax match txtCode /\w\+\%(::\w\+\)\+/
+syntax match txtCode /mysql\%(dump\)\?\|clush\|\<ldap\a*/
 syntax match txtCode /rake.\{-}migrate\|cap\s\+deploy/
 syntax match txtCode /ruby.\{-}\.rb\|perl.\{-}\.pl\|mysql.\{-}\.sql/
 highlight link txtCode Special
@@ -89,7 +92,7 @@ syntax match txtSectionDelimiter /^\s*[[:punct:]]\{3,}\s*$/
 highlight link txtSectionDelimiter PreProc
 
 " URLs and emails {{{1
-syntax match txtLink "\<\%(https\?\|ftp\)://\S\+"
+syntax match txtLink "\<\a\+:///\?\S\+"
 
 " scheme://username:password@domain:port/path?query_string#fragment_id
 "                            protocol               user:pass          sub/domain .com, .co.uk         port       qs
