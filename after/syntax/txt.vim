@@ -16,9 +16,9 @@ highlight link txtList Constant
 " Files {{{1
 " Basename
 syntax case match
-syntax keyword txtBaseFileName README INSTALL
 syntax match txtBaseFileName "\%(\f\+\.\a\+\)\>"
 syntax match txtBaseFileName "\%(\*\.\a\+\)\>"
+syntax match txtBaseFileName "\%(README\|INSTALL\)\%(\.txt\)\?"
 syntax case ignore
 highlight link txtBaseFileName Identifier
 " Unix absolute file path
