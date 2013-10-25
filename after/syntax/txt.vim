@@ -9,7 +9,7 @@ highlight link txtNumber Constant
 " * | - | 1. | IV) | a)
 " * | - | 2. | XI) | b)
 syntax case ignore
-syntax match txtList /^\s*\%([*-]\|\d\+\s*[.)]\?\|\%(\a\|[ivxlcdm]\+\)\s*[.)]\)/
+syntax match txtList /^\s*\%(\%([-*]\|\d\+\.\?\)\s*)\?\|\%(\a\|[ivxlcdm]\+\)\s*[.)]\)\ze\s/
 syntax case match
 highlight link txtList Constant
 
@@ -32,8 +32,10 @@ syntax match Normal "OS\%(/2\)\@="
 
 " Strings and parens {{{1
 " Note: skips don't or girl's between ''s
-syntax region txtString start=/\z(["`]\|'\%([st]\s\)\@!\)/ skip=/\\\z1/ end=/\z1/
+syntax region txtString start=/\z("\|'\%([st]\s\)\@!\)/ skip=/\\\z1/ end=/\z1/
 highlight link txtString Constant
+syntax region txtStringCode start=/\z(`\)/ skip=/\\\z1/ end=/\z1/
+highlight link txtStringCode txtCode
 
 " Parens
 syntax region txtParens matchgroup=Constant start=/\[/ end=/\]/ transparent
@@ -90,7 +92,7 @@ syntax match txtSectionDelimiter /^\s*[[:punct:]]\{3,}\s*$/
 highlight link txtSectionDelimiter PreProc
 
 " URLs and emails {{{1
-syntax match txtLink "\S\+\.\%(co\.uk\|com\|org\|net\|live\)"
+syntax match txtLink "["'`({[]\?\zs\S\+\.\%(co\.uk\|bg\|es\|fr\|ru\|us\|com\|edu\|gov\|org\|net\|live\)"
 " Very generic match allowing URLs like ldaps://...
 syntax match txtLink "\<\a\+:///\?\S\+"
 
