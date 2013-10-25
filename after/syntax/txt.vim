@@ -73,8 +73,9 @@ syntax match txtCode /ruby.\{-}\.rb\|perl.\{-}\.pl\|mysql.\{-}\.sql/
 highlight link txtCode Special
 
 syntax match txtComments /#.*$/
-syntax match txtComments /\%({{{\|}}}\)\d\+/
 highlight link txtComments Comment
+syntax match txtCommentsFold /\%({{{\|}}}\)\d\+/
+highlight txtCommentsFold guifg=#605958 guibg=NONE
 
 " Titles and sections {{{1
 syntax match txtH1Title /\%(^\s*\n\|\%^\)\@<=\u[^[:punct:]]*[^.?!:]\ze\%({{{\d\+\)\?\n\%(^\s*$\)\@=/
