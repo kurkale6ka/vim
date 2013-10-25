@@ -55,7 +55,7 @@ highlight link txtTodo Todo
 " Programming {{{1
 " syntax keyword txtPLanguage sh bash c c++ perl python ruby php lisp haskell
 
-syntax keyword txtEditor Vi[m] [X]Emacs
+syntax keyword txtEditor Vi[m] Emacs
 highlight link txtEditor Special
 
 syntax match txtVariable /\$\w\+/
