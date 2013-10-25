@@ -81,7 +81,7 @@ syntax match txtCommentsFold /\%({{{\|}}}\)\d\+/
 highlight txtCommentsFold guifg=#605958 guibg=NONE
 
 " Titles and sections {{{1
-syntax match txtH1Title /\%(^\s*\n\|\%^\)\@<=\u[^[:punct:]]*[^.?!:]\ze\%({{{\d\+\)\?\n\%(^\s*$\)\@=/
+syntax match txtH1Title /\%(^\s*\n\|\%^\)\@<=\a[^[:punct:]]\{-}\ze\%({{{\d\+\)\?\n\%(^\s*$\)\@=/
 syntax match txtH1Title /\a.\{-}\ze\%({{{\d\+\)\?\n\%(^\s*=\{3,}\s*$\)\@=/
 syntax match txtH2Title /\a.\{-}\ze\%({{{\d\+\)\?\n\%(^\s*-\{3,}\s*$\)\@=/
 highlight link txtH1Title Statement
