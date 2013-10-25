@@ -61,15 +61,15 @@ highlight link txtEditor Identifier
 syntax match txtVariable /\$\w\+/
 highlight link txtVariable PreProc
 
-syntax match txtCode /\<\%(cd\|git\|c\?ssh\|wget\|vim\|su\s-\)\s\+\S\+/
+syntax match txtCode /\<\%(cd\|git\|c\?ssh\|wget\|dig\|vim\|su\s-\)\s\+\S\+/
 syntax match txtCode /\<\%(cp\|scp\)\%(\s\+\S\+\)\{2}/
 syntax match txtCode /curl.\{-}http\S\+/
 syntax match txtCode :/etc/init.d/\S\+\s\S\+:
 syntax match txtCode /puppet agent --test\%(\s--tags\s\S\+\)\?/
 syntax match txtCode /\s\zs--\?\a\S*/
-syntax match txtCode /ruby.\{-}\.rb\|perl.\{-}\.pl/
+syntax match txtCode /ruby.\{-}\.rb\|perl.\{-}\.pl\|rake.\{-}migrate\|cap\s\+deploy/
 syntax case ignore
-syntax match txtCode /mysql\%(dump\)\?/
+syntax match txtCode /mysql\%(dump\)\?\|clush\|ldap\a*/
 syntax case match
 highlight link txtCode Identifier
 
@@ -114,5 +114,5 @@ syntax match txtTime "\%(0\?[[:digit:]]\|1[[:digit:]]\|2[0-3]\)\%(:[0-5][[:digit
 highlight link txtTime Constant
 
 " Special abbreviations: e.g., ie {{{1
-syntax match txtAbbrev "\<\%(e\.\?g\.\?\|i\.\?e\.\?\)\A\@="
+syntax match txtAbbrev "\s\zs\%(e\.\?g\.\?\|i\.\?e\.\?\)\ze\s"
 highlight link txtAbbrev Type
