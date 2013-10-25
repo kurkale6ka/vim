@@ -92,7 +92,7 @@ syntax match txtSectionDelimiter /^\s*[[:punct:]]\{3,}\s*$/
 highlight link txtSectionDelimiter PreProc
 
 " URLs and emails {{{1
-syntax match txtLink "["'`({[]\?\zs\S\+\.\%(co\.uk\|bg\|es\|fr\|ru\|us\|com\|edu\|gov\|org\|net\|live\)"
+syntax match txtLink "["'`({[<]\?\zs\S\+\.\%(co\.uk\|bg\|es\|fr\|ru\|us\|com\|edu\|gov\|org\|net\|live\)"
 " Very generic match allowing URLs like ldaps://...
 syntax match txtLink "\<\a\+:///\?\S\+"
 
