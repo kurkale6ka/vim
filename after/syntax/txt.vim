@@ -67,10 +67,9 @@ syntax match txtCode /curl.\{-}http\S\+/
 syntax match txtCode :/etc/init.d/\S\+\s\S\+:
 syntax match txtCode /puppet agent --test\%(\s--tags\s\S\+\)\?/
 syntax match txtCode /\s\zs--\?\a\S*/
-syntax match txtCode /ruby.\{-}\.rb\|perl.\{-}\.pl\|rake.\{-}migrate\|cap\s\+deploy/
-syntax case ignore
 syntax match txtCode /mysql\%(dump\)\?\|clush\|ldap\a*/
-syntax case match
+syntax match txtCode /rake.\{-}migrate\|cap\s\+deploy/
+syntax match txtCode /ruby.\{-}\.rb\|perl.\{-}\.pl\|mysql.\{-}\.sql/
 highlight link txtCode Special
 
 syntax match txtComments /#.*$/
