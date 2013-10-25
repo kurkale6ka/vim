@@ -70,7 +70,7 @@ syntax match txtCode :/etc/init.d/\S\+\s\S\+:
 syntax match txtCode /puppet agent --test\%(\s--tags\s\S\+\)\?/
 syntax match txtCode /\s\zs--\?\a\S*/
 syntax match txtCode /\w\+\%(::\w\+\)\+/
-syntax match txtCode /mysql\%(dump\)\?\|clush\|chkconfig\|slappasswd\|\<ldap\a*/
+syntax match txtCode /mysql\%(dump\)\?\|clush\|chkconfig\|slappasswd\|tcpdump\|\<ldap\a*/
 syntax match txtCode /rake.\{-}migrate\|cap\s\+deploy/
 syntax match txtCode /ruby.\{-}\.rb\|perl.\{-}\.pl\|mysql.\{-}\.sql/
 highlight link txtCode Special
