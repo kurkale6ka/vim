@@ -15,7 +15,9 @@ highlight link txtList Constant
 
 " Files {{{1
 " Basename
-syntax match txtBaseFileName "\%(\k\+\.[[:alpha:]]\+\|README\)\>"
+syntax case match
+syntax match txtBaseFileName "\%(\f\+\.\a\+\|README\|INSTALL\)\>"
+syntax case ignore
 highlight link txtBaseFileName Special
 " Unix relative file path
 " syntax match txtFile "\%(\%(\.\.\?\|\k\+\)/\)\+\k\+\%(\.[[:alpha:]]\+\)\?"
@@ -64,7 +66,11 @@ syntax match txtCode /\<\%(cp\|scp\)\%(\s\+\S\+\)\{2}/
 syntax match txtCode /curl.\{-}http\S\+/
 syntax match txtCode :/etc/init.d/\S\+\s\S\+:
 syntax match txtCode /puppet agent --test\%(\s--tags\s\S\+\)\?/
-syntax match txtCode /\zs\%(--\a\S*\|-\a\)\ze/
+syntax match txtCode /\s\zs--\?\a\S*/
+syntax match txtCode /ruby.\{-}\.rb\|perl.\{-}\.pl/
+syntax case ignore
+syntax match txtCode /mysql\%(dump\)\?/
+syntax case match
 highlight link txtCode Identifier
 
 syntax match txtComments /#.*$/
