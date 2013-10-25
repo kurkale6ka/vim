@@ -18,7 +18,7 @@ highlight link txtList Constant
 syntax case match
 syntax match txtBaseFileName "\%(\f\+\.\a\+\|README\|INSTALL\)\>"
 syntax case ignore
-highlight link txtBaseFileName Special
+highlight link txtBaseFileName Identifier
 " Unix relative file path
 " syntax match txtFile "\%(\%(\.\.\?\|\k\+\)/\)\+\k\+\%(\.[[:alpha:]]\+\)\?"
 " Unix absolute file path
@@ -30,7 +30,7 @@ syntax match txtFile "\%(\s\|^\)\zs\~\?/\f\+"
 syntax match Normal "OS\%(/2\)\@="
 " Windows absolute file path
 syntax match txtFile "[[:alpha:]]:\\\%(\k\+\\\)\+\k\+\%(\.[[:alpha:]]\+\)\?\>"
-highlight link txtFile Special
+highlight link txtFile Identifier
 
 " Strings and parens {{{1
 " Note: skips don't or girl's between ''s
@@ -56,7 +56,7 @@ highlight link txtTodo Todo
 " syntax keyword txtPLanguage sh bash c c++ perl python ruby php lisp haskell
 
 syntax keyword txtEditor Vi[m] [X]Emacs
-highlight link txtEditor Identifier
+highlight link txtEditor Special
 
 syntax match txtVariable /\$\w\+/
 highlight link txtVariable PreProc
@@ -71,7 +71,7 @@ syntax match txtCode /ruby.\{-}\.rb\|perl.\{-}\.pl\|rake.\{-}migrate\|cap\s\+dep
 syntax case ignore
 syntax match txtCode /mysql\%(dump\)\?\|clush\|ldap\a*/
 syntax case match
-highlight link txtCode Identifier
+highlight link txtCode Special
 
 syntax match txtComments /#.*$/
 syntax match txtComments /\%({{{\|}}}\)\d\+/
