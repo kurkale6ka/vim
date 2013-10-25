@@ -50,8 +50,8 @@ highlight link txtTodo Todo
 
 " Titles and sections {{{1
 syntax match txtH1Title /\%(^\s*\n\|\%^\)\@<=\u[^[:punct:]]*[^.?!:]\ze\%({{{\d\+\)\?\n\%(^\s*$\)\@=/
-syntax match txtH1Title /\u.\{-}\ze\%({{{\d\+\)\?\n\%(^\s*=\{3,}\s*$\)\@=/
-syntax match txtH2Title /\u.\{-}\ze\%({{{\d\+\)\?\n\%(^\s*-\{3,}\s*$\)\@=/
+syntax match txtH1Title /\a.\{-}\ze\%({{{\d\+\)\?\n\%(^\s*=\{3,}\s*$\)\@=/
+syntax match txtH2Title /\a.\{-}\ze\%({{{\d\+\)\?\n\%(^\s*-\{3,}\s*$\)\@=/
 highlight link txtH1Title Statement
 highlight link txtH2Title Statement
 
