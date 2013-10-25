@@ -16,7 +16,8 @@ highlight link txtList Constant
 " Files {{{1
 " Basename
 syntax case match
-syntax match txtBaseFileName "\%(\f\+\.\a\+\|README\|INSTALL\)\>"
+syntax keyword txtBaseFileName README INSTALL
+syntax match txtBaseFileName "\%(\f\+\.\a\+\)\>"
 syntax match txtBaseFileName "\%(\*\.\a\+\)\>"
 syntax case ignore
 highlight link txtBaseFileName Identifier
@@ -89,6 +90,7 @@ syntax match txtSectionDelimiter /^\s*[[:punct:]]\{3,}\s*$/
 highlight link txtSectionDelimiter PreProc
 
 " URLs and emails {{{1
+syntax match txtLink "\S\+\.\%(co\.uk\|com\|org\|net\|live\)"
 " Very generic match allowing URLs like ldaps://...
 syntax match txtLink "\<\a\+:///\?\S\+"
 
