@@ -89,6 +89,7 @@ syntax match txtCode /\<\%(cp\|scp\)\%(\s\+\S\+\)\{2}/
 syntax match txtCode /curl.\{-}http\S\+/
 syntax match txtCode :/etc/init.d/\S\+\s\S\+:
 syntax match txtCode /puppet agent --test\%(\s--tags\s\S\+\)\?/
+syntax match txtCode /--\S\+/
 highlight link txtCode Identifier
 
 syntax match txtComments /#.*$/
