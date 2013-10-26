@@ -33,6 +33,7 @@ syntax match Normal "OS\%(/2\)\@="
 " Strings and parens {{{1
 " Note: skips don't or girl's between ''s
 syntax region txtString start=/\z("\|'\%([st]\s\)\@!\)/ skip=/\\\z1/ end=/\z1/
+" syntax region txtString start=/'\%(\%(ll\|[vr]e\|[stm]\)\%(\s\|$\)\)\@!/ skip=/\\'/ end=/'/
 highlight link txtString Constant
 syntax region txtStringCode start=/\z(`\)/ skip=/\\\z1/ end=/\z1/
 highlight link txtStringCode txtCode
