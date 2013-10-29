@@ -1,5 +1,5 @@
 " ACRONYMS {{{1
-syntax match txtAcronym /\%([^-_A-Za-z0-9]\|^\)\zs\%(\u\|\d\)\+\ze\%([^-_A-Za-z0-9]\|$\)/
+syntax match txtAcronym /\%([^-_A-Za-z0-9]\|^\)\zs\%(\u\|\d\)\{2,}\ze\%([^-_A-Za-z0-9]\|$\)/
 highlight link txtAcronym Type
 
 " Lists and numbers {{{1
@@ -28,8 +28,6 @@ syntax match txtFile "\%(\s\|^\)\zs\~\?/\f\+"
 syntax match txtFile "[[:alpha:]]:\\\%(\k\+\\\)\+\k\+\%(\.[[:alpha:]]\+\)\?\>"
 highlight link txtFile Identifier
 
-syntax match Normal "OS\%(/2\)\@="
-
 " Strings and parens {{{1
 " Note: skips don't or girl's between ''s
 syntax region txtString start=/\z("\|'\%([st]\s\)\@!\)/ skip=/\\\z1/ end=/\z1/
@@ -45,7 +43,7 @@ syntax region txtParens matchgroup=Constant start=/(/  end=/)/  transparent
 
 " Notes and TODOs {{{1
 syntax case ignore
-syntax match txtNote /\%(^\s*\n\|\%^\)\@<=\s*[^[:digit:]].*:\s*$/
+syntax match txtNote /\%(^\s*\n\|\%^\)\@<=\s*[^[:digit:]].*:\ze\%(\s*{{{\d\+\)\?\s*$/
 syntax match txtNote /\%(note\|ex\%(ample\)\?\):/
 syntax case match
 highlight link txtNote PreProc
@@ -58,6 +56,9 @@ highlight link txtTodo Todo
 
 syntax keyword txtEditor Vi[m] Emacs
 highlight link txtEditor Special
+
+syntax match txtOS "\%(Linux\|UNIX\|Mac OS \S\+\|Windows [78]\|OS/2\)"
+highlight link txtOS Special
 
 syntax match txtVariable /\$\w\+/
 highlight link txtVariable PreProc
