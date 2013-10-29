@@ -79,8 +79,9 @@ highlight link txtCode Special
 
 syntax match txtComments /#.*$/
 highlight link txtComments Comment
-syntax match txtCommentsFold /\%({{{\|}}}\)\d\+/
-highlight txtCommentsFold guifg=#605958 guibg=NONE
+
+syntax match txtExtra /\%({{{\|}}}\)\d\+\|^#.*\%$/
+highlight txtExtra guifg=#605958 guibg=NONE
 
 " Titles and sections {{{1
 syntax match txtH1Title /\%(^\s*\n\|\%^\)\@<=\a[^[:punct:]]\{-}\ze\%({{{\d\+\)\?\n\%(^\s*$\)\@=/
