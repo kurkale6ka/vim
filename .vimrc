@@ -1,5 +1,4 @@
 " Author: Dimitar Dimitrov
-"         mitkofr@yahoo.fr
 "         kurkale6ka
 
 set nocompatible
