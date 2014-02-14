@@ -6,11 +6,11 @@ snippet ugo
 endsnippet
 
 snippet mode "No eol colon version"
-${1:#} ex: ${2:fdm&} ${3:sw=4}
+${1:#} vim: ${2:foldmethod=marker} ${3:foldmarker={{{,}}}}
 endsnippet
 
 snippet mode "eol colon version"
-${1:#} ex: se ${2:fdm&} ${3:sw=4}:
+${1:#} vim: set ${2:foldmethod=marker} ${3:foldmarker={{{,}}}}:
 endsnippet
 
 snippet fde
