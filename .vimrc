@@ -351,8 +351,8 @@ nmap <silent>         <c-x> :<c-u>call number#change('s', 'f')<cr>
 nmap <silent> <leader><c-x> :<c-u>call number#change('s', 'b')<cr>
 
 " Plugin settings {{{1
-let g:UltiSnipsSnippetsDir         = '~/vim/snippets/'
-let g:UltiSnipsSnippetDirectories  = ["UltiSnips", "snippets"]
+let g:UltiSnipsSnippetsDir         = '~/vim/skel/'
+let g:UltiSnipsSnippetDirectories  = ["UltiSnips", "skel"]
 let g:UltiSnipsListSnippets        = "<c-r><tab>"
 let g:UltiSnipsExpandTrigger       = "<tab>"
 let g:UltiSnipsJumpForwardTrigger  = "<tab>"
