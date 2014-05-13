@@ -8,6 +8,7 @@ augroup FILETYPE_DETECT
    autocmd BufNewFile,BufRead *.ssi,*.sssi        set filetype=html
    autocmd BufNewFile,BufRead *.ftl               set filetype=xml
    autocmd BufNewFile,BufRead *.pgn,*.chess       set filetype=pgn
+   autocmd BufNewFile,BufRead Gemfile, Gemfile.*  set filetype=ruby
 
    autocmd BufNewFile,BufRead *.txt,*.text,README,INSTALL,NEWS,TODO
       \ set filetype=txt
