@@ -216,7 +216,6 @@ set tabline=%!tabs#MyTabLine()
 " Security {{{2
 set exrc
 set secure
-if version >= 703 | set cryptmethod=blowfish | endif
 set modeline
 set modelines=3
 
