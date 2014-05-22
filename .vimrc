@@ -203,7 +203,7 @@ set history=11111 " TODO
 
 set statusline=%<%L.\ %t,\ L:%l\ C:%v
    \%{empty(&keymap)?'':'\ <'.b:keymap_name.'>'}\ %r%m
-   \%=\%{empty(&filetype)?'':'['.&filetype.']-'}
+   \%=\ #\%{expand('#:t')}#\ \%{empty(&filetype)?'':'['.&filetype.']-'}
    \%{&fileformat}\ %P
 
 " Switch between command line commands
