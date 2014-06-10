@@ -1,7 +1,7 @@
 Vim tips
 ========
 
-_**Notes:**_
+***Notes:***
 * `[]` will be used to represent the position of the cursor
 * `^a` means `Ctrl+a`
 * `:h topic` can be used to access Vim's help section on `topic`
@@ -18,7 +18,7 @@ _**Notes:**_
 2D - delete to the end of line + next line
  C - change to the end of line
 ```
-_**Note:**_ compare with their lowercase counterparts (eg: `:h i`)
+***Note:*** compare with their lowercase counterparts (eg: `:h i`)
 
 ```
 o - open line below (:h o)
@@ -59,13 +59,13 @@ d<LeftMouse> - delete to where you click with your mouse
 . - repeat previous action (:h.)
 ```
 
-`:e ^d` - select a file to edit (mnemo: **d**isplay)
+`:e ^d` - select a file to edit (mnemo: <strong>d</strong>isplay)
 
 Window Splitting
 ----------------
-1. `:h^ws` - **w**indow **s**plit
-2. `:h^wv` - **w**indow **v**ertical
-3. `:h^wc` - **w**indow **c**lose
+1. `:h^ws` - <strong>w</strong>indow <strong>s</strong>plit
+2. `:h^wv` - <strong>w</strong>indow <strong>v</strong>ertical
+3. `:h^wc` - <strong>w</strong>indow <strong>c</strong>lose
 
 Jump to previous position
 -------------------------
@@ -106,7 +106,7 @@ Macros
 2. `q`  - stop recording
 3. `@a` - execute actions recorded in register `a`
 
-_**Example:**_
+***Example:***
 ```
      original: [L]orem ipsum dolor sit amet, consectetur
         macro: qqe2hveUWq (q(record)q...q(stop))
@@ -187,7 +187,7 @@ original: Lorem ipsum [d]olor sit amet, consectetur
 modified: Lorem ipsum dolor sit amet, dolor sit amet
 ```
 
-`gv` - reselect previously selected visual area (mnemo: **g**o **v**isual, `:h gv`, `:h v_o`)
+`gv` - reselect previously selected visual area (mnemo: <strong>g</strong>o <strong>v</strong>isual, `:h gv`, `:h v_o`)
 
 Search and replace
 ------------------
@@ -201,7 +201,7 @@ modified: Lorem,
           amet,
           consectetur
 ```
-_**Note:**_ `%s/old/new/gc` will replace all occurrences of old in the file and ask
+***Note:*** `%s/old/new/gc` will replace all occurrences of old in the file and ask
                     you to confirm (`:h:%`, `:h:s_flags`)
 
 Open a file from within an edited file (`:h gf`)
