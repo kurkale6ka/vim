@@ -1,5 +1,4 @@
-" Author: Dimitar Dimitrov
-"         kurkale6ka
+" Author: kurkale6ka <Dimitar Dimitrov>
 
 set nocompatible
 
