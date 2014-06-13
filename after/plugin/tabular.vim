@@ -6,7 +6,8 @@ endif
 let s:save_cpo = &cpo
 set cpo&vim
 
-AddTabularPattern! assignment_pyramid /[|&+*/%<>=!~-]\@<!\([<>!=]=\|=\~\)\@![|&+*/%<>=!~-]*=/r0c0l0
+AddTabularPattern! pyramid_assignment /[|&+*/%<>=!~-]\@<!\([<>!=]=\|=\~\)\@![|&+*/%<>=!~-]*=/r0c0l0
+AddTabularPattern! pyramid_words /\s/r0c0l0
 
 AddTabularPipeline! alias /\S\+=/ tabular#TabularizeStrings(a:lines, '\S\+=', 'l1r0l0')
 
