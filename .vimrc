@@ -262,7 +262,7 @@ omap <silent> gm :call move#gm()<cr>
 
 " Jump to file (A-Z marks) on last position
 for nr in range(65, 90)
-   " TODO: report issue: when file open elsewhere, g`" not respected
+   " TODO: report issue: when file opened in another Vim instance, g`" not respected
    execute 'nnoremap <silent> `'.nr2char(nr).' :normal! `'.nr2char(nr).'g`"<cr>'
 endfor
 
