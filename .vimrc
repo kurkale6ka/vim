@@ -285,6 +285,9 @@ cmap              <m-del> <c-f>de<c-c>
 xnoremap af ggVoG
 onoremap af :normal vaf<cr>
 
+xnoremap ab <esc>%v%
+onoremap ab :slient normal vab<cr>
+
 " Visual selection {{{2
 nmap <leader>v      v$h
 nmap gV             gvV
