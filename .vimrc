@@ -280,6 +280,7 @@ imap              <c-del> <c-o>de
 imap              <m-del> <c-o>de
 cmap              <c-del> <c-f>de<c-c>
 cmap              <m-del> <c-f>de<c-c>
+nmap did ^D"_dd
 
 " Text-object: file {{{2
 xnoremap af ggVoG
