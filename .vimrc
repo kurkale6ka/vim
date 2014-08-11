@@ -287,7 +287,7 @@ xnoremap af ggVoG
 onoremap af :normal vaf<cr>
 
 xnoremap ab <esc>%v%
-onoremap ab :slient normal vab<cr>
+onoremap ab :silent normal vab<cr>
 
 " Visual selection {{{2
 nmap <leader>v      v$h
