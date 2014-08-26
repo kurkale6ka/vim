@@ -10,6 +10,7 @@ augroup FILETYPE_DETECT
    autocmd BufNewFile,BufRead *.pgn,*.chess       set filetype=pgn
    autocmd BufNewFile,BufRead syslog*.conf        set filetype=syslog
    autocmd BufNewFile,BufRead Gemfile,Gemfile.*   set filetype=ruby
+   autocmd BufNewFile,BufRead vipw.*              set filetype=passwd
 
    autocmd BufNewFile,BufRead *.txt,*.text,README,INSTALL,NEWS,TODO
       \ set filetype=txt
