@@ -3,6 +3,8 @@ if exists('g:loaded_abolish')
    Abolish awlays always
    Abolish whcih which
    Abolish teh the
+   Abolish fo of
+   Abolish olny only
    Abolish nwe new
    Abolish ascci ascii
    Abolish tihs this
@@ -31,6 +33,8 @@ else
    iabbrev awlays always
    iabbrev whcih which
    iabbrev teh the
+   iabbrev fo of
+   iabbrev olny only
    iabbrev nwe new
    iabbrev ascci ascii
    iabbrev tihs this
