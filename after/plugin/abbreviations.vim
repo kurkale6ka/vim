@@ -1,5 +1,15 @@
 if exists('g:loaded_abolish')
 
+   Abolish adn and
+   Abolish nad and
+   Abolish amn man
+   Abolish hte the
+   Abolish spcae space
+   Abolish si is
+   Abolish kpet kept
+   Abolish hutn hunt
+   Abolish amny many
+   Abolish alnd land
    Abolish awlays always
    Abolish whcih which
    Abolish teh the
@@ -30,6 +40,16 @@ if exists('g:loaded_abolish')
 
 else
 
+   iabbrev adn and
+   iabbrev nad and
+   iabbrev amn man
+   iabbrev hte the
+   iabbrev spcae space
+   iabbrev si is
+   iabbrev kpet kept
+   iabbrev hutn hunt
+   iabbrev amny many
+   iabbrev alnd land
    iabbrev awlays always
    iabbrev whcih which
    iabbrev teh the
