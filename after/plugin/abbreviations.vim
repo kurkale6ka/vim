@@ -4,6 +4,7 @@ if exists('g:loaded_abolish')
    Abolish nad and
    Abolish amn man
    Abolish hte the
+   Abolish teh the
    Abolish spcae space
    Abolish si is
    Abolish kpet kept
@@ -12,7 +13,6 @@ if exists('g:loaded_abolish')
    Abolish alnd land
    Abolish awlays always
    Abolish whcih which
-   Abolish teh the
    Abolish fo of
    Abolish olny only
    Abolish nwe new
@@ -44,6 +44,7 @@ else
    iabbrev nad and
    iabbrev amn man
    iabbrev hte the
+   iabbrev teh the
    iabbrev spcae space
    iabbrev si is
    iabbrev kpet kept
@@ -52,7 +53,6 @@ else
    iabbrev alnd land
    iabbrev awlays always
    iabbrev whcih which
-   iabbrev teh the
    iabbrev fo of
    iabbrev olny only
    iabbrev nwe new
