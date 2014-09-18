@@ -15,6 +15,7 @@ if exists('g:loaded_abolish')
    Abolish whcih which
    Abolish fo of
    Abolish olny only
+   Abolish onyl only
    Abolish nwe new
    Abolish ascci ascii
    Abolish tihs this
@@ -55,6 +56,7 @@ else
    iabbrev whcih which
    iabbrev fo of
    iabbrev olny only
+   iabbrev onyl only
    iabbrev nwe new
    iabbrev ascci ascii
    iabbrev tihs this
