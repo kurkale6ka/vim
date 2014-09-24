@@ -12,6 +12,7 @@ if exists('g:loaded_abolish')
    Abolish amny many
    Abolish alnd land
    Abolish awlays always
+   Abolish iwth with
    Abolish whcih which
    Abolish fo of
    Abolish olny only
@@ -53,6 +54,7 @@ else
    iabbrev amny many
    iabbrev alnd land
    iabbrev awlays always
+   iabbrev iwth with
    iabbrev whcih which
    iabbrev fo of
    iabbrev olny only
