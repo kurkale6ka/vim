@@ -23,6 +23,8 @@ set viminfo='20,<50,s10,h,!
 
 nnoremap gr 999<c-r>
 command! WriteSudo write !sudo tee % > /dev/null
+command! W browse write
+command! E browse edit
 
 " Search and replace {{{2
 set incsearch hlsearch
