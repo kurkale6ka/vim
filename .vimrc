@@ -419,7 +419,7 @@ nmap <leader>fc :set filetype=c<cr>
 nmap <leader>fr :set filetype=ruby<cr>
 
 command!          RemoveSpaces call  spaces#remove()
-command!          SyntaxStack  call  syntax#stack()
+command!          Syntax       call  syntax#stack()
 command! -nargs=* Ascii        call   ascii#codes(<f-args>)
 command! -nargs=+ Scratch      call scratch#buffer(               <f-args>)
 command! -nargs=? Scriptnames  call scratch#buffer('scriptnames', <f-args>)
