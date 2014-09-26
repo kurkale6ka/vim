@@ -1,82 +1,109 @@
+" Todo:
+" Check all ll, pp, ss, nn words ?!
+" Lang dependant? (ex: appeller)
+
 if exists('g:loaded_abolish')
 
+   " 2
+   Abolish fo of
+   Abolish si is
+   Abolish ti it
+   " 3
    Abolish adn and
-   Abolish nad and
    Abolish amn man
    Abolish hte the
+   Abolish nad and
+   Abolish nwe new
    Abolish teh the
-   Abolish spcae space
-   Abolish si is
-   Abolish kpet kept
-   Abolish hutn hunt
-   Abolish amny many
+   " 4
    Abolish alnd land
-   Abolish awlays always
+   Abolish amny many
+   Abolish hutn hunt
    Abolish iwth with
-   Abolish whcih which
-   Abolish fo of
+   Abolish kpet kept
    Abolish olny only
    Abolish onyl only
-   Abolish nwe new
-   Abolish ascci ascii
    Abolish tihs this
-   " Abolish have'nt haven't
-   Abolish aditionaly additionally
-   Abolish profesion profession
-   Abolish ubyquity ubiquity
-   Abolish analysys analysis
-   Abolish profesional professional
-   Abolish developper{,s} developer{}
-   Abolish colaboration collaboration
-   Abolish desier desire
-   Abolish convinience convenience
-   Abolish pationate passionate
-   Abolish {help}full {}ful
-   Abolish redifine redefine
+   " 5
+   Abolish ascci ascii
+   Abolish spcae space
+   Abolish whcih which
+   " 6
+   Abolish awlays always
    Abolish beneat beneath
+   Abolish desier desire
+   " 7
+   " 8
+   Abolish analysys analysis
+   Abolish redifine redefine
+   Abolish ubyquity ubiquity
+   " 9
+   Abolish pationate passionate
+   Abolish profesion profession
+   " 10
+   Abolish aditionaly additionally
    Abolish rethorical rhetorical
+   Abolish {help}full {}ful
+   " 11
+   Abolish convinience convenience
    Abolish holyday{,s} holiday{}
+   Abolish profesional professional
+   " 12
+   Abolish colaboration collaboration
+   Abolish developper{,s} developer{}
 
-   " Check all ll, pp, ss, nn words ?!
-   " Lang dependant? (ex: appeller)
+   " Abolish have'nt haven't
 
 else
 
+   " 2
+   iabbrev fo of
+   iabbrev si is
+   iabbrev ti it
+   " 3
    iabbrev adn and
-   iabbrev nad and
    iabbrev amn man
    iabbrev hte the
+   iabbrev nad and
+   iabbrev nwe new
    iabbrev teh the
-   iabbrev spcae space
-   iabbrev si is
-   iabbrev kpet kept
-   iabbrev hutn hunt
-   iabbrev amny many
+   " 4
    iabbrev alnd land
-   iabbrev awlays always
+   iabbrev amny many
+   iabbrev hutn hunt
    iabbrev iwth with
-   iabbrev whcih which
-   iabbrev fo of
+   iabbrev kpet kept
    iabbrev olny only
    iabbrev onyl only
-   iabbrev nwe new
-   iabbrev ascci ascii
    iabbrev tihs this
-   " iabbrev have'nt haven't
-   iabbrev aditionaly additionally
-   iabbrev profesion profession
-   iabbrev ubyquity ubiquity
-   iabbrev analysys analysis
-   iabbrev profesional professional
-   iabbrev developper developer
-   iabbrev colaboration collaboration
+   " 5
+   iabbrev ascci ascii
+   iabbrev spcae space
+   iabbrev whcih which
+   " 6
+   iabbrev awlays always
+   iabbrev beneat beneath
    iabbrev desier desire
-   iabbrev convinience convenience
-   iabbrev pationate passionate
+   " 7
+   iabbrev holyday holiday
+   " 8
+   iabbrev analysys analysis
    iabbrev helpfull helpful
    iabbrev redifine redefine
-   iabbrev beneat beneath
+   iabbrev ubyquity ubiquity
+   " 9
+   iabbrev pationate passionate
+   iabbrev profesion profession
+   " 10
+   iabbrev aditionaly additionally
+   iabbrev developper developer
    iabbrev rethorical rhetorical
-   iabbrev holyday holiday
+   " 11
+   iabbrev convinience convenience
+   iabbrev profesional professional
+   " 12
+   iabbrev colaboration collaboration
+
+   " iabbrev have'nt haven't
 
 endif
