@@ -3,7 +3,7 @@ set sessionoptions+=resize
 
 set t_vb=
 
-set guioptions-=m guioptions-=T guioptions+=a
+set guioptions-=m guioptions-=T guioptions+=P
 
 set guifont=DejaVu\ Sans\ Mono\ 13
 
