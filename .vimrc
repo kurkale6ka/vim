@@ -130,6 +130,9 @@ if has('mouse_xterm')
      " vim selections available in "+ for outside apps. The GUI equivalent is go+=P
      set clipboard^=autoselectplus
    endif
+   if has('nvim')
+      set unnamedclip
+   endif
    " Vim bug: Only t_te, not t_op, gets sent when leaving an alt screen
    exe 'set t_te=' . &t_te . &t_op
 endif
