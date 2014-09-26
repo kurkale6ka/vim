@@ -1,6 +1,8 @@
 " Todo:
 " Check all ll, pp, ss, nn words ?!
 " Lang dependant? (ex: appeller)
+"
+" is it possible: Abolish have'nt haven't
 
 if exists('g:loaded_abolish')
 
@@ -51,8 +53,6 @@ if exists('g:loaded_abolish')
    " 12
    Abolish colaboration collaboration
    Abolish developper{,s} developer{}
-
-   " Abolish have'nt haven't
 
 else
 
@@ -105,8 +105,6 @@ else
    " 12
    iabbrev colaboration collaboration
 
-   " iabbrev have'nt haven't
-
 endif
 
-" vim: fde=getline(v\:lnum)=~'"\\s\\d\\+'?'>1'\:'='
+" vim: foldmethod=expr foldexpr=getline(v\:lnum)=~'"\\s\\d\\+'?'>1'\:'='

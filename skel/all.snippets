@@ -16,7 +16,7 @@ endsnippet
 
 snippet fde
 # Don't forget to double slashes (\\d\\.). >1 means 'a fold of level 1 starts here'
-# vim: fde=getline(v\:lnum)=~'${1}'?'>1'\:'='
+# vim: foldexpr=getline(v\:lnum)=~'${1}'?'>1'\:'='
 endsnippet
 
 snippet l
