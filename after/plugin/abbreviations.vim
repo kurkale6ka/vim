@@ -56,6 +56,7 @@ if exists('g:loaded_abolish')
 
 else
 
+   " 1 Abolish not installed => use iabbrevs!
    " 2
    iabbrev fo of
    iabbrev si is
@@ -107,3 +108,5 @@ else
    " iabbrev have'nt haven't
 
 endif
+
+" vim: fde=getline(v\:lnum)=~'"\\s\\d\\+'?'>1'\:'='
