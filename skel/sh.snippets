@@ -16,31 +16,36 @@ endsnippet
 
 # Loops
 snippet for "for variable in words" !
-for ${1:i} in ${2:"\$@"}; do
+for ${1:i} in ${2:"\$@"}
+do
    ${3:echo} "\$$1"
 done
 endsnippet
 
 snippet for "for variable in range"
-for ${1:i} in \{${2:start}..${3:end}}; do
+for ${1:i} in \{${2:start}..${3:end}}
+do
    ${4:echo} "\$$1"
 done
 endsnippet
 
 snippet for "C-like for"
-for ((${1:i} = ${2:0}; $1 < ${3:10}; $1++)); do
+for ((${1:i} = ${2:0}; $1 < ${3:10}; $1++))
+do
    ${4:commands}
 done
 endsnippet
 
 snippet while
-while ${1:command}; do
+while ${1:command}
+do
    ${2:commands}
 done
 endsnippet
 
 snippet until
-until ${1:command}; do
+until ${1:command}
+do
    ${2:commands}
 done
 endsnippet
@@ -48,7 +53,6 @@ endsnippet
 # Switch / select
 snippet case "Case" !
 case "\$${1:variable}" in
-
    ${2:glob1}) ${3:command};;
    ${4:glob2}) ${5:command};;
    ${6:glob3}) ${7:command};;
@@ -61,10 +65,9 @@ options[0]='${1}'
 options[1]='${2}'
 options[2]='${3}'
 
-select choice in "${options[@]}"; do
-
+select choice in "${options[@]}"
+do
    case "$choice" in
-
       "${options[0]}") ${4}; break;;
       "${options[1]}") ${5}; break;;
       "${options[2]}") ${6}; break;;
@@ -78,19 +81,22 @@ read -p '${1:Enter value:}' ${2:var}
 endsnippet
 
 snippet if "Commands" !
-if ${1:commands}; then
+if ${1:commands}
+then
    ${2:commands}
 fi
 endsnippet
 
 snippet if "String comparison"
-if [[ ${1:'test'} ${2:==} ${3:\$right_operand} ]]; then
+if [[ ${1:'test'} ${2:==} ${3:\$right_operand} ]]
+then
    ${4:commands}
 fi
 endsnippet
 
 snippet if "Digit comparison"
-if (( ${1:0} ${2:<} ${3:j} )); then
+if (( ${1:0} ${2:<} ${3:j} ))
+then
    ${4:commands}
 fi
 endsnippet
@@ -112,8 +118,11 @@ endsnippet
 
 snippet h
 # Help
-if [[ \$1 == -@(h|-h)* ]] || (($# == 0)); then
-   info=${1}
+if [[ \$1 == -@(h|-h)* ]] || (($# == 0))
+then
+read -r -d $'\0' info << 'HELP'
+Usage: ${1}
+HELP
    if (($#))
    then echo "$info"    ; exit 0
    else echo "$info" >&2; exit 1
@@ -121,21 +130,9 @@ if [[ \$1 == -@(h|-h)* ]] || (($# == 0)); then
 fi
 endsnippet
 
-snippet help
-# Help
-if [[ \$1 == -@(h|-h)* ]] || (($# == 0)); then
-read -r -d $'\0' info << 'HELP'
-Usage: ${1}
-HELP
-if (($#))
-then echo "$info"    ; exit 0
-else echo "$info" >&2; exit 1
-fi
-fi
-endsnippet
-
 snippet <> "Read a heredoc"
-while read -r ${1:line}; do
+while read -r ${1:line}
+do
    [[ $$1 = \#* || ! $host ]] && continue
    echo "$$1"
 done << EOF
@@ -144,7 +141,8 @@ EOF
 endsnippet
 
 snippet <> "Read find's output"
-while read -r -d \$'\0'; do
+while read -r -d \$'\0'
+do
    ${1:"\$REPLY"}
 done < <(${2:find /foo -print0})
 endsnippet
@@ -255,11 +253,6 @@ endsnippet
 
 snippet / "Parameter expansion on arrays"
 \$\{${1:parameters array}[@]${2}#%:/}
-endsnippet
-
-# Renaming files
-snippet ren
-for file in ${1:*}; do mv -- "\$file" "${file%.*}".${2:new}; done
 endsnippet
 
 snippet p
