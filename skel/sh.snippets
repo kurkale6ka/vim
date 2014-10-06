@@ -272,7 +272,13 @@ printf '%s\n' ${1}
 endsnippet
 
 snippet e
->&2
+1>&2
+endsnippet
+
+snippet E
+cat 1>&2 << 'HELP'
+${1}
+HELP
 endsnippet
 
 snippet _
