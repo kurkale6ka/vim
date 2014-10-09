@@ -39,7 +39,7 @@ snippet \\
 # Run batches of up to 30 (read explanation below) jobs in parallel
 # When you reach a certain number of bg processes, bash starts disowning
 # the oldest processes, meaning you lose control over them
-((i % 30 == 0) && wait
+((i++)); ((i % 30 == 0) && wait
 endsnippet
 
 ## Skeleton
