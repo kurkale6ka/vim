@@ -3,6 +3,46 @@ snippet #
 #! /usr/bin/env ${1:bash}
 endsnippet
 
+snippet read
+read -p '${1:Enter value:}' ${2:var}
+endsnippet
+
+snippet p
+printf '%s\n' ${1}
+endsnippet
+
+snippet doc
+cat << 'EOM'
+${1}
+EOM
+endsnippet
+
+snippet fun
+${1:name}() {
+   ${2:commands}
+}
+endsnippet
+
+snippet alias
+alias ${1:name}='${2}'
+endsnippet
+
+snippet _
+/dev/null
+endsnippet
+
+snippet trap
+trap '${1:exit 0}' ${2:INT TERM}
+endsnippet
+
+snippet \\
+# Run batches of up to 30 (read explanation below) jobs in parallel
+# When you reach a certain number of bg processes, bash starts disowning
+# the oldest processes, meaning you lose control over them
+((i % 30 == 0) && wait
+endsnippet
+
+## Skeleton
 snippet skel
 #! /usr/bin/env bash
 
@@ -14,7 +54,7 @@ snippet skel
 ${2:shopt -s extglob}
 endsnippet
 
-# Loops
+## Loops
 snippet for "for variable in words" !
 for ${1:i} in ${2:"\$@"}
 do
@@ -50,7 +90,7 @@ do
 done
 endsnippet
 
-# Switch / select
+## Switch / select
 snippet case "Case" !
 case "\$${1:variable}" in
    ${2:glob1}) ${3:command};;
@@ -76,10 +116,7 @@ do
 done
 endsnippet
 
-snippet read
-read -p '${1:Enter value:}' ${2:var}
-endsnippet
-
+## if
 snippet if "Commands" !
 if ${1:commands}
 then
@@ -101,7 +138,7 @@ then
 fi
 endsnippet
 
-# Arrays
+## Arrays
 snippet [ "Create an array"
 ${1:array}=(${2:words})
 endsnippet
@@ -110,12 +147,7 @@ snippet [ "Use an array"
 "${${1:array}[@]}"
 endsnippet
 
-snippet doc
-cat << 'EOM'
-${1}
-EOM
-endsnippet
-
+## help
 snippet h
 # Help
 if [[ \$1 == -@(h|-h)* ]] || (($# == 0))
@@ -142,6 +174,7 @@ HELP
 fi
 endsnippet
 
+## read a 'file'
 snippet <> "Read a heredoc"
 while read -r ${1:line}
 do
@@ -159,17 +192,7 @@ do
 done < <(${2:find /foo -print0})
 endsnippet
 
-snippet fun
-${1:name}() {
-   ${2:commands}
-}
-endsnippet
-
-snippet alias
-alias ${1:name}='${2}'
-endsnippet
-
-# Extended globs
+## Extended globs
 snippet ext "Enable extended globs"
 shopt -s extglob
 endsnippet
@@ -178,6 +201,7 @@ snippet ext "Use extended globs"
 ${1:@?*+!}(${2:item1}|${3:item2})
 endsnippet
 
+## $1 $2 $3 $4 $5 $6 $7 $8 $9
 snippet 0
 "\$${1:0}"${2}
 endsnippet
@@ -218,7 +242,7 @@ snippet 9
 "\$${1:9}"${2}
 endsnippet
 
-# Parameter expansion
+## Parameter expansion
 snippet / "remove 1 from start"
 \$\{${1:parameter}#${2:word to remove}}
 endsnippet
@@ -267,10 +291,7 @@ snippet / "Parameter expansion on arrays"
 \$\{${1:parameters array}[@]${2}#%:/}
 endsnippet
 
-snippet p
-printf '%s\n' ${1}
-endsnippet
-
+## Error
 snippet e
 1>&2
 endsnippet
@@ -281,14 +302,7 @@ ${1}
 HELP
 endsnippet
 
-snippet _
-/dev/null
-endsnippet
-
-snippet trap
-trap '${1:exit 0}' ${2:INT TERM}
-endsnippet
-
+## /etc/init.d/script
 snippet init
 #! /usr/bin/env bash
 
@@ -355,3 +369,5 @@ case "\$1" in
          *) h; exit 2 ;;
 esac
 endsnippet
+
+# vim: foldmethod=expr foldexpr=getline(v\:lnum)=~'^##'?'>1'\:'='
