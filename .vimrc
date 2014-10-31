@@ -209,10 +209,16 @@ set ruler
 set laststatus=2
 set history=7000 " TODO
 
-set statusline=%<%L.\ %t,\ L:%l\ C:%v
-   \%{empty(&keymap)?'':'\ <'.b:keymap_name.'>'}\ %r%m
-   \%=\ #\%{expand('#:t')}#\ \%{empty(&filetype)?'':'['.&filetype.']-'}
-   \%{&fileformat}\ %P
+set statusline=%<%L     " number of lines
+set statusline+=\ ❬\ %t " file name (tail)
+" RO, modified flag + keymap
+set statusline+=%{empty(&ro)\ &&\ empty(&mod)\ &&\ empty(&kmp)?'':'\ '}%r%m%{empty(&kmp)?'':'('.b:keymap_name.')'}
+set statusline+=\ ❬\ L:%l\ C:%v
+" alternate file
+set statusline+=%=%{empty(expand('#:t'))?'':'#'.expand('#:t').'\ ❭\ '}
+set statusline+=%{empty(&ft)?'':'['.&ft.']-'}
+set statusline+=%{&fileformat}
+set statusline+=\ ❭\ %P " percentage through file
 
 " Switch between command line commands
 cmap <silent> <c-g> <c-f>:call cmdline#switch('g')<cr>
