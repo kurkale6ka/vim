@@ -9,6 +9,7 @@ augroup FILETYPE_DETECT
    autocmd BufNewFile,BufRead *.ftl               set filetype=xml
    autocmd BufNewFile,BufRead *.pgn,*.chess       set filetype=pgn
    autocmd BufNewFile,BufRead syslog*.conf        set filetype=syslog
+   autocmd BufNewFile,BufRead .tmux.conf          set filetype=tmux
    autocmd BufNewFile,BufRead Gemfile,Gemfile.*   set filetype=ruby
    autocmd BufNewFile,BufRead vipw.*              set filetype=passwd
 
