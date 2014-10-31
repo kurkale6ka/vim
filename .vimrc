@@ -215,8 +215,8 @@ set statusline+=\ ❬\ %t " file name (tail)
 set statusline+=%{empty(&ro)\ &&\ empty(&mod)\ &&\ empty(&kmp)?'':'\ '}%r%m%{empty(&kmp)?'':'('.b:keymap_name.')'}
 set statusline+=\ ❬\ L:%l\ C:%v
 " alternate file
-set statusline+=%=%{empty(expand('#:t'))?'':'#'.expand('#:t').'\ ❭\ '}
-set statusline+=%{empty(&ft)?'':'['.&ft.']-'}
+set statusline+=%=%{expand('#:t')\ ==\ expand('%:t')?'':'#'.expand('#:t').'\ ❭\ '}
+set statusline+=%{empty(&ft)?'[]-':'['.&ft.']-'}
 set statusline+=%{&fileformat}
 set statusline+=\ ❭\ %P " percentage through file
 
