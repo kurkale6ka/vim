@@ -12,6 +12,7 @@ augroup FILETYPE_DETECT
    autocmd BufNewFile,BufRead .tmux.conf          set filetype=tmux
    autocmd BufNewFile,BufRead Gemfile,Gemfile.*   set filetype=ruby
    autocmd BufNewFile,BufRead vipw.*              set filetype=passwd
+   autocmd BufNewFile,BufRead iptables            set filetype=iptables
 
    autocmd BufNewFile,BufRead *.txt,*.text,README,INSTALL,NEWS,TODO
       \ set filetype=txt
