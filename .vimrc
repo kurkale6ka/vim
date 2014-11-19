@@ -5,10 +5,6 @@ set nocompatible
 let &runtimepath = substitute(&runtimepath, '\.\zevim', '', 'g')
 call pathogen#infect('~/vim/bundle/_my/{}', '~/vim/bundle/{}')
 
-if has('nvim')
-   runtime! python_setup.vim
-endif
-
 filetype plugin indent on
 syntax enable
 
