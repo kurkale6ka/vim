@@ -149,7 +149,8 @@ endsnippet
 
 ## help
 snippet h
-# Help
+shopt -s extglob
+
 if [[ \$1 == -@(h|-h)* ]] || (($# == 0))
 then
    info='Usage: ${1}'
@@ -161,7 +162,8 @@ fi
 endsnippet
 
 snippet help
-# Help
+shopt -s extglob
+
 if [[ \$1 == -@(h|-h)* ]] || (($# == 0))
 then
 read -r -d $'\0' info << 'HELP'
