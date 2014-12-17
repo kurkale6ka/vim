@@ -54,6 +54,23 @@ snippet skel
 ${2:shopt -s extglob}
 endsnippet
 
+## Colors
+snippet colors
+# 0 - Black    4 - Blue
+# 1 - Red      5 - Purple
+# 2 - Green    6 - Cyan
+# 3 - Yellow   7 - White
+
+b=$(tput bold)
+u=$(tput smul) # underline
+r=$(tput sgr0) # reset
+
+# Bold white on blue background
+LWhite=$(printf %s "$b"; tput setaf 7; tput setab 4)
+
+echo "${LWhite}Hello World${r}"
+endsnippet
+
 ## Loops
 snippet for "for variable in words" !
 for ${1:i} in ${2:"\$@"}
