@@ -123,7 +123,8 @@ if has('mouse_xterm')
    set timeoutlen=2000 ttimeoutlen=100
    set ttyscroll=3
    if has('xterm_clipboard')
-      set clipboard^=unnamedplus " y/d/c go to "" and "+
+      " TODO: re-enable when not buggy
+      " set clipboard^=unnamedplus " y/d/c go to "" and "+
       " vim selections available in "+ for outside apps. The GUI equivalent is go+=P
       set clipboard^=autoselectplus
    endif
