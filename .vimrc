@@ -1,5 +1,6 @@
 " Author: kurkale6ka <Dimitar Dimitrov>
 
+set all&
 set nocompatible
 
 let &runtimepath = substitute(&runtimepath, '\.\zevim', '', 'g')
