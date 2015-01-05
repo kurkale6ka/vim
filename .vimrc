@@ -6,8 +6,13 @@ set nocompatible
 let &runtimepath = substitute(&runtimepath, '\.\zevim', '', 'g')
 call pathogen#infect('~/vim/bundle/_my/{}', '~/vim/bundle/{}')
 
-filetype plugin indent on
-syntax enable
+if has('autocmd')
+   filetype plugin indent on
+endif
+
+if has('syntax')
+   syntax enable
+endif
 
 " Options {{{1
 " Backups {{{2
