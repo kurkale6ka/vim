@@ -14,8 +14,7 @@ if has('syntax')
    syntax enable
 endif
 
-" Options {{{1
-" Backups {{{2
+"" Backups
 set backup backupskip= backupext=~
 set noautowrite noautowriteall
 set writebackup
@@ -30,7 +29,7 @@ command! Edit  browse edit
 command! Write browse write
 command! WriteSudo write !sudo tee % > /dev/null
 
-" Search and replace {{{2
+"" Search and replace
 set incsearch hlsearch
 set ignorecase smartcase infercase
 
@@ -50,7 +49,7 @@ set path+=$HOME/github/**
 
 command! -nargs=+ Find call find#files(<f-args>)
 
-" Encoding {{{2
+"" Encoding
 if has('multi_byte')
    if &encoding !~? 'utf-\=8'
       if empty(&termencoding)
@@ -79,7 +78,7 @@ if &encoding =~ '^u\(tf\|cs\)' " When running in a Unicode environment
    nmap <leader><tab> :setlocal invlist list?<cr>
 endif
 
-" Alerts and visual feedback {{{2
+"" Alerts and visual feedback
 set number numberwidth=1
 set matchpairs+=<:>
 set showmatch matchtime=2
@@ -123,7 +122,7 @@ else
 endif
 match ColorColumn /\%81v./
 
-" Mouse {{{2
+"" Mouse
 if has('mouse_xterm')
    set mouse=a
    set ttymouse=xterm2
@@ -139,7 +138,7 @@ if has('mouse_xterm')
    exe 'set t_te=' . &t_te . &t_op
 endif
 
-" Text formating {{{2
+"" Text formating
 set textwidth=80 " TODO
 set formatoptions=croqn
 set nojoinspaces
@@ -158,7 +157,7 @@ nmap =<space> [<space>]<space>
 imap <s-cr>   <esc>O
 imap <c-cr>   <esc>o
 
-" Tabs and shifting {{{2
+"" Tabs and shifting
 set expandtab
 set softtabstop=3 tabstop=8
 set shiftwidth=3 shiftround
@@ -168,13 +167,13 @@ xmap <s-tab>   <
 nmap <leader>0 :left<cr>
 xmap <leader>0 :left<cr>
 
-" Tags {{{2
+"" Tags
 set tags+=$HOME/github/tags
 set complete-=t complete-=]
 set completeopt-=preview
 set showfulltag
 
-" Windows and buffers {{{2
+"" Windows and buffers
 set hidden
 set diffopt+=vertical
 set noequalalways
@@ -202,7 +201,7 @@ nmap     <silent> <c-w>t                  :tabnew<cr>
 nmap     <silent> <c-w>e                  :WinFullScreen<cr>
 nmap     <silent> <c-w><c-e>              :WinFullScreen<cr>
 
-" Command line {{{2
+"" Command line
 set wildmenu wildmode=full
 set wildignore+=*~,*.swp,tags
 if version >= 703 | set wildignorecase | endif
@@ -225,18 +224,17 @@ set statusline+=\ ❭\ %P " percentage through file
 " Switch between command line commands
 cmap <silent> <c-g> <c-f>:call cmdline#switch('g')<cr>
 
-" Tabline {{{2
+"" Tabline
 set showtabline=1
 set tabline=%!tabs#MyTabLine()
 
-" Security {{{2
+"" Security
 set exrc
 set secure
 set modeline
 set modelines=3
 
-" Mappings {{{1
-" Copy / paste {{{2
+"" Copy / paste
 
 nmap          Y             y$
 xmap <silent> Y             :<c-u>call copy#selection()<cr>
@@ -250,13 +248,13 @@ nmap <leader>p :set invpaste paste?<cr>
 
 " command! -nargs=? Append call register#append(<f-args>)
 
-" Help {{{2
+"" Help
 nmap          <leader>h      :help <c-r><c-w><cr>
 xmap          <leader>h   "*y:help <c-r>*<cr>
 nmap <silent> <f1>           :help<bar>only<cr>
 imap <silent> <f1>      <c-o>:help<bar>only<cr>
 
-" Moving around {{{2
+"" Moving around
 noremap! <m-b>         <s-left>
 noremap! <m-f>         <s-right>
 noremap! <m-left>      <s-left>
@@ -283,7 +281,7 @@ for nr in range(65, 90)
    execute 'nnoremap <silent> `'.nr2char(nr).' :normal! `'.nr2char(nr).'g`"<cr>'
 endfor
 
-" Deletion {{{2
+"" Deletion
 inoremap          <c-u>   <c-g>u<c-u>
 inoremap          <c-w>   <c-o>dB
 cnoremap          <c-w>   <c-f>dB<c-c>
@@ -299,14 +297,14 @@ cmap              <c-del> <c-f>de<c-c>
 cmap              <m-del> <c-f>de<c-c>
 nmap did ^D"_dd
 
-" Text-object: file {{{2
+"" Text-object: file
 xnoremap af ggVoG
 onoremap af :normal vaf<cr>
 
 xnoremap ab <esc>%v%
 onoremap ab :silent normal vab<cr>
 
-" Visual selection {{{2
+"" Visual selection
 nmap <leader>v      v$h
 nmap gV             gvV
 nmap g<c-v>         gv<c-v>
@@ -330,7 +328,7 @@ xmap [<cr> <esc>'>dd'<p==
 xmap ]t    <esc>'<yy'>p==
 xmap [t    <esc>'>yy'<p==
 
-" Spell check {{{2
+"" Spell check
 nmap <leader>e :setlocal spell! spell?<cr>
 nmap <f7>      ]s
 nmap <s-f7>    [s
@@ -350,13 +348,13 @@ cabbrev frm fmr
 iabbrev _me Dimitar Dimitrov
 iabbrev _mee mitkofr@yahoo.fr
 
-" In visual-block mode: } selects the current column {{{2
+"" In visual-block mode: } selects the current column
 set nostartofline
 
 xnoremap <expr> } mode() == '<c-v>' ? line("'}") - 1 . 'G' : '}'
 xnoremap <expr> { mode() == '<c-v>' ? line("'{") + 1 . 'G' : '{'
 
-" [[, ]] work even if the { is not in the first column {{{2
+"" [[, ]] work even if the { is not in the first column
 nnoremap <silent> [[ :call search('^[^[:space:]]\@=.*{$', 'besW')<cr>
 nnoremap <silent> ]] :call search('^[^[:space:]]\@=.*{$',  'esW')<cr>
 onoremap <expr>   [[ (search('^[^[:space:]]\@=.*{$', 'ebsW') &&
@@ -364,13 +362,13 @@ onoremap <expr>   [[ (search('^[^[:space:]]\@=.*{$', 'ebsW') &&
 onoremap <expr>   ]] (search('^[^[:space:]]\@=.*{$',  'esW') &&
    \ (setpos("''", getpos('.')) <bar><bar> 1) ? "''" : "\<esc>")
 
-" Add/Subtract {{{2
+"" Add/Subtract
 nmap <silent>         <c-a> :<c-u>call number#change('a', 'f')<cr>
 nmap <silent> <leader><c-a> :<c-u>call number#change('a', 'b')<cr>
 nmap <silent>         <c-x> :<c-u>call number#change('s', 'f')<cr>
 nmap <silent> <leader><c-x> :<c-u>call number#change('s', 'b')<cr>
 
-" Plugin settings {{{1
+"" Plugin settings
 let g:UltiSnipsSnippetsDir         = '~/vim/skel/'
 let g:UltiSnipsSnippetDirectories  = ["UltiSnips", "skel"]
 let g:UltiSnipsListSnippets        = "<c-r><tab>"
@@ -396,7 +394,7 @@ let g:loaded_flatfoot        = 1
 let loaded_rrhelper          = 1
 let loaded_spellfile_plugin  = 1
 
-" Autocommands, commands and filetype settings {{{1
+"" Autocommands, commands and filetype settings
 if has('autocmd')
    augroup RC_AUTOCOMMANDS
       autocmd!
@@ -441,5 +439,7 @@ command! DiffOrig vnew | set buftype=nofile | read# | silent 0delete_ |
 
 nmap <f5> :update<bar>make<cr>
 
-" Load business specific vimrc }}}1
+"" Load business specific vimrc
 if filereadable($HOME.'/.vimrc_after') | source $HOME/.vimrc_after | endif
+
+" vim: fdm=expr fde=getline(v\:lnum)=~'^""'?'>'.(matchend(getline(v\:lnum),'""*')-1)\:'='
