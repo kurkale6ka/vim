@@ -19,10 +19,11 @@ if version >= 703 | set undofile | endif
 set viminfo='20,<50,s10,h,!
 
 nnoremap gr 999<c-r>
-command! WriteSudo write !sudo tee % > /dev/null
-command! W browse write
-command! E browse edit
 command! Shell silent write !sh
+
+command! Edit  browse edit
+command! Write browse write
+command! WriteSudo write !sudo tee % > /dev/null
 
 " Search and replace {{{2
 set incsearch hlsearch
