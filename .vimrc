@@ -7,7 +7,9 @@ let &runtimepath = substitute(&runtimepath, '\.\zevim', '', 'g')
 call pathogen#infect('~/vim/bundle/_my/{}', '~/vim/bundle/{}')
 
 if has('autocmd')
-   filetype plugin indent on
+   filetype on
+   filetype indent on
+   filetype plugin on
 endif
 
 if has('syntax')
@@ -15,11 +17,18 @@ if has('syntax')
 endif
 
 "" Backups
-set backup backupskip= backupext=~
-set noautowrite noautowriteall
+set backup
+set backupskip=
+set backupext=~
+set noautowrite
+set noautowriteall
 set writebackup
 set noautoread
-if version >= 703 | set undofile | endif
+
+if version >= 703
+   set undofile
+endif
+
 set viminfo='20,<50,s10,h,!
 
 nnoremap gr 999<c-r>
@@ -30,8 +39,11 @@ command! Write browse write
 command! WriteSudo write !sudo tee % > /dev/null
 
 "" Search and replace
-set incsearch hlsearch
-set ignorecase smartcase infercase
+set incsearch
+set hlsearch
+set ignorecase
+set smartcase
+set infercase
 
 " Stop highlighting and redraw the screen
 nnoremap <silent> <c-l> :nohlsearch<cr><c-l>
@@ -79,11 +91,14 @@ if &encoding =~ '^u\(tf\|cs\)' " When running in a Unicode environment
 endif
 
 "" Alerts and visual feedback
-set number numberwidth=1
+set number
+set numberwidth=1
 set matchpairs+=<:>
-set showmatch matchtime=2
+set showmatch
+set matchtime=2
 " visual bell instead of beeps + disable the visual effect = no flashing at all
-set visualbell t_vb=
+set visualbell
+set t_vb=
 set confirm
 set lazyredraw
 set display+=lastline
@@ -105,7 +120,8 @@ nmap <leader>O :call options#show_values(1)<cr>
 
 if has('folding')
    set foldnestmax=1
-   set foldmethod=marker foldmarker={{{,}}}
+   set foldmethod=marker
+   set foldmarker={{{,}}}
 endif
 
 if &term =~ '^\(xterm\|screen\)$'
@@ -126,7 +142,8 @@ match ColorColumn /\%81v./
 if has('mouse_xterm')
    set mouse=a
    set ttymouse=xterm2
-   set timeoutlen=2000 ttimeoutlen=100
+   set timeoutlen=2000
+   set ttimeoutlen=100
    set ttyscroll=3
    if has('xterm_clipboard')
       " TODO: re-enable when not buggy
@@ -159,8 +176,10 @@ imap <c-cr>   <esc>o
 
 "" Tabs and shifting
 set expandtab
-set softtabstop=3 tabstop=8
-set shiftwidth=3 shiftround
+set softtabstop=3
+set tabstop=8
+set shiftwidth=3
+set shiftround
 
 xmap   <tab>   >
 xmap <s-tab>   <
@@ -169,7 +188,8 @@ xmap <leader>0 :left<cr>
 
 "" Tags
 set tags+=$HOME/github/tags
-set complete-=t complete-=]
+set complete-=t
+set complete-=]
 set completeopt-=preview
 set showfulltag
 
@@ -202,10 +222,15 @@ nmap     <silent> <c-w>e                  :WinFullScreen<cr>
 nmap     <silent> <c-w><c-e>              :WinFullScreen<cr>
 
 "" Command line
-set wildmenu wildmode=full
+set wildmenu
+set wildmode=full
 set wildignore+=*~,*.swp,tags
-if version >= 703 | set wildignorecase | endif
 set wildcharm=<c-z> " cmdline: <c-z> in a mapping acts like <tab>
+
+if version >= 703
+   set wildignorecase
+endif
+
 set ruler
 set laststatus=2
 set history=7000 " TODO
