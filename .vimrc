@@ -47,23 +47,30 @@ set ignorecase
 set smartcase
 set infercase
 
-" Stop highlighting and redraw the screen
+" Ctrl + l: stop highlighting and redraw the screen
 nnoremap <silent> <c-l> :nohlsearch<cr><c-l>
 
-nmap <leader>g     :global/<c-r><c-w>/
-xmap <leader>g  "*y:global/<c-r>*<cr>
-nmap <leader>bg    :Bgrep/<c-r><c-w>/<cr>
+" \g for global
+nmap <leader>g    :global/<c-r><c-w>/
+xmap <leader>g "*y:global/<c-r>*<cr>
 
+" \s for substitute
 nmap <leader>s :%substitute/<c-r><c-w>//gc<left><left><left>
+
+" Highlight current word and change using cgn. Next one downwards
 nmap gc *Ncgn
 nmap gC #ncgn
 
 set grepprg=command\ grep\ -niE\ --exclude='*~'\ --exclude\ tags\ $*\ /dev/null
+
+" \bg for grepping in buffers
+nmap <leader>bg :Bgrep/<c-r><c-w>/<cr>
+
 set path+=$HOME/github/**
 
 command! -nargs=+ Find call find#files(<f-args>)
 
-"" Encoding
+"" Encoding and file formats
 if has('multi_byte')
    if &encoding !~? 'utf-\=8'
       if empty(&termencoding)
@@ -72,12 +79,13 @@ if has('multi_byte')
       set encoding=utf-8
    endif
 endif
+
 set fileencodings=ucs-bom,utf-8,default,cp1251,latin1
-set fileformats=unix,mac,dos
 
-if &encoding =~ '^u\(tf\|cs\)' " When running in a Unicode environment
+" Special chars for wrapping + list view: ▷⋅⋅⋅, ⋅, ↪
+if &encoding =~ '^u\(tf\|cs\)' " unicode
 
-   " tabs = arrow + dots (▷⋅⋅⋅)
+   " ▷⋅⋅⋅ tabs = arrow + dots
    let s:arr = nr2char(9655) " use U+25B7 for an arrow (▷) and
    let s:dot = nr2char(8901) " use U+22C5 for a  dot   (⋅)
 
@@ -86,11 +94,16 @@ if &encoding =~ '^u\(tf\|cs\)' " When running in a Unicode environment
    execute 'set listchars+=nbsp:'  . s:dot
 
    set linebreak
+
    " arrow + space (↪ ) at the beginning of wrapped lines
    let &showbreak=nr2char(8618).' '
+
    set list
+   " \<tab> to toggle list display
    nmap <leader><tab> :setlocal invlist list?<cr>
 endif
+
+set fileformats=unix,mac,dos
 
 "" Alerts and visual feedback
 set number
@@ -98,34 +111,32 @@ set numberwidth=1
 set matchpairs+=<:>
 set showmatch
 set matchtime=2
-" visual bell instead of beeps + disable the visual effect = no flashing at all
-set visualbell
-set t_vb=
 set confirm
 set lazyredraw
 set display+=lastline
 set scrolloff=2
-set virtualedit=all
-set whichwrap=b,s,<,>,[,]
-set backspace=indent,eol,start
 set shortmess=flmnrxoOtT
 set showcmd
 set report=0
+set virtualedit=all
+set whichwrap=b,s,<,>,[,]
 
-let did_install_default_menus = 1
+" No flashing
+set visualbell " visual bell instead of beeps
+set t_vb=      " disable the visual effect
 
 " Print working directory
 nnoremap <c-g> 2<c-g>
 
+" \o for showing options
 nmap <leader>o :call options#show_values(0)<cr>
 nmap <leader>O :call options#show_values(1)<cr>
 
 if has('folding')
-   set foldnestmax=1
-   set foldmethod=marker
-   set foldmarker={{{,}}}
+   set foldnestmax=1 " maximum nesting for indent and syntax
 endif
 
+"" Colorschemes
 if &term =~ '^\(xterm\|screen\)$'
    set t_Co=256
 endif
@@ -138,6 +149,7 @@ else
    " Highlight text beyond the 80th column
    nmap <silent> <leader>8 :call highlight#column81()<cr>
 endif
+
 match ColorColumn /\%81v./
 
 "" Mouse
@@ -158,8 +170,6 @@ if has('mouse_xterm')
 endif
 
 "" Text formating
-set nojoinspaces
-
 set formatoptions+=r " auto insert comment with <Enter>...
 set formatoptions+=o " ...or o/O
 set formatoptions+=n " Recognize numbered lists
@@ -168,31 +178,41 @@ if v:version > 703 || v:version == 703 && has("patch541")
    set formatoptions+=j " Delete comment when joining commented lines
 endif
 
-set paragraphs=
+set nojoinspaces
+set paragraphs= " no wrongly defined paragraphs for non nroff,groff filetypes
 set autoindent
 
 nmap Q gqap
 
+set backspace=indent,eol,start
+
 command! -nargs=? Underline call underline#current(<q-args>)
+
+" \u to underline with ---s
 nmap <leader>u :Underline<cr>
 
+" \z to squeeze lines
 nmap <silent> <leader>z :            call squeeze#lines('')<cr>
 vmap <silent> <leader>z :<c-u>silent call squeeze#lines('v')<cr>
 
-" Add empty lines
+" = + space to surround with empty lines
 nmap =<space> [<space>]<space>
-imap <s-cr>   <esc>O
-imap <c-cr>   <esc>o
+
+" Ctrl + Enter to open a line below in INSERT mode
+imap <c-cr> <esc>o
+imap <s-cr> <esc>O
 
 "" Tabs and shifting
 set expandtab
-set softtabstop=3
 set tabstop=8
+set softtabstop=3
 set shiftwidth=3
 set shiftround
 
-xmap   <tab>   >
-xmap <s-tab>   <
+xmap   <tab> >
+xmap <s-tab> <
+
+" \0 to align left
 nmap <leader>0 :left<cr>
 xmap <leader>0 :left<cr>
 
@@ -217,18 +237,33 @@ endif
 cabbrev vsb vertical sbuffer
 cabbrev svb vertical sbuffer
 
-noremap           <silent> <leader>l      :BufExplorer<cr>
-nmap              <c-pageup>              :bprevious<cr>
-nmap              <c-pagedown>            :bnext<cr>
-imap              <c-pageup>         <c-o>:bprevious<cr>
-imap              <c-pagedown>       <c-o>:bnext<cr>
-nmap              <c-space>               :ls<cr>:buffer<space>
-nnoremap          <c-tab>                 <c-^>
-nmap     <silent> <c-w><c-w>              :wincmd p<cr>
-nmap     <silent> <c-w>N                  :enew<cr>
-nmap     <silent> <c-w>t                  :tabnew<cr>
-nmap     <silent> <c-w>e                  :WinFullScreen<cr>
-nmap     <silent> <c-w><c-e>              :WinFullScreen<cr>
+" \l for the buffer explorer
+noremap <silent> <leader>l :BufExplorer<cr>
+
+" Ctrl + PageUp to go to the previous buffer
+nmap <c-pageup>        :bprevious<cr>
+nmap <c-pagedown>      :bnext<cr>
+imap <c-pageup>   <c-o>:bprevious<cr>
+imap <c-pagedown> <c-o>:bnext<cr>
+
+" Ctrl + space to get a listing of buffers
+nmap <c-space> :ls<cr>:buffer<space>
+
+" Ctrl + tab to switch to the alternate file
+nnoremap <c-tab> <c-^>
+
+" Ctrl + w twice to go to the last accessed window
+nmap <silent> <c-w><c-w> :wincmd p<cr>
+
+" Ctrl + w, N to create a new buffer over the current one
+nmap <silent> <c-w>N :enew<cr>
+
+" Ctrl + w, t to create a new tab
+nmap <silent> <c-w>t :tabnew<cr>
+
+" Ctrl + w, e to expand the current buffer full screen
+nmap <silent> <c-w>e     :WinFullScreen<cr>
+nmap <silent> <c-w><c-e> :WinFullScreen<cr>
 
 "" Command line
 set wildmenu
@@ -244,19 +279,25 @@ set ruler
 set laststatus=2
 set history=7000
 
+" Switch between command line commands
+" :g/pattern -> /pattern... for now all it does is copy pattern to "*
+cmap <silent> <c-g> <c-f>:call cmdline#switch('g')<cr>
+
+"" Status line
 set statusline=%<%L     " number of lines
 set statusline+=\ ❬\ %t " file name (tail)
-" RO, modified flag + keymap
+
+" RO, modified + keymap
 set statusline+=%{empty(&ro)\ &&\ empty(&mod)\ &&\ empty(&kmp)?'':'\ '}%r%m%{empty(&kmp)?'':'('.b:keymap_name.')'}
-set statusline+=\ ❬\ L:%l\ C:%v
+
+set statusline+=\ ❬\ L:%l\ C:%v " Line:-- Column:--
+
 " alternate file
 set statusline+=%=%{expand('#:t')\ !=\ expand('%:t')\ &&\ !empty(expand('#:t'))?'#'.expand('#:t').'\ ❭\ ':''}
-set statusline+=%{empty(&ft)?'[]-':'['.&ft.']-'}
-set statusline+=%{&fileformat}
-set statusline+=\ ❭\ %P " percentage through file
 
-" Switch between command line commands
-cmap <silent> <c-g> <c-f>:call cmdline#switch('g')<cr>
+set statusline+=%{empty(&ft)?'[]-':'['.&ft.']-'} " ft
+set statusline+=%{&fileformat}                   " ff
+set statusline+=\ ❭\ %P                          " percentage through file
 
 "" Tabline
 set showtabline=1
@@ -264,47 +305,51 @@ set tabline=%!tabs#MyTabLine()
 
 "" Security
 set exrc
-set secure
+set secure " :autocmd, shell and write commands not allowed in CWD .exrc
+
 set modeline
 set modelines=3
 
 "" Copy / paste
+nmap Y y$
+xmap <silent> Y :<c-u>call copy#selection()<cr>
 
-nmap          Y             y$
-xmap <silent> Y             :<c-u>call copy#selection()<cr>
-nmap          <leader><c-l> :<c-r>=copy#line()<cr>
+" \, Ctrl + l to copy text to the command line
+nmap <leader><c-l> :<c-r>=copy#line()<cr>
 
-" Paste
-xmap [p        "0p
-nmap [P        :pu!<cr>
-nmap ]P        :pu<cr>
+" paste over selected text using the previous yank
+xmap [p "0p
+
+" paste above/below for small (non whole lines) yanks
+nmap [P :pu!<cr>
+nmap ]P :pu<cr>
+
+" \p to toggle 'paste
 nmap <leader>p :set invpaste paste?<cr>
 
-" command! -nargs=? Append call register#append(<f-args>)
-
 "" Help
-nmap          <leader>h      :help <c-r><c-w><cr>
-xmap          <leader>h   "*y:help <c-r>*<cr>
-nmap <silent> <f1>           :help<bar>only<cr>
-imap <silent> <f1>      <c-o>:help<bar>only<cr>
+" \h to get help for the word under the cursor
+nmap <leader>h    :help <c-r><c-w><cr>
+xmap <leader>h "*y:help <c-r>*<cr>
+
+" F1 to get a full screen help window
+nmap <silent> <f1>      :help<bar>only<cr>
+imap <silent> <f1> <c-o>:help<bar>only<cr>
 
 "" Moving around
-noremap! <m-b>         <s-left>
-noremap! <m-f>         <s-right>
-noremap! <m-left>      <s-left>
-noremap! <m-right>     <s-right>
-map      <home>        ^
-imap     <home>   <c-o>I
-cmap     <home>   <c-f>^<c-c>
-cnoremap <c-a>         <home>
-imap     <c-up>   <c-o>{
-imap     <m-up>   <c-o>{
-map      <c-up>        {
-map      <m-up>        {
-imap     <c-down> <c-o>}
-imap     <m-down> <c-o>}
-map      <c-down>      }
-map      <m-down>      }
+" <Home> to move to the first char on the line
+map  <home> ^
+imap <home> <c-o>I
+cmap <home> <c-f>^<c-c>
+
+cnoremap <c-a> <home>
+
+" Ctrl + Up to go backwards by a paragraph
+imap <c-up> <c-o>{
+map  <c-up>      {
+
+imap <c-down> <c-o>}
+map  <c-down>      }
 
 nmap <silent> gm :call move#gm()<cr>
 omap <silent> gm :call move#gm()<cr>
@@ -316,19 +361,30 @@ for nr in range(65, 90)
 endfor
 
 "" Deletion
-inoremap          <c-u>   <c-g>u<c-u>
-inoremap          <c-w>   <c-o>dB
-cnoremap          <c-w>   <c-f>dB<c-c>
-nnoremap          <bs>         "_X
-noremap!          <c-bs>  <c-w>
-noremap!          <m-bs>  <c-w>
-imap              <c-k>   <c-o>D
-cmap              <c-k>   <c-f>D<c-c>
-nmap     <silent> dl           :%substitute/\_s*\%$//<bar>nohlsearch<cr>``
-imap              <c-del> <c-o>de
-imap              <m-del> <c-o>de
-cmap              <c-del> <c-f>de<c-c>
-cmap              <m-del> <c-f>de<c-c>
+nnoremap <bs> "_X
+
+" \u
+inoremap <c-u> <c-g>u<c-u>
+
+" \w
+inoremap <c-w> <c-o>dB
+cnoremap <c-w> <c-f>dB<c-c>
+
+" Alt + backspace
+noremap! <m-bs> <c-w>
+
+" Alt + d
+inoremap <m-d> <c-o>de
+cnoremap <m-d> <c-f>de<c-c>
+
+" Ctrl + k
+imap <c-k> <c-o>D
+cmap <c-k> <c-f>D<c-c>
+
+" Delete EOF empty lines
+nmap <silent> dl :%substitute/\_s*\%$//<bar>nohlsearch<cr>``
+
+" Delete a whole line to the small register (and "" of course)
 nmap did ^D"_dd
 
 "" Text-object: file
@@ -339,34 +395,47 @@ xnoremap ab <esc>%v%
 onoremap ab :silent normal vab<cr>
 
 "" Visual selection
-nmap <leader>v      v$h
-nmap gV             gvV
-nmap g<c-v>         gv<c-v>
-nmap <s-up>         Vk
-imap <s-up>    <c-o>Vk
-vmap <s-up>          k
-nmap <s-down>       Vj
-imap <s-down>  <c-o>Vj
-vmap <s-down>        j
+" \v to select to EOL
+nmap <leader>v v$h
+
+nmap gV     gvV
+nmap g<c-v> gv<c-v>
+
+" Shift + arrows to visually select stuff
+nmap <s-up>      Vk
+imap <s-up> <c-o>Vk
+vmap <s-up>       k
+
+nmap <s-down>      Vj
+imap <s-down> <c-o>Vj
+vmap <s-down>       j
+
+nmap <s-left>      vB
+imap <s-left> <c-o>vB
+vmap <s-left>       B
+
 nmap <s-right>      vE
 imap <s-right> <c-o>vE
 vmap <s-right>       E
-nmap <s-left>       vB
-imap <s-left>  <c-o>vB
-vmap <s-left>        B
 
 " Exchange first and last line in a visual area
-xmap  <cr> <esc>'<dd'>[pjdd`<P==
+xmap <cr> <esc>'<dd'>[pjdd`<P==
+
+" Move the top line of the selection under the bottom one
 xmap ]<cr> <esc>'<dd'>p==
 xmap [<cr> <esc>'>dd'<p==
+
+" Copy the top line of the selection under the bottom one
 xmap ]t    <esc>'<yy'>p==
 xmap [t    <esc>'>yy'<p==
 
 "" Spell check
+" \e to toggle spell errors
 nmap <leader>e :setlocal spell! spell?<cr>
-nmap <f7>      ]s
-nmap <s-f7>    [s
-nmap <f6>      1z=
+
+nmap <leader>1 1z=
+nmap <leader>2 2z=
+nmap <leader>3 3z=
 
 nmap <silent> gb :call spelllang#bg()<cr>
 command! ES setlocal keymap=es
@@ -405,6 +474,8 @@ nmap <silent> <leader><c-x> :<c-u>call number#change('s', 'b')<cr>
 set nrformats-=octal
 
 "" Plugin settings
+let did_install_default_menus = 1
+
 let g:UltiSnipsSnippetsDir         = '~/vim/skel/'
 let g:UltiSnipsSnippetDirectories  = ["UltiSnips", "skel"]
 let g:UltiSnipsListSnippets        = "<c-r><tab>"
@@ -480,11 +551,9 @@ command! -nargs=? Scriptnames  call scratch#buffer('scriptnames', <f-args>)
 command! DiffOrig vnew | set buftype=nofile | read# | silent 0delete_ |
    \ diffthis | wincmd p | diffthis
 
-nmap <f5> :update<bar>make<cr>
-
 "" Load business specific vimrc
 if filereadable($HOME.'/.vimrc_after')
    source $HOME/.vimrc_after
 endif
 
-" vim: fdm=expr fde=getline(v\:lnum)=~'^""'?'>'.(matchend(getline(v\:lnum),'""*')-1)\:'='
+" vim: fdm=expr fde=getline(v\:lnum)=~'^""'?'>'.(matchend(getline(v\:lnum),'"""*')-1)\:'='
