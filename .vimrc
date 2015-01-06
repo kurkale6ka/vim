@@ -476,12 +476,12 @@ set nrformats-=octal
 "" Plugin settings
 let did_install_default_menus = 1
 
-let g:UltiSnipsSnippetsDir         = '~/vim/skel/'
-let g:UltiSnipsSnippetDirectories  = ["UltiSnips", "skel"]
-let g:UltiSnipsListSnippets        = "<c-r><tab>"
-let g:UltiSnipsExpandTrigger       = "<tab>"
-let g:UltiSnipsJumpForwardTrigger  = "<tab>"
-let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+let g:UltiSnipsSnippetsDir         = '~/vim/ulti_snippets/'
+let g:UltiSnipsSnippetDirectories  = ['UltiSnips', 'ulti_snippets']
+let g:UltiSnipsListSnippets        = '<c-r><tab>'
+let g:UltiSnipsExpandTrigger       = '<tab>'
+let g:UltiSnipsJumpForwardTrigger  = '<tab>'
+let g:UltiSnipsJumpBackwardTrigger = '<s-tab>'
 
 let NERDSpaceDelims = 1
 let NERDCommentWholeLinesInVMode = 1
