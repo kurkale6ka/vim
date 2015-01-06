@@ -29,14 +29,16 @@ if version >= 703
    set undofile
 endif
 
-set viminfo='20,<50,s10,h,!
-
 nnoremap gr 999<c-r>
-command! Shell silent write !sh
 
+set viminfo^=! " save uppercase global variables
+
+"" Edit, (sudo)Write, write to shell
 command! Edit  browse edit
 command! Write browse write
 command! WriteSudo write !sudo tee % > /dev/null
+
+command! Shell silent write !sh
 
 "" Search and replace
 set incsearch
@@ -156,10 +158,18 @@ if has('mouse_xterm')
 endif
 
 "" Text formating
-set textwidth=80 " TODO
-set formatoptions=croqn
 set nojoinspaces
+
+set formatoptions+=r " auto insert comment with <Enter>...
+set formatoptions+=o " ...or o/O
+set formatoptions+=n " Recognize numbered lists
+
+if v:version > 703 || v:version == 703 && has("patch541")
+   set formatoptions+=j " Delete comment when joining commented lines
+endif
+
 set paragraphs=
+set autoindent
 
 nmap Q gqap
 
@@ -189,7 +199,6 @@ xmap <leader>0 :left<cr>
 "" Tags
 set tags+=$HOME/github/tags
 set complete-=t
-set complete-=]
 set completeopt-=preview
 set showfulltag
 
@@ -233,7 +242,7 @@ endif
 
 set ruler
 set laststatus=2
-set history=7000 " TODO
+set history=7000
 
 set statusline=%<%L     " number of lines
 set statusline+=\ ❬\ %t " file name (tail)
@@ -393,6 +402,8 @@ nmap <silent> <leader><c-a> :<c-u>call number#change('a', 'b')<cr>
 nmap <silent>         <c-x> :<c-u>call number#change('s', 'f')<cr>
 nmap <silent> <leader><c-x> :<c-u>call number#change('s', 'b')<cr>
 
+set nrformats-=octal
+
 "" Plugin settings
 let g:UltiSnipsSnippetsDir         = '~/vim/skel/'
 let g:UltiSnipsSnippetDirectories  = ["UltiSnips", "skel"]
@@ -405,7 +416,9 @@ let NERDSpaceDelims = 1
 let NERDCommentWholeLinesInVMode = 1
 map <leader><leader> <plug>NERDCommenterToggle
 
-if version < 703 | let g:CSApprox_verbose_level = 0 | endif
+if version < 703
+   let g:CSApprox_verbose_level = 0
+endif
 
 " Disable/enable plugins!
 " There seems not to be a way to disable tohtml.vim
@@ -418,6 +431,11 @@ let g:loaded_ZoomWin         = 1
 let g:loaded_flatfoot        = 1
 let loaded_rrhelper          = 1
 let loaded_spellfile_plugin  = 1
+
+" Load matchit.vim, but only if the user hasn't installed a newer version
+if !exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# ''
+   runtime! macros/matchit.vim
+endif
 
 "" Autocommands, commands and filetype settings
 if has('autocmd')
@@ -465,6 +483,8 @@ command! DiffOrig vnew | set buftype=nofile | read# | silent 0delete_ |
 nmap <f5> :update<bar>make<cr>
 
 "" Load business specific vimrc
-if filereadable($HOME.'/.vimrc_after') | source $HOME/.vimrc_after | endif
+if filereadable($HOME.'/.vimrc_after')
+   source $HOME/.vimrc_after
+endif
 
 " vim: fdm=expr fde=getline(v\:lnum)=~'^""'?'>'.(matchend(getline(v\:lnum),'""*')-1)\:'='
