@@ -149,7 +149,7 @@ else
       colorscheme desertEX
    endif
    set cursorline
-   " Highlight text beyond the 80th column
+   " \8 to highlight text beyond the 80th column
    nmap <silent> <leader>8 :call highlight#column81()<cr>
 endif
 
