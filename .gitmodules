@@ -90,23 +90,23 @@
    path = bundle/chess
    url = git@github.com:kurkale6ka/vim-chess.git
 [submodule "bundle/_my/chess"]
-	path = bundle/_my/chess
-	url = git@github.com:kurkale6ka/vim-chess.git
+   path = bundle/_my/chess
+   url = git@github.com:kurkale6ka/vim-chess.git
 [submodule "bundle/_my/blanklines"]
-	path = bundle/_my/blanklines
-	url = git@github.com:kurkale6ka/vim-blanklines.git
+   path = bundle/_my/blanklines
+   url = git@github.com:kurkale6ka/vim-blanklines.git
 [submodule "bundle/_my/blockinsert"]
-	path = bundle/_my/blockinsert
-	url = git@github.com:kurkale6ka/vim-blockinsert.git
+   path = bundle/_my/blockinsert
+   url = git@github.com:kurkale6ka/vim-blockinsert.git
 [submodule "bundle/_my/pairs"]
-	path = bundle/_my/pairs
-	url = git@github.com:kurkale6ka/vim-pairs.git
+   path = bundle/_my/pairs
+   url = git@github.com:kurkale6ka/vim-pairs.git
 [submodule "bundle/_my/sequence"]
-	path = bundle/_my/sequence
-	url = git@github.com:kurkale6ka/vim-sequence.git
+   path = bundle/_my/sequence
+   url = git@github.com:kurkale6ka/vim-sequence.git
 [submodule "bundle/_my/swap"]
-	path = bundle/_my/swap
-	url = git@github.com:kurkale6ka/vim-swap.git
+   path = bundle/_my/swap
+   url = git@github.com:kurkale6ka/vim-swap.git
 [submodule "bundle/_my/desertEX"]
-	path = bundle/_my/desertEX
-	url = git@github.com:kurkale6ka/vim-desertEX.git
+   path = bundle/_my/desertEX
+   url = git@github.com:kurkale6ka/vim-desertEX.git
