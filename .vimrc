@@ -4,7 +4,8 @@ set all&
 set nocompatible
 
 let &runtimepath = substitute(&runtimepath, '\.\zevim', '', 'g')
-call pathogen#infect('~/vim/bundle/_my/{}', '~/vim/bundle/{}')
+
+execute pathogen#infect('~/vim/.bundle/{}', '~/vim/bundle/{}')
 
 if has('autocmd')
    filetype on
@@ -144,7 +145,9 @@ endif
 if version < 703
    colorscheme tdefault
 else
-   if isdirectory($HOME.'/vim/bundle/_my/desertEX') | colorscheme desertEX | endif
+   if isdirectory($HOME.'/vim/.bundle/desertEX')
+      colorscheme desertEX
+   endif
    set cursorline
    " Highlight text beyond the 80th column
    nmap <silent> <leader>8 :call highlight#column81()<cr>
@@ -516,15 +519,21 @@ if has('autocmd')
       " Jump to the last spot the cursor was at in a file when reading it
       autocmd BufReadPost *
          \ if line("'\"") > 0 && line("'\"") <= line('$') && &filetype != 'gitcommit' |
-         \ execute 'normal! g`"' |
+         \    execute 'normal! g`"' |
          \ endif
 
       " When reading a file, :cd to its parent directory unless it's a help
       " file. This replaces 'autochdir which doesn't work properly.
-      autocmd BufEnter * if &filetype != 'help' | silent! cd %:p:h | endif
+      autocmd BufEnter *
+         \ if &filetype != 'help' |
+         \    silent! cd %:p:h |
+         \ endif
 
       " Delete EOL white spaces
-      autocmd BufWritePre * if &ft != 'markdown' | call spaces#remove() | endif
+      autocmd BufWritePre *
+         \ if &ft != 'markdown' |
+         \    call spaces#remove() |
+         \ endif
 
    augroup END
 endif

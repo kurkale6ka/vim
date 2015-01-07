@@ -1,3 +1,31 @@
+[submodule ".bundle/blanklines"]
+   path = .bundle/blanklines
+   url = git@github.com:kurkale6ka/vim-blanklines.git
+   ignore = dirty
+[submodule ".bundle/blockinsert"]
+   path = .bundle/blockinsert
+   url = git@github.com:kurkale6ka/vim-blockinsert.git
+   ignore = dirty
+[submodule ".bundle/chess"]
+   path = .bundle/chess
+   url = git@github.com:kurkale6ka/vim-chess.git
+   ignore = dirty
+[submodule ".bundle/desertEX"]
+   path = .bundle/desertEX
+   url = git@github.com:kurkale6ka/vim-desertEX.git
+   ignore = dirty
+[submodule ".bundle/pairs"]
+   path = .bundle/pairs
+   url = git@github.com:kurkale6ka/vim-pairs.git
+   ignore = dirty
+[submodule ".bundle/sequence"]
+   path = .bundle/sequence
+   url = git@github.com:kurkale6ka/vim-sequence.git
+   ignore = dirty
+[submodule ".bundle/swap"]
+   path = .bundle/swap
+   url = git@github.com:kurkale6ka/vim-swap.git
+   ignore = dirty
 [submodule "bundle/surround"]
    path = bundle/surround
    url = git://github.com/tpope/vim-surround.git
@@ -58,55 +86,15 @@
    path = bundle/nerdcommenter
    url = git://github.com/scrooloose/nerdcommenter.git
    ignore = dirty
-[submodule "bundle/pairs"]
-   path = bundle/pairs
-   url = git@github.com:kurkale6ka/vim-pairs.git
-[submodule "bundle/blockinsert"]
-   path = bundle/blockinsert
-   url = git@github.com:kurkale6ka/vim-blockinsert.git
-[submodule "bundle/swap"]
-   path = bundle/swap
-   url = git@github.com:kurkale6ka/vim-swap.git
-[submodule "bundle/sequence"]
-   path = bundle/sequence
-   url = git@github.com:kurkale6ka/vim-sequence.git
-[submodule "bundle/blanklines"]
-   path = bundle/blanklines
-   url = git@github.com:kurkale6ka/vim-blanklines.git
 [submodule "bundle/syntastic"]
    path = bundle/syntastic
    url = git://github.com/scrooloose/syntastic.git
    ignore = dirty
-[submodule "bundle/desertEx"]
-   path = bundle/desertEx
-   url = git@github.com:kurkale6ka/vim-desertEx.git
 [submodule "bundle/markdown"]
    path = bundle/markdown
    url = git://github.com/tpope/vim-markdown.git
+   ignore = dirty
 [submodule "bundle/json"]
    path = bundle/json
    url = https://github.com/elzr/vim-json.git
-[submodule "bundle/chess"]
-   path = bundle/chess
-   url = git@github.com:kurkale6ka/vim-chess.git
-[submodule "bundle/_my/chess"]
-   path = bundle/_my/chess
-   url = git@github.com:kurkale6ka/vim-chess.git
-[submodule "bundle/_my/blanklines"]
-   path = bundle/_my/blanklines
-   url = git@github.com:kurkale6ka/vim-blanklines.git
-[submodule "bundle/_my/blockinsert"]
-   path = bundle/_my/blockinsert
-   url = git@github.com:kurkale6ka/vim-blockinsert.git
-[submodule "bundle/_my/pairs"]
-   path = bundle/_my/pairs
-   url = git@github.com:kurkale6ka/vim-pairs.git
-[submodule "bundle/_my/sequence"]
-   path = bundle/_my/sequence
-   url = git@github.com:kurkale6ka/vim-sequence.git
-[submodule "bundle/_my/swap"]
-   path = bundle/_my/swap
-   url = git@github.com:kurkale6ka/vim-swap.git
-[submodule "bundle/_my/desertEX"]
-   path = bundle/_my/desertEX
-   url = git@github.com:kurkale6ka/vim-desertEX.git
+   ignore = dirty
