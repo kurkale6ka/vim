@@ -7,6 +7,7 @@ let &runtimepath = substitute(&runtimepath, '\.\zevim', '', 'g')
 
 execute pathogen#infect('.bundle/{}', 'bundle/{}')
 
+"" Filetype + syntax
 if has('autocmd')
    filetype on
    filetype indent on
@@ -429,8 +430,8 @@ xmap ]<cr> <esc>'<dd'>p==
 xmap [<cr> <esc>'>dd'<p==
 
 " Copy the top line of the selection under the bottom one
-xmap ]t    <esc>'<yy'>p==
-xmap [t    <esc>'>yy'<p==
+xmap ]t <esc>'<yy'>p==
+xmap [t <esc>'>yy'<p==
 
 "" Spell check
 " \e to toggle spell errors
