@@ -5,7 +5,7 @@ set nocompatible
 
 let &runtimepath = substitute(&runtimepath, '\.\zevim', '', 'g')
 
-execute pathogen#infect('~/vim/.bundle/{}', '~/vim/bundle/{}')
+execute pathogen#infect('.bundle/{}', 'bundle/{}')
 
 if has('autocmd')
    filetype on
