@@ -151,12 +151,16 @@ else
    endif
 
    " \8 to highlight text beyond the 80th column
-   nmap <silent> <leader>8 :call highlight#column81()<cr>
+   nmap <silent> <leader>8 :call highlight#column()<cr>
 
    set cursorline
 endif
 
-match ColorColumn /\%81v./
+if empty(&textwidth)
+   match ColorColumn /\%81v./
+else
+   " match ColorColumn /\%/.&tw./v./ " TODO
+endif
 
 command! Syntax call syntax#stack()
 
