@@ -22,10 +22,12 @@ endif
 set backup
 set backupskip=
 set backupext=~
+
 set noautowrite
 set noautowriteall
-set writebackup
 set noautoread
+
+set writebackup
 
 if version >= 703
    set undofile
@@ -35,22 +37,13 @@ nnoremap gr 999<c-r>
 
 set viminfo^=! " save uppercase global variables
 
-"" Edit, (sudo)Write, write to shell
-command! Edit  browse edit
-command! Write browse write
-command! WriteSudo write !sudo tee % > /dev/null
-
-command! Shell silent write !sh
-
 "" Search and replace
 set incsearch
 set hlsearch
+
 set ignorecase
 set smartcase
 set infercase
-
-" Ctrl + l: stop highlighting and redraw the screen
-nnoremap <silent> <c-l> :nohlsearch<cr><c-l>
 
 " \g for global
 nmap <leader>g    :global/<c-r><c-w>/
@@ -63,11 +56,13 @@ nmap <leader>s :%substitute/<c-r><c-w>//gc<left><left><left>
 nmap gc *Ncgn
 nmap gC #ncgn
 
+" Grepping
 set grepprg=command\ grep\ -niE\ --exclude='*~'\ --exclude\ tags\ $*\ /dev/null
 
 " \bg for grepping in buffers
 nmap <leader>bg :Bgrep/<c-r><c-w>/<cr>
 
+" Finding
 set path+=$HOME/github/**
 
 command! -nargs=+ Find call find#files(<f-args>)
@@ -83,49 +78,36 @@ if has('multi_byte')
 endif
 
 set fileencodings=ucs-bom,utf-8,default,cp1251,latin1
-
-" Special chars for wrapping + list view: ▷⋅⋅⋅, ⋅, ↪
-if &encoding =~ '^u\(tf\|cs\)' " unicode
-
-   " ▷⋅⋅⋅ tabs = arrow + dots
-   let s:arr = nr2char(9655) " use U+25B7 for an arrow (▷) and
-   let s:dot = nr2char(8901) " use U+22C5 for a  dot   (⋅)
-
-   execute 'set listchars=tab:'    . s:arr . s:dot
-   execute 'set listchars+=trail:' . s:dot
-   execute 'set listchars+=nbsp:'  . s:dot
-
-   set linebreak
-
-   " arrow + space (↪ ) at the beginning of wrapped lines
-   let &showbreak=nr2char(8618).' '
-
-   set list
-   " \<tab> to toggle list display
-   nmap <leader><tab> :setlocal invlist list?<cr>
-endif
-
 set fileformats=unix,mac,dos
 
 "" Alerts and visual feedback
 set number
 set numberwidth=1
-set matchpairs+=<:>
+
 set showmatch
 set matchtime=2
+set matchpairs+=<:>
+
 set confirm
-set lazyredraw
-set display+=lastline
-set scrolloff=2
-set shortmess=flmnrxoOtT
 set showcmd
 set report=0
-set virtualedit=all
-set whichwrap=b,s,<,>,[,]
+set shortmess=flmnrxoOtT
+set display+=lastline
+set history=7000
+
+set lazyredraw
+set scrolloff=2
 
 " No flashing
-set visualbell " visual bell instead of beeps
-set t_vb=      " disable the visual effect
+set visualbell " visual bell instead of beeps, but...
+set t_vb=      " ...disable the visual effect :)
+
+if has('folding')
+   set foldnestmax=1 " maximum nesting for indent and syntax
+endif
+
+" Ctrl + l: stop highlighting and redraw the screen
+nnoremap <silent> <c-l> :nohlsearch<cr><c-l>
 
 " Print working directory
 nnoremap <c-g> 2<c-g>
@@ -134,8 +116,26 @@ nnoremap <c-g> 2<c-g>
 nmap <leader>o :call options#show_values(0)<cr>
 nmap <leader>O :call options#show_values(1)<cr>
 
-if has('folding')
-   set foldnestmax=1 " maximum nesting for indent and syntax
+" List view + text wrapping symbols
+if &encoding =~ '^u\(tf\|cs\)' " unicode
+
+   let s:arr = nr2char(9655) " U+25B7: ▷
+   let s:dot = nr2char(8901) " U+22C5: ⋅
+
+   " ▷⋅⋅⋅ tabs = arrow + dots
+   execute 'set listchars=tab:'    .s:arr.s:dot
+   execute 'set listchars+=trail:' .s:dot
+   execute 'set listchars+=nbsp:'  .s:dot
+
+   set linebreak
+
+   " ↪ at the beginning of wrapped lines
+   let &showbreak = nr2char(8618).' '
+
+   set list
+
+   " \<tab> to toggle list display
+   nmap <leader><tab> :setlocal invlist list?<cr>
 endif
 
 "" Colorschemes
@@ -149,26 +149,33 @@ else
    if isdirectory($HOME.'/vim/.bundle/desertEX')
       colorscheme desertEX
    endif
+
    set cursorline
+
    " \8 to highlight text beyond the 80th column
    nmap <silent> <leader>8 :call highlight#column81()<cr>
 endif
 
 match ColorColumn /\%81v./
 
-"" Mouse
+command! Syntax call syntax#stack()
+
+"" Mouse in terminal + clipboard
 if has('mouse_xterm')
    set mouse=a
    set ttymouse=xterm2
    set timeoutlen=2000
    set ttimeoutlen=100
    set ttyscroll=3
+
    if has('xterm_clipboard')
       " TODO: re-enable when not buggy
       " set clipboard^=unnamedplus " y/d/c go to "" and "+
+
       " vim selections available in "+ for outside apps. The GUI equivalent is go+=P
       set clipboard^=autoselectplus
    endif
+
    " Vim bug: Only t_te, not t_op, gets sent when leaving an alt screen
    exe 'set t_te=' . &t_te . &t_op
 endif
@@ -182,17 +189,15 @@ if v:version > 703 || v:version == 703 && has("patch541")
    set formatoptions+=j " Delete comment when joining commented lines
 endif
 
-set nojoinspaces
-set paragraphs= " no wrongly defined paragraphs for non nroff,groff filetypes
-set autoindent
-
 nmap Q gqap
 
-set backspace=indent,eol,start
+set nojoinspaces
+set autoindent
 
+" Underline with ---s
 command! -nargs=? Underline call underline#current(<q-args>)
 
-" \u to underline with ---s
+" \u to underline
 nmap <leader>u :Underline<cr>
 
 " \z to squeeze lines
@@ -202,14 +207,11 @@ vmap <silent> <leader>z :<c-u>silent call squeeze#lines('v')<cr>
 " = + space to surround with empty lines
 nmap =<space> [<space>]<space>
 
-" Ctrl + Enter to open a line below in INSERT mode
-imap <c-cr> <esc>o
-imap <s-cr> <esc>O
-
 "" Tabs and shifting
-set expandtab
 set tabstop=8
 set softtabstop=3
+set expandtab
+
 set shiftwidth=3
 set shiftround
 
@@ -269,7 +271,7 @@ nmap <silent> <c-w>t :tabnew<cr>
 nmap <silent> <c-w>e     :WinFullScreen<cr>
 nmap <silent> <c-w><c-e> :WinFullScreen<cr>
 
-"" Command line
+"" Wild menu & status line
 set wildmenu
 set wildmode=full
 set wildignore+=*~,*.swp,tags
@@ -279,15 +281,7 @@ if version >= 703
    set wildignorecase
 endif
 
-set ruler
-set laststatus=2
-set history=7000
-
-" Switch between command line commands
-" :g/pattern -> /pattern... for now all it does is copy pattern to "*
-cmap <silent> <c-g> <c-f>:call cmdline#switch('g')<cr>
-
-"" Status line
+" Status line
 set statusline=%<%L     " number of lines
 set statusline+=\ ❬\ %t " file name (tail)
 
@@ -302,6 +296,8 @@ set statusline+=%=%{expand('#:t')\ !=\ expand('%:t')\ &&\ !empty(expand('#:t'))?
 set statusline+=%{empty(&ft)?'[]-':'['.&ft.']-'} " ft
 set statusline+=%{&fileformat}                   " ff
 set statusline+=\ ❭\ %P                          " percentage through file
+
+set laststatus=2
 
 "" Tabline
 set showtabline=1
@@ -321,6 +317,9 @@ xmap <silent> Y :<c-u>call copy#selection()<cr>
 " \, Ctrl + l to copy text to the command line
 nmap <leader><c-l> :<c-r>=copy#line()<cr>
 
+" ^g to copy pattern to "* (:g/pattern -> /pattern...)
+cmap <silent> <c-g> <c-f>:call cmdline#switch('g')<cr>
+
 " paste over selected text using the previous yank
 xmap [p "0p
 
@@ -331,41 +330,10 @@ nmap ]P :pu<cr>
 " \p to toggle 'paste
 nmap <leader>p :set invpaste paste?<cr>
 
-"" Help
-" \h to get help for the word under the cursor
-nmap <leader>h    :help <c-r><c-w><cr>
-xmap <leader>h "*y:help <c-r>*<cr>
-
-" F1 to get a full screen help window
-nmap <silent> <f1>      :help<bar>only<cr>
-imap <silent> <f1> <c-o>:help<bar>only<cr>
-
-"" Moving around
-" <Home> to move to the first char on the line
-map  <home> ^
-imap <home> <c-o>I
-cmap <home> <c-f>^<c-c>
-
-cnoremap <c-a> <home>
-
-" Ctrl + Up to go backwards by a paragraph
-imap <c-up> <c-o>{
-map  <c-up>      {
-
-imap <c-down> <c-o>}
-map  <c-down>      }
-
-nmap <silent> gm :call move#gm()<cr>
-omap <silent> gm :call move#gm()<cr>
-
-" Jump to file (A-Z marks) on last position
-for nr in range(65, 90)
-   " TODO: report issue: when file opened in another Vim instance, g`" not respected
-   execute 'nnoremap <silent> `'.nr2char(nr).' :normal! `'.nr2char(nr).'g`"<cr>'
-endfor
-
-"" Deletion
+"" Deletions
 nnoremap <bs> "_X
+
+set backspace=indent,eol,start
 
 " \u
 inoremap <c-u> <c-g>u<c-u>
@@ -390,6 +358,49 @@ nmap <silent> dl :%substitute/\_s*\%$//<bar>nohlsearch<cr>``
 
 " Delete a whole line to the small register (and "" of course)
 nmap did ^D"_dd
+
+command! RemoveSpaces call spaces#remove()
+
+"" Moving around
+set virtualedit=all
+set whichwrap=b,s,<,>,[,]
+set paragraphs= " no wrongly defined paragraphs for non nroff,groff filetypes
+
+cnoremap <c-a> <home>
+
+" <Home> to move to the first char on the line
+map  <home> ^
+imap <home> <c-o>I
+cmap <home> <c-f>^<c-c>
+
+" Ctrl + Up to go backwards by a paragraph
+imap <c-up> <c-o>{
+map  <c-up>      {
+
+imap <c-down> <c-o>}
+map  <c-down>      }
+
+" Enhanced gm
+nmap <silent> gm :call move#gm()<cr>
+omap <silent> gm :call move#gm()<cr>
+
+" Jump to file (A-Z marks) on last position
+for nr in range(65, 90)
+   " TODO: report issue: when file opened in another Vim instance, g`" not respected
+   execute 'nnoremap <silent> `'.nr2char(nr).' :normal! `'.nr2char(nr).'g`"<cr>'
+endfor
+
+" Let [[, ]] work even if the { is not in the first column
+nnoremap <silent> [[ :call search('^[^[:space:]]\@=.*{$', 'besW')<cr>
+nnoremap <silent> ]] :call search('^[^[:space:]]\@=.*{$',  'esW')<cr>
+
+onoremap <expr> [[
+   \ (search('^[^[:space:]]\@=.*{$', 'besW') &&
+   \ (setpos("''", getpos('.')) <bar><bar> 1) ? "''" : "\<esc>")
+
+onoremap <expr> ]]
+   \ (search('^[^[:space:]]\@=.*{$',  'esW') &&
+   \ (setpos("''", getpos('.')) <bar><bar> 1) ? "''" : "\<esc>")
 
 "" Text-object: file
 xnoremap af ggVoG
@@ -433,6 +444,12 @@ xmap [<cr> <esc>'>dd'<p==
 xmap ]t <esc>'<yy'>p==
 xmap [t <esc>'>yy'<p==
 
+" Let } select the current column only when in visual-block mode
+set nostartofline
+
+xnoremap <expr> } mode() == '<c-v>' ? line("'}") - 1 . 'G' : '}'
+xnoremap <expr> { mode() == '<c-v>' ? line("'{") + 1 . 'G' : '{'
+
 "" Spell check
 " \e to toggle spell errors
 nmap <leader>e :setlocal spell! spell?<cr>
@@ -455,20 +472,6 @@ cabbrev frm fmr
 iabbrev _me Dimitar Dimitrov
 iabbrev _mee mitkofr@yahoo.fr
 
-"" In visual-block mode: } selects the current column
-set nostartofline
-
-xnoremap <expr> } mode() == '<c-v>' ? line("'}") - 1 . 'G' : '}'
-xnoremap <expr> { mode() == '<c-v>' ? line("'{") + 1 . 'G' : '{'
-
-"" [[, ]] work even if the { is not in the first column
-nnoremap <silent> [[ :call search('^[^[:space:]]\@=.*{$', 'besW')<cr>
-nnoremap <silent> ]] :call search('^[^[:space:]]\@=.*{$',  'esW')<cr>
-onoremap <expr>   [[ (search('^[^[:space:]]\@=.*{$', 'ebsW') &&
-   \ (setpos("''  ", getpos('.')) <bar><bar> 1) ? "''" : "\<esc>")
-onoremap <expr>   ]] (search('^[^[:space:]]\@=.*{$',  'esW') &&
-   \ (setpos("''", getpos('.')) <bar><bar> 1) ? "''" : "\<esc>")
-
 "" Add/Subtract
 nmap <silent>         <c-a> :<c-u>call number#change('a', 'f')<cr>
 nmap <silent> <leader><c-a> :<c-u>call number#change('a', 'b')<cr>
@@ -489,6 +492,7 @@ let g:UltiSnipsJumpBackwardTrigger = '<s-tab>'
 
 let NERDSpaceDelims = 1
 let NERDCommentWholeLinesInVMode = 1
+" \\ to toggle comments
 map <leader><leader> <plug>NERDCommenterToggle
 
 if version < 703
@@ -512,7 +516,7 @@ if !exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# ''
    runtime! macros/matchit.vim
 endif
 
-"" Autocommands, commands and filetype settings
+"" Autocommands, filetype settings and commands
 if has('autocmd')
    augroup RC_AUTOCOMMANDS
       autocmd!
@@ -552,14 +556,31 @@ nmap <leader>fb :set filetype=sh<cr>
 nmap <leader>fc :set filetype=c<cr>
 nmap <leader>fr :set filetype=ruby<cr>
 
-command!          RemoveSpaces call  spaces#remove()
-command!          Syntax       call  syntax#stack()
-command! -nargs=* Ascii        call   ascii#codes(<f-args>)
-command! -nargs=+ Scratch      call scratch#buffer(               <f-args>)
-command! -nargs=? Scriptnames  call scratch#buffer('scriptnames', <f-args>)
+command! -nargs=* Ascii call ascii#codes(<f-args>)
 
-command! DiffOrig vnew | set buftype=nofile | read# | silent 0delete_ |
-   \ diffthis | wincmd p | diffthis
+command! -nargs=+ Scratch     call scratch#buffer(               <f-args>)
+command! -nargs=? Scriptnames call scratch#buffer('scriptnames', <f-args>)
+
+" View changes (not yet saved) to a file since editing it (d_ deletes to "_)
+command! DiffOrig
+   \ vnew | set bt=nofile | r# | silent 0d_ | diffthis | wincmd p | diffthis
+
+"" Edit and write commands
+command! Edit  browse edit
+command! Write browse write
+
+command! WriteSudo write !sudo tee % > /dev/null
+
+command! Shell silent write !sh
+
+"" Help
+" \h to get help for the word under the cursor
+nmap <leader>h    :help <c-r><c-w><cr>
+xmap <leader>h "*y:help <c-r>*<cr>
+
+" F1 to get a full screen help window
+nmap <silent> <f1>      :help<bar>only<cr>
+imap <silent> <f1> <c-o>:help<bar>only<cr>
 
 "" Load business specific vimrc
 if filereadable($HOME.'/.vimrc_after')
