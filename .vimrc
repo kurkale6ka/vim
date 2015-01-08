@@ -8,15 +8,11 @@ let &runtimepath = substitute(&runtimepath, '\.\zevim', '', 'g')
 execute pathogen#infect('.bundle/{}', 'bundle/{}')
 
 "" Filetype + syntax
-if has('autocmd')
-   filetype on
-   filetype indent on
-   filetype plugin on
-endif
+filetype on
+filetype indent on
+filetype plugin on
 
-if has('syntax')
-   syntax enable
-endif
+syntax enable
 
 "" Backups
 set backup
@@ -97,6 +93,10 @@ set history=7000
 
 set lazyredraw
 set scrolloff=2
+set ttyscroll=3
+
+set timeoutlen=2000 " 2s before timing out a mapping
+set ttimeoutlen=100 " 100 ms before timing out on a keypress
 
 " No flashing
 set visualbell " visual bell instead of beeps, but...
@@ -138,7 +138,7 @@ if &encoding =~ '^u\(tf\|cs\)' " unicode
    nmap <leader><tab> :setlocal invlist list?<cr>
 endif
 
-"" Colorschemes
+"" Colors and highlighting
 if &term =~ '^\(xterm\|screen\)$'
    set t_Co=256
 endif
@@ -150,35 +150,24 @@ else
       colorscheme desertEX
    endif
 
-   set cursorline
-
    " \8 to highlight text beyond the 80th column
    nmap <silent> <leader>8 :call highlight#column81()<cr>
+
+   set cursorline
 endif
 
 match ColorColumn /\%81v./
 
 command! Syntax call syntax#stack()
 
-"" Mouse in terminal + clipboard
-if has('mouse_xterm')
-   set mouse=a
-   set ttymouse=xterm2
-   set timeoutlen=2000
-   set ttimeoutlen=100
-   set ttyscroll=3
+set synmaxcol=160
 
-   if has('xterm_clipboard')
-      " TODO: re-enable when not buggy
-      " set clipboard^=unnamedplus " y/d/c go to "" and "+
+"" Terminal options (including mouse support)
+set mouse=a
+set ttymouse=xterm2
 
-      " vim selections available in "+ for outside apps. The GUI equivalent is go+=P
-      set clipboard^=autoselectplus
-   endif
-
-   " Vim bug: Only t_te, not t_op, gets sent when leaving an alt screen
-   exe 'set t_te=' . &t_te . &t_op
-endif
+" Bug: Only t_te, not t_op, gets sent when leaving an alt screen
+exe 'set t_te=' . &t_te . &t_op
 
 "" Text formating
 set formatoptions+=r " auto insert comment with <Enter>...
@@ -319,6 +308,16 @@ nmap <leader><c-l> :<c-r>=copy#line()<cr>
 
 " ^g to copy pattern to "* (:g/pattern -> /pattern...)
 cmap <silent> <c-g> <c-f>:call cmdline#switch('g')<cr>
+
+if has('xterm_clipboard')
+   " Selections available in "+ for outside apps. The GUI equivalent is go+=P
+   set clipboard^=autoselectplus
+endif
+
+" TODO: re-enable when not buggy
+" if has('xterm_clipboard') || has('gui_running')
+"    set clipboard^=unnamedplus " y/d/c go to "" and "+
+" endif
 
 " paste over selected text using the previous yank
 xmap [p "0p
