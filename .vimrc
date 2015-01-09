@@ -255,7 +255,7 @@ nnoremap <c-tab> <c-^>
 nmap <silent> <c-w><c-w> :wincmd p<cr>
 
 " Ctrl + w, N to create a new buffer over the current one
-nmap <silent> <c-w>N :enew<cr>
+nmap <silent> <c-w>N :leftabove vnew<cr>
 
 " Ctrl + w, t to create a new tab
 nmap <silent> <c-w>t :tabnew<cr>
