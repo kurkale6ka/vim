@@ -156,10 +156,16 @@ else
    set cursorline
 endif
 
-if empty(&textwidth)
-   match ColorColumn /\%81v./
-else
-   " match ColorColumn /\%/.&tw./v./ " TODO
+if has('autocmd')
+   augroup AUTOCMD_CC
+      autocmd!
+      autocmd BufEnter,FileType *
+         \ if empty(&textwidth) |
+         \    match ColorColumn /\%81v./ |
+         \ else |
+         \    execute 'match ColorColumn /\%'.(&textwidth + 1).'v./' |
+         \ endif
+   augroup END
 endif
 
 command! Syntax call syntax#stack()
@@ -521,7 +527,7 @@ endif
 
 "" Autocommands, filetype settings and commands
 if has('autocmd')
-   augroup RC_AUTOCOMMANDS
+   augroup AUTOCMDS_ALL
       autocmd!
 
       " Jump to the last spot the cursor was at in a file when reading it
@@ -539,7 +545,7 @@ if has('autocmd')
 
       " Delete EOL white spaces
       autocmd BufWritePre *
-         \ if &ft != 'markdown' |
+         \ if &filetype != 'markdown' |
          \    call spaces#remove() |
          \ endif
 
