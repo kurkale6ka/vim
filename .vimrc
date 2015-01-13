@@ -1,6 +1,10 @@
 " Author: kurkale6ka <Dimitar Dimitrov>
 
-set all&
+" Don't reset &runtimepath, if re-sourcing my vimrc
+if exists('g:loaded_pathogen') == 0
+   set all&
+endif
+
 set nocompatible
 
 let &runtimepath = substitute(&runtimepath, '\.\zevim', '', 'g')
