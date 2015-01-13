@@ -1,5 +1,13 @@
 clearsnippets
 
+snippet 'source|///' "Static" r
+source => 'puppet:///modules/${1:module}/$2',
+endsnippet
+
+snippet 'content|template' "Template" r
+content => template('${1:module}/$2.erb'),
+endsnippet
+
 snippet case "Case"
 case \$${1:fact} {
   ${2:attr1}: {${3}}
