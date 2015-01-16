@@ -10,9 +10,9 @@ endsnippet
 
 snippet case "Case"
 case \$${1:fact} {
-  ${2:attr1}: {${3}}
-  ${4:attr2}: {${5}}
-  default: { fail("${6}") }
+  ${2:attr1}: {$3}
+  ${4:attr2}: {$5}
+  default: { fail("$6") }
 }
 endsnippet
 
@@ -20,18 +20,18 @@ snippet case "Selector"
 \$${1:var} = \$${2:fact} ? {
   ${3:attr1} => ${4:val1},
   ${5:attr2} => ${6:val2},
-  default => ${7},
+  default => $7,
 }
 endsnippet
 
 snippet if
-if ${1} {
-  ${2}
+if $1 {
+  $2
 }
 endsnippet
 
 snippet p
-package { '${1}':
-  ${2}
+package { '$1':
+  $2
 }
 endsnippet
