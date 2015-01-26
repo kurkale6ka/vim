@@ -29,14 +29,8 @@ culpa qui officia deserunt mollit anim id est laborum.
 endsnippet
 
 snippet cron
-SHELL=/bin/bash
-
-# NB: %s are newlines and need to be escaped: % -> \%
-
-# ranges and steps: 0-23/2 (<=> 0,2,4,6,8,10,12,14,16,18,20,22)
-#
-#   *       *       *            *                      *                root  /path/to/command
-# 0-59m | 0-23h | 1-31d | 1-12m (Jan-Dec) | 1-6 (Mon-Sat, 0;7 -> Sun) | [user] command
+#   *       *       *            *               *
+# 0-59m | 0-23h | 1-31d | 1-12 (Jan-Dec) | 1-6 (Mon-Sat) | user /path/to/command
 
 * * * * *
 endsnippet
