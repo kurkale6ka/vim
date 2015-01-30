@@ -174,7 +174,7 @@ endif
 
 command! Syntax call syntax#stack()
 
-set synmaxcol=160
+set synmaxcol=91
 
 "" Terminal options (including mouse support)
 set mouse=a
