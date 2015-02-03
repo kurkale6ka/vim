@@ -24,7 +24,7 @@ set mouseshape=i-r:beam,s:updown,sd:udsizing,vs:leftright,vd:lrsizing,m:no,
    \v:arrow
 
 "" Font size
-set guifont=DejaVu\ Sans\ Mono\ 13
+set guifont=DejaVu\ Sans\ Mono\ 12
 
 command! -count=1 -bar Bigger  :let &gfn = substitute(&gfn,'\d\+$','\=submatch(0)+<count>','')
 command! -count=1 -bar Smaller :let &gfn = substitute(&gfn,'\d\+$','\=submatch(0)-<count>','')
