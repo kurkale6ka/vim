@@ -67,10 +67,10 @@ b=$(tput bold)
 u=$(tput smul) # underline
 r=$(tput sgr0) # reset
 
-# Bold white on blue background
-LWhite=$(printf %s "$b"; tput setaf 7; tput setab 4)
+# set(af|ab) -> foreground|background
+L${1:White}=$(printf %s "$b"; tput setaf ${2:7}; tput setab 4)
 
-echo "${LWhite}Hello World${r}"
+echo "\${L$1}Hello World${r}"
 endsnippet
 
 ## Loops
