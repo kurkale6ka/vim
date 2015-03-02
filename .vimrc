@@ -97,7 +97,9 @@ set history=7000
 
 set lazyredraw
 set scrolloff=2
-set ttyscroll=3
+if ! has('nvim')
+   set ttyscroll=3
+endif
 
 set timeoutlen=2000 " 2s before timing out a mapping
 set ttimeoutlen=100 " 100 ms before timing out on a keypress
