@@ -14,6 +14,9 @@ augroup FILETYPE_DETECT
    autocmd BufNewFile,BufRead vipw.*              set filetype=passwd
    autocmd BufNewFile,BufRead iptables            set filetype=iptables
 
+   autocmd BufNewFile,BufRead ~/github/zsh/.zsh/autoload/*
+      \ set filetype=zsh
+
    autocmd BufNewFile,BufRead *.txt,*.text,README,INSTALL,NEWS,TODO
       \ set filetype=txt
 
