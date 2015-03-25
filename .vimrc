@@ -63,7 +63,7 @@ set grepprg=command\ grep\ -niE\ --exclude='*~'\ --exclude\ tags\ $*\ /dev/null
 nmap <leader>bg :Bgrep/<c-r><c-w>/<cr>
 
 " Finding
-set path+=$HOME/github/**
+set path+=$HOME/github/**,~/github/zsh/.zsh/**
 
 command! -nargs=+ Find call find#files(<f-args>)
 
