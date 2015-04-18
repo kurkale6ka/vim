@@ -5,8 +5,9 @@ snippet #
 #! /usr/bin/env ${1:zsh}
 endsnippet
 
-# snippet read
-# endsnippet
+snippet read
+read '${1:var}?${2:prompt}: '
+endsnippet
 
 snippet p
 print -l ${1}
