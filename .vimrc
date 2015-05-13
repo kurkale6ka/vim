@@ -158,9 +158,9 @@ else
 
    " \8 to highlight text beyond the 80th column
    nmap <silent> <leader>8 :call highlight#column()<cr>
-
-   set cursorline
 endif
+
+set cursorline
 
 if has('autocmd')
    augroup AUTOCMD_CC
