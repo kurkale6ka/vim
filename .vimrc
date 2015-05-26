@@ -180,7 +180,9 @@ set synmaxcol=301
 
 "" Terminal options (including mouse support)
 set mouse=a
-set ttymouse=xterm2
+if ! has('nvim')
+   set ttymouse=xterm2
+endif
 
 " Bug: Only t_te, not t_op, gets sent when leaving an alt screen
 exe 'set t_te=' . &t_te . &t_op
