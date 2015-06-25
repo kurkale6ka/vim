@@ -56,7 +56,7 @@ nmap <leader>s :%substitute/<c-r><c-w>//gc<left><left><left>
 nmap <silent> <leader>* :<c-u>let @/ = '\<'.expand('<cword>').'\>'<bar>set hlsearch<c-m>
 xmap <silent> <leader>* :<c-u>let @/ = getreg('*')<bar>set hlsearch<c-m>
 
-nmap <silent> <leader>g* :<c-u>let @/ = expand('<cword>')<bar>set hlsearch<c-m>
+nmap <silent> g<leader>* :<c-u>let @/ = expand('<cword>')<bar>set hlsearch<c-m>
 
 " Highlight current word and change using cgn. Next one downwards
 nmap gc *Ncgn
