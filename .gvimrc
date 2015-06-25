@@ -24,7 +24,11 @@ set mouseshape=i-r:beam,s:updown,sd:udsizing,vs:leftright,vd:lrsizing,m:no,
    \v:arrow
 
 "" Font size
-set guifont=DejaVu\ Sans\ Mono\ 12
+if has('gui_macvim')
+   set guifont=DejaVu\ Sans\ Mono:h13
+else
+   set guifont=DejaVu\ Sans\ Mono\ 12
+endif
 
 command! -count=1 -bar Bigger  :let &gfn = substitute(&gfn,'\d\+$','\=submatch(0)+<count>','')
 command! -count=1 -bar Smaller :let &gfn = substitute(&gfn,'\d\+$','\=submatch(0)-<count>','')
