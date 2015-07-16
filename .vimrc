@@ -19,9 +19,11 @@ filetype plugin on
 syntax enable
 
 "" Backups
-set backup
-set backupskip=
+if empty($SSH_CONNECTION)
+   set backup
+endif
 set backupext=~
+set backupskip=
 
 set noautowrite
 set noautowriteall
@@ -29,7 +31,7 @@ set noautoread
 
 set writebackup
 
-if version >= 703
+if version >= 703 && empty($SSH_CONNECTION)
    set undofile
 endif
 
