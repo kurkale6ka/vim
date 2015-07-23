@@ -170,28 +170,51 @@ endsnippet
 snippet h
 shopt -s extglob
 
-if [[ \$1 == -@(h|-h)* ]] || (($# == 0))
-then
+_help() {
    info='Usage: ${1}'
-   if (($#))
-   then echo "$info"    ; exit 0
-   else echo "$info" >&2; exit 1
+
+   if ((\$1 == 0))
+   then echo "$info"
+   else echo "$info" >&2
    fi
-fi
+
+   exit "\$1"
+}
+
+[[ \$1 == -@(h|-h)* ]] && _help 0
 endsnippet
 
 snippet help
 shopt -s extglob
 
-if [[ \$1 == -@(h|-h)* ]] || (($# == 0))
-then
+## Colors
+_bld="$(tput bold)"
+_red="$(printf %s "$_bld"; tput setaf 1)"
+_res="$(tput sgr0)"
+
+## Help
+_help() {
 read -r -d $'\0' info << 'HELP'
-Usage: ${1}
+Usage:
+   ${1}
 HELP
-   if (($#))
-   then echo "$info"    ; exit 0
-   else echo "$info" >&2; exit 1
-   fi
+
+if ((\$1 == 0))
+then echo "$info"
+else echo "$info" >&2
+fi
+
+exit "\$1"
+}
+
+## Checks
+[[ \$1 == -@(h|-h)* ]] && _help 0
+
+# Arguments
+if (($# != 2))
+then
+   echo "${_red}Wrong number of arguments$_res!" >&2
+   _help 1
 fi
 endsnippet
 
@@ -390,5 +413,3 @@ case "\$1" in
          *) h; exit 2 ;;
 esac
 endsnippet
-
-# vim: foldmethod=expr foldexpr=getline(v\:lnum)=~'^##'?'>1'\:'='
