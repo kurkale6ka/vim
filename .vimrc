@@ -578,6 +578,7 @@ nmap <leader>fx :set filetype=xml<cr>
 nmap <leader>fv :set filetype=vim<cr>
 nmap <leader>fl :set filetype=tex<cr>
 nmap <leader>fb :set filetype=sh<cr>
+nmap <leader>fz :set filetype=zsh<cr>
 nmap <leader>fc :set filetype=c<cr>
 nmap <leader>fr :set filetype=ruby<cr>
 
