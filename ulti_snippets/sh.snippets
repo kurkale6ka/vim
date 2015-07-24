@@ -63,14 +63,15 @@ snippet colors
 # 2 - Green    6 - Cyan
 # 3 - Yellow   7 - White
 
-b=$(tput bold)
-u=$(tput smul) # underline
-r=$(tput sgr0) # reset
+_bld="$(tput bold)"
+_udl="$(tput smul)" # underline
+_res="$(tput sgr0)" # reset
 
-# set(af|ab) -> foreground|background
-L${1:White}=$(printf %s "$b"; tput setaf ${2:7}; tput setab 4)
+# setaf -> foreground
+# setab -> background
+_${1:wht}=$(printf %s "$_bld"; tput setaf ${2:7}; tput setab 4)
 
-echo "\${L$1}Hello World${r}"
+echo "\${_$1}Hello World${_res}"
 endsnippet
 
 ## Loops
