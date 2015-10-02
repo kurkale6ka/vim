@@ -494,8 +494,9 @@ cabbrev waq wqa
 cabbrev mpa map
 cabbrev frm fmr
 
-iabbrev _me Dimitar Dimitrov
-iabbrev _mee mitkofr@yahoo.fr
+iabbrev :me: Dimitar Dimitrov
+iabbrev :smirk: ¬_¬
+iabbrev :shrug: ¯\_(ツ)_/¯
 
 "" Add/Subtract
 nmap <silent>         <c-a> :<c-u>call number#change('a', 'f')<cr>
