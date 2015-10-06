@@ -584,6 +584,7 @@ nmap <leader>fc :set filetype=c<cr>
 nmap <leader>fr :set filetype=ruby<cr>
 
 command! -nargs=* Ascii call ascii#codes(<f-args>)
+command! -nargs=1 Count exe('%s/'.<q-args>.'//gn')
 
 command! -nargs=+ Scratch     call scratch#buffer(               <f-args>)
 command! -nargs=? Scriptnames call scratch#buffer('scriptnames', <f-args>)
