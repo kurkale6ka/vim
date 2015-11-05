@@ -270,7 +270,8 @@ imap <c-pageup>   <c-o>:bprevious<cr>
 imap <c-pagedown> <c-o>:bnext<cr>
 
 " Ctrl + space to get a listing of buffers
-nmap <c-space> :ls<cr>:buffer<space>
+nmap <c-@>     :Buffers<cr>
+nmap <c-space> :Buffers<cr>
 
 " Ctrl + tab to switch to the alternate file
 nnoremap <c-tab> <c-^>
