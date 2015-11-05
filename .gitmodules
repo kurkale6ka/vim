@@ -78,10 +78,6 @@
    path = bundle/UltiSnips
    url = git://github.com/SirVer/ultisnips.git
    ignore = dirty
-[submodule "bundle/bufexplorer"]
-   path = bundle/bufexplorer
-   url = git://github.com/vim-scripts/bufexplorer.zip.git
-   ignore = dirty
 [submodule "bundle/nerdcommenter"]
    path = bundle/nerdcommenter
    url = git://github.com/scrooloose/nerdcommenter.git
