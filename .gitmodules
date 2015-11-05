@@ -94,3 +94,7 @@
    path = bundle/json
    url = https://github.com/elzr/vim-json.git
    ignore = dirty
+[submodule "bundle/fzf"]
+   path = bundle/fzf
+   url = git@github.com:junegunn/fzf.vim.git
+   ignore = dirty

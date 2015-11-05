@@ -11,6 +11,8 @@ let &runtimepath = substitute(&runtimepath, '\.\zevim', '', 'g')
 
 execute pathogen#infect('.bundle/{}', 'bundle/{}')
 
+set runtimepath+=~/.fzf
+
 "" Filetype + syntax
 filetype on
 filetype indent on
