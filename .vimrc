@@ -549,6 +549,9 @@ if !exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# ''
    runtime! macros/matchit.vim
 endif
 
+" Force a beam cursor since I know my terminal supports it
+let g:togglecursor_force = 'xterm'
+
 "" Autocommands, filetype settings and commands
 if has('autocmd')
    augroup AUTOCMDS_ALL

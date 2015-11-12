@@ -98,3 +98,6 @@
    path = bundle/fzf
    url = git@github.com:junegunn/fzf.vim.git
    ignore = dirty
+[submodule "bundle/cursor"]
+	path = bundle/cursor
+	url = git@github.com:jszakmeister/vim-togglecursor.git
