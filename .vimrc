@@ -224,6 +224,10 @@ vmap <silent> <leader>z :<c-u>silent call squeeze#lines('v')<cr>
 " = + space to surround with empty lines
 nmap =<space> [<space>]<space>
 
+" Ctrl + Enter to open a line below in INSERT mode
+imap <c-cr> <esc>o
+imap <s-cr> <esc>O
+
 "" Tabs and shifting
 set tabstop=8
 set softtabstop=3

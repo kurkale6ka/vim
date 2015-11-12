@@ -48,8 +48,4 @@ imap <c-s>a <c-o>:wall<cr>
 nmap <c-s><c-a>      :wall<cr>
 imap <c-s><c-a> <c-o>:wall<cr>
 
-"" Ctrl + Enter to open a line below in INSERT mode
-imap <c-cr> <esc>o
-imap <s-cr> <esc>O
-
 " vim: fdm=expr fde=getline(v\:lnum)=~'^""'?'>'.(matchend(getline(v\:lnum),'"""*')-1)\:'='
