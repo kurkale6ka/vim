@@ -136,6 +136,22 @@ do
 done
 endsnippet
 
+snippet opts
+OPTIND=1
+
+local opt
+while getopts ':${1}' opt
+do
+   case $opt in
+       ${2}) ${3} ;;
+      \?) echo "Invalid option: -$OPTARG" 1>&2
+          return 1 ;;
+   esac
+done
+
+shift $((OPTIND-1))
+endsnippet
+
 ## if
 snippet if "Commands" !
 if ${1:commands}
