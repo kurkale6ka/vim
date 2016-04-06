@@ -336,8 +336,8 @@ set modelines=3
 nmap Y y$
 xmap <silent> Y :<c-u>call copy#selection()<cr>
 
-" \, Ctrl + l to copy text to the command line
-nmap <leader><c-l> :<c-r>=copy#line()<cr>
+" copy whole line to the command line
+cmap <c-r><c-l> <c-r>=copy#line()<cr>
 
 " ^g to copy pattern to "* (:g/pattern -> /pattern...)
 cmap <silent> <c-g> <c-f>:call cmdline#switch('g')<cr>
