@@ -247,7 +247,7 @@ Plugins:
 * https://github.com/godlygeek/csapprox (gvim colorschemes for terminal)
 * https://github.com/godlygeek/tabular (align stuff vertically)
 * https://github.com/tpope/vim-surround (easier surrounding of text)
-* https://github.com/scrooloose/nerdcommenter (easier commenting of code)
+* https://github.com/tpope/vim-commentary (easier commenting of code)
 * https://github.com/SirVer/ultisnips (predefined snippets (skeletons) of text)
 * https://github.com/scrooloose/syntastic (syntax checking - compilation errors)
 

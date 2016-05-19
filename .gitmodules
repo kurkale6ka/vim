@@ -78,10 +78,6 @@
    path = bundle/UltiSnips
    url = git://github.com/SirVer/ultisnips.git
    ignore = dirty
-[submodule "bundle/nerdcommenter"]
-   path = bundle/nerdcommenter
-   url = git://github.com/scrooloose/nerdcommenter.git
-   ignore = dirty
 [submodule "bundle/syntastic"]
    path = bundle/syntastic
    url = git://github.com/scrooloose/syntastic.git
@@ -101,3 +97,6 @@
 [submodule "bundle/cursor"]
 	path = bundle/cursor
 	url = git@github.com:jszakmeister/vim-togglecursor.git
+[submodule "bundle/vim-commentary"]
+	path = bundle/vim-commentary
+	url = git@github.com:tpope/vim-commentary.git

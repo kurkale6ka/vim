@@ -62,10 +62,6 @@ xmap <silent> <leader>* :<c-u>let @/ = getreg('*')<bar>set hlsearch<c-m>
 
 nmap <silent> g<leader>* :<c-u>let @/ = expand('<cword>')<bar>set hlsearch<c-m>
 
-" Highlight current word and change using cgn. Next one downwards
-nmap gc *Ncgn
-nmap gC #ncgn
-
 " Grepping
 set grepprg=command\ grep\ -niE\ --exclude='*~'\ --exclude\ tags\ $*\ /dev/null
 
@@ -523,10 +519,8 @@ let g:UltiSnipsExpandTrigger       = '<tab>'
 let g:UltiSnipsJumpForwardTrigger  = '<tab>'
 let g:UltiSnipsJumpBackwardTrigger = '<s-tab>'
 
-let NERDSpaceDelims = 1
-let NERDCommentWholeLinesInVMode = 1
 " \\ to toggle comments
-map <leader><leader> <plug>NERDCommenterToggle
+map <leader><leader> gcc
 
 if version < 703
    let g:CSApprox_verbose_level = 0
