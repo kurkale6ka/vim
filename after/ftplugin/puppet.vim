@@ -1,3 +1,6 @@
+setlocal commentstring=#%s
+setlocal iskeyword-=:
+
 setlocal tabstop=8
 setlocal includeexpr=substitute(v:fname,'.\\{-1,}/\\(.\\+\\)','../templates/\\1','')
 
