@@ -2,6 +2,7 @@
 + tdefault.vim
 - colors/*
 - bundle/UltiSnips/
+- bundle/syntastic/
 - texmf
 - bg.utf-8.spl
 - es.utf-8.spl
