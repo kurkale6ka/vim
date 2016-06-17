@@ -4,3 +4,10 @@ priority 11
 snippet #
 #! /usr/bin/env ${1:python}
 endsnippet
+
+# File open
+snippet <>
+with open('$1', '${2:r}') as file:
+   for line in file:
+      $3 = [x.strip() for x in line.split('${4:|}')]
+endsnippet
