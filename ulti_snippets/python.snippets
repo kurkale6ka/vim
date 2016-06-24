@@ -11,3 +11,58 @@ with open('$1', '${2:r}') as file:
    for line in file:
       $3 = [x.strip() for x in line.split('${4:|}')]
 endsnippet
+
+snippet <
+$1 = input("$2? ")
+endsnippet
+
+snippet >
+print($1)
+endsnippet
+
+snippet if
+if $1:
+   $2
+endsnippet
+
+snippet ife
+if $1:
+   $2
+else:
+   $3
+endsnippet
+
+snippet :
+$1 = $2 if $3 else $4
+endsnippet
+
+snippet for
+for $1 in $2:
+   $3
+endsnippet
+
+snippet try
+try $1:
+   $2
+except ${3:ValueError}:
+   $4
+endsnippet
+
+snippet fun
+def $1($2):
+   ''' $3 '''
+   $4
+endsnippet
+
+snippet class
+class $1:
+   ''' $2 '''
+
+   def __init(self, $3):
+      self.__$3 = $3
+endsnippet
+
+snippet main
+if __name__  == "__main__":
+   $1
+endsnippet
