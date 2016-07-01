@@ -7,6 +7,7 @@ augroup FILETYPE_DETECT
    autocmd BufNewFile,BufRead /etc/httpd/*/*.conf set filetype=apache
    autocmd BufNewFile,BufRead *.ssi,*.sssi        set filetype=html
    autocmd BufNewFile,BufRead *.ftl               set filetype=xml
+   autocmd BufNewFile,BufRead *.epp               set filetype=eruby
    autocmd BufNewFile,BufRead *.pgn,*.chess       set filetype=pgn
    autocmd BufNewFile,BufRead syslog*.conf        set filetype=syslog
    autocmd BufNewFile,BufRead .tmux.conf          set filetype=tmux
