@@ -343,10 +343,9 @@ if has('xterm_clipboard')
    set clipboard^=autoselectplus
 endif
 
-" TODO: re-enable when not buggy
-" if has('xterm_clipboard') || has('gui_running')
-"    set clipboard^=unnamedplus " y/d/c go to "" and "+
-" endif
+if has('xterm_clipboard') || has('gui_running') || has('nvim')
+   set clipboard^=unnamedplus " y/d/c go to "" and "+
+endif
 
 " paste over selected text using the previous yank
 xmap [p "0p
