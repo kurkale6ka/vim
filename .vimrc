@@ -549,6 +549,24 @@ if system('grep -zo pangoterm /proc/"$(xdotool getwindowpid "$(xdotool getactive
    let g:togglecursor_force = 'xterm'
 endif
 
+" Mini yank
+map p <Plug>(miniyank-autoput)
+map P <Plug>(miniyank-autoPut)
+
+map <c-n> <Plug>(miniyank-cycle)
+
+" Neomake
+autocmd! BufWritePost * Neomake
+
+let g:neomake_warning_sign = {
+  \ 'text': 'W',
+  \ 'texthl': 'WarningMsg',
+  \ }
+let g:neomake_error_sign = {
+  \ 'text': 'E',
+  \ 'texthl': 'ErrorMsg',
+  \ }
+
 "" Autocommands, filetype settings and commands
 if has('autocmd')
    augroup AUTOCMDS_ALL
