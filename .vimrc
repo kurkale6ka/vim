@@ -549,11 +549,13 @@ if system('grep -zo pangoterm /proc/"$(xdotool getwindowpid "$(xdotool getactive
    let g:togglecursor_force = 'xterm'
 endif
 
-" Mini yank
-map p <Plug>(miniyank-autoput)
-map P <Plug>(miniyank-autoPut)
+if has('nvim')
+   " Mini yank
+   map p <Plug>(miniyank-autoput)
+   map P <Plug>(miniyank-autoPut)
 
-map <c-n> <Plug>(miniyank-cycle)
+   map <c-n> <Plug>(miniyank-cycle)
+endif
 
 " Neomake
 autocmd! BufWritePost * Neomake
