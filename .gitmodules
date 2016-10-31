@@ -18,10 +18,6 @@
    path = .bundle/pairs
    url = git@github.com:kurkale6ka/vim-pairs.git
    ignore = dirty
-[submodule ".bundle/sequence"]
-   path = .bundle/sequence
-   url = git@github.com:kurkale6ka/vim-sequence.git
-   ignore = dirty
 [submodule ".bundle/swap"]
    path = .bundle/swap
    url = git@github.com:kurkale6ka/vim-swap.git
