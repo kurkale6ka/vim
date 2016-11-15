@@ -62,6 +62,10 @@ xmap <silent> <leader>* :<c-u>let @/ = getreg('*')<bar>set hlsearch<c-m>
 
 nmap <silent> g<leader>* :<c-u>let @/ = expand('<cword>')<bar>set hlsearch<c-m>
 
+if has('nvim')
+   set inccommand=nosplit
+endif
+
 " Grepping
 set grepprg=command\ grep\ -niE\ --exclude='*~'\ --exclude\ tags\ $*\ /dev/null
 
