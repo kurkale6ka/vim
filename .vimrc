@@ -159,6 +159,10 @@ if &term =~ '^\(xterm\|screen\)$'
    set t_Co=256
 endif
 
+if has('nvim')
+   set termguicolors
+endif
+
 if version < 703
    colorscheme tdefault
 else
@@ -525,7 +529,9 @@ let g:UltiSnipsJumpBackwardTrigger = '<s-tab>'
 " \\ to toggle comments
 map <leader><leader> gcc
 
-if version < 703
+if has('nvim')
+   let g:CSApprox_loaded = 1
+elseif version < 703
    let g:CSApprox_verbose_level = 0
 endif
 
