@@ -1,17 +1,10 @@
 " Author: kurkale6ka <Dimitar Dimitrov>
 
-" Don't reset &runtimepath, if re-sourcing my vimrc
-if exists('g:loaded_pathogen') == 0
-   set all&
-endif
+set all&
 
 set nocompatible
 
 let &runtimepath = substitute(&runtimepath, '\.\zevim', '', 'g')
-
-execute pathogen#infect('.bundle/{}', 'bundle/{}')
-
-set runtimepath+=~/.fzf
 
 "" Filetype + syntax
 filetype on
@@ -19,6 +12,14 @@ filetype indent on
 filetype plugin on
 
 syntax enable
+
+" Syntax based omni completion
+if has("autocmd") && exists("+omnifunc")
+   autocmd Filetype *
+      \ if &omnifunc == "" |
+      \         setlocal omnifunc=syntaxcomplete#Complete |
+      \ endif
+endif
 
 "" Backups
 if empty($SSH_CONNECTION)
@@ -89,6 +90,108 @@ endif
 
 set fileencodings=ucs-bom,utf-8,default,cp1251,latin1
 set fileformats=unix,mac,dos
+
+"" Plugins
+call plug#begin('~/.vim/plugged')
+Plug '~/.vim/plugged/bufgrep'
+Plug '~/.vim/plugged/unicodename'
+Plug '~/.vim/plugged/vsearch'
+Plug '~/.vim/plugged/win_full_screen'
+Plug 'kurkale6ka/vim-blockinsert'
+Plug 'kurkale6ka/vim-chess'
+Plug 'kurkale6ka/vim-desertEX'
+Plug 'kurkale6ka/vim-pairs'
+Plug 'kurkale6ka/vim-swap'
+Plug 'tpope/vim-abolish'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-endwise'
+Plug 'tpope/vim-markdown'
+Plug 'tpope/vim-ragtag'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-unimpaired'
+Plug 'godlygeek/csapprox'
+Plug 'godlygeek/tabular'
+Plug 'SirVer/ultisnips'
+Plug 'StanAngeloff/php.vim'
+Plug 'bfredl/nvim-miniyank'
+Plug 'elzr/vim-json'
+Plug 'jszakmeister/vim-togglecursor'
+Plug 'neomake/neomake'
+Plug 'qpkorr/vim-bufkill'
+Plug 'rodjek/vim-puppet'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+call plug#end()
+
+let did_install_default_menus = 1
+
+let g:UltiSnipsSnippetsDir         = '~/vim/ulti_snippets/'
+let g:UltiSnipsSnippetDirectories  = ['UltiSnips', 'ulti_snippets']
+let g:UltiSnipsListSnippets        = '<c-r><tab>'
+let g:UltiSnipsExpandTrigger       = '<tab>'
+let g:UltiSnipsJumpForwardTrigger  = '<tab>'
+let g:UltiSnipsJumpBackwardTrigger = '<s-tab>'
+
+" \\ to toggle comments
+map <leader><leader> gcc
+
+if has('nvim')
+   let g:CSApprox_loaded = 1
+elseif version < 703
+   let g:CSApprox_verbose_level = 0
+endif
+
+" Disable/enable plugins!
+" There seems not to be a way to disable tohtml.vim
+let g:loaded_vimballPlugin   = 0
+let g:loaded_netrwPlugin     = 1
+let g:loaded_zipPlugin       = 1
+let g:loaded_tarPlugin       = 1
+let g:loaded_getscriptPlugin = 1
+let g:loaded_ZoomWin         = 1
+let g:loaded_flatfoot        = 1
+let loaded_rrhelper          = 1
+let loaded_spellfile_plugin  = 1
+
+" Load matchit.vim, but only if the user hasn't installed a newer version
+if !exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# ''
+   runtime! macros/matchit.vim
+endif
+
+" Disable support for nvim till the next tui upgrade
+let g:togglecursor_disable_neovim = 1
+
+if system('grep -zo pangoterm /proc/"$(xdotool getwindowpid "$(xdotool getactivewindow)")"/cmdline') != ''
+   let g:togglecursor_force = 'xterm'
+endif
+
+if has('nvim')
+   " Mini yank
+   map p <Plug>(miniyank-autoput)
+   map P <Plug>(miniyank-autoPut)
+
+   map <c-n> <Plug>(miniyank-cycle)
+endif
+
+" Neomake
+autocmd! BufWritePost * Neomake
+
+let g:neomake_warning_sign = {
+   \ 'text': 'W',
+   \ 'texthl': 'WarningMsg',
+   \ }
+
+let g:neomake_error_sign = {
+   \ 'text': 'E',
+   \ 'texthl': 'ErrorMsg',
+   \ }
+
+let g:neomake_puppet_puppetlint_maker = {
+   \ 'exe': 'puppet-lint',
+   \ 'args': ['--log-format', '"%{path}:%{line}:%{column}:%{kind}:[%{check}] %{message}"', '--no-variables_not_enclosed-check', '--no-2sp_soft_tabs-check', '--no-only_variable_string-check', '--no-80chars-check'],
+   \ 'errorformat': '"%f:%l:%c:%t%*[a-zA-Z]:%m"',
+   \ }
 
 "" Alerts and visual feedback
 set number
@@ -166,9 +269,7 @@ endif
 if version < 703
    colorscheme tdefault
 else
-   if isdirectory($HOME.'/vim/.bundle/desertEX')
-      colorscheme desertEX
-   endif
+   colorscheme desertEX
 
    " \8 to highlight text beyond the 80th column
    nmap <silent> <leader>8 :call highlight#column()<cr>
@@ -515,76 +616,6 @@ nmap <silent>         <c-x> :<c-u>call number#change('s', 'f')<cr>
 nmap <silent> <leader><c-x> :<c-u>call number#change('s', 'b')<cr>
 
 set nrformats-=octal
-
-"" Plugin settings
-let did_install_default_menus = 1
-
-let g:UltiSnipsSnippetsDir         = '~/vim/ulti_snippets/'
-let g:UltiSnipsSnippetDirectories  = ['UltiSnips', 'ulti_snippets']
-let g:UltiSnipsListSnippets        = '<c-r><tab>'
-let g:UltiSnipsExpandTrigger       = '<tab>'
-let g:UltiSnipsJumpForwardTrigger  = '<tab>'
-let g:UltiSnipsJumpBackwardTrigger = '<s-tab>'
-
-" \\ to toggle comments
-map <leader><leader> gcc
-
-if has('nvim')
-   let g:CSApprox_loaded = 1
-elseif version < 703
-   let g:CSApprox_verbose_level = 0
-endif
-
-" Disable/enable plugins!
-" There seems not to be a way to disable tohtml.vim
-let g:loaded_vimballPlugin   = 0
-let g:loaded_netrwPlugin     = 1
-let g:loaded_zipPlugin       = 1
-let g:loaded_tarPlugin       = 1
-let g:loaded_getscriptPlugin = 1
-let g:loaded_ZoomWin         = 1
-let g:loaded_flatfoot        = 1
-let loaded_rrhelper          = 1
-let loaded_spellfile_plugin  = 1
-
-" Load matchit.vim, but only if the user hasn't installed a newer version
-if !exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# ''
-   runtime! macros/matchit.vim
-endif
-
-" Disable support for nvim till the next tui upgrade
-let g:togglecursor_disable_neovim = 1
-
-if system('grep -zo pangoterm /proc/"$(xdotool getwindowpid "$(xdotool getactivewindow)")"/cmdline') != ''
-   let g:togglecursor_force = 'xterm'
-endif
-
-if has('nvim')
-   " Mini yank
-   map p <Plug>(miniyank-autoput)
-   map P <Plug>(miniyank-autoPut)
-
-   map <c-n> <Plug>(miniyank-cycle)
-endif
-
-" Neomake
-autocmd! BufWritePost * Neomake
-
-let g:neomake_warning_sign = {
-   \ 'text': 'W',
-   \ 'texthl': 'WarningMsg',
-   \ }
-
-let g:neomake_error_sign = {
-   \ 'text': 'E',
-   \ 'texthl': 'ErrorMsg',
-   \ }
-
-let g:neomake_puppet_puppetlint_maker = {
-   \ 'exe': 'puppet-lint',
-   \ 'args': ['--log-format', '"%{path}:%{line}:%{column}:%{kind}:[%{check}] %{message}"', '--no-variables_not_enclosed-check', '--no-2sp_soft_tabs-check', '--no-only_variable_string-check', '--no-80chars-check'],
-   \ 'errorformat': '"%f:%l:%c:%t%*[a-zA-Z]:%m"',
-   \ }
 
 "" Autocommands, filetype settings and commands
 if has('autocmd')

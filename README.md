@@ -243,7 +243,7 @@ Useful help links:
 
 Plugins:
 --------
-* https://github.com/tpope/vim-pathogen (used for easier install of other plugins)
+* https://github.com/junegunn/vim-plug (used for easier install of other plugins)
 * https://github.com/godlygeek/csapprox (gvim colorschemes for terminal)
 * https://github.com/godlygeek/tabular (align stuff vertically)
 * https://github.com/tpope/vim-surround (easier surrounding of text)
