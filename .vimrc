@@ -117,7 +117,7 @@ Plug 'godlygeek/csapprox'
 Plug 'godlygeek/tabular'
 Plug 'SirVer/ultisnips'
 Plug 'StanAngeloff/php.vim'
-Plug 'bfredl/nvim-miniyank'
+Plug 'bfredl/nvim-miniyank', has('nvim') ? {} : { 'on': [] }
 Plug 'elzr/vim-json'
 Plug 'jszakmeister/vim-togglecursor'
 Plug 'neomake/neomake'
