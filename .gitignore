@@ -1,3 +1,10 @@
+# Ignore
 pythonx
-plugged/
+plugged/*
 autoload/plug.vim
+
+# Allow
+!plugged/bufgrep/
+!plugged/unicodename/
+!plugged/vsearch/
+!plugged/win_full_screen/
