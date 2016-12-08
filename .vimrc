@@ -95,11 +95,11 @@ set fileencodings=ucs-bom,utf-8,default,cp1251,latin1
 set fileformats=unix,mac,dos
 
 "" Plugins
-call plug#begin('~/.vim/plugged')
-Plug '~/.vim/plugged/bufgrep'
-Plug '~/.vim/plugged/unicodename'
-Plug '~/.vim/plugged/vsearch'
-Plug '~/.vim/plugged/win_full_screen'
+call plug#begin('~/vim/plugged')
+Plug '~/vim/plugged/bufgrep'
+Plug '~/vim/plugged/unicodename'
+Plug '~/vim/plugged/vsearch'
+Plug '~/vim/plugged/win_full_screen'
 Plug 'kurkale6ka/vim-blockinsert'
 Plug 'kurkale6ka/vim-chess'
 Plug 'kurkale6ka/vim-desertEX'
