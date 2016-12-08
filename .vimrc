@@ -1,6 +1,9 @@
 " Author: kurkale6ka <Dimitar Dimitrov>
 
-set all&
+" Don't reset &runtimepath, if re-sourcing my vimrc
+if exists('g:loaded_plug') == 0
+   set all&
+endif
 
 set nocompatible
 
