@@ -17,9 +17,9 @@ filetype plugin on
 syntax enable
 
 " Syntax based omni completion
-if has("autocmd") && exists("+omnifunc")
+if has('autocmd') && exists('+omnifunc')
    autocmd Filetype *
-      \ if &omnifunc == "" |
+      \ if &omnifunc == '' |
       \         setlocal omnifunc=syntaxcomplete#Complete |
       \ endif
 endif
@@ -37,7 +37,7 @@ set noautoread
 
 set writebackup
 
-if version >= 703 && empty($SSH_CONNECTION)
+if has('persistent_undo') && empty($SSH_CONNECTION)
    set undofile
 endif
 
@@ -66,7 +66,7 @@ xmap <silent> <leader>* :<c-u>let @/ = getreg('*')<bar>set hlsearch<c-m>
 
 nmap <silent> g<leader>* :<c-u>let @/ = expand('<cword>')<bar>set hlsearch<c-m>
 
-if has('nvim')
+if exists('+inccommand')
    set inccommand=nosplit
 endif
 
@@ -265,7 +265,7 @@ if &term =~ '^\(xterm\|screen\)$'
    set t_Co=256
 endif
 
-if has('nvim')
+if exists('+termguicolors')
    set termguicolors
 endif
 
@@ -407,7 +407,7 @@ set wildmode=full
 set wildignore+=*~,*.swp,tags
 set wildcharm=<c-z> " cmdline: <c-z> in a mapping acts like <tab>
 
-if version >= 703
+if exists('+wildignorecase')
    set wildignorecase
 endif
 
