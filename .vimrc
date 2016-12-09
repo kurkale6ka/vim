@@ -510,7 +510,6 @@ cnoremap <c-a> <home>
 " <Home> to move to the first char on the line
 map  <home> ^
 imap <home> <c-o>I
-cmap <home> <c-f>^<c-c>
 
 " Ctrl + Up to go backwards by a paragraph
 imap <c-up> <c-o>{
