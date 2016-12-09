@@ -96,16 +96,16 @@ set fileformats=unix,mac,dos
 
 "" Plugins
 call plug#begin('~/vim/plugged')
-Plug '~/vim/plugged/bufgrep'
-Plug '~/vim/plugged/unicodename'
+Plug '~/vim/plugged/bufgrep', { 'on': 'Bgrep' }
+Plug '~/vim/plugged/unicodename', { 'on': 'UnicodeName' }
 Plug '~/vim/plugged/vsearch'
-Plug '~/vim/plugged/win_full_screen'
+Plug '~/vim/plugged/win_full_screen', { 'on': 'WinFullScreen' }
 Plug 'kurkale6ka/vim-blockinsert'
 Plug 'kurkale6ka/vim-chess'
 Plug 'kurkale6ka/vim-desertEX'
 Plug 'kurkale6ka/vim-pairs'
 Plug 'kurkale6ka/vim-swap'
-Plug 'tpope/vim-abolish'
+Plug 'tpope/vim-abolish' ", { 'on': ['Abolish', 'Subvert', 'S'] }
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-markdown'
@@ -114,7 +114,7 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'godlygeek/csapprox'
-Plug 'godlygeek/tabular'
+Plug 'godlygeek/tabular' ", { 'on': 'Tabularize' }
 Plug 'SirVer/ultisnips'
 Plug 'StanAngeloff/php.vim'
 Plug 'bfredl/nvim-miniyank', has('nvim') ? {} : { 'on': [] }
