@@ -1,7 +1,7 @@
 function! ascii#codes (...)
 
    if a:0 == 0
-      view $HOME/.vim/ascii
+      view $HOME/.vim/extra/ascii
       return
    endif
 

@@ -1,0 +1,40 @@
+# Copy ~/.vim or ~/github to remote hosts
+#
+# # ~/github
+# rsync -ai -e'ssh -q' --no-o --no-g -f'- vim/' -f".- $HOME/.gitignore" -f':- .gitignore' ~/github DST:~
+# rsync -ai -e'ssh -q' --no-o --no-g -f". $HOME/.vim/extra/excludes" -f".- $HOME/.gitignore" ~/github/vim DST:~/github
+#
+# # ~/.vim
+# rsync -ai -e'ssh -q' --no-o --no-g -f". $HOME/.vim/extra/excludes" -f".- $HOME/.gitignore" ~/github/vim DST:~
+
+- .git
+- .gitignore
+- README.md
+- ulti_snippets/
+- spell/
+- keymap/
+- extra/
+
+# gvimrc
+- .gvimrc
+- _gvimrc
+- ginit.vim
+
+# color schemes
++ colors/desertEX.vim
++ colors/tdefault.vim
+- colors/*
+
+# plugins
+- plugged/fzf.vim/
+- plugged/neomake/
+- plugged/nvim-miniyank/
+- plugged/ultisnips/
+- plugged/vim-chess/
+
+# after/plugin/...
+- *fzf*
+- *neomake*
+- *mini*yank*
+- *ulti*snips*
+- *chess*
