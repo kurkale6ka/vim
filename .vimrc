@@ -137,7 +137,8 @@ let g:UltiSnipsJumpForwardTrigger  = '<tab>'
 let g:UltiSnipsJumpBackwardTrigger = '<s-tab>'
 
 " \\ to toggle comments
-map <leader><leader> gcc
+nmap <leader><leader> gcc
+xmap <leader><leader> gc
 
 if has('nvim')
    let g:CSApprox_loaded = 1
