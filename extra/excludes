@@ -1,14 +1,27 @@
 # Copy ~/.vim or ~/github to remote hosts
 #
+# rs() {
+#    rsync -ai --no-o --no-g -e'ssh -q' \
+#          -f".- $HOME/.gitignore"      \
+#          -f'- .gitignore'             \
+#          -f'- .git'                   \
+#          "$@"
+# }
+#
 # # ~/github
-# rsync -ai -e'ssh -q' --no-o --no-g -f'- vim/' -f".- $HOME/.gitignore" -f':- .gitignore' ~/github DST:~
-# rsync -ai -e'ssh -q' --no-o --no-g -f". $HOME/.vim/extra/excludes" -f".- $HOME/.gitignore" ~/github/vim DST:~/github
+# rs ~/github/bash             DST:~/github
+# rs ~/github/config           DST:~/github
+# rs ~/github/scripts/mkconfig DST:~/github
+# rs ~/github/zsh              DST:~/github
+# rs -f". $HOME/.vim/extra/excludes" ~/github/vim DST:~/github
 #
 # # ~/.vim
-# rsync -ai -e'ssh -q' --no-o --no-g -f". $HOME/.vim/extra/excludes" -f".- $HOME/.gitignore" ~/github/vim DST:~
+# rs -f". $HOME/.vim/extra/excludes" ~/github/vim DST:~
+#
+# Also needed:
+# ln -s ~/github/vim ~ # or ln -s ~/vim ~
+# alias v='vim -u ~/vim/.vimrc'
 
-- .git
-- .gitignore
 - README.md
 - ulti_snippets/
 - spell/
