@@ -266,7 +266,7 @@ if &term =~ '^\(xterm\|screen\)$'
    set t_Co=256
 endif
 
-if exists('+termguicolors')
+if has('nvim') && exists('+termguicolors')
    set termguicolors
 endif
 
