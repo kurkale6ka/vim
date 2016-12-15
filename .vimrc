@@ -10,9 +10,7 @@ set nocompatible
 let &runtimepath = substitute(&runtimepath, '\.\zevim', '', 'g')
 
 "" Filetype + syntax
-filetype on
-filetype indent on
-filetype plugin on
+filetype plugin indent on
 
 syntax enable
 
