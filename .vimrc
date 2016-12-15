@@ -10,9 +10,8 @@ set nocompatible
 let &runtimepath = substitute(&runtimepath, '\.\zevim', '', 'g')
 
 "" Filetype + syntax
-filetype plugin indent on
-
-syntax enable
+" filetype plugin indent on
+" syntax enable
 
 " Syntax based omni completion
 if has('autocmd') && exists('+omnifunc')
@@ -21,76 +20,6 @@ if has('autocmd') && exists('+omnifunc')
       \         setlocal omnifunc=syntaxcomplete#Complete |
       \ endif
 endif
-
-"" Backups
-if empty($SSH_CONNECTION)
-   set backup
-endif
-set backupext=~
-set backupskip=
-
-set noautowrite
-set noautowriteall
-set noautoread
-
-set writebackup
-
-if has('persistent_undo') && empty($SSH_CONNECTION)
-   set undofile
-endif
-
-nnoremap gr 999<c-r>
-
-set viminfo^=! " save uppercase global variables
-
-"" Search and replace
-set incsearch
-set hlsearch
-
-set ignorecase
-set smartcase
-set infercase
-
-" \g for global
-nmap <leader>g    :global/<c-r><c-w>/
-xmap <leader>g "*y:global/<c-r>*<cr>
-
-" \s for substitute
-nmap <leader>s :%substitute/<c-r><c-w>//gc<left><left><left>
-
-" \* and \g* for search highlighting without jumping to the next occurrence
-nmap <silent> <leader>* :<c-u>let @/ = '\<'.expand('<cword>').'\>'<bar>set hlsearch<c-m>
-xmap <silent> <leader>* :<c-u>let @/ = getreg('*')<bar>set hlsearch<c-m>
-
-nmap <silent> g<leader>* :<c-u>let @/ = expand('<cword>')<bar>set hlsearch<c-m>
-
-if exists('+inccommand')
-   set inccommand=nosplit
-endif
-
-" Grepping
-set grepprg=command\ grep\ -niE\ --exclude='*~'\ --exclude\ tags\ $*\ /dev/null
-
-" \bg for grepping in buffers
-nmap <leader>bg :Bgrep/<c-r><c-w>/<cr>
-
-" Finding
-set path+=$HOME/github/**,~/github/zsh/.zsh/**
-
-command! -nargs=+ Find call find#files(<f-args>)
-
-"" Encoding and file formats
-if has('multi_byte')
-   if &encoding !~? 'utf-\=8'
-      if empty(&termencoding)
-         let &termencoding = &encoding
-      endif
-      set encoding=utf-8
-   endif
-endif
-
-set fileencodings=ucs-bom,utf-8,default,cp1251,latin1
-set fileformats=unix,mac,dos
 
 "" Plugins
 call plug#begin('~/vim/plugged')
@@ -194,6 +123,76 @@ let g:neomake_puppet_puppetlint_maker = {
    \ 'args': ['--log-format', '"%{path}:%{line}:%{column}:%{kind}:[%{check}] %{message}"', '--no-variables_not_enclosed-check', '--no-2sp_soft_tabs-check', '--no-only_variable_string-check', '--no-80chars-check'],
    \ 'errorformat': '"%f:%l:%c:%t%*[a-zA-Z]:%m"',
    \ }
+
+"" Backups
+if empty($SSH_CONNECTION)
+   set backup
+endif
+set backupext=~
+set backupskip=
+
+set noautowrite
+set noautowriteall
+set noautoread
+
+set writebackup
+
+if has('persistent_undo') && empty($SSH_CONNECTION)
+   set undofile
+endif
+
+nnoremap gr 999<c-r>
+
+set viminfo^=! " save uppercase global variables
+
+"" Search and replace
+set incsearch
+set hlsearch
+
+set ignorecase
+set smartcase
+set infercase
+
+" \g for global
+nmap <leader>g    :global/<c-r><c-w>/
+xmap <leader>g "*y:global/<c-r>*<cr>
+
+" \s for substitute
+nmap <leader>s :%substitute/<c-r><c-w>//gc<left><left><left>
+
+" \* and \g* for search highlighting without jumping to the next occurrence
+nmap <silent> <leader>* :<c-u>let @/ = '\<'.expand('<cword>').'\>'<bar>set hlsearch<c-m>
+xmap <silent> <leader>* :<c-u>let @/ = getreg('*')<bar>set hlsearch<c-m>
+
+nmap <silent> g<leader>* :<c-u>let @/ = expand('<cword>')<bar>set hlsearch<c-m>
+
+if exists('+inccommand')
+   set inccommand=nosplit
+endif
+
+" Grepping
+set grepprg=command\ grep\ -niE\ --exclude='*~'\ --exclude\ tags\ $*\ /dev/null
+
+" \bg for grepping in buffers
+nmap <leader>bg :Bgrep/<c-r><c-w>/<cr>
+
+" Finding
+set path+=$HOME/github/**,~/github/zsh/.zsh/**
+
+command! -nargs=+ Find call find#files(<f-args>)
+
+"" Encoding and file formats
+if has('multi_byte')
+   if &encoding !~? 'utf-\=8'
+      if empty(&termencoding)
+         let &termencoding = &encoding
+      endif
+      set encoding=utf-8
+   endif
+endif
+
+set fileencodings=ucs-bom,utf-8,default,cp1251,latin1
+set fileformats=unix,mac,dos
 
 "" Alerts and visual feedback
 set number
