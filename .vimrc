@@ -17,7 +17,7 @@ let &runtimepath = substitute(&runtimepath, '\.\zevim', '', 'g')
 if has('autocmd') && exists('+omnifunc')
    autocmd Filetype *
       \ if &omnifunc == '' |
-      \         setlocal omnifunc=syntaxcomplete#Complete |
+      \    setlocal omnifunc=syntaxcomplete#Complete |
       \ endif
 endif
 
