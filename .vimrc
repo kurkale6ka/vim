@@ -90,9 +90,6 @@ if !exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# ''
    runtime! macros/matchit.vim
 endif
 
-" Disable support for nvim till the next tui upgrade
-let g:togglecursor_disable_neovim = 1
-
 if system('grep -zo pangoterm /proc/"$(xdotool getwindowpid "$(xdotool getactivewindow)")"/cmdline') != ''
    let g:togglecursor_force = 'xterm'
 endif
