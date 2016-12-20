@@ -8,11 +8,11 @@
 " windows sizes
 " Map :WinFullScreen for any key you like and enjoy vim's windows
 
-if exists('win_full_screen_plugin')
-"finish
+if exists('g:win_full_screen_plugin')
+    finish
 endif
 
-let win_full_screen_plugin = 1
+let g:win_full_screen_plugin = 1
 
 let s:windows_sizes = []
 let s:full_screen = 0
@@ -38,7 +38,7 @@ function! s:RestoreWindowsSize()
 
     let win_count = len(s:windows_sizes)
     let curr_window = winnr()
-    
+
     for adjustment in range(2)
         for win_number in range(win_count)
             exec win_number+1.'wincmd w'

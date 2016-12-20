@@ -80,8 +80,6 @@ let g:loaded_netrwPlugin     = 1
 let g:loaded_zipPlugin       = 1
 let g:loaded_tarPlugin       = 1
 let g:loaded_getscriptPlugin = 1
-let g:loaded_ZoomWin         = 1
-let g:loaded_flatfoot        = 1
 let loaded_rrhelper          = 1
 let loaded_spellfile_plugin  = 1
 

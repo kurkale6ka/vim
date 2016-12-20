@@ -1,4 +1,4 @@
-if !exists('did_UltiSnips_plugin')
+if !exists('did_plugin_ultisnips')
    finish
 endif
 
