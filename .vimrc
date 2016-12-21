@@ -63,10 +63,6 @@ let g:UltiSnipsExpandTrigger       = '<tab>'
 let g:UltiSnipsJumpForwardTrigger  = '<tab>'
 let g:UltiSnipsJumpBackwardTrigger = '<s-tab>'
 
-" \\ to toggle comments
-nmap <leader><leader> gcc
-xmap <leader><leader> gc
-
 if has('nvim')
    let g:CSApprox_loaded = 1
 elseif version < 703
@@ -92,16 +88,10 @@ if system('grep -zo pangoterm /proc/"$(xdotool getwindowpid "$(xdotool getactive
    let g:togglecursor_force = 'xterm'
 endif
 
-if has('nvim')
-   " Mini yank
-   map p <Plug>(miniyank-autoput)
-   map P <Plug>(miniyank-autoPut)
-
-   map <c-n> <Plug>(miniyank-cycle)
-endif
-
 " Neomake
-autocmd! BufWritePost * Neomake
+if has('autocmd')
+   autocmd! BufWritePost * Neomake
+endif
 
 let g:neomake_warning_sign = {
    \ 'text': 'W',
