@@ -84,30 +84,28 @@ if !exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# ''
    runtime! macros/matchit.vim
 endif
 
-if system('grep -zo pangoterm /proc/"$(xdotool getwindowpid "$(xdotool getactivewindow)")"/cmdline') != ''
-   let g:togglecursor_force = 'xterm'
-endif
-
 " Neomake
-if has('autocmd')
-   autocmd! BufWritePost * Neomake
+if exists(':Neomake')
+   let g:neomake_warning_sign = {
+      \ 'text': 'W',
+      \ 'texthl': 'WarningMsg',
+      \ }
+
+   let g:neomake_error_sign = {
+      \ 'text': 'E',
+      \ 'texthl': 'ErrorMsg',
+      \ }
+
+   let g:neomake_puppet_puppetlint_maker = {
+      \ 'exe': 'puppet-lint',
+      \ 'args': ['--log-format', '"%{path}:%{line}:%{column}:%{kind}:[%{check}] %{message}"', '--no-variables_not_enclosed-check', '--no-2sp_soft_tabs-check', '--no-only_variable_string-check', '--no-80chars-check'],
+      \ 'errorformat': '"%f:%l:%c:%t%*[a-zA-Z]:%m"',
+      \ }
+
+   if has('autocmd')
+      autocmd! BufWritePost * Neomake
+   endif
 endif
-
-let g:neomake_warning_sign = {
-   \ 'text': 'W',
-   \ 'texthl': 'WarningMsg',
-   \ }
-
-let g:neomake_error_sign = {
-   \ 'text': 'E',
-   \ 'texthl': 'ErrorMsg',
-   \ }
-
-let g:neomake_puppet_puppetlint_maker = {
-   \ 'exe': 'puppet-lint',
-   \ 'args': ['--log-format', '"%{path}:%{line}:%{column}:%{kind}:[%{check}] %{message}"', '--no-variables_not_enclosed-check', '--no-2sp_soft_tabs-check', '--no-only_variable_string-check', '--no-80chars-check'],
-   \ 'errorformat': '"%f:%l:%c:%t%*[a-zA-Z]:%m"',
-   \ }
 
 "" Backups
 if empty($SSH_CONNECTION)
