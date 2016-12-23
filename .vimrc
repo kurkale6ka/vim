@@ -422,7 +422,7 @@ xmap <silent> Y :<c-u>call copy#selection()<cr>
 " copy whole line to the command line
 cmap <c-r><c-l> <c-r>=copy#line()<cr>
 
-" ^g to copy pattern to "* (:g/pattern -> /pattern...)
+" Ctrl + g to copy pattern to "* (:g/pattern -> /pattern...)
 cmap <silent> <c-g> <c-f>:call cmdline#switch('g')<cr>
 
 if has('xterm_clipboard')
@@ -449,12 +449,25 @@ nnoremap <bs> "_X
 
 set backspace=indent,eol,start
 
-" \u
+" Ctrl + u
 inoremap <c-u> <c-g>u<c-u>
 
-" \w
+" Ctrl + w
+function Cmdl_CtrlW()
+   let cmd_r = strpart(getcmdline(), getcmdpos() - 1)
+   let cmd_l = split(strpart(getcmdline(), 0, getcmdpos() - 1))
+   if len(cmd_l) > 1
+      let cmd_l = join(remove(cmd_l, 0, -2))
+      call setcmdpos(len(cmd_l) + 2)
+      return cmd_l . ' ' . cmd_r
+   else
+      call setcmdpos(1)
+      return cmd_r
+   endif
+endfunction
+
+cnoremap <c-w> <c-\>eCmdl_CtrlW()<cr>
 inoremap <c-w> <c-o>dB
-cnoremap <c-w> <c-f>dB<c-c>
 
 " Alt + backspace
 noremap! <m-bs> <c-w>
@@ -465,7 +478,7 @@ cnoremap <m-d> <c-f>de<c-c>
 
 " Ctrl + k
 imap <c-k> <c-o>D
-cmap <c-k> <c-f>D<c-c>
+cmap <c-k> <c-\>estrpart(getcmdline(), 0, getcmdpos() - 1)<cr>
 
 " Delete EOF empty lines
 nmap <silent> dl :%substitute/\_s*\%$//<bar>nohlsearch<cr>``
