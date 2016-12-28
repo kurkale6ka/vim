@@ -473,8 +473,16 @@ inoremap <c-w> <c-o>dB
 noremap! <m-bs> <c-w>
 
 " Alt + d
+function Cmdl_AltD()
+   let cmd_l = strpart(getcmdline(), 0, getcmdpos() - 1)
+   let cmd_r = strpart(getcmdline(), getcmdpos() - 1)
+   let cmd_r = substitute(cmd_r, '^.\{-}\w\+', '', '')
+   call setcmdpos(len(cmd_l) + 1)
+   return cmd_l . cmd_r
+endfunction
+
+cnoremap <m-d> <c-\>eCmdl_AltD()<cr>
 inoremap <m-d> <c-o>de
-cnoremap <m-d> <c-f>de<c-c>
 
 " Ctrl + k
 imap <c-k> <c-o>D
