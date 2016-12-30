@@ -27,11 +27,13 @@ Plug '~/vim/plugged/bufgrep', { 'on': 'Bgrep' }
 Plug '~/vim/plugged/unicodename', { 'on': 'UnicodeName' }
 Plug '~/vim/plugged/vsearch'
 Plug '~/vim/plugged/win_full_screen', { 'on': 'WinFullScreen' }
+let g:plug_url_format = 'git@github.com:%s.git'
 Plug 'kurkale6ka/vim-blockinsert'
 Plug 'kurkale6ka/vim-chess'
 Plug 'kurkale6ka/vim-desertEX'
 Plug 'kurkale6ka/vim-pairs'
 Plug 'kurkale6ka/vim-swap'
+unlet g:plug_url_format
 Plug 'tpope/vim-abolish' ", { 'on': ['Abolish', 'Subvert', 'S'] }
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-endwise'
