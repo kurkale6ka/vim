@@ -387,20 +387,24 @@ if exists('+wildignorecase')
 endif
 
 " Status line
-set statusline=%<%L     " number of lines
-set statusline+=\ ❬\ %t " file name (tail)
+set statusline=%<%1*%L%*          " number of lines
+set statusline+=\ %2*❬%*\ %3*%t%* " file name (tail)
 
 " RO, modified + keymap
-set statusline+=%{empty(&ro)\ &&\ empty(&mod)\ &&\ empty(&kmp)?'':'\ '}%r%m%{empty(&kmp)?'':'('.b:keymap_name.')'}
+set statusline+=%{empty(&ro)\ &&\ empty(&mod)\ &&\ empty(&kmp)?'':'\ '}%4*%r%m%*%{empty(&kmp)?'':'('.b:keymap_name.')'}
 
-set statusline+=\ ❬\ L:%l\ C:%v " Line:-- Column:--
+set statusline+=\ %2*❬%*\ %1*c%v%* " column
 
 " alternate file
 set statusline+=%=%{expand('#:t')\ !=\ expand('%:t')\ &&\ !empty(expand('#:t'))?'#'.expand('#:t').'\ ❭\ ':''}
 
-set statusline+=%{empty(&ft)?'[]-':'['.&ft.']-'} " ft
-set statusline+=%{&fileformat}                   " ff
-set statusline+=\ ❭\ %P                          " percentage through file
+set statusline+=%5*%{empty(&ft)?'[]':'['.&ft.']'}%* " filetype
+
+if &fileformat != 'unix'
+   set statusline+=-%4*%{&fileformat}%*
+endif
+
+set statusline+=\ ❭\ %P " percentage through file
 
 set laststatus=2
 
