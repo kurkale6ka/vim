@@ -242,7 +242,12 @@ if &term =~ '^\(xterm\|screen\)$'
    set t_Co=256
 endif
 
-if has('nvim') && exists('+termguicolors')
+if exists('+termguicolors')
+   " tmux Vim-specific sequences for RGB colors
+   if !has('nvim')
+      let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+      let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+   endif
    set termguicolors
 endif
 
