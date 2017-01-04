@@ -42,7 +42,7 @@ Plug 'tpope/vim-ragtag'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
-Plug 'godlygeek/csapprox'
+Plug 'godlygeek/csapprox', has('nvim') ? { 'on': [] } : {} " disable for nvim
 Plug 'godlygeek/tabular' ", { 'on': 'Tabularize' }
 Plug 'SirVer/ultisnips'
 Plug 'StanAngeloff/php.vim'
@@ -65,9 +65,7 @@ let g:UltiSnipsExpandTrigger       = '<tab>'
 let g:UltiSnipsJumpForwardTrigger  = '<tab>'
 let g:UltiSnipsJumpBackwardTrigger = '<s-tab>'
 
-if has('nvim')
-   let g:CSApprox_loaded = 1
-elseif version < 703
+if !has('nvim') && version < 703
    let g:CSApprox_verbose_level = 0
 endif
 
