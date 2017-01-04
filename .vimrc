@@ -38,7 +38,7 @@ Plug 'tpope/vim-abolish' ", { 'on': ['Abolish', 'Subvert', 'S'] }
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-markdown'
-Plug 'tpope/vim-ragtag'
+" Plug 'tpope/vim-ragtag' " enable when doing XML/XHTML, PHP/ASP/eRuby...
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
