@@ -365,8 +365,9 @@ imap <c-pagedown> <c-o>:bnext<cr>
 nmap <c-@>     :Buffers<cr>
 nmap <c-space> :Buffers<cr>
 
-" Ctrl + tab to switch to the alternate file
+" Ctrl + tab or space to switch to the alternate file
 nnoremap <c-tab> <c-^>
+nnoremap <space> <c-^>
 
 " Ctrl + w twice to go to the last accessed window
 nmap <silent> <c-w><c-w> :wincmd p<cr>
