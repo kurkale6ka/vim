@@ -45,13 +45,14 @@ Plug 'tpope/vim-unimpaired'
 Plug 'godlygeek/csapprox', has('nvim') ? { 'on': [] } : {} " disable for nvim
 Plug 'godlygeek/tabular' ", { 'on': 'Tabularize' }
 Plug 'SirVer/ultisnips'
-Plug 'StanAngeloff/php.vim'
 Plug 'bfredl/nvim-miniyank', has('nvim') ? {} : { 'on': [] }
-Plug 'elzr/vim-json'
 Plug 'jszakmeister/vim-togglecursor'
 Plug 'neomake/neomake'
 Plug 'qpkorr/vim-bufkill'
 Plug 'rodjek/vim-puppet'
+Plug 'elzr/vim-json'
+Plug 'StanAngeloff/php.vim' "syntax
+Plug 'evanmiller/nginx-vim-syntax'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 call plug#end()
