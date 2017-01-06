@@ -16,7 +16,7 @@ snippet mode "eol colon version"
 ${1:#} vim: set ${2:foldmethod=marker} ${3:foldmarker={{{,}}}}:
 endsnippet
 
-snippet fde
+snippet fold
 # Don't forget to double slashes (\\d\\.). >1 means 'a fold of level 1 starts here'
 # vim: fde=getline(v\:lnum)=~'^\\\\s*${1:#}$1'?'>'.(len(matchstr(getline(v\:lnum),'$1$1$1*'))-1)\:'='
 endsnippet
