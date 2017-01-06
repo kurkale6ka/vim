@@ -51,8 +51,9 @@ Plug 'neomake/neomake'
 Plug 'qpkorr/vim-bufkill'
 Plug 'rodjek/vim-puppet'
 Plug 'elzr/vim-json'
-Plug 'StanAngeloff/php.vim' "syntax
+Plug 'StanAngeloff/php.vim' " syntax
 Plug 'evanmiller/nginx-vim-syntax'
+Plug 'vim-scripts/iptables'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 call plug#end()
