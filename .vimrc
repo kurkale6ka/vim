@@ -408,9 +408,7 @@ set statusline+=%=%{expand('#:t')\ !=\ expand('%:t')\ &&\ !empty(expand('#:t'))?
 
 set statusline+=%5*%{empty(&ft)?'[]':'['.&ft.']'}%* " filetype
 
-if &fileformat != 'unix'
-   set statusline+=-%4*%{&fileformat}%*
-endif
+set statusline+=%4*%{&ff\ !=\ 'unix'?'-'.&ff:''}%* " fileformat
 
 set statusline+=\ ❭\ %P " percentage through file
 
