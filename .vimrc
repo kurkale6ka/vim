@@ -407,9 +407,7 @@ set statusline+=\ %2*❬%*\ %1*c%v%* " column
 set statusline+=%=%{expand('#:t')\ !=\ expand('%:t')\ &&\ !empty(expand('#:t'))?'#'.expand('#:t').'\ ❭\ ':''}
 
 set statusline+=%5*%{empty(&ft)?'[]':'['.&ft.']'}%* " filetype
-
-set statusline+=%4*%{&ff\ !=\ 'unix'?'-'.&ff:''}%* " fileformat
-
+set statusline+=%4*%{&ff\ !=\ 'unix'?'-'.&ff:''}%*  " fileformat
 set statusline+=\ ❭\ %P " percentage through file
 
 set laststatus=2
