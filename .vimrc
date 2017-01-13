@@ -186,7 +186,7 @@ set showcmd
 set report=0
 set shortmess=flmnrxoOtT
 set display+=lastline
-set history=7000
+set history=10000
 
 set lazyredraw
 set scrolloff=2
