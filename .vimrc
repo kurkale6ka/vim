@@ -612,8 +612,7 @@ cabbrev mpa map
 cabbrev frm fmr
 
 iabbrev :me: Dimitar Dimitrov
-iabbrev :smirk: ¬_¬
-iabbrev :shrug: ¯\_(ツ)_/¯
+iabbrev :date: <c-r>=strftime('%a, %d %b %Y')<cr>
 
 "" Add/Subtract
 nmap <silent>         <c-a> :<c-u>call number#change('a', 'f')<cr>
