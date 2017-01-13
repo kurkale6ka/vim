@@ -292,7 +292,7 @@ set formatoptions+=r " auto insert comment with <Enter>...
 set formatoptions+=o " ...or o/O
 set formatoptions+=n " Recognize numbered lists
 
-if v:version > 703 || v:version == 703 && has("patch541")
+if v:version > 703 || v:version == 703 && has('patch541')
    set formatoptions+=j " Delete comment when joining commented lines
 endif
 
