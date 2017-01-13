@@ -106,6 +106,8 @@ let g:neomake_puppet_puppetlint_maker = {
 "" Backups
 if empty($SSH_CONNECTION)
    set backup
+elseif has('writebackup')
+   set writebackup
 endif
 set backupext=~
 set backupskip=
@@ -113,8 +115,6 @@ set backupskip=
 set noautowrite
 set noautowriteall
 set noautoread
-
-set writebackup
 
 if has('persistent_undo') && empty($SSH_CONNECTION)
    set undofile
