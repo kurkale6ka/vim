@@ -7,20 +7,36 @@ function! number#change(operation, direction)
       let pattern = '[[:digit:]]'
    endif
 
-   if 'b' == a:direction
-      call search(pattern, 'bcw')
-   else
+   " search forward
+   if 'f' == a:direction
+
       call search(pattern, 'cw')
+
+      if 'a' == a:operation
+         silent! call repeat#set("\<c-a>")
+      else
+         silent! call repeat#set("\<c-x>")
+      endif
+
+   " search backward
+   else
+
+      call search(pattern, 'bcw')
+
+      if 'a' == a:operation
+         silent! call repeat#set("\\\<c-a>")
+      else
+         silent! call repeat#set("\\\<c-x>")
+      endif
+
    endif
 
+   " add
    if 'a' == a:operation
       execute 'normal! '.v:count1."\<c-a>"
-      silent! call
-         \ repeat#set(":\<c-u>call AddSubtract('a', '".a:direction."')\<cr>")
+   " subtract
    else
       execute 'normal! '.v:count1."\<c-x>"
-      silent! call
-         \ repeat#set(":\<c-u>call AddSubtract('s', '".a:direction."')\<cr>")
    endif
 
 endfunction
