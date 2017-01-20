@@ -215,37 +215,36 @@ nnoremap <c-g> 2<c-g>
 nmap <leader>o :call options#show_values(0)<cr>
 nmap <leader>O :call options#show_values(1)<cr>
 
-" \<tab> to toggle list display
-nmap <leader><tab> :setlocal invlist list?<cr>
-
-" Show tabs as ▷⋅⋅⋅ and spaces as ⋅ in list view
-"   arrow: U+25B7: ▷
-"    dots: U+22C5: ⋅
-if empty($SSH_CONNECTION) && &encoding =~ '^u\(tf\|cs\)' " unicode
-   if has('autocmd')
-      autocmd BufEnter *
-         \ if &readonly |
-         \    setlocal nolist |
-         \ else |
-         \    let s:arr = nr2char(9655) |
-         \    let s:dot = nr2char(8901) |
-         \    execute 'set listchars=tab:'    .s:arr.s:dot |
-         \    execute 'set listchars+=trail:' .s:dot       |
-         \    execute 'set listchars+=nbsp:'  .s:dot       |
-         \    setlocal list |
-         \ endif
-   endif
-endif
-
-if &encoding =~ '^u\(tf\|cs\)' || has('nvim')
-   " ↪ at the beginning of wrapped lines
-   let &showbreak = nr2char(8618).' '
-endif
-
 set linebreak " wrap at characters in 'breakat
 if v:version > 704 || v:version == 704 && has('patch338')
    set breakindent " respect indentation when wrapping
 endif
+
+if has('nvim') || &encoding =~ '^u\(tf\|cs\)' " unicode
+
+   " ↪ at the beginning of wrapped lines
+   let &showbreak = nr2char(8618).' '
+
+   let s:arr = nr2char(9655) " U+25B7: ▷
+   let s:dot = nr2char(8901) " U+22C5: ⋅
+
+   " Show tabs as ▷⋅⋅⋅ and spaces as ⋅ in list view
+   execute 'set listchars=tab:'    .s:arr.s:dot
+   execute 'set listchars+=trail:' .s:dot
+   execute 'set listchars+=nbsp:'  .s:dot
+endif
+
+if empty($SSH_CONNECTION) && has('autocmd')
+   autocmd BufEnter *
+      \ if &readonly |
+      \    setlocal nolist |
+      \ else |
+      \    setlocal list |
+      \ endif
+endif
+
+" \<tab> to toggle list display
+nmap <leader><tab> :setlocal invlist list?<cr>
 
 "" Colors and highlighting
 if &term =~ '^\(xterm\|screen\)$' || has('nvim')
