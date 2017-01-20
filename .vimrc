@@ -215,26 +215,36 @@ nnoremap <c-g> 2<c-g>
 nmap <leader>o :call options#show_values(0)<cr>
 nmap <leader>O :call options#show_values(1)<cr>
 
-" List view + text wrapping symbols
-if &encoding =~ '^u\(tf\|cs\)' " unicode
+" \<tab> to toggle list display
+nmap <leader><tab> :setlocal invlist list?<cr>
 
-   let s:arr = nr2char(9655) " U+25B7: ▷
-   let s:dot = nr2char(8901) " U+22C5: ⋅
+" Show tabs as ▷⋅⋅⋅ and spaces as ⋅ in list view
+"   arrow: U+25B7: ▷
+"    dots: U+22C5: ⋅
+if empty($SSH_CONNECTION) && &encoding =~ '^u\(tf\|cs\)' " unicode
+   if has('autocmd')
+      autocmd BufEnter *
+         \ if &readonly |
+         \    setlocal nolist |
+         \ else |
+         \    let s:arr = nr2char(9655) |
+         \    let s:dot = nr2char(8901) |
+         \    execute 'set listchars=tab:'    .s:arr.s:dot |
+         \    execute 'set listchars+=trail:' .s:dot       |
+         \    execute 'set listchars+=nbsp:'  .s:dot       |
+         \    setlocal list |
+         \ endif
+   endif
+endif
 
-   " ▷⋅⋅⋅ tabs = arrow + dots
-   execute 'set listchars=tab:'    .s:arr.s:dot
-   execute 'set listchars+=trail:' .s:dot
-   execute 'set listchars+=nbsp:'  .s:dot
-
-   set linebreak
-
+if &encoding =~ '^u\(tf\|cs\)'
    " ↪ at the beginning of wrapped lines
    let &showbreak = nr2char(8618).' '
+endif
 
-   set list
-
-   " \<tab> to toggle list display
-   nmap <leader><tab> :setlocal invlist list?<cr>
+set linebreak   " wrap at characters in 'breakat
+if v:version > 704 || v:version == 704 && has('patch338')
+   set breakindent " respect indentation when wrapping
 endif
 
 "" Colors and highlighting
@@ -263,15 +273,12 @@ endif
 set cursorline
 
 if has('autocmd')
-   augroup AUTOCMD_CC
-      autocmd!
-      autocmd BufEnter,FileType *
-         \ if empty(&textwidth) |
-         \    match ColorColumn /\%81v./ |
-         \ else |
-         \    execute 'match ColorColumn /\%'.(&textwidth + 1).'v./' |
-         \ endif
-   augroup END
+   autocmd BufEnter,FileType *
+      \ if empty(&textwidth) |
+      \    match ColorColumn /\%81v./ |
+      \ else |
+      \    execute 'match ColorColumn /\%'.(&textwidth + 1).'v./' |
+      \ endif
 endif
 
 command! Syntax call syntax#stack()
