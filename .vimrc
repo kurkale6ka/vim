@@ -438,7 +438,7 @@ cmap <c-r><c-l> <c-r>=copy#line()<cr>
 " Ctrl + g to copy pattern to "* (:g/pattern -> /pattern...)
 cmap <silent> <c-g> <c-f>:call cmdline#switch('g')<cr>
 
-if has('xterm_clipboard') " || has('nvim') " in development
+if has('xterm_clipboard') " || has('nvim') " TODO. Still in development
    " Selection available for pasting with <c-v> outside of vim (GUI's go+=P)
    set clipboard^=autoselectplus
 endif
