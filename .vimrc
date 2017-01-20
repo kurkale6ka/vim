@@ -16,7 +16,7 @@ let &runtimepath = substitute(&runtimepath, '\.\zevim', '', 'g')
 " Syntax based omni completion
 if has('autocmd') && exists('+omnifunc')
    autocmd Filetype *
-      \ if &omnifunc == '' |
+      \ if empty(&omnifunc) |
       \    setlocal omnifunc=syntaxcomplete#Complete |
       \ endif
 endif
@@ -122,6 +122,7 @@ endif
 
 nnoremap gr 999<c-r>
 
+set history=10000
 set viminfo^=! " save uppercase global variables
 
 "" Search and replace
@@ -161,7 +162,7 @@ set path+=$HOME/github/**,~/github/zsh/.zsh/**
 command! -nargs=+ Find call find#files(<f-args>)
 
 "" Encoding and file formats
-if has('multi_byte')
+if has('multi_byte') && !has('nvim')
    if &encoding !~? 'utf-\=8'
       if empty(&termencoding)
          let &termencoding = &encoding
@@ -186,11 +187,10 @@ set showcmd
 set report=0
 set shortmess=flmnrxoOtT
 set display+=lastline
-set history=10000
 
 set lazyredraw
 set scrolloff=2
-if ! has('nvim')
+if !has('nvim')
    set ttyscroll=3
 endif
 
@@ -237,18 +237,18 @@ if empty($SSH_CONNECTION) && &encoding =~ '^u\(tf\|cs\)' " unicode
    endif
 endif
 
-if &encoding =~ '^u\(tf\|cs\)'
+if &encoding =~ '^u\(tf\|cs\)' || has('nvim')
    " ↪ at the beginning of wrapped lines
    let &showbreak = nr2char(8618).' '
 endif
 
-set linebreak   " wrap at characters in 'breakat
+set linebreak " wrap at characters in 'breakat
 if v:version > 704 || v:version == 704 && has('patch338')
    set breakindent " respect indentation when wrapping
 endif
 
 "" Colors and highlighting
-if &term =~ '^\(xterm\|screen\)$'
+if &term =~ '^\(xterm\|screen\)$' || has('nvim')
    set t_Co=256
 endif
 
@@ -287,7 +287,7 @@ set synmaxcol=301
 
 "" Terminal options (including mouse support)
 set mouse=a
-if ! has('nvim')
+if !has('nvim')
    set ttymouse=xterm2
 endif
 
@@ -360,9 +360,6 @@ endif
 
 cabbrev vsb vertical sbuffer
 cabbrev svb vertical sbuffer
-
-" \l for the buffer explorer
-noremap <silent> <leader>l :BufExplorer<cr>
 
 " Ctrl + PageUp to go to the previous buffer
 nmap <c-pageup>        :bprevious<cr>
@@ -441,13 +438,14 @@ cmap <c-r><c-l> <c-r>=copy#line()<cr>
 " Ctrl + g to copy pattern to "* (:g/pattern -> /pattern...)
 cmap <silent> <c-g> <c-f>:call cmdline#switch('g')<cr>
 
-if has('xterm_clipboard')
-   " Selections available in "+ for outside apps. The GUI equivalent is go+=P
+if has('xterm_clipboard') " || has('nvim') " in development
+   " Selection available for pasting with <c-v> outside of vim (GUI's go+=P)
    set clipboard^=autoselectplus
 endif
 
 if has('xterm_clipboard') || has('gui_running') || has('nvim')
-   set clipboard^=unnamedplus " y/d/c go to "" and "+
+   " y/d/c available for pasting with <c-v> outside of vim
+   set clipboard^=unnamedplus
 endif
 
 " paste over selected text using the previous yank
@@ -459,6 +457,18 @@ nmap ]P :pu<cr>
 
 " \p to toggle 'paste
 nmap <leader>p :set invpaste paste?<cr>
+
+"" Visual swap/move/copy
+" Exchange first and last line in a visual area
+xmap <cr> <esc>'<dd'>[pjdd`<P==
+
+" Move the top line of the selection under the bottom one
+xmap ]<cr> <esc>'<dd'>p==
+xmap [<cr> <esc>'>dd'<p==
+
+" Copy the top line of the selection under the bottom one
+xmap ]t <esc>'<yy'>p==
+xmap [t <esc>'>yy'<p==
 
 "" Deletions
 nnoremap <bs> "_X
@@ -583,17 +593,6 @@ nmap <s-right>      vE
 imap <s-right> <c-o>vE
 vmap <s-right>       E
 
-" Exchange first and last line in a visual area
-xmap <cr> <esc>'<dd'>[pjdd`<P==
-
-" Move the top line of the selection under the bottom one
-xmap ]<cr> <esc>'<dd'>p==
-xmap [<cr> <esc>'>dd'<p==
-
-" Copy the top line of the selection under the bottom one
-xmap ]t <esc>'<yy'>p==
-xmap [t <esc>'>yy'<p==
-
 " Let } select the current column only when in visual-block mode
 set nostartofline
 
@@ -616,7 +615,6 @@ command! RU setlocal keymap=ru
 
 cabbrev trp rtp
 cabbrev waq wqa
-cabbrev mpa map
 cabbrev frm fmr
 
 iabbrev :me: Dimitar Dimitrov
@@ -632,29 +630,24 @@ set nrformats-=octal
 
 "" Autocommands, filetype settings and commands
 if has('autocmd')
-   augroup AUTOCMDS_ALL
-      autocmd!
+   " Jump to the last spot the cursor was at in a file when reading it
+   autocmd BufReadPost *
+      \ if line("'\"") > 0 && line("'\"") <= line('$') && &filetype != 'gitcommit' |
+      \    execute 'normal! g`"' |
+      \ endif
 
-      " Jump to the last spot the cursor was at in a file when reading it
-      autocmd BufReadPost *
-         \ if line("'\"") > 0 && line("'\"") <= line('$') && &filetype != 'gitcommit' |
-         \    execute 'normal! g`"' |
-         \ endif
+   " When reading a file, :cd to its parent directory unless it's a help
+   " file. This replaces 'autochdir which doesn't work properly.
+   autocmd BufEnter *
+      \ if &filetype != 'help' |
+      \    silent! cd %:p:h |
+      \ endif
 
-      " When reading a file, :cd to its parent directory unless it's a help
-      " file. This replaces 'autochdir which doesn't work properly.
-      autocmd BufEnter *
-         \ if &filetype != 'help' |
-         \    silent! cd %:p:h |
-         \ endif
-
-      " Delete EOL white spaces
-      autocmd BufWritePre *
-         \ if &filetype != 'markdown' |
-         \    call spaces#remove() |
-         \ endif
-
-   augroup END
+   " Delete EOL white spaces
+   autocmd BufWritePre *
+      \ if &filetype != 'markdown' |
+      \    call spaces#remove() |
+      \ endif
 endif
 
 nmap <leader>ft :set filetype=

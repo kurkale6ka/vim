@@ -1,4 +1,4 @@
-" vim selections available in "+ for outside apps
+" Selection available for pasting with <c-v> outside of vim
 set guioptions+=P
 
 set t_vb= " no visual bell notifications
