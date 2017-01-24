@@ -9,6 +9,13 @@ set nocompatible
 
 let &runtimepath = substitute(&runtimepath, '\.\zevim', '', 'g')
 
+if empty($SSH_CONNECTION)
+   call system("who | 'grep' -v tmux | 'grep' -q '(.*)'")
+   if v:shell_error
+      let s:local_vim = 1
+   endif
+endif
+
 "" Filetype + syntax
 " filetype plugin indent on
 " syntax enable
@@ -104,7 +111,7 @@ let g:neomake_puppet_puppetlint_maker = {
    \ }
 
 "" Backups
-if empty($SSH_CONNECTION)
+if exists('s:local_vim')
    set backup
 elseif has('writebackup')
    set writebackup
@@ -116,7 +123,7 @@ set noautowrite
 set noautowriteall
 set noautoread
 
-if has('persistent_undo') && empty($SSH_CONNECTION)
+if exists('s:local_vim') && has('persistent_undo')
    set undofile
 endif
 
@@ -234,7 +241,7 @@ if has('nvim') || &encoding =~ '^u\(tf\|cs\)' " unicode
    execute 'set listchars+=nbsp:'  .s:dot
 endif
 
-if empty($SSH_CONNECTION) && has('autocmd')
+if exists('s:local_vim') && has('autocmd')
    autocmd BufEnter *
       \ if &readonly |
       \    setlocal nolist |
