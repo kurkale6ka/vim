@@ -402,8 +402,9 @@ set statusline=%<%1*%L%* " number of lines
 set statusline+=\ %2*❬%*\ %4*%{empty(&paste)?'':'--paste--\ '}%* " paste mode
 set statusline+=%3*%t%* " file name (tail)
 
-" RO, modified + keymap
-set statusline+=%{empty(&ro)\ &&\ empty(&mod)\ &&\ empty(&kmp)?'':'\ '}%4*%r%m%*%{empty(&kmp)?'':'('.b:keymap_name.')'}
+" RO, modified, modifiable
+set statusline+=%{empty(&ro)\ &&\ empty(&mod)\ &&\ !empty(&ma)\ &&\ empty(&kmp)?'':'\ '}%4*%r%m%*
+set statusline+=%{empty(&kmp)?'':'('.b:keymap_name.')'} " keymap
 
 set statusline+=\ %2*❬%*\ %1*c%v%* " column
 
