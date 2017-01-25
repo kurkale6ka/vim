@@ -486,35 +486,14 @@ set backspace=indent,eol,start
 inoremap <c-u> <c-g>u<c-u>
 
 " Ctrl + w
-function Cmdl_CtrlW()
-   let cmd_r = strpart(getcmdline(), getcmdpos() - 1)
-   let cmd_l = split(strpart(getcmdline(), 0, getcmdpos() - 1))
-   if len(cmd_l) > 1
-      let cmd_l = join(remove(cmd_l, 0, -2))
-      call setcmdpos(len(cmd_l) + 2)
-      return cmd_l . ' ' . cmd_r
-   else
-      call setcmdpos(1)
-      return cmd_r
-   endif
-endfunction
-
-cnoremap <c-w> <c-\>eCmdl_CtrlW()<cr>
+cnoremap <c-w> <c-\>ecmdline#ctrl_w()<cr>
 inoremap <c-w> <c-o>dB
 
 " Alt + backspace
 noremap! <m-bs> <c-w>
 
 " Alt + d
-function Cmdl_AltD()
-   let cmd_l = strpart(getcmdline(), 0, getcmdpos() - 1)
-   let cmd_r = strpart(getcmdline(), getcmdpos() - 1)
-   let cmd_r = substitute(cmd_r, '^.\{-}\w\+', '', '')
-   call setcmdpos(len(cmd_l) + 1)
-   return cmd_l . cmd_r
-endfunction
-
-cnoremap <m-d> <c-\>eCmdl_AltD()<cr>
+cnoremap <m-d> <c-\>ecmdline#alt_d()<cr>
 inoremap <m-d> <c-o>de
 
 " Ctrl + k

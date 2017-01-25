@@ -1,3 +1,26 @@
+" Ctrl + w
+function! cmdline#ctrl_w()
+   let cmd_r = strpart(getcmdline(), getcmdpos() - 1)
+   let cmd_l = split(strpart(getcmdline(), 0, getcmdpos() - 1))
+   if len(cmd_l) > 1
+      let cmd_l = join(remove(cmd_l, 0, -2))
+      call setcmdpos(len(cmd_l) + 2)
+      return cmd_l . ' ' . cmd_r
+   else
+      call setcmdpos(1)
+      return cmd_r
+   endif
+endfunction
+
+" Alt + d
+function! cmdline#alt_d()
+   let cmd_l = strpart(getcmdline(), 0, getcmdpos() - 1)
+   let cmd_r = strpart(getcmdline(), getcmdpos() - 1)
+   let cmd_r = substitute(cmd_r, '^.\{-}\w\+', '', '')
+   call setcmdpos(len(cmd_l) + 1)
+   return cmd_l . cmd_r
+endfunction
+
 " Switch between command line commands
 " Note: switch is not fully functional yet, all it does is copy the pattern in "*
 function! cmdline#switch(c)
