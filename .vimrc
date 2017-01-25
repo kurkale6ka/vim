@@ -242,8 +242,8 @@ if has('nvim') || &encoding =~ '^u\(tf\|cs\)' " unicode
 endif
 
 if exists('s:local_vim') && has('autocmd')
-   autocmd BufEnter *
-      \ if &readonly |
+   autocmd BufEnter,OptionSet *
+      \ if &readonly || !&modifiable |
       \    setlocal nolist |
       \ else |
       \    setlocal list |
