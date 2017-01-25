@@ -493,7 +493,7 @@ inoremap <c-w> <c-o>dB
 noremap! <m-bs> <c-w>
 
 " Alt + d
-if has('nvim')
+if has('gui_running') || has('nvim')
    cnoremap <m-d> <c-\>ecmdline#alt_d()<cr>
    inoremap <m-d> <c-o>de
 endif
