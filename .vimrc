@@ -493,8 +493,10 @@ inoremap <c-w> <c-o>dB
 noremap! <m-bs> <c-w>
 
 " Alt + d
-cnoremap <m-d> <c-\>ecmdline#alt_d()<cr>
-inoremap <m-d> <c-o>de
+if has('nvim')
+   cnoremap <m-d> <c-\>ecmdline#alt_d()<cr>
+   inoremap <m-d> <c-o>de
+endif
 
 " Ctrl + k
 imap <c-k> <c-o>D
