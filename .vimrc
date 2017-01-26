@@ -169,8 +169,8 @@ set path+=$HOME/github/**,~/github/zsh/.zsh/**
 command! -nargs=+ Find call find#files(<f-args>)
 
 "" Encoding and file formats
-if has('multi_byte') && !has('nvim')
-   if &encoding !~? 'utf-\=8'
+if !has('nvim')
+   if has('multi_byte') && &encoding !~? 'utf-\=8'
       if empty(&termencoding)
          let &termencoding = &encoding
       endif
@@ -227,7 +227,7 @@ if v:version > 704 || v:version == 704 && has('patch338')
    set breakindent " respect indentation when wrapping
 endif
 
-if has('nvim') || &encoding =~ '^u\(tf\|cs\)' " unicode
+if has('nvim') || &encoding =~? '^u\(tf\|cs\)' " unicode
 
    " ↪ at the beginning of wrapped lines
    let &showbreak = nr2char(8618).' '
@@ -254,7 +254,7 @@ endif
 nmap <leader><tab> :setlocal invlist list?<cr>
 
 "" Colors and highlighting
-if &term =~ '^\(xterm\|screen\)$' || has('nvim')
+if has('nvim') || &term =~ '^\(xterm\|screen\)$'
    set t_Co=256
 endif
 
@@ -445,12 +445,13 @@ cmap <c-r><c-l> <c-r>=copy#line()<cr>
 " Ctrl + g to copy pattern to "* (:g/pattern -> /pattern...)
 cmap <silent> <c-g> <c-f>:call cmdline#switch('g')<cr>
 
-if has('xterm_clipboard') " || has('nvim') " TODO. Still in development
+" has('nvim') || " TODO. Still in development
+if has('xterm_clipboard')
    " Selection available for pasting with <c-v> outside of vim (GUI's go+=P)
    set clipboard^=autoselectplus
 endif
 
-if has('xterm_clipboard') || has('gui_running') || has('nvim')
+if has('nvim') || has('xterm_clipboard') || has('gui_running')
    " y/d/c available for pasting with <c-v> outside of vim
    set clipboard^=unnamedplus
 endif
@@ -493,7 +494,7 @@ inoremap <c-w> <c-o>dB
 noremap! <m-bs> <c-w>
 
 " Alt + d
-if has('gui_running') || has('nvim')
+if has('nvim') || has('gui_running')
    cnoremap <m-d> <c-\>ecmdline#alt_d()<cr>
    inoremap <m-d> <c-o>de
 endif
@@ -665,7 +666,8 @@ command! DiffOrig
 command! Edit  browse edit
 command! Write browse write
 
-command! WriteSudo write !sudo tee % > /dev/null
+" TODO. Still in development
+command! WriteSudo write !sudo tee % >/dev/null
 
 command! Shell silent write !sh
 
