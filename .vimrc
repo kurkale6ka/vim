@@ -227,10 +227,20 @@ if v:version > 704 || v:version == 704 && has('patch338')
    set breakindent " respect indentation when wrapping
 endif
 
-if has('nvim') || &encoding =~? '^u\(tf\|cs\)' " unicode
+" When to enable unicode characters
+if has('nvim') ||
+   \ (&encoding =~? '^u\(tf\|cs\)' &&
+   \    (empty(&termencoding) ||
+   \     &termencoding ==? &encoding ||
+   \     &termencoding ==? 'macroman'
+   \    )
+   \ )
+   let s:unicode_chars = 1
+endif
 
-   " ↪ at the beginning of wrapped lines
-   let &showbreak = nr2char(8618).' '
+if exists('s:unicode_chars')
+
+   let &showbreak = nr2char(8618).' ' " U+21AA ↪
 
    let s:arr = nr2char(9655) " U+25B7: ▷
    let s:dot = nr2char(8901) " U+22C5: ⋅
@@ -239,6 +249,9 @@ if has('nvim') || &encoding =~? '^u\(tf\|cs\)' " unicode
    execute 'set listchars=tab:'    .s:arr.s:dot
    execute 'set listchars+=trail:' .s:dot
    execute 'set listchars+=nbsp:'  .s:dot
+else
+   let &showbreak = '\ '
+   set listchars=tab:>-,trail:-,nbsp:-
 endif
 
 if exists('s:local_vim') && has('autocmd')
@@ -405,22 +418,45 @@ if exists('+wildignorecase')
 endif
 
 " Status line
-set statusline=%<%1*%L%* " number of lines
-set statusline+=\ %2*❬%*\ %4*%{empty(&paste)?'':'--paste--\ '}%* " paste mode
-set statusline+=%3*%t%* " file name (tail)
+if exists('s:unicode_chars')
+   let s:sep_l = '❬'
+   let s:sep_r = '❭'
+else
+   let s:sep_l = '<'
+   let s:sep_r = '>'
+endif
 
-" RO, modified, modifiable
-set statusline+=%{empty(&ro)\ &&\ empty(&mod)\ &&\ !empty(&ma)\ &&\ empty(&kmp)?'':'\ '}%4*%r%m%*
-set statusline+=%{empty(&kmp)?'':'('.b:keymap_name.')'} " keymap
+function! Status_line()
 
-set statusline+=\ %2*❬%*\ %1*c%v%* " column
+   let statusline='%<%1*%L%* ' " number of lines
 
-" alternate file
-set statusline+=%=%{expand('#:t')\ !=\ expand('%:t')\ &&\ !empty(expand('#:t'))?'#'.expand('#:t').'\ ❭\ ':''}
+   " paste mode
+   let statusline.='%2*'.s:sep_l."%* %4*%{empty(&paste)?'':'--paste-- '}%*"
+   let statusline.='%3*%t%*' " file name
 
-set statusline+=%5*%{empty(&ft)?'[]':'['.&ft.']'}%* " filetype
-set statusline+=%4*%{&ff\ !=\ 'unix'?'-'.&ff:''}%*  " fileformat
-set statusline+=\ ❭\ %P " percentage through file
+   " RO, modified, modifiable
+   let statusline.="%{empty(&ro) && empty(&mod) && !empty(&ma) && empty(&kmp)?'':' '}%4*%r%m%*"
+   " keymap
+   let statusline.="%{empty(&kmp)?'':'('.b:keymap_name.')'}"
+
+   let statusline.=' %2*'.s:sep_l.'%* %1*c%v%*' " column
+
+   " alternate file
+   let statusline.="%=%{expand('#:t') != expand('%:t') && !empty(expand('#:t'))?'#'.expand('#:t'):''}"
+   let statusline.="%2*%{expand('#:t') != expand('%:t') && !empty(expand('#:t'))?'  ".s:sep_r." ':''}%*"
+
+   " filetype and fileformat
+   let statusline.="%{empty(&ft)?'':'['}%5*%{&ft}%*%{empty(&ft)?'':']'}"
+   let statusline.="%2*%{&ff != 'unix' && !empty(&ft)?'-':''}%*%4*%{&ff != 'unix'?&ff:''}%*"
+
+   " percentage through file
+   let statusline.="%2*%{empty(&ft) && &ff == 'unix'?'':'  ".s:sep_r." '}%*%P"
+
+   return statusline
+
+endfunction
+
+set statusline=%!Status_line()
 
 set laststatus=2
 
