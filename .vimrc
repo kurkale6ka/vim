@@ -49,11 +49,13 @@ Plug 'tpope/vim-markdown'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
-Plug 'godlygeek/csapprox', has('nvim') ? { 'on': [] } : {} " disable for nvim
+if !has('nvim') && $TERM != 'linux' && version < 703
+Plug 'godlygeek/csapprox'
+endif
 Plug 'godlygeek/tabular' ", { 'on': 'Tabularize' }
 Plug 'SirVer/ultisnips'
 Plug 'bfredl/nvim-miniyank', has('nvim') ? {} : { 'on': [] }
-Plug 'jszakmeister/vim-togglecursor'
+Plug 'jszakmeister/vim-togglecursor', $TERM == 'linux' ? { 'on': [] } : {} " disable in the vconsole
 Plug 'neomake/neomake'
 Plug 'qpkorr/vim-bufkill'
 Plug 'rodjek/vim-puppet'
@@ -74,7 +76,7 @@ let g:UltiSnipsExpandTrigger       = '<tab>'
 let g:UltiSnipsJumpForwardTrigger  = '<tab>'
 let g:UltiSnipsJumpBackwardTrigger = '<s-tab>'
 
-if !has('nvim') && version < 703
+if !has('nvim') && $TERM != 'linux' && version < 703
    let g:CSApprox_verbose_level = 0
 endif
 
