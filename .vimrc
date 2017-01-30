@@ -444,11 +444,11 @@ function! Status_line()
    let statusline.=' %2*'.s:sep_l.'%* %1*c%v%*' " column
 
    " alternate file
-   let statusline.="%=%{expand('#:t') != expand('%:t') && !empty(expand('#:t'))?'#'.expand('#:t'):''}"
+   let statusline.="%=%3*%{expand('#:t') != expand('%:t') && !empty(expand('#:t'))?'#'.expand('#:t'):''}%*"
    let statusline.="%2*%{expand('#:t') != expand('%:t') && !empty(expand('#:t'))?'  ".s:sep_r." ':''}%*"
 
    " filetype and fileformat
-   let statusline.="%{empty(&ft)?'':'['}%5*%{&ft}%*%{empty(&ft)?'':']'}"
+   let statusline.="%5*%{&ft}%*"
    let statusline.="%2*%{&ff != 'unix' && !empty(&ft)?'-':''}%*%4*%{&ff != 'unix'?&ff:''}%*"
 
    " percentage through file
