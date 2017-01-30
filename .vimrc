@@ -159,6 +159,8 @@ if exists('+inccommand')
    set inccommand=nosplit
 endif
 
+cabbrev es e%:p:s/
+
 " Grepping
 set grepprg=command\ grep\ -niE\ --exclude='*~'\ --exclude\ tags\ $*\ /dev/null
 
