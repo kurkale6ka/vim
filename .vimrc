@@ -159,7 +159,7 @@ if exists('+inccommand')
    set inccommand=nosplit
 endif
 
-cabbrev es e%:p:s/
+cabbrev es e%:p:s/<c-r>=cmdline#eat_char('\s')<cr>
 
 " Grepping
 set grepprg=command\ grep\ -niE\ --exclude='*~'\ --exclude\ tags\ $*\ /dev/null
@@ -648,8 +648,8 @@ cabbrev trp rtp
 cabbrev waq wqa
 cabbrev frm fmr
 
-iabbrev :me: Dimitar Dimitrov
-iabbrev :date: <c-r>=strftime('%a, %d %b %Y')<cr>
+iabbrev :me: Dimitar Dimitrov<c-r>=cmdline#eat_char('\s')<cr>
+iabbrev :date: <c-r>=strftime('%a, %d %b %Y')<cr><c-r>=cmdline#eat_char('\s')<cr>
 
 "" Add/Subtract
 nmap <silent>         <c-a> :<c-u>call number#change('a', 'f')<cr>

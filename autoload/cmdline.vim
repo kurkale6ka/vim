@@ -22,6 +22,12 @@ function! cmdline#alt_d()
    return cmd_l . cmd_r
 endfunction
 
+" Abbreviations helper
+function! cmdline#eat_char(pat)
+   let c = nr2char(getchar(0))
+   return (c =~ a:pat) ? '' : c
+endfunc
+
 " Switch between command line commands
 " Note: switch is not fully functional yet, all it does is copy the pattern in "*
 function! cmdline#switch(c)
