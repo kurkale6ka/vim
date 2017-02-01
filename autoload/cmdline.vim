@@ -1,4 +1,5 @@
 " Ctrl + w
+" Make it wipeout more, like in readline
 function! cmdline#ctrl_w()
    let cmd_r = strpart(getcmdline(), getcmdpos() - 1)
    let cmd_l = split(strpart(getcmdline(), 0, getcmdpos() - 1))
@@ -14,6 +15,7 @@ function! cmdline#ctrl_w()
 endfunction
 
 " Alt + d
+" Delete the word in front of the cursor
 function! cmdline#alt_d()
    let cmd_l = strpart(getcmdline(), 0, getcmdpos() - 1)
    let cmd_r = strpart(getcmdline(), getcmdpos() - 1)
@@ -21,12 +23,6 @@ function! cmdline#alt_d()
    call setcmdpos(len(cmd_l) + 1)
    return cmd_l . cmd_r
 endfunction
-
-" Abbreviations helper
-function! cmdline#eat_char(pat)
-   let c = nr2char(getchar(0))
-   return (c =~ a:pat) ? '' : c
-endfunc
 
 " Switch between command line commands
 " Note: switch is not fully functional yet, all it does is copy the pattern in "*
