@@ -12,8 +12,12 @@ set sessionoptions+=resize
 " Tab labels
 set guitablabel=%{tabs#gui_tab_label()}
 
+" GUI options
 set guioptions-=m " no menu
 set guioptions-=T " no toolbar
+
+" Status line
+set statusline=%!statusline#init('❬',\ '❭')
 
 "" Mouse
 set mousemodel=extend
