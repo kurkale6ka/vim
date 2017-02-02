@@ -232,7 +232,7 @@ if v:version > 704 || v:version == 704 && has('patch338')
 endif
 
 " When to enable unicode characters
-if $TERM != 'linux'
+if $TERM != 'linux' || has('gui_running')
    if has('nvim') ||
       \ (&encoding =~? '^u\(tf\|cs\)' &&
       \    (empty(&termencoding) ||

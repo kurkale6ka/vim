@@ -16,9 +16,6 @@ set guitablabel=%{tabs#gui_tab_label()}
 set guioptions-=m " no menu
 set guioptions-=T " no toolbar
 
-" Status line
-set statusline=%!statusline#init('❬',\ '❭')
-
 "" Mouse
 set mousemodel=extend
 
