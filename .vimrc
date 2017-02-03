@@ -280,7 +280,7 @@ if has('nvim') || &term =~ '^\(xterm\|screen\)$'
    set t_Co=256
 endif
 
-if exists('+termguicolors')
+if exists('+termguicolors') && $TERM != 'linux'
    " tmux Vim-specific sequences for RGB colors
    if !has('nvim')
       let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
