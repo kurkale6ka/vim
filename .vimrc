@@ -2,7 +2,12 @@
 
 " Don't reset &runtimepath, if re-sourcing my vimrc
 if !exists('g:loaded_plug')
-   set all&
+   " TODO. waiting on fix
+   if !&loadplugins
+      set all& noloadplugins
+   else
+      set all&
+   endif
 endif
 
 set nocompatible
@@ -54,7 +59,7 @@ Plug 'godlygeek/csapprox'
 endif
 Plug 'godlygeek/tabular' ", { 'on': 'Tabularize' }
 Plug 'SirVer/ultisnips'
-Plug 'bfredl/nvim-miniyank', has('nvim') ? {} : { 'on': [] }
+" Plug 'bfredl/nvim-miniyank', has('nvim') ? {} : { 'on': [] }
 Plug 'jszakmeister/vim-togglecursor', $TERM == 'linux' ? { 'on': [] } : {} " disable in the vconsole
 Plug 'neomake/neomake'
 Plug 'qpkorr/vim-bufkill'
