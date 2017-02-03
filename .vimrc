@@ -275,10 +275,10 @@ endif
 " \<tab> to toggle list display
 nmap <leader><tab> :setlocal invlist list?<cr>
 
-"" Colors and highlighting
-if has('nvim') || &term =~ '^\(xterm\|screen\)$'
-   set t_Co=256
-endif
+" "" Colors and highlighting
+" if !has('nvim') || &term =~ '^\(xterm\|screen\)$'
+"    set t_Co=256
+" endif
 
 if exists('+termguicolors') && $TERM != 'linux'
    " tmux Vim-specific sequences for RGB colors
