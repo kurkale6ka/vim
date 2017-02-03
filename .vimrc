@@ -232,16 +232,14 @@ if v:version > 704 || v:version == 704 && has('patch338')
 endif
 
 " When to enable unicode characters
-if $TERM != 'linux' || has('gui_running')
-   if has('nvim') ||
-      \ (&encoding =~? '^u\(tf\|cs\)' &&
-      \    (empty(&termencoding) ||
-      \     &termencoding ==? &encoding ||
-      \     &termencoding ==? 'macroman'
-      \    )
-      \ )
-      let s:unicode_chars = 1
-   endif
+if ($TERM != 'linux' &&
+ \    (has('nvim') ||
+ \       (&enc =~? '^u\(tf\|cs\)' &&
+ \          (empty(&tenc) || &tenc ==? &enc || &tenc ==? 'macroman')
+ \       )
+ \    )
+ \ ) || has('gui_running')
+   let s:unicode_chars = 1
 endif
 
 if exists('s:unicode_chars')
