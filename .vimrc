@@ -302,6 +302,7 @@ endif
 
 set cursorline
 
+" TODO: no 81st column in diff mode
 if has('autocmd')
    autocmd BufEnter,FileType *
       \ if empty(&textwidth) |
