@@ -54,13 +54,13 @@ Plug 'tpope/vim-markdown'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
-if !has('nvim') && $TERM != 'linux' && version < 703
+if !has('nvim') && $TERM !~ 'linux' && version < 703
 Plug 'godlygeek/csapprox'
 endif
 Plug 'godlygeek/tabular' ", { 'on': 'Tabularize' }
 Plug 'SirVer/ultisnips'
 " Plug 'bfredl/nvim-miniyank', has('nvim') ? {} : { 'on': [] }
-Plug 'jszakmeister/vim-togglecursor', $TERM == 'linux' ? { 'on': [] } : {} " disable in the vconsole
+Plug 'jszakmeister/vim-togglecursor', $TERM =~ 'linux' ? { 'on': [] } : {} " disable in the vconsole
 Plug 'neomake/neomake'
 Plug 'qpkorr/vim-bufkill'
 Plug 'rodjek/vim-puppet'
@@ -81,7 +81,7 @@ let g:UltiSnipsExpandTrigger       = '<tab>'
 let g:UltiSnipsJumpForwardTrigger  = '<tab>'
 let g:UltiSnipsJumpBackwardTrigger = '<s-tab>'
 
-if !has('nvim') && $TERM != 'linux' && version < 703
+if !has('nvim') && $TERM !~ 'linux' && version < 703
    let g:CSApprox_verbose_level = 0
 endif
 
@@ -215,7 +215,9 @@ set ttimeoutlen=100 " 100 ms before timing out on a keypress
 
 " No flashing
 set visualbell " visual bell instead of beeps, but...
-set t_vb=      " ...disable the visual effect :)
+if !has('nvim')
+   set t_vb= " ...disable the visual effect :)
+endif
 
 if has('folding')
    set foldnestmax=1 " maximum nesting for indent and syntax
@@ -237,7 +239,7 @@ if v:version > 704 || v:version == 704 && has('patch338')
 endif
 
 " When to enable unicode characters
-if ($TERM != 'linux' &&
+if ($TERM !~ 'linux' &&
  \    (has('nvim') ||
  \       (&enc =~? '^u\(tf\|cs\)' &&
  \          (empty(&tenc) || &tenc ==? &enc || &tenc ==? 'macroman')
@@ -275,12 +277,12 @@ endif
 " \<tab> to toggle list display
 nmap <leader><tab> :setlocal invlist list?<cr>
 
-" "" Colors and highlighting
-" if !has('nvim') || &term =~ '^\(xterm\|screen\)$'
-"    set t_Co=256
-" endif
+"" Colors and highlighting
+if !has('nvim') && $TERM !~ 'linux' && &term =~ '^\(xterm\|screen\)$'
+   set t_Co=256
+endif
 
-if exists('+termguicolors') && $TERM != 'linux' && $TERM_PROGRAM != 'Apple_Terminal'
+if exists('+termguicolors') && $TERM !~ 'linux\|screen\.' && $TERM_PROGRAM != 'Apple_Terminal'
    " tmux Vim-specific sequences for RGB colors
    if !has('nvim')
       let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
@@ -319,12 +321,14 @@ if !has('nvim')
    set ttymouse=xterm2
 endif
 
-if has('nvim') && $TERM == 'linux'
+if has('nvim') && $TERM =~ 'linux'
    let $NVIM_TUI_ENABLE_CURSOR_SHAPE = 0
 endif
 
-" Bug: Only t_te, not t_op, gets sent when leaving an alt screen
-exe 'set t_te=' . &t_te . &t_op
+if !has('nvim')
+   " TODO. Bug: Only t_te, not t_op, gets sent when leaving an alt screen
+   exe 'set t_te=' . &t_te . &t_op
+endif
 
 "" Text formating
 set formatoptions+=r " auto insert comment with <Enter>...
