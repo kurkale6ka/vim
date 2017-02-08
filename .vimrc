@@ -54,7 +54,7 @@ Plug 'tpope/vim-markdown'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
-if !has('nvim') && $TERM !~ 'linux' && version < 703
+if !exists('+termguicolors') && $TERM !~ 'linux' && version >= 703
 Plug 'godlygeek/csapprox'
 endif
 Plug 'godlygeek/tabular' ", { 'on': 'Tabularize' }
@@ -81,7 +81,7 @@ let g:UltiSnipsExpandTrigger       = '<tab>'
 let g:UltiSnipsJumpForwardTrigger  = '<tab>'
 let g:UltiSnipsJumpBackwardTrigger = '<s-tab>'
 
-if !has('nvim') && $TERM !~ 'linux' && version < 703
+if !exists('+termguicolors') && $TERM !~ 'linux' && version >= 703
    let g:CSApprox_verbose_level = 0
 endif
 
