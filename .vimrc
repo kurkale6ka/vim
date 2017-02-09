@@ -34,7 +34,7 @@ if has('autocmd') && exists('+omnifunc')
 endif
 
 "" Plugins
-if !exists('+termguicolors') && $TERM !~ 'linux' && version >= 703
+if version >= 703 && (!exists('+termguicolors') || $TERM =~ '^screen\%($\|\.[^s]\)') && $TERM !~ 'linux'
    let s:csapprox_needed = 1
 endif
 
@@ -58,7 +58,9 @@ Plug 'tpope/vim-markdown'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
-Plug 'godlygeek/csapprox', exists('s:csapprox_needed') ? {} : { 'on': [] }
+if exists('s:csapprox_needed')
+Plug 'godlygeek/csapprox'
+endif
 Plug 'godlygeek/tabular' ", { 'on': 'Tabularize' }
 Plug 'SirVer/ultisnips'
 " Plug 'bfredl/nvim-miniyank', has('nvim') ? {} : { 'on': [] }
@@ -284,7 +286,7 @@ if !has('nvim') && $TERM !~ 'linux' && &term =~ '^\(xterm\|screen\)$'
    set t_Co=256
 endif
 
-if exists('+termguicolors') && $TERM !~ 'linux\|screen\.' && $TERM_PROGRAM != 'Apple_Terminal'
+if exists('+termguicolors') && $TERM !~ 'linux\|^screen\%($\|\.[^s]\)' && $TERM_PROGRAM != 'Apple_Terminal'
    " tmux Vim-specific sequences for RGB colors
    if !has('nvim')
       let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
