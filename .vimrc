@@ -15,7 +15,7 @@ set nocompatible
 let &runtimepath = substitute(&runtimepath, '\.\zevim', '', 'g')
 
 if empty($SSH_CONNECTION)
-   call system("who | 'grep' -v tmux | 'grep' -q '(.*)'")
+   call system("who | 'grep' -v tmux | 'grep' -v ':S\.[0-9][0-9]*)' | 'grep' -q '(.*)'")
    if v:shell_error
       let s:local_vim = 1
    endif
