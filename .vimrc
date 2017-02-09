@@ -34,6 +34,10 @@ if has('autocmd') && exists('+omnifunc')
 endif
 
 "" Plugins
+if !exists('+termguicolors') && $TERM !~ 'linux' && version >= 703
+   let s:csapprox_needed = 1
+endif
+
 call plug#begin('~/vim/plugged')
 Plug '~/vim/plugged/bufgrep', { 'on': 'Bgrep' }
 Plug '~/vim/plugged/unicodename', { 'on': 'UnicodeName' }
@@ -54,9 +58,7 @@ Plug 'tpope/vim-markdown'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
-if !exists('+termguicolors') && $TERM !~ 'linux' && version >= 703
-Plug 'godlygeek/csapprox'
-endif
+Plug 'godlygeek/csapprox', exists('s:csapprox_needed') ? {} : { 'on': [] }
 Plug 'godlygeek/tabular' ", { 'on': 'Tabularize' }
 Plug 'SirVer/ultisnips'
 " Plug 'bfredl/nvim-miniyank', has('nvim') ? {} : { 'on': [] }
@@ -81,7 +83,7 @@ let g:UltiSnipsExpandTrigger       = '<tab>'
 let g:UltiSnipsJumpForwardTrigger  = '<tab>'
 let g:UltiSnipsJumpBackwardTrigger = '<s-tab>'
 
-if !exists('+termguicolors') && $TERM !~ 'linux' && version >= 703
+if exists('s:csapprox_needed')
    let g:CSApprox_verbose_level = 0
 endif
 
