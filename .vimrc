@@ -105,15 +105,8 @@ if !exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# ''
 endif
 
 " Neomake
-let g:neomake_warning_sign = {
-   \ 'text': 'W',
-   \ 'texthl': 'WarningMsg',
-   \ }
-
-let g:neomake_error_sign = {
-   \ 'text': 'E',
-   \ 'texthl': 'ErrorMsg',
-   \ }
+let g:neomake_warning_sign = { 'text': 'W', 'texthl': 'WarningMsg' }
+let g:neomake_error_sign   = { 'text': 'E', 'texthl': 'ErrorMsg'   }
 
 let g:neomake_puppet_puppetlint_maker = {
    \ 'exe': 'puppet-lint',
