@@ -89,8 +89,8 @@ if exists('s:csapprox_needed')
    let g:CSApprox_verbose_level = 0
 endif
 
-" Disable/enable plugins!
-" There seems not to be a way to disable tohtml.vim
+" Disable these plugins
+let g:loaded_2html_plugin    = 'vim7.4_v2'
 let g:loaded_vimballPlugin   = 0
 let g:loaded_netrwPlugin     = 1
 let g:loaded_zipPlugin       = 1
