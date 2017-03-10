@@ -61,7 +61,6 @@ Plug 'tpope/vim-unimpaired'
 if exists('s:csapprox_needed')
 Plug 'godlygeek/csapprox'
 endif
-Plug 'godlygeek/tabular' ", { 'on': 'Tabularize' }
 Plug 'SirVer/ultisnips'
 " Plug 'bfredl/nvim-miniyank', has('nvim') ? {} : { 'on': [] }
 Plug 'jszakmeister/vim-togglecursor', $TERM =~ 'linux' ? { 'on': [] } : {} " disable in the vconsole
@@ -72,6 +71,7 @@ Plug 'elzr/vim-json'
 Plug 'StanAngeloff/php.vim' " syntax
 Plug 'evanmiller/nginx-vim-syntax'
 Plug 'vim-scripts/iptables'
+Plug 'junegunn/vim-easy-align'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 call plug#end()
@@ -113,6 +113,13 @@ let g:neomake_puppet_puppetlint_maker = {
    \ 'args': ['--log-format', '"%{path}:%{line}:%{column}:%{kind}:[%{check}] %{message}"', '--no-variables_not_enclosed-check', '--no-2sp_soft_tabs-check', '--no-only_variable_string-check', '--no-80chars-check'],
    \ 'errorformat': '"%f:%l:%c:%t%*[a-zA-Z]:%m"',
    \ }
+
+nmap ga <Plug>(EasyAlign)
+xmap ga <Plug>(EasyAlign)
+
+let g:easy_align_delimiters = {
+\ '>': { 'pattern': '[-=]\+>' },
+\ }
 
 "" Backups
 if exists('s:local_vim')

@@ -245,7 +245,7 @@ Plugins:
 --------
 * https://github.com/junegunn/vim-plug (used for easier install of other plugins)
 * https://github.com/godlygeek/csapprox (gvim colorschemes for terminal)
-* https://github.com/godlygeek/tabular (align stuff vertically)
+* https://github.com/junegunn/vim-easy-align (align stuff vertically)
 * https://github.com/tpope/vim-surround (easier surrounding of text)
 * https://github.com/tpope/vim-commentary (easier commenting of code)
 * https://github.com/SirVer/ultisnips (predefined snippets (skeletons) of text)
