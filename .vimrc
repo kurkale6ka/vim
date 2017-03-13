@@ -90,8 +90,8 @@ if exists('s:csapprox_needed')
 endif
 
 " Disable these plugins
-let g:loaded_2html_plugin    = 'vim7.4_v2'
-let g:loaded_vimballPlugin   = 0
+let g:loaded_2html_plugin    = 1
+let g:loaded_vimballPlugin   = 1
 let g:loaded_netrwPlugin     = 1
 let g:loaded_zipPlugin       = 1
 let g:loaded_tarPlugin       = 1
