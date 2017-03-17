@@ -28,7 +28,7 @@ endif
 " Syntax based omni completion
 if has('autocmd') && exists('+omnifunc')
    autocmd Filetype *
-      \ if empty(&omnifunc) |
+      \ if empty(&omnifunc)                          |
       \    setlocal omnifunc=syntaxcomplete#Complete |
       \ endif
 endif
@@ -273,10 +273,10 @@ if exists('s:local_vim') && has('autocmd')
    autocmd BufEnter,OptionSet *
       \ if expand('<amatch>') !~ 'list' |
       \    if &readonly || !&modifiable |
-      \       setlocal nolist |
-      \    else |
-      \       setlocal list |
-      \    endif |
+      \       setlocal nolist           |
+      \    else                         |
+      \       setlocal list             |
+      \    endif                        |
       \ endif
 endif
 
@@ -311,9 +311,9 @@ set cursorline
 " TODO: no 81st column in diff mode
 if has('autocmd')
    autocmd BufEnter,FileType *
-      \ if empty(&textwidth) |
-      \    match ColorColumn /\%81v./ |
-      \ else |
+      \ if empty(&textwidth)                                      |
+      \    match ColorColumn /\%81v./                             |
+      \ else                                                      |
       \    execute 'match ColorColumn /\%'.(&textwidth + 1).'v./' |
       \ endif
 endif
@@ -648,20 +648,20 @@ if has('autocmd')
    " Jump to the last spot the cursor was at in a file when reading it
    autocmd BufReadPost *
       \ if line("'\"") > 0 && line("'\"") <= line('$') && &filetype != 'gitcommit' |
-      \    execute 'normal! g`"' |
+      \    execute 'normal! g`"'                                                   |
       \ endif
 
    " When reading a file, :cd to its parent directory unless it's a help
    " file. This replaces 'autochdir which doesn't work properly.
    autocmd BufEnter *
       \ if &filetype != 'help' |
-      \    silent! cd %:p:h |
+      \    silent! cd %:p:h    |
       \ endif
 
    " Delete EOL white spaces
    autocmd BufWritePre *
       \ if &filetype != 'markdown' |
-      \    call spaces#remove() |
+      \    call spaces#remove()    |
       \ endif
 endif
 
