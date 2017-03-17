@@ -1,15 +1,24 @@
-" Squeeze empty lines (TODO: remove entries from / history)
+" Squeeze empty lines
 function! squeeze#lines(mode)
+
    let save_cursor = getpos('.')
+
    if a:mode == 'v'
-      let save_search = @/
+
       *vglobal/\S/delete
-      let @/ = save_search
+
+      call histdel('search', -1)
    else
       " empty lines at BOF|EOF
       silent %substitute/\%^\_s*\n\|\_s*\%$//
-      " empty line clusters
+
+      " clusters of empty lines
       silent global/^\%(\s*$\n\)\{2,}/delete
+
+      call histdel('search', -1)
+      call histdel('search', -1)
    endif
+
    call setpos('.', save_cursor)
+
 endfunction

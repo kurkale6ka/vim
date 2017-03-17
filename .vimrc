@@ -528,7 +528,7 @@ imap <c-k> <c-o>D
 cmap <c-k> <c-\>estrpart(getcmdline(), 0, getcmdpos() - 1)<cr>
 
 " Delete EOF empty lines
-nmap <silent> dl :%substitute/\_s*\%$//<bar>nohlsearch<cr>``
+nmap <silent> dl :call spaces#remove_eof()<cr>
 
 " Delete a whole line to the small register (and "" of course)
 nmap did ^D"_dd
