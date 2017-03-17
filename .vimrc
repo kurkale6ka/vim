@@ -271,10 +271,12 @@ endif
 
 if exists('s:local_vim') && has('autocmd')
    autocmd BufEnter,OptionSet *
-      \ if &readonly || !&modifiable |
-      \    setlocal nolist |
-      \ else |
-      \    setlocal list |
+      \ if expand('<amatch>') !~ 'list' |
+      \    if &readonly || !&modifiable |
+      \       setlocal nolist |
+      \    else |
+      \       setlocal list |
+      \    endif |
       \ endif
 endif
 
