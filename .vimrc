@@ -632,8 +632,8 @@ cabbrev trp rtp
 cabbrev waq wqa
 cabbrev frm fmr
 
-iabbrev :me: Dimitar Dimitrov<c-r>=abbreviations#eat_char('\s')<cr>
-iabbrev :date: <c-r>=strftime('%a, %d %b %Y')<cr><c-r>=abbreviations#eat_char('\s')<cr>
+iabbrev _me Dimitar Dimitrov<c-r>=abbreviations#eat_char('\s')<cr>
+iabbrev _date <c-r>=strftime('%a, %d %b %Y')<cr><c-r>=abbreviations#eat_char('\s')<cr>
 
 "" Add/Subtract
 nmap <silent>         <c-a> :<c-u>call number#change('a', 'f')<cr>
