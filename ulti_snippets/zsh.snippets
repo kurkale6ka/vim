@@ -250,52 +250,28 @@ done < <(${2:find /foo -print0})
 endsnippet
 
 ## Parameter expansion
-snippet / "remove 1 from start"
-\$\{${1:parameter}#${2:word to remove}}
+snippet $ "# remove from start"
+\$\{${1:var}#${2}}
 endsnippet
 
-snippet / "remove ALL from start"
-\$\{${1:parameter}##${2:word to remove}}
+snippet $ "% remove from end"
+\$\{${1:var}%${2}}
 endsnippet
 
-snippet / "remove 1 from end"
-\$\{${1:parameter}%${2:word to remove}}
+snippet $ "/ replace"
+\$\{${1:var}/${2:old}/${3:new}}
 endsnippet
 
-snippet / "remove ALL from end"
-\$\{${1:parameter}%%${2:word to remove}}
+snippet $ ": substring"
+\$\{${1:var}:${2:start}:${3:length}}
 endsnippet
 
-snippet / "s///"
-\$\{${1:parameter}/${2:old}/${3:new}}
+snippet $ "length"
+\$\{#${1:var}}
 endsnippet
 
-snippet / "s/// ALL"
-\$\{${1:parameter}//${2:old}/${3:new}}
-endsnippet
-
-snippet / "substring in parameter"
-\$\{${1:parameter}:${2:start (0, ...)}${3::}${4:length (or everything)}}
-endsnippet
-
-snippet / "file.ext (remove everything in front)"
-\$\{${1:file name}##*/}
-endsnippet
-
-snippet / "Remove extension of file"
-\$\{${1:file name}%.*}
-endsnippet
-
-snippet / "length of parameter"
-\$\{#${1:parameter}}
-endsnippet
-
-snippet / "all parameters starting with prefix"
-\$\{!${1:prefix}@}
-endsnippet
-
-snippet / "Parameter expansion on arrays"
-\$\{${1:parameters array}[@]${2}#%:/}
+snippet $ "Parameter expansion on arrays"
+\$\{${1:array}[@]${2}#%:/}
 endsnippet
 
 ## Error
