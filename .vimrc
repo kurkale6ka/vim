@@ -658,11 +658,13 @@ if has('autocmd')
       \    silent! cd %:p:h    |
       \ endif
 
-   " Delete EOL white spaces
-   autocmd BufWritePre *
-      \ if &filetype != 'markdown' |
-      \    call spaces#remove()    |
-      \ endif
+   if exists('s:local_vim')
+      " Delete EOL white spaces
+      autocmd BufWritePre *
+         \ if &filetype != 'markdown' |
+         \    call spaces#remove()    |
+         \ endif
+   endif
 endif
 
 nmap <leader>ft :set filetype=
