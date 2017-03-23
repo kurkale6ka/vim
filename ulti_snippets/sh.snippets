@@ -254,11 +254,11 @@ done < <(${2:find /foo -print0})
 endsnippet
 
 ## Extended globs
-snippet ext "Enable extended globs"
+snippet * "Enable extended globs"
 shopt -s extglob
 endsnippet
 
-snippet ext "Use extended globs"
+snippet * "Use extended globs"
 ${1:@?*+!}(${2:item1}|${3:item2})
 endsnippet
 
