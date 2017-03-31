@@ -5,11 +5,12 @@ imap <silent> <buffer> <localleader>cs            <!--<cr><cr>><left><up><space>
 command! -buffer -range=% -nargs=* Tidy <line1>,<line2>! xmllint --format --recover - 2>/dev/null
 command! -buffer DeleteTags %substitute:<[?%![:space:]]\@!/\=\_.\{-1,}[-?%]\@<!>::gc
 
-imap <silent> <buffer> <localleader>p  <p><cr><cr></p><left><left><left><left><up><tab>
-imap <silent> <buffer> <localleader>d  <div><cr><cr></div><left><left><left><left><left><left><up><tab>
-imap <silent> <buffer> <localleader>n  <noscript><cr><cr></noscript><left><left><left><left><left><left><left><left><left><left><left><up><tab>
-imap <silent> <buffer> <localleader>s  <span></span><left><left><left><left><left><left><left>
-imap <silent> <buffer> <localleader>li <li></li><left><left><left><left><left>
+" Use snippets?
+" imap <silent> <buffer> <localleader>p  <p><cr><cr></p><left><left><left><left><up><tab>
+" imap <silent> <buffer> <localleader>d  <div><cr><cr></div><left><left><left><left><left><left><up><tab>
+" imap <silent> <buffer> <localleader>n  <noscript><cr><cr></noscript><left><left><left><left><left><left><left><left><left><left><left><up><tab>
+" imap <silent> <buffer> <localleader>s  <span></span><left><left><left><left><left><left><left>
+" imap <silent> <buffer> <localleader>li <li></li><left><left><left><left><left>
 
 " Server side includes
 setlocal include=--\\s*#\\s*include\\s*virtual=\\\|href=
