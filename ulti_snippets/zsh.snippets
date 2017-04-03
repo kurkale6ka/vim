@@ -324,6 +324,11 @@ snippet $ "Parameter expansion on arrays"
 \$\{${1:array}[@]${2}#%:/}
 endsnippet
 
+## Globs
+snippet **/*
+(${1:^.git}/)#$1
+endsnippet
+
 ## Error
 snippet e
 1>&2
