@@ -6,7 +6,11 @@ snippet 'source|///' "Static" r
 source => 'puppet:///modules/${1:module}/$2',
 endsnippet
 
-snippet 'content|template' "Template" r
+snippet 'content|template|epp' "Embedded puppet template" r
+content => epp('${1:module}/$2.epp'),
+endsnippet
+
+snippet 'content|template|epp' "Embedded ruby template" r
 content => template('${1:module}/$2.erb'),
 endsnippet
 
