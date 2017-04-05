@@ -12,7 +12,7 @@ endif
 
 set nocompatible
 
-let &runtimepath = substitute(&runtimepath, '\.\zevim', '', 'g')
+let &runtimepath = substitute(&runtimepath, '\.\zevim', 'github/', 'g')
 
 if empty($SSH_CONNECTION)
    call system("who | 'grep' -v tmux | 'grep' -v ':S\.[0-9][0-9]*)' | 'grep' -q '(.*)'")
@@ -38,11 +38,11 @@ if version >= 703 && (!exists('+termguicolors') || $TERM =~ '^screen\%($\|\.[^s]
    let s:csapprox_needed = 1
 endif
 
-call plug#begin('~/vim/plugged')
-Plug '~/vim/plugged/bufgrep', { 'on': 'Bgrep' }
-Plug '~/vim/plugged/unicodename', { 'on': 'UnicodeName' }
-Plug '~/vim/plugged/vsearch'
-Plug '~/vim/plugged/win_full_screen', { 'on': 'WinFullScreen' }
+call plug#begin('~/github/vim/plugged')
+Plug '~/github/vim/plugged/bufgrep', { 'on': 'Bgrep' }
+Plug '~/github/vim/plugged/unicodename', { 'on': 'UnicodeName' }
+Plug '~/github/vim/plugged/vsearch'
+Plug '~/github/vim/plugged/win_full_screen', { 'on': 'WinFullScreen' }
 let g:plug_url_format = 'git@github.com:%s.git'
 Plug 'kurkale6ka/vim-blockinsert'
 Plug 'kurkale6ka/vim-chess'
