@@ -1,3 +1,5 @@
+let $MYGVIMRC = '~/github/vim/ginit.vim'
+
 " Font
 Guifont DejaVu Sans Mono:h12
 

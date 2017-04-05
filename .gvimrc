@@ -1,3 +1,5 @@
+let $MYGVIMRC = '~/github/vim/.gvimrc'
+
 " Selection available for pasting with <c-v> outside of vim
 set guioptions+=P
 

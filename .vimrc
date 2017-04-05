@@ -14,6 +14,8 @@ set nocompatible
 
 let &runtimepath = substitute(&runtimepath, '\.\zevim', 'github/', 'g')
 
+let $MYVIMRC = '~/github/vim/init.vim'
+
 if empty($SSH_CONNECTION)
    call system("who | 'grep' -v tmux | 'grep' -v ':S\.[0-9][0-9]*)' | 'grep' -q '(.*)'")
    if v:shell_error
