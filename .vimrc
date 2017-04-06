@@ -12,9 +12,11 @@ endif
 
 set nocompatible
 
-let &runtimepath = substitute(&runtimepath, '\.\zevim', 'github/', 'g')
+let s:repos = '~/github'
+let s:vim = 'github/vim'
+execute 'let &runtimepath = substitute(&runtimepath, "/\\.vim", "/'.s:vim.'", "g")'
 
-let $MYVIMRC = '~/github/vim/init.vim'
+let $MYVIMRC = '~/'.s:vim.'/init.vim'
 
 if empty($SSH_CONNECTION)
    call system("who | 'grep' -v tmux | 'grep' -v ':S\.[0-9][0-9]*)' | 'grep' -q '(.*)'")
@@ -40,11 +42,11 @@ if version >= 703 && (!exists('+termguicolors') || $TERM =~ '^screen\%($\|\.[^s]
    let s:csapprox_needed = 1
 endif
 
-call plug#begin('~/github/vim/plugged')
-Plug '~/github/vim/plugged/bufgrep', { 'on': 'Bgrep' }
-Plug '~/github/vim/plugged/unicodename', { 'on': 'UnicodeName' }
-Plug '~/github/vim/plugged/vsearch'
-Plug '~/github/vim/plugged/win_full_screen', { 'on': 'WinFullScreen' }
+call plug#begin('~/'.s:vim.'/plugged')
+execute "Plug '~/".s:vim."/plugged/bufgrep', { 'on': 'Bgrep' }"
+execute "Plug '~/".s:vim."/plugged/unicodename', { 'on': 'UnicodeName' }"
+execute "Plug '~/".s:vim."/plugged/vsearch'"
+execute "Plug '~/".s:vim."/plugged/win_full_screen', { 'on': 'WinFullScreen' }"
 let g:plug_url_format = 'git@github.com:%s.git'
 Plug 'kurkale6ka/vim-blockinsert'
 Plug 'kurkale6ka/vim-chess'
@@ -179,7 +181,7 @@ set grepprg=command\ grep\ -niE\ --exclude='*~'\ --exclude\ tags\ $*\ /dev/null
 nmap <leader>bg :Bgrep/<c-r><c-w>/<cr>
 
 " Finding
-set path+=$HOME/github/**,~/github/zsh/.zsh/**
+execute 'set path+='.s:repos.'/**,'.$XDG_CONFIG_HOME.'/zsh/**'
 
 command! -nargs=+ Find call find#files(<f-args>)
 
@@ -386,7 +388,7 @@ nmap <leader>0 :left<cr>
 xmap <leader>0 :left<cr>
 
 "" Tags
-set tags+=$HOME/github/tags
+execute 'set tags+='.s:repos.'/tags'
 set complete-=t
 set completeopt-=preview
 set showfulltag
