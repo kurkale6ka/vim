@@ -1,4 +1,8 @@
-let $MYGVIMRC = '~/github/vim/.gvimrc'
+if !empty($REPOS_BASE)
+   let $MYGVIMRC = $REPOS_BASE.'/vim/.gvimrc'
+else
+   echoerr 'REPOS_BASE needs to be set'
+endif
 
 " Selection available for pasting with <c-v> outside of vim
 set guioptions+=P

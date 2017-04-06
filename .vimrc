@@ -12,10 +12,11 @@ endif
 
 set nocompatible
 
-let s:repos = '~/github'
+"" Setup
 let s:vim = 'github/vim'
 execute 'let &runtimepath = substitute(&runtimepath, "/\\.vim", "/'.s:vim.'", "g")'
 
+let s:repos_base = $REPOS_BASE
 let $MYVIMRC = '~/'.s:vim.'/init.vim'
 
 if empty($SSH_CONNECTION)
@@ -181,7 +182,10 @@ set grepprg=command\ grep\ -niE\ --exclude='*~'\ --exclude\ tags\ $*\ /dev/null
 nmap <leader>bg :Bgrep/<c-r><c-w>/<cr>
 
 " Finding
-execute 'set path+='.s:repos.'/**,'.$XDG_CONFIG_HOME.'/zsh/**'
+if !empty(s:repos_base)
+   execute 'set path+='.s:repos_base.'/**'
+endif
+set path+=$XDG_CONFIG_HOME/zsh/**
 
 command! -nargs=+ Find call find#files(<f-args>)
 
@@ -388,7 +392,9 @@ nmap <leader>0 :left<cr>
 xmap <leader>0 :left<cr>
 
 "" Tags
-execute 'set tags+='.s:repos.'/tags'
+if !empty(s:repos_base)
+   execute 'set tags+='.s:repos_base.'/tags'
+endif
 set complete-=t
 set completeopt-=preview
 set showfulltag

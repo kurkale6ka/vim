@@ -1,4 +1,8 @@
-let $MYGVIMRC = '~/github/vim/ginit.vim'
+if !empty($REPOS_BASE)
+   let $MYGVIMRC = $REPOS_BASE.'/vim/ginit.vim'
+else
+   echoerr 'REPOS_BASE needs to be set'
+endif
 
 " Font
 Guifont DejaVu Sans Mono:h12
