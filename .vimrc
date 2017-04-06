@@ -146,7 +146,10 @@ endif
 nnoremap gr 999<c-r>
 
 set history=10000
-set viminfo^=! " save uppercase global variables
+if !has('nvim')
+   set viminfo^=! " save uppercase global variables
+   execute 'set viminfo+=n~/'.s:vim.'/.viminfo'
+endif
 
 "" Search and replace
 set incsearch

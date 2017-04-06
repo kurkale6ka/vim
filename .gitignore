@@ -1,4 +1,5 @@
 # Ignore
+.viminfo
 pythonx
 plugged/*
 autoload/plug.vim
