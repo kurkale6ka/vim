@@ -1,9 +1,3 @@
-if !empty($REPOS_BASE)
-   let $MYGVIMRC = $REPOS_BASE.'/vim/ginit.vim'
-else
-   echoerr 'REPOS_BASE needs to be set'
-endif
-
 " Font
 Guifont DejaVu Sans Mono:h12
 
@@ -22,3 +16,12 @@ execute 'set listchars+=nbsp:'  .s:dot
 
 " Status line
 set statusline=%!statusline#init('❬',\ '❭')
+
+" MYGVIMRC
+" TODO: find why this was causing the rest of the file not to be parsed,
+"       plus the message wasn't recorded in the history
+if !empty($REPOS_BASE)
+   let $MYGVIMRC = $REPOS_BASE.'/vim/ginit.vim'
+else
+   echoerr 'REPOS_BASE needs to be set'
+endif

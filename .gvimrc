@@ -1,9 +1,3 @@
-if !empty($REPOS_BASE)
-   let $MYGVIMRC = $REPOS_BASE.'/vim/.gvimrc'
-else
-   echoerr 'REPOS_BASE needs to be set'
-endif
-
 " Selection available for pasting with <c-v> outside of vim
 set guioptions+=P
 
@@ -54,5 +48,12 @@ imap <c-s>a <c-o>:wall<cr>
 
 nmap <c-s><c-a>      :wall<cr>
 imap <c-s><c-a> <c-o>:wall<cr>
+
+"" MYGVIMRC
+if !empty($REPOS_BASE)
+   let $MYGVIMRC = $REPOS_BASE.'/vim/.gvimrc'
+else
+   echoerr 'REPOS_BASE needs to be set'
+endif
 
 " vim: fdm=expr fde=getline(v\:lnum)=~'^""'?'>'.(matchend(getline(v\:lnum),'"""*')-1)\:'='
