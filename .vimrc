@@ -82,7 +82,7 @@ call plug#end()
 
 let did_install_default_menus = 1
 
-execute 'let g:UltiSnipsSnippetsDir = "~/'.s:vim.'/ulti_snippets/"'
+let g:UltiSnipsSnippetsDir         = '~/'.s:vim.'/ulti_snippets/'
 let g:UltiSnipsSnippetDirectories  = ['UltiSnips', 'ulti_snippets']
 let g:UltiSnipsListSnippets        = '<c-r><tab>'
 let g:UltiSnipsExpandTrigger       = '<tab>'
@@ -187,7 +187,9 @@ nmap <leader>bg :Bgrep/<c-r><c-w>/<cr>
 if !empty($REPOS_BASE)
    execute 'set path+='.$REPOS_BASE.'/**'
 endif
-set path+=$XDG_CONFIG_HOME/zsh/**
+if !empty($XDG_CONFIG_HOME)
+   execute 'set path+='.$XDG_CONFIG_HOME.'/zsh/**'
+endif
 
 command! -nargs=+ Find call find#files(<f-args>)
 
@@ -721,8 +723,8 @@ nmap <silent> <f1>      :help<bar>only<cr>
 imap <silent> <f1> <c-o>:help<bar>only<cr>
 
 "" Load business specific vimrc
-if filereadable($HOME.'/.vimrc_after')
-   source $HOME/.vimrc_after
+if filereadable($REPOS_BASE.'/vim/.vimrc_after')
+   execute 'source '.$REPOS_BASE.'/vim/.vimrc_after'
 endif
 
 " vim: fdm=expr fde=getline(v\:lnum)=~'^""'?'>'.(matchend(getline(v\:lnum),'"""*')-1)\:'='
