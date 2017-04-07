@@ -16,7 +16,6 @@ set nocompatible
 let s:vim = 'github/vim'
 execute 'let &runtimepath = substitute(&runtimepath, "/\\.vim", "/'.s:vim.'", "g")'
 
-let s:repos_base = $REPOS_BASE
 let $MYVIMRC = '~/'.s:vim.'/init.vim'
 
 if empty($SSH_CONNECTION)
@@ -83,7 +82,7 @@ call plug#end()
 
 let did_install_default_menus = 1
 
-let g:UltiSnipsSnippetsDir         = '~/vim/ulti_snippets/'
+execute 'let g:UltiSnipsSnippetsDir = "~/'.s:vim.'/ulti_snippets/"'
 let g:UltiSnipsSnippetDirectories  = ['UltiSnips', 'ulti_snippets']
 let g:UltiSnipsListSnippets        = '<c-r><tab>'
 let g:UltiSnipsExpandTrigger       = '<tab>'
@@ -185,8 +184,8 @@ set grepprg=command\ grep\ -niE\ --exclude='*~'\ --exclude\ tags\ $*\ /dev/null
 nmap <leader>bg :Bgrep/<c-r><c-w>/<cr>
 
 " Finding
-if !empty(s:repos_base)
-   execute 'set path+='.s:repos_base.'/**'
+if !empty($REPOS_BASE)
+   execute 'set path+='.$REPOS_BASE.'/**'
 endif
 set path+=$XDG_CONFIG_HOME/zsh/**
 
@@ -395,8 +394,8 @@ nmap <leader>0 :left<cr>
 xmap <leader>0 :left<cr>
 
 "" Tags
-if !empty(s:repos_base)
-   execute 'set tags+='.s:repos_base.'/tags'
+if !empty($REPOS_BASE)
+   execute 'set tags+='.$REPOS_BASE.'/tags'
 endif
 set complete-=t
 set completeopt-=preview
