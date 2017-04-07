@@ -723,8 +723,8 @@ nmap <silent> <f1>      :help<bar>only<cr>
 imap <silent> <f1> <c-o>:help<bar>only<cr>
 
 "" Load business specific vimrc
-if filereadable($REPOS_BASE.'/vim/.vimrc_after')
-   execute 'source '.$REPOS_BASE.'/vim/.vimrc_after'
+if filereadable(expand('~/'.s:vim.'/.vimrc_after'))
+   execute 'source ~/'.s:vim.'/.vimrc_after'
 endif
 
 " vim: fdm=expr fde=getline(v\:lnum)=~'^""'?'>'.(matchend(getline(v\:lnum),'"""*')-1)\:'='
