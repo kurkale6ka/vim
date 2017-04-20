@@ -714,6 +714,10 @@ command! WriteSudo write !sudo tee % >/dev/null
 command! Shell silent write !sh
 
 "" Help
+if !empty($REPOS_BASE)
+   cabbrev doc e<c-r>=expand($REPOS_BASE.'/help/').abbreviations#eat_char('\s')<cr>
+endif
+
 " \h to get help for the word under the cursor
 nmap <leader>h    :help <c-r><c-w><cr>
 xmap <leader>h "*y:help <c-r>*<cr>
