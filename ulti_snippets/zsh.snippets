@@ -65,13 +65,13 @@ snippet colors
 # 2 - Green    6 - Cyan
 # 3 - Yellow   7 - White
 
-_bld=$(tput bold)
-_udl=$(tput smul) # underline
-_res=$(tput sgr0) # reset
+_bld=$(tput bold || tput md)
+_udl=$(tput smul || tput us) # underline
+_res=$(tput sgr0 || tput me) # reset
 
 # setaf -> foreground
 # setab -> background
-_${1:wht}=$(printf %s $_bld; tput setaf ${2:7}; tput setab 4)
+_${1:wht}=$_bld$(tput setaf ${2:7} || tput AF $2)$(tput setab 4 || tput AB 4)
 
 echo "\${_$1}Hello World${_res}"
 endsnippet
@@ -203,9 +203,9 @@ snippet help
 setopt extended_glob
 
 ## Colors
-_bld=$(tput bold)
-_red=$(printf %s $_bld; tput setaf 1)
-_res=$(tput sgr0)
+_bld=$(tput bold || tput md)
+_red=$_bld$(tput setaf 1 || tput AF 1)
+_res=$(tput sgr0 || tput me)
 
 ## Help
 _help() {
