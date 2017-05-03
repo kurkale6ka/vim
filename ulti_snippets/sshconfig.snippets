@@ -23,7 +23,11 @@ Host ${1:name}
    HostName ${2:ip|fqdn}
 endsnippet
 
-snippet p
+snippet p "Proxy Command with -W"
+ProxyCommand ssh ${1:jumphost} -W %h:%p
+endsnippet
+
+snippet p "Proxy Command with nc"
 ProxyCommand ssh ${1:jumphost} exec nc ${2:host} 22
 endsnippet
 
