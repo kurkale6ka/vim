@@ -42,7 +42,7 @@ if version >= 703 && (!exists('+termguicolors') || $TERM =~ '^screen\%($\|\.[^s]
    let s:csapprox_needed = 1
 endif
 
-call plug#begin('~/'.s:vim.'/plugged')
+silent! call plug#begin('~/'.s:vim.'/plugged')
 execute "Plug '~/".s:vim."/plugged/bufgrep', { 'on': 'Bgrep' }"
 execute "Plug '~/".s:vim."/plugged/unicodename', { 'on': 'UnicodeName' }"
 execute "Plug '~/".s:vim."/plugged/vsearch'"
