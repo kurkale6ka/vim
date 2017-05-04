@@ -67,7 +67,9 @@ Plug 'godlygeek/csapprox'
 endif
 Plug 'SirVer/ultisnips'
 Plug 'bfredl/nvim-miniyank', has('nvim') ? {} : { 'on': [] }
-Plug 'jszakmeister/vim-togglecursor', $TERM =~ 'linux' ? { 'on': [] } : {} " disable in the vconsole
+if $TERM !~ 'linux' " disable in the vconsole
+Plug 'jszakmeister/vim-togglecursor'
+endif
 Plug 'neomake/neomake'
 Plug 'qpkorr/vim-bufkill'
 Plug 'rodjek/vim-puppet'
