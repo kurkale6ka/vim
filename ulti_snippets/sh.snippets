@@ -9,14 +9,22 @@ snippet read
 read -p '${1:Enter value:}' ${2:var}
 endsnippet
 
-snippet p
-printf '%s\n' ${1}
+snippet p "Color message"
+printf "${_${1:ylw}}${2}${_res}\n"
+endsnippet
+
+snippet p "Variables"
+printf '%s\n' "\$${1}"
+endsnippet
+
+snippet p "Variables with color"
+printf '%s\n' "${_${1:ylw}}${2}${_res}\n"
 endsnippet
 
 snippet doc
-cat << 'EOM'
-${1}
-EOM
+cat << '${1:EOM}'
+${2}
+$1
 endsnippet
 
 snippet fun
@@ -59,7 +67,12 @@ ${2:shopt -s extglob}
 endsnippet
 
 ## Colors
-snippet colors
+snippet colors "Simple"
+_${1:ylw}="$(tput setaf ${2:3} || tput AF $2)"
+_res="$(tput sgr0 || tput me)"
+endsnippet
+
+snippet colors "Complete"
 # 0 - Black    4 - Blue
 # 1 - Red      5 - Purple
 # 2 - Green    6 - Cyan
@@ -71,7 +84,7 @@ _res="$(tput sgr0 || tput me)" # reset
 
 # setaf -> foreground
 # setab -> background
-_${1:wht}="$_bld$(tput setaf ${2:7} || tput AF $2)$(tput setab 4 || tput AB 4)"
+_${1:ylw}="$_bld$(tput setaf ${2:3} || tput AF $2)$(tput setab ${3:4} || tput AB $3)"
 
 echo "\${_$1}Hello World${_res}"
 endsnippet
