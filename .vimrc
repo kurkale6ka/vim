@@ -13,10 +13,11 @@ endif
 set nocompatible
 
 "" Setup
-let s:vim = 'github/vim'
-execute 'let &runtimepath = substitute(&runtimepath, "/\\.vim", "/'.s:vim.'", "g")'
+let s:vim = '~/github/vim'
 
-let $MYVIMRC = '~/'.s:vim.'/init.vim'
+execute 'let &runtimepath = substitute(&runtimepath, "'.$HOME.'/\\.vim", "'.s:vim.'", "g")'
+
+let $MYVIMRC = s:vim.'/init.vim'
 
 if empty($SSH_CONNECTION)
    call system("who | 'grep' -v tmux | 'grep' -v ':S\.[0-9][0-9]*)' | 'grep' -q '(.*)'")
@@ -42,11 +43,11 @@ if version >= 703 && (!exists('+termguicolors') || $TERM =~ '^screen\%($\|\.[^s]
    let s:csapprox_needed = 1
 endif
 
-silent! call plug#begin('~/'.s:vim.'/plugged')
-execute "Plug '~/".s:vim."/plugged/bufgrep', { 'on': 'Bgrep' }"
-execute "Plug '~/".s:vim."/plugged/unicodename', { 'on': 'UnicodeName' }"
-execute "Plug '~/".s:vim."/plugged/vsearch'"
-execute "Plug '~/".s:vim."/plugged/win_full_screen', { 'on': 'WinFullScreen' }"
+silent! call plug#begin(s:vim.'/plugged')
+execute "Plug '".s:vim."/plugged/bufgrep', { 'on': 'Bgrep' }"
+execute "Plug '".s:vim."/plugged/unicodename', { 'on': 'UnicodeName' }"
+execute "Plug '".s:vim."/plugged/vsearch'"
+execute "Plug '".s:vim."/plugged/win_full_screen', { 'on': 'WinFullScreen' }"
 let g:plug_url_format = 'git@github.com:%s.git'
 Plug 'kurkale6ka/vim-blockinsert'
 Plug 'kurkale6ka/vim-chess'
@@ -84,7 +85,7 @@ call plug#end()
 
 let did_install_default_menus = 1
 
-let g:UltiSnipsSnippetsDir         = '~/'.s:vim.'/ulti_snippets/'
+let g:UltiSnipsSnippetsDir         = s:vim.'/ulti_snippets/'
 let g:UltiSnipsSnippetDirectories  = ['UltiSnips', 'ulti_snippets']
 let g:UltiSnipsListSnippets        = '<c-r><tab>'
 let g:UltiSnipsExpandTrigger       = '<tab>'
@@ -149,7 +150,7 @@ nnoremap gr 999<c-r>
 set history=10000
 if !has('nvim')
    set viminfo^=! " save uppercase global variables
-   execute 'set viminfo+=n~/'.s:vim.'/.viminfo'
+   execute 'set viminfo+=n'.s:vim.'/.viminfo'
 endif
 
 "" Search and replace
