@@ -14,7 +14,6 @@ set nocompatible
 
 "" Setup
 let s:vim = '~/github/vim'
-
 execute 'let &runtimepath = substitute(&runtimepath, "'.$HOME.'/\\.vim", "'.s:vim.'", "g")'
 
 let $MYVIMRC = s:vim.'/init.vim'
