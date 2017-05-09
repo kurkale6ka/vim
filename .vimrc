@@ -74,6 +74,7 @@ Plug 'neomake/neomake'
 Plug 'qpkorr/vim-bufkill'
 Plug 'rodjek/vim-puppet'
 Plug 'elzr/vim-json'
+Plug 'tmux-plugins/vim-tmux'
 Plug 'StanAngeloff/php.vim' " syntax
 Plug 'evanmiller/nginx-vim-syntax'
 Plug 'vim-scripts/iptables'
