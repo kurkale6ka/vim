@@ -73,20 +73,21 @@ _res="$(tput sgr0 || tput me)"
 endsnippet
 
 snippet colors "Complete"
-# 0 - Black    4 - Blue
-# 1 - Red      5 - Purple
-# 2 - Green    6 - Cyan
-# 3 - Yellow   7 - White
-
 _bld="$(tput bold || tput md)"
 _udl="$(tput smul || tput us)" # underline
+_blk="$(tput setaf 0 || tput AF 0)"
+_red="$(tput setaf 1 || tput AF 1)"
+_grn="$(tput setaf 2 || tput AF 2)"
+_ylw="$(tput setaf 3 || tput AF 3)"
+_blu="$(tput setaf 4 || tput AF 4)"
+_pur="$(tput setaf 5 || tput AF 5)"
+_cya="$(tput setaf 6 || tput AF 6)"
+_whi="$(tput setaf 7 || tput AF 7)"
 _res="$(tput sgr0 || tput me)" # reset
 
 # setaf -> foreground
 # setab -> background
 _${1:ylw}="$_bld$(tput setaf ${2:3} || tput AF $2)$(tput setab ${3:4} || tput AB $3)"
-
-echo "\${_$1}Hello World${_res}"
 endsnippet
 
 ## Loops
