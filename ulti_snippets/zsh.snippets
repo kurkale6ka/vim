@@ -191,7 +191,7 @@ _res=$(tput sgr0 || tput me)
 
 ## Help
 _help() {
-read -r -d $'\0' info << 'HELP'
+read -r -d$'\0' info << 'HELP'
 Usage:
    ${1}
 HELP
@@ -309,6 +309,13 @@ endsnippet
 ## Globs
 snippet **/*
 (${1:^.git}/)#$1
+endsnippet
+
+## Multiline variable
+snippet var
+read -r -d$'\0' ${1:var} << '${2:VALUE}'
+${3}
+$2
 endsnippet
 
 ## Error
