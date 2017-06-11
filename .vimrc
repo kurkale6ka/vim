@@ -13,10 +13,14 @@ endif
 set nocompatible
 
 "" Setup
-let s:vim = '~/github/vim'
-execute 'let &runtimepath = substitute(&runtimepath, "'.$HOME.'/\\.vim", "'.s:vim.'", "g")'
+if !empty($REPOS_BASE)
+   let s:vim = $REPOS_BASE.'/vim'
+   execute 'let &runtimepath = substitute(&runtimepath, "'.$HOME.'/\\.vim", "'.s:vim.'", "g")'
+else
+   let s:vim = '~/.vim'
+endif
 
-let $MYVIMRC = s:vim.'/init.vim'
+let $MYVIMRC = s:vim.'/.vimrc'
 
 if empty($SSH_CONNECTION)
    call system("who | 'grep' -v tmux | 'grep' -v ':S\.[0-9][0-9]*)' | 'grep' -q '(.*)'")
