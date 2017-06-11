@@ -16,11 +16,17 @@ set nocompatible
 if !empty($REPOS_BASE)
    let s:vim = $REPOS_BASE.'/vim'
    execute 'let &runtimepath = substitute(&runtimepath, "'.$HOME.'/\\.vim", "'.s:vim.'", "g")'
+elseif has('nvim')
+   let s:vim = $XDG_CONFIG_HOME.'/nvim'
 else
    let s:vim = '~/.vim'
 endif
 
-let $MYVIMRC = s:vim.'/.vimrc'
+if has('nvim')
+   let $MYVIMRC = s:vim.'/init.vim'
+else
+   let $MYVIMRC = s:vim.'/.vimrc'
+endif
 
 if empty($SSH_CONNECTION)
    call system("who | 'grep' -v tmux | 'grep' -v ':S\.[0-9][0-9]*)' | 'grep' -q '(.*)'")
