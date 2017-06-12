@@ -86,6 +86,7 @@ Plug 'rodjek/vim-puppet'
 Plug 'elzr/vim-json'
 Plug 'tmux-plugins/vim-tmux'
 Plug 'StanAngeloff/php.vim' " syntax
+Plug 'terceiro/vim-foswiki'
 Plug 'evanmiller/nginx-vim-syntax'
 Plug 'vim-scripts/iptables'
 Plug 'junegunn/vim-easy-align'
