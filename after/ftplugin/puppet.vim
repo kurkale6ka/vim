@@ -1,4 +1,3 @@
-setlocal commentstring=#%s
 setlocal iskeyword-=:
 
 setlocal tabstop=8

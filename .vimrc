@@ -376,6 +376,7 @@ nmap Q gqap
 
 set nojoinspaces
 set autoindent
+set commentstring=#%s
 
 " Underline with ---s
 command! -nargs=? Underline call underline#current(<q-args>)
