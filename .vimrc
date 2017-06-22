@@ -89,6 +89,7 @@ Plug 'StanAngeloff/php.vim' " syntax
 Plug 'terceiro/vim-foswiki'
 Plug 'evanmiller/nginx-vim-syntax'
 Plug 'vim-scripts/iptables'
+Plug 'pearofducks/ansible-vim'
 Plug 'junegunn/vim-easy-align'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
