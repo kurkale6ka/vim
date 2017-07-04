@@ -140,6 +140,8 @@ let g:easy_align_delimiters = {
 \ '>': { 'pattern': '[-=]\+>' },
 \ }
 
+let g:vim_json_syntax_conceal = 0
+
 "" Backups
 if exists('s:local_vim')
    set backup
