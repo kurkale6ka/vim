@@ -76,6 +76,7 @@ if exists('s:csapprox_needed')
 Plug 'godlygeek/csapprox'
 endif
 Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 Plug 'bfredl/nvim-miniyank', has('nvim') ? {} : { 'on': [] }
 if $TERM !~ 'linux' " disable in the vconsole
 Plug 'jszakmeister/vim-togglecursor'
