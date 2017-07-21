@@ -21,6 +21,7 @@
 - plugged/neomake/
 - plugged/nvim-miniyank/
 - plugged/ultisnips/
+- plugged/vim-snippets/
 - plugged/vim-chess/
 
 # after/plugin/...
