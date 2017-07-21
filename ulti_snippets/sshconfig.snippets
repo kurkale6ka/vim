@@ -24,11 +24,11 @@ Host ${1:name}
 endsnippet
 
 snippet p "Proxy Command with -W"
-ProxyCommand ssh ${1:jumphost} -W %h:%p
+ProxyCommand ssh -q ${1:jumphost} -W %h:%p
 endsnippet
 
 snippet p "Proxy Command with nc"
-ProxyCommand ssh ${1:jumphost} exec nc ${2:host} 22
+ProxyCommand ssh -q ${1:jumphost} exec nc ${2:host} 22
 endsnippet
 
 snippet 1
