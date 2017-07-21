@@ -18,6 +18,9 @@ augroup FILETYPE_DETECT
    autocmd BufNewFile,BufRead $REPOS_BASE/zsh/autoload/*
       \ set filetype=zsh
 
+   autocmd BufNewFile,BufRead $XDG_CONFIG_HOME/zsh/after/*
+      \ set filetype=zsh
+
    autocmd BufNewFile,BufRead *.txt,*.text,README,INSTALL,NEWS,TODO
       \ set filetype=txt
 
