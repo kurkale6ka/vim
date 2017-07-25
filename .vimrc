@@ -98,8 +98,9 @@ call plug#end()
 
 let did_install_default_menus = 1
 
+let g:UltiSnipsEnableSnipMate      = 0
 let g:UltiSnipsSnippetsDir         = s:vim.'/ulti_snippets/'
-let g:UltiSnipsSnippetDirectories  = ['UltiSnips', 'ulti_snippets']
+let g:UltiSnipsSnippetDirectories  = ['ulti_snippets', 'UltiSnips']
 let g:UltiSnipsListSnippets        = '<c-r><tab>'
 let g:UltiSnipsExpandTrigger       = '<tab>'
 let g:UltiSnipsJumpForwardTrigger  = '<tab>'
