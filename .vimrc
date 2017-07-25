@@ -700,7 +700,7 @@ if has('autocmd')
    endif
 endif
 
-nmap <leader>ft :set filetype=
+nmap <leader>ft :Filetypes<cr>
 nmap <leader>fs :set filetype=sql<cr>
 nmap <leader>fp :set filetype=python<cr>
 nmap <leader>fh :set filetype=html<cr>
