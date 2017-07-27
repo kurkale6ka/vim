@@ -2,9 +2,15 @@
 
 " Don't reset &runtimepath, if re-sourcing my vimrc
 if !exists('g:loaded_plug')
-   " TODO. waiting on fix
+   " TODO. Fix needed: https://github.com/neovim/neovim/issues/5783
    if !&loadplugins
-      set all& noloadplugins
+      if &diff
+         set all& noloadplugins diff
+      else
+         set all& noloadplugins
+      endif
+   elseif &diff
+      set all& diff
    else
       set all&
    endif
@@ -337,10 +343,11 @@ else
    nmap <silent> <leader>8 :call highlight#column()<cr>
 endif
 
-set cursorline
+if !&diff
+   set cursorline
+endif
 
-" TODO: no 81st column in diff mode
-if has('autocmd')
+if has('autocmd') && !&diff
    autocmd BufEnter,FileType *
       \ if empty(&textwidth)                                      |
       \    match ColorColumn /\%81v./                             |
