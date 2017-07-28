@@ -742,7 +742,7 @@ command! Shell silent write !sh
 
 "" Help
 if !empty($REPOS_BASE)
-   cabbrev doc e<c-r>=fnamemodify($REPOS_BASE.'/help/', ':s@'.$HOME.'@~@').abbreviations#eat_char('\s')<cr>
+   cabbrev doc e<c-r>=fnamemodify($REPOS_BASE.'/help/', ':~').abbreviations#eat_char('\s')<cr>
 endif
 
 " \h to get help for the word under the cursor
