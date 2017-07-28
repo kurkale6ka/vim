@@ -21,7 +21,7 @@ set nocompatible
 "" Setup
 if !empty($REPOS_BASE)
    let s:vim = $REPOS_BASE.'/vim'
-   execute 'let &runtimepath = substitute(&runtimepath, "'.$HOME.'/\\.vim", "'.s:vim.'", "g")'
+   execute 'let &runtimepath = substitute(&runtimepath, expand("~")."/\\.vim", "'.s:vim.'", "g")'
 elseif has('nvim')
    let s:vim = $XDG_CONFIG_HOME.'/nvim'
 else
