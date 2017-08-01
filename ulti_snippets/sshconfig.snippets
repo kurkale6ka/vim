@@ -29,38 +29,26 @@ snippet p "Proxy Command with nc"
 ProxyCommand ssh -q ${1:jumphost} exec nc ${2:host} 22
 endsnippet
 
+snippet p "Proxy Jump"
+ProxyJump ${1:jumphost}
+endsnippet
+
+snippet l
+LocalForward ${1} ${2:localhost}:$1
+endsnippet
+
+snippet 0
+127.0.0.1
+endsnippet
+
 snippet 1
-192.168.0.1
+192.168.0.${1}
 endsnippet
 
 snippet 2
-192.168.0.2
+10.0.0.${1}
 endsnippet
 
 snippet 3
-192.168.0.3
-endsnippet
-
-snippet 4
-192.168.0.4
-endsnippet
-
-snippet 5
-192.168.0.5
-endsnippet
-
-snippet 6
-192.168.0.6
-endsnippet
-
-snippet 7
-192.168.0.7
-endsnippet
-
-snippet 8
-192.168.0.8
-endsnippet
-
-snippet 9
-192.168.0.9
+172.16.0.${1}
 endsnippet
