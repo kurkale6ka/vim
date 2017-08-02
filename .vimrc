@@ -149,6 +149,7 @@ let g:easy_align_delimiters = {
 \ }
 
 let g:vim_json_syntax_conceal = 0
+let g:ansible_attribute_highlight = "ab"
 
 "" Backups
 if exists('s:local_vim')
