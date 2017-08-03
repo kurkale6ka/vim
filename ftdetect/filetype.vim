@@ -10,6 +10,7 @@ augroup FILETYPE_DETECT
    autocmd BufNewFile,BufRead .tmux.conf   set filetype=tmux
    autocmd BufNewFile,BufRead vipw.*       set filetype=passwd
    autocmd BufNewFile,BufRead iptables     set filetype=iptables
+   autocmd BufNewFile,BufRead relayd.conf  set filetype=pf
 
    autocmd BufNewFile,BufRead */httpd/*/*.conf set filetype=apache
 
