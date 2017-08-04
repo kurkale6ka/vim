@@ -105,7 +105,7 @@ call plug#end()
 let did_install_default_menus = 1
 
 " TODO: separate function, to emulate vf()
-command! -nargs=+ VF call fzf#run(fzf#vim#wrap({'source': 'locate -0 / | grep -zv "/\.\(git\|svn\|hg\)$\|~$"', 'options': '--read0 -0 -1 -m -q'.<q-args>.' --prompt "VF> "'}))
+command! -nargs=+ VF call fzf#run(fzf#vim#wrap({'source': 'locate -0 / | grep -zv "/\.\(git\|svn\|hg\)$\|~$"', 'options': '--read0 -0 -1 -m -q"'.<q-args>.'" --prompt "VF> "'}))
 
 let g:UltiSnipsEnableSnipMate      = 0
 let g:UltiSnipsSnippetsDir         = s:vim.'/ulti_snippets/'
