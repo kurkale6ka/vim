@@ -16,6 +16,8 @@ augroup FILETYPE_DETECT
 
    autocmd BufNewFile,BufRead */[aA]nsible/*.yml set filetype=ansible
 
+   autocmd BufNewFile,BufRead */postfix/aliases set filetype=mailaliases
+
    autocmd BufNewFile,BufRead
       \ *.pgn
       \,*.chess
