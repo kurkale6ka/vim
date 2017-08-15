@@ -12,7 +12,7 @@ function! scratch#buffer (command, ...)
    endif
    redir END
    let &more = saveMore
-   new | setlocal buftype=nofile bufhidden=hide noswapfile
+   new | match | setlocal buftype=nofile bufhidden=hide noswapfile
    silent put=lines
    " Example: Scratch ve autocmd - filter 'autocmd' matching lines only
    if a:0 > 0 && filter == 1
