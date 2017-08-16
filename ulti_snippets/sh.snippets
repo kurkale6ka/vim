@@ -160,7 +160,7 @@ snippet opts
 OPTIND=1
 
 local opt
-while getopts ':${1}' opt
+while getopts :${1} opt
 do
    case "$opt" in
        ${2}) ${3} ;;
