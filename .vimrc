@@ -172,7 +172,7 @@ if exists('s:local_vim') && has('persistent_undo')
    set undofile
 endif
 
-nnoremap gr 999<c-r>
+nnoremap gr :later 9999<cr>
 
 set history=10000
 if !has('nvim')
