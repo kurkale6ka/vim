@@ -209,24 +209,21 @@ shopt -s extglob
 
 _help() {
    info='Usage: ${1}'
-
    if ((\$1 == 0))
    then echo "$info"
    else echo "$info" >&2
    fi
-
    exit "\$1"
 }
 
-[[ \$1 == -@(h|-h)* ]] && _help 0
+[[ \$1 == @(-h|--help) ]] && _help 0
 endsnippet
 
 snippet help
 shopt -s extglob
 
 ## Colors
-_bld="$(tput bold || tput md)"
-_red="$_bld$(tput setaf 1 || tput AF 1)"
+_red="$(tput setaf 1 || tput AF 1)"
 _res="$(tput sgr0 || tput me)"
 
 ## Help
@@ -235,17 +232,15 @@ read -r -d$'\0' info << 'HELP'
 Usage:
    ${1}
 HELP
-
 if ((\$1 == 0))
 then echo "$info"
 else echo "$info" >&2
 fi
-
 exit "\$1"
 }
 
 ## Checks
-[[ \$1 == -@(h|-h)* ]] && _help 0
+[[ \$1 == @(-h|--help) ]] && _help 0
 
 # Arguments
 if (($# != 2))
