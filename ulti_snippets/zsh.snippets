@@ -170,7 +170,7 @@ endsnippet
 ## Help
 snippet h
 _help() {
-   info='Usage: ${1}'
+   local info='Usage: ${1}'
    if ((\$1 == 0))
    then echo $info
    else echo $info >&2
@@ -184,6 +184,7 @@ endsnippet
 snippet help
 ## Help
 _help() {
+local info
 read -r -d$'\0' info << 'HELP'
 Usage:
    ${1}
