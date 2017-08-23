@@ -176,7 +176,6 @@ _help() {
    then echo $info
    else echo $info >&2
    fi
-   exit \$1
 }
 
 [[ \$1 == (-h|--help) ]] && _help 0
@@ -194,7 +193,6 @@ if ((\$1 == 0))
 then echo $info
 else echo $info >&2
 fi
-exit \$1
 }
 
 ## Checks
