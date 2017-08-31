@@ -208,21 +208,21 @@ endsnippet
 
 ## read a 'file'
 snippet <> "Read command's output"
-while read -r
+while IFS= read -r
 do
    ${1:\$REPLY}
 done < <(${2})
 endsnippet
 
 snippet <> "Read find's output"
-while read -r -d \$'\0'
+while IFS= read -r -d \$'\0'
 do
    ${1:\$REPLY}
 done < <(find ${2:/} -xdev ${3} -print0)
 endsnippet
 
 snippet <> "Read a heredoc"
-while read -r ${1:line}
+while IFS= read -r ${1:line}
 do
    [[ $$1 = \#* ]] && continue
    echo $$1
