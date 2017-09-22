@@ -94,7 +94,7 @@ Plug 'elzr/vim-json'
 Plug 'tmux-plugins/vim-tmux'
 Plug 'StanAngeloff/php.vim' " syntax
 Plug 'terceiro/vim-foswiki'
-Plug 'evanmiller/nginx-vim-syntax'
+Plug 'vim-scripts/nginx.vim'
 Plug 'vim-scripts/iptables'
 Plug 'pearofducks/ansible-vim'
 Plug 'junegunn/vim-easy-align'
