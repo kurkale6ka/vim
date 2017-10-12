@@ -267,6 +267,8 @@ endif
 
 if has('folding')
    set foldnestmax=1 " maximum nesting for indent and syntax
+   cabbrev <expr> fold getcmdtype() == ':' ? "se fdm=expr fde=getline(v\\:lnum)=~'^\\\\s*##'?'>'.(len(matchstr(getline(v\\:lnum),'###*'))-1)\\:'='".abbreviations#eat_char('\s') : 'fold'
+   cabbrev foldx se fdm=expr fde=getline(v\:lnum)=~'<'?'>1'\:'='<left><left><left><left><left><left><left><left><left><left><left><c-r>=abbreviations#eat_char('\s')<cr>
 endif
 
 " Ctrl + l: stop highlighting and redraw the screen
@@ -748,7 +750,7 @@ command! Shell silent write !sh
 
 "" Help
 if !empty($REPOS_BASE)
-   cabbrev doc e<c-r>=fnamemodify($REPOS_BASE.'/help/', ':~').abbreviations#eat_char('\s')<cr>
+   cabbrev <expr> doc getcmdtype() == ':' ? 'e'.fnamemodify($REPOS_BASE.'/help/', ':~').abbreviations#eat_char('\s') : 'doc'
 endif
 
 " \h to get help for the word under the cursor
