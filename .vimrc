@@ -41,6 +41,8 @@ if empty($SSH_CONNECTION)
    endif
 endif
 
+" let mapleader = "\<space>"
+
 "" Filetype + syntax
 " filetype plugin indent on
 " syntax enable
@@ -81,7 +83,10 @@ Plug 'tpope/vim-unimpaired'
 if exists('s:csapprox_needed')
 Plug 'godlygeek/csapprox'
 endif
-Plug 'SirVer/ultisnips'
+Plug 'ajh17/VimCompletesMe'
+" Plug 'Shougo/neocomplete.vim'
+" Plug 'Shougo/deoplete.nvim'
+" Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'bfredl/nvim-miniyank', has('nvim') ? {} : { 'on': [] }
 if $TERM !~ 'linux' " disable in the vconsole
@@ -107,6 +112,8 @@ let did_install_default_menus = 1
 " TODO: separate function, to emulate vf()
 command! -nargs=+ VF call fzf#run(fzf#vim#wrap({'source': 'locate -0 / | grep -zv "/\.\(git\|svn\|hg\)\(/\|$\)\|~$"', 'options': '--read0 -0 -1 -m -q"'.<q-args>.'" --prompt "VF> "'}))
 nmap <s-space> :VF<space>
+
+" call deoplete#enable()
 
 let g:UltiSnipsEnableSnipMate      = 0
 let g:UltiSnipsSnippetsDir         = s:vim.'/ulti_snippets/'
