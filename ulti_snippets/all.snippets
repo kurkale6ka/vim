@@ -1,7 +1,10 @@
-snippet ugo
-               base permissions   umask 022
- 421 421 421 | File / Directory | File / Directory
--rwx rwx rwx | 666    777       | 644    755
+snippet l
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+culpa qui officia deserunt mollit anim id est laborum.
 endsnippet
 
 snippet mode "No eol colon version"
@@ -21,19 +24,22 @@ snippet fold "Based on xml tag"
 # vim: fde=getline(v\:lnum)=~'<${1}'?'>1'\:'='
 endsnippet
 
-snippet l
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-culpa qui officia deserunt mollit anim id est laborum.
+# Jira monospace
+snippet `j
+{{${1}}}
 endsnippet
 
-snippet |
-# Allows to use port $1 on localhost to get to port $3 on $2 trough $4
-# $2 must be reachable from $4
-ssh -fNL ${1:8080}:${2:remote}:${3:80} ${4:gate}
+# Jira code snippets
+snippet ``j "Code"
+{code:${1}}
+${2}
+{code}
+endsnippet
+
+snippet ``j "No format"
+{noformat}
+${1}
+{noformat}
 endsnippet
 
 snippet /sudo(?:ers)?/ "Sudoers syntax summary" r
