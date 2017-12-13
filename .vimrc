@@ -145,8 +145,8 @@ let g:neomake_puppet_puppetlint_maker = {
    \ 'errorformat': '"%f:%l:%c:%t%*[a-zA-Z]:%m"',
    \ }
 
-nmap ga <Plug>(EasyAlign)
-xmap ga <Plug>(EasyAlign)
+nmap ga :%EasyAlign*
+xmap ga :EasyAlign*
 
 let g:easy_align_delimiters = {
 \ '>': { 'pattern': '[-=]\+>' },
