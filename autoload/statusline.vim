@@ -1,5 +1,9 @@
 function! statusline#init(sep_l, sep_r)
 
+   " Colors (highlight groups):
+   " %[1-9]* ... %*
+   " for i in range(1,9) | exe 'hi User'.i | endfor
+
    let statusline='%<%1*%L%* ' " number of lines
 
    " paste mode
@@ -11,7 +15,7 @@ function! statusline#init(sep_l, sep_r)
    " keymap
    let statusline.="%{empty(&kmp)?'':'('.b:keymap_name.')'}"
 
-   let statusline.=' %2*'.a:sep_l.'%* %1*c%v%*' " column
+   let statusline.=' %2*'.a:sep_l.'%* %v' " column
 
    " alternate file
    let statusline.="%=%3*%{expand('#:t') != expand('%:t') && !empty(expand('#:t'))?'#'.expand('#:t'):''}%*"
