@@ -102,6 +102,7 @@ Plug 'terceiro/vim-foswiki'
 Plug 'vim-scripts/nginx.vim'
 Plug 'vim-scripts/iptables'
 Plug 'pearofducks/ansible-vim'
+Plug 'jeetsukumaran/vim-filebeagle'
 Plug 'junegunn/vim-easy-align'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
