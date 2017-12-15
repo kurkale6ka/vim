@@ -154,8 +154,8 @@ nmap ga :'{,'}EasyAlign*
 xmap ga :EasyAlign*
 
 let g:easy_align_delimiters = {
-\ '>': { 'pattern': '[-=]\+>' },
-\ }
+   \ '>': { 'pattern': '[-=]\+>' },
+   \ }
 
 let g:vim_json_syntax_conceal = 0
 let g:ansible_attribute_highlight = "ab"
