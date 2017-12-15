@@ -716,16 +716,7 @@ if has('autocmd')
    endif
 endif
 
-nmap <leader>ft :Filetypes<cr>
-nmap <leader>fs :set filetype=sql<cr>
-nmap <leader>fp :set filetype=python<cr>
-nmap <leader>fh :set filetype=html<cr>
-nmap <leader>fj :set filetype=javascript<cr>
-nmap <leader>fx :set filetype=xml<cr>
-nmap <leader>fb :set filetype=sh<cr>
-nmap <leader>fz :set filetype=zsh<cr>
-nmap <leader>fc :set filetype=c<cr>
-nmap <leader>fr :set filetype=ruby<cr>
+nmap <leader>f :Filetypes<cr>
 
 command! -nargs=* Ascii call ascii#codes(<f-args>)
 command! NonAscii /[^\d0-\d127]
