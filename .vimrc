@@ -669,9 +669,6 @@ xnoremap <expr> } mode() == '<c-v>' ? line("'}") - 1 . 'G' : '}'
 xnoremap <expr> { mode() == '<c-v>' ? line("'{") + 1 . 'G' : '{'
 
 "" Spell check
-" \e to toggle spell errors
-nmap <leader>e :setlocal spell! spell?<cr>
-
 nmap <leader>1 1z=
 nmap <leader>2 2z=
 nmap <leader>3 3z=
@@ -736,6 +733,8 @@ command! DiffOrig
    \ vnew | set bt=nofile | r# | silent 0d_ | diffthis | wincmd p | diffthis
 
 "" Edit and write commands
+nmap <leader>e :e ~/
+
 command! Edit  browse edit
 command! Write browse write
 
