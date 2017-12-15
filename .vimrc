@@ -108,6 +108,8 @@ let did_install_default_menus = 1
 command! -nargs=+ VF call fzf#run(fzf#vim#wrap({'source': 'locate -0 / | grep -zv "/\.\(git\|svn\|hg\)\(/\|$\)\|~$"', 'options': '--read0 -0 -1 -m -q"'.<q-args>.'" --prompt "VF> "'}))
 nmap <s-space> :VF<space>
 
+nmap <leader>r :History<cr>
+
 let g:UltiSnipsEnableSnipMate      = 0
 let g:UltiSnipsSnippetsDir         = s:vim.'/ulti_snippets/'
 let g:UltiSnipsSnippetDirectories  = ['ulti_snippets', 'UltiSnips']
