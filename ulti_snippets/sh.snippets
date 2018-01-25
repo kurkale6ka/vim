@@ -167,7 +167,10 @@ do
        ${2}) ${3} ;;
       \?) echo "Invalid option: -$OPTARG" 1>&2
           return 1 ;;
+       :) echo "Option -$OPTARG requires an argument" 1>&2
+          return 2 ;;
    esac
+   [[ $OPTARG == -* ]] && { echo "No dashes allowed in -$opt's argument" 1>&2; return 3; }
 done
 
 shift "$((OPTIND-1))"
