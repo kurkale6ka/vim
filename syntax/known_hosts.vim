@@ -12,7 +12,6 @@ syntax match knownHostsDNS /\S\+\%(\s\+\%(ssh-\%(dss\|rsa\)\|ecdsa-sha2-nistp\%(
 highlight link knownHostsDNS PreProc
 
 " Key type
-setlocal iskeyword+=-
 syntax keyword knownHostsType
    \ ssh-dss
    \ ssh-rsa
@@ -21,7 +20,7 @@ syntax keyword knownHostsType
    \ ecdsa-sha2-nistp521
 highlight link knownHostsType Type
 
-" Comments (usually emails)
+" Comments
 " setlocal synmaxcol&
 " syntax match knownHostsComment /\S\+\s*$/
 " highlight link knownHostsComment Comment
