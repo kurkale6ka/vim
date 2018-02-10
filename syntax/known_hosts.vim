@@ -1,7 +1,27 @@
 " Highlighting for ~/.ssh/known_hosts
 
-syntax match knownHostsDNS /^\S\+/
-syntax match knownHostsType /\%(^\S\+\s\+\)\@<=\S\+/
+" Markers
+setlocal iskeyword+=-
+setlocal iskeyword+=@-@
+syntax keyword knownHostsMarker @cert-authority @revoked
+highlight link knownHostsMarker Identifier
 
-highlight link knownHostsDNS Identifier
+" Hosts
+" any WORD followed by a key type
+syntax match knownHostsDNS /\S\+\%(\s\+\%(ssh-\%(dss\|rsa\)\|ecdsa-sha2-nistp\%(256\|384\|521\)\)\)\@=/
+highlight link knownHostsDNS PreProc
+
+" Key type
+setlocal iskeyword+=-
+syntax keyword knownHostsType
+   \ ssh-dss
+   \ ssh-rsa
+   \ ecdsa-sha2-nistp256
+   \ ecdsa-sha2-nistp384
+   \ ecdsa-sha2-nistp521
 highlight link knownHostsType Type
+
+" Comments (usually emails)
+" setlocal synmaxcol&
+" syntax match knownHostsComment /\S\+\s*$/
+" highlight link knownHostsComment Comment
