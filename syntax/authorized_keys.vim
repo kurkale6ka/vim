@@ -2,8 +2,10 @@
 
 setlocal synmaxcol&
 
-syntax match authorizedKeysRsa /^\S\+/
-syntax match authorizedKeysEmail /\S\+\s*$/
+syntax match authorizedKeysType /^\S\+/
+syntax match authorizedKeysComment /\S\+\s*$/
 
-highlight link authorizedKeysRsa Type
-highlight link authorizedKeysEmail Comment
+highlight link authorizedKeysType Type
+highlight link authorizedKeysComment Comment
+
+" vim: filetype=vim
