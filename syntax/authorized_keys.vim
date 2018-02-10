@@ -1,7 +1,7 @@
 " Highlighting for ssh authorized_keys
 
 " Options
-" any WORD at the beginning non followed by a keyword
+" any WORD at the beginning followed by a key type
 syntax match authorizedKeysOptions /^\s*\S\+\%(\s\+\%(ssh-\%(dss\|rsa\)\|ecdsa-sha2-nistp\%(256\|384\|521\)\)\)\@=/
 highlight link authorizedKeysOptions PreProc
 
