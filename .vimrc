@@ -198,7 +198,7 @@ nmap <leader>g    :global/<c-r><c-w>/
 xmap <leader>g "*y:global/<c-r>*<cr>
 
 " \s for substitute
-nmap <leader>s :%substitute/<c-r><c-w>//gc<left><left><left>
+nmap <leader>s :%substitute/<c-r><c-w>//g<left><left>
 
 " \* and \g* for search highlighting without jumping to the next occurrence
 nmap <silent> <leader>* :<c-u>let @/ = '\<'.expand('<cword>').'\>'<bar>set hlsearch<c-m>
