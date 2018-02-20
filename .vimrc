@@ -42,6 +42,7 @@ if empty($SSH_CONNECTION)
 endif
 
 "" Filetype + syntax
+" filetype ... on and syntax enable get auto executed by vim-plug
 " filetype plugin indent on
 " syntax enable
 
@@ -194,11 +195,11 @@ set smartcase
 set infercase
 
 " \g for global
-nmap <leader>g    :global/<c-r><c-w>/
-xmap <leader>g "*y:global/<c-r>*<cr>
+nmap <leader>g    :g/<c-r><c-w>/
+xmap <leader>g "*y:g/<c-r>*<cr>
 
 " \s for substitute
-nmap <leader>s :%substitute/<c-r><c-w>//g<left><left>
+nmap <leader>s :%s/<c-r><c-w>//g<left><left>
 
 " \* and \g* for search highlighting without jumping to the next occurrence
 nmap <silent> <leader>* :<c-u>let @/ = '\<'.expand('<cword>').'\>'<bar>set hlsearch<c-m>
@@ -240,6 +241,8 @@ endif
 
 set fileencodings=ucs-bom,utf-8,default,cp1251,latin1
 set fileformats=unix,mac,dos
+
+set isfname-==
 
 "" Alerts and visual feedback
 set number
@@ -750,12 +753,12 @@ if !empty($REPOS_BASE)
 endif
 
 " \h to get help for the word under the cursor
-nmap <leader>h    :help <c-r><c-w><cr>
-xmap <leader>h "*y:help <c-r>*<cr>
+nmap <leader>h    :h <c-r><c-w><cr>
+xmap <leader>h "*y:h <c-r>*<cr>
 
 " F1 to get a full screen help window
-nmap <silent> <f1>      :help<bar>only<cr>
-imap <silent> <f1> <c-o>:help<bar>only<cr>
+nmap <silent> <f1>      :h<bar>only<cr>
+imap <silent> <f1> <c-o>:h<bar>only<cr>
 
 "" Load business specific vimrc
 if filereadable(expand(s:vim.'/.vimrc_after'))
