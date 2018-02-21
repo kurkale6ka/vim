@@ -182,8 +182,10 @@ nnoremap gr :later 9999<cr>
 
 set history=10000
 if !has('nvim')
-   set viminfo^=! " save uppercase global variables
+   set viminfo=!,'1000
    execute 'set viminfo+=n'.s:vim.'/.viminfo'
+else
+   set shada='1000
 endif
 
 "" Search and replace
