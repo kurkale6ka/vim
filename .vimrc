@@ -82,6 +82,7 @@ Plug 'tpope/vim-unimpaired'
 if exists('s:csapprox_needed')
 Plug 'godlygeek/csapprox'
 endif
+Plug 'airblade/vim-gitgutter'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'bfredl/nvim-miniyank', has('nvim') ? {} : { 'on': [] }
@@ -125,6 +126,8 @@ let g:UltiSnipsJumpBackwardTrigger = '<s-tab>'
 if exists('s:csapprox_needed')
    let g:CSApprox_verbose_level = 0
 endif
+
+let g:gitgutter_signs = 0
 
 " Disable these plugins
 let g:loaded_2html_plugin    = 1
