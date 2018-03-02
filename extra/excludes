@@ -22,6 +22,7 @@
 - plugged/ultisnips/
 - plugged/vim-snippets/
 - plugged/vim-chess/
+- plugged/vim-gitgutter/
 
 # after/plugin/...
 - *fzf*
