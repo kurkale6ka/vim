@@ -1,1 +1,1 @@
-se nocp is ic scs inf nu nuw=1 sc report=0 dy+=lastline wmnu ls=2 ru lz hls bg=dark so=2 mouse=a nojs ai hid bs=2 ve=block,insert,onemore nosol | nn <c-l> :nohls<cr><c-l> | sy on | filet plugin indent on
+se nocp is ic scs inf nu nuw=1 lbr sc report=0 dy+=lastline wmnu ls=2 ru lz hls bg=dark smc=301 so=2 mouse=a fo+=ron nojs ai hid bs=2 ffs=unix,mac,dos isf-== tm=2000 ttm=100 ve=block,insert,onemore nosol | nn <c-l> :nohls<cr><c-l> | sy on | colo delek | hi Comment ctermfg=121 | hi LineNr ctermfg=8 | filet plugin indent on
