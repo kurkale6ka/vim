@@ -3,5 +3,5 @@ if !exists("g:loaded_commentary")
 endif
 
 " \\ to toggle comments
-nmap <leader><leader> gcc
-xmap <leader><leader> gc
+nmap <bslash><bslash> gcc
+xmap <bslash><bslash> gc
