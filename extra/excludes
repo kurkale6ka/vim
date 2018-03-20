@@ -1,4 +1,10 @@
-- README.md
+# rsync excludes
+
+- .viminfo
+P .viminfo
+- CONTRIBUTING*
+- LICENSE*
+- README*
 - ulti_snippets/
 - spell/
 - keymap/

@@ -1,3 +1,5 @@
+# Patterns for git only, not for rsync
+
 # Ignore
 .viminfo
 .vimrc_after
