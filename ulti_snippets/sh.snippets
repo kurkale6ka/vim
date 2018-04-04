@@ -59,6 +59,11 @@ cmd &
 ((i++)); ((i % 30 == 0)) && wait
 endsnippet
 
+snippet join
+printf -v ${1:var} "%s${2:|}" "${${3:array}[@]}"
+$1="${$1%$2}"
+endsnippet
+
 ## Skeleton
 snippet skel
 #! /usr/bin/env bash
