@@ -189,7 +189,7 @@ snippet help
 ## Help
 _help() {
 local info
-read -r -d$'\0' info << 'HELP'
+read -r -d $'\0' info << 'HELP'
 Usage:
    ${1}
 HELP
@@ -308,7 +308,7 @@ endsnippet
 
 ## Multiline variable
 snippet var
-read -r -d$'\0' ${1:var} << '${2:VALUE}'
+read -r -d $'\0' ${1:var} << '${2:VALUE}'
 ${3}
 $2
 endsnippet
