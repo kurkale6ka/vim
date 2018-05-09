@@ -41,6 +41,8 @@ if empty($SSH_CONNECTION)
    endif
 endif
 
+let mapleader = "\<space>"
+
 "" Filetype + syntax
 " filetype ... on and syntax enable get auto executed by vim-plug
 " filetype plugin indent on
@@ -479,7 +481,7 @@ nmap <c-space> :Buffers<cr>
 
 " Ctrl + tab or space to switch to the alternate file
 nnoremap <c-tab> <c-^>
-nnoremap <space> <c-^>
+nnoremap <space>- <c-^>
 
 " Ctrl + w twice to go to the last accessed window
 nmap <silent> <c-w><c-w> :wincmd p<cr>
