@@ -2,5 +2,5 @@ if !exists("g:loaded_unimpaired")
    finish
 endif
 
-nunmap [p
-nunmap ]p
+nnoremap [p [p
+nnoremap ]p ]p
