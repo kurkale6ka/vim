@@ -81,6 +81,7 @@ Plug 'tpope/vim-markdown'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
+Plug 'tpope/vim-sleuth'
 if exists('s:csapprox_needed')
 Plug 'godlygeek/csapprox'
 endif
