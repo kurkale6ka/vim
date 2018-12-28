@@ -35,7 +35,7 @@ else
 endif
 
 if empty($SSH_CONNECTION)
-   call system("who | 'grep' -v tmux | 'grep' -v ':S\.[0-9][0-9]*)' | 'grep' -q '(.*)'")
+   call system("who | 'grep' -v tmux | 'grep' -q '([0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\})'")
    if v:shell_error
       let s:local_vim = 1
    endif
