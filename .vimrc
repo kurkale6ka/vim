@@ -734,7 +734,8 @@ command! DiffOrig
    \ vnew | set bt=nofile | r# | silent 0d_ | diffthis | wincmd p | diffthis
 
 "" Edit and write commands
-nmap <leader>e :e ~/
+nmap <leader>e :e
+cabbrev <expr> eh getcmdtype() == ':' ? 'e~/'.abbreviations#eat_char('\s') : 'eh'
 
 command! Edit  browse edit
 command! Write browse write
