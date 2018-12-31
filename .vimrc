@@ -219,7 +219,7 @@ if exists('+inccommand')
    set inccommand=nosplit
 endif
 
-cabbrev es e%:p:s/<c-r>=abbreviations#eat_char('\s')<cr>
+cabbrev <expr> es getcmdtype() == ':' ? 'e%:p:s/'.abbreviations#eat_char('\s') : 'es'
 
 " Grepping
 set grepprg=command\ grep\ -niE\ --exclude='*~'\ --exclude\ tags\ $*\ /dev/null
