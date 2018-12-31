@@ -388,10 +388,6 @@ if !has('nvim')
    set ttymouse=xterm2
 endif
 
-if has('nvim') && $TERM =~ 'linux'
-   let $NVIM_TUI_ENABLE_CURSOR_SHAPE = 0
-endif
-
 if !has('nvim')
    " TODO. Bug: Only t_te, not t_op, gets sent when leaving an alt screen
    exe 'set t_te=' . &t_te . &t_op
