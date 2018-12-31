@@ -93,7 +93,7 @@ if $TERM !~ 'linux' " disable in the vconsole
 Plug 'jszakmeister/vim-togglecursor'
 endif
 Plug 'neomake/neomake'
-Plug 'qpkorr/vim-bufkill'
+" Plug 'qpkorr/vim-bufkill'
 Plug 'rodjek/vim-puppet'
 Plug 'elzr/vim-json'
 Plug 'tmux-plugins/vim-tmux'
@@ -223,9 +223,6 @@ cabbrev es e%:p:s/<c-r>=abbreviations#eat_char('\s')<cr>
 
 " Grepping
 set grepprg=command\ grep\ -niE\ --exclude='*~'\ --exclude\ tags\ $*\ /dev/null
-
-" \bg for grepping in buffers
-nmap <leader>bg :Bgrep/<c-r><c-w>/<cr>
 
 " Finding
 if !empty($REPOS_BASE)
@@ -475,10 +472,6 @@ nmap <c-pageup>        :bprevious<cr>
 nmap <c-pagedown>      :bnext<cr>
 imap <c-pageup>   <c-o>:bprevious<cr>
 imap <c-pagedown> <c-o>:bnext<cr>
-
-" Ctrl + space to get a listing of buffers
-nmap <c-@>     :Buffers<cr>
-nmap <c-space> :Buffers<cr>
 
 " Ctrl + tab or space to switch to the alternate file
 nnoremap <c-tab> <c-^>
