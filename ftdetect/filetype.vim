@@ -15,7 +15,7 @@ augroup FILETYPE_DETECT
 
    autocmd BufNewFile,BufRead */httpd/*/*.conf set filetype=apache
 
-   autocmd BufNewFile,BufRead */[aA]nsible/*.yml set filetype=ansible
+   autocmd BufNewFile,BufRead */*[aA]nsible*/*.yml set filetype=ansible
 
    autocmd BufNewFile,BufRead */authorized_keys* set filetype=authorized_keys
 
