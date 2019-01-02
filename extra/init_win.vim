@@ -9,5 +9,5 @@ set guifont=DejaVu_Sans_Mono:h13,
 set directory+=$LOCALAPPDATA\Temp " swap files
 set backupdir+=$LOCALAPPDATA\Temp
 
-nmap <leader>/ :substitute:\\:/:g<cr>
-xmap <leader>/ :substitute:\%V\\:/:g<cr>
+nmap <leader>/ :s:\\:/:g<cr>
+xmap <leader>/ :s:\%V\\:/:g<cr>
