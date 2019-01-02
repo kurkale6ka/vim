@@ -328,15 +328,12 @@ else
    set listchars=tab:>-,trail:-,nbsp:-
 endif
 
-if exists('s:local_vim') && has('autocmd')
-   autocmd BufEnter,OptionSet *
-      \ if expand('<amatch>') !~ 'list' |
-      \    if &readonly || !&modifiable |
-      \       setlocal nolist           |
-      \    else                         |
-      \       setlocal list             |
-      \    endif                        |
-      \ endif
+if exists('s:local_vim')
+   if &readonly || !&modifiable
+      setlocal nolist
+   else
+      setlocal list
+   endif
 endif
 
 " \<tab> to toggle list display
