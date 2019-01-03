@@ -86,6 +86,7 @@ if exists('s:csapprox_needed')
 Plug 'godlygeek/csapprox'
 endif
 Plug 'airblade/vim-gitgutter'
+Plug 'justinmk/vim-dirvish'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'bfredl/nvim-miniyank', has('nvim') ? {} : { 'on': [] }
