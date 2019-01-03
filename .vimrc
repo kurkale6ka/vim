@@ -77,32 +77,30 @@ Plug 'tpope/vim-abolish' ", { 'on': ['Abolish', 'Subvert', 'S'] }
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-markdown'
-" Plug 'tpope/vim-ragtag' " enable when doing XML/XHTML, PHP/ASP/eRuby...
 Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
-Plug 'tpope/vim-sleuth'
 if exists('s:csapprox_needed')
 Plug 'godlygeek/csapprox'
 endif
-Plug 'airblade/vim-gitgutter'
+Plug 'pearofducks/ansible-vim'
+Plug 'rodjek/vim-puppet'
 Plug 'justinmk/vim-dirvish'
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
+Plug 'terceiro/vim-foswiki'
+Plug 'airblade/vim-gitgutter'
+Plug 'vim-scripts/iptables'
+Plug 'elzr/vim-json'
 Plug 'bfredl/nvim-miniyank', has('nvim') ? {} : { 'on': [] }
+Plug 'neomake/neomake'
+Plug 'vim-scripts/nginx.vim'
+Plug 'StanAngeloff/php.vim'
+Plug 'tmux-plugins/vim-tmux'
 if $TERM !~ 'linux' " disable in the vconsole
 Plug 'jszakmeister/vim-togglecursor'
 endif
-Plug 'neomake/neomake'
-" Plug 'qpkorr/vim-bufkill'
-Plug 'rodjek/vim-puppet'
-Plug 'elzr/vim-json'
-Plug 'tmux-plugins/vim-tmux'
-Plug 'StanAngeloff/php.vim' " syntax
-Plug 'terceiro/vim-foswiki'
-Plug 'vim-scripts/nginx.vim'
-Plug 'vim-scripts/iptables'
-Plug 'pearofducks/ansible-vim'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 Plug 'junegunn/vim-easy-align'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
