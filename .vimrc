@@ -108,15 +108,6 @@ call plug#end()
 
 let did_install_default_menus = 1
 
-" TODO: separate function, to emulate vf()
-command! -nargs=+ VF call fzf#run(fzf#vim#wrap({
-   \ 'source': 'locate -0 / | grep -zv "/\.\(git\|svn\|hg\)\(/\|$\)\|~$"',
-   \ 'options': '--read0 -0 -1 -m -q"'.<q-args>.'" --prompt "VF> "'
-   \ }))
-nmap <s-space> :VF<space>
-
-nmap <leader>r :History<cr>
-
 let g:UltiSnipsEnableSnipMate      = 0
 let g:UltiSnipsSnippetsDir         = s:vim.'/ulti_snippets/'
 let g:UltiSnipsSnippetDirectories  = ['ulti_snippets', 'UltiSnips']
@@ -156,13 +147,6 @@ let g:neomake_puppet_puppetlint_maker = {
    \ 'exe': 'puppet-lint',
    \ 'args': ['--log-format', '"%{path}:%{line}:%{column}:%{kind}:[%{check}] %{message}"', '--no-variables_not_enclosed-check', '--no-2sp_soft_tabs-check', '--no-only_variable_string-check', '--no-80chars-check'],
    \ 'errorformat': '"%f:%l:%c:%t%*[a-zA-Z]:%m"',
-   \ }
-
-nmap ga :'{,'}EasyAlign*
-xmap ga :EasyAlign*
-
-let g:easy_align_delimiters = {
-   \ '>': { 'pattern': '[-=]\+>' },
    \ }
 
 let g:vim_json_syntax_conceal = 0
@@ -466,6 +450,12 @@ nmap <c-pageup>        :bprevious<cr>
 nmap <c-pagedown>      :bnext<cr>
 imap <c-pageup>   <c-o>:bprevious<cr>
 imap <c-pagedown> <c-o>:bnext<cr>
+
+" List buffers
+nmap <leader>b :ls<cr>:b<space>
+
+" Recently edited files
+nmap <expr> <leader>r ':filter /'.input('Hist> ').'/ oldfiles<cr>'
 
 " Ctrl + tab or space to switch to the alternate file
 nnoremap <c-tab> <c-^>
