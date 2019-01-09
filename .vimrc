@@ -745,12 +745,9 @@ command! Shell silent write !sh
 
 "" Help
 if !empty($REPOS_BASE)
-   cabbrev <expr> doc getcmdtype() == ':' ? 'e'.fnamemodify($REPOS_BASE.'/help/', ':~').abbreviations#eat_char('\s') : 'doc'
+   " \h to access custom documentation
+   nmap <expr> <leader>h ':e'.fnamemodify($REPOS_BASE.'/help/', ':~')
 endif
-
-" \h to get help for the word under the cursor
-nmap <leader>h    :h <c-r><c-w><cr>
-xmap <leader>h "*y:h <c-r>*<cr>
 
 " F1 to get a full screen help window
 nmap <silent> <f1>      :h<bar>only<cr>
