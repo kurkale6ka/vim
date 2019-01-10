@@ -707,7 +707,8 @@ if has('autocmd')
    endif
 endif
 
-nmap <leader>f :Filetypes<cr>
+" Set 'ft
+nmap <leader>f :se ft=
 
 command! -nargs=* Ascii call ascii#codes(<f-args>)
 command! NonAscii /[^\d0-\d127]

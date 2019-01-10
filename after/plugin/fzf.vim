@@ -10,3 +10,6 @@ command! -nargs=+ VF call fzf#run(fzf#wrap({
    \ 'options': '--read0 -0 -1 -m -q"'.<q-args>.'" --prompt "VF> "'
    \ }))
 nmap <s-space> :VF<space>
+
+" Set 'ft
+nmap <leader>f :Filetypes<cr>
