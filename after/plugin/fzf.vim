@@ -16,13 +16,13 @@ function! s:set_keymap(keymap)
    let &l:keymap = a:keymap
 endfunction
 
-command! -nargs=? Lang call fzf#run({
+command! -nargs=? Lang call fzf#run(fzf#wrap({
    \ 'source': map(split(globpath(&rtp, 'keymap/*.vim')),
    \              'fnamemodify(v:val, ":t:r")'),
    \ 'sink': function('s:set_keymap'),
-   \ 'options': '-0 -1 +m -q "'.<q-args>.'" --prompt "Keymap> "'
-   \ })
-nmap <leader>l :Lang<space>
+   \ 'options': '-1 +m -q "'.<q-args>.'" --prompt "Keymap> "'
+   \ }))
+nmap <leader>l :Lang<cr>
 
 " Set 'ft
 nmap <leader>f :Filetypes<cr>

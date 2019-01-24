@@ -660,13 +660,8 @@ xnoremap <expr> { mode() == '<c-v>' ? line("'{") + 1 . 'G' : '{'
 "" Spell check
 nmap <leader>1 1z=
 nmap <leader>2 2z=
-nmap <leader>3 3z=
 
-nmap <silent> gb :call spelllang#bg()<cr>
-command! ES setlocal keymap=es
-command! FR setlocal keymap=fr
-command! BG setlocal keymap=bg
-command! RU setlocal keymap=ru
+nmap <leader>l :setlocal keymap=
 
 cabbrev trp rtp
 cabbrev waq wqa
