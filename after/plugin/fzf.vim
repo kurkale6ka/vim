@@ -24,5 +24,13 @@ command! -nargs=? Lang call fzf#run(fzf#wrap({
    \ }))
 nmap <leader>l :Lang<cr>
 
+" Scriptnames
+command! -nargs=? Scriptnames call fzf#run(fzf#wrap({
+   \ 'source': map(split(execute('scriptnames'), '\n'),
+   \              'substitute(v:val, "^\\s*\\d\\+:\\s\\+", "", "")'),
+   \ 'sink': 'e',
+   \ 'options': '-1 +m -q "'.<q-args>.'" --prompt "Scriptnames> "'
+   \ }))
+
 " Set 'ft
 nmap <leader>f :Filetypes<cr>
