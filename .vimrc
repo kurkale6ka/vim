@@ -319,9 +319,6 @@ if exists('s:local_vim')
    endif
 endif
 
-" \<tab> to toggle list display
-nmap <leader><tab> :setlocal invlist list?<cr>
-
 "" Colors and highlighting
 if !has('nvim') && $TERM !~ 'linux' && &term =~ '^\(xterm\|screen\)$'
    set t_Co=256
@@ -534,9 +531,6 @@ xmap [p "0p
 " paste above/below for small (non whole lines) yanks
 nmap [P :pu!<cr>
 nmap ]P :pu<cr>
-
-" \p to toggle 'paste
-nmap <leader>p :set invpaste paste?<cr>
 
 "" Visual swap/move/copy
 " Exchange first and last line in a visual area
