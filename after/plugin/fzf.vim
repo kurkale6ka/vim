@@ -11,6 +11,7 @@ command! -nargs=+ VF call fzf#run(fzf#wrap({
    \ }))
 nmap <s-space> :VF<space>
 
+" TODO: replace functions with anonymous ones
 " Keymaps
 function! s:set_keymap(keymap)
    let &l:keymap = a:keymap
@@ -25,10 +26,13 @@ command! -nargs=? Lang call fzf#run(fzf#wrap({
 nmap <leader>l :Lang<cr>
 
 " Scriptnames
+function! s:edit_file(file)
+   execute 'edit' substitute(a:file, '^\s*\d\+:\s\+', '', '')
+endfunction
+
 command! -nargs=? Scriptnames call fzf#run(fzf#wrap({
-   \ 'source': map(split(execute('scriptnames'), '\n'),
-   \              'substitute(v:val, "^\\s*\\d\\+:\\s\\+", "", "")'),
-   \ 'sink': 'e',
+   \ 'source': split(execute('scriptnames'), '\n'),
+   \ 'sink': function('s:edit_file'),
    \ 'options': '-1 +m -q "'.<q-args>.'" --prompt "Scriptnames> "'
    \ }))
 
