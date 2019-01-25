@@ -430,6 +430,9 @@ set complete-=t
 set completeopt-=preview
 set showfulltag
 
+" list autoload tags
+nmap <leader>t :ta *\#<c-d>
+
 "" Windows and buffers
 set hidden
 set diffopt+=vertical
