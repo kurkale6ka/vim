@@ -584,7 +584,8 @@ nmap did ^D"_dd
 command! RemoveSpaces call spaces#remove()
 
 "" Moving around
-set virtualedit=block,insert,onemore
+set virtualedit=block
+
 set whichwrap=b,s,<,>,[,]
 set paragraphs= " no wrongly defined paragraphs for non nroff,groff filetypes
 
