@@ -41,12 +41,3 @@ snippet ``j "No format"
 ${1}
 {noformat}
 endsnippet
-
-snippet /sudo(?:ers)?/ "Sudoers syntax summary" r
-# User_Alias $1 = millert, dowdy, mikef
-# Host_Alias WEBSERVERS = www1, www2, www3
-# Cmnd_Alias PROCESSES = /usr/bin/nice, /bin/kill, /usr/bin/renice
-# Defaults:user timestamp_timeout=510 # min before asking for password again
-# which %users (from which hosts)=(run as which user) NOPASSWD: Cmnd_Alias
-${1:%admin} (${2:ALL})=(${3:ALL}) ${4:NOPASSWD:} ${5:Cmnd_Alias}
-endsnippet
