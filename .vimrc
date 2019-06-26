@@ -432,7 +432,7 @@ nmap <leader>t :ta *\#<c-d>
 
 "" Windows and buffers
 set hidden
-set diffopt+=vertical
+set diffopt+=vertical,iblank,iwhiteall
 set noequalalways
 set splitright
 
