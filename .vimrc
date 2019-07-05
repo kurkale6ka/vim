@@ -432,7 +432,11 @@ nmap <leader>t :ta *\#<c-d>
 
 "" Windows and buffers
 set hidden
-set diffopt+=vertical,iblank,iwhiteall
+if v:version > 801 || v:version == 801 && has('patch393')
+   set diffopt+=vertical,iblank,iwhiteall
+else
+   set diffopt+=vertical
+endif
 set noequalalways
 set splitright
 
