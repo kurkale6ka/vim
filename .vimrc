@@ -11,7 +11,7 @@ if !exists('g:loaded_plug')
       endif
    elseif &diff
       set all& diff
-   else
+   elseif !has('nvim')
       set all&
    endif
 endif
