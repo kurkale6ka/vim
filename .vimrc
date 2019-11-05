@@ -81,6 +81,8 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
+Plug 'tpope/vim-projectionist'
+Plug 'norcalli/nvim-colorizer.lua'
 if exists('s:csapprox_needed')
 Plug 'godlygeek/csapprox'
 endif
