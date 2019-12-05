@@ -12,7 +12,7 @@ if !exists('g:loaded_plug')
    elseif &diff
       set all& diff
    elseif !has('nvim')
-      set all&
+      set all& mousemodel=extend
    endif
 endif
 
