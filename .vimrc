@@ -68,7 +68,7 @@ execute "Plug '".s:vim."/plugged/unicodename', { 'on': 'UnicodeName' }"
 execute "Plug '".s:vim."/plugged/vsearch'"
 execute "Plug '".s:vim."/plugged/win_full_screen', { 'on': 'WinFullScreen' }"
 let g:plug_url_format = 'git@github.com:%s.git'
-Plug 'kurkale6ka/vim-blockinsert'
+Plug 'kurkale6ka/vim-blockinsert' " ???
 Plug 'kurkale6ka/vim-chess'
 Plug 'kurkale6ka/vim-desertEX'
 Plug 'kurkale6ka/vim-pairs'
@@ -82,32 +82,34 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
-Plug 'tpope/vim-projectionist'
-if exists('s:csapprox_needed')
-Plug 'godlygeek/csapprox'
-endif
-Plug 'norcalli/nvim-colorizer.lua'
-Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
-Plug 'pearofducks/ansible-vim'
-Plug 'rodjek/vim-puppet'
-Plug 'justinmk/vim-dirvish'
-Plug 'terceiro/vim-foswiki'
-Plug 'airblade/vim-gitgutter'
-Plug 'vim-scripts/iptables'
-Plug 'elzr/vim-json'
-Plug 'bfredl/nvim-miniyank', has('nvim') ? {} : { 'on': [] }
-Plug 'neomake/neomake'
-Plug 'vim-scripts/nginx.vim'
-Plug 'StanAngeloff/php.vim'
-Plug 'tmux-plugins/vim-tmux'
-if $TERM !~ 'linux' " disable in the vconsole
+Plug 'tpope/vim-projectionist' " ???
+if !has('nvim') && $TERM !~ 'linux' " disable in the vconsole
 Plug 'jszakmeister/vim-togglecursor'
 endif
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
 Plug 'junegunn/vim-easy-align'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+Plug 'bfredl/nvim-miniyank', has('nvim') ? {} : { 'on': [] } " ???
+Plug 'neomake/neomake'
+Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
+Plug 'justinmk/vim-dirvish'
+Plug 'airblade/vim-gitgutter'
+" snippets
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+" syntax highlighting
+if exists('s:csapprox_needed')
+Plug 'godlygeek/csapprox'
+endif
+Plug 'pearofducks/ansible-vim'
+Plug 'rodjek/vim-puppet'
+Plug 'terceiro/vim-foswiki'
+Plug 'vim-scripts/iptables'
+Plug 'elzr/vim-json'
+Plug 'vim-scripts/nginx.vim'
+Plug 'StanAngeloff/php.vim'
+Plug 'tmux-plugins/vim-tmux'
+Plug 'norcalli/nvim-colorizer.lua' " ???
 call plug#end()
 
 let did_install_default_menus = 1

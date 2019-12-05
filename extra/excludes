@@ -21,6 +21,7 @@ P .viminfo
 - colors/*
 
 # plugins
+- plugged/firenvim/
 - plugged/fzf.vim/
 - plugged/neomake/
 - plugged/nvim-miniyank/
