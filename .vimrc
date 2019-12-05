@@ -114,22 +114,6 @@ call plug#end()
 
 let did_install_default_menus = 1
 
-let g:UltiSnipsEnableSnipMate      = 0
-let g:UltiSnipsSnippetsDir         = s:vim.'/ulti_snippets/'
-let g:UltiSnipsSnippetDirectories  = ['ulti_snippets', 'UltiSnips']
-let g:UltiSnipsListSnippets        = '<c-r><tab>'
-let g:UltiSnipsExpandTrigger       = '<tab>'
-let g:UltiSnipsJumpForwardTrigger  = '<tab>'
-let g:UltiSnipsJumpBackwardTrigger = '<s-tab>'
-
-let g:sleuth_automatic = 0
-
-if exists('s:csapprox_needed')
-   let g:CSApprox_verbose_level = 0
-endif
-
-let g:gitgutter_signs = 0
-
 " Disable these plugins
 let g:loaded_2html_plugin    = 1
 let g:loaded_vimballPlugin   = 1
@@ -145,7 +129,10 @@ if !exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# ''
    runtime! macros/matchit.vim
 endif
 
-" Neomake
+" sleuth
+let g:sleuth_automatic = 0
+
+" neomake
 let g:neomake_warning_sign = { 'text': 'W', 'texthl': 'WarningMsg' }
 let g:neomake_error_sign   = { 'text': 'E', 'texthl': 'ErrorMsg'   }
 
@@ -155,8 +142,25 @@ let g:neomake_puppet_puppetlint_maker = {
    \ 'errorformat': '"%f:%l:%c:%t%*[a-zA-Z]:%m"',
    \ }
 
-let g:vim_json_syntax_conceal = 0
+" gitgutter
+let g:gitgutter_signs = 0
+
+" snippets
+let g:UltiSnipsEnableSnipMate      = 0
+let g:UltiSnipsSnippetsDir         = s:vim.'/ulti_snippets/'
+let g:UltiSnipsSnippetDirectories  = ['ulti_snippets', 'UltiSnips']
+let g:UltiSnipsListSnippets        = '<c-r><tab>'
+let g:UltiSnipsExpandTrigger       = '<tab>'
+let g:UltiSnipsJumpForwardTrigger  = '<tab>'
+let g:UltiSnipsJumpBackwardTrigger = '<s-tab>'
+
+" syntax highlighting
+if exists('s:csapprox_needed')
+   let g:CSApprox_verbose_level = 0
+endif
+
 let g:ansible_attribute_highlight = "ab"
+let g:vim_json_syntax_conceal = 0
 
 "" Backups
 if exists('s:local_vim')
