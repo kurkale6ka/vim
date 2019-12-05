@@ -19,11 +19,12 @@ endif
 set nocompatible
 
 "" Setup
+" needed for remote hosts where ~/.vim is shared and cannot be customized
 if !empty($REPOS_BASE)
    let s:vim = $REPOS_BASE.'/vim'
    execute 'let &runtimepath = substitute(&runtimepath, expand("~")."/\\.vim", "'.s:vim.'", "g")'
 elseif has('nvim')
-   let s:vim = $XDG_CONFIG_HOME.'/nvim'
+   let s:vim = stdpath('config')
 else
    let s:vim = '~/.vim'
 endif
@@ -44,7 +45,7 @@ endif
 let mapleader = "\<space>"
 
 "" Filetype + syntax
-" filetype ... on and syntax enable get auto executed by vim-plug
+" Auto executed by vim-plug:
 " filetype plugin indent on
 " syntax enable
 
@@ -82,10 +83,11 @@ Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-projectionist'
-Plug 'norcalli/nvim-colorizer.lua'
 if exists('s:csapprox_needed')
 Plug 'godlygeek/csapprox'
 endif
+Plug 'norcalli/nvim-colorizer.lua'
+Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
 Plug 'pearofducks/ansible-vim'
 Plug 'rodjek/vim-puppet'
 Plug 'justinmk/vim-dirvish'
