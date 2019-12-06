@@ -1,7 +1,7 @@
 " Author: kurkale6ka <Dimitar Dimitrov>
 
 " Don't reset &runtimepath, if re-sourcing my vimrc
-if !exists('g:loaded_plug')
+if !has('nvim') && !exists('g:loaded_plug')
    " TODO. Fix needed: https://github.com/neovim/neovim/issues/5783
    if !&loadplugins
       if &diff
@@ -11,8 +11,8 @@ if !exists('g:loaded_plug')
       endif
    elseif &diff
       set all& diff
-   elseif !has('nvim')
-      set all& mousemodel=extend
+   else
+      set all&
    endif
 endif
 
@@ -373,6 +373,8 @@ set synmaxcol=301
 
 "" Terminal options (including mouse support)
 set mouse=a
+set mousemodel=extend
+
 if !has('nvim')
    set ttymouse=xterm2
 endif
