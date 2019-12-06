@@ -142,6 +142,18 @@ let g:neomake_puppet_puppetlint_maker = {
    \ 'errorformat': '"%f:%l:%c:%t%*[a-zA-Z]:%m"',
    \ }
 
+" firenvim: force manual triggering
+if has('nvim') && exists('g:started_by_firenvim')
+   let g:firenvim_config = {
+      \ 'localSettings': {
+         \ '.*': {
+            \ 'selector': '',
+            \ 'priority': 0,
+         \ }
+      \ }
+   \ }
+endif
+
 " gitgutter
 let g:gitgutter_signs = 0
 
