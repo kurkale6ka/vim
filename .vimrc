@@ -91,7 +91,9 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'bfredl/nvim-miniyank', has('nvim') ? {} : { 'on': [] } " ???
 Plug 'neomake/neomake'
+if has('nvim')
 Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
+endif
 Plug 'justinmk/vim-dirvish'
 Plug 'airblade/vim-gitgutter'
 " snippets
