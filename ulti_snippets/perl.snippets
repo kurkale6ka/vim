@@ -12,6 +12,16 @@ use warnings;
 ${1}
 endsnippet
 
+snippet |
+open my \$${1:pipe}, '${2}|';
+
+while (my \$${3:data} = <\$$1>)
+{
+   chomp \$$3;
+   ${4}
+}
+endsnippet
+
 snippet [
 @${1:array} = qw/${2:word1} ${3:word2} ${4:word3}/;
 endsnippet
