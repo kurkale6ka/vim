@@ -139,21 +139,21 @@ let g:neomake_warning_sign = { 'text': 'W', 'texthl': 'WarningMsg' }
 let g:neomake_error_sign   = { 'text': 'E', 'texthl': 'ErrorMsg'   }
 
 let g:neomake_puppet_puppetlint_maker = {
-   \ 'exe': 'puppet-lint',
-   \ 'args': ['--log-format', '"%{path}:%{line}:%{column}:%{kind}:[%{check}] %{message}"', '--no-variables_not_enclosed-check', '--no-2sp_soft_tabs-check', '--no-only_variable_string-check', '--no-80chars-check'],
-   \ 'errorformat': '"%f:%l:%c:%t%*[a-zA-Z]:%m"',
+   \    'exe': 'puppet-lint',
+   \    'args': ['--log-format', '"%{path}:%{line}:%{column}:%{kind}:[%{check}] %{message}"', '--no-variables_not_enclosed-check', '--no-2sp_soft_tabs-check', '--no-only_variable_string-check', '--no-80chars-check'],
+   \    'errorformat': '"%f:%l:%c:%t%*[a-zA-Z]:%m"',
    \ }
 
 " firenvim: force manual triggering
 if has('nvim') && exists('g:started_by_firenvim')
    let g:firenvim_config = {
-      \ 'localSettings': {
-         \ '.*': {
-            \ 'selector': '',
-            \ 'priority': 0,
-         \ }
+      \    'localSettings': {
+      \       '.*': {
+      \          'selector': '',
+      \          'priority': 0,
+      \       }
+      \    }
       \ }
-   \ }
 endif
 
 " gitgutter
