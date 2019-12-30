@@ -12,13 +12,25 @@ use warnings;
 ${1}
 endsnippet
 
+snippet p
+print "\$${1}\n";
+endsnippet
+
+snippet pa
+print "$_\n" foreach @${1};
+endsnippet
+
+snippet =
+my (\$${1}, \$${2}, \$${3}) = ${4};
+endsnippet
+
 snippet |
 open my \$${1:pipe}, '${2}|';
 
-while (my \$${3:data} = <\$$1>)
+while (<\$$1>)
 {
-   chomp \$$3;
-   ${4}
+   chomp;
+   ${3}
 }
 endsnippet
 
