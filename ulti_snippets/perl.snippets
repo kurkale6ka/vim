@@ -20,6 +20,10 @@ snippet pa
 print "$_\n" foreach @${1};
 endsnippet
 
+snippet pf
+printf "%s${1}\n", \$${2};
+endsnippet
+
 snippet =
 my (\$${1}, \$${2}, \$${3}) = ${4};
 endsnippet
@@ -31,6 +35,13 @@ while (<\$$1>)
 {
    chomp;
    ${3}
+}
+endsnippet
+
+snippet each
+while (my (\$${1:key}, \$${2:val}) = each %${3})
+{
+   ${4};
 }
 endsnippet
 
