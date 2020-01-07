@@ -45,6 +45,18 @@ while (my (\$${1:key}, \$${2:val}) = each %${3})
 }
 endsnippet
 
+snippet colors
+use Term::ANSIColor qw/:constants/;
+endsnippet
+
+snippet yes
+<STDIN> =~ /y(?:es)?/i;
+endsnippet
+
+snippet data
+__DATA__
+endsnippet
+
 snippet [
 @${1:array} = qw/${2:word1} ${3:word2} ${4:word3}/;
 endsnippet
