@@ -12,6 +12,7 @@ use warnings;
 ${1}
 endsnippet
 
+# pc: print color? group p snips?
 snippet p
 print "\$${1}\n";
 endsnippet
@@ -28,6 +29,7 @@ snippet =
 my (\$${1}, \$${2}, \$${3}) = ${4};
 endsnippet
 
+# improve: in, out, bi... IO::RPC ?
 snippet |
 open my \$${1:pipe}, '${2} |';
 
@@ -35,6 +37,14 @@ while (<\$$1>)
 {
    chomp;
    ${3}
+}
+endsnippet
+
+snippet <>
+while (<DATA>)
+{
+   chomp;
+   ${1};
 }
 endsnippet
 
@@ -53,6 +63,7 @@ snippet yes
 <STDIN> =~ /y(?:es)?/i;
 endsnippet
 
+# multiple use choice?
 snippet basename
 use File::Basename qw/basename/;
 endsnippet
