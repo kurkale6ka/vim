@@ -1,15 +1,22 @@
 # Hash bang using the env command
 snippet #
-#! /usr/bin/env ${1:perl}
-endsnippet
-
-snippet skel
 #! /usr/bin/env perl
 
 use strict;
 use warnings;
+use feature qw/say/;
 
-${1}
+
+endsnippet
+
+snippet use
+use Getopt::Long;
+use File::Basename qw/basename/;
+use File::Path qw/make_path/;
+use Term::ANSIColor qw/:constants/;
+use List::Util qw/any/;
+
+
 endsnippet
 
 # pc: print color? group p snips?
