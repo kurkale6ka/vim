@@ -1,4 +1,4 @@
-# Hash bang using the env command
+# skel
 snippet #
 #! /usr/bin/env perl
 
@@ -19,39 +19,34 @@ use List::Util qw/any/;
 
 endsnippet
 
-# pc: print color? group p snips?
-snippet p
-print "\$${1}\n";
+snippet dump
+use Data::Dumper
+say Dumper
 endsnippet
 
-snippet pa
-print "$_\n" foreach @${1};
+snippet doc
+say <<${1:MSG};
+${2}
+$1
 endsnippet
 
-snippet pf
-printf "%s${1}\n", \$${2};
+# TODO
+snippet opts
+GetOptions(
 endsnippet
 
 snippet =
 my (\$${1}, \$${2}, \$${3}) = ${4};
 endsnippet
 
-# improve: in, out, bi... IO::RPC ?
-snippet |
-open my \$${1:pipe}, '${2} |';
+# Add code to deal with >
+snippet <
+open my \$${1:fh}, '${2:-|}', '${3}';
 
 while (<\$$1>)
 {
    chomp;
-   ${3}
-}
-endsnippet
-
-snippet <>
-while (<DATA>)
-{
-   chomp;
-   ${1};
+   ${4}
 }
 endsnippet
 
@@ -66,7 +61,7 @@ snippet colors
 use Term::ANSIColor qw/:constants/;
 endsnippet
 
-snippet yes
+snippet read
 <STDIN> =~ /y(?:es)?/i;
 endsnippet
 
@@ -74,59 +69,20 @@ snippet else
 } else {
 endsnippet
 
-# multiple use choice?
-snippet basename
-use File::Basename qw/basename/;
+# add code to remplace data with end
+snippet 'data|end' "data" r
+__${1:DATA}__
 endsnippet
 
-snippet data
-__DATA__
+snippet %
+%${1} =
+(
+   ${2} => '${3}',
+   ${4} => '${5}',
+);
 endsnippet
 
-snippet [
+# Use [ or @ to fill an array
+snippet '\[|@' "array" r
 @${1:array} = qw/${2:word1} ${3:word2} ${4:word3}/;
-endsnippet
-
-snippet ' "Quotes"
-my \$${1:variable} = q/${2:sentence}/;
-endsnippet
-
-snippet ' "Double quotes"
-my \$${1:variable} = qq/${2:sentence}/;
-endsnippet
-
-snippet ' "Back ticks"
-my \$${1:variable} = qx/${2:sentence}/;
-endsnippet
-
-snippet ~ "Substitute"
-\$${1:scalar} =~ s/${2:old}/${3:new}/;
-endsnippet
-
-snippet ~ "Match"
-\$${1:scalar} =~ /${2:pattern}/;
-endsnippet
-
-snippet ~ "Look behind"
-(?<${1:=}${2:pattern1})${3:pattern2}
-endsnippet
-
-snippet ~ "Look ahead"
-${1:pattern1}(?${2:=}${3:pattern2})
-endsnippet
-
-snippet $
-"\$${1}"
-endsnippet
-
-snippet $$
-"\$${1}\n"
-endsnippet
-
-snippet 1
-"\$${1}"
-endsnippet
-
-snippet 11
-"\$${1}\n";
 endsnippet
