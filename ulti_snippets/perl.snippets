@@ -4,17 +4,17 @@ snippet #
 
 use strict;
 use warnings;
-use feature qw/say/;
+use feature 'say';
 
 
 endsnippet
 
 snippet use
 use Getopt::Long;
-use File::Basename qw/basename/;
-use File::Path qw/make_path/;
-use Term::ANSIColor qw/:constants/;
-use List::Util qw/any/;
+use File::Basename 'basename';
+use File::Path 'make_path';
+use Term::ANSIColor ':constants';
+use List::Util 'any';
 
 
 endsnippet
@@ -45,7 +45,7 @@ GetOptions
    '$2' => \\\$$2,
    'help' => \&help
 )
-or die RED, 'Error in command line arguments', RESET, "\n";
+or die RED.'Error in command line arguments'.RESET, "\n";
 endsnippet
 
 snippet =
@@ -71,7 +71,7 @@ while (my (\$${1:key}, \$${2:val}) = each %${3})
 endsnippet
 
 snippet colors
-use Term::ANSIColor qw/:constants/;
+use Term::ANSIColor ':constants';
 endsnippet
 
 snippet read
