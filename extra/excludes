@@ -2,6 +2,7 @@
 
 - .viminfo
 P .viminfo
+- .vimrc.mini
 - CONTRIBUTING*
 - LICENSE*
 - README*
