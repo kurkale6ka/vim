@@ -370,17 +370,6 @@ if !&diff
    set cursorline
 endif
 
-if has('autocmd') && !&diff
-   autocmd BufEnter,FileType *
-      \ if expand('<afile>:e') != 'log'                                  |
-      \    if empty(&textwidth)                                          |
-      \       match ColorColumn /\%81v[^\t]/                             |
-      \    else                                                          |
-      \       execute 'match ColorColumn /\%'.(&textwidth + 1).'v[^\t]/' |
-      \    endif                                                         |
-      \ endif
-endif
-
 command! Syntax call syntax#stack()
 
 set synmaxcol=301

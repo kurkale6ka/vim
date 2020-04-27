@@ -1,14 +1,16 @@
 function! highlight#column()
    if empty(&colorcolumn)
+      setlocal colorcolumn=0
       if empty(&textwidth)
-         setlocal colorcolumn=81
+         match ColorColumn /\%81v[^\t]/
          let @/ = '\%81v.*'
       else
-         setlocal colorcolumn=+1
+         execute 'match ColorColumn /\%'.(&textwidth + 1).'v[^\t]/'
          let @/ = '\%'.(&textwidth + 1).'v.*'
       endif
    else
       setlocal colorcolumn=
+      match none
       let @/ = ''
    endif
 endfunction
