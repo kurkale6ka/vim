@@ -20,27 +20,23 @@ say Dumper
 endsnippet
 
 snippet doc
-say <<${1:MSG};
+print <<${1:MSG};
 ${2}
 $1
 endsnippet
 
-# TODO
 snippet opts
-sub help
-{
+sub help() {
    exit;
 }
 
 my (\$${1}, \$${2});
 
-GetOptions
-(
+GetOptions (
    '$1' => \\\$$1,
    '$2' => \\\$$2,
    'help' => \&help
-)
-or die RED.'Error in command line arguments'.RESET, "\n";
+) or die RED.'Error in command line arguments'.RESET, "\n";
 endsnippet
 
 snippet =
@@ -66,12 +62,15 @@ while (my (\$${1:key}, \$${2:val}) = each %${3})
 endsnippet
 
 snippet colors
-use Term::ANSIColor ':constants';
+my  $BLUE = color('ansi69');
+my  $CYAN = color('ansi45');
+my  $BOLD = color('bold');
+my $RESET = color('reset');
 endsnippet
 
 snippet read
 print '${1}: ';
-$_ = <STDIN>;
+chomp ($_ = <STDIN>);
 endsnippet
 
 snippet yes
@@ -97,5 +96,5 @@ endsnippet
 
 # Use [ or @ to fill an array
 snippet '\[|@' "array" r
-@${1:array} = qw/${2:word1} ${3:word2} ${4:word3}/;
+my @${1:array} = qw/${2:word1} ${3:word2} ${4:word3}/;
 endsnippet
