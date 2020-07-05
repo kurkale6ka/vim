@@ -8,27 +8,27 @@ use feature 'say';
 use Getopt::Long qw/GetOptions :config bundling/;
 use File::Basename 'basename';
 use File::Path 'make_path';
-use Term::ANSIColor ':constants';
+use Term::ANSIColor qw/color :constants/;
 use List::Util 'any';
 
-my $BLUE = color('ansi69');
-my $CYAN = color('ansi45');
-my $B = color('bold');
+my $B = color('ansi69');
+my $C = color('ansi45');
+my $S = color('bold');
 my $R = color('reset');
 
 # Help
 sub help() {
    print <<MSG;
-${B}SYNOPSIS${R}
-${B}OPTIONS${R}
-${B}DESCRIPTION${R}
+${S}SYNOPSIS${R}
+${S}OPTIONS${R}
+${S}DESCRIPTION${R}
 MSG
    exit;
 }
 
 # Arguments
 GetOptions(
-   'help' => \&help
+   'h|help' => \&help
 ) or die RED.'Error in command line arguments'.RESET, "\n";
 
 
