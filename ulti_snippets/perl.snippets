@@ -69,7 +69,8 @@ endsnippet
 
 snippet read
 print '${1}: ';
-chomp ($_ = <STDIN>);
+chomp (${2:$_} = <STDIN>);
+
 endsnippet
 
 snippet yes
