@@ -5,11 +5,31 @@ snippet #
 use strict;
 use warnings;
 use feature 'say';
-use Getopt::Long 'GetOptions';
+use Getopt::Long qw/GetOptions :config bundling/;
 use File::Basename 'basename';
 use File::Path 'make_path';
 use Term::ANSIColor ':constants';
 use List::Util 'any';
+
+my $BLUE = color('ansi69');
+my $CYAN = color('ansi45');
+my $B = color('bold');
+my $R = color('reset');
+
+# Help
+sub help() {
+   print <<MSG;
+${B}SYNOPSIS${R}
+${B}OPTIONS${R}
+${B}DESCRIPTION${R}
+MSG
+   exit;
+}
+
+# Arguments
+GetOptions(
+   'help' => \&help
+) or die RED.'Error in command line arguments'.RESET, "\n";
 
 
 endsnippet
@@ -23,20 +43,6 @@ snippet doc
 print <<${1:MSG};
 ${2}
 $1
-endsnippet
-
-snippet opts
-sub help() {
-   exit;
-}
-
-my (\$${1}, \$${2});
-
-GetOptions (
-   '$1' => \\\$$1,
-   '$2' => \\\$$2,
-   'help' => \&help
-) or die RED.'Error in command line arguments'.RESET, "\n";
 endsnippet
 
 snippet =
@@ -59,13 +65,6 @@ while (my (\$${1:key}, \$${2:val}) = each %${3})
 {
    ${4};
 }
-endsnippet
-
-snippet colors
-my  $BLUE = color('ansi69');
-my  $CYAN = color('ansi45');
-my  $BOLD = color('bold');
-my $RESET = color('reset');
 endsnippet
 
 snippet read
