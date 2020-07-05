@@ -50,14 +50,18 @@ my (\$${1}, \$${2}, \$${3}) = ${4};
 endsnippet
 
 # Add code to deal with >
-snippet <
-open my \$${1:fh}, '${2:-|}', '${3}';
+snippet '<|\|' "pipe" r
+open my \$${1:fh}, '${2:-|}', '${3:command}';
 
 while (<\$$1>)
 {
    chomp;
    ${4}
 }
+endsnippet
+
+snippet open
+open my \$${1:fh}, '${2:>>}', '${3:file}';
 endsnippet
 
 snippet each
