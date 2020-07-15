@@ -49,38 +49,37 @@ endsnippet
 
 snippet doc
 print <<${1:MSG};
-${2}
+$2
 $1
 endsnippet
 
 snippet =
-my (\$${1}, \$${2}, \$${3}) = ${4};
+my (\$$1, \$$2, \$$3) = $4;
 endsnippet
 
-# Add code to deal with >
-snippet '<|\|' "pipe" r
+snippet |
 open my \$${1:fh}, '${2:-|}', '${3:command}';
 
 while (<\$$1>)
 {
    chomp;
-   ${4}
+   $4
 }
 endsnippet
 
 snippet open
-open my \$${1:fh}, '${2:>>}', '${3:file}';
+open my \$${1:fh}, '${2:<}', '${3:file}';
 endsnippet
 
 snippet each
-while (my (\$${1:key}, \$${2:val}) = each %${3})
+while (my (\$${1:key}, \$${2:val}) = each %$3)
 {
-   ${4};
+   $4;
 }
 endsnippet
 
 snippet read
-print '${1}: ';
+print '$1: ';
 chomp (${2:$_} = <STDIN>);
 
 endsnippet
@@ -91,6 +90,8 @@ endsnippet
 
 snippet else
 } else {
+   $1;
+}
 endsnippet
 
 # add code to remplace data with end
@@ -99,10 +100,10 @@ __${1:DATA}__
 endsnippet
 
 snippet %
-%${1} =
+my %$1 =
 (
-   ${2} => '${3}',
-   ${4} => '${5}',
+   $2 => '$3',
+   $4 => '$5',
 );
 endsnippet
 
