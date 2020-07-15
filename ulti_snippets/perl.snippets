@@ -11,8 +11,8 @@ use File::Path 'make_path';
 use Term::ANSIColor qw/color :constants/;
 use List::Util 'any';
 
-my $B = color('ansi69');
-my $C = color('ansi45');
+my $BLUE = color('ansi69');
+my $CYAN = color('ansi45');
 my $S = color('bold');
 my $R = color('reset');
 
@@ -27,7 +27,7 @@ MSG
 }
 
 # Arguments
-GetOptions(
+GetOptions (
    'h|help' => \&help
 ) or die RED.'Error in command line arguments'.RESET, "\n";
 
