@@ -44,7 +44,7 @@ snippet skel
 
    <h1>$1</h1>
 
-   ${2}
+   $2
 
 </body>
 
@@ -53,61 +53,61 @@ endsnippet
 
 # Titles
 snippet 1
-<h1> ${1} </h1>
+<h1> $1 </h1>
 endsnippet
 
 snippet 2
-<h2> ${1} </h2>
+<h2> $1 </h2>
 endsnippet
 
 snippet 3
-<h3> ${1} </h3>
+<h3> $1 </h3>
 endsnippet
 
 snippet 4
-<h4> ${1} </h4>
+<h4> $1 </h4>
 endsnippet
 
 snippet 5
-<h5> ${1} </h5>
+<h5> $1 </h5>
 endsnippet
 
 snippet 6
-<h6> ${1} </h6>
+<h6> $1 </h6>
 endsnippet
 
 # Paragraph
 snippet \p
 <p>
-${1}
+$1
 </p>
 endsnippet
 
 snippet \P
-<p class="${1}">
-${2}
+<p class="$1">
+$2
 </p>
 endsnippet
 
 # Span
 snippet \s
-<span> ${1} </span>
+<span> $1 </span>
 endsnippet
 
 snippet \S
-<span class="${1}"> ${2} </span>
+<span class="$1"> $2 </span>
 endsnippet
 
 # Division
 snippet \d
 <div>
-${1}
+$1
 </div>
 endsnippet
 
 snippet \D
-<div class="${1}">
-${2}
+<div class="$1">
+$2
 </div>
 endsnippet
 
@@ -117,81 +117,81 @@ snippet \a
 endsnippet
 
 snippet \A
-<a href="http://www.${1:google}.co.uk" title="${2:}" class="${3}"> $2 </a>
+<a href="http://www.${1:google}.co.uk" title="${2:}" class="$3"> $2 </a>
 endsnippet
 
 # Weights
 snippet \em "Emphasized"
-<em> ${1} </em>
+<em> $1 </em>
 endsnippet
 
 snippet \em "Strong"
-<strong> ${1} </strong>
+<strong> $1 </strong>
 endsnippet
 
 snippet \i
-<img src="${1}" alt="${2:}" title="$2" />
+<img src="$1" alt="${2:}" title="$2" />
 endsnippet
 
 snippet \j
 <script type="${1:text/javascript}">
 <!--
-${2}
+$2
 // -->
 </script>
 endsnippet
 
 snippet \n
 <noscript>
-${1}
+$1
 </noscript>
 endsnippet
 
 # Comments
 snippet \\
-<!-- ${1} -->
+<!-- $1 -->
 endsnippet
 
 snippet \cs
 <!--
-   - ${1}
+   - $1
    -->
 endsnippet
 
 # Lists
 snippet \li
-<li>${1}</li>
+<li>$1</li>
 endsnippet
 
 snippet \ll "Unordered list"
 <ul>
-   <li>${1}</li>
-   <li>${2}</li>
-   <li>${3}</li>
+   <li>$1</li>
+   <li>$2</li>
+   <li>$3</li>
 </ul>
 endsnippet
 
 snippet \ll "Ordered list"
 <ul>
-   <li>${1}</li>
-   <li>${2}</li>
-   <li>${3}</li>
+   <li>$1</li>
+   <li>$2</li>
+   <li>$3</li>
 </ul>
 endsnippet
 
 snippet \ll "Definition list"
 <dl>
-   <dt>${1}</dt>
+   <dt>$1</dt>
    <dd>
-   ${2}
+   $2
    </dd>
-   <dt>${3}</dt>
+   <dt>$3</dt>
    <dd>
-   ${4}
+   $4
    </dd>
-   <dt>${5}</dt>
+   <dt>$5</dt>
    <dd>
-   ${6}
+   $6
    </dd>
 </dl>
 endsnippet
@@ -199,9 +199,9 @@ endsnippet
 snippet \f
 <form action="${1:parser.php}" method="${2:post}">
    <fieldset>
-      <legend>${3}</legend>
+      <legend>$3</legend>
       <dl>
-         <dt><label for="$5">${4}</label></dt>
+         <dt><label for="$5">$4</label></dt>
          <dd>
             <input id="${5:}" name="$5" type="${6:text}" value="${7:}" />
 
@@ -222,26 +222,26 @@ endsnippet
 
 snippet \t
 <table>
-   <caption>${1}</caption>
+   <caption>$1</caption>
    <thead>
       <tr>
-         <th>${2}</th><th>${3}</th><th>${4}</th>
+         <th>$2</th><th>$3</th><th>$4</th>
       </tr>
    </thead>
    <tfoot>
       <tr>
-         <td>${5}</td><td>${6}</td><td>${7}</td>
+         <td>$5</td><td>$6</td><td>$7</td>
       </tr>
    </tfoot>
    <tbody>
       <tr>
-         <td>${8}</td><td>${9}</td><td>${10}</td>
+         <td>$8</td><td>$9</td><td>$10</td>
       </tr>
       <tr>
-         <td>${11}</td><td>${12}</td><td>${13}</td>
+         <td>$11</td><td>$12</td><td>$13</td>
       </tr>
       <tr>
-         <td>${14}</td><td>${15}</td><td>${16}</td>
+         <td>$14</td><td>$15</td><td>$16</td>
       </tr>
    </tbody>
 </table>

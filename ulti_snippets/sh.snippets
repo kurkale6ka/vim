@@ -8,27 +8,27 @@ read -p '${1:Enter value}: ' ${2:var}
 endsnippet
 
 snippet p "Color message"
-printf "${_${1:ylw}}${2}${_res}\n"
+printf "${_${1:ylw}}$2${_res}\n"
 endsnippet
 
 snippet p "Variables"
-printf '%s\n' "\$${1}"
+printf '%s\n' "\$$1"
 endsnippet
 
 snippet p "Variables with color"
-printf '%s\n' "${_${1:ylw}}${2}${_res}\n"
+printf '%s\n' "${_${1:ylw}}$2${_res}\n"
 endsnippet
 
 snippet doc
 cat << '${1:EOM}'
-${2}
+$2
 $1
 endsnippet
 
 snippet doc-
    cat <<- '${1:EOM}'
 `!v nr2char(9)`${2:Usage:}
-`!v nr2char(9)`  ${3}
+`!v nr2char(9)`  $3
 `!v nr2char(9)`$1
 endsnippet
 
@@ -39,7 +39,7 @@ ${1:name}() {
 endsnippet
 
 snippet alias
-alias ${1:name}='${2}'
+alias ${1:name}='$2'
 endsnippet
 
 snippet _
@@ -147,16 +147,16 @@ esac
 endsnippet
 
 snippet case "Select"
-options[0]='${1}'
-options[1]='${2}'
-options[2]='${3}'
+options[0]='$1'
+options[1]='$2'
+options[2]='$3'
 
 select choice in "${options[@]}"
 do
    case "$choice" in
-      "${options[0]}") ${4}; break;;
-      "${options[1]}") ${5}; break;;
-      "${options[2]}") ${6}; break;;
+      "${options[0]}") $4; break;;
+      "${options[1]}") $5; break;;
+      "${options[2]}") $6; break;;
    esac
    echo '*** Wrong choice ***'
 done
@@ -166,10 +166,10 @@ snippet opts
 OPTIND=1
 
 local opt
-while getopts :${1} opt
+while getopts :$1 opt
 do
    case "$opt" in
-       ${2}) ${3} ;;
+       $2) $3 ;;
       \?) echo "Invalid option: -$OPTARG" 1>&2
           return 1 ;;
        :) echo "Option -$OPTARG requires an argument" 1>&2
@@ -217,7 +217,7 @@ snippet h
 shopt -s extglob
 
 _help() {
-   local info='Usage: ${1}'
+   local info='Usage: $1'
    if ((\$1 == 0))
    then echo "$info"
    else echo "$info" >&2
@@ -240,7 +240,7 @@ _help() {
 local info
 read -r -d $'\0' info << 'HELP'
 Usage:
-   ${1}
+   $1
 HELP
 if ((\$1 == 0))
 then echo "$info"
@@ -265,14 +265,14 @@ snippet <> "Read command's output"
 while IFS= read -r
 do
    ${1:"\$REPLY"}
-done < <(${2})
+done < <($2)
 endsnippet
 
 snippet <> "Read find's output"
 while IFS= read -r -d \$'\0'
 do
    ${1:"\$REPLY"}
-done < <(find ${2:/} -xdev ${3} -print0)
+done < <(find ${2:/} -xdev $3 -print0)
 endsnippet
 
 snippet <> "Read a heredoc"
@@ -281,7 +281,7 @@ do
    [[ $$1 = \#* ]] && continue
    echo "$$1"
 done << EOF
-${2}
+$2
 EOF
 endsnippet
 
@@ -337,11 +337,11 @@ endsnippet
 
 ## Parameter expansion
 snippet $ "# remove from start"
-"\$\{${1:var}#${2}}"
+"\$\{${1:var}#$2}"
 endsnippet
 
 snippet $ "% remove from end"
-"\$\{${1:var}%${2}}"
+"\$\{${1:var}%$2}"
 endsnippet
 
 snippet $ "/ replace"
@@ -357,13 +357,13 @@ snippet $ "length"
 endsnippet
 
 snippet $ "Parameter expansion on arrays"
-"\$\{${1:array}[@]${2}#%:/}"
+"\$\{${1:array}[@]$2#%:/}"
 endsnippet
 
 ## Multiline variable
 snippet var
 read -r -d $'\0' ${1:var} << '${2:VALUE}'
-${3}
+$3
 $2
 endsnippet
 
@@ -374,6 +374,6 @@ endsnippet
 
 snippet E
 cat 1>&2 << 'HELP'
-${1}
+$1
 HELP
 endsnippet

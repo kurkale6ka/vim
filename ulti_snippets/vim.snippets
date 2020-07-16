@@ -34,7 +34,7 @@ vmap <silent> <plug>$2${5:}
    \
    \ :call <sid>$3()<cr>
 
-vmap ${6} <plug>$2$5
+vmap $6 <plug>$2$5
 
 let &cpoptions = s:savecpo
 unlet s:savecpo
@@ -52,59 +52,59 @@ function! ${1:s:}(${2:argument})${3: range}
    ${4:a:$2}
 endfunction
 
-${5}
+$5
 endsnippet
 
 snippet if
 if ${1:condition}
-   ${2}
+   $2
 endif
 endsnippet
 
 snippet ife
 if ${1:condition}
-   ${2}
+   $2
 else
-   ${3}
+   $3
 endif
 endsnippet
 
 snippet ifee
 if ${1:condition}
-   ${2}
+   $2
 elseif ${3:condition}
-   ${4}
+   $4
 else
-   ${5}
+   $5
 endif
 endsnippet
 
 snippet while
 while ${1:condition}
 
-   ${2}
+   $2
 endwhile
 
-${3}
+$3
 endsnippet
 
 snippet for
 for ${1:var} in ${2:list_expression(range(3))}
 
-   ${3}
+   $3
 endfor
 
-${4}
+$4
 endsnippet
 
 snippet try
 try
-   ${1}
+   $1
 catch${2: /E484:/}
-   ${3}
+   $3
 endtry
 
-${4}
+$4
 endsnippet
 
 snippet [ "List"
@@ -136,13 +136,13 @@ ${1:pattern1}\%(${2:pattern1}\)\@${3:=}
 endsnippet
 
 snippet \
-<leader>${1}
+<leader>$1
 endsnippet
 
 snippet 1
-a:firstline${1}
+a:firstline$1
 endsnippet
 
 snippet 9
-a:lastline${1}
+a:lastline$1
 endsnippet

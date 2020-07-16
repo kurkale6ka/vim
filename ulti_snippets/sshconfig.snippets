@@ -1,6 +1,6 @@
 snippet skel
-## ${1}
-Host ${2}
+## $1
+Host $2
    HostName ${3:ip}
 
 Host github.com
@@ -34,7 +34,7 @@ ProxyJump ${1:jumphost}
 endsnippet
 
 snippet l
-LocalForward ${1} ${2:localhost}:$1
+LocalForward $1 ${2:localhost}:$1
 endsnippet
 
 snippet 0
@@ -42,13 +42,13 @@ snippet 0
 endsnippet
 
 snippet 1
-192.168.0.${1}
+192.168.0.$1
 endsnippet
 
 snippet 2
-10.0.0.${1}
+10.0.0.$1
 endsnippet
 
 snippet 3
-172.16.0.${1}
+172.16.0.$1
 endsnippet

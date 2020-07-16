@@ -48,7 +48,7 @@ snippet skel
    urlcolor=blue           % color of external links
 }
 
-\title{${2}}
+\title{$2}
 \author{
    `g:snips_author`\\
    \href{mailto:mitkofr@yahoo.fr}{\texttt{mitkofr@yahoo.fr}}\\
@@ -68,9 +68,9 @@ snippet skel
 % \tableofcontents
 
 % part, chapter, section, subsection, subsubsection, paragraph, subparagraph
-\section{${4}}
+\section{$4}
 
-${5}
+$5
 
 \end{document}
 endsnippet
@@ -95,11 +95,11 @@ ${6:Post Code}\\
 
 \opening{${7:Dear Sir or Madam:}}
 
-${8}
+$8
 
 \closing{${9:Yours Faithfully,}}
 
-% \ps{P.S. ${10}}
+% \ps{P.S. $10}
 % \encl{${11:Copyright permission form}}
 
 \end{letter}
@@ -133,11 +133,11 @@ ${6:Post Code}\\
 
 \opening{${7:Madame, Monsieur,}}
 
-${8}
+$8
 
 \closing{${9:Je vous prie d'agréer, Madame, Monsieur, l'expression de ma respectueuse considération.}}
 
-% \ps{P.S. ${10}}
+% \ps{P.S. $10}
 % \encl{${11:Pièce jointe}}
 
 \end{letter}
@@ -147,78 +147,78 @@ endsnippet
 
 snippet li "Unordered list"
 \begin{itemize}
-\item ${1}
-\item ${2}
-\item ${3}
+\item $1
+\item $2
+\item $3
 \end{itemize}
 endsnippet
 
 snippet li "Ordered list"
 \begin{enumerate}
-\item ${1}
-\item ${2}
-\item ${3}
+\item $1
+\item $2
+\item $3
 \end{enumerate}
 endsnippet
 
 snippet li "Description"
 \begin{description}
-\item[${1}] \hfill \\
-${2}
-\item[${3}] \hfill \\
-${4}
-\item[${5}] \hfill \\
-${6}
+\item[$1] \hfill \\
+$2
+\item[$3] \hfill \\
+$4
+\item[$5] \hfill \\
+$6
 \end{description}
 # flushleft, flushright, center, quote, verse, ...
 endsnippet
 
 snippet {
 \begin{${1:environment}}
-   ${2}
+   $2
 \end{$1}
 # Maths
 endsnippet
 
 snippet {m "Maths - newline"
 \begin{displaymath}
-   ${1}
+   $1
 \end{displaymath}
 endsnippet
 
 snippet {m "Maths - newline, equation (numbers)"
 \begin{equation}
-   ${1}
+   $1
 \end{equation}
 endsnippet
 
 snippet {m "Maths - newline, subequation"
 \begin{subequations}
-   ${1}
+   $1
 \end{subequations}
 endsnippet
 
 snippet {m "Maths - newline, aligned"
 \begin{align*}
-   ${1} & ${2} \\
-   ${3} & ${4}
+   $1 & $2 \\
+   $3 & $4
 \end{align*}
 endsnippet
 
 snippet {m "Maths - inline"
-\begin{math} ${1} \end{math}
+\begin{math} $1 \end{math}
 endsnippet
 
 snippet {m "Maths - inline displaystyle"
-\begin{math}\displaystyle ${1} \end{math}
+\begin{math}\displaystyle $1 \end{math}
 endsnippet
 
 snippet ^
-${1:x}^{${2}}
+${1:x}^{$2}
 endsnippet
 
 snippet _
-${1:x}_{${2}}
+${1:x}_{$2}
 endsnippet
 
 snippet |
@@ -250,7 +250,7 @@ snippet \ "...with adjustments"
 endsnippet
 
 snippet (
-\left${1:(} ${2} \right${3:)}
+\left${1:(} $2 \right${3:)}
 endsnippet
 
 # Table
@@ -602,12 +602,12 @@ endsnippet
 
 snippet pre "Long"
 \begin{verbatim}
-${1}
+$1
 \end{verbatim}
 endsnippet
 
 snippet pre "Short"
-\verb#${1}#
+\verb#$1#
 endsnippet
 
 snippet fig
@@ -630,45 +630,45 @@ snippet @ "mail to"
 endsnippet
 
 snippet 1 "Section"
-\section{${1}}
+\section{$1}
 
-${2}
+$2
 endsnippet
 
 snippet 1 "Chapter"
-\chapter{${1}}
+\chapter{$1}
 
-${2}
+$2
 endsnippet
 
 snippet 1 "Part (No section/chapter numbering)"
-\part{${1}}
+\part{$1}
 
-${2}
+$2
 endsnippet
 
 snippet 1 "Paragraph"
-\paragraph{${1}}
+\paragraph{$1}
 
-${2}
+$2
 endsnippet
 
 snippet 2 "Sub section"
-\subsection{${1}}
+\subsection{$1}
 
-${2}
+$2
 endsnippet
 
 snippet 2 "Sub paragraph"
-\subparagraph{${1}}
+\subparagraph{$1}
 
-${2}
+$2
 endsnippet
 
 snippet 3 "Sub sub section"
-\subsubsection{${1}}
+\subsubsection{$1}
 
-${2}
+$2
 endsnippet
 
 snippet ref "Set a mark"
@@ -692,7 +692,7 @@ snippet ref "Go to a mark's page"
 endsnippet
 
 snippet foot
-\footnote{${1}}
+\footnote{$1}
 endsnippet
 
 snippet ... "Standard dots"
@@ -720,7 +720,7 @@ snippet ~ "High"
 endsnippet
 
 snippet €
-${1}\euro{}${2}
+$1\euro{}$2
 endsnippet
 
 snippet £
@@ -732,48 +732,48 @@ snippet .
 endsnippet
 
 snippet em "Emphasised"
-\emph{${1}}
+\emph{$1}
 endsnippet
 
 snippet em "Monospace font"
-\texttt{${1}}
+\texttt{$1}
 endsnippet
 
 snippet em "Bold"
-\textbf{${1}}
+\textbf{$1}
 endsnippet
 
 snippet em "Medium weight"
-\textmd{${1}}
+\textmd{$1}
 endsnippet
 
 snippet em "Italic"
-\textit{${1}}
+\textit{$1}
 endsnippet
 
 snippet em "Slanted"
-\textsl{${1}}
+\textsl{$1}
 endsnippet
 
 snippet em "Uppercase"
-\uppercase{${1}}
+\uppercase{$1}
 endsnippet
 
 snippet em "Small Capitals"
-\textsc{${1}}
+\textsc{$1}
 endsnippet
 
 snippet em "Roman (serif)"
-\textrm{${1}}
+\textrm{$1}
 endsnippet
 
 snippet em "Sans serif"
-\textsf{${1}}
+\textsf{$1}
 endsnippet
 
 # French
 snippet "
-\og ${1} \fg{}
+\og $1 \fg{}
 endsnippet
 
 snippet Mr "Mr"
@@ -805,5 +805,5 @@ M\up{${1:r}}~${2:Dimitar}~\bsc{${3:Dimitrov}}
 endsnippet
 
 snippet nb
-\nombre{${1}}
+\nombre{$1}
 endsnippet

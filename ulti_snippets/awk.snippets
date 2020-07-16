@@ -7,9 +7,9 @@ function ${1:name} (${2:param1}, ${3:param2}, ${4:local var1}, ${5:local var2})
 
 BEGIN \{
 
-   if (ARGV[1] !~ /${6}/)
+   if (ARGV[1] !~ /$6/)
    \{
-      print "Usage: ${7}"
+      print "Usage: $7"
       exit
    }
 
@@ -26,5 +26,5 @@ BEGIN \{
    }
 }
 
-END {${12}}
+END {$12}
 endsnippet
