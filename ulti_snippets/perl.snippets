@@ -34,6 +34,22 @@ GetOptions (
 
 endsnippet
 
+snippet use "Getopt::Long"
+use Getopt::Long qw/GetOptions :config bundling/;
+endsnippet
+snippet use "File::Basename"
+use File::Basename 'basename';
+endsnippet
+snippet use "File::Path"
+use File::Path 'make_path';
+endsnippet
+snippet use "Term::ANSIColor"
+use Term::ANSIColor qw/color :constants/;
+endsnippet
+snippet use "List::Util"
+use List::Util 'any';
+endsnippet
+
 snippet '(die|warn)' "err" r
 `!p snip.rv = match.group(1)` RED.'$1'.RESET, "\n";
 endsnippet
