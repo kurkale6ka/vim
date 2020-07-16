@@ -8,19 +8,19 @@ read '${1:var}?${2:prompt}: '
 endsnippet
 
 snippet p
-print -P '%F{${1:yellow}}${2}%f'
+print -P '%F{${1:yellow}}$2%f'
 endsnippet
 
 snippet doc
 cat << '${1:EOM}'
-${2}
+$2
 $1
 endsnippet
 
 snippet doc-
    cat <<- '${1:EOM}'
 `!v nr2char(9)`${2:Usage:}
-`!v nr2char(9)`  ${3}
+`!v nr2char(9)`  $3
 `!v nr2char(9)`$1
 endsnippet
 
@@ -31,7 +31,7 @@ ${1:name}() {
 endsnippet
 
 snippet alias
-alias ${1:name}='${2}'
+alias ${1:name}='$2'
 endsnippet
 
 snippet _
@@ -114,16 +114,16 @@ esac
 endsnippet
 
 snippet case "Select"
-opts[1]='${1}'
-opts[2]='${2}'
-opts[3]='${3}'
+opts[1]='$1'
+opts[2]='$2'
+opts[3]='$3'
 
 select choice in $opts
 do
    case $choice in
-      (${opts[1]}) ${4}; break;;
-      (${opts[2]}) ${5}; break;;
-      (${opts[3]}) ${6}; break;;
+      (${opts[1]}) $4; break;;
+      (${opts[2]}) $5; break;;
+      (${opts[3]}) $6; break;;
    esac
    echo '*** Wrong choice ***'
 done
@@ -133,10 +133,10 @@ snippet opts
 OPTIND=1
 
 local opt
-while getopts :${1} opt
+while getopts :$1 opt
 do
    case $opt in
-       ${2}) ${3} ;;
+       $2) $3 ;;
       \?) echo "Invalid option: -$OPTARG" 1>&2
           return 1 ;;
    esac
@@ -175,7 +175,7 @@ endsnippet
 ## Help
 snippet h
 _help() {
-   local info='Usage: ${1}'
+   local info='Usage: $1'
    if ((\$1 == 0))
    then echo $info
    else echo $info >&2
@@ -191,7 +191,7 @@ _help() {
 local info
 read -r -d $'\0' info << 'HELP'
 Usage:
-   ${1}
+   $1
 HELP
 if ((\$1 == 0))
 then echo $info
@@ -215,14 +215,14 @@ snippet <> "Read command's output"
 while IFS= read -r
 do
    ${1:\$REPLY}
-done < <(${2})
+done < <($2)
 endsnippet
 
 snippet <> "Read find's output"
 while IFS= read -r -d \$'\0'
 do
    ${1:\$REPLY}
-done < <(find ${2:/} -xdev ${3} -print0)
+done < <(find ${2:/} -xdev $3 -print0)
 endsnippet
 
 snippet <> "Read a heredoc"
@@ -231,7 +231,7 @@ do
    [[ $$1 = \#* ]] && continue
    echo $$1
 done << EOF
-${2}
+$2
 EOF
 endsnippet
 
@@ -278,11 +278,11 @@ endsnippet
 
 ## Parameter expansion
 snippet $ "# remove from start"
-\$\{${1:var}#${2}}
+\$\{${1:var}#$2}
 endsnippet
 
 snippet $ "% remove from end"
-\$\{${1:var}%${2}}
+\$\{${1:var}%$2}
 endsnippet
 
 snippet $ "/ replace"
@@ -298,7 +298,7 @@ snippet $ "length"
 endsnippet
 
 snippet $ "Parameter expansion on arrays"
-\$\{${1:array}[@]${2}#%:/}
+\$\{${1:array}[@]$2#%:/}
 endsnippet
 
 ## Globs
@@ -309,7 +309,7 @@ endsnippet
 ## Multiline variable
 snippet var
 read -r -d $'\0' ${1:var} << '${2:VALUE}'
-${3}
+$3
 $2
 endsnippet
 
@@ -320,6 +320,6 @@ endsnippet
 
 snippet E
 cat 1>&2 << 'HELP'
-${1}
+$1
 HELP
 endsnippet
