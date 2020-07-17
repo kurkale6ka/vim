@@ -162,7 +162,6 @@ let g:gitgutter_signs = 0
 " snippets
 let g:UltiSnipsEnableSnipMate      = 0
 let g:UltiSnipsSnippetsDir         = s:vim.'/ulti_snippets/'
-let g:UltiSnipsSnippetDirectories  = ['ulti_snippets', 'UltiSnips']
 let g:UltiSnipsListSnippets        = '<c-r><tab>'
 let g:UltiSnipsExpandTrigger       = '<tab>'
 let g:UltiSnipsJumpForwardTrigger  = '<tab>'
