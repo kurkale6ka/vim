@@ -1,14 +1,13 @@
-# skel
 snippet #
 #! /usr/bin/env perl
 
 use strict;
 use warnings;
 use feature 'say';
+use Term::ANSIColor qw/color :constants/;
 use Getopt::Long qw/GetOptions :config bundling/;
 use File::Basename 'basename';
 use File::Path 'make_path';
-use Term::ANSIColor qw/color :constants/;
 use List::Util 'any';
 
 my $BLUE = color('ansi69');
@@ -34,18 +33,44 @@ GetOptions (
 
 endsnippet
 
+snippet use "Term::ANSIColor"
+use Term::ANSIColor qw/color :constants/;
+
+my $BLUE = color('ansi69');
+my $CYAN = color('ansi45');
+my $GRAY = color('ansi242');
+my $PINK = color('ansi205');
+endsnippet
+
 snippet use "Getopt::Long"
 use Getopt::Long qw/GetOptions :config bundling/;
+
+# Help
+sub help() {
+   print <<MSG;
+${S}SYNOPSIS${R}
+${S}OPTIONS${R}
+${S}DESCRIPTION${R}
+MSG
+   exit;
+}
+
+# Arguments
+my \$$1;
+GetOptions (
+   '$2|$3' => \\$$1,
+   'h|help' => \&help
+) or die RED.'Error in command line arguments'.RESET, "\n";
 endsnippet
+
 snippet use "File::Basename"
 use File::Basename 'basename';
 endsnippet
+
 snippet use "File::Path"
 use File::Path 'make_path';
 endsnippet
-snippet use "Term::ANSIColor"
-use Term::ANSIColor qw/color :constants/;
-endsnippet
+
 snippet use "List::Util"
 use List::Util 'any';
 endsnippet
