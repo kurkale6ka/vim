@@ -4,6 +4,7 @@ snippet #
 use strict;
 use warnings;
 use feature 'say';
+Use File::Glob ':bsd_glob';
 use Term::ANSIColor qw/color :constants/;
 use Getopt::Long qw/GetOptions :config bundling/;
 use File::Basename 'basename';
@@ -31,6 +32,10 @@ GetOptions (
 ) or die RED.'Error in command line arguments'.RESET, "\n";
 
 
+endsnippet
+
+snippet use "File::Glob"
+use File::Glob ':bsd_glob';
 endsnippet
 
 snippet use "Term::ANSIColor"
