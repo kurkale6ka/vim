@@ -86,6 +86,10 @@ snippet '(die|warn)' "err" r
 `!p snip.rv = match.group(1)` RED.'$1'.RESET, "\n";
 endsnippet
 
+snippet root
+(getpwuid $>)[0] eq 'root'
+endsnippet
+
 snippet sys
 system qw/$1/;
 endsnippet
