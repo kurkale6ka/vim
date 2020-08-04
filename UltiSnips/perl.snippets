@@ -163,9 +163,14 @@ $ENV{XDG_DATA_HOME}
 endsnippet
 
 # Misc
+# todo: stopinsert...
 snippet '} else'
 } else {
 }
+endsnippet
+
+snippet ?
+${1:cond} ? ${2:true} : ${3:false}
 endsnippet
 
 snippet =
@@ -176,12 +181,12 @@ snippet root
 (getpwuid $>)[0] eq 'root'
 endsnippet
 
-snippet sys
+snippet 'sys(tem)?' "system()" r
 system qw/$1/;
 endsnippet
 
-snippet '(unix|linux)' "system" r
-$^O eq 'linux'
+snippet os
+$^O eq '${1:linux}'
 endsnippet
 
 # __END__
