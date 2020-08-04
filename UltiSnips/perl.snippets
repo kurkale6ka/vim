@@ -34,6 +34,7 @@ GetOptions (
 
 endsnippet
 
+# Use
 snippet use "File::Glob"
 use File::Glob ':bsd_glob';
 endsnippet
@@ -82,16 +83,9 @@ snippet use "List::Util"
 use List::Util 'any';
 endsnippet
 
+# Print
 snippet '(die|warn)' "err" r
 `!p snip.rv = match.group(1)` RED.'$1'.RESET, "\n";
-endsnippet
-
-snippet root
-(getpwuid $>)[0] eq 'root'
-endsnippet
-
-snippet sys
-system qw/$1/;
 endsnippet
 
 snippet dump
@@ -105,10 +99,7 @@ $2
 $1
 endsnippet
 
-snippet =
-my (\$$1, \$$2, \$$3) = $4;
-endsnippet
-
+# Open
 snippet |
 open my \$${1:fh}, '${2:-|}', '${3:command}';
 
@@ -121,12 +112,11 @@ endsnippet
 
 snippet open
 open my \$${1:fh}, '${2:<}', '${3:file}';
-endsnippet
 
-snippet each
-while (my (\$${1:key}, \$${2:val}) = each %$3)
+while (<\$$1>)
 {
-   $4;
+   chomp;
+   $4
 }
 endsnippet
 
@@ -140,15 +130,9 @@ snippet yes
 <STDIN> =~ /y(?:es)?/i;
 endsnippet
 
-snippet else
-} else {
-   $1;
-}
-endsnippet
-
-# add code to remplace data with end
-snippet 'data|end' "data" r
-__${1:DATA}__
+# Array
+snippet '\[|@' "array" r
+my @${1:array} = qw/${2:word1} ${3:word2} ${4:word3}/;
 endsnippet
 
 snippet %
@@ -159,7 +143,48 @@ my %$1 =
 );
 endsnippet
 
-# Use [ or @ to fill an array
-snippet '\[|@' "array" r
-my @${1:array} = qw/${2:word1} ${3:word2} ${4:word3}/;
+snippet each
+while (my (\$${1:key}, \$${2:val}) = each %$3)
+{
+   $4;
+}
+endsnippet
+
+snippet env
+$ENV{$1}
+endsnippet
+
+snippet xdg "~/.config"
+$ENV{XDG_CONFIG_HOME}
+endsnippet
+
+snippet xdg "~/.local"
+$ENV{XDG_DATA_HOME}
+endsnippet
+
+# Misc
+snippet '} else'
+} else {
+}
+endsnippet
+
+snippet =
+my (\$$1, \$$2, \$$3) = $4;
+endsnippet
+
+snippet root
+(getpwuid $>)[0] eq 'root'
+endsnippet
+
+snippet sys
+system qw/$1/;
+endsnippet
+
+snippet '(unix|linux)' "system" r
+$^O eq 'linux'
+endsnippet
+
+# __END__
+snippet '(data|end)' "DATA" r
+__`!p snip.rv = match.group(1).upper()`__
 endsnippet
