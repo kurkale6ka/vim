@@ -185,6 +185,43 @@ snippet 'sys(tem)?' "system()" r
 system qw/$1/;
 endsnippet
 
+snippet fork "One"
+use POSIX ":sys_wait_h";
+
+my $pid = fork // die "failed to fork: $!";
+
+# kid
+if ($pid == 0)
+{
+   $1;
+   exit;
+}
+
+waitpid $pid, WNOHANG;
+endsnippet
+
+snippet fork "Many"
+my @children;
+
+foreach ($1)
+{
+   # parent
+   my $pid = fork // die "failed to fork: $!";
+
+   if ($pid)
+   {
+      push @children, $pid;
+      next;
+   }
+
+   # kid
+   $2;
+   exit;
+}
+
+waitpid $_, 0 foreach @children;
+endsnippet
+
 snippet os
 $^O eq '${1:linux}'
 endsnippet
