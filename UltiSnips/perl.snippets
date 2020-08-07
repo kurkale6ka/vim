@@ -4,6 +4,16 @@ snippet #
 use strict;
 use warnings;
 use feature 'say';
+
+
+endsnippet
+
+snippet ##
+#! /usr/bin/env perl
+
+use strict;
+use warnings;
+use feature 'say';
 use File::Glob ':bsd_glob';
 use Term::ANSIColor qw/color :constants/;
 use Getopt::Long qw/GetOptions :config bundling/;
@@ -100,17 +110,7 @@ $1
 endsnippet
 
 # Open
-snippet |
-open my \$${1:fh}, '${2:-|}', '${3:command}';
-
-while (<\$$1>)
-{
-   chomp;
-   $4
-}
-endsnippet
-
-snippet open
+snippet 'open|read' "File" r
 open my \$${1:fh}, '${2:<}', '${3:file}';
 
 while (<\$$1>)
@@ -120,14 +120,37 @@ while (<\$$1>)
 }
 endsnippet
 
-snippet read
+snippet read "Pipe"
+open my \$${1:fh}, '-|', '${2:command}';
+
+while (<\$$1>)
+{
+   chomp;
+   $3
+}
+endsnippet
+
+snippet read "STDIN"
 print '$1: ';
 chomp (${2:$_} = <STDIN>);
 
+
+endsnippet
+
+snippet '<>|read' "DATA or files" r
+while (${1:<DATA>})
+{
+   chomp;
+   $2
+}
 endsnippet
 
 snippet yes
 <STDIN> =~ /y(?:es)?/i;
+endsnippet
+
+snippet |
+open my \$${1:fh}, '|-', '${2:command}';
 endsnippet
 
 # Array
