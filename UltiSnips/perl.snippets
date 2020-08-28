@@ -49,7 +49,7 @@ snippet use "File::Glob"
 use File::Glob ':bsd_glob';
 endsnippet
 
-snippet use "Term::ANSIColor"
+snippet 'use|colors' "Term::ANSIColor" r
 use Term::ANSIColor qw/color :constants/;
 
 my $BLUE = color('ansi69');
@@ -60,7 +60,7 @@ my $S = color('bold');
 my $R = color('reset');
 endsnippet
 
-snippet use "Getopt::Long"
+snippet 'use|opts' "Getopt::Long" r
 use Getopt::Long qw/GetOptions :config bundling/;
 
 # Help
@@ -76,9 +76,13 @@ MSG
 # Arguments
 my \$$1;
 GetOptions (
-   '$2|$3' => \\$$1,
+   '`!p snip.rv = t[1][0:1]`|`!p snip.rv = t[1]`' => \\$$1,
    'h|help' => \&help
 ) or die RED.'Error in command line arguments'.RESET, "\n";
+endsnippet
+
+snippet opt
+'`!p snip.rv = t[1][0:1]`|$1' => \\$$1,
 endsnippet
 
 snippet use "File::Basename"
