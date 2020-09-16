@@ -45,7 +45,7 @@ GetOptions (
 endsnippet
 
 # Use
-snippet use "File::Glob"
+snippet 'use|glob' "File::Glob" r
 use File::Glob ':bsd_glob';
 endsnippet
 
@@ -107,8 +107,14 @@ use Data::Dumper;
 say Dumper
 endsnippet
 
-snippet doc
+snippet doc "Print heredoc"
 print <<${1:MSG};
+$2
+$1
+endsnippet
+
+snippet doc "Assign heredoc"
+<<${1:MSG};
 $2
 $1
 endsnippet
@@ -124,7 +130,7 @@ while (<\$$1>)
 }
 endsnippet
 
-snippet read "Pipe"
+snippet 'open|read' "Pipe" r
 open my \$${1:fh}, '-|', '${2:command}';
 
 while (<\$$1>)
@@ -134,14 +140,14 @@ while (<\$$1>)
 }
 endsnippet
 
-snippet read "STDIN"
+snippet 'open|read|stdin' "STDIN" r
 print '$1: ';
 chomp (${2:$_} = <STDIN>);
 
 
 endsnippet
 
-snippet '<>|read' "DATA or files" r
+snippet 'open|read|<>' "DATA or files" r
 while (${1:<DATA>})
 {
    chomp;
