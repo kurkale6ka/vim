@@ -255,6 +255,19 @@ foreach ($1)
 waitpid $_, 0 foreach @children;
 endsnippet
 
+snippet mail
+my $to_addr = '$1';
+open my $SEND, '|-', qw/mail -s/, '${2:subject}', $to_addr;
+say $SEND 'body';
+endsnippet
+
+snippet 'now|time|date' "Time" r
+use Time::Piece;
+
+my $now = Time::Piece->new;
+my $timestamp = $now->strftime('%e-%b-%Y');
+endsnippet
+
 snippet os
 $^O eq '${1:linux}'
 endsnippet
