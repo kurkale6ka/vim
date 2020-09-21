@@ -1,11 +1,17 @@
 snippet #
 #include <stdio.h>
 
-int main(int argc, char* argv[])
+int main (int argc, char* argv[])
 {
    $1
    return 0;
 }
+endsnippet
+
+snippet doc
+char ${1:msg}[] =
+   "$2\n"
+   "$3";
 endsnippet
 
 # printf
@@ -23,15 +29,4 @@ endsnippet
 
 snippet \p3
 printf("${1:str}%${2:s}${3:str}%${4:s}${5:str}%${6:s}${7:str}\n", ${8:var1}, ${9:var2}, ${10:var3});
-endsnippet
-
-# Comments
-snippet \\
-/* $1 */
-endsnippet
-
-snippet \cs
-/*
- * $1
- */
 endsnippet
