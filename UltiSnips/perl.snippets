@@ -99,7 +99,7 @@ endsnippet
 
 # Print
 snippet '(die|warn)' "err" r
-`!p snip.rv = match.group(1)` RED.${1:"$!"}.RESET, "\n";
+`!p snip.rv = match.group(1)` RED.${1:$!}.RESET, "\n";
 endsnippet
 
 snippet dump
