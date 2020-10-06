@@ -30,10 +30,9 @@ printf("$1\n");
 endsnippet
 
 snippet pf
-printf("${1:%s}\n", $2);
+printf("$1%\n", $2);
 endsnippet
 
 snippet 'read|sf' "Read" r
-char $1[$2];
-scanf("%s", $1);
+scanf("%${1:s}", $2);
 endsnippet
