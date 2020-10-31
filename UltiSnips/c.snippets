@@ -21,8 +21,16 @@ int main (int argc, char* argv[])
 endsnippet
 
 # includes
-snippet 'inc(lude)?|std' "ctype.h - tolower()" r
+snippet 'inc(lude)?|std' "string.h" r
+#include <string.h>
+endsnippet
+
+snippet 'inc(lude)?|std' "ctype.h - tolower, isalnum" r
 #include <ctype.h>
+endsnippet
+
+snippet 'inc(lude)?|std' "stdlib.h - atoi" r
+#include <stdlib.h>
 endsnippet
 
 snippet 'inc(lude)?|std' "stdbool.h" r
