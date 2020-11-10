@@ -44,6 +44,13 @@ GetOptions (
 
 endsnippet
 
+snippet args
+foreach (@ARGV)
+{
+   $1
+}
+endsnippet
+
 # Use
 snippet 'use|glob' "File::Glob" r
 use File::Glob ':bsd_glob';
