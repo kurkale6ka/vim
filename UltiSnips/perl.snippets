@@ -3,8 +3,8 @@ snippet #
 
 use strict;
 use warnings;
-use re '/aa';
 use feature 'say';
+use re '/aa';
 
 
 endsnippet
@@ -14,8 +14,8 @@ snippet ##
 
 use strict;
 use warnings;
-use re '/aa';
 use feature 'say';
+use re '/aa';
 use File::Glob ':bsd_glob';
 use Term::ANSIColor qw/color :constants/;
 use Getopt::Long qw/GetOptions :config bundling/;
@@ -225,6 +225,10 @@ endsnippet
 
 snippet root
 (getpwuid $>)[0] eq 'root'
+endsnippet
+
+snippet sig
+$SIG{${1:INT}} = sub { die "$2\n"; };
 endsnippet
 
 snippet 'sys(tem)?' "system()" r
