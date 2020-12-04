@@ -204,6 +204,15 @@ snippet xdg "~/.local"
 $ENV{XDG_DATA_HOME}
 endsnippet
 
+# regex lookaround
+snippet /> "Lookahead" i
+(?=$1)
+endsnippet
+
+snippet /< "Lookbehind" i
+(?<=$1)
+endsnippet
+
 # Misc
 # todo: stopinsert...
 snippet '} else'
