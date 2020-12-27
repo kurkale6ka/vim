@@ -23,17 +23,10 @@ use File::Basename 'basename';
 use File::Path 'make_path';
 use List::Util 'any';
 
-my $BLUE = color('ansi69');
-my $CYAN = color('ansi45');
-my $S = color('bold');
-my $R = color('reset');
-
 # Help
-sub help() {
+sub help()
+{
    print <<MSG;
-${S}SYNOPSIS${R}
-${S}OPTIONS${R}
-${S}DESCRIPTION${R}
 MSG
    exit;
 }
@@ -58,7 +51,11 @@ snippet 'use|glob' "File::Glob" r
 use File::Glob ':bsd_glob';
 endsnippet
 
-snippet 'use|colors' "Term::ANSIColor" r
+snippet 'use|color' "Term::ANSIColor" r
+use Term::ANSIColor qw/color :constants/;
+endsnippet
+
+snippet 'use|colors' "Term::ANSIColor custom" r
 use Term::ANSIColor qw/color :constants/;
 
 my $BLUE = color('ansi69');
@@ -73,11 +70,9 @@ snippet 'use|opts' "Getopt::Long" r
 use Getopt::Long qw/GetOptions :config bundling/;
 
 # Help
-sub help() {
+sub help()
+{
    print <<MSG;
-${S}SYNOPSIS${R}
-${S}OPTIONS${R}
-${S}DESCRIPTION${R}
 MSG
    exit;
 }
@@ -94,16 +89,16 @@ snippet opt
 '`!p snip.rv = t[1][0:1]`|$1' => \\$$1,
 endsnippet
 
-snippet use "File::Basename"
+snippet 'use|basename' "File::Basename" r
 use File::Basename 'basename';
 endsnippet
 
-snippet use "File::Path"
+snippet 'use|mkdir' "File::Path" r
 use File::Path 'make_path';
 endsnippet
 
-snippet use "List::Util"
-use List::Util 'any';
+snippet 'use|list' "List::Util" r
+use List::Util '${1:any}';
 endsnippet
 
 # Print
