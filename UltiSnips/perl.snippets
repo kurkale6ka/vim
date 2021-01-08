@@ -1,3 +1,4 @@
+# Skel
 snippet #
 #! /usr/bin/env perl
 
@@ -9,7 +10,7 @@ use re '/aa';
 
 endsnippet
 
-snippet ##
+snippet ## "Skel full"
 #! /usr/bin/env perl
 
 use strict;
@@ -39,7 +40,7 @@ GetOptions (
 
 endsnippet
 
-snippet args
+snippet args "Loop the command line args"
 foreach (@ARGV)
 {
    $1
@@ -66,6 +67,18 @@ my $S = color('bold');
 my $R = color('reset');
 endsnippet
 
+snippet 'use|basename' "File::Basename" r
+use File::Basename 'basename';
+endsnippet
+
+snippet 'use|mkdir' "File::Path" r
+use File::Path 'make_path';
+endsnippet
+
+snippet 'use|list' "List::Util" r
+use List::Util '${1:any}';
+endsnippet
+
 snippet 'use|opts' "Getopt::Long" r
 use Getopt::Long qw/GetOptions :config bundling/;
 
@@ -87,18 +100,6 @@ endsnippet
 
 snippet opt
 '`!p snip.rv = t[1][0:1]`|$1' => \\$$1,
-endsnippet
-
-snippet 'use|basename' "File::Basename" r
-use File::Basename 'basename';
-endsnippet
-
-snippet 'use|mkdir' "File::Path" r
-use File::Path 'make_path';
-endsnippet
-
-snippet 'use|list' "List::Util" r
-use List::Util '${1:any}';
 endsnippet
 
 # Print
@@ -134,7 +135,7 @@ while (<$$1>)
 }
 endsnippet
 
-snippet 'open|read' "Pipe" r
+snippet 'open|read' "Pipe: read from" r
 open my $${1:FH}, '-|', '${2:command}' or die RED.$!.RESET, "\n";
 
 while (<$$1>)
@@ -142,6 +143,10 @@ while (<$$1>)
    chomp;
    $3
 }
+endsnippet
+
+snippet | "Pipe: write to"
+open my $${1:FH}, '|-', '${2:command}' or die RED.$!.RESET, "\n";
 endsnippet
 
 snippet 'open|read|stdin' "STDIN" r
@@ -163,10 +168,6 @@ snippet yes
 <STDIN> =~ /y(?:es)?/i;
 endsnippet
 
-snippet |
-open my $${1:FH}, '|-', '${2:command}' or die RED.$!.RESET, "\n";
-endsnippet
-
 snippet '(open|read)dir' "Read a folder into an Array" r
 opendir my $${1:dh}, ${2:'.'} or die RED.$!.RESET, "\n";
 my @$3 = grep /$4/, readdir $$1;
@@ -180,7 +181,11 @@ while (readdir $$1)
 }
 endsnippet
 
-# Array
+snippet hot "Piping hot filehandle"
+select +(select($$1), $|=1)[0];
+endsnippet
+
+# Array/Hash
 snippet '\[|@' "array" r
 my @${1:array} = qw/${2:word1} ${3:word2} ${4:word3}/;
 endsnippet
@@ -200,6 +205,7 @@ while (my ($${1:key}, $${2:val}) = each %$3)
 }
 endsnippet
 
+# Env
 snippet env
 $ENV{$1}
 endsnippet
@@ -212,7 +218,7 @@ snippet xdg "~/.local"
 $ENV{XDG_DATA_HOME}
 endsnippet
 
-# regex lookaround
+# Regex lookaround
 snippet /> "Lookahead" i
 (?=$1)
 endsnippet
@@ -223,7 +229,7 @@ endsnippet
 
 # Misc
 # todo: stopinsert...
-snippet '} else'
+snippet '} ?else' "Else" r
 } else {
 }
 endsnippet
@@ -244,7 +250,7 @@ snippet root
 (getpwuid $>)[0] eq 'root'
 endsnippet
 
-snippet sig
+snippet sig "Signal handler"
 $SIG{${1:INT}} = sub { die "$2\n"; };
 endsnippet
 
@@ -289,7 +295,7 @@ foreach ($1)
 waitpid $_, 0 foreach @children;
 endsnippet
 
-snippet mail
+snippet 'e?mail' "Email" r
 my $to_addr = '$1';
 open my $SEND, '|-', qw/mail -s/, '${2:subject}', $to_addr
    or die RED.$!.RESET, "\n";
@@ -305,10 +311,6 @@ endsnippet
 
 snippet os
 $^O eq '${1:linux}'
-endsnippet
-
-snippet hot "Piping hot filehandle"
-select +(select($$1), $|=1)[0];
 endsnippet
 
 # __END__
