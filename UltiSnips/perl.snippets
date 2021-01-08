@@ -125,7 +125,7 @@ endsnippet
 
 # Open
 snippet 'open|read' "File" r
-open my $${1:fh}, '${2:<}', '${3:file}' or die RED.$!.RESET, "\n";
+open my $${1:FH}, '${2:<}', '${3:file}' or die RED.$!.RESET, "\n";
 
 while (<$$1>)
 {
@@ -135,7 +135,7 @@ while (<$$1>)
 endsnippet
 
 snippet 'open|read' "Pipe" r
-open my $${1:fh}, '-|', '${2:command}' or die RED.$!.RESET, "\n";
+open my $${1:FH}, '-|', '${2:command}' or die RED.$!.RESET, "\n";
 
 while (<$$1>)
 {
@@ -152,7 +152,7 @@ chomp (${2:$_} = <STDIN>);
 endsnippet
 
 snippet 'open|read|<>' "DATA or files" r
-while (${1:<DATA>})
+while (<${1:DATA}>)
 {
    chomp;
    $2
@@ -164,7 +164,7 @@ snippet yes
 endsnippet
 
 snippet |
-open my $${1:fh}, '|-', '${2:command}' or die RED.$!.RESET, "\n";
+open my $${1:FH}, '|-', '${2:command}' or die RED.$!.RESET, "\n";
 endsnippet
 
 snippet '(open|read)dir' "Read a folder into an Array" r
@@ -255,7 +255,7 @@ endsnippet
 snippet fork "One"
 use POSIX ":sys_wait_h";
 
-my $pid = fork // die "failed to fork: $!";
+my $pid = fork // die "failed to fork: $!\n";
 
 # kid
 if ($pid == 0)
@@ -273,7 +273,7 @@ my @children;
 foreach ($1)
 {
    # parent
-   my $pid = fork // die "failed to fork: $!";
+   my $pid = fork // die "failed to fork: $!\n";
 
    if ($pid)
    {
@@ -305,6 +305,10 @@ endsnippet
 
 snippet os
 $^O eq '${1:linux}'
+endsnippet
+
+snippet hot "Piping hot filehandle"
+select +(select($$1), $|=1)[0];
 endsnippet
 
 # __END__
