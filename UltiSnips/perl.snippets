@@ -229,8 +229,13 @@ endsnippet
 
 # Misc
 # todo: stopinsert...
-snippet '} ?else' "Else" r
+snippet '}|or|else' "Else" r
 } else {
+}
+endsnippet
+
+snippet 'els(?:e\s*)?if' "Else if" r
+} elsif ($1) {
 }
 endsnippet
 
