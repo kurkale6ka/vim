@@ -229,7 +229,7 @@ endsnippet
 
 # Misc
 # todo: stopinsert...
-snippet '}|or|else' "Else" r
+snippet '}|else' "Else" r
 } else {
 }
 endsnippet
@@ -263,8 +263,12 @@ snippet sig "Signal handler"
 $SIG{${1:INT}} = sub { die "$2\n"; };
 endsnippet
 
-snippet 'sys(tem)?' "system()" r
-system qw/$1/;
+snippet 'sys(tem)?' "System" r
+system qw/$1/
+endsnippet
+
+snippet 'exec?' "Exec" r
+exec qw/$1/
 endsnippet
 
 snippet fork "One"
