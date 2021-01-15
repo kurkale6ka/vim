@@ -168,6 +168,10 @@ snippet yes
 <STDIN> =~ /y(?:es)?/i;
 endsnippet
 
+snippet cd
+chdir or die "$!\n";
+endsnippet
+
 snippet '(open|read)dir' "Read a folder into an Array" r
 opendir my $${1:dh}, ${2:'.'} or die RED.$!.RESET, "\n";
 my @$3 = grep /$4/, readdir $$1;
