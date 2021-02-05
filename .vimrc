@@ -67,11 +67,11 @@ execute "Plug '".s:vim."/plugged/bufgrep', { 'on': 'Bgrep' }"
 execute "Plug '".s:vim."/plugged/unicodename', { 'on': 'UnicodeName' }"
 execute "Plug '".s:vim."/plugged/vsearch'"
 execute "Plug '".s:vim."/plugged/win_full_screen', { 'on': 'WinFullScreen' }"
-Plug $REPOS_BASE.'/vim/plugged/vim-blockinsert' " ???
-Plug $REPOS_BASE.'/vim/plugged/vim-chess'
-Plug $REPOS_BASE.'/vim/plugged/vim-desertEX'
-Plug $REPOS_BASE.'/vim/plugged/vim-pairs'
-Plug $REPOS_BASE.'/vim/plugged/vim-swap'
+execute "Plug '".s:vim."/plugged/vim-blockinsert'"
+execute "Plug '".s:vim."/plugged/vim-chess'"
+execute "Plug '".s:vim."/plugged/vim-desertEX'"
+execute "Plug '".s:vim."/plugged/vim-pairs'"
+execute "Plug '".s:vim."/plugged/vim-swap'"
 Plug 'tpope/vim-abolish' ", { 'on': ['Abolish', 'Subvert', 'S'] }
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-endwise'
