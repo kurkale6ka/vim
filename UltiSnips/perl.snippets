@@ -330,6 +330,12 @@ snippet os
 $^O eq '${1:linux}'
 endsnippet
 
+snippet '(begin|end)' "BEGIN/END" r
+`!p snip.rv = match.group(1).upper()` {
+   $1
+}
+endsnippet
+
 # __END__
 snippet '(data|end)' "DATA" r
 __`!p snip.rv = match.group(1).upper()`__
