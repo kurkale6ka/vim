@@ -113,14 +113,13 @@ say Dumper
 endsnippet
 
 snippet doc "Print heredoc"
-print <<${1:MSG};
-$2
-$1
+   print <<~ '${1:MSG}';
+   $2
+   $1
 endsnippet
 
 snippet doc "Assign heredoc"
-<<${1:MSG};
-$2
+<< '';
 $1
 endsnippet
 
