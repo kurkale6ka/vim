@@ -2,9 +2,8 @@
 snippet #
 #! /usr/bin/env perl
 
-use strict;
+use v5.32
 use warnings;
-use feature 'say';
 use re '/aa';
 
 
@@ -13,11 +12,9 @@ endsnippet
 snippet ## "Skel full"
 #! /usr/bin/env perl
 
-use strict;
+use v5.32
 use warnings;
-use feature 'say';
 use re '/aa';
-use File::Glob ':bsd_glob';
 use Term::ANSIColor qw/color :constants/;
 use Getopt::Long qw/GetOptions :config bundling/;
 use File::Basename 'basename';
@@ -25,14 +22,14 @@ use File::Path 'make_path';
 use List::Util 'any';
 
 # Help
-sub help()
+sub help
 {
-   print <<MSG;
-MSG
+   print <<~ "MSG";
+   MSG
    exit;
 }
 
-# Arguments
+# Options
 GetOptions (
    'h|help' => \&help
 ) or die RED.'Error in command line arguments'.RESET, "\n";
@@ -83,14 +80,14 @@ snippet 'use|opts' "Getopt::Long" r
 use Getopt::Long qw/GetOptions :config bundling/;
 
 # Help
-sub help()
+sub help
 {
-   print <<MSG;
-MSG
+   print <<~ "MSG";
+   MSG
    exit;
 }
 
-# Arguments
+# Options
 my $$1;
 GetOptions (
    '`!p snip.rv = t[1][0:1]`|`!p snip.rv = t[1]`' => \\$$1,
