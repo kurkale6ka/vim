@@ -2,7 +2,7 @@
 snippet #
 #! /usr/bin/env perl
 
-use v5.32;
+use v5.12;
 use warnings;
 use re '/aa';
 
@@ -12,7 +12,7 @@ endsnippet
 snippet ## "Skel full"
 #! /usr/bin/env perl
 
-use v5.32;
+use v5.12;
 use warnings;
 use re '/aa';
 use Term::ANSIColor qw/color :constants/;
@@ -198,7 +198,7 @@ while (my ($${1:key}, $${2:val}) = each %$3)
 endsnippet
 
 # Env
-snippet env
+snippet env "env" i
 $ENV{$1}
 endsnippet
 
