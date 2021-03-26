@@ -27,8 +27,8 @@ use File::Path 'make_path';
 use List::Util 'any';
 
 # Help
-my $help = << "MSG";
-MSG
+my $help = << "-------";
+-------
 
 # Options
 GetOptions (
@@ -81,19 +81,18 @@ snippet 'use|opts' "Getopt::Long" r
 use Getopt::Long qw/GetOptions :config bundling/;
 
 # Help
-my $help = << "MSG";
-MSG
+my $help = << "-------";
+-------
 
 # Options
-my $$1;
 GetOptions (
-   '`!p snip.rv = t[1][0:1]`|`!p snip.rv = t[1]`' => \\$$1,
+   '`!p snip.rv = t[1][0:1]`|`!p snip.rv = t[1]`' => \\my $$1,
    'h|help' => sub { print $help; exit }
 ) or die RED.'Error in command line arguments'.RESET, "\n";
 endsnippet
 
 snippet opt
-'`!p snip.rv = t[1][0:1]`|$1' => \\$$1,
+'`!p snip.rv = t[1][0:1]`|$1' => \\my $$1,
 endsnippet
 
 # Print
@@ -107,7 +106,7 @@ print Dumper $1;
 endsnippet
 
 snippet doc "Print heredoc"
-   print <<~ '${1:MSG}';
+   print <<~ '${1:-------}';
    $2
    $1
 endsnippet
