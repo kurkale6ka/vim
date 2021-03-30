@@ -26,8 +26,11 @@ use File::Basename 'basename';
 use File::Path 'make_path';
 use List::Util 'any';
 
+my $script = basename \$0;
+
 # Help
 my $help = << "-------";
+./$script [options]
 -------
 
 # Options
@@ -36,6 +39,11 @@ GetOptions (
 ) or die RED.'Error in command line arguments'.RESET, "\n";
 
 
+endsnippet
+
+snippet script
+my $script = basename \$0;
+./$script [options]
 endsnippet
 
 snippet args "Loop the command line args"
@@ -65,7 +73,7 @@ my $S = color 'bold';
 my $R = color 'reset';
 endsnippet
 
-snippet 'use|basename' "File::Basename" r
+snippet 'use|base(name)?' "File::Basename" r
 use File::Basename 'basename';
 endsnippet
 
@@ -77,7 +85,7 @@ snippet 'use|list' "List::Util" r
 use List::Util '${1:any}';
 endsnippet
 
-snippet 'use|opts' "Getopt::Long" r
+snippet 'use|opt(ion)?s' "Getopt::Long" r
 use Getopt::Long qw/GetOptions :config bundling/;
 
 # Help
