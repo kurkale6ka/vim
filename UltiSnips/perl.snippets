@@ -27,10 +27,11 @@ use File::Path 'make_path';
 use List::Util 'any';
 
 my $script = basename \$0;
+$script = -f $script ? "./$script" : \$0 =~ s/$ENV{HOME}/~/r unless -l \$0;
 
 # Help
 my $help = << "-------";
-./$script [options]
+$script [options]
 -------
 
 # Options
@@ -43,7 +44,7 @@ endsnippet
 
 snippet script
 my $script = basename \$0;
-./$script [options]
+$script = -f $script ? "./$script" : \$0 =~ s/$ENV{HOME}/~/r unless -l \$0;
 endsnippet
 
 snippet args "Loop the command line args"
