@@ -1,20 +1,25 @@
 snippet #
 #! /usr/bin/env python3
+
+'''$1'''
+endsnippet
+
+# Options
+snippet 'arg(ument)?s|opt(ion)?s' "Options: argparse" r
+import argparse
+parser = argparse.ArgumentParser()
+parser.parse_args()
 endsnippet
 
 # File open
-snippet <>
+snippet open
 with open('$1', '${2:r}') as file:
    for line in file:
-      $3 = [x.strip() for x in line.split('${4:|}')]
 endsnippet
 
-snippet <
+# Read from STDIN
+snippet read
 $1 = input("$2? ")
-endsnippet
-
-snippet >
-print($1)
 endsnippet
 
 snippet if
