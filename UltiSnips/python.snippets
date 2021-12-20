@@ -5,18 +5,26 @@ snippet #
 endsnippet
 
 # Options
-snippet 'arg(ument)?s|opt(ion)?s' "Options: argparse" r
+snippet 'arg(ument)?s|opt(ion)?s' "Options" r
 import argparse
 parser = argparse.ArgumentParser()
 parser.parse_args()
 endsnippet
 
-snippet 'arg|opt' "positional" r
-parser.add_argument("${1:name}", type=$2, help="$3")
+snippet 'arg(ument)?s|opt(ion)?s' "group" r
+group = parser.add_mutually_exclusive_group()
 endsnippet
 
 snippet 'arg|opt' "--optional" r
 parser.add_argument("-`!p snip.rv = t[1][0:1]`", "--$1", action="store_true", help="$2")
+endsnippet
+
+snippet 'arg|opt' "--optional with value" r
+parser.add_argument("-`!p snip.rv = t[1][0:1]`", "--$1", type=$2, help="$3")
+endsnippet
+
+snippet 'arg|opt' "positional" r
+parser.add_argument("${1:name}", type=$2, help="$3")
 endsnippet
 
 # File open
