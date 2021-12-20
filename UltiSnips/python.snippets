@@ -11,6 +11,14 @@ parser = argparse.ArgumentParser()
 parser.parse_args()
 endsnippet
 
+snippet 'arg|opt' "positional" r
+parser.add_argument("${1:name}", type=$2, help="$3")
+endsnippet
+
+snippet 'arg|opt' "--optional" r
+parser.add_argument("-`!p snip.rv = t[1][0:1]`", "--$1", action="store_true", help="$2")
+endsnippet
+
 # File open
 snippet open
 with open('$1', '${2:r}') as file:
