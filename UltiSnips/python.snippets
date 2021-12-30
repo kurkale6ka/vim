@@ -8,10 +8,6 @@ snippet env
 from os import environ as env
 endsnippet
 
-snippet //
-re.compile('$1')
-endsnippet
-
 # Options
 snippet 'arg(ument)?s|opt(ion)?s' "Options" r
 import argparse
@@ -38,7 +34,7 @@ endsnippet
 
 # File open
 snippet open
-with open('$1', '${2:r}') as file:
+with open('$1') as file:
    for line in file:
 endsnippet
 
@@ -47,50 +43,20 @@ snippet read
 $1 = input("$2? ")
 endsnippet
 
-snippet if
-if $1:
-   $2
-endsnippet
-
-snippet ife
-if $1:
-   $2
-else:
-   $3
-endsnippet
-
-snippet :
-$1 = $2 if $3 else $4
-endsnippet
-
-snippet for
-for $1 in $2:
-   $3
-endsnippet
-
-snippet try
-try $1:
-   $2
-except ${3:ValueError}:
-   $4
-endsnippet
-
-snippet fun
-def $1($2):
-   ''' $3 '''
-   $4
-endsnippet
-
-snippet class
-class $1:
-   ''' $2 '''
-
-   def __init(self, $3):
-      self.__$3 = $3
+snippet ?
+$1 if $2 else $3
 endsnippet
 
 snippet os
 sys.platform == '${1:linux}'
+endsnippet
+
+snippet //
+re.compile(r'$1')
+endsnippet
+
+snippet ++ "increment" i
+ += 1
 endsnippet
 
 snippet main
