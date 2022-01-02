@@ -8,6 +8,11 @@ snippet env
 from os import environ as env
 endsnippet
 
+snippet pp
+from pprint import pprint as p
+p($1)
+endsnippet
+
 # Options
 snippet 'arg(ument)?s|opt(ion)?s' "Options" r
 import argparse
