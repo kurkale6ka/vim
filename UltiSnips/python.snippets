@@ -24,6 +24,12 @@ from operator import ${1:mul}
 reduce($1, ${2:list})
 endsnippet
 
+snippet comb
+from itertools import combinations
+for comb in combinations(${1:list}, ${2:n-length}):
+   $3
+endsnippet
+
 # Options
 snippet 'arg(ument)?s|opt(ion)?s' "Options" r
 import argparse
