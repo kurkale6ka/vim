@@ -13,6 +13,17 @@ from pprint import pprint as p
 p($1)
 endsnippet
 
+snippet count
+from collections import Counter
+$1 = Counter($2)
+endsnippet
+
+snippet 'reduce|mul|op' "Reduce" r
+from functools import reduce
+from operator import ${1:mul}
+reduce($1, ${2:list})
+endsnippet
+
 # Options
 snippet 'arg(ument)?s|opt(ion)?s' "Options" r
 import argparse
