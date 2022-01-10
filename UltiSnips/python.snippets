@@ -69,6 +69,10 @@ snippet ?
 $1 if $2 else $3
 endsnippet
 
+snippet tr "transliterate" i
+translate(str.maketrans('${1:set1}', '${2:set2}'))
+endsnippet
+
 snippet os
 sys.platform == '${1:linux}'
 endsnippet
