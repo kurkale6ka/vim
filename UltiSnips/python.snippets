@@ -4,6 +4,10 @@ snippet #
 '''$1'''
 endsnippet
 
+snippet doc
+'''$1'''
+endsnippet
+
 snippet env
 from os import environ as env
 endsnippet
@@ -71,6 +75,10 @@ endsnippet
 
 snippet tr "transliterate" i
 translate(str.maketrans('${1:set1}', '${2:set2}'))
+endsnippet
+
+snippet '(all|any)' "all/any" r
+`!p snip.rv = match.group(1)`(${1:bool} for ${2:i} in $3)
 endsnippet
 
 snippet os
