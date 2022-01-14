@@ -81,6 +81,10 @@ snippet '(all|any)' "all/any" r
 `!p snip.rv = match.group(1)`(${1:bool} for ${2:i} in $3)
 endsnippet
 
+snippet uniq
+groupby(${1:iterable})
+endsnippet
+
 snippet os
 sys.platform == '${1:linux}'
 endsnippet
