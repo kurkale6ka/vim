@@ -81,7 +81,6 @@ Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-projectionist' " ???
-Plug 'jiangmiao/auto-pairs'
 if !has('nvim') && $TERM !~ 'linux' " disable in the vconsole
 Plug 'jszakmeister/vim-togglecursor'
 endif
