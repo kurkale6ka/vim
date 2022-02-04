@@ -81,6 +81,18 @@ snippet tr "transliterate" i
 translate(str.maketrans('${1:set1}', '${2:set2}'))
 endsnippet
 
+snippet with
+from contextlib import contextmanager
+
+@contextmanager
+def $1($2):
+    try:
+        $3
+        yield $2
+    finally:
+        $4
+endsnippet
+
 snippet '(all|any)' "all/any" r
 `!p snip.rv = match.group(1)`(${1:bool} for ${2:i} in $3)
 endsnippet
