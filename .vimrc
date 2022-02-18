@@ -180,6 +180,8 @@ set noautowrite
 set noautowriteall
 set noautoread
 
+nmap <leader>w :w<cr>
+
 if exists('s:local_vim') && has('persistent_undo')
    set undofile
 endif
