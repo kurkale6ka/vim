@@ -208,9 +208,6 @@ set infercase
 nmap <leader>g    :g/<c-r><c-w>/
 xmap <leader>g "*y:g/<c-r>*<cr>
 
-" \s for substitute
-nmap <leader>s :%s/<c-r><c-w>//g<left><left>
-
 " \* and \g* for search highlighting without jumping to the next occurrence
 nmap <silent> <leader>* :<c-u>let @/ = '\<'.expand('<cword>').'\>'<bar>set hlsearch<c-m>
 xmap <silent> <leader>* :<c-u>let @/ = getreg('*')<bar>set hlsearch<c-m>
@@ -668,6 +665,8 @@ xnoremap <expr> } mode() == '<c-v>' ? line("'}") - 1 . 'G' : '}'
 xnoremap <expr> { mode() == '<c-v>' ? line("'{") + 1 . 'G' : '{'
 
 "" Spell check
+nmap <leader>s :setlocal spell!<cr>
+
 nmap <leader>1 1z=
 nmap <leader>2 2z=
 
