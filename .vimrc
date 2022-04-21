@@ -110,6 +110,7 @@ Plug 'vim-scripts/nginx.vim'
 Plug 'StanAngeloff/php.vim'
 Plug 'tmux-plugins/vim-tmux'
 Plug 'norcalli/nvim-colorizer.lua' " ???
+Plug 'jvirtanen/vim-hcl'
 call plug#end()
 
 let did_install_default_menus = 1
