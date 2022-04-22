@@ -1,0 +1,7 @@
+# terraform
+snippet out
+output "${1:resource_id}" {
+  description = "$2"
+  value       = ${3:obj.property}
+}
+endsnippet
