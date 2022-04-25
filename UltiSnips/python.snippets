@@ -17,6 +17,13 @@ from pprint import pprint as p
 p($1)
 endsnippet
 
+snippet colors
+from colorama import Fore as fg, Style as st
+
+def color(msg, color):
+    return(color + msg + st.RESET_ALL)
+endsnippet
+
 snippet count
 from collections import Counter
 $1 = Counter($2)
