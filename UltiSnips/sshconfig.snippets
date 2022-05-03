@@ -33,6 +33,10 @@ snippet p "Proxy Jump"
 ProxyJump ${1:jumphost}
 endsnippet
 
+snippet key
+IdentityFile ~/.ssh/${1:id_ed25519}
+endsnippet
+
 snippet l
 LocalForward $1 ${2:localhost}:$1
 endsnippet
