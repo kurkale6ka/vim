@@ -31,3 +31,31 @@ output "${1:resource_id}" {
   value       = ${3:obj.property}
 }
 endsnippet
+
+snippet doc
+<<${1:EOT}
+$2
+$1
+endsnippet
+
+snippet if
+%{if $1~}
+$2
+%{else~}
+$3
+%{endif~}
+endsnippet
+
+snippet for "List"
+[for $1 in $2 : $3]
+endsnippet
+
+snippet for "Map"
+{for $1, $2 in $3 : $1 => $2}
+endsnippet
+
+snippet for "Template"
+%{for $1 in $2~}
+$3${$1}
+%{endfor~}
+endsnippet
