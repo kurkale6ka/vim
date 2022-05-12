@@ -54,6 +54,15 @@ snippet for "Map"
 {for $1, $2 in $3 : $1 => $2}
 endsnippet
 
+snippet for "Dynamic block"
+dynamic "${1:name}" {
+  for_each = $2
+  content {
+    $3 = $1.value$4
+  }
+}
+endsnippet
+
 snippet for "Template"
 %{for $1 in $2~}
 $3${$1}
