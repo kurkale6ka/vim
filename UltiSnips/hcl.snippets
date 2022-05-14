@@ -32,20 +32,6 @@ output "${1:resource_id}" {
 }
 endsnippet
 
-snippet doc
-<<${1:EOT}
-$2
-$1
-endsnippet
-
-snippet if
-%{if $1~}
-$2
-%{else~}
-$3
-%{endif~}
-endsnippet
-
 snippet for "List"
 [for $1 in $2 : $3]
 endsnippet
@@ -67,4 +53,18 @@ snippet for "Template"
 %{for $1 in $2~}
 $3${$1}
 %{endfor~}
+endsnippet
+
+snippet if
+%{if $1~}
+$2
+%{else~}
+$3
+%{endif~}
+endsnippet
+
+snippet doc
+<<${1:EOT}
+$2
+$1
 endsnippet
