@@ -75,6 +75,7 @@ execute "Plug '".s:vim."/plugged/vim-swap'"
 Plug 'tpope/vim-abolish' ", { 'on': ['Abolish', 'Subvert', 'S'] }
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-endwise'
+Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-markdown'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-sleuth'
