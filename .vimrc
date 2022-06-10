@@ -594,6 +594,12 @@ set virtualedit=block
 set whichwrap=b,s,<,>,[,]
 set paragraphs= " no wrongly defined paragraphs for non nroff,groff filetypes
 
+" bol, eol
+imap <c-left> <c-o>^
+imap <c-right> <c-o>$
+nmap <c-left> ^
+nmap <c-right> $
+
 cnoremap <c-a> <home>
 
 " <Home> to move to the first char on the line
@@ -659,11 +665,6 @@ vmap <s-left>       B
 nmap <s-right>      vE
 imap <s-right> <c-o>vE
 vmap <s-right>       E
-
-imap <c-left> <c-o>^
-imap <c-right> <c-o>$
-nmap <c-left> ^
-nmap <c-right> $
 
 " Let } select the current column only when in visual-block mode
 set nostartofline
