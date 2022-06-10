@@ -207,8 +207,11 @@ set smartcase
 set infercase
 
 " \g for global
-nmap <leader>g    :g/<c-r><c-w>/
+nmap <leader>g    :g/<c-r><c-a>/
 xmap <leader>g "*y:g/<c-r>*<cr>
+
+" \S for substitute
+nmap <leader>S :%s/<c-r><c-a>//g<left><left>
 
 " \* and \g* for search highlighting without jumping to the next occurrence
 nmap <silent> <leader>* :<c-u>let @/ = '\<'.expand('<cword>').'\>'<bar>set hlsearch<c-m>
