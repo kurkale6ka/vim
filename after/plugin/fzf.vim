@@ -1,3 +1,6 @@
+" List files
+nmap <leader>f :Files<cr>
+
 " List buffers
 nmap <leader>b :Buffers<cr>
 
@@ -28,4 +31,4 @@ command! -nargs=? Scriptnames call fzf#run(fzf#wrap({
    \ }))
 
 " Set 'ft
-nmap <leader>f :Filetypes<cr>
+nmap <leader>t :Filetypes<cr>

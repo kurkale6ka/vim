@@ -437,9 +437,6 @@ set complete-=t
 set completeopt-=preview
 set showfulltag
 
-" list autoload tags
-nmap <leader>t :ta *\#<c-d>
-
 "" Windows and buffers
 set hidden
 if v:version > 801 || v:version == 801 && has('patch393')
@@ -732,7 +729,7 @@ if has('autocmd')
 endif
 
 " Set 'ft
-nmap <leader>f :se ft=
+nmap <leader>t :se ft=
 
 command! -nargs=* Ascii call ascii#codes(<f-args>)
 command! NonAscii /[^\d0-\d127]
