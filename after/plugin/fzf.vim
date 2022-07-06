@@ -32,3 +32,6 @@ command! -nargs=? Scriptnames call fzf#run(fzf#wrap({
 
 " Set 'ft
 nmap <leader>t :Filetypes<cr>
+
+nmap <leader>g    :BLines <c-r><c-a>
+xmap <leader>g "*y:BLines <c-r>*<cr>
