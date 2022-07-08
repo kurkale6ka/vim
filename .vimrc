@@ -133,6 +133,7 @@ endif
 
 " dirvish
 command! -nargs=? -complete=dir Vexplore leftabove 30 vsplit | silent Dirvish <args>
+nmap <leader>v :Vexplore<cr>
 
 " sleuth
 let g:sleuth_automatic = 0
@@ -646,9 +647,6 @@ xnoremap ab <esc>%v%
 onoremap ab :silent normal vab<cr>
 
 "" Visual selection
-" \v to select to EOL
-nmap <leader>v v$h
-
 nmap gV     gvV
 nmap g<c-v> gv<c-v>
 
