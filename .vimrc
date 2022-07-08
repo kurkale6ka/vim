@@ -131,6 +131,9 @@ if !exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# ''
    runtime! macros/matchit.vim
 endif
 
+" dirvish
+command! -nargs=? -complete=dir Vexplore leftabove 30 vsplit | silent Dirvish <args>
+
 " sleuth
 let g:sleuth_automatic = 0
 
