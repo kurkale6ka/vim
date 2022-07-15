@@ -35,3 +35,8 @@ nmap <leader>t :Filetypes<cr>
 
 nmap <leader>g    :BLines <c-r><c-a>
 xmap <leader>g "*y:BLines <c-r>*<cr>
+
+" Custom help files
+if !empty($REPOS_BASE)
+   nmap <expr> <leader>h :Files $REPOS_BASE <cr>
+endif
