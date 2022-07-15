@@ -38,5 +38,5 @@ xmap <leader>g "*y:BLines <c-r>*<cr>
 
 " Custom help files
 if !empty($REPOS_BASE)
-   nmap <expr> <leader>h :Files $REPOS_BASE <cr>
+   nmap <expr> <leader>h ':Files '.$REPOS_BASE.'/help<cr>'
 endif
