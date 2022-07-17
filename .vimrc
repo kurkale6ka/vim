@@ -81,7 +81,7 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
-Plug 'tpope/vim-projectionist' " ???
+Plug 'tpope/vim-projectionist'
 if !has('nvim') && $TERM !~ 'linux' " disable in the vconsole
 Plug 'jszakmeister/vim-togglecursor'
 endif
