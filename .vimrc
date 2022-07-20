@@ -157,6 +157,10 @@ endif
 
 " gitgutter
 let g:gitgutter_signs = 0
+let g:gitgutter_map_keys = 0
+nmap [c <Plug>(GitGutterPrevHunk)
+nmap ]c <Plug>(GitGutterNextHunk)
+nmap ghp <Plug>(GitGutterPreviewHunk)
 
 " snippets
 let g:UltiSnipsEnableSnipMate      = 0
