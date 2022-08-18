@@ -748,6 +748,9 @@ command! -nargs=? Scriptnames call scratch#buffer('scriptnames', <f-args>)
 command! DiffOrig
    \ vnew | set bt=nofile | r# | silent 0d_ | diffthis | wincmd p | diffthis
 
+" apt install vim -> ('apt', 'install', 'vim')
+command! Quotes .py3do return str(line.split()).translate(str.maketrans('[]','()'))
+
 "" Edit and write commands
 nmap <leader>e :e
 cabbrev <expr> eh getcmdtype() == ':' ? 'e~/'.abbreviations#eat_char('\s') : 'eh'
