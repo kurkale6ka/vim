@@ -82,6 +82,11 @@ Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-projectionist'
+Plug 'lambdalisue/fern.vim'
+Plug 'lambdalisue/fern-hijack.vim'
+if has('nvim')
+Plug 'antoinemadec/FixCursorHold.nvim' " https://github.com/neovim/neovim/issues/12587
+endif
 if !has('nvim') && $TERM !~ 'linux' " disable in the vconsole
 Plug 'jszakmeister/vim-togglecursor'
 endif
@@ -93,7 +98,6 @@ Plug 'neomake/neomake'
 if has('nvim')
 Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
 endif
-Plug 'justinmk/vim-dirvish'
 Plug 'airblade/vim-gitgutter'
 " snippets
 Plug 'SirVer/ultisnips'
@@ -131,8 +135,8 @@ if !exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# ''
    runtime! macros/matchit.vim
 endif
 
-" dirvish
-command! -nargs=? -complete=dir Vexplore leftabove 30 vsplit | silent Dirvish <args>
+" Fern
+command! -nargs=? -complete=dir Vexplore Fern . -drawer -toggle -reveal=%
 nmap <leader>v :Vexplore<cr>
 
 " sleuth
