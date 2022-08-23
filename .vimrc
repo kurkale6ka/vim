@@ -136,6 +136,8 @@ if !exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# ''
 endif
 
 " Fern
+let g:fern#default_exclude = '^\.git$'
+
 command! -nargs=? -complete=dir Vexplore Fern . -drawer -toggle -reveal=%
 nmap <leader>v :Vexplore<cr>
 
