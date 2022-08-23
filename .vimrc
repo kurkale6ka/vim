@@ -84,6 +84,9 @@ Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-projectionist'
 Plug 'lambdalisue/fern.vim'
 Plug 'lambdalisue/fern-hijack.vim'
+Plug 'lambdalisue/nerdfont.vim'
+Plug 'lambdalisue/fern-renderer-nerdfont.vim'
+Plug 'lambdalisue/glyph-palette.vim'
 if has('nvim')
 Plug 'antoinemadec/FixCursorHold.nvim' " https://github.com/neovim/neovim/issues/12587
 endif
@@ -136,7 +139,8 @@ if !exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# ''
 endif
 
 " Fern
-let g:fern#default_exclude = '^\.git$'
+let g:fern#default_exclude = '\%(^\.git\|.\+\~\)$'
+let g:fern#renderer = "nerdfont"
 
 command! -nargs=? -complete=dir Vexplore Fern . -drawer -toggle -reveal=%
 nmap <leader>v :Vexplore<cr>

@@ -10,3 +10,5 @@ nmap <buffer>          <CR> <Plug>(fern-my-open-expand-collapse)
 nmap <buffer> <2-LeftMouse> <Plug>(fern-my-open-expand-collapse)
 
 nmap <buffer> - <Plug>(fern-action-leave)
+
+call glyph_palette#apply()
