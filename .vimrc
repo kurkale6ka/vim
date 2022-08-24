@@ -141,6 +141,7 @@ endif
 " Fern
 let g:fern#default_exclude = '\%(^\.git\|.\+\~\)$'
 let g:fern#hide_cursor = 1
+let g:fern#default_hidden = 1
 let g:fern#renderer = "nerdfont"
 
 command! -nargs=? -complete=dir Vexplore Fern . -drawer -toggle -reveal=%
