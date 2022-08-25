@@ -415,6 +415,7 @@ nmap Q gqap
 
 set nojoinspaces
 set autoindent
+execute 'let &comments = substitute(&comments, "f\\zeb:-", "", "")'
 set commentstring=#%s
 
 " Underline with ---s
