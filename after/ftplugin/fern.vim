@@ -15,4 +15,7 @@ nmap <buffer><nowait> - <Plug>(fern-action-leave)
 nmap <buffer><nowait> < <Plug>(fern-action-leave)
 nmap <buffer><nowait> > <Plug>(fern-action-enter)
 
+setlocal nonumber
+setlocal signcolumn=no
+
 call glyph_palette#apply()
