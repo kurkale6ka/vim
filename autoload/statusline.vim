@@ -9,6 +9,7 @@ function! statusline#init(sep_l, sep_r)
    " paste mode
    let statusline.='%2*'.a:sep_l."%* %4*%{empty(&paste)?'':'--paste-- '}%*"
    let statusline.='%3*%t%*' " file name
+   let statusline.=' main'
 
    " RO, modified, modifiable
    let statusline.="%{empty(&ro) && empty(&mod) && !empty(&ma) && empty(&kmp)?'':' '}%4*%r%m%*"
