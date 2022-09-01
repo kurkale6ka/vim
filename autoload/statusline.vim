@@ -10,6 +10,13 @@ function! statusline#init(sep_l, sep_r)
    let statusline.='%2*'.a:sep_l."%* %4*%{empty(&paste)?'':'--paste-- '}%*"
    let statusline.='%3*%t%*' " file name
 
+   " git branch
+   let branch = gitbranch#name()
+
+   if (branch != '') && (branch !~ 'master\|main')
+      let statusline .= ' %6*'.branch.'%*'
+   endif
+
    " RO, modified, modifiable
    let statusline.="%{empty(&ro) && empty(&mod) && !empty(&ma) && empty(&kmp)?'':' '}%4*%r%m%*"
    " keymap
