@@ -11,7 +11,7 @@ function! statusline#init(sep_l, sep_r)
    let statusline .= "%3*%t%*" " file name
 
    " git branch
-   let statusline .= "%6*%{gitbranch#name() !~ 'master\\|main\\|trunk' && !empty(gitbranch#name())?' '.gitbranch#name():''}%*"
+   let statusline .= "%6*%{statusline#git()}%*"
 
    " RO, modified, modifiable
    let statusline .= "%{empty(&ro) && empty(&mod) && !empty(&ma) && empty(&kmp)?'':' '}%4*%r%m%*"
@@ -33,4 +33,13 @@ function! statusline#init(sep_l, sep_r)
 
    return statusline
 
+endfunction
+
+function! statusline#git()
+   let branch = FugitiveStatusline()
+   if !empty(branch) && branch !~ 'master\|main\|trunk'
+      return ' '.substitute(branch, '\[Git(\(.\+\))\]', '\1', '')
+   else
+      return ''
+   endif
 endfunction

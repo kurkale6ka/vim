@@ -93,7 +93,6 @@ endif
 if !has('nvim') && $TERM !~ 'linux' " disable in the vconsole
 Plug 'jszakmeister/vim-togglecursor'
 endif
-Plug 'itchyny/vim-gitbranch'
 Plug 'junegunn/vim-easy-align'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
