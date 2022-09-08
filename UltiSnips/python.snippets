@@ -89,6 +89,10 @@ snippet tr "transliterate" i
 translate(str.maketrans('${1:set1}', '${2:set2}'))
 endsnippet
 
+snippet mkdir
+os.makedirs('${1:dir}', exist_ok=True)
+endsnippet
+
 snippet with
 from contextlib import contextmanager
 
