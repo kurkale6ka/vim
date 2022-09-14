@@ -139,6 +139,7 @@ if !exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# ''
 endif
 
 " Fern
+let g:fern_disable_startup_warnings = 1
 let g:fern#default_exclude = '\%(^\.git\|.\+\~\)$'
 let g:fern#hide_cursor = 1
 let g:fern#default_hidden = 1
