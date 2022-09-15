@@ -82,16 +82,18 @@ Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-projectionist'
-Plug 'lambdalisue/fern.vim'
-Plug 'lambdalisue/fern-hijack.vim'
-Plug 'lambdalisue/nerdfont.vim'
-Plug 'lambdalisue/fern-renderer-nerdfont.vim'
-Plug 'lambdalisue/glyph-palette.vim'
-if has('nvim')
-Plug 'antoinemadec/FixCursorHold.nvim' " https://github.com/neovim/neovim/issues/12587
+if has('nvim') || has('patch-8.1.0994')
+   Plug 'lambdalisue/fern.vim'
+   Plug 'lambdalisue/fern-hijack.vim'
+   Plug 'lambdalisue/nerdfont.vim'
+   Plug 'lambdalisue/fern-renderer-nerdfont.vim'
+   Plug 'lambdalisue/glyph-palette.vim'
+   if has('nvim')
+      Plug 'antoinemadec/FixCursorHold.nvim' " https://github.com/neovim/neovim/issues/12587
+   endif
 endif
 if !has('nvim') && $TERM !~ 'linux' " disable in the vconsole
-Plug 'jszakmeister/vim-togglecursor'
+   Plug 'jszakmeister/vim-togglecursor'
 endif
 Plug 'junegunn/vim-easy-align'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -99,7 +101,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'bfredl/nvim-miniyank', has('nvim') ? {} : { 'on': [] } " ???
 Plug 'neomake/neomake'
 if has('nvim')
-Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
+   Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
 endif
 Plug 'airblade/vim-gitgutter'
 " snippets
@@ -107,7 +109,7 @@ Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 " syntax highlighting
 if exists('s:csapprox_needed')
-Plug 'godlygeek/csapprox'
+   Plug 'godlygeek/csapprox'
 endif
 Plug 'pearofducks/ansible-vim'
 Plug 'rodjek/vim-puppet'
