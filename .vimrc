@@ -89,9 +89,6 @@ if has('nvim') || has('patch-8.1.0994')
    Plug 'lambdalisue/fern-renderer-nerdfont.vim'
 endif
 Plug 'lambdalisue/glyph-palette.vim'
-if has('nvim')
-   Plug 'antoinemadec/FixCursorHold.nvim' " https://github.com/neovim/neovim/issues/12587
-endif
 if !has('nvim') && $TERM !~ 'linux' " disable in the vconsole
    Plug 'jszakmeister/vim-togglecursor'
 endif
