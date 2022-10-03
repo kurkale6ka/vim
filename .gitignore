@@ -6,6 +6,7 @@
 pythonx
 plugged/*
 autoload/plug.vim
+spell/
 
 # Allow
 !plugged/bufgrep/
