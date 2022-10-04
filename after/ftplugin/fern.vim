@@ -15,6 +15,7 @@ nmap <buffer><nowait> - <Plug>(fern-action-leave)
 nmap <buffer><nowait> < <Plug>(fern-action-leave)
 nmap <buffer><nowait> > <Plug>(fern-action-enter)
 
+let &l:fillchars = 'eob: '
 setlocal nonumber
 setlocal signcolumn=no
 
