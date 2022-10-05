@@ -15,8 +15,9 @@ nmap <buffer><nowait> - <Plug>(fern-action-leave)
 nmap <buffer><nowait> < <Plug>(fern-action-leave)
 nmap <buffer><nowait> > <Plug>(fern-action-enter)
 
-let &l:fillchars = 'eob: '
+setlocal statusline=%5*%{&ft}%*
 setlocal nonumber
 setlocal signcolumn=no
+let &l:fillchars = 'eob: '
 
 call glyph_palette#apply()
