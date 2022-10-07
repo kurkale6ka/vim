@@ -55,3 +55,14 @@ snippet ln
     dest: $2
     state: link
 endsnippet
+
+snippet 'debug|msg|print' "Debug in task" r
+- name: Test $1
+  debug:
+    ${2:msg}: "$3"
+endsnippet
+
+snippet 'debug|msg|print' "Debug alone" r
+- debug:
+    ${1:var}: $2
+endsnippet
