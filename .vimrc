@@ -440,7 +440,7 @@ set tabstop=8
 set softtabstop=3
 set expandtab
 
-set shiftwidth=3
+set shiftwidth=4
 set shiftround
 
 xmap   <tab> >
