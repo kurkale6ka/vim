@@ -145,7 +145,7 @@ let g:fern#default_hidden = 1
 let g:fern#renderer = "nerdfont"
 
 command! -nargs=? -complete=dir Vexplore Fern . -drawer -toggle -reveal=%
-nmap <leader>v :Vexplore<cr>
+nmap <silent> <leader>v :silent! execute 'Glcd' <bar> :Vexplore<cr>
 
 " sleuth
 let g:sleuth_automatic = 0
