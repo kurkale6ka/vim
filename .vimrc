@@ -102,6 +102,7 @@ if has('nvim')
    Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
 endif
 Plug 'airblade/vim-gitgutter'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " snippets
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
