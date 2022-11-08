@@ -797,9 +797,9 @@ onoremap <expr> ]]
    \ (search('^[^[:space:]]\@=.*{$',  'esW') &&
    \ (setpos("''", getpos('.')) <bar><bar> 1) ? "''" : "\<esc>")
 
-"" Text-object: file
-" xnoremap af ggVoG
-" onoremap af :normal vaf<cr>
+"" Text-object: file (all content)
+xnoremap aa ggVoG
+onoremap aa :normal vaa<cr>
 
 xnoremap ab <esc>%v%
 onoremap ab :silent normal vab<cr>
