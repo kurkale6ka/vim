@@ -17,6 +17,13 @@ from pprint import pprint as p
 p($1)
 endsnippet
 
+snippet 'benchmark|perf' "Benchmark" r
+from time import perf_counter
+start = perf_counter()
+end = perf_counter()
+print('Time elapsed:', end - start)
+endsnippet
+
 snippet colors
 from colorama import Fore as fg, Style as st
 
