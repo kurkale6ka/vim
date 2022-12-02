@@ -190,6 +190,8 @@ endif
 let g:ansible_attribute_highlight = "ab"
 let g:vim_json_syntax_conceal = 0
 
+nmap <expr> <leader>g ':vert Git -p '
+
 "" Backups
 if exists('s:local_vim')
    set backup
@@ -228,8 +230,8 @@ set smartcase
 set infercase
 
 " \g for global
-nmap <leader>g    :g/<c-r><c-a>/
-xmap <leader>g "*y:g/<c-r>*<cr>
+nmap <leader>G    :g/<c-r><c-a>/
+xmap <leader>G "*y:g/<c-r>*<cr>
 
 " \S for substitute
 nmap <leader>S :%s/<c-r><c-a>//g<left><left>
