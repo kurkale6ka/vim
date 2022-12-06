@@ -24,20 +24,8 @@ snippet fold "Based on xml tag"
 # vim: fdm=expr fde=getline(v\:lnum)=~'<$1'?'>1'\:'='
 endsnippet
 
-# Jira monospace
-snippet `j
-{{$1}}
-endsnippet
-
-# Jira code snippets
-snippet ``j "Code"
-{code:$1}
-$2
-{code}
-endsnippet
-
-snippet ``j "No format"
-{noformat}
-$1
-{noformat}
+snippet tree
+│
+├─
+└─
 endsnippet
