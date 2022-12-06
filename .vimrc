@@ -97,7 +97,6 @@ Plug 'junegunn/vim-easy-align'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'bfredl/nvim-miniyank', has('nvim') ? {} : { 'on': [] } " ???
-Plug 'neomake/neomake'
 if has('nvim')
    Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
 endif
@@ -151,11 +150,6 @@ nmap <silent> <leader>v :silent! execute 'Glcd' <bar> :Vexplore<cr>
 
 " sleuth
 let g:sleuth_automatic = 0
-
-" neomake
-let g:neomake_python_python_exe = 'python3'
-let g:neomake_warning_sign = { 'text': 'W', 'texthl': 'WarningMsg' }
-let g:neomake_error_sign   = { 'text': 'E', 'texthl': 'ErrorMsg'   }
 
 " firenvim: force manual triggering
 if has('nvim') && exists('g:started_by_firenvim')
