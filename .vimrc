@@ -764,8 +764,8 @@ command! -nargs=? Scriptnames call scratch#buffer('scriptnames', <f-args>)
 command! DiffOrig
    \ vnew | set bt=nofile | r# | silent 0d_ | diffthis | wincmd p | diffthis
 
-" apt install vim -> ('apt', 'install', 'vim')
-command! Quotes .py3do return str(line.split()).translate(str.maketrans('[]','()'))
+" cmd = apt install vim -> cmd = ('apt', 'install', 'vim')
+command! Quotes .py3do return line.split('=', 1)[0].rstrip() + ' = ' + str(line.split('=', 1)[1].lstrip().split()).translate(str.maketrans('[]','()')) if '=' in line else str(line.split()).translate(str.maketrans('[]','()'))
 
 "" Edit and write commands
 nmap <leader>e :e
