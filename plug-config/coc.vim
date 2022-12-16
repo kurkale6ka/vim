@@ -1,3 +1,4 @@
+let g:coc_config_home = $XDG_CONFIG_HOME.'/nvim/plug-config'
 
 set updatetime=300
 
