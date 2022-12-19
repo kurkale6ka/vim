@@ -618,19 +618,21 @@ set virtualedit=block
 set whichwrap=b,s,<,>,[,]
 set paragraphs= " no wrongly defined paragraphs for non nroff,groff filetypes
 
-" use alt+{h,j,k,l} to navigate windows from any mode
-tnoremap <a-h> <c-\><c-n><c-w>h
-tnoremap <a-j> <c-\><c-n><c-w>j
-tnoremap <a-k> <c-\><c-n><c-w>k
-tnoremap <a-l> <c-\><c-n><c-w>l
-inoremap <a-h> <c-\><c-n><c-w>h
-inoremap <a-j> <c-\><c-n><c-w>j
-inoremap <a-k> <c-\><c-n><c-w>k
-inoremap <a-l> <c-\><c-n><c-w>l
-nnoremap <a-h> <c-w>h
-nnoremap <a-j> <c-w>j
-nnoremap <a-k> <c-w>k
-nnoremap <a-l> <c-w>l
+if has('nvim')
+   " use alt+{h,j,k,l} to navigate windows from any mode
+   tnoremap <a-h> <c-\><c-n><c-w>h
+   tnoremap <a-j> <c-\><c-n><c-w>j
+   tnoremap <a-k> <c-\><c-n><c-w>k
+   tnoremap <a-l> <c-\><c-n><c-w>l
+   inoremap <a-h> <c-\><c-n><c-w>h
+   inoremap <a-j> <c-\><c-n><c-w>j
+   inoremap <a-k> <c-\><c-n><c-w>k
+   inoremap <a-l> <c-\><c-n><c-w>l
+   nnoremap <a-h> <c-w>h
+   nnoremap <a-j> <c-w>j
+   nnoremap <a-k> <c-w>k
+   nnoremap <a-l> <c-w>l
+endif
 
 " bol, eol
 imap <c-left> <c-o>^
@@ -761,11 +763,13 @@ if has('autocmd')
          autocmd TextYankPost * if v:event.operator ==# 'y' | call system(s:clip, @0) | endif
       augroup END
    endif
-   augroup neovim_terminal
-       autocmd!
-       " Disables number lines on terminal buffers
-       autocmd TermOpen * :setlocal nonumber norelativenumber
-   augroup END
+   if has('nvim')
+      augroup neovim_terminal
+         autocmd!
+         " Disables number lines on terminal buffers
+         autocmd TermOpen * :setlocal nonumber norelativenumber
+      augroup END
+   endif
 endif
 
 " Set 'ft
