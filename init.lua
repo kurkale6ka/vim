@@ -1,31 +1,29 @@
 vim.g.mapleader = ' '
 vim.g.python3_host_prog = '~/py-envs/utils/bin/python'
 
-vim.opt.termguicolors = true
-vim.opt.number = true
+vim.o.termguicolors = true
+vim.o.number = true
 
-vim.opt.writebackup = true
-vim.opt.backupext = '~'
+vim.o.writebackup = true
+vim.o.backupext = '~'
 -- ?
-vim.opt.backupskip = ''
+vim.o.backupskip = ''
 
-vim.opt.autowrite = false
-vim.opt.autowriteall = false
-vim.opt.autoread = false
+vim.o.autowrite = false
+vim.o.autowriteall = false
+vim.o.autoread = false
 
+vim.keymap.set('n', '<leader>-', '<c-^>')
 vim.keymap.set('n', '<leader>w', ':w<cr>')
+vim.keymap.set('n', '<leader>e', ':e')
 
-vim.bo.undofile = true
+vim.o.undofile = true
 
 vim.keymap.set('n', 'gr', ':later 9999<cr>')
 
--- set history=10000
--- if !has('nvim')
---    set viminfo=!,'1000
---    execute 'set viminfo+=n'.s:vim.'/.viminfo'
--- else
---    set shada='1000
--- endif
+vim.o.history = 10000
+vim.o.shada = "'1000"
+
 -- Disable these plugins
 vim.g.loaded_2html_plugin    = true
 vim.g.loaded_vimballPlugin   = true
@@ -42,4 +40,5 @@ vim.cmd 'colorscheme desertEX'
 
 require('plugins')
 require('plugin-configs/tree-sitter')
+require('plugin-configs/fern')
 require('statusline')
