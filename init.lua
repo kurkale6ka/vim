@@ -25,16 +25,15 @@ vim.o.history = 10000
 vim.o.shada = "'1000"
 
 -- Disable these plugins
-vim.g.loaded_2html_plugin    = true
-vim.g.loaded_vimballPlugin   = true
-vim.g.loaded_netrwPlugin     = true
-vim.g.loaded_zipPlugin       = true
-vim.g.loaded_tarPlugin       = true
-vim.g.loaded_getscriptPlugin = true
-
--- let did_install_default_menus = 1
--- let loaded_rrhelper          = 1
--- let loaded_spellfile_plugin  = 1
+vim.g.loaded_2html_plugin       = true
+vim.g.loaded_vimballPlugin      = true
+vim.g.loaded_netrwPlugin        = true
+vim.g.loaded_zipPlugin          = true
+vim.g.loaded_tarPlugin          = true
+vim.g.loaded_getscriptPlugin    = true
+vim.g.did_install_default_menus = true
+vim.g.loaded_rrhelper           = true
+vim.g.loaded_spellfile_plugin   = true
 
 vim.cmd 'colorscheme desertEX'
 
