@@ -17,7 +17,7 @@ vim.keymap.set('n', '<leader>w', ':w<cr>')
 
 vim.bo.undofile = true
 
--- nnoremap gr :later 9999<cr>
+vim.keymap.set('n', 'gr', ':later 9999<cr>')
 
 -- set history=10000
 -- if !has('nvim')
