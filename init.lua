@@ -18,11 +18,17 @@ vim.keymap.set('n', '<leader>w', ':w<cr>')
 vim.keymap.set('n', '<leader>e', ':e')
 
 vim.o.undofile = true
+vim.o.history = 10000
+vim.o.shada = "'1000"
 
 vim.keymap.set('n', 'gr', ':later 9999<cr>')
 
-vim.o.history = 10000
-vim.o.shada = "'1000"
+-- Search and replace
+vim.o.incsearch  = true
+vim.o.hlsearch   = true
+vim.o.ignorecase = true
+vim.o.smartcase  = true
+vim.o.infercase  = true
 
 -- Disable these plugins
 vim.g.loaded_2html_plugin       = true
