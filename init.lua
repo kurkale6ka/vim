@@ -41,4 +41,5 @@ vim.g.loaded_getscriptPlugin = true
 vim.cmd 'colorscheme desertEX'
 
 require('plugins')
+require('plugin-configs/tree-sitter')
 require('statusline')
