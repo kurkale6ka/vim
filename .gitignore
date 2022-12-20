@@ -5,6 +5,7 @@
 .vimrc_after
 pythonx
 plugged/*
+plugin/
 autoload/plug.vim
 spell/
 
