@@ -44,7 +44,8 @@ vim.g.loaded_spellfile_plugin   = true
 vim.cmd 'colorscheme desertEX'
 
 require('plugins')
-require('plugin-configs/tree-sitter')
-require('plugin-configs/fern')
-require('plugin-configs/ultisnips')
+require('plugins/tree-sitter')
+require('plugins/fern')
+require('plugins/ultisnips')
+require('plugins/fugitive')
 require('statusline')
