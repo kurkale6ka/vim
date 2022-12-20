@@ -24,6 +24,13 @@ return require('packer').startup(function(use)
   end
   use 'lambdalisue/glyph-palette.vim'
 
+  use 'junegunn/vim-easy-align'
+  use 'junegunn/fzf' -- , { 'dir': '~/.fzf', 'do': './install --all' }
+  use 'junegunn/fzf.vim'
+
+  use 'SirVer/ultisnips'
+  use 'honza/vim-snippets'
+
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
 
   use { 'glacambre/firenvim', run = function() vim.fn['firenvim#install'](0) end }

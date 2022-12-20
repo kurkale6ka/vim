@@ -41,4 +41,5 @@ vim.cmd 'colorscheme desertEX'
 require('plugins')
 require('plugin-configs/tree-sitter')
 require('plugin-configs/fern')
+require('plugin-configs/ultisnips')
 require('statusline')
