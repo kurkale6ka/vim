@@ -18,6 +18,7 @@ require('plugins/fern')
 require('plugins/ultisnips')
 require('plugins/fugitive')
 require('statusline')
+require('autocmds')
 
 vim.g.python3_host_prog = '~/py-envs/utils/bin/python'
 
