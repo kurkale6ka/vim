@@ -15,6 +15,7 @@ vim.g.loaded_spellfile_plugin   = true
 require('plugins')
 require('plugins/tree-sitter')
 require('plugins/fern')
+require('plugins/nvim-cmp')
 require('plugins/ultisnips')
 require('plugins/fugitive')
 require('statusline')
@@ -25,17 +26,17 @@ vim.g.python3_host_prog = '~/py-envs/utils/bin/python'
 vim.o.termguicolors = true
 vim.cmd 'colorscheme desertEX'
 
+-- Backups
 vim.o.writebackup = true
 vim.o.backupext = '~'
 vim.o.backupskip = nil
-
 vim.o.autowrite = false
 vim.o.autowriteall = false
 vim.o.autoread = false
 
-vim.keymap.set('n', '<leader>-', '<c-^>')
 vim.keymap.set('n', '<leader>w', ':w<cr>')
 vim.keymap.set('n', '<leader>e', ':e')
+vim.keymap.set('n', '<leader>-', '<c-^>')
 
 vim.o.undofile = true
 vim.o.history = 10000
@@ -50,6 +51,15 @@ vim.o.ignorecase = true
 vim.o.smartcase  = true
 vim.o.infercase  = true
 
+-- \G for global
+-- \S for substitute
+vim.keymap.set('n', '<leader>G', ':g/<c-r><c-a>/')
+vim.keymap.set('n', '<leader>S', ':%s/<c-r><c-a>//g<left><left>')
+
+vim.cmd([[cabbrev <expr> es getcmdtype() == ':' ? 'e%:p:s/'.abbreviations#eat_char('\s') : 'es']])
+
+vim.o.inccommand = 'nosplit'
+vim.opt.path:append { vim.env.XDG_CONFIG_HOME..'/repos/**' }
 vim.o.grepprg = 'rg --column --line-number --no-heading --vimgrep --smart-case --hidden'
 vim.o.fileencodings = 'ucs-bom,utf-8,default,cp1251,latin1'
 vim.o.fileformats = 'unix,mac,dos'
