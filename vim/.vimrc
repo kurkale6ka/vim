@@ -21,12 +21,12 @@ set nocompatible
 "" Setup
 " needed for remote hosts where ~/.vim is shared and cannot be customized
 if !empty($REPOS_BASE)
-   let s:vim = $REPOS_BASE.'/vim'
-   execute 'let &runtimepath = substitute(&runtimepath, expand("~")."/\\.vim", "'.s:vim.'", "g")'
+   let s:vim = $REPOS_BASE.'/editor/vim'
+   execute 'let &runtimepath = substitute(&runtimepath, expand("~")."/editor/\\.vim", "'.s:vim.'", "g")'
 elseif has('nvim')
    let s:vim = stdpath('config')
 else
-   let s:vim = '~/.vim'
+   let s:vim = '~/editor/.vim'
 endif
 
 if has('nvim')
