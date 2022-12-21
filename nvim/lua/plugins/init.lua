@@ -36,7 +36,7 @@ return require('packer').startup(function(use)
   use { 'glacambre/firenvim', run = function() vim.fn['firenvim#install'](0) end }
 
   -- Local
-  use '~/.config/nvim/plugged/vim-pairs'
-  use '~/.config/nvim/plugged/vim-desertEX'
+  use '~/.vim/plugged/vim-pairs'
+  use '~/.vim/plugged/vim-desertEX'
 
 end)
