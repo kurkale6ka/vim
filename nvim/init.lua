@@ -1,7 +1,29 @@
 vim.g.mapleader = ' '
+
+-- Disable these plugins
+vim.g.loaded_2html_plugin       = true
+vim.g.loaded_vimballPlugin      = true
+vim.g.loaded_netrwPlugin        = true
+vim.g.loaded_zipPlugin          = true
+vim.g.loaded_tarPlugin          = true
+vim.g.loaded_getscriptPlugin    = true
+vim.g.did_install_default_menus = true
+vim.g.loaded_rrhelper           = true
+vim.g.loaded_spellfile_plugin   = true
+
+-- TODO: set includeexpr for gf
+require('plugins')
+require('plugins/tree-sitter')
+require('plugins/fern')
+require('plugins/ultisnips')
+require('plugins/fugitive')
+require('statusline')
+
 vim.g.python3_host_prog = '~/py-envs/utils/bin/python'
 
 vim.o.termguicolors = true
+vim.cmd 'colorscheme desertEX'
+
 vim.o.number = true
 
 vim.o.writebackup = true
@@ -29,27 +51,6 @@ vim.o.hlsearch   = true
 vim.o.ignorecase = true
 vim.o.smartcase  = true
 vim.o.infercase  = true
-
--- Disable these plugins
-vim.g.loaded_2html_plugin       = true
-vim.g.loaded_vimballPlugin      = true
-vim.g.loaded_netrwPlugin        = true
-vim.g.loaded_zipPlugin          = true
-vim.g.loaded_tarPlugin          = true
-vim.g.loaded_getscriptPlugin    = true
-vim.g.did_install_default_menus = true
-vim.g.loaded_rrhelper           = true
-vim.g.loaded_spellfile_plugin   = true
-
-vim.cmd 'colorscheme desertEX'
-
--- TODO: set includeexpr for gf
-require('plugins')
-require('plugins/tree-sitter')
-require('plugins/fern')
-require('plugins/ultisnips')
-require('plugins/fugitive')
-require('statusline')
 
 vim.o.grepprg = 'rg --column --line-number --no-heading --vimgrep --smart-case --hidden'
 vim.o.fileencodings = 'ucs-bom,utf-8,default,cp1251,latin1'
