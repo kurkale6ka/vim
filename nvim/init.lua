@@ -25,12 +25,9 @@ vim.g.python3_host_prog = '~/py-envs/utils/bin/python'
 vim.o.termguicolors = true
 vim.cmd 'colorscheme desertEX'
 
-vim.o.number = true
-
 vim.o.writebackup = true
 vim.o.backupext = '~'
--- ?
-vim.o.backupskip = ''
+vim.o.backupskip = nil
 
 vim.o.autowrite = false
 vim.o.autowriteall = false
@@ -56,57 +53,57 @@ vim.o.infercase  = true
 vim.o.grepprg = 'rg --column --line-number --no-heading --vimgrep --smart-case --hidden'
 vim.o.fileencodings = 'ucs-bom,utf-8,default,cp1251,latin1'
 vim.o.fileformats = 'unix,mac,dos'
--- vim.o.isfname-==
--- vim.o.number
--- vim.o.numberwidth=1
--- vim.o.showmatch
--- vim.o.matchtime=2
--- vim.o.matchpairs+=<:>
--- vim.o.confirm
--- vim.o.showcmd
--- vim.o.report=0
--- vim.o.shortmess=flmnrxoOtT
--- vim.o.display+=lastline
--- vim.o.lazyredraw
--- vim.o.scrolloff=2
--- vim.o.timeoutlen=2000 -- 2s before timing out a mapping
--- vim.o.ttimeoutlen=100 -- 100 ms before timing out on a keypress
--- vim.o.visualbell -- visual bell instead of beeps, but...
--- vim.o.linebreak -- wrap at characters in 'breakat
--- vim.o.synmaxcol=301
--- vim.o.mouse=a
--- vim.o.mousemodel=extend
--- vim.o.formatoptions+=r -- auto insert comment with <Enter>...
--- vim.o.formatoptions+=o -- ...or o/O
--- vim.o.formatoptions+=n -- Recognize numbered lists
--- vim.o.nojoinspaces
--- vim.o.autoindent
--- vim.o.commentstring=#%s
--- vim.o.tabstop=8
--- vim.o.softtabstop=3
--- vim.o.expandtab
--- vim.o.shiftwidth=4
--- vim.o.shiftround
--- vim.o.complete-=t
--- vim.o.completeopt-=preview
--- vim.o.showfulltag
--- vim.o.hidden
--- vim.o.noequalalways
--- vim.o.splitright
+vim.opt.isfname:remove { '=' }
+vim.wo.number = true
+vim.wo.numberwidth = 1
+vim.o.showmatch = true
+vim.o.matchtime = 2
+vim.opt.matchpairs:append { '<:>' }
+vim.o.confirm = true
+vim.o.showcmd = true
+vim.o.report = 0
+vim.o.shortmess = 'flmnrxoOtT'
+vim.opt.display:append { 'lastline' }
+vim.o.lazyredraw = true
+vim.o.scrolloff = 2
+vim.o.timeoutlen = 2000 -- 2s before timing out a mapping
+vim.o.ttimeoutlen = 100 -- 100 ms before timing out on a keypress
+vim.o.visualbell = true -- visual bell instead of beeps, but...
+vim.o.linebreak = true -- wrap at characters in 'breakat
+vim.o.synmaxcol = 301
+vim.o.mouse = 'a'
+vim.o.mousemodel = 'extend'
+vim.opt.formatoptions:append { 'r' } -- auto insert comment with <Enter>...
+vim.opt.formatoptions:append { 'o' } -- ...or o/O
+vim.opt.formatoptions:append { 'n' } -- Recognize numbered lists
+vim.o.nojoinspaces = true
+vim.o.autoindent = true
+vim.o.commentstring = '#%s'
+vim.o.tabstop = 8
+vim.o.softtabstop = 4
+vim.o.expandtab = true
+vim.o.shiftwidth = 4
+vim.o.shiftround = true
+vim.opt.complete:remove { 't' }
+vim.opt.completeopt:remove { 'preview' }
+vim.o.showfulltag = true
+vim.o.hidden = true
+vim.o.noequalalways = true
+vim.o.splitright = true
 -- vim.o.wildmenu
--- vim.o.wildmode=full
--- vim.o.wildignore+=*~,*.swp,tags
--- vim.o.wildcharm=<c-z> -- cmdline: <c-z> in a mapping acts like <tab>
--- vim.o.laststatus=2
--- vim.o.showtabline=1
--- vim.o.tabline=%!tabs#MyTabLine()
--- vim.o.exrc
--- vim.o.secure -- :autocmd, shell and write commands not allowed in CWD .exrc
--- vim.o.modeline
--- vim.o.modelines=3
--- vim.o.backspace=indent,eol,start
--- vim.o.virtualedit=block
--- vim.o.whichwrap=b,s,<,>,[,]
--- vim.o.paragraphs= -- no wrongly defined paragraphs for non nroff,groff filetypes
--- vim.o.nostartofline
--- vim.o.nrformats-=octal
+-- vim.o.wildmode = full
+-- vim.o.wildignore += *~,*.swp,tags
+-- vim.o.wildcharm = <c-z> -- cmdline: <c-z> in a mapping acts like <tab>
+-- vim.o.laststatus = 2
+vim.o.showtabline = 1
+vim.o.tabline = '%!tabs#MyTabLine()'
+vim.o.exrc = true
+vim.o.secure = true -- :autocmd, shell and write commands not allowed in CWD .exrc
+vim.o.modeline = true
+vim.o.modelines = 3
+vim.o.backspace = 'indent,eol,start'
+vim.o.virtualedit = 'block'
+vim.o.whichwrap = 'b,s,<,>,[,]'
+vim.o.paragraphs = nil -- no wrongly defined paragraphs for non nroff,groff filetypes
+vim.o.nostartofline = true
+vim.opt.nrformats:remove { 'octal' }
