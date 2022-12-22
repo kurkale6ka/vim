@@ -80,7 +80,27 @@ vim.o.scrolloff = 2
 vim.o.timeoutlen = 2000 -- 2s before timing out a mapping
 vim.o.ttimeoutlen = 100 -- 100 ms before timing out on a keypress
 vim.o.visualbell = true -- visual bell instead of beeps, but...
+
+vim.wo.foldnestmax = 1 -- maximum nesting for indent and syntax
+-- cabbrev <expr> fold getcmdtype() == ':' ? "se fdm=expr fde=getline(v\\:lnum)=~'^\\\\s*##'?'>'.(len(matchstr(getline(v\\:lnum),'###*'))-1)\\:'='".abbreviations#eat_char('\s') : 'fold'
+-- cabbrev foldx se fdm=expr fde=getline(v\:lnum)=~'<'?'>1'\:'='<left><left><left><left><left><left><left><left><left><left><left><c-r>=abbreviations#eat_char('\s')<cr>
+
+-- Print working directory
+vim.keymap.set('n', '<c-g>', '2<c-g>')
+
 vim.o.linebreak = true -- wrap at characters in 'breakat
+vim.wo.breakindent = true -- respect indentation when wrapping
+
+vim.wo.showbreak = '↪ '
+vim.opt.listchars = { tab = '▷⋅', trail = '⋅', nbsp = '⋅' }
+
+-- FIXME
+if vim.bo.readonly or not vim.bo.modifiable then
+    vim.wo.list = false
+else
+    vim.wo.list = true
+end
+
 vim.o.synmaxcol = 301
 vim.o.mouse = 'a'
 vim.o.mousemodel = 'extend'
