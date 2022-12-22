@@ -58,5 +58,6 @@ return require('packer').startup(function(use)
     -- Local
     use '~/.vim/plugged/vim-pairs'
     use '~/.vim/plugged/vim-desertEX'
+    use '~/.vim/plugged/vsearch'
 
 end)
