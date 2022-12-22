@@ -4,6 +4,10 @@ vim.g['fern#hide_cursor'] = true
 vim.g['fern#default_hidden'] = true
 vim.g['fern#renderer'] = "nerdfont"
 
-vim.cmd([[command! -nargs=? -complete=dir Vexplore Fern . -drawer -toggle -reveal=%]])
+-- Override netrw's Vexplore with Fern
+vim.api.nvim_create_user_command('Vexplore',
+    'Fern . -drawer -toggle -reveal=%',
+    {nargs = '?', complete = 'dir', desc = 'Fern explorer'}
+)
 
-vim.keymap.set('n', '<leader>v', ':silent! execute "Glcd" <bar> :Vexplore<cr>')
+vim.keymap.set('n', '<leader>v', ':silent! execute "Glcd" <bar> :Vexplore<cr>', { silent = true })
