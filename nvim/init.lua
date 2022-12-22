@@ -20,6 +20,7 @@ require('plugins/nvim-cmp')
 require('plugins/ultisnips')
 require('plugins/fugitive')
 require('plugins/fzf')
+require('plugins/surround')
 require('statusline')
 require('autocmds')
 
