@@ -13,11 +13,13 @@ vim.g.loaded_spellfile_plugin   = true
 
 -- TODO: set includeexpr for gf
 require('plugins')
+require('mason').setup()
 require('plugins/tree-sitter')
 require('plugins/fern')
 require('plugins/nvim-cmp')
 require('plugins/ultisnips')
 require('plugins/fugitive')
+require('plugins/fzf')
 require('statusline')
 require('autocmds')
 

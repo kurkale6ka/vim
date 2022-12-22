@@ -31,6 +31,8 @@ return require('packer').startup(function(use)
     use 'junegunn/fzf' -- , { 'dir': '~/.fzf', 'do': './install --all' }
     use 'junegunn/fzf.vim'
 
+    use { "williamboman/mason.nvim" }
+
     -- Autocompletion
     use {
         'hrsh7th/nvim-cmp',
