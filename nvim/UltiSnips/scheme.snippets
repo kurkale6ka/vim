@@ -1,0 +1,5 @@
+snippet last
+(define (last l)
+   (cond ((null? (cdr l)) (car l))
+   (else (last (cdr l)))))
+endsnippet
