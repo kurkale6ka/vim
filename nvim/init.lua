@@ -213,5 +213,35 @@ vim.api.nvim_create_user_command('RemoveSpaces',
 vim.o.virtualedit = 'block'
 vim.o.whichwrap = 'b,s,<,>,[,]'
 vim.o.paragraphs = nil -- no wrongly defined paragraphs for non nroff,groff filetypes
+
+-- use alt + h,j,k,l to navigate windows from any mode
+vim.keymap.set({'t','i'}, '<a-h>', '<c-\\><c-n><c-w>h')
+vim.keymap.set({'t','i'}, '<a-j>', '<c-\\><c-n><c-w>j')
+vim.keymap.set({'t','i'}, '<a-k>', '<c-\\><c-n><c-w>k')
+vim.keymap.set({'t','i'}, '<a-l>', '<c-\\><c-n><c-w>l')
+vim.keymap.set('n', '<a-h>', '<c-w>h')
+vim.keymap.set('n', '<a-j>', '<c-w>j')
+vim.keymap.set('n', '<a-k>', '<c-w>k')
+vim.keymap.set('n', '<a-l>', '<c-w>l')
+
+-- -- bol, eol
+-- imap <c-left> <c-o>^
+-- imap <c-right> <c-o>$
+-- nmap <c-left> ^
+-- nmap <c-right> $
+
+-- cnoremap <c-a> <home>
+
+-- -- <Home> to move to the first char on the line
+-- map  <home> ^
+-- imap <home> <c-o>I
+
+-- -- Ctrl + Up to go backwards by a paragraph
+-- imap <c-up> <c-o>{
+-- map  <c-up>      {
+
+-- imap <c-down> <c-o>}
+-- map  <c-down>      }
+
 vim.o.nostartofline = true
 vim.opt.nrformats:remove { 'octal' }
