@@ -113,14 +113,26 @@ vim.opt.formatoptions:append('r') -- auto insert comment with <Enter>...
 vim.opt.formatoptions:append('o') -- ...or o/O
 vim.opt.formatoptions:append('n') -- Recognize numbered lists
 
+vim.o.comments = vim.o.comments:gsub('fb:%-', 'b:-') -- lists with dashes
+vim.o.commentstring = '#%s'
+
 vim.keymap.set('n', 'Q', 'gqap')
 
 vim.o.nojoinspaces = true
 vim.o.autoindent = true
 
-vim.o.comments = vim.o.comments:gsub('fb:%-', 'b:-') -- lists with dashes
+-- Underline
+vim.api.nvim_create_user_command('Underline',
+    'call underline#current(<q-args>)',
+    {nargs = '?', desc = 'Underline with dashes by default'}
+)
 
-vim.o.commentstring = '#%s'
+-- \z to squeeze lines
+vim.keymap.set('n', '<leader>z', ':call squeeze#lines("")<cr>', { silent = true })
+
+-- = + space to surround with empty lines
+vim.keymap.set('n', '=<leader>', '[<leader>]<leader>', { remap = true })
+
 vim.o.tabstop = 8
 vim.o.softtabstop = 4
 vim.o.expandtab = true
@@ -132,11 +144,6 @@ vim.o.showfulltag = true
 vim.o.hidden = true
 vim.o.noequalalways = true
 vim.o.splitright = true
--- vim.o.wildmenu
--- vim.o.wildmode = full
--- vim.o.wildignore += *~,*.swp,tags
--- vim.o.wildcharm = <c-z> -- cmdline: <c-z> in a mapping acts like <tab>
--- vim.o.laststatus = 2
 vim.o.showtabline = 1
 vim.o.tabline = '%!tabs#MyTabLine()'
 vim.o.exrc = true
