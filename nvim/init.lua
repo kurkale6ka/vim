@@ -179,10 +179,37 @@ vim.keymap.set('n', ']P', ':pu<cr>')
 -- Swap first and last line in a visual area
 vim.keymap.set('x', '<cr>', "<esc>'<dd'>[pjdd`<P==")
 
--- Deletions
+-- Backspace
 vim.keymap.set('n', '<bs>', '"_X')
-
 vim.o.backspace = 'indent,eol,start'
+
+-- Ctrl + u
+vim.keymap.set('i', '<c-u>', '<c-g>u<c-u>')
+
+-- Ctrl + w
+vim.keymap.set('c', '<c-w>', '<c-\\>ecmdline#ctrl_w()<cr>')
+vim.keymap.set('i', '<c-w>', '<c-o>dB')
+
+-- Alt + backspace
+vim.keymap.set({'i', 'c'}, '<m-bs>', '<c-w>')
+
+-- Alt + d
+vim.keymap.set('c', '<m-d>', '<c-\\>ecmdline#alt_d()<cr>')
+vim.keymap.set('i', '<m-d>', '<c-o>de')
+
+-- Ctrl + k
+vim.keymap.set('c', '<c-k>', '<c-\\>estrpart(getcmdline(), 0, getcmdpos() - 1)<cr>')
+vim.keymap.set('i', '<c-k>', '<c-o>D')
+
+-- Delete EOF empty lines
+vim.keymap.set('n', 'dl', ':call spaces#remove_eof()<cr>', { silent = true })
+
+-- Remove eol spaces
+vim.api.nvim_create_user_command('RemoveSpaces',
+    ':call spaces#remove()',
+    {desc = 'Remove eol spaces'}
+)
+
 vim.o.virtualedit = 'block'
 vim.o.whichwrap = 'b,s,<,>,[,]'
 vim.o.paragraphs = nil -- no wrongly defined paragraphs for non nroff,groff filetypes
