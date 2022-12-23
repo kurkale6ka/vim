@@ -36,7 +36,7 @@ vim.o.autoread = false
 
 vim.keymap.set('n', '<leader>w', ':w<cr>')
 vim.keymap.set('n', '<leader>e', ':e')
-vim.keymap.set('n', '<leader>-', '<c-^>')
+vim.keymap.set('n', '<leader>-', '<c-^>') -- switch to the alternate file
 
 vim.o.undofile = true
 vim.o.history = 10000
@@ -156,12 +156,32 @@ vim.opt.diffopt:append { 'vertical,iblank,iwhiteall' }
 vim.o.noequalalways = true
 vim.o.splitright = true
 vim.o.switchbuf = 'useopen,usetab'
+
+-- Ctrl + w twice to go to the last accessed window
+vim.keymap.set('n', '<c-w><c-w>', ':wincmd p<cr>', { silent = true })
+
+-- Ctrl + w, N to create a new buffer over the current one
+vim.keymap.set('n', '<c-w>N', ':leftabove vnew<cr>', { silent = true })
+
 vim.o.showtabline = 1
 vim.o.tabline = '%!tabs#MyTabLine()'
 vim.o.exrc = true
 vim.o.secure = true -- :autocmd, shell and write commands not allowed in CWD .exrc
 vim.o.modeline = true
 vim.o.modelines = 3
+
+vim.o.clipboard = 'unnamed,unnamedplus'
+
+-- paste above/below for small (non whole lines) yanks
+vim.keymap.set('n', '[P', ':pu!<cr>')
+vim.keymap.set('n', ']P', ':pu<cr>')
+
+-- Swap first and last line in a visual area
+vim.keymap.set('x', '<cr>', "<esc>'<dd'>[pjdd`<P==")
+
+-- Deletions
+vim.keymap.set('n', '<bs>', '"_X')
+
 vim.o.backspace = 'indent,eol,start'
 vim.o.virtualedit = 'block'
 vim.o.whichwrap = 'b,s,<,>,[,]'
