@@ -10,4 +10,4 @@ vim.api.nvim_create_user_command('Vexplore',
     {nargs = '?', complete = 'dir', desc = 'Fern explorer'}
 )
 
-vim.keymap.set('n', '<leader>v', ':silent! execute "Glcd" <bar> :Vexplore<cr>', { silent = true })
+vim.keymap.set('n', '<leader>v', ':silent! Glcd <bar> Vexplore<cr>', { silent = true })
