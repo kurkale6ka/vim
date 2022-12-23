@@ -1,19 +1,11 @@
----- Wild menu & status line
+-- Wild menu & status line
 vim.opt.wildoptions:remove { 'pum' }
 vim.o.wildmenu = true
 vim.o.wildmode = 'full'
-vim.o.wildignore = vim.o.wildignore .. '*~,*.swp,tags'
--- vim.o.wildcharm = '<c-z>' -- cmdline: <c-z> in a mapping acts like <tab>
+vim.o.wildignorecase = true
+vim.opt.wildignore:append { '*~,*.swp,tags' }
+vim.o.wildcharm = '<c-z>' -- cmdline: <c-z> in a mapping acts like <tab>
 
--- if exists('+wildignorecase')
---    vim.o.wildignorecase
--- endif
-
--- -- Status line
--- if exists('s:unicode_chars')
---    vim.o.statusline=%!statusline#init('❬',\ '❭')
--- else
---    vim.o.statusline=%!statusline#init('<',\ '>')
--- endif
-
+-- Status line
+vim.o.statusline = "%!statusline#init('❬', '❭')"
 vim.o.laststatus = 2

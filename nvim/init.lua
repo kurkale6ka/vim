@@ -93,11 +93,16 @@ vim.wo.breakindent = true -- respect indentation when wrapping
 vim.wo.showbreak = '↪ '
 vim.opt.listchars = { tab = '▷⋅', trail = '⋅', nbsp = '⋅' }
 
--- FIXME
 if vim.bo.readonly or not vim.bo.modifiable then
     vim.wo.list = false
 else
     vim.wo.list = true
+end
+
+-- \8 to highlight text beyond the 80th column
+vim.keymap.set('n', '<leader>8', ':call highlight#column()<cr>', { silent = true })
+if not vim.wo.diff then
+    vim.wo.cursorline = true
 end
 
 vim.o.synmaxcol = 301
