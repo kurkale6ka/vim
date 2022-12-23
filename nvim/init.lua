@@ -108,11 +108,18 @@ end
 vim.o.synmaxcol = 301
 vim.o.mouse = 'a'
 vim.o.mousemodel = 'extend'
-vim.opt.formatoptions:append { 'r' } -- auto insert comment with <Enter>...
-vim.opt.formatoptions:append { 'o' } -- ...or o/O
-vim.opt.formatoptions:append { 'n' } -- Recognize numbered lists
+
+vim.opt.formatoptions:append('r') -- auto insert comment with <Enter>...
+vim.opt.formatoptions:append('o') -- ...or o/O
+vim.opt.formatoptions:append('n') -- Recognize numbered lists
+
+vim.keymap.set('n', 'Q', 'gqap')
+
 vim.o.nojoinspaces = true
 vim.o.autoindent = true
+
+vim.o.comments = vim.o.comments:gsub('fb:%-', 'b:-') -- lists with dashes
+
 vim.o.commentstring = '#%s'
 vim.o.tabstop = 8
 vim.o.softtabstop = 4
