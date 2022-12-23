@@ -4,7 +4,7 @@ vim.keymap.set('n', '<leader>b', ':Buffers<cr>')
 vim.keymap.set('n', '<leader>r', ':History<cr>') -- Recently edited files
 vim.keymap.set('n', '<leader>/', ':BLines<cr>') -- Fuzzy /
 vim.keymap.set('n', '<leader>G', ':BLines <c-r><c-a>') -- Fuzzy :g/
-vim.keymap.set('n', '<leader>g', ':silent! Glcd <bar> Rg ') -- ripgrep
+vim.keymap.set('n', '<leader>g', ':silent! Glcd <bar> exe "Rg ".input("ripgrep> ")<cr>') -- ripgrep
 
 -- Custom help files
 vim.keymap.set('n', '<leader>h', ':Files '..vim.env.XDG_CONFIG_HOME..'/repos/help<cr>')

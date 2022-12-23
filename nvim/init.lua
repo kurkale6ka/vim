@@ -138,12 +138,24 @@ vim.o.softtabstop = 4
 vim.o.expandtab = true
 vim.o.shiftwidth = 4
 vim.o.shiftround = true
+
+vim.keymap.set('x', '<tab>', '>')
+vim.keymap.set('x', '<s-tab>', '<')
+
+-- align left
+vim.keymap.set({'n', 'x'}, '<leader>0', ':left<cr>')
+
+vim.opt.tags:append { vim.env.XDG_CONFIG_HOME..'/repos/tags' }
 vim.opt.complete:remove { 't' }
 vim.opt.completeopt:remove { 'preview' }
 vim.o.showfulltag = true
 vim.o.hidden = true
+
+vim.opt.diffopt:append { 'vertical,iblank,iwhiteall' }
+
 vim.o.noequalalways = true
 vim.o.splitright = true
+vim.o.switchbuf = 'useopen,usetab'
 vim.o.showtabline = 1
 vim.o.tabline = '%!tabs#MyTabLine()'
 vim.o.exrc = true
