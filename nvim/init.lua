@@ -266,4 +266,12 @@ vim.o.nostartofline = true
 vim.keymap.set('x', '}', [[mode() == '<c-v>' ? line("'}")-1.'G' : '}']], { expr = true })
 vim.keymap.set('x', '{', [[mode() == '<c-v>' ? line("'{")+1.'G' : '{']], { expr = true })
 
+-- Spell check
+vim.keymap.set('n', '<leader>s', ':setlocal spell!<cr>')
+vim.keymap.set('n', '<leader>1', '1z=')
+vim.keymap.set('n', '<leader>2', '2z=')
+
 vim.opt.nrformats:remove { 'octal' }
+
+-- <leader>h for fuzzy help?
+-- init-local.lua
