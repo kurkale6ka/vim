@@ -224,24 +224,24 @@ vim.keymap.set('n', '<a-j>', '<c-w>j')
 vim.keymap.set('n', '<a-k>', '<c-w>k')
 vim.keymap.set('n', '<a-l>', '<c-w>l')
 
--- -- bol, eol
--- imap <c-left> <c-o>^
--- imap <c-right> <c-o>$
--- nmap <c-left> ^
--- nmap <c-right> $
+-- Goto ^ and $ with Ctrl + /
+vim.keymap.set('n', '<c-left>', '^')
+vim.keymap.set('n', '<c-right>', '$')
+vim.keymap.set('i', '<c-left>', '<c-o>^')
+vim.keymap.set('i', '<c-right>', '<c-o>$')
 
--- cnoremap <c-a> <home>
+-- <Home> to move to the first char on the line
+vim.keymap.set({'n','v','o'}, '<home>', '^')
+vim.keymap.set('i', '<home>', '<c-o>I')
+vim.keymap.set('c', '<c-a>', '<home>')
 
--- -- <Home> to move to the first char on the line
--- map  <home> ^
--- imap <home> <c-o>I
+-- Ctrl +  to go up by a paragraph
+vim.keymap.set('i', '<c-up>', '<c-o>{')
+vim.keymap.set({'n','v','o'}, '<c-up>', '{')
 
--- -- Ctrl + Up to go backwards by a paragraph
--- imap <c-up> <c-o>{
--- map  <c-up>      {
-
--- imap <c-down> <c-o>}
--- map  <c-down>      }
+-- Ctrl +  to go down by a paragraph
+vim.keymap.set('i', '<c-down>', '<c-o>}')
+vim.keymap.set({'n','v','o'}, '<c-down>', '}')
 
 vim.o.nostartofline = true
 vim.opt.nrformats:remove { 'octal' }
