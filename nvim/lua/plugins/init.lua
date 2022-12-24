@@ -19,9 +19,7 @@ return require('packer').startup(function(use)
     use 'lambdalisue/fern.vim'
     use 'lambdalisue/fern-hijack.vim'
     use 'lambdalisue/nerdfont.vim'
-    if vim.fn.has('patch-8.1.0994') then
-        use 'lambdalisue/fern-renderer-nerdfont.vim'
-    end
+    use 'lambdalisue/fern-renderer-nerdfont.vim'
     use 'lambdalisue/glyph-palette.vim'
 
     use 'liuchengxu/vista.vim'
