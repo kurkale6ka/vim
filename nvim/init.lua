@@ -1,3 +1,7 @@
+-- TODO:
+-- <leader>h for fuzzy help?
+-- Rg buffer-ring: up to go to last
+
 vim.g.mapleader = ' '
 
 -- Disable these plugins
@@ -203,9 +207,8 @@ vim.keymap.set('i', '<c-k>', '<c-o>D')
 vim.keymap.set('n', 'dl', ':call spaces#remove_eof()<cr>', { silent = true })
 
 -- Remove eol spaces
-vim.api.nvim_create_user_command('RemoveSpaces',
-    ':call spaces#remove()',
-    {desc = 'Remove eol spaces'}
+vim.api.nvim_create_user_command('RemoveEOLSpaces',
+    ':call spaces#remove()', {}
 )
 
 vim.o.virtualedit = 'block'
@@ -271,8 +274,10 @@ vim.keymap.set('n', '<leader>2', '2z=')
 
 vim.opt.nrformats:remove { 'octal' }
 
--- <leader>h for fuzzy help?
--- init-local.lua
+-- sudo :write
+vim.api.nvim_create_user_command('WriteSudo',
+    'write !sudo tee % >/dev/null', {}
+)
 
 -- Bespoke setup
 pcall(require, 'local')

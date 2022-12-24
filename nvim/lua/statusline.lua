@@ -1,9 +1,8 @@
 -- Wild menu & status line
-vim.opt.wildoptions:remove { 'pum' }
 vim.o.wildmenu = true
 vim.o.wildmode = 'full'
 vim.o.wildignorecase = true
-vim.opt.wildignore:append { '*~,*.swp,tags' }
+vim.opt.wildignore:append('*~,*.swp,tags')
 vim.o.wildcharm = '<c-z>' -- cmdline: <c-z> in a mapping acts like <tab>
 
 -- Status line

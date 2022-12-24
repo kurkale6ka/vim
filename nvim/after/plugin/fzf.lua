@@ -33,7 +33,6 @@ vim.keymap.set('n', '<leader>h', ':Files '..vim.env.XDG_CONFIG_HOME..'/repos/hel
 --    \ }))
 
 -- Rg: ripgrep
--- TODO: use :Glcd beforehand?
 vim.api.nvim_create_user_command('Rg',
     function(input)
         vim.call('fzf#vim#grep',
