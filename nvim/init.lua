@@ -250,11 +250,20 @@ vim.keymap.set('n', ']]', ":call search('^[^[:space:]]\\@=.*{$',  'esW')<cr>", {
 -- vim.keymap.set('o', '[[', [[
 --     (search('^[^[:space:]]\\@=.*{$', 'besW') &&
 --     (setpos("''", getpos('.')) <bar><bar> 1) ? "''" : "\\<esc>")
--- ]])
+-- ]], { expr = true})
 -- vim.keymap.set('o', ']]', [[
 --     (search('^[^[:space:]]\\@=.*{$',  'esW') &&
 --     (setpos("''", getpos('.')) <bar><bar> 1) ? "''" : "\\<esc>")
--- ]])
+-- ]], { expr = true})
 
+-- Text-object: file (all content)
+vim.keymap.set('x', 'aa', 'ggVoG')
+vim.keymap.set('o', 'aa', ':normal vaa<cr>')
+
+-- Let } select the current column only when in visual-block mode
 vim.o.nostartofline = true
+
+vim.keymap.set('x', '}', [[mode() == '<c-v>' ? line("'}")-1.'G' : '}']], { expr = true })
+vim.keymap.set('x', '{', [[mode() == '<c-v>' ? line("'{")+1.'G' : '{']], { expr = true })
+
 vim.opt.nrformats:remove { 'octal' }
