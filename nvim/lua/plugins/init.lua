@@ -1,6 +1,6 @@
 return require('packer').startup(function(use)
 
-    -- self
+    -- Self
     use 'wbthomason/packer.nvim'
 
     -- Tpope
@@ -26,7 +26,7 @@ return require('packer').startup(function(use)
 
     use 'liuchengxu/vista.vim'
 
-    -- junegunn
+    -- Junegunn
     use 'junegunn/vim-easy-align'
     use 'junegunn/fzf' -- , { 'dir': '~/.fzf', 'do': './install --all' }
     use 'junegunn/fzf.vim'
@@ -46,7 +46,7 @@ return require('packer').startup(function(use)
         },
     }
 
-    -- snippets
+    -- Snippets
     use 'SirVer/ultisnips'
     use 'quangnguyen30192/cmp-nvim-ultisnips'
     use 'honza/vim-snippets'
@@ -55,9 +55,8 @@ return require('packer').startup(function(use)
 
     use { 'glacambre/firenvim', run = function() vim.fn['firenvim#install'](0) end }
 
-    -- Local
-    use '~/.vim/plugged/vim-pairs'
-    use '~/.vim/plugged/vim-desertEX'
-    use '~/.vim/plugged/vsearch'
+    -- Own
+    use 'kurkale6ka/vim-pairs'
+    use 'kurkale6ka/vim-desertEX'
 
 end)
