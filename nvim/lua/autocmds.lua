@@ -45,12 +45,12 @@ vim.api.nvim_create_autocmd("TermOpen", {
 
 -- -- WSL yank support
 -- local clipboard = '/mnt/c/Windows/System32/clip.exe'
--- if vim.call('executable', clipboard) then
+-- if vim.fn.executable(clipboard) then
 --     vim.api.nvim_create_autocmd("TextYankPost", {
 --         pattern = "*",
 --         callback = function(ev)
 --             if v:event['operator'] == 'y' then
---                 vim.call('system', clipboard, '@0')
+--                 vim.fn.system(clipboard, '@0')
 --             end
 --         end,
 --         group = windows
