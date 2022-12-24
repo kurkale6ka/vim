@@ -273,3 +273,6 @@ vim.opt.nrformats:remove { 'octal' }
 
 -- <leader>h for fuzzy help?
 -- init-local.lua
+
+-- Bespoke setup
+pcall(require, 'local')
