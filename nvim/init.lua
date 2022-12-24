@@ -243,5 +243,18 @@ vim.keymap.set({'n','v','o'}, '<c-up>', '{')
 vim.keymap.set('i', '<c-down>', '<c-o>}')
 vim.keymap.set({'n','v','o'}, '<c-down>', '}')
 
+-- Let [[, ]] work even if the { is not in the first column
+vim.keymap.set('n', '[[', ":call search('^[^[:space:]]\\@=.*{$', 'besW')<cr>", { silent = true })
+vim.keymap.set('n', ']]', ":call search('^[^[:space:]]\\@=.*{$',  'esW')<cr>", { silent = true })
+
+-- vim.keymap.set('o', '[[', [[
+--     (search('^[^[:space:]]\\@=.*{$', 'besW') &&
+--     (setpos("''", getpos('.')) <bar><bar> 1) ? "''" : "\\<esc>")
+-- ]])
+-- vim.keymap.set('o', ']]', [[
+--     (search('^[^[:space:]]\\@=.*{$',  'esW') &&
+--     (setpos("''", getpos('.')) <bar><bar> 1) ? "''" : "\\<esc>")
+-- ]])
+
 vim.o.nostartofline = true
 vim.opt.nrformats:remove { 'octal' }
