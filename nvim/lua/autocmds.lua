@@ -43,6 +43,17 @@ vim.api.nvim_create_autocmd("TermOpen", {
     group = terminal
 })
 
+-- -- Syntax based omni completion
+-- vim.api.nvim_create_autocmd("Filetype", {
+--     pattern = "*",
+--     command = [[
+--         if empty(&omnifunc)
+--             setlocal omnifunc=syntaxcomplete#Complete
+--         endif
+--     ]],
+--     group = generic
+-- })
+
 -- -- WSL yank support
 -- local clipboard = '/mnt/c/Windows/System32/clip.exe'
 -- if vim.fn.executable(clipboard) then

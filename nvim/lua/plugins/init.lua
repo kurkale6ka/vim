@@ -3,6 +3,21 @@ return require('packer').startup(function(use)
     -- Self
     use 'wbthomason/packer.nvim'
 
+    -- TODO
+    -- execute "Plug '".s:vim."/plugged/unicodename', { 'on': 'UnicodeName' }"
+    -- execute "Plug '".s:vim."/plugged/win_full_screen', { 'on': 'WinFullScreen' }"
+    -- execute "Plug '".s:vim."/plugged/vim-chess'"
+    -- Plug 'bfredl/nvim-miniyank', has('nvim') ? {} : { 'on': [] } " ???
+    -- Plug 'pearofducks/ansible-vim'
+    -- Plug 'rodjek/vim-puppet'
+    -- Plug 'terceiro/vim-foswiki'
+    -- Plug 'vim-scripts/iptables'
+    -- Plug 'vim-scripts/nginx.vim'
+    -- Plug 'StanAngeloff/php.vim'
+    -- Plug 'tmux-plugins/vim-tmux'
+    -- Plug 'norcalli/nvim-colorizer.lua' " ???
+    -- Plug 'jvirtanen/vim-hcl'
+
     -- Tpope
     use 'tpope/vim-abolish'
     use 'tpope/vim-commentary'
