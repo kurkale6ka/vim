@@ -8,6 +8,7 @@ return require('packer').startup(function(use)
     -- execute "Plug '".s:vim."/plugged/win_full_screen', { 'on': 'WinFullScreen' }"
     -- execute "Plug '".s:vim."/plugged/vim-chess'"
     -- Plug 'bfredl/nvim-miniyank', has('nvim') ? {} : { 'on': [] } " ???
+    -- Plug 'airblade/vim-gitgutter' + config
     -- Plug 'pearofducks/ansible-vim'
     -- Plug 'rodjek/vim-puppet'
     -- Plug 'terceiro/vim-foswiki'
