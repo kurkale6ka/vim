@@ -25,13 +25,6 @@ vim.keymap.set('n', '<leader>h', ':Files '..vim.env.XDG_CONFIG_HOME..'/repos/hel
 --    \ }))
 -- nmap <leader>l :Lang<cr>
 
--- " Scriptnames
--- command! -nargs=? Scriptnames call fzf#run(fzf#wrap({
---    \ 'source': split(execute('scriptnames'), '\n'),
---    \ 'sink': {script -> execute('edit'.substitute(script, '^\s*\d\+:\s\+', '', ''))},
---    \ 'options': '-1 +m -q "'.<q-args>.'" --prompt "Scriptnames> "'
---    \ }))
-
 -- Rg: ripgrep
 vim.api.nvim_create_user_command('Rg',
     function(input)
