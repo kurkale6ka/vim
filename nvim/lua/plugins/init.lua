@@ -45,18 +45,23 @@ return require('packer').startup(function(use)
     use 'junegunn/fzf' -- , { 'dir': '~/.fzf', 'do': './install --all' }
     use 'junegunn/fzf.vim'
 
-    use { "williamboman/mason.nvim" }
+    -- LSP
+    use { 'neovim/nvim-lspconfig',
+        requires = {
+            'williamboman/mason.nvim', -- automatically install LSPs to stdpath for neovim
+            'williamboman/mason-lspconfig.nvim',
+            'j-hui/fidget.nvim', -- useful status updates for LSP
+            'folke/neodev.nvim', -- additional lua configuration, makes nvim stuff amazing
+        },
+    }
 
     -- Autocompletion
-    use {
-        'hrsh7th/nvim-cmp',
+    use { 'hrsh7th/nvim-cmp',
         requires = {
-            'neovim/nvim-lspconfig',
             'hrsh7th/cmp-nvim-lsp',
             'hrsh7th/cmp-buffer',
             'hrsh7th/cmp-path',
             'hrsh7th/cmp-cmdline',
-            'hrsh7th/nvim-cmp',
         },
     }
 

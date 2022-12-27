@@ -1,5 +1,5 @@
 -- TODO:
--- <leader>h for fuzzy help?
+-- <leader>h or gh or <localleader>h for fuzzy help?
 -- cunsorhold updatetime
 -- Rg buffer-ring: up to go to last
 -- let g:ansible_attribute_highlight = "ab"
@@ -27,13 +27,12 @@ vim.g.loaded_spellfile_plugin   = true
 -- TODO: set includeexpr for gf
 require('plugins')
 require('plugins/nvim-lspconfig')
-require('mason').setup()
-require('plugins/tree-sitter')
-require('plugins/fern')
-require('plugins/firenvim')
-require('plugins/sleuth')
 require('plugins/nvim-cmp')
+require('plugins/tree-sitter')
 require('plugins/ultisnips')
+require('plugins/fern')
+require('plugins/sleuth')
+require('plugins/firenvim')
 require('statusline')
 require('autocmds')
 
