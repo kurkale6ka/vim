@@ -1,8 +1,8 @@
 " Font
 Guifont DejaVu Sans Mono:h12
 
-" Any unicode stuff must be repeated here as there is no such test as
-" has('gui_running') for nvim-qt!
+" Any unicode stuff 'must' be repeated here as there 'is no' such test as
+" has('gui_running') for GUIs
 
 let &showbreak = nr2char(8618).' ' " U+21AA ↪
 
