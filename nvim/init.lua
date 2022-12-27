@@ -26,6 +26,7 @@ vim.g.loaded_spellfile_plugin   = true
 
 -- TODO: set includeexpr for gf
 require('plugins')
+require('plugins/nvim-lspconfig')
 require('mason').setup()
 require('plugins/tree-sitter')
 require('plugins/fern')
