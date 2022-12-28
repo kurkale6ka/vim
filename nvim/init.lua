@@ -286,6 +286,26 @@ vim.keymap.set('n', '<leader>2', '2z=')
 
 vim.opt.nrformats:remove { 'octal' }
 
+-- Get ex command output in a buffer
+vim.api.nvim_create_user_command('Scratch',
+    function(input)
+        vim.call('scratch#buffer', input.args)
+    end,
+    { nargs = '+', desc = 'Get ex command output in a buffer' }
+)
+
+-- Quote coma separated items
+-- cmd = apt install vim ->
+-- cmd = ('apt', 'install', 'vim')
+vim.api.nvim_create_user_command('Quotes',
+    ".py3do return line.split('=', 1)[0].rstrip() + ' = ' + str(line.split('=', 1)[1].lstrip().split()).translate(str.maketrans('[]','()')) if '=' in line else str(line.split()).translate(str.maketrans('[]','()'))",
+    { desc = 'Create python tuple("item1", "item2") from coma separated items' }
+)
+
+-- Edit and write commands (TODO: move with \e)
+-- Tilda is hard to type :eh<space> -> :e~/
+vim.cmd([[cabbrev <expr> eh getcmdtype() == ':' ? 'e~/'.abbreviations#eat_char('\s') : 'eh']])
+
 -- sudo :write
 vim.api.nvim_create_user_command('WriteSudo',
     'write !sudo tee % >/dev/null', {}
