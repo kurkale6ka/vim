@@ -43,6 +43,19 @@ vim.api.nvim_create_autocmd("TermOpen", {
     group = terminal
 })
 
+-- TODO
+-- vim.o.updatetime = 300
+-- vim.api.nvim_exec([[
+--     hi LspReferenceRead cterm=bold ctermbg=DarkMagenta guibg=LightYellow
+--     hi LspReferenceText cterm=bold ctermbg=DarkMagenta guibg=LightYellow
+--     hi LspReferenceWrite cterm=bold ctermbg=DarkMagenta guibg=LightYellow
+--     augroup lsp_document_highlight
+--         autocmd! * <buffer>
+--         autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
+--         autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
+--     augroup END
+-- ]], false)
+
 -- -- Syntax based omni completion
 -- vim.api.nvim_create_autocmd("Filetype", {
 --     pattern = "*",
