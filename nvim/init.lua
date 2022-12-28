@@ -6,6 +6,8 @@
 -- set backup
 -- nmap <expr> <leader>g ':vert Git -p ', redefine command?
 -- remove after/ftdetect/filetype.vim
+-- compare with coc completion
+-- fix leader-w
 
 vim.g.mapleader = ' '
 
