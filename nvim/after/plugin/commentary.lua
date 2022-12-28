@@ -5,5 +5,5 @@ end
 
 -- \\ to toggle comments
 -- TODO: turn to localleader?
-vim.keymap.set('n', '<bslash><bslash>', 'gcc')
-vim.keymap.set('x', '<bslash><bslash>', 'gc')
+vim.keymap.set('n', '<bslash><bslash>', 'gcc', { remap = true })
+vim.keymap.set('x', '<bslash><bslash>', 'gc',  { remap = true })
