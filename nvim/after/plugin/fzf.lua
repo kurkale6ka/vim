@@ -1,4 +1,4 @@
-vim.keymap.set('n', '<leader>f', ':silent! Glcd <bar> Files<cr>')
+vim.keymap.set('n', '<leader>sf', ':silent! Glcd <bar> Files<cr>')
 vim.keymap.set('n', '<leader>t', ':Filetypes<cr>') -- Set 'ft
 vim.keymap.set('n', '<leader>b', ':Buffers<cr>')
 vim.keymap.set('n', '<leader>r', ':History<cr>') -- Recently edited files
