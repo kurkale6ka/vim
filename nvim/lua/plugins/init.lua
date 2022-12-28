@@ -39,6 +39,7 @@ return require('packer').startup(function(use)
     use 'lambdalisue/glyph-palette.vim'
 
     use 'liuchengxu/vista.vim'
+    use 'dstein64/vim-startuptime'
 
     -- Junegunn
     use 'junegunn/vim-easy-align'
