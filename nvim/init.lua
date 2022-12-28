@@ -53,6 +53,7 @@ vim.o.autoread = false
 vim.keymap.set('n', '<leader>w', ':w<cr>')
 vim.keymap.set('n', '<leader>e', ':e')
 vim.keymap.set('n', '<leader>-', '<c-^>') -- switch to the alternate file
+vim.keymap.set('n', '<leader>a', ':A<cr>') -- switch to projectionist-alternate
 
 vim.o.undofile = true
 vim.o.history = 10000
@@ -146,6 +147,10 @@ vim.keymap.set('n', '<leader>z', ':call squeeze#lines("")<cr>', { silent = true 
 
 -- = + space to surround with empty lines
 vim.keymap.set('n', '=<leader>', '[<leader>]<leader>', { remap = true })
+
+-- -- Ctrl + Enter to open a line below in INSERT mode
+-- imap <c-cr> <esc>o
+-- imap <s-cr> <esc>O
 
 vim.o.tabstop = 8
 vim.o.softtabstop = 4
