@@ -30,6 +30,36 @@ local on_attach = function(client, bufnr)
     vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, bufopts)
     vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
     vim.keymap.set('n', '<leader>f', function() vim.lsp.buf.format { async = true } end, bufopts)
+
+    -- Word highlight on hover
+    vim.o.updatetime = 300
+
+    if client.server_capabilities.documentHighlightProvider
+    then
+        local cursor = vim.api.nvim_create_augroup("Word highlight on hover", { clear = true })
+
+        vim.cmd([[
+            highlight link LspReferenceRead Visual
+            highlight link LspReferenceText Visual
+            highlight link LspReferenceWrite Visual
+        ]])
+
+        vim.api.nvim_create_autocmd("CursorHold" , {
+            callback = function ()
+                vim.lsp.buf.document_highlight()
+            end,
+            buffer = bufnr,
+            group = cursor
+        })
+
+        vim.api.nvim_create_autocmd("CursorMoved" , {
+            callback = function ()
+                vim.lsp.buf.clear_references()
+            end,
+            buffer = bufnr,
+            group = cursor
+        })
+    end
 end
 
 local servers = {

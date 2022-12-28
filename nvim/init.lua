@@ -1,6 +1,5 @@
 -- TODO:
 -- <leader>h or gh or <localleader>h for fuzzy help?
--- cunsorhold updatetime
 -- Rg buffer-ring: up to go to last
 -- let g:ansible_attribute_highlight = "ab"
 -- let g:vim_json_syntax_conceal = 0
