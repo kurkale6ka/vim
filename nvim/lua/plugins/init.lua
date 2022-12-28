@@ -41,7 +41,7 @@ return require('packer').startup(function(use)
     use 'liuchengxu/vista.vim'
     use 'dstein64/vim-startuptime'
 
-    -- Junegunn
+    -- Junegunn: TODO
     use 'junegunn/vim-easy-align'
     use 'junegunn/fzf' -- , { 'dir': '~/.fzf', 'do': './install --all' }
     use 'junegunn/fzf.vim'

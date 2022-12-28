@@ -5,18 +5,19 @@
 -- let g:ansible_attribute_highlight = "ab"
 -- let g:vim_json_syntax_conceal = 0
 -- set backup
+-- nmap <expr> <leader>g ':vert Git -p ', redefine command?
 -- remove after/ftdetect/filetype.vim
 
 vim.g.mapleader = ' '
 
 -- Disable these plugins
+vim.g.did_install_default_menus = true
 vim.g.loaded_2html_plugin       = true
 vim.g.loaded_vimballPlugin      = true
 vim.g.loaded_netrwPlugin        = true
 vim.g.loaded_zipPlugin          = true
 vim.g.loaded_tarPlugin          = true
 vim.g.loaded_getscriptPlugin    = true
-vim.g.did_install_default_menus = true
 vim.g.loaded_rrhelper           = true
 vim.g.loaded_spellfile_plugin   = true
 
@@ -25,7 +26,6 @@ vim.g.loaded_spellfile_plugin   = true
 --    runtime! macros/matchit.vim
 -- endif
 
--- TODO: set includeexpr for gf
 require('plugins')
 require('plugins/nvim-lspconfig')
 require('plugins/nvim-cmp')
