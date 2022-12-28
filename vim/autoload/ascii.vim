@@ -1,3 +1,9 @@
+" Print characters corresponding to a numeric range:
+" e.g. call ascii#codes(21,31)
+"
+" ASCII   control characters: character code 0-31
+" ASCII printable characters: character code 32-127
+" Extended ASCII codes:       character code 128-255
 function! ascii#codes (...)
 
    if a:0 == 0
