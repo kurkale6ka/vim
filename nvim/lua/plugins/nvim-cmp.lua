@@ -1,5 +1,33 @@
 -- Set up nvim-cmp.
-local cmp = require'cmp'
+local cmp = require 'cmp'
+
+local kind_icons  = {
+    Text          = "",
+    Method        = "",
+    Function      = "",
+    Constructor   = "",
+    Field         = "",
+    Variable      = "",
+    Class         = "ﴯ",
+    Interface     = "",
+    Module        = "",
+    Property      = "ﰠ",
+    Unit          = "",
+    Value         = "",
+    Enum          = "",
+    Keyword       = "",
+    Snippet       = "",
+    Color         = "",
+    File          = "",
+    Reference     = "",
+    Folder        = "",
+    EnumMember    = "",
+    Constant      = "",
+    Struct        = "",
+    Event         = "",
+    Operator      = "",
+    TypeParameter = "",
+}
 
 cmp.setup({
     snippet = {
@@ -19,9 +47,17 @@ cmp.setup({
         ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
     }),
     sources = cmp.config.sources({
-        {name = 'buffer', keyword_length = 3},
-        {name = 'nvim_lsp', keyword_length = 3},
-        {name = 'path'},
+        { name = 'buffer', keyword_length = 3 },
+        { name = 'nvim_lsp', keyword_length = 3 },
+        { name = 'path' },
         { name = 'ultisnips' },
-    })
+    }),
+    formatting = {
+        format = function(entry, vim_item)
+            -- Kind icons
+            -- This concatonates the icons with the name of the item kind
+            vim_item.kind = string.format("%s %s", kind_icons[vim_item.kind], vim_item.kind)
+            return vim_item
+        end,
+    },
 })
