@@ -5,6 +5,7 @@
 -- let g:ansible_attribute_highlight = "ab"
 -- let g:vim_json_syntax_conceal = 0
 -- set backup
+-- remove after/ftdetect/filetype.vim
 
 vim.g.mapleader = ' '
 
@@ -74,7 +75,7 @@ vim.keymap.set('n', '<leader>S', ':%s/<c-r><c-a>//g<left><left>')
 vim.cmd([[cabbrev <expr> es getcmdtype() == ':' ? 'e%:p:s/'.abbreviations#eat_char('\s') : 'es']])
 
 vim.o.inccommand = 'nosplit'
-vim.opt.path:append { vim.env.XDG_CONFIG_HOME..'/repos/**' }
+vim.opt.path:append { vim.env.XDG_CONFIG_HOME .. '/repos/**' }
 vim.o.grepprg = 'rg --column --line-number --no-heading --vimgrep --smart-case --hidden'
 vim.o.fileencodings = 'ucs-bom,utf-8,default,cp1251,latin1'
 vim.o.fileformats = 'unix,mac,dos'
@@ -137,7 +138,7 @@ vim.o.autoindent = true
 -- Underline
 vim.api.nvim_create_user_command('Underline',
     'call underline#current(<q-args>)',
-    {nargs = '?', desc = 'Underline with dashes by default'}
+    { nargs = '?', desc = 'Underline with dashes by default' }
 )
 
 -- \z to squeeze lines
@@ -156,9 +157,9 @@ vim.keymap.set('x', '<tab>', '>')
 vim.keymap.set('x', '<s-tab>', '<')
 
 -- align left
-vim.keymap.set({'n', 'x'}, '<leader>0', ':left<cr>')
+vim.keymap.set({ 'n', 'x' }, '<leader>0', ':left<cr>')
 
-vim.opt.tags:append { vim.env.XDG_CONFIG_HOME..'/repos/tags' }
+vim.opt.tags:append { vim.env.XDG_CONFIG_HOME .. '/repos/tags' }
 vim.opt.complete:remove { 't' }
 vim.opt.completeopt:remove { 'preview' }
 vim.o.showfulltag = true
@@ -204,7 +205,7 @@ vim.keymap.set('c', '<c-w>', '<c-\\>ecmdline#ctrl_w()<cr>')
 vim.keymap.set('i', '<c-w>', '<c-o>dB')
 
 -- Alt + backspace
-vim.keymap.set({'i', 'c'}, '<m-bs>', '<c-w>')
+vim.keymap.set({ 'i', 'c' }, '<m-bs>', '<c-w>')
 
 -- Alt + d
 vim.keymap.set('c', '<m-d>', '<c-\\>ecmdline#alt_d()<cr>')
@@ -227,10 +228,10 @@ vim.o.whichwrap = 'b,s,<,>,[,]'
 vim.o.paragraphs = nil -- no wrongly defined paragraphs for non nroff,groff filetypes
 
 -- use alt + h,j,k,l to navigate windows from any mode
-vim.keymap.set({'t','i'}, '<a-h>', '<c-\\><c-n><c-w>h')
-vim.keymap.set({'t','i'}, '<a-j>', '<c-\\><c-n><c-w>j')
-vim.keymap.set({'t','i'}, '<a-k>', '<c-\\><c-n><c-w>k')
-vim.keymap.set({'t','i'}, '<a-l>', '<c-\\><c-n><c-w>l')
+vim.keymap.set({ 't', 'i' }, '<a-h>', '<c-\\><c-n><c-w>h')
+vim.keymap.set({ 't', 'i' }, '<a-j>', '<c-\\><c-n><c-w>j')
+vim.keymap.set({ 't', 'i' }, '<a-k>', '<c-\\><c-n><c-w>k')
+vim.keymap.set({ 't', 'i' }, '<a-l>', '<c-\\><c-n><c-w>l')
 vim.keymap.set('n', '<a-h>', '<c-w>h')
 vim.keymap.set('n', '<a-j>', '<c-w>j')
 vim.keymap.set('n', '<a-k>', '<c-w>k')
@@ -243,17 +244,17 @@ vim.keymap.set('i', '<c-left>', '<c-o>^')
 vim.keymap.set('i', '<c-right>', '<c-o>$')
 
 -- <Home> to move to the first char on the line
-vim.keymap.set({'n','v','o'}, '<home>', '^')
+vim.keymap.set({ 'n', 'v', 'o' }, '<home>', '^')
 vim.keymap.set('i', '<home>', '<c-o>I')
 vim.keymap.set('c', '<c-a>', '<home>')
 
 -- Ctrl +  to go up by a paragraph
 vim.keymap.set('i', '<c-up>', '<c-o>{')
-vim.keymap.set({'n','v','o'}, '<c-up>', '{')
+vim.keymap.set({ 'n', 'v', 'o' }, '<c-up>', '{')
 
 -- Ctrl +  to go down by a paragraph
 vim.keymap.set('i', '<c-down>', '<c-o>}')
-vim.keymap.set({'n','v','o'}, '<c-down>', '}')
+vim.keymap.set({ 'n', 'v', 'o' }, '<c-down>', '}')
 
 -- Let [[, ]] work even if the { is not in the first column
 vim.keymap.set('n', '[[', ":call search('^[^[:space:]]\\@=.*{$', 'besW')<cr>", { silent = true })
