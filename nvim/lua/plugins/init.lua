@@ -80,3 +80,11 @@ return require('packer').startup(function(use)
     use 'kurkale6ka/vim-desertEX'
 
 end)
+
+-- TODO
+-- vim.cmd([[
+--   augroup packer_user_config
+--     autocmd!
+--     autocmd BufWritePost plugins.lua source <afile> | PackerCompile
+--   augroup end
+-- ]])
