@@ -1,19 +1,22 @@
 -- TODO:
 -- <leader>h or gh or <localleader>h for fuzzy help?
--- Rg buffer-ring: up to go to last
+-- :Rg buffer-ring: up to go to last
+-- :Rg \bpyright
 -- let g:ansible_attribute_highlight = "ab"
 -- let g:vim_json_syntax_conceal = 0
 -- set backup
 -- nmap <expr> <leader>g ':vert Git -p ', redefine command?
 -- compare with coc completion
--- fix leader-w
--- fix gr
 -- ts text objects
 -- get completions from all buffers
 -- au groups?
 -- localleader gl
 -- use gh in mappings
--- :Rg \bpyright
+-- leader-w used for workspaces
+-- gr used for symbol reefrences
+-- leader-sf conflicts with 'spell
+-- search-maps and more...
+-- use coc, =oc, old option changing combis
 
 vim.g.mapleader = ' '
 
