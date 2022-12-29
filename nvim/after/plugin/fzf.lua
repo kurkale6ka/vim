@@ -1,9 +1,12 @@
-vim.keymap.set('n', '<leader>sf', ':silent! Glcd <bar> Files<cr>')
-vim.keymap.set('n', '<leader>t', ':Filetypes<cr>') -- Set 'ft
+vim.keymap.set('n', '<leader>sg', ':GFiles<cr>')   -- search git files
+vim.keymap.set('n', '<leader>sf', ':Files<cr>')    -- search fzf files
+vim.keymap.set('n', '<leader>sh', ':History<cr>')  -- search history (recently edited files)
+vim.keymap.set('n', '<leader>ss', ':Snippets<cr>') -- search snippets
+vim.keymap.set('n', '<leader>st', ':Tags<cr>')     -- search tags
+vim.keymap.set('n', '<leader>t', ':Filetypes<cr>') -- set 'ft
 vim.keymap.set('n', '<leader>b', ':Buffers<cr>')
-vim.keymap.set('n', '<leader>r', ':History<cr>') -- Recently edited files
-vim.keymap.set('n', '<leader>/', ':BLines<cr>') -- Fuzzy /
-vim.keymap.set('n', '<leader>G', ':BLines <c-r><c-a>') -- Fuzzy :g/
+vim.keymap.set('n', '<leader>/', ':BLines<cr>') -- fuzzy /
+vim.keymap.set('n', '<leader>G', ':BLines <c-r><c-a>') -- fuzzy :g/
 vim.keymap.set('n', '<leader>g', ':silent! Glcd <bar> exe "Rg ".input("ripgrep> ")<cr>') -- ripgrep
 
 -- Custom help files

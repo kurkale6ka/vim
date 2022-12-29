@@ -1,5 +1,4 @@
 -- TODO:
--- <leader>h or gh or <localleader>h for fuzzy help?
 -- :Rg buffer-ring: up to go to last
 -- :Rg \bpyright
 -- let g:ansible_attribute_highlight = "ab"
@@ -9,16 +8,12 @@
 -- compare with coc completion
 -- ts text objects
 -- get completions from all buffers
--- au groups?
--- localleader gl
--- use gh in mappings
--- leader-w used for workspaces
--- gr used for symbol reefrences
--- leader-sf conflicts with 'spell
--- search-maps and more...
--- use coc, =oc, old option changing combis
+-- autocmd: what are groups for?
+-- gh or <localleader>h for local help?
+-- use in mappings: gl, gh, coc, =oc, old option changing combis
 
 vim.g.mapleader = ' '
+vim.g.maplocalleader = '\\'
 
 -- Disable these plugins
 vim.g.did_install_default_menus = true
@@ -293,7 +288,6 @@ vim.keymap.set('x', '}', [[mode() == '<c-v>' ? line("'}")-1.'G' : '}']], { expr 
 vim.keymap.set('x', '{', [[mode() == '<c-v>' ? line("'{")+1.'G' : '{']], { expr = true })
 
 -- Spell check
-vim.keymap.set('n', '<leader>s', ':setlocal spell!<cr>')
 vim.keymap.set('n', '<leader>1', '1z=')
 vim.keymap.set('n', '<leader>2', '2z=')
 
