@@ -141,7 +141,7 @@ vim.o.commentstring = '#%s'
 
 vim.keymap.set('n', 'Q', 'gqap')
 
-vim.o.nojoinspaces = true
+vim.o.joinspaces = false
 vim.o.autoindent = true
 
 -- Underline
@@ -180,7 +180,7 @@ vim.o.hidden = true
 
 vim.opt.diffopt:append { 'vertical,iblank,iwhiteall' }
 
-vim.o.noequalalways = true
+vim.o.equalalways = false
 vim.o.splitright = true
 vim.o.switchbuf = 'useopen,usetab'
 
@@ -287,7 +287,7 @@ vim.keymap.set('x', 'aa', 'ggVoG')
 vim.keymap.set('o', 'aa', ':normal vaa<cr>')
 
 -- Let } select the current column only when in visual-block mode
-vim.o.nostartofline = true
+vim.o.startofline = false
 
 vim.keymap.set('x', '}', [[mode() == '<c-v>' ? line("'}")-1.'G' : '}']], { expr = true })
 vim.keymap.set('x', '{', [[mode() == '<c-v>' ? line("'{")+1.'G' : '{']], { expr = true })
