@@ -63,7 +63,10 @@ local on_attach = function(client, bufnr)
 end
 
 local servers = {
+    ansiblels = {},
+    jsonls = {},
     pyright = {},
+    terraformls = {},
 
     sumneko_lua = {
         Lua = {
