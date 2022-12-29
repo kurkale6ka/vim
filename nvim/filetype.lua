@@ -12,8 +12,9 @@ vim.filetype.add({
         ['authorized_keys.*'] = 'authorized_keys',
         ['.*/postfix/aliases'] = 'mailaliases',
         ['r?syslog.*%.conf'] = 'syslog',
-        ['.*/.*[aA]nsible.*/.*%.yml'] = 'yaml.ansible',
-        ['.*/zsh/autoload/.*'] = 'zsh',
-        ['.*/zsh/after/.*'] = 'zsh'
+        ['.*/.*[aA]nsible.*/.+%.yml'] = 'yaml.ansible',
+        ['.*/.*[aA]nsible.*/templates/.+%.json'] = 'json.jinja2',
+        ['.*/zsh/autoload/.+'] = 'zsh',
+        ['.*/zsh/after/.+'] = 'zsh'
     },
 })
