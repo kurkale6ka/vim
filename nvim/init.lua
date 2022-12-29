@@ -13,6 +13,7 @@
 -- au groups?
 -- localleader gl
 -- use gh in mappings
+-- :Rg \bpyright
 
 vim.g.mapleader = ' '
 
