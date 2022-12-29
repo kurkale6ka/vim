@@ -39,8 +39,9 @@ require('plugins/ultisnips')
 require('plugins/fern')
 require('plugins/sleuth')
 require('plugins/firenvim')
-require('statusline')
 require('autocmds')
+require('readline')
+require('statusline')
 
 vim.g.python3_host_prog = '~/py-envs/utils/bin/python'
 
@@ -181,12 +182,6 @@ vim.o.equalalways = false
 vim.o.splitright = true
 vim.o.switchbuf = 'useopen,usetab'
 
--- Ctrl + w twice to go to the last accessed window
-vim.keymap.set('n', '<c-w><c-w>', ':wincmd p<cr>', { silent = true })
-
--- Ctrl + w, N to create a new buffer over the current one
-vim.keymap.set('n', '<c-w>N', ':leftabove vnew<cr>', { silent = true })
-
 vim.o.showtabline = 1
 vim.o.tabline = '%!tabs#MyTabLine()'
 vim.o.exrc = true
@@ -207,24 +202,6 @@ vim.keymap.set('x', '<cr>', "<esc>'<dd'>[pjdd`<P==")
 vim.keymap.set('n', '<bs>', '"_X')
 vim.o.backspace = 'indent,eol,start'
 
--- Ctrl + u
-vim.keymap.set('i', '<c-u>', '<c-g>u<c-u>')
-
--- Ctrl + w
-vim.keymap.set('c', '<c-w>', '<c-\\>ecmdline#ctrl_w()<cr>')
-vim.keymap.set('i', '<c-w>', '<c-o>dB')
-
--- Alt + backspace
-vim.keymap.set({ 'i', 'c' }, '<m-bs>', '<c-w>')
-
--- Alt + d
-vim.keymap.set('c', '<m-d>', '<c-\\>ecmdline#alt_d()<cr>')
-vim.keymap.set('i', '<m-d>', '<c-o>de')
-
--- Ctrl + k
-vim.keymap.set('c', '<c-k>', '<c-\\>estrpart(getcmdline(), 0, getcmdpos() - 1)<cr>')
-vim.keymap.set('i', '<c-k>', '<c-o>D')
-
 -- Delete EOF empty lines
 vim.keymap.set('n', 'dl', ':call spaces#remove_eof()<cr>', { silent = true })
 
@@ -236,33 +213,6 @@ vim.api.nvim_create_user_command('RemoveEOLSpaces',
 vim.o.virtualedit = 'block'
 vim.o.whichwrap = 'b,s,<,>,[,]'
 vim.o.paragraphs = nil -- no wrongly defined paragraphs for non nroff,groff filetypes
-
--- use alt + h,j,k,l to navigate windows from any mode
-vim.keymap.set({ 't', 'i' }, '<a-h>', '<c-\\><c-n><c-w>h')
-vim.keymap.set({ 't', 'i' }, '<a-j>', '<c-\\><c-n><c-w>j')
-vim.keymap.set({ 't', 'i' }, '<a-k>', '<c-\\><c-n><c-w>k')
-vim.keymap.set({ 't', 'i' }, '<a-l>', '<c-\\><c-n><c-w>l')
-vim.keymap.set('n', '<a-h>', '<c-w>h')
-vim.keymap.set('n', '<a-j>', '<c-w>j')
-vim.keymap.set('n', '<a-k>', '<c-w>k')
-vim.keymap.set('n', '<a-l>', '<c-w>l')
-
--- Goto ^ and $
-vim.keymap.set('n', '<c-left>',  '^')
-vim.keymap.set('n', '<c-right>', '$')
-vim.keymap.set('i', '<c-left>',  '<c-o>^')
-vim.keymap.set('i', '<c-right>', '<c-o>$')
-vim.keymap.set('c', '<c-left>',  '<c-b>')
-vim.keymap.set('c', '<c-right>', '<c-e>')
-vim.keymap.set('c', '<c-a>', '<c-b>')
-
--- Ctrl +  to go up by a paragraph
-vim.keymap.set('i', '<c-up>', '<c-o>{')
-vim.keymap.set({ 'n', 'v', 'o' }, '<c-up>', '{')
-
--- Ctrl +  to go down by a paragraph
-vim.keymap.set('i', '<c-down>', '<c-o>}')
-vim.keymap.set({ 'n', 'v', 'o' }, '<c-down>', '}')
 
 -- Let [[, ]] work even if the { is not in the first column
 vim.keymap.set('n', '[[', ":call search('^[^[:space:]]\\@=.*{$', 'besW')<cr>", { silent = true })
