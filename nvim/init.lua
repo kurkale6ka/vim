@@ -14,6 +14,7 @@
 -- au groups?
 -- localleader gl
 -- use gh in mappings
+-- c-<- in : doesn't go to bol
 
 vim.g.mapleader = ' '
 
