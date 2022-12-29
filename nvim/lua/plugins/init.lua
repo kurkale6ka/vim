@@ -1,3 +1,12 @@
+local packer = vim.api.nvim_create_augroup('Packer', { clear = true })
+
+-- Automatically source and packer compile on save
+vim.api.nvim_create_autocmd('BufWritePost', {
+    command = 'source <afile> | PackerCompile',
+    pattern = vim.fn.expand('%:p'),
+    group = packer,
+})
+
 return require('packer').startup(function(use)
 
     -- Self
@@ -39,11 +48,11 @@ return require('packer').startup(function(use)
     use 'lambdalisue/glyph-palette.vim'
 
     use 'liuchengxu/vista.vim'
-    use 'dstein64/vim-startuptime'
+    use { 'dstein64/vim-startuptime', opt = true, cmd = 'StartupTime' }
 
     -- Junegunn: TODO
     use 'junegunn/vim-easy-align'
-    use 'junegunn/fzf' -- , { 'dir': '~/.fzf', 'do': './install --all' }
+    use { 'junegunn/fzf', run = function() vim.call('fzf#install') end }
     use 'junegunn/fzf.vim'
 
     -- LSP
@@ -80,11 +89,3 @@ return require('packer').startup(function(use)
     use 'kurkale6ka/vim-desertEX'
 
 end)
-
--- TODO
--- vim.cmd([[
---   augroup packer_user_config
---     autocmd!
---     autocmd BufWritePost plugins.lua source <afile> | PackerCompile
---   augroup end
--- ]])

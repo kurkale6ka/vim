@@ -8,8 +8,12 @@
 -- remove after/ftdetect/filetype.vim
 -- compare with coc completion
 -- fix leader-w
+-- fix gr
 -- ts text objects
 -- get completions from all buffers
+-- au groups?
+-- localleader gl
+-- use gh in mappings
 
 vim.g.mapleader = ' '
 
