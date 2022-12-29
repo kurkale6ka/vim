@@ -26,7 +26,7 @@ vim.g.loaded_getscriptPlugin    = true
 vim.g.loaded_rrhelper           = true
 vim.g.loaded_spellfile_plugin   = true
 
--- -- Load matchit.vim, but only if the user hasn't installed a newer version
+-- Load matchit.vim, but only if the user hasn't installed a newer version
 -- if !exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# ''
 --    runtime! macros/matchit.vim
 -- endif
@@ -227,9 +227,9 @@ vim.keymap.set('n', ']]', ":call search('^[^[:space:]]\\@=.*{$',  'esW')<cr>", {
 --     (setpos("''", getpos('.')) <bar><bar> 1) ? "''" : "\\<esc>")
 -- ]], { expr = true})
 
--- Text-object: file (all content)
-vim.keymap.set('x', 'aa', 'ggVoG')
-vim.keymap.set('o', 'aa', ':normal vaa<cr>')
+-- Text-object: file
+vim.keymap.set('x', 'af', 'ggVoG')
+vim.keymap.set('o', 'af', ':normal vaf<cr>')
 
 -- Let } select the current column only when in visual-block mode
 vim.o.startofline = false
