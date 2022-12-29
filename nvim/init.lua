@@ -250,16 +250,14 @@ vim.keymap.set('n', '<a-j>', '<c-w>j')
 vim.keymap.set('n', '<a-k>', '<c-w>k')
 vim.keymap.set('n', '<a-l>', '<c-w>l')
 
--- Goto ^ and $ with Ctrl + /
-vim.keymap.set('n', '<c-left>', '^')
+-- Goto ^ and $
+vim.keymap.set('n', '<c-left>',  '^')
 vim.keymap.set('n', '<c-right>', '$')
-vim.keymap.set('i', '<c-left>', '<c-o>^')
+vim.keymap.set('i', '<c-left>',  '<c-o>^')
 vim.keymap.set('i', '<c-right>', '<c-o>$')
-
--- <Home> to move to the first char on the line
-vim.keymap.set({ 'n', 'v', 'o' }, '<home>', '^')
-vim.keymap.set('i', '<home>', '<c-o>I')
-vim.keymap.set('c', '<c-a>', '<home>')
+vim.keymap.set('c', '<c-left>',  '<c-b>')
+vim.keymap.set('c', '<c-right>', '<c-e>')
+vim.keymap.set('c', '<c-a>', '<c-b>')
 
 -- Ctrl +  to go up by a paragraph
 vim.keymap.set('i', '<c-up>', '<c-o>{')
