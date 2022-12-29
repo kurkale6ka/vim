@@ -44,16 +44,16 @@ local on_attach = function(client, bufnr)
             highlight link LspReferenceWrite Visual
         ]])
 
-        vim.api.nvim_create_autocmd("CursorHold" , {
-            callback = function ()
+        vim.api.nvim_create_autocmd("CursorHold", {
+            callback = function()
                 vim.lsp.buf.document_highlight()
             end,
             buffer = bufnr,
             group = cursor
         })
 
-        vim.api.nvim_create_autocmd("CursorMoved" , {
-            callback = function ()
+        vim.api.nvim_create_autocmd("CursorMoved", {
+            callback = function()
                 vim.lsp.buf.clear_references()
             end,
             buffer = bufnr,
