@@ -12,22 +12,6 @@ return require('packer').startup(function(use)
     -- Self
     use 'wbthomason/packer.nvim'
 
-    -- TODO
-    -- execute "Plug '".s:vim."/plugged/unicodename', { 'on': 'UnicodeName' }"
-    -- execute "Plug '".s:vim."/plugged/win_full_screen', { 'on': 'WinFullScreen' }"
-    -- execute "Plug '".s:vim."/plugged/vim-chess'"
-    -- Plug 'bfredl/nvim-miniyank', has('nvim') ? {} : { 'on': [] } " ???
-    -- Plug 'airblade/vim-gitgutter' + config
-    -- Plug 'pearofducks/ansible-vim'
-    -- Plug 'rodjek/vim-puppet'
-    -- Plug 'terceiro/vim-foswiki'
-    -- Plug 'vim-scripts/iptables'
-    -- Plug 'vim-scripts/nginx.vim'
-    -- Plug 'StanAngeloff/php.vim'
-    -- Plug 'tmux-plugins/vim-tmux'
-    -- Plug 'norcalli/nvim-colorizer.lua' " ???
-    -- Plug 'jvirtanen/vim-hcl'
-
     -- Tpope
     use 'tpope/vim-abolish'
     use 'tpope/vim-commentary'
@@ -82,10 +66,29 @@ return require('packer').startup(function(use)
 
     use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
 
-    use { 'glacambre/firenvim', run = function() vim.fn['firenvim#install'](0) end }
+    use { 'glacambre/firenvim',
+        run = function() vim.fn['firenvim#install'](0) end,
+        opt = true,
+    }
+
+    -- TODO
+    -- execute "Plug '".s:vim."/plugged/unicodename', { 'on': 'UnicodeName' }"
+    -- execute "Plug '".s:vim."/plugged/win_full_screen', { 'on': 'WinFullScreen' }"
+    -- use 'bfredl/nvim-miniyank', {}
+    -- use 'airblade/vim-gitgutter' -- plus config
+    -- use 'norcalli/nvim-colorizer.lua'
+    use { 'pearofducks/ansible-vim', opt = true }
+    use { 'rodjek/vim-puppet', opt = true }
+    use { 'terceiro/vim-foswiki', opt = true }
+    use { 'vim-scripts/iptables', opt = true }
+    use { 'vim-scripts/nginx.vim', opt = true }
+    use { 'StanAngeloff/php.vim', opt = true }
+    use { 'tmux-plugins/vim-tmux', opt = true }
+    use { 'jvirtanen/vim-hcl', opt = true }
 
     -- Own
     use 'kurkale6ka/vim-pairs'
     use 'kurkale6ka/vim-desertEX'
+    use { 'kurkale6ka/vim-chess', opt = true }
 
 end)

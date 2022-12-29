@@ -5,7 +5,6 @@
 -- let g:vim_json_syntax_conceal = 0
 -- set backup
 -- nmap <expr> <leader>g ':vert Git -p ', redefine command?
--- remove after/ftdetect/filetype.vim
 -- compare with coc completion
 -- fix leader-w
 -- fix gr
@@ -14,7 +13,6 @@
 -- au groups?
 -- localleader gl
 -- use gh in mappings
--- c-<- in : doesn't go to bol
 
 vim.g.mapleader = ' '
 
