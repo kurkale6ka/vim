@@ -3,6 +3,8 @@ vim.keymap.set('n', '<leader>sf', ':Files<cr>')    -- search fzf files
 vim.keymap.set('n', '<leader>sh', ':History<cr>')  -- search history (recently edited files)
 vim.keymap.set('n', '<leader>ss', ':Snippets<cr>') -- search snippets
 vim.keymap.set('n', '<leader>st', ':Tags<cr>')     -- search tags
+vim.keymap.set('n', '<leader>sc', ':Commands<cr>') -- search commands
+vim.keymap.set('n', '<leader>sm', ':Maps<cr>')     -- search maps
 vim.keymap.set('n', '<leader>t', ':Filetypes<cr>') -- set 'ft
 vim.keymap.set('n', '<leader>b', ':Buffers<cr>')
 vim.keymap.set('n', '<leader>/', ':BLines<cr>') -- fuzzy /
