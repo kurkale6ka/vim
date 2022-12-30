@@ -26,11 +26,6 @@ vim.g.loaded_getscriptPlugin    = true
 vim.g.loaded_rrhelper           = true
 vim.g.loaded_spellfile_plugin   = true
 
--- Load matchit.vim, but only if the user hasn't installed a newer version
--- if !exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# ''
---    runtime! macros/matchit.vim
--- endif
-
 require('plugins')
 require('plugins/nvim-lspconfig')
 require('plugins/nvim-cmp')
