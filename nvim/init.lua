@@ -9,6 +9,7 @@
 -- ts text objects
 -- get completions from all buffers
 -- autocmd: what are groups for?
+-- autocmd error ZZ
 -- gh or <localleader>h for local help?
 -- use in mappings: gl, gh, coc, =oc, old option changing combis
 
