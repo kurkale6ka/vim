@@ -1,1 +1,0 @@
-setlocal paragraphs=IPLPPPQPP\ TPHPLIPpLpItpplpipbp
