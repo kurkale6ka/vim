@@ -11,6 +11,9 @@
 -- autocmd: what are groups for?
 -- gh or <localleader>h for local help?
 -- use in mappings: gl, gh, coc, =oc, old option changing combis
+-- after ciw confirm with enter from completion, . won't repeat
+-- where are dictionaries?
+-- se dg still no luck
 
 vim.g.mapleader = ' '
 vim.g.maplocalleader = '\\'
