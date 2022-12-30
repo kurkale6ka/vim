@@ -22,11 +22,8 @@ P .viminfo
 - colors/*
 
 # plugins
-- plugged/firenvim/
 - plugged/fzf.vim/
 - plugged/neomake/
-- plugged/nvim-lspconfig/
-- plugged/nvim-miniyank/
 - plugged/ultisnips/
 - plugged/vim-snippets/
 - plugged/vim-chess/

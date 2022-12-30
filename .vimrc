@@ -1,8 +1,7 @@
 " Author: kurkale6ka <Dimitar Dimitrov>
 
 " Don't reset &runtimepath, if re-sourcing my vimrc
-if !has('nvim') && !exists('g:loaded_plug')
-   " TODO. Fix needed: https://github.com/neovim/neovim/issues/5783
+if !exists('g:loaded_plug')
    if !&loadplugins
       if &diff
          set all& noloadplugins diff
@@ -21,19 +20,13 @@ set nocompatible
 "" Setup
 " needed for remote hosts where ~/.vim is shared and cannot be customized
 if !empty($REPOS_BASE)
-   let s:vim = $REPOS_BASE.'/vim'
-   execute 'let &runtimepath = substitute(&runtimepath, expand("~")."/\\.vim", "'.s:vim.'", "g")'
-elseif has('nvim')
-   let s:vim = stdpath('config')
+   let s:vim = $REPOS_BASE.'/editor/vim'
+   execute 'let &runtimepath = substitute(&runtimepath, expand("~")."/editor/\\.vim", "'.s:vim.'", "g")'
 else
-   let s:vim = '~/.vim'
+   let s:vim = '~/editor/.vim'
 endif
 
-if has('nvim')
-   let $MYVIMRC = s:vim.'/init.vim'
-else
-   let $MYVIMRC = s:vim.'/.vimrc'
-endif
+let $MYVIMRC = s:vim.'/.vimrc'
 
 if empty($SSH_CONNECTION)
    call system("who | 'grep' -q '([0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\})'")
@@ -85,22 +78,18 @@ Plug 'tpope/vim-projectionist'
 Plug 'lambdalisue/fern.vim'
 Plug 'lambdalisue/fern-hijack.vim'
 Plug 'lambdalisue/nerdfont.vim'
-if has('nvim') || has('patch-8.1.0994')
+if has('patch-8.1.0994')
    Plug 'lambdalisue/fern-renderer-nerdfont.vim'
 endif
 Plug 'lambdalisue/glyph-palette.vim'
 Plug 'liuchengxu/vista.vim'
-if !has('nvim') && $TERM !~ 'linux' " disable in the vconsole
+if $TERM !~ 'linux' " disable in the vconsole
    Plug 'jszakmeister/vim-togglecursor'
 endif
 Plug 'junegunn/vim-easy-align'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-Plug 'bfredl/nvim-miniyank', has('nvim') ? {} : { 'on': [] } " ???
 Plug 'neomake/neomake'
-if has('nvim')
-   Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
-endif
 Plug 'airblade/vim-gitgutter'
 " snippets
 Plug 'SirVer/ultisnips'
@@ -117,7 +106,6 @@ Plug 'elzr/vim-json'
 Plug 'vim-scripts/nginx.vim'
 Plug 'StanAngeloff/php.vim'
 Plug 'tmux-plugins/vim-tmux'
-Plug 'norcalli/nvim-colorizer.lua' " ???
 Plug 'jvirtanen/vim-hcl'
 call plug#end()
 
@@ -155,18 +143,6 @@ let g:sleuth_automatic = 0
 let g:neomake_python_python_exe = 'python3'
 let g:neomake_warning_sign = { 'text': 'W', 'texthl': 'WarningMsg' }
 let g:neomake_error_sign   = { 'text': 'E', 'texthl': 'ErrorMsg'   }
-
-" firenvim: force manual triggering
-if has('nvim') && exists('g:started_by_firenvim')
-   let g:firenvim_config = {
-      \    'localSettings': {
-      \       '.*': {
-      \          'selector': '',
-      \          'priority': 0,
-      \       }
-      \    }
-      \ }
-endif
 
 " gitgutter
 let g:gitgutter_signs = 0
@@ -214,12 +190,8 @@ endif
 nnoremap gr :later 9999<cr>
 
 set history=10000
-if !has('nvim')
-   set viminfo=!,'1000
-   execute 'set viminfo+=n'.s:vim.'/.viminfo'
-else
-   set shada='1000
-endif
+set viminfo=!,'1000
+execute 'set viminfo+=n'.s:vim.'/.viminfo'
 
 "" Search and replace
 set incsearch
@@ -262,13 +234,11 @@ endif
 command! -nargs=+ Find call find#files(<f-args>)
 
 "" Encoding and file formats
-if !has('nvim')
-   if has('multi_byte') && &encoding !~? 'utf-\=8'
-      if empty(&termencoding)
-         let &termencoding = &encoding
-      endif
-      set encoding=utf-8
+if has('multi_byte') && &encoding !~? 'utf-\=8'
+   if empty(&termencoding)
+      let &termencoding = &encoding
    endif
+   set encoding=utf-8
 endif
 
 set fileencodings=ucs-bom,utf-8,default,cp1251,latin1
@@ -292,18 +262,14 @@ set display+=lastline
 
 set lazyredraw
 set scrolloff=2
-if !has('nvim')
-   set ttyscroll=3
-endif
+set ttyscroll=3
 
 set timeoutlen=2000 " 2s before timing out a mapping
 set ttimeoutlen=100 " 100 ms before timing out on a keypress
 
 " No flashing
 set visualbell " visual bell instead of beeps, but...
-if !has('nvim')
-   set t_vb= " ...disable the visual effect :)
-endif
+set t_vb= " ...disable the visual effect :)
 
 if has('folding')
    set foldnestmax=1 " maximum nesting for indent and syntax
@@ -328,11 +294,8 @@ endif
 
 " When to enable unicode characters
 if ($TERM !~ 'linux' &&
- \    (has('nvim') ||
- \       (&enc =~? '^u\(tf\|cs\)' &&
- \          (empty(&tenc) || &tenc ==? &enc || &tenc ==? 'macroman')
- \       )
- \    )
+ \    &enc =~? '^u\(tf\|cs\)' &&
+ \    (empty(&tenc) || &tenc ==? &enc || &tenc ==? 'macroman')
  \ ) || has('gui_running')
    let s:unicode_chars = 1
 endif
@@ -362,16 +325,14 @@ if exists('s:local_vim')
 endif
 
 "" Colors and highlighting
-if !has('nvim') && $TERM !~ 'linux' && &term =~ '^\(xterm\|screen\)$'
+if $TERM !~ 'linux' && &term =~ '^\(xterm\|screen\)$'
    set t_Co=256
 endif
 
 if exists('+termguicolors') && $TERM !~ 'linux\|^screen\%($\|\.[^s]\)' && $TERM_PROGRAM != 'Apple_Terminal'
    " tmux Vim-specific sequences for RGB colors
-   if !has('nvim')
-      let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-      let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-   endif
+   let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+   let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
    set termguicolors
 endif
 
@@ -396,14 +357,10 @@ set synmaxcol=301
 set mouse=a
 set mousemodel=extend
 
-if !has('nvim')
-   set ttymouse=xterm2
-endif
+set ttymouse=xterm2
 
-if !has('nvim')
-   " TODO. Bug: Only t_te, not t_op, gets sent when leaving an alt screen
-   exe 'set t_te=' . &t_te . &t_op
-endif
+" TODO. Bug: Only t_te, not t_op, gets sent when leaving an alt screen
+exe 'set t_te=' . &t_te . &t_op
 
 "" Text formating
 set formatoptions+=r " auto insert comment with <Enter>...
@@ -549,13 +506,13 @@ cmap <c-r><c-l> <c-r>=copy#line()<cr>
 " Ctrl + g to copy pattern to "* (:g/pattern -> /pattern...)
 cmap <silent> <c-g> <c-f>:call cmdline#switch('g')<cr>
 
-" has('nvim') || " TODO. Still in development
+" TODO. Still in development
 if has('xterm_clipboard')
    " Selection available for pasting with <c-v> outside of vim (GUI's go+=P)
    set clipboard^=autoselectplus
 endif
 
-if has('nvim') || has('xterm_clipboard') || has('gui_running')
+if has('xterm_clipboard') || has('gui_running')
    " y/d/c available for pasting with <c-v> outside of vim
    set clipboard^=unnamedplus
 endif
@@ -595,7 +552,7 @@ inoremap <c-w> <c-o>dB
 noremap! <m-bs> <c-w>
 
 " Alt + d
-if has('nvim') || has('gui_running')
+if has('gui_running')
    cnoremap <m-d> <c-\>ecmdline#alt_d()<cr>
    inoremap <m-d> <c-o>de
 endif
@@ -761,13 +718,6 @@ if has('autocmd')
       augroup WSLYank
          autocmd!
          autocmd TextYankPost * if v:event.operator ==# 'y' | call system(s:clip, @0) | endif
-      augroup END
-   endif
-   if has('nvim')
-      augroup neovim_terminal
-         autocmd!
-         " Disables number lines on terminal buffers
-         autocmd TermOpen * :setlocal nonumber norelativenumber
       augroup END
    endif
 endif
