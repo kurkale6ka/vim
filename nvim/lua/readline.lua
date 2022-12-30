@@ -4,18 +4,18 @@
 vim.keymap.set({ 'c', 'i' }, '<a-bs>', '<c-w>')
 
 -- alt + d
-vim.keymap.set('c', '<a-d>', '<c-\\>ecmdline#alt_d()<cr>')
+vim.keymap.set('c', '<a-d>', [[<c-\>ecmdline#alt_d()<cr>]])
 vim.keymap.set('i', '<a-d>', '<c-o>de')
 
 -- ctrl + k
-vim.keymap.set('c', '<c-k>', '<c-\\>estrpart(getcmdline(), 0, getcmdpos() - 1)<cr>')
+vim.keymap.set('c', '<c-k>', [[<c-\>estrpart(getcmdline(), 0, getcmdpos() - 1)<cr>]])
 vim.keymap.set('i', '<c-k>', '<c-o>D')
 
 -- ctrl + u
 vim.keymap.set('i', '<c-u>', '<c-g>u<c-u>')
 
 -- ctrl + w
-vim.keymap.set('c', '<c-w>', '<c-\\>ecmdline#ctrl_w()<cr>')
+vim.keymap.set('c', '<c-w>', [[<c-\>ecmdline#ctrl_w()<cr>]])
 vim.keymap.set('i', '<c-w>', '<c-o>dB')
 
 ---- Moving
@@ -27,10 +27,10 @@ vim.keymap.set('c', '<a-f>', '<s-right>')
 vim.keymap.set('i', '<a-f>', '<c-o>W')
 
 -- alt + h,j,k,l to navigate windows
-vim.keymap.set({ 't', 'i' }, '<a-h>', '<c-\\><c-n><c-w>h')
-vim.keymap.set({ 't', 'i' }, '<a-j>', '<c-\\><c-n><c-w>j')
-vim.keymap.set({ 't', 'i' }, '<a-k>', '<c-\\><c-n><c-w>k')
-vim.keymap.set({ 't', 'i' }, '<a-l>', '<c-\\><c-n><c-w>l')
+vim.keymap.set({ 't', 'i' }, '<a-h>', [[<c-\><c-n><c-w>h]])
+vim.keymap.set({ 't', 'i' }, '<a-j>', [[<c-\><c-n><c-w>j]])
+vim.keymap.set({ 't', 'i' }, '<a-k>', [[<c-\><c-n><c-w>k]])
+vim.keymap.set({ 't', 'i' }, '<a-l>', [[<c-\><c-n><c-w>l]])
 vim.keymap.set('n', '<a-h>', '<c-w>h')
 vim.keymap.set('n', '<a-j>', '<c-w>j')
 vim.keymap.set('n', '<a-k>', '<c-w>k')
