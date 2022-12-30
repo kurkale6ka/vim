@@ -67,12 +67,27 @@ require('nvim-treesitter.configs').setup {
             lookahead = true, -- Automatically jump forward to textobj, similar to targets.vim
             keymaps = {
                 -- You can use the capture groups defined in textobjects.scm
-                ['aa'] = '@parameter.outer',
-                ['ia'] = '@parameter.inner',
-                ['am'] = '@function.outer',
-                ['im'] = '@function.inner',
-                ['ac'] = '@class.outer',
+                -- ['ia'] = '@attribute.inner',
+                -- ['aa'] = '@attribute.outer',
+                -- ['ib'] = '@block.inner', -- taken: alias for a(
+                -- ['ab'] = '@block.outer',
+                -- ['ic'] = '@call.inner',
+                -- ['ac'] = '@call.outer',
                 ['ic'] = '@class.inner',
+                ['ac'] = '@class.outer',
+                -- ['ac'] = '@comment.outer',
+                ['ii'] = '@conditional.inner', -- inner if
+                ['ai'] = '@conditional.outer',
+                -- ['if'] = '@frame.inner', -- taken: I use 'if' for 'inner file'
+                -- ['af'] = '@frame.outer',
+                ['im'] = '@function.inner', -- method
+                ['am'] = '@function.outer',
+                ['il'] = '@loop.inner',
+                ['al'] = '@loop.outer',
+                ['ia'] = '@parameter.inner', -- argument
+                ['aa'] = '@parameter.outer',
+                -- ['is'] = '@scope.inner',
+                -- ['as'] = '@statement.outer', -- taken: sentence
             },
         },
         move = {
@@ -80,19 +95,19 @@ require('nvim-treesitter.configs').setup {
             set_jumps = true, -- whether to set jumps in the jumplist
             goto_next_start = {
                 [']m'] = '@function.outer',
-                [']c'] = '@class.outer',
+                -- [']c'] = '@class.outer', -- used to jump to diffs with unimpaired
             },
             goto_next_end = {
                 [']M'] = '@function.outer',
-                [']C'] = '@class.outer',
+                -- [']C'] = '@class.outer',
             },
             goto_previous_start = {
                 ['[m'] = '@function.outer',
-                ['[c'] = '@class.outer',
+                -- ['[c'] = '@class.outer',
             },
             goto_previous_end = {
                 ['[M'] = '@function.outer',
-                ['[C'] = '@class.outer',
+                -- ['[C'] = '@class.outer',
             },
         },
         swap = {
