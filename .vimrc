@@ -38,9 +38,8 @@ endif
 let mapleader = "\<space>"
 
 "" Filetype + syntax
-" Auto executed by vim-plug:
-" filetype plugin indent on
-" syntax enable
+filetype plugin indent on
+syntax enable
 
 " Syntax based omni completion
 if has('autocmd') && exists('+omnifunc')
@@ -56,15 +55,6 @@ if version >= 703 && (!exists('+termguicolors') || $TERM =~ '^screen\%($\|\.[^s]
 endif
 
 call plug#begin(s:vim.'/plugged')
-execute "Plug '".s:vim."/plugged/bufgrep', { 'on': 'Bgrep' }"
-execute "Plug '".s:vim."/plugged/unicodename', { 'on': 'UnicodeName' }"
-execute "Plug '".s:vim."/plugged/vsearch'"
-execute "Plug '".s:vim."/plugged/win_full_screen', { 'on': 'WinFullScreen' }"
-execute "Plug '".s:vim."/plugged/vim-blockinsert'"
-execute "Plug '".s:vim."/plugged/vim-chess'"
-execute "Plug '".s:vim."/plugged/vim-desertEX'"
-execute "Plug '".s:vim."/plugged/vim-pairs'"
-execute "Plug '".s:vim."/plugged/vim-swap'"
 Plug 'tpope/vim-abolish' ", { 'on': ['Abolish', 'Subvert', 'S'] }
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-endwise'
@@ -87,7 +77,7 @@ if $TERM !~ 'linux' " disable in the vconsole
    Plug 'jszakmeister/vim-togglecursor'
 endif
 Plug 'junegunn/vim-easy-align'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'neomake/neomake'
 Plug 'airblade/vim-gitgutter'
@@ -107,6 +97,12 @@ Plug 'vim-scripts/nginx.vim'
 Plug 'StanAngeloff/php.vim'
 Plug 'tmux-plugins/vim-tmux'
 Plug 'jvirtanen/vim-hcl'
+" own
+Plug 'kurkale6ka/vim-blockinsert'
+Plug 'kurkale6ka/vim-chess'
+Plug 'kurkale6ka/vim-desertEX'
+Plug 'kurkale6ka/vim-pairs'
+Plug 'kurkale6ka/vim-swap'
 call plug#end()
 
 let did_install_default_menus = 1
@@ -317,11 +313,7 @@ else
 endif
 
 if exists('s:local_vim')
-   if &readonly || !&modifiable
-      setlocal nolist
-   else
-      setlocal list
-   endif
+   setlocal list
 endif
 
 "" Colors and highlighting
@@ -575,21 +567,15 @@ set virtualedit=block
 set whichwrap=b,s,<,>,[,]
 set paragraphs= " no wrongly defined paragraphs for non nroff,groff filetypes
 
-if has('nvim')
-   " use alt+{h,j,k,l} to navigate windows from any mode
-   tnoremap <a-h> <c-\><c-n><c-w>h
-   tnoremap <a-j> <c-\><c-n><c-w>j
-   tnoremap <a-k> <c-\><c-n><c-w>k
-   tnoremap <a-l> <c-\><c-n><c-w>l
-   inoremap <a-h> <c-\><c-n><c-w>h
-   inoremap <a-j> <c-\><c-n><c-w>j
-   inoremap <a-k> <c-\><c-n><c-w>k
-   inoremap <a-l> <c-\><c-n><c-w>l
-   nnoremap <a-h> <c-w>h
-   nnoremap <a-j> <c-w>j
-   nnoremap <a-k> <c-w>k
-   nnoremap <a-l> <c-w>l
-endif
+" use alt+{h,j,k,l} to navigate windows from any mode
+inoremap <a-h> <c-\><c-n><c-w>h
+inoremap <a-j> <c-\><c-n><c-w>j
+inoremap <a-k> <c-\><c-n><c-w>k
+inoremap <a-l> <c-\><c-n><c-w>l
+nnoremap <a-h> <c-w>h
+nnoremap <a-j> <c-w>j
+nnoremap <a-k> <c-w>k
+nnoremap <a-l> <c-w>l
 
 " bol, eol
 imap <c-left> <c-o>^
