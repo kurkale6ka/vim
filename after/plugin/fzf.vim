@@ -38,7 +38,7 @@ xmap <leader>G "*y:BLines <c-r>*<cr>
 
 " Custom help files
 if !empty($REPOS_BASE)
-   nmap <expr> <leader>h ':Files '.$REPOS_BASE.'/help<cr>'
+   nmap <expr> <leader>h ':Files '.$REPOS_BASE.'/github/help<cr>'
 endif
 
 command! -bang -nargs=* Rg

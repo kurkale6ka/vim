@@ -20,7 +20,7 @@ set nocompatible
 "" Setup
 " needed for remote hosts where ~/.vim is shared and cannot be customized
 if !empty($REPOS_BASE)
-   let s:vim = $REPOS_BASE.'/vim'
+   let s:vim = $REPOS_BASE.'/github/vim'
    execute 'let &runtimepath = substitute(&runtimepath, expand("~")."/\\.vim", "'.s:vim.'", "g")'
 else
    let s:vim = '~/.vim'
@@ -741,7 +741,7 @@ command! Shell silent write !sh
 "" Help
 if !empty($REPOS_BASE)
    " \h to access custom documentation
-   nmap <expr> <leader>h ':e'.fnamemodify($REPOS_BASE.'/help/', ':~')
+   nmap <expr> <leader>h ':e'.fnamemodify($REPOS_BASE.'/github/help/', ':~')
 endif
 
 " F1 to get a full screen help window

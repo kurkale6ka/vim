@@ -51,7 +51,7 @@ imap <c-s><c-a> <c-o>:wall<cr>
 
 "" MYGVIMRC
 if !empty($REPOS_BASE)
-   let $MYGVIMRC = $REPOS_BASE.'/vim/.gvimrc'
+   let $MYGVIMRC = $REPOS_BASE.'/github/vim/.gvimrc'
 else
    echoerr 'REPOS_BASE needs to be set'
 endif
